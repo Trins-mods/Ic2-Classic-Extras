@@ -1,0 +1,47 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "ic2c_extras:orientable",
+		"uvlock": true
+	},
+	"variants": {
+		"state": {
+			"false": {
+				"textures": {
+					"particle": "ic2c_extras:blocks/ore_washing_plant/ore_washing_plant_top_off",
+					"down": "ic2c_extras:blocks/ore_washing_plant/ore_washing_plant_bottom_off",
+					"up": "ic2c_extras:blocks/ore_washing_plant/ore_washing_plant_top_off",
+					"north": "ic2c_extras:blocks/ore_washing_plant/ore_washing_plant_front_off",
+					"south": "ic2c_extras:blocks/ore_washing_plant/ore_washing_plant_back_off",
+					"west": "ic2c_extras:blocks/ore_washing_plant/ore_washing_plant_right_off",
+					"east": "ic2c_extras:blocks/ore_washing_plant/ore_washing_plant_left_off"
+				}
+			},
+			"true": {
+				"textures": {
+					"particle": "ic2c_extras:blocks/ore_washing_plant/ore_washing_plant_top_on",
+					"down": "ic2c_extras:blocks/ore_washing_plant/ore_washing_plant_bottom_on",
+					"up": "ic2c_extras:blocks/ore_washing_plant/ore_washing_plant_top_on",
+					"north": "ic2c_extras:blocks/ore_washing_plant/ore_washing_plant_front_on",
+					"south": "ic2c_extras:blocks/ore_washing_plant/ore_washing_plant_back_on",
+					"west": "ic2c_extras:blocks/ore_washing_plant/ore_washing_plant_right_on",
+					"east": "ic2c_extras:blocks/ore_washing_plant/ore_washing_plant_left_on"
+				}
+			}
+		},
+		"facing": {
+			"down": { },
+			"up": { },
+			"north": { },
+			"east": {
+				"y": 90
+			},
+			"south": {
+				"y": 180
+			},
+			"west": {
+				"y": 270
+			}
+		}
+	}
+}

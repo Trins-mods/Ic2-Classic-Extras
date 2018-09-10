@@ -13,10 +13,12 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class RegistryBlock
 {
     public static final Block blockBasic = new BlockBase(Material.IRON, "blockBasic");
+    public static final Block blockOreWashingPlant = new BlockOreWashingPlant(Material.IRON, "blockOreWashingPlant");
 
     public static final Block[] blocks =
     {
-            blockBasic
+            blockBasic,
+            blockOreWashingPlant
     };
 
     @SubscribeEvent

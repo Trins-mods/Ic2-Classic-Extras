@@ -1,0 +1,46 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "minecraft:item/generated",
+		"uvlock": true
+	},
+	"variants": {
+		"ore": {
+			"iron": {
+				"textures": {
+					"layer0": "ic2c_extras:items/crushed_ore/crushed_ore_iron"
+				}
+			},
+			"gold": {
+				"textures": {
+					"layer0": "ic2c_extras:items/crushed_ore/crushed_ore_gold"
+				}
+			},
+			"copper": {
+				"textures": {
+					"layer0": "ic2c_extras:items/crushed_ore/crushed_ore_copper"
+				}
+			},
+			"tin": {
+				"textures": {
+					"layer0": "ic2c_extras:items/crushed_ore/crushed_ore_tin"
+				}
+			},
+			"uranium": {
+				"textures": {
+					"layer0": "ic2c_extras:items/crushed_ore/crushed_ore_uranium"
+				}
+			},
+			"silver": {
+				"textures": {
+					"layer0": "ic2c_extras:items/crushed_ore/crushed_ore_silver"
+				}
+			},
+			"lead": {
+				"textures": {
+					"layer0": "ic2c_extras:items/crushed_ore/crushed_ore_lead"
+				}
+			}
+		}
+	}
+}

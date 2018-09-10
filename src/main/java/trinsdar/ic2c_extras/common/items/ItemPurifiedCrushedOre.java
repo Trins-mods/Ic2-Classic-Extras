@@ -6,7 +6,7 @@ import net.minecraft.util.NonNullList;
 import trinsdar.ic2c_extras.Ic2cExtras;
 
 public class ItemPurifiedCrushedOre extends ItemBase {
-    private final String[] oreTypes = {"iron", "gold", "copper", "tin", "silver", "uran", "lead"};
+    public static final String[] oreTypes = {"iron", "gold", "copper", "tin", "silver", "uranium", "lead"};
 
     public ItemPurifiedCrushedOre(String itemName) {
         super(itemName);
