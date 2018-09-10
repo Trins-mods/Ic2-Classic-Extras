@@ -1,6 +1,7 @@
 package trinsdar.ic2c_extras.common.proxy;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -15,8 +16,11 @@ import trinsdar.ic2c_extras.common.items.RegistryItem;
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class ClientProxy extends CommonProxy {
     @Override
-    public void preInit(FMLPreInitializationEvent e) {
-        super.preInit(e);
+    public void preInit(FMLPreInitializationEvent e) { super.preInit(e); }
+
+    @Override
+    public void registerItemRenderer(Item item, int meta, String id) {
+        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Ic2cExtras.MODID + ":" + id, "inventory"));
     }
 
     @SubscribeEvent
