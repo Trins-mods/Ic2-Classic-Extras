@@ -8,7 +8,7 @@ import trinsdar.ic2c_extras.Ic2cExtras;
 public class ItemCrushedOre extends ItemBase
 {
 
-    private final String[] oreTypes = {"iron", "gold", "copper", "tin", "silver", "uran"};
+    private final String[] oreTypes = {"iron", "gold", "copper", "tin", "silver", "uran", "lead"};
 
     public ItemCrushedOre(String itemName)
     {
