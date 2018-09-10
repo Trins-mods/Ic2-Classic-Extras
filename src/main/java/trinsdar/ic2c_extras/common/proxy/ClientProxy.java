@@ -17,13 +17,4 @@ import trinsdar.ic2c_extras.common.items.RegistryItem;
 public class ClientProxy extends CommonProxy {
     @Override
     public void preInit(FMLPreInitializationEvent e) { super.preInit(e); }
-
-    @Override
-    public void registerItemRenderer(Item item, int meta, String id) {
-        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Ic2cExtras.MODID + ":" + id, "inventory"));
-    }
-
-    @SubscribeEvent
-    public static void registerModels(ModelRegistryEvent event) {
-    }
 }
