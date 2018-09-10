@@ -1,18 +1,18 @@
 package trinsdar.ic2c_extras.common.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
-import trinsdar.ic2c_extras.common.ModBlocks;
 
 @Mod.EventBusSubscriber
 public class RegistryBlock
 {
-    public static final Block blockBasic = new BlockBasic("blockBasic");
+    public static final Block blockBasic = new BlockBase(Material.IRON, "blockBasic");
 
     public static final Block[] blocks =
     {
