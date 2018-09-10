@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "ic2c_extras:items/purified_purified_crushed_ore/purified_purified_crushed_ore_copper"
+	}
+}
