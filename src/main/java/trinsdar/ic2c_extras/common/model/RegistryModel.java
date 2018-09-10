@@ -34,6 +34,7 @@ public class RegistryModel
 
         for (String oreType : ItemCrushedOre.oreTypes)
         {
+            System.out.println(i);
             registerItemModelWithMeta(RegistryItem.crushedOres, i, new ResourceLocation(Ic2cExtras.MODID, "crushed_ore/crushed_ore_" + oreType));
             registerItemModelWithMeta(RegistryItem.purifiedCrushedOres, i, new ResourceLocation(Ic2cExtras.MODID, "purified_crushed_ore/purified_crushed_ore_" + oreType));
             i++;
@@ -43,7 +44,8 @@ public class RegistryModel
 
         for (String dustType : ItemTinyDust.tinyDustTypes)
         {
-            registerItemModelWithMeta(RegistryItem.crushedOres, i, new ResourceLocation(Ic2cExtras.MODID, "tiny_dust/tiny_dust_" + dustType));
+            registerItemModelWithMeta(RegistryItem.tinyDustTypes, i, new ResourceLocation(Ic2cExtras.MODID, "tiny_dust/tiny_dust_" + dustType));
+            i++;
         }
     }
 
