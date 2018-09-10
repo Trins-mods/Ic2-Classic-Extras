@@ -18,7 +18,7 @@ public class Ic2cExtras
     public static final String VERSION = "@VERSION@";
     public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod";
 
-    @SidedProxy(clientSide = "trinsdar.ic2c_extras.common.proxy.ClientProxy", serverSide = "trinsdar.ic2c_extras.common.proxy.CommonProxy")
+    @SidedProxy(clientSide = "trinsdar.ic2c_extras.common.proxy.ClientProxy", serverSide = "trinsdar.ic2c_extras.common.proxy.ServerProxy")
     public static CommonProxy proxy;
 
     @Mod.Instance
@@ -30,6 +30,7 @@ public class Ic2cExtras
     public void preInit(FMLPreInitializationEvent event)
     {
         logger = event.getModLog();
+        proxy.preInit(event);
     }
 
     @EventHandler
@@ -37,9 +38,10 @@ public class Ic2cExtras
     {
         // some example code
         logger.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        proxy.init(event);
     }
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent e) {
-        proxy.postInit(e);
+    public void postInit(FMLPostInitializationEvent event) {
+        proxy.postInit(event);
     }
 }

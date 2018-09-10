@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import trinsdar.ic2c_extras.common.blocks.OreWashingPlant;
+import trinsdar.ic2c_extras.common.blocks.BlockBasic;
 import trinsdar.ic2c_extras.common.ModBlocks;
 
 
@@ -18,23 +18,13 @@ import trinsdar.ic2c_extras.common.ModBlocks;
 public class CommonProxy {
     public static Configuration config;
 
-    public void preInit(FMLPreInitializationEvent e) {
+    public void preInit(FMLPreInitializationEvent event) {
     }
 
-    public void init(FMLInitializationEvent e) {
+    public void init(FMLInitializationEvent event) {
     }
 
-    public void postInit(FMLPostInitializationEvent e) {
-    }
-
-    @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
-    event.getRegistry().register(new OreWashingPlant());
-    }
-
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-    event.getRegistry().register(new ItemBlock(ModBlocks.oreWashingPlant).setRegistryName(ModBlocks.oreWashingPlant.getRegistryName()));
+    public void postInit(FMLPostInitializationEvent event) {
     }
 }
 
