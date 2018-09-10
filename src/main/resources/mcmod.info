@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ic2c_extras",
+  "name": "Ic2c Extras",
+  "description": "Extra things for Ic2 classic",
+  "version": "${mod_version}",
+  "mcversion": "${mc_version}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Trinsdar"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
