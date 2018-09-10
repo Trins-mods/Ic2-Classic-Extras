@@ -9,6 +9,7 @@ public class BlockBase extends Block
     public BlockBase(Material materialIn, String blockName)
     {
         super(materialIn);
+        this.setCreativeTab(Ic2cExtras.creativeTab);
         this.setRegistryName(Ic2cExtras.MODID, blockName);
         this.setUnlocalizedName(Ic2cExtras.MODID + "." + blockName);
     }

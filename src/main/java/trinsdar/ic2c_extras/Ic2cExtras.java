@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras;
 
+import net.minecraft.creativetab.CreativeTabs;
 import trinsdar.ic2c_extras.common.proxy.CommonProxy;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.fml.common.Mod;
@@ -9,6 +10,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
+import trinsdar.ic2c_extras.common.util.CreativeTabIC2CExtras;
 
 @Mod(modid = Ic2cExtras.MODID, name = Ic2cExtras.NAME, version = Ic2cExtras.VERSION, dependencies = Ic2cExtras.DEPENDS )
 public class Ic2cExtras
@@ -25,6 +27,8 @@ public class Ic2cExtras
     public static Ic2cExtras instance;
 
     public static Logger logger;
+
+    public static final CreativeTabs creativeTab = new CreativeTabIC2CExtras(MODID);
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
