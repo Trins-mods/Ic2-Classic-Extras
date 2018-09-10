@@ -1,0 +1,26 @@
+#Crushed Ores
+item.ic2c_extras.crushedOre_iron.name=Crushed Iron Ore
+item.ic2c_extras.crushedOre_gold.name=Crushed Gold Ore
+item.ic2c_extras.crushedOre_copper.name=Crushed Copper Ore
+item.ic2c_extras.crushedOre_tin.name=Crushed Tin Ore
+item.ic2c_extras.crushedOre_silver.name=Crushed Silver Ore
+item.ic2c_extras.crushedOre_lead.name=Crushed Lead Ore
+item.ic2c_extras.crushedOre_uran.name=Crushed Uranium Ore
+#Purified Crushed Ores
+item.ic2c_extras.purifiedCrushedOre_iron.name=Purified Crushed Iron Ore
+item.ic2c_extras.purifiedCrushedOre_gold.name=Purified Crushed Gold Ore
+item.ic2c_extras.purifiedCrushedOre_copper.name=Purified Crushed Copper Ore
+item.ic2c_extras.purifiedCrushedOre_tin.name=Purified Crushed Tin Ore
+item.ic2c_extras.purifiedCrushedOre_silver.name=Purified Crushed Silver Ore
+item.ic2c_extras.purifiedCrushedOre_lead.name=Purified Crushed Lead Ore
+item.ic2c_extras.purifiedCrushedOre_uran.name=Purified Crushed Uranium Ore
+#Tiny Dusts
+item.ic2c_extras.tinyDust_iron.name=Tiny Iron Dust
+item.ic2c_extras.tinyDust_gold.name=Tiny Gold Dust
+item.ic2c_extras.tinyDust_copper.name=Tiny Copper Dust
+item.ic2c_extras.tinyDust_tin.name=Tiny Tin Dust
+item.ic2c_extras.tinyDust_silver.name=Tiny Silver Dust
+item.ic2c_extras.tinyDust_lead.name=Tiny Lead Dust
+item.ic2c_extras.tinyDust_uran.name=Tiny Uranium Dust
+item.ic2c_extras.tinyDust_obsidian.name=Tiny Obsidian Dust
+item.ic2c_extras.tinyDust_bronze.name=Tiny Bronze Dust
