@@ -18,7 +18,7 @@ public class Ic2cExtras
     public static final String VERSION = "@VERSION@";
     public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod";
 
-    @SidedProxy(clientSide = "trinsdar.ic2c_extras.common.proxy.ClientProxy", serverSide = "mcjty.modtut.proxy.ServerProxy")
+    @SidedProxy(clientSide = "trinsdar.ic2c_extras.common.proxy.ClientProxy", serverSide = "trinsdar.ic2c_extras.common.proxy.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.Instance
