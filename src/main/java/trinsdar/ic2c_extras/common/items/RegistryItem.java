@@ -11,11 +11,13 @@ public class RegistryItem
 {
     public static final Item crushedOres = new ItemCrushedOre("crushedOre");
     public static final Item purifiedCrushedOres = new ItemPurifiedCrushedOre("purifiedCrushedOre");
+    public static final Item tinyDustTypes = new ItemTinyDust("tinyDust");
 
     public static final Item[] items =
     {
             crushedOres,
-            purifiedCrushedOres
+            purifiedCrushedOres,
+            tinyDustTypes
     };
 
     @SubscribeEvent
