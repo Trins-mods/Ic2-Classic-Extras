@@ -10,10 +10,12 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class RegistryItem
 {
     public static final Item crushedOres = new ItemCrushedOre("crushedOre");
+    public static final Item purifiedCrushedOres = new ItemPurifiedCrushedOre("purifiedCrushedOre");
 
     public static final Item[] items =
     {
-            crushedOres
+            crushedOres,
+            purifiedCrushedOres
     };
 
     @SubscribeEvent
