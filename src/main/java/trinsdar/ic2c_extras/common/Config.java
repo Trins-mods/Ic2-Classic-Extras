@@ -1,4 +1,6 @@
 package trinsdar.ic2c_extras.common;
+import ic2.core.IC2;
+import ic2.core.util.obj.IC2Plugin;
 import trinsdar.ic2c_extras.common.proxy.CommonProxy;
 import net.minecraftforge.common.config.Configuration;
 import trinsdar.ic2c_extras.Ic2cExtras;
@@ -22,7 +24,7 @@ public class Config {
             initGeneralConfig(cfg);
             initRadiationConfig(cfg);
         } catch (Exception e1) {
-            Ic2cExtras.logger.log(Level.ERROR, "Problem loading config file!", e1);
+            IC2.log.log(Level.ERROR, "Problem loading config file!", e1);
         } finally {
             if (cfg.hasChanged()) {
                 cfg.save();

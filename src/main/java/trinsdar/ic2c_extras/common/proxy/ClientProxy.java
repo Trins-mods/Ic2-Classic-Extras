@@ -13,8 +13,7 @@ import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.common.items.ItemCrushedOre;
 import trinsdar.ic2c_extras.common.items.RegistryItem;
 
-@Mod.EventBusSubscriber(Side.CLIENT)
-public class ClientProxy extends CommonProxy {
-    @Override
-    public void preInit(FMLPreInitializationEvent e) { super.preInit(e); }
+public class ClientProxy extends CommonProxy
+{
+
 }

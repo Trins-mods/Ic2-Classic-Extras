@@ -1,9 +1,14 @@
 package trinsdar.ic2c_extras.common.items;
 
+import ic2.core.platform.textures.Ic2Icons;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import trinsdar.ic2c_extras.Ic2cExtras;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemNuclearTypes extends ItemBase{
     public static final String[] nuclearFuelTypes = {"uranium235", "uranium238", "plutonium"};
@@ -30,5 +35,22 @@ public class ItemNuclearTypes extends ItemBase{
                 i++;
             }
         }
+    }
+
+    @Override
+    public List<ItemStack> getValidItemVariants()
+    {
+        List<ItemStack> itemList = new ArrayList<>();
+        for (int i = 0; i < nuclearFuelTypes.length; i++)
+        {
+            itemList.add(new ItemStack(this, 1, i));
+        }
+        return itemList;
+    }
+
+    @Override
+    public TextureAtlasSprite getTexture(ItemStack itemStack)
+    {
+        return Ic2Icons.getTextures("i0")[itemStack.getMetadata()];
     }
 }

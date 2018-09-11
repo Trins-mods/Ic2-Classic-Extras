@@ -1,27 +1,34 @@
 package trinsdar.ic2c_extras.common.proxy;
 
 import net.minecraft.item.Item;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import trinsdar.ic2c_extras.common.blocks.RegistryBlock;
+import trinsdar.ic2c_extras.common.items.RegistryItem;
 
 
-@Mod.EventBusSubscriber
-public class CommonProxy {
+public class CommonProxy
+{
     public static Configuration config;
 
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit()
+    {
+        MinecraftForge.EVENT_BUS.register(RegistryBlock.class);
+        MinecraftForge.EVENT_BUS.register(RegistryItem.class);
     }
 
-    public void init(FMLInitializationEvent event) {
+    public void init()
+    {
+
     }
 
-    public void registerItemRenderer(Item item, int meta, String id) {
-    }
+    public void postInit()
+    {
 
-    public void postInit(FMLPostInitializationEvent event) {
     }
 }
 
