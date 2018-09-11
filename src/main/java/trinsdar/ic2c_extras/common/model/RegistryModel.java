@@ -9,10 +9,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import trinsdar.ic2c_extras.Ic2cExtras;
-import trinsdar.ic2c_extras.common.items.ItemCrushedOre;
-import trinsdar.ic2c_extras.common.items.ItemNuclearTypes;
-import trinsdar.ic2c_extras.common.items.ItemTinyDust;
-import trinsdar.ic2c_extras.common.items.RegistryItem;
+import trinsdar.ic2c_extras.common.items.*;
 
 @Mod.EventBusSubscriber
 public class RegistryModel
@@ -54,6 +51,13 @@ public class RegistryModel
         for (String fuelType : ItemNuclearTypes.nuclearFuelTypes)
         {
             registerItemModelWithMeta(RegistryItem.nuclearFuelTypes, i, new ResourceLocation(Ic2cExtras.MODID, "nuclear_fuel/nuclear_fuel_" + fuelType));
+            i++;
+        }
+
+        i = 0;
+
+        for (String casings : ItemCasings.itemCasings){
+            registerItemModelWithMeta(RegistryItem.itemCasings, i, new ResourceLocation(Ic2cExtras.MODID, "item_casings/item_casing_" + casings));
             i++;
         }
     }

@@ -30,5 +30,15 @@ item.ic2c_extras.tinyDust_plutonium.name=Tiny Plutonium Dust
 item.ic2c_extras.nuclearFuel_uranium235.name=Uranium 235
 item.ic2c_extras.nuclearFuel_uranium238.name=Uranium 238
 item.ic2c_extras.nuclearFuel_plutonium.name=Plutonium
+#item casings
+item.ic2c_extras.itemCasings_copper.name=Copper Item Casing
+item.ic2c_extras.itemCasings_tin.name=Tin Item Casings
+item.ic2c_extras.itemCasings_iron.name=Iron Item Casings
+item.ic2c_extras.itemCasings_gold.name=Gold Item Casings
+item.ic2c_extras.itemCasings_silver.name=Silver Item Casings
+item.ic2c_extras.itemCasings_lead.name=Lead Item Casings
+item.ic2c_extras.itemCasings_refined_iron.name=Refined Iron Item Casings
+item.ic2c_extras.itemCasings_steel.name=Steel Item Casings
+item.ic2c_extras.itemCasings_bronze.name=Bronze Item Casings
 #machines
 tile.ic2c_extras.blockOreWashingPlant.name=Ore Washing Plant
