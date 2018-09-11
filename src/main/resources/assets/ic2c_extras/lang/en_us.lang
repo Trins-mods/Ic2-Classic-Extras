@@ -21,6 +21,14 @@ item.ic2c_extras.tinyDust_copper.name=Tiny Copper Dust
 item.ic2c_extras.tinyDust_tin.name=Tiny Tin Dust
 item.ic2c_extras.tinyDust_silver.name=Tiny Silver Dust
 item.ic2c_extras.tinyDust_lead.name=Tiny Lead Dust
-item.ic2c_extras.tinyDust_uranium.name=Tiny Uranium Dust
+item.ic2c_extras.tinyDust_uranium235.name=Tiny Uranium 235 Dust
 item.ic2c_extras.tinyDust_obsidian.name=Tiny Obsidian Dust
 item.ic2c_extras.tinyDust_bronze.name=Tiny Bronze Dust
+item.ic2c_extras.tinyDust_uranium238.name=Tiny Uranium 238 Dust
+item.ic2c_extras.tinyDust_plutonium.name=Tiny Plutonium Dust
+#nuclear fuels
+item.ic2c_extras.nuclearFuel_uranium235.name=Uranium 235
+item.ic2c_extras.nuclearFuel_uranium238.name=Uranium 238
+item.ic2c_extras.nuclearFuel_plutonium.name=Plutonium
+#machines
+tile.ic2c_extras.blockOreWashingPlant.name=Ore Washing Plant

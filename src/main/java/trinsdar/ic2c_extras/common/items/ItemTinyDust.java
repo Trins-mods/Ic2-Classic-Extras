@@ -6,7 +6,7 @@ import net.minecraft.util.NonNullList;
 import trinsdar.ic2c_extras.Ic2cExtras;
 
 public class ItemTinyDust extends ItemBase {
-    public static final String[] tinyDustTypes = {"iron", "gold", "copper", "tin", "silver", "uranium", "lead", "obsidian", "bronze"};
+    public static final String[] tinyDustTypes = {"iron", "gold", "copper", "tin", "silver", "uranium235", "lead", "obsidian", "bronze", "uranium238", "plutonium"};
 
     public ItemTinyDust(String itemName) {
         super(itemName);
