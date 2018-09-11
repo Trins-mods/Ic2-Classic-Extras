@@ -10,7 +10,6 @@ public class Icons
     {
         addSprite(new Sprites.SpriteData("ic2c_blocks", "ic2c_extras:textures/sprites/blocks.png", new Sprites.SpriteInfo(16, 16)));
         addSprite(new Sprites.SpriteData("ic2c_items", "ic2c_extras:textures/sprites/items.png", new Sprites.SpriteInfo(16, 16)));
-        addTextureEntry(new Sprites.TextureEntry("ic2c_items", 0, 0, 6, 1));
-        addTextureEntry(new Sprites.TextureEntry("ic2c_items", 0, 1, 6, 2));
+        addTextureEntry(new Sprites.TextureEntry("ic2c_items", 0, 0, 6, 2));
     }
 }
