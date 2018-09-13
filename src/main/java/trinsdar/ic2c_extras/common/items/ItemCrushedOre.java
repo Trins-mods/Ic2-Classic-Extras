@@ -19,7 +19,6 @@ public class ItemCrushedOre extends ItemBase
     {
         super(itemName);
         this.hasSubtypes = true;
-        this.setUnlocalizedName(Ic2cExtras.MODID + "." + itemName);
     }
 
     @Override
@@ -57,6 +56,6 @@ public class ItemCrushedOre extends ItemBase
     @Override
     public TextureAtlasSprite getTexture(ItemStack itemStack)
     {
-        return Ic2Icons.getTextures("ic2c_items")[itemStack.getMetadata()];
+        return Ic2Icons.getTextures("ic2c_extras_items")[itemStack.getMetadata()];
     }
 }

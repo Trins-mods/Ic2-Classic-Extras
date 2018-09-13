@@ -16,7 +16,6 @@ public class ItemNuclearTypes extends ItemBase{
     public ItemNuclearTypes(String itemName) {
         super(itemName);
         this.hasSubtypes = true;
-        this.setUnlocalizedName(Ic2cExtras.MODID + "." + itemName);
     }
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
@@ -51,6 +50,6 @@ public class ItemNuclearTypes extends ItemBase{
     @Override
     public TextureAtlasSprite getTexture(ItemStack itemStack)
     {
-        return Ic2Icons.getTextures("i0")[itemStack.getMetadata()];
+        return Ic2Icons.getTextures("ic2c_extras_items")[itemStack.getMetadata()];
     }
 }

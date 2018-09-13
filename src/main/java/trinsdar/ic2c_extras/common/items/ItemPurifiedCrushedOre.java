@@ -16,7 +16,6 @@ public class ItemPurifiedCrushedOre extends ItemBase {
     public ItemPurifiedCrushedOre(String itemName) {
         super(itemName);
         this.hasSubtypes = true;
-        this.setUnlocalizedName(Ic2cExtras.MODID + "." + itemName);
     }
 
     @Override
@@ -52,6 +51,6 @@ public class ItemPurifiedCrushedOre extends ItemBase {
     @Override
     public TextureAtlasSprite getTexture(ItemStack itemStack)
     {
-        return Ic2Icons.getTextures("ic2c_blocks")[16 + itemStack.getMetadata()];
+        return Ic2Icons.getTextures("ic2c_extras_items")[16 + itemStack.getMetadata()];
     }
 }

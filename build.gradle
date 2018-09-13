@@ -42,21 +42,21 @@ repositories{
 }
 
 dependencies {
-    compile files ("libs/IC2Classic_1.12-1.5.3.6.1.jar")
+    compile files ("libs/IC2Classic_1.12-1.5.3.6.2.jar")
     deobfProvided "mezz.jei:jei_${mc_version}:${jei_version}:api"
 }
 
 processResources {
     // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+    inputs.property "modversion", "${mod_version}"
+    inputs.property "mcversion", "${mc_version}"
 
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
                 
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'modversion':"${mod_version}", 'mcversion':"${mc_version}"
     }
         
     // copy everything else except the mcmod.info

@@ -46,17 +46,22 @@ public class BlockOreWashingPlant extends BlockContainerBase implements IWrencha
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         TileEntity te = worldIn.getTileEntity(pos);
-        if (te instanceof IClickable) {
-            IClickable click = (IClickable)te;
-            if (click.hasRightClick() && click.onRightClick(playerIn, hand, facing, FMLCommonHandler.instance().getEffectiveSide())) {
+        if (te instanceof IClickable)
+        {
+            IClickable click = (IClickable) te;
+            if (click.hasRightClick() && click.onRightClick(playerIn, hand, facing, FMLCommonHandler.instance().getEffectiveSide()))
+            {
                 return true;
             }
         }
 
-        if (playerIn.isSneaking()) {
+        if (playerIn.isSneaking())
+        {
             return false;
-        } else {
-            return te instanceof IHasGui && (IC2.platform.isRendering() || IC2.platform.launchGui(playerIn, (IHasGui)te, hand));
+        }
+        else
+        {
+            return te instanceof IHasGui && (IC2.platform.isRendering() || IC2.platform.launchGui(playerIn, (IHasGui) te, hand));
         }
     }
 
@@ -116,40 +121,36 @@ public class BlockOreWashingPlant extends BlockContainerBase implements IWrencha
         switch (enumFacing)
         {
             case UP:
-                index = 18;
+                index = 1;
                 break;
             case DOWN:
-                index = 2;
+                index = 0;
                 break;
             case NORTH:
-                index = 50;
+                index = 3;
                 break;
             case SOUTH:
-                index = 66;
+                index = 5;
                 break;
             case EAST:
-                index = 34;
+                index = 2;
                 break;
             case WEST:
-                index = 82;
+                index = 4;
                 break;
         }
-        return Ic2Icons.getTextures("bmach_lv")[index + (iBlockState.getValue(active) ? 82 : 0)];
+        return Ic2Icons.getTextures("ic2c_extras_blocks")[index + (iBlockState.getValue(active) ? 6 : 0)];
     }
 
     @Override
     public TextureAtlasSprite getParticleTexture(IBlockState iBlockState)
     {
-        return Ic2Icons.getTextures("bmach_lv")[18 + (iBlockState.getValue(active) ? 82 : 0)];
+        return Ic2Icons.getTextures("ic2c_extras_blocks")[(iBlockState.getValue(active) ? 6 : 0)];
     }
 
     @Override
     public List<IBlockState> getValidStates()
     {
-        System.out.println(this.blockState.getValidStates().get(0));
-        System.out.println(this.blockState.getValidStates().get(1));
-        System.out.println(this.blockState.getValidStates().get(2));
-        System.out.println(this.blockState.getValidStates().get(3));
         return this.blockState.getValidStates();
     }
 
@@ -176,7 +177,7 @@ public class BlockOreWashingPlant extends BlockContainerBase implements IWrencha
     public boolean wrenchCanRemove(World world, BlockPos blockPos, EntityPlayer entityPlayer)
     {
         TileEntity tile = world.getTileEntity(blockPos);
-        return tile != null && tile instanceof IWrenchableTile ? ((IWrenchableTile)tile).canRemoveBlock(entityPlayer) : false;
+        return tile != null && tile instanceof IWrenchableTile ? ((IWrenchableTile) tile).canRemoveBlock(entityPlayer) : false;
     }
 
     @Override

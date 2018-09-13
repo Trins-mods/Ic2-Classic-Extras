@@ -18,7 +18,6 @@ public class ItemTinyDust extends ItemBase
     public ItemTinyDust(String itemName) {
         super(itemName);
         this.hasSubtypes = true;
-        this.setUnlocalizedName(Ic2cExtras.MODID + "." + itemName);
     }
 
     @Override
@@ -32,7 +31,7 @@ public class ItemTinyDust extends ItemBase
         {
             int i = 0;
 
-            for (String tinyDustTypes : tinyDustTypes)
+            for (String tinyDustType : tinyDustTypes)
             {
                 items.add(new ItemStack(this, 1, i));
                 i++;
@@ -54,6 +53,6 @@ public class ItemTinyDust extends ItemBase
     @Override
     public TextureAtlasSprite getTexture(ItemStack itemStack)
     {
-        return Ic2Icons.getTextures("i0")[itemStack.getMetadata()];
+        return Ic2Icons.getTextures("ic2c_extras_items")[32 + itemStack.getMetadata()];
     }
 }
