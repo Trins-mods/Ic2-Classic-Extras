@@ -12,6 +12,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class RegistryBlock
 {
     public static final Block blockOreWashingPlant = new BlockOreWashingPlant(Material.IRON, "blockOreWashingPlant");
+    public static final Block blockCasing = new BlockCasing(Material.IRON, "blockCasing");
 
     public static final Block[] blocks =
     {
