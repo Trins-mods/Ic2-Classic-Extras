@@ -37,6 +37,7 @@ public class Ic2cExtras implements IModul
 
     public static SideGateway<CommonProxy> gateway = new SideGateway<>("trinsdar.ic2c_extras.common.proxy.ClientProxy", "trinsdar.ic2c_extras.common.proxy.ServerProxy");
     public static CommonProxy proxy = gateway.get();
+    private Ic2Icons ic2Icons;
 
     @Override
     public String getID()
@@ -63,6 +64,12 @@ public class Ic2cExtras implements IModul
     }
 
     @Override
+    public boolean hasResourcePack()
+    {
+        return true;
+    }
+
+    @Override
     public void preInit(FMLPreInitializationEvent fmlPreInitializationEvent, Map<String, ModulLoader.IOverrideObject> map)
     {
         proxy.preInit();
@@ -83,7 +90,7 @@ public class Ic2cExtras implements IModul
     @Override
     public void onTextureLoad(Ic2Icons ic2Icons)
     {
-        Icons.loadSprites();
+        Icons.loadSprites(ic2Icons);
     }
 
     @Override

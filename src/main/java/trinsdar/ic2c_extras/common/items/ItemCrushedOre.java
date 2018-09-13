@@ -57,6 +57,6 @@ public class ItemCrushedOre extends ItemBase
     @Override
     public TextureAtlasSprite getTexture(ItemStack itemStack)
     {
-        return Ic2Icons.getTextures("ic2c_blocks")[itemStack.getMetadata()];
+        return Ic2Icons.getTextures("ic2c_items")[itemStack.getMetadata()];
     }
 }
