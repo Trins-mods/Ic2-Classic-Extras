@@ -15,6 +15,7 @@ public class CropGalena extends CropCardBase {
         super(new CropProperties(8, 2, 0, 0, 2, 0));
     }
 
+    @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getTexture(int status) {
         return status == 4 ? this.getSprite("bc")[85] : this.getSprite("bc")[31 + status];
     }
