@@ -22,3 +22,6 @@ eclipse
 run
 out
 libs
+fields.csv
+methods.csv
+params.csv
