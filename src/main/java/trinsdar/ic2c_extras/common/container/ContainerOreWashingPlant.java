@@ -1,6 +1,7 @@
 package trinsdar.ic2c_extras.common.container;
 
 import ic2.core.inventory.container.ContainerTileComponent;
+import ic2.core.inventory.gui.components.base.FluidTankComp;
 import ic2.core.inventory.gui.components.base.MachineChargeComp;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
@@ -34,6 +35,7 @@ public class ContainerOreWashingPlant extends ContainerTileComponent<TileEntityB
         this.addPlayerInventory(player);
         this.addComponent(new MachineChargeComp(tile, Ic2GuiComp.machineChargeBox, Ic2GuiComp.machineChargePos));
         this.addComponent(new MachineProgressComp(tile, Ic2GuiComp.machineProgressBox, Ic2GuiComp.machineProgressPos));
+        this.addComponent(new FluidTankComp(Ic2GuiComp.personalTankBox, tile.tank, Ic2GuiComp.machineProgressPos, Ic2GuiComp.personalTankInfoBox));
     }
 
     @Override

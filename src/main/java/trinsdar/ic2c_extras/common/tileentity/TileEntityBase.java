@@ -19,12 +19,15 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.IFluidTank;
 import trinsdar.ic2c_extras.Ic2cExtras;
 
 import java.util.Set;
 
 public class TileEntityBase extends TileEntityElecMachine implements ITickable, IProgressMachine, IRecipeMachine, IOutputMachine, IHasGui, INetworkTileEntityEventListener, IEnergyUser
 {
+
+    public IFluidTank tank;
 
     public TileEntityBase(int slots, int energyConsumption, int maxProgress, int maxinput)
     {
