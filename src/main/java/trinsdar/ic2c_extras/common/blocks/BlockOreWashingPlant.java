@@ -26,6 +26,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.common.tileentity.TileEntityOreWashingPlant;
 
 import javax.annotation.Nullable;
@@ -114,6 +116,7 @@ public class BlockOreWashingPlant extends BlockContainerBase implements IWrencha
         return new AxisAlignedBB(0, 0, 0, 1, 1, 1);
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing)
     {
@@ -142,6 +145,7 @@ public class BlockOreWashingPlant extends BlockContainerBase implements IWrencha
         return Ic2Icons.getTextures("ic2c_extras_blocks")[index + (iBlockState.getValue(active) ? 6 : 0)];
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite getParticleTexture(IBlockState iBlockState)
     {

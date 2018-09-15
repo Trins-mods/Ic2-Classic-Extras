@@ -5,6 +5,8 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.Ic2cExtras;
 
 import java.util.ArrayList;
@@ -47,6 +49,7 @@ public class ItemNuclearTypes extends ItemBase{
         return itemList;
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite getTexture(ItemStack itemStack)
     {

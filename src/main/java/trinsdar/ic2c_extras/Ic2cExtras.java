@@ -14,6 +14,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.Sys;
 import trinsdar.ic2c_extras.common.proxy.CommonProxy;
 import net.minecraft.init.Blocks;
@@ -99,6 +100,7 @@ public class Ic2cExtras implements IModul
 
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void onTextureLoad() {
 
@@ -117,6 +119,7 @@ public class Ic2cExtras implements IModul
     }
 
 
+    @SideOnly(Side.CLIENT)
     public void onTextureLoad(Ic2Icons ic2Icons)
     {
         Icons.loadSprites(ic2Icons);
