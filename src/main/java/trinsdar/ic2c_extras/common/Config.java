@@ -1,6 +1,6 @@
 package trinsdar.ic2c_extras.common;
 import ic2.core.IC2;
-import ic2.core.util.obj.IC2Plugin;
+import ic2.api.classic.addon.IC2Plugin;
 import trinsdar.ic2c_extras.common.proxy.CommonProxy;
 import net.minecraftforge.common.config.Configuration;
 import trinsdar.ic2c_extras.Ic2cExtras;

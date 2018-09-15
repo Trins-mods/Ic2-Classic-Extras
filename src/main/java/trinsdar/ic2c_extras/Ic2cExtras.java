@@ -2,10 +2,10 @@ package trinsdar.ic2c_extras;
 
 import ic2.core.IC2;
 import ic2.core.platform.textures.Ic2Icons;
-import ic2.core.util.SideGateway;
+import ic2.api.classic.addon.misc.SideGateway;
 import ic2.core.util.misc.ModulLoader;
-import ic2.core.util.obj.IC2Plugin;
-import ic2.core.util.obj.IModul;
+import ic2.api.classic.addon.IC2Plugin;
+import ic2.api.classic.addon.IModul;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.ForgeModContainer;
@@ -27,8 +27,8 @@ import trinsdar.ic2c_extras.common.util.Icons;
 
 import java.util.Map;
 
-@IC2Plugin
-public class Ic2cExtras implements IModul
+@IC2Plugin(name = Ic2cExtras.NAME, id = Ic2cExtras.MODID, version = Ic2cExtras.VERSION)
+public abstract class Ic2cExtras implements IModul
 {
     public static final String MODID = "ic2c_extras";
     public static final String NAME = "Ic2cExtras";
@@ -39,19 +39,19 @@ public class Ic2cExtras implements IModul
     public static CommonProxy proxy = gateway.get();
     private Ic2Icons ic2Icons;
 
-    @Override
+
     public String getID()
     {
         return MODID;
     }
 
-    @Override
+
     public String getName()
     {
         return NAME;
     }
 
-    @Override
+
     public String getConfigTag()
     {
         return "IC2 Classic Extras";
@@ -63,31 +63,31 @@ public class Ic2cExtras implements IModul
         return Loader.isModLoaded("ic2-classic-spmod");
     }
 
-    @Override
+
     public boolean hasResourcePack()
     {
         return true;
     }
 
     @Override
-    public void preInit(FMLPreInitializationEvent fmlPreInitializationEvent, Map<String, ModulLoader.IOverrideObject> map)
+    public void preInit(FMLPreInitializationEvent preinit)
     {
         proxy.preInit();
     }
 
-    @Override
+
     public void init()
     {
         proxy.init();
     }
 
-    @Override
+
     public void postInit()
     {
         proxy.postInit();
     }
 
-    @Override
+
     public void onTextureLoad(Ic2Icons ic2Icons)
     {
         Icons.loadSprites(ic2Icons);
