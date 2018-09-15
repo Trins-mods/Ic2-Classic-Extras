@@ -1,6 +1,5 @@
 package trinsdar.ic2c_extras.common.blocks;
 
-import ic2.api.classic.tile.ISpecialWrenchable;
 import ic2.api.tile.IWrenchable;
 import ic2.core.IC2;
 import ic2.core.inventory.base.IHasGui;
@@ -28,6 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import trinsdar.ic2c_extras.common.tileentity.TileEntityBase;
 import trinsdar.ic2c_extras.common.tileentity.TileEntityOreWashingPlant;
 
 import javax.annotation.Nullable;

@@ -18,6 +18,7 @@ public class CommonProxy
     public void preInit()
     {
         MinecraftForge.EVENT_BUS.register(RegistryBlock.class);
+        RegistryBlock.registerTiles();
         MinecraftForge.EVENT_BUS.register(RegistryItem.class);
     }
 

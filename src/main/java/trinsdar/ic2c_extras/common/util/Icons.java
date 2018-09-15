@@ -11,7 +11,7 @@ public class Icons
 {
 
     @SideOnly(Side.CLIENT)
-    public static void loadSprites(Ic2Icons ic2Icons)
+    public static void loadSprites()
     {
         addSprite(new Sprites.SpriteData("ic2c_extras_blocks", "ic2c_extras:textures/sprites/blocks.png", new Sprites.SpriteInfo(16, 16)));
         addSprite(new Sprites.SpriteData("ic2c_extras_items", "ic2c_extras:textures/sprites/items.png", new Sprites.SpriteInfo(16, 16)));
