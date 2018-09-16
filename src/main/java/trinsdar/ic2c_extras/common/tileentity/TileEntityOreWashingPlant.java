@@ -961,6 +961,13 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
         addRecipe((String) "oreSilver", 1, StackUtil.copyWithSize(new ItemStack(RegistryItem.crushedOres, 1, 4), 2), 0.7F);
         addRecipe((String) "oreUranium", 1, StackUtil.copyWithSize(new ItemStack(RegistryItem.crushedOres, 1, 5), 2), 0.7F);
         addRecipe((String) "oreLead", 1, StackUtil.copyWithSize(new ItemStack(RegistryItem.crushedOres, 1, 6), 2), 0.7F);
+        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 0), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), 1), 0.7F);
+        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 1), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 1), 1), 0.7F);
+        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 2), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 2), 1), 0.7F);
+        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 3), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 3), 1), 0.7F);
+        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 4), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 4), 1), 0.7F);
+        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 5), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 5), 1), 0.7F);
+        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 6), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 6), 1), 0.7F);
     }
 
     public static void addRecipe(ItemStack input, ItemStack output)
