@@ -2,6 +2,7 @@ package trinsdar.ic2c_extras.common.util;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import trinsdar.ic2c_extras.common.blocks.RegistryBlock;
 import trinsdar.ic2c_extras.common.items.RegistryItem;
 
 public class CreativeTabIC2CExtras extends CreativeTabs
@@ -14,6 +15,6 @@ public class CreativeTabIC2CExtras extends CreativeTabs
     @Override
     public ItemStack getTabIconItem()
     {
-        return new ItemStack(RegistryItem.crushedOres);
+        return new ItemStack(RegistryBlock.blockOreWashingPlant);
     }
 }

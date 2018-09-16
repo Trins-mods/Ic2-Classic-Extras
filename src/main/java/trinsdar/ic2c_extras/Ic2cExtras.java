@@ -1,23 +1,18 @@
 package trinsdar.ic2c_extras;
 
 import ic2.api.classic.addon.IC2Plugin;
-import ic2.api.classic.addon.IModul;
 import ic2.api.classic.addon.PluginBase;
 import ic2.api.classic.addon.misc.IOverrideObject;
 import ic2.api.classic.addon.misc.SideGateway;
-import ic2.core.platform.textures.Ic2Icons;
-import ic2.core.util.misc.ModulLoader;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.ModMetadata;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.common.proxy.CommonProxy;
-import trinsdar.ic2c_extras.common.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.common.util.CreativeTabIC2CExtras;
 import trinsdar.ic2c_extras.common.util.Icons;
 

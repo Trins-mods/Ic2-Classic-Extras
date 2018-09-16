@@ -47,7 +47,6 @@ import ic2.core.util.obj.IOutputMachine;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -63,11 +62,14 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.common.container.ContainerOreWashingPlant;
 import trinsdar.ic2c_extras.common.items.RegistryItem;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 public class TileEntityOreWashingPlant extends TileEntityElecMachine implements ITankListener, ITickable, IProgressMachine, IRecipeMachine, IOutputMachine, IHasGui, INetworkTileEntityEventListener, IEnergyUser
@@ -106,7 +108,7 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
     public IFilter filter;
 
     @NetworkField(index = 13)
-    public IC2Tank waterTank = new IC2Tank(10000);
+    public IC2Tank waterTank = new IC2Tank(FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 1), 10000);
 
     public static IMachineRecipeList oreWashingPlant = new BasicMachineRecipeList("oreWashingPlant");
 
@@ -862,17 +864,6 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
     }
 
     @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing)
-    {
-        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? true : super.hasCapability(capability, facing);
-    }
-
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing)
-    {
-        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? null : super.getCapability(capability, facing);
-    }
-
-    @Override
     public boolean canInteractWith(EntityPlayer player)
     {
         return !this.isInvalid();
@@ -947,6 +938,18 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
     public boolean hasCustomName()
     {
         return true;
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing)
+    {
+        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? true : super.hasCapability(capability, facing);
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+    {
+        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? (T)this.waterTank : super.getCapability(capability, facing);
     }
 
     public static void init()
