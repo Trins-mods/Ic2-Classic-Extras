@@ -13,7 +13,7 @@ public class RegistryItem
     public static final Item tinyDustTypes = new ItemTinyDust("tinyDust");
     public static final Item nuclearFuelTypes = new ItemNuclearTypes("nuclearFuel");
     public static final Item itemCasings = new ItemCasings("itemCasings");
-    public static final Item leadMiscs = new ItemLeadMiscs("leadMisc");
+    public static final Item itemMiscs = new ItemMiscs("itemMisc");
 
     public static final Item[] items =
     {
@@ -22,7 +22,7 @@ public class RegistryItem
             tinyDustTypes,
             nuclearFuelTypes,
             itemCasings,
-            leadMiscs
+            itemMiscs
     };
 
     @SubscribeEvent

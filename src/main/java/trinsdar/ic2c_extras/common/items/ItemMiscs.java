@@ -12,18 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Added for compatibility with other mods and to make making lead crops easier.
-public class ItemLeadMiscs extends ItemBase {
+public class ItemMiscs extends ItemBase {
 
-    public static final String[] leadMiscs = {"lead_ingot", "lead_dust"};
+    public static final String[] itemMiscs = {"lead_ingot", "lead_dust", "stone_dust"};
 
-    public ItemLeadMiscs(String itemName){
+    public ItemMiscs(String itemName){
         super(itemName);
         this.hasSubtypes = true;
     }
 
     @Override
     public String getUnlocalizedName(ItemStack itemStack) {
-        return this.getUnlocalizedName() + "_" + leadMiscs[itemStack.getMetadata()];
+        return this.getUnlocalizedName() + "_" + itemMiscs[itemStack.getMetadata()];
     }
 
     @Override
@@ -33,7 +33,7 @@ public class ItemLeadMiscs extends ItemBase {
         {
             int i = 0;
 
-            for (String leadMisc : leadMiscs)
+            for (String itemMisc : itemMiscs)
             {
                 items.add(new ItemStack(this, 1, i));
                 i++;
@@ -44,7 +44,7 @@ public class ItemLeadMiscs extends ItemBase {
     public List<ItemStack> getValidItemVariants()
     {
         List<ItemStack> itemList = new ArrayList<>();
-        for (int i = 0; i < leadMiscs.length; i++)
+        for (int i = 0; i < itemMiscs.length; i++)
         {
             itemList.add(new ItemStack(this, 1, i));
         }
