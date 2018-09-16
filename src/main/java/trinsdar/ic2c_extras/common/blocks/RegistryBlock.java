@@ -15,10 +15,12 @@ import trinsdar.ic2c_extras.common.tileentity.TileEntityOreWashingPlant;
 public class RegistryBlock
 {
     public static final Block blockOreWashingPlant = new BlockOreWashingPlant("blockOreWashingPlant");
+    public static final Block blockThermalCentrifuge = new BlockThermalCentrifuge(Material.IRON, "blockThermalCentrifuge");
 
     public static final Block[] blocks =
     {
-            blockOreWashingPlant
+            blockOreWashingPlant,
+            blockThermalCentrifuge
     };
 
     @SubscribeEvent
