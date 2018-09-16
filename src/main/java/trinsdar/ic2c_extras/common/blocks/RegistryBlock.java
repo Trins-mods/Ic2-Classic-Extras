@@ -10,13 +10,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import trinsdar.ic2c_extras.Ic2cExtras;
-import trinsdar.ic2c_extras.common.tileentity.TileEntityBase;
+import trinsdar.ic2c_extras.common.tileentity.TileEntityOreWashingPlant;
 
 public class RegistryBlock
 {
-    public static final Block blockOreWashingPlant = new BlockOreWashingPlant(Material.IRON, "blockOreWashingPlant");
-
-    public static final Block blockCasing = new BlockCasing(Material.IRON, "blockCasing");
+    public static final Block blockOreWashingPlant = new BlockOreWashingPlant("blockOreWashingPlant");
 
     public static final Block[] blocks =
     {
@@ -37,7 +35,7 @@ public class RegistryBlock
 
     public static void registerTiles()
     {
-         GameRegistry.registerTileEntity(TileEntityBase.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityOreWashingPlant"));
+         GameRegistry.registerTileEntity(TileEntityOreWashingPlant.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityOreWashingPlant"));
     }
 
     @SubscribeEvent
