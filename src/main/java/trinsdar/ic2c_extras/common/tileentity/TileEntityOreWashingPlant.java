@@ -122,7 +122,7 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
 
     public TileEntityOreWashingPlant()
     {
-        this(11, 4, 400, 32);
+        this(11, 8, 400, 32);
     }
 
     public TileEntityOreWashingPlant(int slots, int energyPerTick, int maxProgress, int maxInput)
