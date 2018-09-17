@@ -30,7 +30,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.Ic2cExtras;
-import trinsdar.ic2c_extras.common.tileentity.TileEntityOreWashingPlant;
+import trinsdar.ic2c_extras.common.tileentity.TileEntityThermalCentrifuge;
 
 import java.util.Arrays;
 import java.util.List;
@@ -57,7 +57,7 @@ public class BlockThermalCentrifuge extends BlockLVMachine
     @Override
     public TileEntityBlock createNewTileEntity(World worldIn, int meta)
     {
-        return new TileEntityOreWashingPlant();
+        return new TileEntityThermalCentrifuge();
     }
 
     @Override
