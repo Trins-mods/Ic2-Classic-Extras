@@ -47,6 +47,7 @@ import ic2.core.util.obj.IOutputMachine;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -956,31 +957,31 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
 
     public List<ItemStack> iron = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
     public List<ItemStack> gold = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
-    public List<ItemStack> copper = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
+    public List<ItemStack> copper = Arrays.asList(new ItemStack[]{new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3)});
     public List<ItemStack> tin = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
     public List<ItemStack> silver = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
     public List<ItemStack> uranium = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
     public List<ItemStack> lead = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
 
 
-
-
     public static void init()
     {
-        addRecipe((String) "oreIron", 1, StackUtil.copyWithSize(new ItemStack(RegistryItem.crushedOres, 1, 0), 2), 0.7F);
-        addRecipe((String) "oreGold", 1, StackUtil.copyWithSize(new ItemStack(RegistryItem.crushedOres, 1, 1), 2), 0.7F);
-        addRecipe((String) "oreCopper", 1, StackUtil.copyWithSize(new ItemStack(RegistryItem.crushedOres, 1, 2), 2), 0.7F);
-        addRecipe((String) "oreTin", 1, StackUtil.copyWithSize(new ItemStack(RegistryItem.crushedOres, 1, 3), 2), 0.7F);
-        addRecipe((String) "oreSilver", 1, StackUtil.copyWithSize(new ItemStack(RegistryItem.crushedOres, 1, 4), 2), 0.7F);
-        addRecipe((String) "oreUranium", 1, StackUtil.copyWithSize(new ItemStack(RegistryItem.crushedOres, 1, 5), 2), 0.7F);
-        addRecipe((String) "oreLead", 1, StackUtil.copyWithSize(new ItemStack(RegistryItem.crushedOres, 1, 6), 2), 0.7F);
-        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 0), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), 1), 0.7F);
-        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 1), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 1), 1), 0.7F);
-        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 2), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 2), 1), 0.7F);
-        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 3), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 3), 1), 0.7F);
-        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 4), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 4), 1), 0.7F);
-        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 5), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 5), 1), 0.7F);
-        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 6), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 6), 1), 0.7F);
+        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.crushedOres, 1, 0))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 2)})));
+        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.crushedOres, 1, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.purifiedCrushedOres, 1, 1), new ItemStack(RegistryItem.tinyDustTypes, 2, 1), new ItemStack(RegistryItem.itemMiscs, 1, 2)})));
+        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.crushedOres, 1, 2))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.purifiedCrushedOres, 1, 2), new ItemStack(RegistryItem.tinyDustTypes, 2, 2), new ItemStack(RegistryItem.itemMiscs, 1, 2)})));
+        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.crushedOres, 1, 3))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.purifiedCrushedOres, 1, 3), new ItemStack(RegistryItem.tinyDustTypes, 2, 3), new ItemStack(RegistryItem.itemMiscs, 1, 2)})));
+        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.crushedOres, 1, 4))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.purifiedCrushedOres, 1, 4), new ItemStack(RegistryItem.tinyDustTypes, 2, 4), new ItemStack(RegistryItem.itemMiscs, 1, 2)})));
+        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.crushedOres, 1, 5))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.purifiedCrushedOres, 1, 5), new ItemStack(RegistryItem.tinyDustTypes, 2, 5), new ItemStack(RegistryItem.itemMiscs, 1, 2)})));
+        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.crushedOres, 1, 6))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.purifiedCrushedOres, 1, 6), new ItemStack(RegistryItem.tinyDustTypes, 3, 6), new ItemStack(RegistryItem.itemMiscs, 1, 2)})));
+        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(Blocks.GRAVEL, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(RegistryItem.itemMiscs, 1, 2)})));
+    }
+
+    public static void addRecipe(IRecipeInput input, MachineOutput output)
+    {
+        oreWashingPlant.addRecipe(input, output, output.toString());
+    }
+
+    private static void addRecipe(ItemStack itemStack, MachineOutput machineOutput) {
     }
 
     public static void addRecipe(ItemStack input, ItemStack output)
