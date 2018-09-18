@@ -48,6 +48,7 @@ import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -74,6 +75,7 @@ import java.util.*;
 
 public class TileEntityOreWashingPlant extends TileEntityElecMachine implements ITankListener, ITickable, IProgressMachine, IRecipeMachine, IOutputMachine, IHasGui, INetworkTileEntityEventListener, IEnergyUser
 {
+
     @NetworkField(index = 7)
     public float progress = 0.0F;
 
@@ -108,7 +110,7 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
     public IFilter filter;
 
     @NetworkField(index = 13)
-    public IC2Tank waterTank = new IC2Tank(FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 1), 10000);
+    public IC2Tank waterTank = new IC2Tank(FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 0), 10000);
 
     public static IMachineRecipeList oreWashingPlant = new BasicMachineRecipeList("oreWashingPlant");
 
@@ -951,6 +953,17 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
     {
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? (T)this.waterTank : super.getCapability(capability, facing);
     }
+
+    public List<ItemStack> iron = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
+    public List<ItemStack> gold = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
+    public List<ItemStack> copper = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
+    public List<ItemStack> tin = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
+    public List<ItemStack> silver = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
+    public List<ItemStack> uranium = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
+    public List<ItemStack> lead = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
+
+
+
 
     public static void init()
     {
