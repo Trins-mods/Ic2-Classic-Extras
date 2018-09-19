@@ -42,3 +42,6 @@ item.ic2c_extras.itemCasings_bronze.name=Bronze Item Casings
 item.ic2c_extras.itemMisc_lead_ingot.name=Lead Ingot
 item.ic2c_extras.itemMisc_lead_dust.name=Lead Dust
 item.ic2c_extras.itemMisc_stone_dust.name=Stone Dust
+item.ic2c_extras.itemMisc_slag.name=Slag
+
+itemGroup.ic2c_extras=Ic2 Classic Extras

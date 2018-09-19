@@ -934,7 +934,7 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
     @Override
     public String getName()
     {
-        return "tileOreWashingPlant";
+        return "OreWashingPlant";
     }
 
     @Override
@@ -955,13 +955,13 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? (T)this.waterTank : super.getCapability(capability, facing);
     }
 
-    public List<ItemStack> iron = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
-    public List<ItemStack> gold = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
-    public List<ItemStack> copper = Arrays.asList(new ItemStack[]{new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3)});
-    public List<ItemStack> tin = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
-    public List<ItemStack> silver = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
-    public List<ItemStack> uranium = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
-    public List<ItemStack> lead = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
+//    public List<ItemStack> iron = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
+//    public List<ItemStack> gold = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
+//    public List<ItemStack> copper = Arrays.asList(new ItemStack[]{new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3)});
+//    public List<ItemStack> tin = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
+//    public List<ItemStack> silver = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
+//    public List<ItemStack> uranium = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
+//    public List<ItemStack> lead = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
 
 
     public static void init()
@@ -982,46 +982,6 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
     }
 
     private static void addRecipe(ItemStack itemStack, MachineOutput machineOutput) {
-    }
-
-    public static void addRecipe(ItemStack input, ItemStack output)
-    {
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(input)), output);
-    }
-
-    public static void addRecipe(ItemStack input, int stacksize, ItemStack output)
-    {
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(input, stacksize)), output);
-    }
-
-    public static void addRecipe(String input, int stacksize, ItemStack output)
-    {
-        addRecipe((IRecipeInput) (new RecipeInputOreDict(input, stacksize)), output);
-    }
-
-    public static void addRecipe(ItemStack input, ItemStack output, float exp)
-    {
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(input)), output, exp);
-    }
-
-    public static void addRecipe(ItemStack input, int stacksize, ItemStack output, float exp)
-    {
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(input, stacksize)), output, exp);
-    }
-
-    public static void addRecipe(String input, int stacksize, ItemStack output, float exp)
-    {
-        addRecipe((IRecipeInput) (new RecipeInputOreDict(input, stacksize)), output, exp);
-    }
-
-    public static void addRecipe(IRecipeInput input, ItemStack output)
-    {
-        addRecipe(input, output, 0.0F);
-    }
-
-    public static void addRecipe(IRecipeInput input, ItemStack output, float exp)
-    {
-        oreWashingPlant.addRecipe(input, output, exp, makeString(output));
     }
 
     private static String makeString(ItemStack stack)
