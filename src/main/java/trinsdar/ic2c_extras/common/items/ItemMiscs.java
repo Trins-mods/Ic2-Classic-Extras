@@ -14,7 +14,7 @@ import java.util.List;
 //Added for compatibility with other mods and to make making lead crops easier.
 public class ItemMiscs extends ItemBase {
 
-    public static final String[] itemMiscs = {"lead_ingot", "lead_dust", "stone_dust", "slag"};
+    public static final String[] itemMiscs = {"lead_ingot", "lead_dust", "stone_dust", "slag", "uranium235", "uranium238", "plutonium"};
 
     public ItemMiscs(String itemName){
         super(itemName);
