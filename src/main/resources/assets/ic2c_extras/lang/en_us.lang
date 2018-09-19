@@ -43,5 +43,7 @@ item.ic2c_extras.itemMisc_slag.name=Slag
 item.ic2c_extras.itemMisc_uranium235.name=Uranium 235
 item.ic2c_extras.itemMisc_uranium238.name=Uranium 238
 item.ic2c_extras.itemMisc_plutonium.name=Plutonium
+item.ic2c_extras.itemMisc_coil.name=Coil
+item.ic2c_extras.itemMisc_heat_conductor.name=Heat Conductor
 
 itemGroup.ic2c_extras=Ic2 Classic Extras
