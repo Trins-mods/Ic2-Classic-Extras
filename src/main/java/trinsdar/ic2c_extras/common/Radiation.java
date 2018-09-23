@@ -9,6 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -17,65 +19,19 @@ import trinsdar.ic2c_extras.common.util.Icons;
 
 import java.util.List;
 
+import static ic2.core.item.armor.standart.ItemHazmatArmor.isFullHazmatSuit;
+
 public class Radiation
 {
-//    public static Radiation radiation;
-//
-//    private static final ResourceLocation ICON = new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/radiation_icon");
-//    private final java.util.List<ItemStack> effectedItems;
-//
-//    public Radiation(boolean isBadEffect, int liquidColour, ItemStack... effectedItems){
-//        super(isBadEffect, liquidColour);
-//        this.setPotionName("potion." + Ic2cExtras.MODID + ":radiation");
-//        this.effectedItems = java.util.Arrays.asList(effectedItems);
-//
-//    }
-//
-//    public void performEffect(EntityLivingBase entity, int amplifier) {
-//        if (this == radiation) {
-//            entity.attackEntityFrom(IC2DamageSource.radiation, (float)(amplifier + 1));
+
+//    @SubscribeEvent
+//    public void onPlayerTick(PlayerTickEvent event){
+//        EntityPlayer player = event.getPlayer();
+//        if (!player.isCreative())
+//        {
+//            if((!isFullHazmatSuit(player) )){}
 //        }
-//
-//    }
-//
-//    @Override
-//    public boolean isReady(int p_76397_1_, int p_76397_2_){
-//        // Copied from the vanilla wither effect. It does the timing stuff. 25 is the number of ticks between hits at
-//        // amplifier 0
-//        int k = 40 >> p_76397_2_;
-//        return k > 0 ? p_76397_1_ % k == 0 : true;
-//    }
-//
-//    @Override
-//    @SideOnly(Side.CLIENT)
-//    public void renderInventoryEffect(int x, int y, PotionEffect effect, net.minecraft.client.Minecraft mc){
-//        mc.renderEngine.bindTexture(ICON);
-//        Icons.drawTexturedRect(x + 6, y + 7, 0, 0, 18, 18, 18, 18);
-//    }
-//
-//    @Override
-//    @SideOnly(Side.CLIENT)
-//    public void renderHUDEffect(int x, int y, PotionEffect effect, net.minecraft.client.Minecraft mc, float alpha){
-//        mc.renderEngine.bindTexture(ICON);
-//        Icons.drawTexturedRect(x + 3, y + 3, 0, 0, 18, 18, 18, 18);
-//    }
-//
-//    public static void init()
-//    {
-//        Info.POTION_RADIATION = radiation = new Radiation(true, 5149489);
-//        Info.POTION_RADIATION.setRegistryName(new ResourceLocation("ic2c_extras", "radiation"));
-//        ForgeRegistries.POTIONS.register(radiation);
-//        radiation.setPotionName("potion.radiation.name");
-//        radiation.setIconIndex(6, 0);
-//        radiation.setEffectiveness(0.25D);
 //    }
 
-    EntityPlayer player;
-    public EntityPlayer getPlayer() {
-    return this.player;
-}
-
-
-    if !player.isCreative(){}
 
 }
