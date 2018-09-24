@@ -5,11 +5,13 @@ import ic2.api.info.Info;
 import ic2.core.IC2;
 import ic2.core.entity.IC2DamageSource;
 import ic2.core.entity.IC2Potion;
+import ic2.core.item.armor.electric.ItemArmorQuantumSuit;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.Potion;
@@ -36,10 +38,22 @@ import static ic2.core.item.armor.standart.ItemHazmatArmor.isFullHazmatSuit;
 
 public class Radiation
 {
+    public boolean hasFullQuantumSuit(EntityPlayer player)
+    {
+        for(int i = 0;i<4;i++)
+        {
+            if(!(player.inventory.armorInventory.get(i).getItem() instanceof ItemArmorQuantumSuit))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
     @SubscribeEvent
     public void onPlayerTick(PlayerTickEvent event){
         EntityPlayer player = event.player;
+
 //        Set<ItemStack> radiation = new HashSet<>();
 //        radiation.add(new ItemStack(RegistryItem.itemMiscs, 1, 4));
 //        radiation.add(new ItemStack(RegistryItem.itemMiscs, 1, 5));
@@ -100,7 +114,7 @@ public class Radiation
 //        boolean match = ingredient.apply(stack);
         if (event.phase == TickEvent.Phase.END) {
             if (!player.isCreative()) {
-                if (!isFullHazmatSuit(player)) {
+                if (!isFullHazmatSuit(player) && !hasFullQuantumSuit(player)) {
                     if (player.inventory.hasItemStack(Ic2Items.uraniumDrop)){
                         player.addPotionEffect(new PotionEffect(IC2Potion.radiation, 1800, 0));
                     }else if (player.inventory.hasItemStack(Ic2Items.uraniumIngot)){
