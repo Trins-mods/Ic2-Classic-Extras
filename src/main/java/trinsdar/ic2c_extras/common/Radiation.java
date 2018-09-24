@@ -14,7 +14,9 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
@@ -33,14 +35,16 @@ public class Radiation
     public void onPlayerTick(PlayerTickEvent event){
         EntityPlayer player = event.player;
         ItemStack stack = new ItemStack(Items.IRON_INGOT);
-        if (!player.isCreative())
-        {
-            if((!isFullHazmatSuit(player)) && player.inventory.hasItemStack(stack))
-            {
-                player.addPotionEffect(new PotionEffect(IC2Potion.radiation, 90, 0));
+        if (event.phase == TickEvent.Phase.END) {
+            if (!player.isCreative()) {
+                if ((!isFullHazmatSuit(player)) && player.inventory.hasItemStack(stack)) {
+                    player.addPotionEffect(new PotionEffect(IC2Potion.radiation, 1800, 0));
+                }
             }
         }
     }
+
+
 
 
 //    public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {

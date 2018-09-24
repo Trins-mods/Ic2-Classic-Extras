@@ -6,12 +6,14 @@ import ic2.api.classic.addon.misc.IOverrideObject;
 import ic2.api.classic.addon.misc.SideGateway;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import trinsdar.ic2c_extras.common.Radiation;
 import trinsdar.ic2c_extras.common.proxy.CommonProxy;
 import trinsdar.ic2c_extras.common.util.CreativeTabIC2CExtras;
 import trinsdar.ic2c_extras.common.util.Icons;
@@ -39,6 +41,7 @@ public class Ic2cExtras extends PluginBase
     public void preInit(FMLPreInitializationEvent fmlPreInitializationEvent, Map<String, IOverrideObject> map)
     {
         proxy.preInit();
+        MinecraftForge.EVENT_BUS.register(new Radiation());
     }
 
     @Override
