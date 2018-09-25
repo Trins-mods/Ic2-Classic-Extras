@@ -16,10 +16,12 @@ public class RegistryBlock
 {
     public static final Block blockOreWashingPlant = new BlockOreWashingPlant("blockOreWashingPlant");
     public static final Block blockThermalCentrifuge = new BlockThermalCentrifuge("blockThermalCentrifuge");
+    public static final Block blockAdvancedSteamTurbine = new BlockAdvancedSteamTurbine("blockAdvancedSteamTurbine");
 
     public static final Block[] blocks =
     {
-            blockOreWashingPlant
+            blockOreWashingPlant,
+            blockAdvancedSteamTurbine
     };
 
     @SubscribeEvent
