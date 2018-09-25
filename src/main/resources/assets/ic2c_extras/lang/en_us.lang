@@ -1,5 +1,6 @@
 #Tile Entities
 tile.ic2c_extras.blockOreWashingPlant.name=Ore Washing Plant
+tile.ic2c_extras.blockAdvancedSteamTurbine.name=Advanced Steam Turbine
 
 #Items
 item.ic2c_extras.crushedOre_iron.name=Iron Crushed Ore
@@ -45,5 +46,6 @@ item.ic2c_extras.itemMisc_uranium238.name=Uranium 238
 item.ic2c_extras.itemMisc_plutonium.name=Plutonium
 item.ic2c_extras.itemMisc_coil.name=Coil
 item.ic2c_extras.itemMisc_heat_conductor.name=Heat Conductor
+item.ic2c_extras.itemMisc_steel_ingot.name=Steel Ingot
 
 itemGroup.ic2c_extras=Ic2 Classic Extras
