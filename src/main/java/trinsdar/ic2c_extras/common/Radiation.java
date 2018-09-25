@@ -1,41 +1,19 @@
 package trinsdar.ic2c_extras.common;
 
-import ic2.api.classic.item.IHazmatSuit;
-import ic2.api.info.Info;
-import ic2.core.IC2;
-import ic2.core.entity.IC2DamageSource;
+import static ic2.core.item.armor.standart.ItemHazmatArmor.isFullHazmatSuit;
+
+import java.util.ArrayList;
+
 import ic2.core.entity.IC2Potion;
 import ic2.core.item.armor.electric.ItemArmorQuantumSuit;
 import ic2.core.platform.registry.Ic2Items;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.common.items.RegistryItem;
-import trinsdar.ic2c_extras.common.util.Icons;
-
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static ic2.core.item.armor.standart.ItemHazmatArmor.isFullHazmatSuit;
 
 public class Radiation {
 	private static ArrayList<ItemStack> radiation = null;
@@ -137,6 +115,5 @@ public class Radiation {
 //            }
 //        }
 //    }
-
 
 }
