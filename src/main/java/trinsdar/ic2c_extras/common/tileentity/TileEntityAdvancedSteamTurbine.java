@@ -30,7 +30,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
-public class TileEntityAdvancedSteamTurbine extends TileEntityBasicSteamTurbine implements ITickable, ISpeedMachine, IEUStorage, IEnergySourceInfo, IEmitterTile {
+public class TileEntityAdvancedSteamTurbine extends TileEntityBasicSteamTurbine{
 
     public FluidTank tank = new IC2Tank(4000);
 
