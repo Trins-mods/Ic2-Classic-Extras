@@ -1,6 +1,5 @@
 package trinsdar.ic2c_extras.common.blocks;
 
-import ic2.core.block.resources.BlockMetal;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -34,8 +33,8 @@ public class BlockSteel extends Block {
         return true;
     }
 
-    public TextureAtlasSprite[] getIconSheet(int meta)
+    public TextureAtlasSprite getTexture(int meta)
     {
-        return Ic2Icons.getTextures("ic2c_extras_blocks");
+        return Ic2Icons.getTextures("ic2c_extras_blocks")[21];
     }
 }
