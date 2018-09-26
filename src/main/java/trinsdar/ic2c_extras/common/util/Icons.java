@@ -22,6 +22,6 @@ public class Icons
         addTextureEntry(new Sprites.TextureEntry("ic2c_extras_items", 0, 0, 7, 2));
         addTextureEntry(new Sprites.TextureEntry("ic2c_extras_items", 0, 2, 11, 3));
         addTextureEntry(new Sprites.TextureEntry("ic2c_extras_items", 0, 3, 9, 4));
-        addTextureEntry(new Sprites.TextureEntry("ic2c_extras_items", 0, 4, 10, 5));
+        addTextureEntry(new Sprites.TextureEntry("ic2c_extras_items", 0, 4, 12, 5));
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ItemMiscs extends ItemBase {
 
-    public static final String[] itemMiscs = {"lead_ingot", "lead_dust", "stone_dust", "slag", "uranium235", "uranium238", "plutonium", "coil", "heat_conductor", "steel_ingot"};
+    public static final String[] itemMiscs = {"lead_ingot", "lead_dust", "stone_dust", "slag", "uranium235", "uranium238", "plutonium", "coil", "heat_conductor", "steel_ingot", "plutonium_enriched_uranium_ingot", "plutonium_enriched_uranium"};
 
     public ItemMiscs(String itemName){
         super(itemName);
