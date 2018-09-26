@@ -5,6 +5,8 @@ import ic2.core.block.generator.BlockGenerator;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.common.tileentity.TileEntityAdvancedSteamTurbine;
 
@@ -33,6 +35,7 @@ public class BlockAdvancedSteamTurbine extends BlockGenerator {
         return new TileEntityAdvancedSteamTurbine();
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite[] getIconSheet(int meta)
     {

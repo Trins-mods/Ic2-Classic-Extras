@@ -4,6 +4,11 @@ import ic2.api.classic.addon.IC2Plugin;
 import ic2.api.classic.addon.PluginBase;
 import ic2.api.classic.addon.misc.IOverrideObject;
 import ic2.api.classic.addon.misc.SideGateway;
+import ic2.core.item.misc.ItemMisc;
+import ic2.core.platform.lang.components.base.LangComponentHolder;
+import ic2.core.platform.lang.components.base.LocaleCompEntryBase;
+import ic2.core.platform.lang.storage.Ic2ItemLang;
+import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
@@ -79,6 +84,18 @@ public class Ic2cExtras extends PluginBase
     {
 
     }
+
+//    private void addEntry(int meta, String name, int texture) {
+//        this.addEntry(meta, name, texture, "i0");
+//    }
+//
+//    private void addEntry(int meta, String name, int texture, String sprite) {
+//        this.unlocalizedNames.put(meta, new LangComponentHolder.LocaleItemComp("item." + name));
+//    }
+//
+//    public void onLoad(){
+//        this.addEntry(180, "itemOreUran", 61);
+//    }
 
     @Override
     public void onServerStopped()

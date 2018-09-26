@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import trinsdar.ic2c_extras.Ic2cExtras;
+import trinsdar.ic2c_extras.common.tileentity.TileEntityAdvancedSteamTurbine;
 import trinsdar.ic2c_extras.common.tileentity.TileEntityOreWashingPlant;
 
 public class RegistryBlock
@@ -41,6 +42,7 @@ public class RegistryBlock
     public static void registerTiles()
     {
          GameRegistry.registerTileEntity(TileEntityOreWashingPlant.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityOreWashingPlant"));
+         GameRegistry.registerTileEntity(TileEntityAdvancedSteamTurbine.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityAdvancedSteamTurbine"));
     }
 
     @SubscribeEvent
