@@ -40,12 +40,6 @@ public class BlockSteel extends Block implements ITexturedBlock {
         return true;
     }
 
-//    @SideOnly(Side.CLIENT)
-//    public TextureAtlasSprite getTexture(int meta)
-//    {
-//        return Ic2Icons.getTextures("ic2c_extras_blocks")[21];
-//    }
-
     @Override
     public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
         return FULL_BLOCK_AABB;
