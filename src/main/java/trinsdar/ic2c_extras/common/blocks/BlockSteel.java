@@ -54,7 +54,7 @@ public class BlockSteel extends Block implements ITexturedBlock {
     @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-        return Ic2Icons.getTextures("ic2c_extras_blocks")[21];
+        return Ic2Icons.getTextures("ic2c_extras_blocks")[192];
     }
 
     @Override
@@ -64,7 +64,7 @@ public class BlockSteel extends Block implements ITexturedBlock {
 
     @Override
     public List<IBlockState> getValidStates() {
-        return null;
+        return this.blockState.getValidStates();
     }
 
     @Override

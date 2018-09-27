@@ -42,7 +42,7 @@ repositories{
 }
 
 dependencies {
-    compile files ("libs/IC2Classic_1.12-1.5.3.6.4.jar")
+    compile files ("libs/IC2Classic_1.12-1.5.3.7.jar")
     deobfProvided "mezz.jei:jei_${mc_version}:${jei_version}:api"
 }
 
