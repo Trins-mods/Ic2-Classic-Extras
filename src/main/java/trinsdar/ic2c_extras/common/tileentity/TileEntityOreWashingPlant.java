@@ -567,11 +567,11 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
             {
                 return null;
             }
-            else if (((ItemStack) this.inventory.get(slotOutput2)).getCount() >= ((ItemStack) this.inventory.get(slotOutput)).getMaxStackSize())
+            else if (((ItemStack) this.inventory.get(slotOutput2)).getCount() >= ((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize())
             {
                 return null;
             }
-            else if (((ItemStack) this.inventory.get(slotOutput3)).getCount() >= ((ItemStack) this.inventory.get(slotOutput)).getMaxStackSize())
+            else if (((ItemStack) this.inventory.get(slotOutput3)).getCount() >= ((ItemStack) this.inventory.get(slotOutput3)).getMaxStackSize())
             {
                 return null;
             }
