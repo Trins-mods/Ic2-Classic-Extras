@@ -462,6 +462,54 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
                     ((ItemStack) this.inventory.get(slotOutput)).grow(item.getCount());
                     this.results.remove(i--);
                 }
+                else if (((ItemStack) this.inventory.get(slotOutput2)).isEmpty())
+                {
+                    this.inventory.set(slotOutput2, item.copy());
+                    this.results.remove(i--);
+                }
+                else if (StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput2), item, false, false))
+                {
+                    int left = ((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize() - ((ItemStack) this.inventory.get(slotOutput2)).getCount();
+                    if (left <= 0)
+                    {
+                        break;
+                    }
+
+                    if (left < item.getCount())
+                    {
+                        int itemLeft = item.getCount() - left;
+                        item.setCount(itemLeft);
+                        ((ItemStack) this.inventory.get(slotOutput2)).setCount(((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize());
+                        break;
+                    }
+
+                    ((ItemStack) this.inventory.get(slotOutput2)).grow(item.getCount());
+                    this.results.remove(i--);
+                }
+                else if (((ItemStack) this.inventory.get(slotOutput3)).isEmpty())
+                {
+                    this.inventory.set(slotOutput3, item.copy());
+                    this.results.remove(i--);
+                }
+                else if (StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput3), item, false, false))
+                {
+                    int left = ((ItemStack) this.inventory.get(slotOutput3)).getMaxStackSize() - ((ItemStack) this.inventory.get(slotOutput3)).getCount();
+                    if (left <= 0)
+                    {
+                        break;
+                    }
+
+                    if (left < item.getCount())
+                    {
+                        int itemLeft = item.getCount() - left;
+                        item.setCount(itemLeft);
+                        ((ItemStack) this.inventory.get(slotOutput3)).setCount(((ItemStack) this.inventory.get(slotOutput3)).getMaxStackSize());
+                        break;
+                    }
+
+                    ((ItemStack) this.inventory.get(slotOutput3)).grow(item.getCount());
+                    this.results.remove(i--);
+                }
             }
 
             return this.results.size() > 0;
@@ -955,13 +1003,6 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? (T)this.waterTank : super.getCapability(capability, facing);
     }
 
-//    public List<ItemStack> iron = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
-//    public List<ItemStack> gold = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
-//    public List<ItemStack> copper = Arrays.asList(new ItemStack[]{new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3)});
-//    public List<ItemStack> tin = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
-//    public List<ItemStack> silver = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
-//    public List<ItemStack> uranium = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
-//    public List<ItemStack> lead = Arrays.asList(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 3));
 
 
     public static void init()
