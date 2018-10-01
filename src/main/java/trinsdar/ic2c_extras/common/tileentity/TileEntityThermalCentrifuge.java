@@ -415,6 +415,54 @@ public class TileEntityThermalCentrifuge extends TileEntityElecMachine implement
                     ((ItemStack) this.inventory.get(slotOutput)).grow(item.getCount());
                     this.results.remove(i--);
                 }
+                else if (((ItemStack) this.inventory.get(slotOutput2)).isEmpty())
+                {
+                    this.inventory.set(slotOutput2, item.copy());
+                    this.results.remove(i--);
+                }
+                else if (StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput2), item, false, false))
+                {
+                    int left = ((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize() - ((ItemStack) this.inventory.get(slotOutput2)).getCount();
+                    if (left <= 0)
+                    {
+                        break;
+                    }
+
+                    if (left < item.getCount())
+                    {
+                        int itemLeft = item.getCount() - left;
+                        item.setCount(itemLeft);
+                        ((ItemStack) this.inventory.get(slotOutput2)).setCount(((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize());
+                        break;
+                    }
+
+                    ((ItemStack) this.inventory.get(slotOutput2)).grow(item.getCount());
+                    this.results.remove(i--);
+                }
+                else if (((ItemStack) this.inventory.get(slotOutput3)).isEmpty())
+                {
+                    this.inventory.set(slotOutput3, item.copy());
+                    this.results.remove(i--);
+                }
+                else if (StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput3), item, false, false))
+                {
+                    int left = ((ItemStack) this.inventory.get(slotOutput3)).getMaxStackSize() - ((ItemStack) this.inventory.get(slotOutput3)).getCount();
+                    if (left <= 0)
+                    {
+                        break;
+                    }
+
+                    if (left < item.getCount())
+                    {
+                        int itemLeft = item.getCount() - left;
+                        item.setCount(itemLeft);
+                        ((ItemStack) this.inventory.get(slotOutput3)).setCount(((ItemStack) this.inventory.get(slotOutput3)).getMaxStackSize());
+                        break;
+                    }
+
+                    ((ItemStack) this.inventory.get(slotOutput3)).grow(item.getCount());
+                    this.results.remove(i--);
+                }}
             }
 
             return this.results.size() > 0;
@@ -468,13 +516,21 @@ public class TileEntityThermalCentrifuge extends TileEntityElecMachine implement
             {
                 return null;
             }
-            else if (((ItemStack) this.inventory.get(slotOutput)).isEmpty())
-            {
-                return this.lastRecipe;
-            }
             else if (((ItemStack) this.inventory.get(slotOutput)).getCount() >= ((ItemStack) this.inventory.get(slotOutput)).getMaxStackSize())
             {
                 return null;
+            }
+            else if (((ItemStack) this.inventory.get(slotOutput2)).getCount() >= ((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize())
+            {
+                return null;
+            }
+            else if (((ItemStack) this.inventory.get(slotOutput3)).getCount() >= ((ItemStack) this.inventory.get(slotOutput3)).getMaxStackSize())
+            {
+                return null;
+            }
+            else if (((ItemStack) this.inventory.get(slotOutput)).isEmpty())
+            {
+                return this.lastRecipe;
             }
             else
             {
@@ -881,53 +937,21 @@ public class TileEntityThermalCentrifuge extends TileEntityElecMachine implement
 
     public static void init()
     {
-        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 0), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0), 1), 0.7F);
-        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 1), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 1), 1), 0.7F);
-        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 2), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 2), 1), 0.7F);
-        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 3), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 3), 1), 0.7F);
-        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 4), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 4), 1), 0.7F);
-        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 5), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 5), 1), 0.7F);
-        addRecipe(new ItemStack(RegistryItem.crushedOres, 1, 6), StackUtil.copyWithSize(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 6), 1), 0.7F);
+        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 0))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ (Ic2Items.ironDust), new ItemStack(RegistryItem.tinyDustTypes, 2, 0), new ItemStack(RegistryItem.itemMiscs, 1, 2)})));
+        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ (Ic2Items.goldDust), new ItemStack(RegistryItem.tinyDustTypes, 2, 1), new ItemStack(RegistryItem.itemMiscs, 1, 2)})));
+        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 2))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ (Ic2Items.copperDust), new ItemStack(RegistryItem.tinyDustTypes, 2, 2), new ItemStack(RegistryItem.itemMiscs, 1, 2)})));
+        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 3))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ (Ic2Items.tinDust), new ItemStack(RegistryItem.tinyDustTypes, 2, 3), new ItemStack(RegistryItem.itemMiscs, 1, 2)})));
+        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 4))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ (Ic2Items.silverDust), new ItemStack(RegistryItem.tinyDustTypes, 2, 4), new ItemStack(RegistryItem.itemMiscs, 1, 2)})));
+        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 5))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.itemMiscs, 1, 4), new ItemStack(RegistryItem.tinyDustTypes, 2, 5), new ItemStack(RegistryItem.itemMiscs, 1, 2)})));
+        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.purifiedCrushedOres, 1, 6))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.itemMiscs, 1, 1), new ItemStack(RegistryItem.tinyDustTypes, 3, 6), new ItemStack(RegistryItem.itemMiscs, 1, 2)})));
     }
 
-    public static void addRecipe(ItemStack input, ItemStack output)
+    public static void addRecipe(IRecipeInput input, MachineOutput output)
     {
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(input)), output);
+        thermalCentrifuge.addRecipe(input, output, output.toString());
     }
 
-    public static void addRecipe(ItemStack input, int stacksize, ItemStack output)
-    {
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(input, stacksize)), output);
-    }
-
-    public static void addRecipe(String input, int stacksize, ItemStack output)
-    {
-        addRecipe((IRecipeInput) (new RecipeInputOreDict(input, stacksize)), output);
-    }
-
-    public static void addRecipe(ItemStack input, ItemStack output, float exp)
-    {
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(input)), output, exp);
-    }
-
-    public static void addRecipe(ItemStack input, int stacksize, ItemStack output, float exp)
-    {
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(input, stacksize)), output, exp);
-    }
-
-    public static void addRecipe(String input, int stacksize, ItemStack output, float exp)
-    {
-        addRecipe((IRecipeInput) (new RecipeInputOreDict(input, stacksize)), output, exp);
-    }
-
-    public static void addRecipe(IRecipeInput input, ItemStack output)
-    {
-        addRecipe(input, output, 0.0F);
-    }
-
-    public static void addRecipe(IRecipeInput input, ItemStack output, float exp)
-    {
-        thermalCentrifuge.addRecipe(input, output, exp, makeString(output));
+    private static void addRecipe(ItemStack itemStack, MachineOutput machineOutput) {
     }
 
     private static String makeString(ItemStack stack)

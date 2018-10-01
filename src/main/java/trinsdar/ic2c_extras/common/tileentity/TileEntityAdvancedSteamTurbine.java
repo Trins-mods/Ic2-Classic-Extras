@@ -87,11 +87,11 @@ public class TileEntityAdvancedSteamTurbine extends TileEntityBasicSteamTurbine{
 
     @Override
     public String getName() {
-        return null;
+        return "AdvancedSteamTurbine";
     }
 
     @Override
     public boolean hasCustomName() {
-        return false;
+        return true;
     }
 }
