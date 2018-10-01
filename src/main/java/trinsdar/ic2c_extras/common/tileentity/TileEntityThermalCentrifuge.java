@@ -462,11 +462,11 @@ public class TileEntityThermalCentrifuge extends TileEntityElecMachine implement
 
                     ((ItemStack) this.inventory.get(slotOutput3)).grow(item.getCount());
                     this.results.remove(i--);
-                }}
+                }
             }
-
             return this.results.size() > 0;
         }
+
     }
 
     private IMachineRecipeList.RecipeEntry getRecipe()
