@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import trinsdar.ic2c_extras.common.blocks.RegistryBlock;
 import trinsdar.ic2c_extras.common.items.RegistryItem;
 import trinsdar.ic2c_extras.common.tileentity.TileEntityOreWashingPlant;
+import trinsdar.ic2c_extras.common.tileentity.TileEntityThermalCentrifuge;
 
 
 public class CommonProxy
@@ -26,6 +27,7 @@ public class CommonProxy
     public void init()
     {
         TileEntityOreWashingPlant.init();
+        TileEntityThermalCentrifuge.init();
     }
 
     public void postInit()

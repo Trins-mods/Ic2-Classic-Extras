@@ -29,7 +29,7 @@ public class ContainerThermalCentrifuge extends ContainerTileComponent<TileEntit
 
         for(int i = 0; i < 4; ++i)
         {
-            this.addSlotToContainer(new SlotUpgrade(tile, 7 + i, 152, 8 + i * 18));
+            this.addSlotToContainer(new SlotUpgrade(tile, 5 + i, 152, 8 + i * 18));
         }
 
         this.addPlayerInventory(player);

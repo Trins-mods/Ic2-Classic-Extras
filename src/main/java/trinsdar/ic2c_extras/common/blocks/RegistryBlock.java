@@ -25,7 +25,8 @@ public class RegistryBlock
     {
             blockOreWashingPlant,
             blockAdvancedSteamTurbine,
-            blockSteel
+            blockSteel,
+            blockThermalCentrifuge
     };
 
     @SubscribeEvent
