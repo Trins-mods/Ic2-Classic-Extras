@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.common.tileentity.TileEntityAdvancedSteamTurbine;
+import trinsdar.ic2c_extras.common.tileentity.TileEntityMetalPress;
 import trinsdar.ic2c_extras.common.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.common.tileentity.TileEntityThermalCentrifuge;
 
@@ -48,6 +49,7 @@ public class RegistryBlock
          GameRegistry.registerTileEntity(TileEntityOreWashingPlant.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityOreWashingPlant"));
          GameRegistry.registerTileEntity(TileEntityAdvancedSteamTurbine.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityAdvancedSteamTurbine"));
          GameRegistry.registerTileEntity(TileEntityThermalCentrifuge.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityThermalCentrifuge"));
+         GameRegistry.registerTileEntity(TileEntityMetalPress.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityMetalPress"));
     }
 
     @SubscribeEvent

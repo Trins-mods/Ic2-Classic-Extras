@@ -28,11 +28,11 @@ public class BlockMetalPress extends BlockLVMachine {
         return Arrays.asList(0);
     }
 
-//    @Override
-//    public TileEntityBlock createNewTileEntity(World worldIn, int meta)
-//    {
-//        return new TileEntityMetalPress();
-//    }
+    @Override
+    public TileEntityBlock createNewTileEntity(World worldIn, int meta)
+    {
+        return new TileEntityMetalPress();
+    }
 
     @Override
     public TextureAtlasSprite[] getIconSheet(int meta)
