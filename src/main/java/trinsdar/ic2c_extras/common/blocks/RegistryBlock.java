@@ -18,6 +18,7 @@ public class RegistryBlock
 {
     public static final Block blockOreWashingPlant = new BlockOreWashingPlant("blockOreWashingPlant");
     public static final Block blockThermalCentrifuge = new BlockThermalCentrifuge("blockThermalCentrifuge");
+    public static final Block blockMetalPress = new BlockMetalPress("blockMetalPress");
     public static final Block blockAdvancedSteamTurbine = new BlockAdvancedSteamTurbine("blockAdvancedSteamTurbine");
     public static final Block blockSteel = new BlockSteel("blockSteel");
 
@@ -26,7 +27,8 @@ public class RegistryBlock
             blockOreWashingPlant,
             blockAdvancedSteamTurbine,
             blockSteel,
-            blockThermalCentrifuge
+            blockThermalCentrifuge,
+            blockMetalPress
     };
 
     @SubscribeEvent
