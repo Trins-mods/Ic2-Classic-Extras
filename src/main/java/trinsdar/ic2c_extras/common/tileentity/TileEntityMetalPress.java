@@ -1,37 +1,22 @@
 package trinsdar.ic2c_extras.common.tileentity;
 
-import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
-import ic2.api.classic.tile.IRecipeMachine;
 import ic2.api.classic.tile.MachineType;
-import ic2.api.classic.tile.machine.IProgressMachine;
-import ic2.api.network.INetworkTileEntityEventListener;
 import ic2.api.recipe.IRecipeInput;
-import ic2.core.audio.AudioSource;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
-import ic2.core.block.base.util.info.EnergyUsageInfo;
-import ic2.core.block.base.util.info.ProgressInfo;
-import ic2.core.block.base.util.info.misc.IEnergyUser;
 import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
-import ic2.core.inventory.base.IHasGui;
-import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Sounds;
-import ic2.core.util.obj.IOutputMachine;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.common.items.RegistryItem;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
 
