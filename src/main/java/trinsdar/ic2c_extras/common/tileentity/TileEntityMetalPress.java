@@ -109,15 +109,15 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
     }
 
     public static void init(){
-        addRecipe((String)"ingotCopper", 1, new ItemStack(RegistryItem.itemCasings, 2, 0));
-        addRecipe((String)"ingotTin", 1, new ItemStack(RegistryItem.itemCasings, 2, 1));
-        addRecipe((String)"ingotSilver", 1, new ItemStack(RegistryItem.itemCasings, 2, 2));
-        addRecipe((String)"ingotLead", 1, new ItemStack(RegistryItem.itemCasings, 2, 3));
-        addRecipe((String)"ingotIron", 1, new ItemStack(RegistryItem.itemCasings, 2, 4));
-        addRecipe((String)"ingotGold", 1, new ItemStack(RegistryItem.itemCasings, 2, 5));
-        addRecipe((String)"ingotRefinedIron", 1, new ItemStack(RegistryItem.itemCasings, 2, 6));
-        addRecipe((String)"ingotSteel", 1, new ItemStack(RegistryItem.itemCasings, 2, 7));
-        addRecipe((String)"ingotBronze", 1, new ItemStack(RegistryItem.itemCasings, 2, 8));
+        addRecipe((String)"ingotCopper", 1, new ItemStack(RegistryItem.itemCasings, 2, 0), 0.7f);
+        addRecipe((String)"ingotTin", 1, new ItemStack(RegistryItem.itemCasings, 2, 1), 0.7f);
+        addRecipe((String)"ingotSilver", 1, new ItemStack(RegistryItem.itemCasings, 2, 2), 0.7f);
+        addRecipe((String)"ingotLead", 1, new ItemStack(RegistryItem.itemCasings, 2, 3), 0.7f);
+        addRecipe((String)"ingotIron", 1, new ItemStack(RegistryItem.itemCasings, 2, 4), 0.7f);
+        addRecipe((String)"ingotGold", 1, new ItemStack(RegistryItem.itemCasings, 2, 5), 0.7f);
+        addRecipe((String)"ingotRefinedIron", 1, new ItemStack(RegistryItem.itemCasings, 2, 6), 0.7f);
+        addRecipe((String)"ingotSteel", 1, new ItemStack(RegistryItem.itemCasings, 2, 7), 0.7f);
+        addRecipe((String)"ingotBronze", 1, new ItemStack(RegistryItem.itemCasings, 2, 8), 0.7f);
     }
 
     public static void addRecipe(ItemStack input, ItemStack output) {
