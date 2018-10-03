@@ -36,9 +36,11 @@ import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.registry.Ic2GuiComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.helpers.FilteredList;
+import ic2.core.util.math.Box2D;
 import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IOutputMachine;
 import net.minecraft.client.gui.GuiScreen;
@@ -62,39 +64,16 @@ import java.util.*;
 
 public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
 {
+    public TileEntityThermalCentrifuge() {
+        super( 9, 48, 400);
+    }
 
-    @NetworkField(index = 7)
-    public float progress = 0.0F;
+    @Override
+    public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input) {
+        return thermalCentrifuge.getRecipeInAndOutput(input, false);
+    }
 
-    public int defaultEnergyConsume;
-    public int defaultOperationLength;
-    public int defaultMaxInput;
-    public int defaultEnergyStorage;
-    public int energyConsume;
-    public int operationLength;
-    public float progressPerTick;
-
-    @NetworkField(index = 8)
-    public float soundLevel = 1.0F;
-
-    public IMachineRecipeList.RecipeEntry lastRecipe;
-
-    @NetworkField(index = 9)
-    public int recipeOperation;
-
-    @NetworkField(index = 10)
-    public int recipeEnergy;
-
-    @NetworkField(index = 11)
-    public boolean redstoneInverted;
-
-    @NetworkField(index = 12)
-    public boolean redstoneSensitive;
-
-    public boolean defaultSensitive;
-    public List<ItemStack> results = new ArrayList();
-    public AudioSource audioSource;
-    public IFilter filter;
+    public int progressPerTick;
 
     public static IMachineRecipeList thermalCentrifuge = new BasicMachineRecipeList("thermalCentrifuge");
 
@@ -104,42 +83,14 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
     public static final int slotOutput2 = 3;
     public static final int slotOutput3 = 4;
 
+    @Override
     public int[] getOutputSlots() {
         return new int[]{slotOutput, slotOutput2, slotOutput3};
     }
 
     @Override
-    public Slot[] getInventorySlots(InventoryPlayer inventoryPlayer) {
-        return new Slot[0];
-    }
-
-    @Override
-    public ResourceLocation getTexture() {
-        return new ResourceLocation("ic2c_extras", "textures/guiSprites/GUIThermalCentrifuge.png");
-    }
-
-    @Override
-    public LocaleComp getSpeedName() {
-        return new LangComponentHolder.LocaleGuiComp("container.machineHeat.name");
-    }
-
-
-    public TileEntityThermalCentrifuge() {
-        super( 9, 48, 400);
-    }
-
-
-    @Override
-    protected void addComparators(ComparatorManager manager)
-    {
-        super.addComparators(manager);
-        manager.addComparatorMode(new ComparatorProgress(this));
-    }
-
-    @Override
     protected void addSlots(InventoryHandler handler)
     {
-        this.filter = new MachineFilter(this);
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Both, new int[]{slotFuel});
         handler.registerDefaultSlotAccess(AccessRule.Import, new int[]{slotInput});
@@ -154,31 +105,18 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
     }
 
     @Override
-    public int getEnergyUsage()
-    {
-        return this.recipeEnergy;
+    public Slot[] getInventorySlots(InventoryPlayer inventoryPlayer) {
+        return new Slot[0];
     }
 
     @Override
-    public float getProgress()
-    {
-        return this.progress;
+    public Box2D getChargeBox() {
+        return ContainerThermalCentrifuge.machineChargeBox;
     }
 
     @Override
-    public float getMaxProgress()
-    {
-        return (float) this.recipeOperation;
-    }
-
-    public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input)
-    {
-        return thermalCentrifuge.getRecipeInAndOutput(input, false);
-    }
-
-    public boolean canWorkWithoutItems()
-    {
-        return false;
+    public Box2D getProgressBox() {
+        return ContainerThermalCentrifuge.machineProgressBox;
     }
 
     public ResourceLocation getStartSoundFile()
@@ -191,19 +129,114 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
         return Ic2Sounds.interruptingSound;
     }
 
-    public boolean supportsNotify()
-    {
-        return true;
+
+    @Override
+    public ResourceLocation getTexture() {
+        return new ResourceLocation("ic2c_extras", "textures/guiSprites/GUIThermalCentrifuge.png");
     }
 
-    public boolean needsInitialRedstoneUpdate()
-    {
-        return true;
+    @Override
+    public LocaleComp getSpeedName() {
+        return new LangComponentHolder.LocaleGuiComp("container.machineHeat.name");
     }
 
+    @Override
+    public IMachineRecipeList getRecipeList() {
+        return thermalCentrifuge;
+    }
 
-    public void update()
+    @Override
+    public MachineType getType() {
+        return MachineType.macerator;
+    }
+
+    @Override
+    public IMachineRecipeList.RecipeEntry getRecipe()
     {
+        if (((ItemStack) this.inventory.get(slotInput)).isEmpty() && !this.canWorkWithoutItems())
+        {
+            return null;
+        }
+        else
+        {
+            if (this.lastRecipe != null)
+            {
+                IRecipeInput recipe = this.lastRecipe.getInput();
+                if (recipe instanceof INullableRecipeInput)
+                {
+                    if (!recipe.matches((ItemStack) this.inventory.get(slotInput)))
+                    {
+                        this.lastRecipe = null;
+                    }
+                }
+                else if (!((ItemStack) this.inventory.get(slotInput)).isEmpty() && recipe.matches((ItemStack) this.inventory.get(0)))
+                {
+                    if (recipe.getAmount() > ((ItemStack) this.inventory.get(slotInput)).getCount())
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    this.lastRecipe = null;
+                }
+            }
+
+            if (this.lastRecipe == null)
+            {
+                IMachineRecipeList.RecipeEntry out = this.getOutputFor(((ItemStack) this.inventory.get(slotInput)).copy());
+                if (out == null)
+                {
+                    return null;
+                }
+
+                this.lastRecipe = out;
+                this.handleModifiers(out);
+            }
+
+            if (this.lastRecipe == null)
+            {
+                return null;
+            }
+            else if (((ItemStack) this.inventory.get(slotOutput)).getCount() >= ((ItemStack) this.inventory.get(slotOutput)).getMaxStackSize())
+            {
+                return null;
+            }
+            else if (((ItemStack) this.inventory.get(slotOutput2)).getCount() >= ((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize())
+            {
+                return null;
+            }
+            else if (((ItemStack) this.inventory.get(slotOutput3)).getCount() >= ((ItemStack) this.inventory.get(slotOutput3)).getMaxStackSize())
+            {
+                return null;
+            }
+            else if (((ItemStack) this.inventory.get(slotOutput)).isEmpty())
+            {
+                return this.lastRecipe;
+            }
+            else
+            {
+                Iterator var4 = this.lastRecipe.getOutput().getAllOutputs().iterator();
+
+                ItemStack output;
+                do
+                {
+                    if (!var4.hasNext())
+                    {
+                        return null;
+                    }
+
+                    output = (ItemStack) var4.next();
+                }
+                while (!StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput), output, false, true));
+
+                return this.lastRecipe;
+            }
+        }
+    }
+
+    @Override
+    public void update() {
         this.handleChargeSlot(500);
         this.updateNeighbors();
 
@@ -229,7 +262,7 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
             if (this.progress >= (float) this.recipeOperation)
             {
                 this.operate(entry);
-                this.progress = 0.0F;
+                this.progress = 0;
                 this.notifyNeighbors();
             }
 
@@ -239,7 +272,7 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
         {
             if (this.getActive())
             {
-                if (this.progress != 0.0F)
+                if (this.progress != 0)
                 {
                     this.getNetwork().initiateTileEntityEvent(this, 1, false);
                 }
@@ -249,9 +282,9 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
                 }
             }
 
-            if (entry == null && this.progress != 0.0F)
+            if (entry == null && this.progress != 0)
             {
-                this.progress = 0.0F;
+                this.progress = 0;
                 this.getNetwork().updateTileGuiField(this, "progress");
             }
 
@@ -270,67 +303,25 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
         this.updateComparators();
     }
 
-    public void handleModifiers(IMachineRecipeList.RecipeEntry entry)
+    public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list)
     {
-        if (entry != null && entry.getOutput().getMetadata() != null)
+        list.addAll(output.getRecipeOutput(this.getMachineWorld().rand));
+        if (!(input instanceof INullableRecipeInput) || !((ItemStack) this.inventory.get(slotInput)).isEmpty())
         {
-            NBTTagCompound nbt = entry.getOutput().getMetadata();
-            double energyMod = nbt.hasKey("RecipeEnergyModifier") ? nbt.getDouble("RecipeEnergyModifier") : 1.0D;
-            int newEnergy = applyModifier(this.energyConsume, nbt.getInteger("RecipeEnergy"), energyMod);
-            if (newEnergy != this.recipeEnergy)
+            if (((ItemStack) this.inventory.get(slotInput)).getItem().hasContainerItem((ItemStack) this.inventory.get(slotInput)))
             {
-                this.recipeEnergy = newEnergy;
-                if (this.recipeEnergy < 1)
-                {
-                    this.recipeEnergy = 1;
-                }
-
-                this.getNetwork().updateTileGuiField(this, "recipeEnergy");
+                this.inventory.set(slotInput, ((ItemStack) this.inventory.get(slotInput)).getItem().getContainerItem((ItemStack) this.inventory.get(slotInput)));
             }
-
-            double progMod = nbt.hasKey("RecipeTimeModifier") ? nbt.getDouble("RecipeTimeModifier") : 1.0D;
-            int newProgress = applyModifier(this.operationLength, nbt.getInteger("RecipeTime"), progMod);
-            if (newProgress != this.recipeOperation)
+            else
             {
-                this.recipeOperation = newProgress;
-                if (this.recipeOperation < 1)
-                {
-                    this.recipeOperation = 1;
-                }
-
-                this.getNetwork().updateTileGuiField(this, "recipeOperation");
-            }
-
-        }
-        else
-        {
-            if (this.recipeEnergy != this.energyConsume)
-            {
-                this.recipeEnergy = this.energyConsume;
-                if (this.recipeEnergy < 1)
-                {
-                    this.recipeEnergy = 1;
-                }
-
-                this.getNetwork().updateTileGuiField(this, "recipeEnergy");
-            }
-
-            if (this.recipeOperation != this.operationLength)
-            {
-                this.recipeOperation = this.operationLength;
-                if (this.recipeOperation < 1)
-                {
-                    this.recipeOperation = 1;
-                }
-
-                this.getNetwork().updateTileGuiField(this, "recipeOperation");
+                ((ItemStack) this.inventory.get(slotInput)).shrink(input.getAmount());
             }
 
         }
     }
 
-    public void operate(IMachineRecipeList.RecipeEntry entry)
-    {
+    public void operate(IMachineRecipeList.RecipeEntry entry) {
+
         IRecipeInput input = entry.getInput();
         MachineOutput output = entry.getOutput().copy();
 
@@ -361,24 +352,6 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
         {
             this.results.addAll(list);
             this.addToInventory();
-        }
-
-    }
-
-    public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list)
-    {
-        list.addAll(output.getRecipeOutput(this.getMachineWorld().rand));
-        if (!(input instanceof INullableRecipeInput) || !((ItemStack) this.inventory.get(slotInput)).isEmpty())
-        {
-            if (((ItemStack) this.inventory.get(slotInput)).getItem().hasContainerItem((ItemStack) this.inventory.get(slotInput)))
-            {
-                this.inventory.set(slotInput, ((ItemStack) this.inventory.get(slotInput)).getItem().getContainerItem((ItemStack) this.inventory.get(slotInput)));
-            }
-            else
-            {
-                ((ItemStack) this.inventory.get(slotInput)).shrink(input.getAmount());
-            }
-
         }
     }
 
@@ -476,265 +449,14 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
 
     }
 
-    public IMachineRecipeList.RecipeEntry getRecipe()
-    {
-        if (((ItemStack) this.inventory.get(slotInput)).isEmpty() && !this.canWorkWithoutItems())
-        {
-            return null;
-        }
-        else
-        {
-            if (this.lastRecipe != null)
-            {
-                IRecipeInput recipe = this.lastRecipe.getInput();
-                if (recipe instanceof INullableRecipeInput)
-                {
-                    if (!recipe.matches((ItemStack) this.inventory.get(slotInput)))
-                    {
-                        this.lastRecipe = null;
-                    }
-                }
-                else if (!((ItemStack) this.inventory.get(slotInput)).isEmpty() && recipe.matches((ItemStack) this.inventory.get(0)))
-                {
-                    if (recipe.getAmount() > ((ItemStack) this.inventory.get(slotInput)).getCount())
-                    {
-                        return null;
-                    }
-                }
-                else
-                {
-                    this.lastRecipe = null;
-                }
-            }
-
-            if (this.lastRecipe == null)
-            {
-                IMachineRecipeList.RecipeEntry out = this.getOutputFor(((ItemStack) this.inventory.get(slotInput)).copy());
-                if (out == null)
-                {
-                    return null;
-                }
-
-                this.lastRecipe = out;
-                this.handleModifiers(out);
-            }
-
-            if (this.lastRecipe == null)
-            {
-                return null;
-            }
-            else if (((ItemStack) this.inventory.get(slotOutput)).getCount() >= ((ItemStack) this.inventory.get(slotOutput)).getMaxStackSize())
-            {
-                return null;
-            }
-            else if (((ItemStack) this.inventory.get(slotOutput2)).getCount() >= ((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize())
-            {
-                return null;
-            }
-            else if (((ItemStack) this.inventory.get(slotOutput3)).getCount() >= ((ItemStack) this.inventory.get(slotOutput3)).getMaxStackSize())
-            {
-                return null;
-            }
-            else if (((ItemStack) this.inventory.get(slotOutput)).isEmpty())
-            {
-                return this.lastRecipe;
-            }
-            else
-            {
-                Iterator var4 = this.lastRecipe.getOutput().getAllOutputs().iterator();
-
-                ItemStack output;
-                do
-                {
-                    if (!var4.hasNext())
-                    {
-                        return null;
-                    }
-
-                    output = (ItemStack) var4.next();
-                }
-                while (!StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput), output, false, true));
-
-                return this.lastRecipe;
-            }
-        }
-    }
-
-    public boolean isRedstoneSensitive()
-    {
-        return this.redstoneSensitive;
-    }
-
-    public boolean isProcessing()
-    {
-        return this.getActive();
-    }
 
     @Override
-    public boolean isValidInput(ItemStack itemStack)
-    {
-        return false;
-    }
-
-    public float getRecipeProgress()
-    {
-        float ret = this.progress / (float) this.recipeOperation;
-        if (ret > 1.0F)
-        {
-            ret = 1.0F;
-        }
-
-        return ret;
-    }
-
-    static float applyFloatModifier(int base, int extra, double multiplier)
-    {
-        double ret = (double) Math.round((double) (base + extra) * multiplier);
-        return ret > 2.147483648E9D ? 2.14748365E9F : (float) ret;
-    }
-
-    public void onNetworkUpdate(String field)
-    {
-        if (field.equals("isActive") && this.getActive())
-        {
-            this.onNetworkEvent(0);
-        }
-
-        super.onNetworkUpdate(field);
-        if (field.equals("soundLevel") && this.audioSource != null)
-        {
-            this.audioSource.setVolume(IC2.audioManager.defaultVolume * this.soundLevel);
-        }
-
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound nbt)
-    {
-        super.readFromNBT(nbt);
-        this.progress = nbt.getFloat("progress");
-        this.results.clear();
-        NBTTagList list = nbt.getTagList("Results", 10);
-
-        for (int i = 0; i < list.tagCount(); ++i)
-        {
-            NBTTagCompound data = list.getCompoundTagAt(i);
-            this.results.add(new ItemStack(data));
-        }
-    }
-
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
-    {
-        super.writeToNBT(nbt);
-        nbt.setFloat("progress", this.progress);
-        NBTTagList list = new NBTTagList();
-        Iterator var3 = this.results.iterator();
-
-        while (var3.hasNext())
-        {
-            ItemStack item = (ItemStack) var3.next();
-            NBTTagCompound data = new NBTTagCompound();
-            item.writeToNBT(data);
-            list.appendTag(data);
-        }
-
-        nbt.setTag("Results", list);
-        return nbt;
-    }
-
-    @Override
-    public Set<IMachineUpgradeItem.UpgradeType> getSupportedTypes()
-    {
-        return new LinkedHashSet(Arrays.asList(IMachineUpgradeItem.UpgradeType.values()));
-    }
-
-    @Override
-    public World getMachineWorld()
-    {
-        return this.getWorld();
-    }
-
-    @Override
-    public BlockPos getMachinePos()
-    {
-        return this.getPos();
-    }
-
-    @Override
-    public boolean canInteractWith(EntityPlayer player)
-    {
-        return !this.isInvalid();
-    }
-
-    @Override
-    public ContainerIC2 getGuiContainer(EntityPlayer player)
-    {
-        return new ContainerThermalCentrifuge(player.inventory, this);
-    }
-
-    @Override
-    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
-    {
-        return GuiComponentContainer.class;
-    }
-
-    @Override
-    public void onGuiClosed(EntityPlayer entityPlayer)
-    {
-
-    }
-
-    @Override
-    public boolean hasGui(EntityPlayer player)
-    {
-        return true;
-    }
-
-    @Override
-    public LocaleComp getBlockName()
-    {
-        return new LangComponentHolder.LocaleBlockComp("tile.thermalCentrifuge");
-    }
-
-    public ResourceLocation getGuiTexture()
-    {
-        return new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guithermalcentrifuge.png");
-    }
-
-    @Override
-    public MachineType getType()
-    {
-        return MachineType.macerator;
-    }
-
-    @Override
-    public IMachineRecipeList getRecipeList()
-    {
-        return thermalCentrifuge;
-    }
-
-    @Override
-    public IHasInventory getOutputInventory()
-    {
-        return new RangedInventoryWrapper(this, new int[]{slotOutput, slotOutput2, slotOutput3});
-    }
-
-    @Override
-    public IHasInventory getInputInventory()
-    {
-        return new RangedInventoryWrapper(this, new int[]{slotInput});
-    }
-
-    @Override
-    public String getName()
-    {
+    public String getName() {
         return "tileThermalCentrifuge";
     }
 
     @Override
-    public boolean hasCustomName()
-    {
+    public boolean hasCustomName() {
         return true;
     }
 

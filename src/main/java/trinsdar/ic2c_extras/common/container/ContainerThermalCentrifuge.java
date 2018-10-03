@@ -48,7 +48,7 @@ public class ContainerThermalCentrifuge extends ContainerTileComponent<TileEntit
     @Override
     public ResourceLocation getTexture()
     {
-        return this.getGuiHolder().getGuiTexture();
+        return this.getGuiHolder().getTexture();
     }
 
     @Override
