@@ -11,12 +11,17 @@ import ic2.core.inventory.slots.SlotDischarge;
 import ic2.core.inventory.slots.SlotOutput;
 import ic2.core.inventory.slots.SlotUpgrade;
 import ic2.core.platform.registry.Ic2GuiComp;
+import ic2.core.util.math.Box2D;
+import ic2.core.util.math.Vec2i;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.common.tileentity.TileEntityMetalPress;
 
 public class ContainerMetalPress  extends ContainerTileComponent<TileEntityMetalPress>{
+    public static Box2D machineProgressBox = new Box2D(77, 35, 25, 14);
+    public static Vec2i machineProgressPos = new Vec2i(176, 14);
+
     public ContainerMetalPress(InventoryPlayer player, TileEntityMetalPress tile) {
         super((IHasGui) tile);
         this.addSlotToContainer(new SlotCustom(tile, 0, 56, 17, null));
@@ -30,7 +35,7 @@ public class ContainerMetalPress  extends ContainerTileComponent<TileEntityMetal
 
         this.addPlayerInventory(player);
         this.addComponent(new MachineChargeComp(tile, Ic2GuiComp.machineChargeBox, Ic2GuiComp.machineChargePos));
-        this.addComponent(new MachineProgressComp((IProgressMachine) tile, Ic2GuiComp.machineProgressBox, Ic2GuiComp.machineProgressPos));
+        this.addComponent(new MachineProgressComp(tile, ContainerMetalPress.machineProgressBox, ContainerMetalPress.machineProgressPos));
     }
 
 

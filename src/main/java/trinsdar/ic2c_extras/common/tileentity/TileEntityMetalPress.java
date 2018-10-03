@@ -1,5 +1,7 @@
 package trinsdar.ic2c_extras.common.tileentity;
 
+import ic2.api.classic.item.IMachineUpgradeItem;
+import ic2.api.classic.recipe.INullableRecipeInput;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
@@ -11,12 +13,15 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.common.items.RegistryItem;
+
+import java.util.Iterator;
 
 public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
 
@@ -88,9 +93,110 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
         return metalPress;
     }
 
+    private IMachineRecipeList.RecipeEntry getRecipe() {
+        if (((ItemStack)this.inventory.get(0)).isEmpty() && !this.canWorkWithoutItems()) {
+            return null;
+        } else {
+            if (this.lastRecipe != null) {
+                IRecipeInput recipe = this.lastRecipe.getInput();
+                if (recipe instanceof INullableRecipeInput) {
+                    if (!recipe.matches((ItemStack)this.inventory.get(0))) {
+                        this.lastRecipe = null;
+                    }
+                } else if (!((ItemStack)this.inventory.get(0)).isEmpty() && recipe.matches((ItemStack)this.inventory.get(0))) {
+                    if (recipe.getAmount() > ((ItemStack)this.inventory.get(0)).getCount()) {
+                        return null;
+                    }
+                } else {
+                    this.lastRecipe = null;
+                }
+            }
+
+            if (this.lastRecipe == null) {
+                IMachineRecipeList.RecipeEntry out = this.getOutputFor(((ItemStack)this.inventory.get(0)).copy());
+                if (out == null) {
+                    return null;
+                }
+
+                this.lastRecipe = out;
+                this.handleModifiers(out);
+            }
+
+            if (this.lastRecipe == null) {
+                return null;
+            } else if (((ItemStack)this.inventory.get(2)).isEmpty()) {
+                return this.lastRecipe;
+            } else if (((ItemStack)this.inventory.get(2)).getCount() >= ((ItemStack)this.inventory.get(2)).getMaxStackSize()) {
+                return null;
+            } else {
+                Iterator var4 = this.lastRecipe.getOutput().getAllOutputs().iterator();
+
+                ItemStack output;
+                do {
+                    if (!var4.hasNext()) {
+                        return null;
+                    }
+
+                    output = (ItemStack)var4.next();
+                } while(!StackUtil.isStackEqual((ItemStack)this.inventory.get(2), output, false, true));
+
+                return this.lastRecipe;
+            }
+        }
+    }
+
     @Override
     public void update() {
+        this.handleRedstone();
+        this.updateNeighbors();
+        boolean noRoom = this.addToInventory();
+        IMachineRecipeList.RecipeEntry entry = this.getRecipe();
+        boolean canWork = this.canWork() && !noRoom;
+        boolean operate = canWork && entry != null;
+        if (operate) {
+            this.handleChargeSlot(this.maxEnergy);
+        }
 
+        if (operate && this.energy >= this.energyConsume) {
+            if (!this.getActive()) {
+                this.getNetwork().initiateTileEntityEvent(this, 0, false);
+            }
+
+            this.setActive(true);
+            this.progress += this.progressPerTick;
+            this.useEnergy(this.recipeEnergy);
+            if (this.progress >= (float)this.recipeOperation) {
+                this.operate(entry);
+                this.progress = 0.0F;
+                this.notifyNeighbors();
+            }
+
+            this.getNetwork().updateTileGuiField(this, "progress");
+        } else {
+            if (this.getActive()) {
+                if (this.progress != 0.0F) {
+                    this.getNetwork().initiateTileEntityEvent(this, 1, false);
+                } else {
+                    this.getNetwork().initiateTileEntityEvent(this, 2, false);
+                }
+            }
+
+            if (entry == null && this.progress != 0.0F) {
+                this.progress = 0.0F;
+                this.getNetwork().updateTileGuiField(this, "progress");
+            }
+
+            this.setActive(false);
+        }
+
+        for(int i = 0; i < 4; ++i) {
+            ItemStack item = (ItemStack)this.inventory.get(i + this.inventory.size() - 4);
+            if (item.getItem() instanceof IMachineUpgradeItem) {
+                ((IMachineUpgradeItem)item.getItem()).onTick(item, this);
+            }
+        }
+
+        this.updateComparators();
     }
 
     public static void init(){
