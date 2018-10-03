@@ -15,6 +15,7 @@ import ic2.api.recipe.IRecipeInput;
 import ic2.core.IC2;
 import ic2.core.RotationList;
 import ic2.core.audio.AudioSource;
+import ic2.core.block.base.tile.TileEntityAdvancedMachine;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.base.util.comparator.ComparatorManager;
 import ic2.core.block.base.util.comparator.comparators.ComparatorProgress;
@@ -43,7 +44,9 @@ import ic2.core.util.obj.IOutputMachine;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.ITickable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -57,7 +60,7 @@ import trinsdar.ic2c_extras.common.items.RegistryItem;
 
 import java.util.*;
 
-public class TileEntityThermalCentrifuge extends TileEntityElecMachine implements ITickable, IProgressMachine, IRecipeMachine, IOutputMachine, IHasGui, INetworkTileEntityEventListener, IEnergyUser
+public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
 {
 
     @NetworkField(index = 7)
@@ -95,33 +98,36 @@ public class TileEntityThermalCentrifuge extends TileEntityElecMachine implement
 
     public static IMachineRecipeList thermalCentrifuge = new BasicMachineRecipeList("thermalCentrifuge");
 
-    public static final int slotInput = 0;
-    public static final int slotFuel = 1;
+    public static final int slotFuel = 0;
+    public static final int slotInput = 1;
     public static final int slotOutput = 2;
     public static final int slotOutput2 = 3;
     public static final int slotOutput3 = 4;
 
+    public int[] getOutputSlots() {
+        return new int[]{slotOutput, slotOutput2, slotOutput3};
+    }
+
+    @Override
+    public Slot[] getInventorySlots(InventoryPlayer inventoryPlayer) {
+        return new Slot[0];
+    }
+
+    @Override
+    public ResourceLocation getTexture() {
+        return new ResourceLocation("ic2c_extras", "textures/guiSprites/GUIThermalCentrifuge.png");
+    }
+
+    @Override
+    public LocaleComp getSpeedName() {
+        return new LangComponentHolder.LocaleGuiComp("container.machineHeat.name");
+    }
+
 
     public TileEntityThermalCentrifuge() {
-        this( 9, 48, 400, 128);
+        super( 9, 48, 400);
     }
 
-    public TileEntityThermalCentrifuge(int slots, int energyPerTick, int maxProgress, int maxInput)
-    {
-        super(slots, maxInput);
-        this.setFuelSlot(slotFuel);
-        this.setCustomName("tileThermalCentrifuge");
-        this.energyConsume = energyPerTick;
-        this.defaultEnergyConsume = energyPerTick;
-        this.operationLength = maxProgress;
-        this.defaultOperationLength = maxProgress;
-        this.defaultMaxInput = this.maxInput;
-        this.defaultEnergyStorage = energyPerTick * maxProgress;
-        this.defaultSensitive = false;
-        this.addNetworkFields(new String[]{"soundLevel", "redstoneInverted", "redstoneSensitive"});
-        this.addGuiFields(new String[]{"recipeOperation", "recipeEnergy", "progress"});
-        this.addInfos(new InfoComponent[]{new EnergyUsageInfo(this), new ProgressInfo(this)});
-    }
 
     @Override
     protected void addComparators(ComparatorManager manager)
@@ -376,6 +382,7 @@ public class TileEntityThermalCentrifuge extends TileEntityElecMachine implement
         }
     }
 
+    @Override
     public boolean addToInventory()
     {
         if (this.results.isEmpty())
@@ -469,7 +476,7 @@ public class TileEntityThermalCentrifuge extends TileEntityElecMachine implement
 
     }
 
-    private IMachineRecipeList.RecipeEntry getRecipe()
+    public IMachineRecipeList.RecipeEntry getRecipe()
     {
         if (((ItemStack) this.inventory.get(slotInput)).isEmpty() && !this.canWorkWithoutItems())
         {
@@ -553,63 +560,6 @@ public class TileEntityThermalCentrifuge extends TileEntityElecMachine implement
         }
     }
 
-    public boolean canWork()
-    {
-        return !this.redstoneSensitive ? true : this.isRedstonePowered();
-    }
-
-    public boolean isRedstonePowered()
-    {
-        if (this.redstoneInverted)
-        {
-            return !super.isRedstonePowered();
-        }
-        else
-        {
-            return super.isRedstonePowered();
-        }
-    }
-
-    public void handleRedstone()
-    {
-        if (this.redstoneSensitive)
-        {
-            super.handleRedstone();
-        }
-
-    }
-
-    public double getEnergy()
-    {
-        return (double) this.energy;
-    }
-
-    public boolean useEnergy(double amount, boolean simulate)
-    {
-        if ((double) this.energy < amount)
-        {
-            return false;
-        }
-        else
-        {
-            if (!simulate)
-            {
-                this.useEnergy((int) amount);
-            }
-
-            return true;
-        }
-    }
-
-    public void setRedstoneSensitive(boolean active)
-    {
-        if (this.redstoneSensitive != active)
-        {
-            this.redstoneSensitive = active;
-        }
-
-    }
-
     public boolean isRedstoneSensitive()
     {
         return this.redstoneSensitive;
@@ -637,157 +587,10 @@ public class TileEntityThermalCentrifuge extends TileEntityElecMachine implement
         return ret;
     }
 
-    public void setOverclockRates()
-    {
-        this.lastRecipe = null;
-        int extraProcessSpeed = 0;
-        double processingSpeedMultiplier = 1.0D;
-        int extraProcessTime = 0;
-        double processTimeMultiplier = 1.0D;
-        int extraEnergyDemand = 0;
-        double energyDemandMultiplier = 1.0D;
-        int extraEnergyStorage = 0;
-        double energyStorageMultiplier = 1.0D;
-        int extraTier = 0;
-        float soundModfier = 1.0F;
-        boolean redstonePowered = false;
-        this.redstoneSensitive = this.defaultSensitive;
-
-        for (int i = 0; i < 4; ++i)
-        {
-            ItemStack item = (ItemStack) this.inventory.get(i + this.inventory.size() - 4);
-            if (item.getItem() instanceof IMachineUpgradeItem)
-            {
-                IMachineUpgradeItem upgrade = (IMachineUpgradeItem) item.getItem();
-                upgrade.onInstalling(item, this);
-                extraProcessSpeed += upgrade.getExtraProcessSpeed(item, this) * item.getCount();
-                processingSpeedMultiplier *= Math.pow(upgrade.getProcessSpeedMultiplier(item, this), (double) item.getCount());
-                extraProcessTime += upgrade.getExtraProcessTime(item, this) * item.getCount();
-                processTimeMultiplier *= Math.pow(upgrade.getProcessTimeMultiplier(item, this), (double) item.getCount());
-                extraEnergyDemand += upgrade.getExtraEnergyDemand(item, this) * item.getCount();
-                energyDemandMultiplier *= Math.pow(upgrade.getEnergyDemandMultiplier(item, this), (double) item.getCount());
-                extraEnergyStorage += upgrade.getExtraEnergyStorage(item, this) * item.getCount();
-                energyStorageMultiplier *= Math.pow(upgrade.getEnergyStorageMultiplier(item, this), (double) item.getCount());
-                soundModfier = (float) ((double) soundModfier * Math.pow((double) upgrade.getSoundVolumeMultiplier(item, this), (double) item.getCount()));
-                extraTier += upgrade.getExtraTier(item, this) * item.getCount();
-                if (upgrade.useRedstoneInverter(item, this))
-                {
-                    redstonePowered = true;
-                }
-            }
-        }
-
-        this.redstoneInverted = redstonePowered;
-        this.progressPerTick = applyFloatModifier(1, extraProcessSpeed, processingSpeedMultiplier);
-        this.energyConsume = applyModifier(this.defaultEnergyConsume, extraEnergyDemand, energyDemandMultiplier);
-        this.operationLength = applyModifier(this.defaultOperationLength, extraProcessTime, processTimeMultiplier);
-        this.setMaxEnergy(applyModifier(this.defaultEnergyStorage, extraEnergyStorage, energyStorageMultiplier));
-        this.tier = this.baseTier + extraTier;
-        if (this.tier > 13)
-        {
-            this.tier = 13;
-        }
-
-        this.maxInput = (int) EnergyNet.instance.getPowerFromTier(this.tier);
-        if (this.energy > this.maxEnergy)
-        {
-            this.energy = this.maxEnergy;
-        }
-
-        this.soundLevel = soundModfier;
-        if (this.progressPerTick < 0.01F)
-        {
-            this.progressPerTick = 0.01F;
-        }
-
-        if (this.operationLength < 1)
-        {
-            this.operationLength = 1;
-        }
-
-        if (this.energyConsume < 1)
-        {
-            this.energyConsume = 1;
-        }
-
-        this.handleModifiers(this.lastRecipe);
-        this.getNetwork().updateTileEntityField(this, "redstoneInverted");
-        this.getNetwork().updateTileEntityField(this, "redstoneSensitive");
-        this.getNetwork().updateTileEntityField(this, "soundLevel");
-        this.getNetwork().updateTileGuiField(this, "maxInput");
-        this.getNetwork().updateTileGuiField(this, "energy");
-    }
-
-    static int applyModifier(int base, int extra, double multiplier)
-    {
-        long ret = Math.round((double) (base + extra) * multiplier);
-        return ret > 2147483647L ? 2147483647 : (int) ret;
-    }
-
     static float applyFloatModifier(int base, int extra, double multiplier)
     {
         double ret = (double) Math.round((double) (base + extra) * multiplier);
         return ret > 2.147483648E9D ? 2.14748365E9F : (float) ret;
-    }
-
-    public void onLoaded()
-    {
-        super.onLoaded();
-        if (this.isSimulating())
-        {
-            this.setOverclockRates();
-        }
-
-    }
-
-    public void onUnloaded()
-    {
-        if (this.isRendering() && this.audioSource != null)
-        {
-            IC2.audioManager.removeSources(this);
-            this.audioSource.remove();
-            this.audioSource = null;
-        }
-
-        super.onUnloaded();
-    }
-
-
-    public void onNetworkEvent(int event)
-    {
-        if (this.audioSource != null && this.audioSource.isRemoved())
-        {
-            this.audioSource = null;
-        }
-
-        if (this.audioSource == null && this.getStartSoundFile() != null)
-        {
-            this.audioSource = IC2.audioManager.createSource(this, PositionSpec.Center, this.getStartSoundFile(), true, false, IC2.audioManager.defaultVolume * this.soundLevel);
-        }
-
-        if (event == 0)
-        {
-            if (this.audioSource != null)
-            {
-                this.audioSource.play();
-            }
-        }
-        else if (event == 1)
-        {
-            if (this.audioSource != null)
-            {
-                this.audioSource.stop();
-                if (this.getInterruptSoundFile() != null)
-                {
-                    IC2.audioManager.playOnce(this, PositionSpec.Center, this.getInterruptSoundFile(), false, IC2.audioManager.defaultVolume * this.soundLevel);
-                }
-            }
-        }
-        else if (event == 2 && this.audioSource != null)
-        {
-            this.audioSource.stop();
-        }
-
     }
 
     public void onNetworkUpdate(String field)
@@ -964,10 +767,5 @@ public class TileEntityThermalCentrifuge extends TileEntityElecMachine implement
     private static String makeString(ItemStack stack)
     {
         return stack.getDisplayName();
-    }
-
-    @Override
-    public void tick() {
-
     }
 }
