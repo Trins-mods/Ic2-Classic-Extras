@@ -17,6 +17,13 @@ import trinsdar.ic2c_extras.common.tileentity.TileEntityThermalCentrifuge;
 
 public class ContainerThermalCentrifuge extends ContainerTileComponent<TileEntityThermalCentrifuge> {
 
+    public static Box2D machineChargeBox = new Box2D(11, 36, 14, 14);
+    public static Vec2i machineChargePos = new Vec2i(176, 0);
+    public static Box2D machineProgressBox = new Box2D(48, 35, 45, 17);
+    public static Vec2i machineProgressPos = new Vec2i(176, 14);
+    public static Box2D machineHeatBox = new Box2D(56,52,24,17);
+    public static Vec2i machineHeatPos = new Vec2i(176, 31);
+
     public ContainerThermalCentrifuge(InventoryPlayer player, TileEntityThermalCentrifuge tile)
     {
         super(tile);
@@ -33,8 +40,8 @@ public class ContainerThermalCentrifuge extends ContainerTileComponent<TileEntit
         }
 
         this.addPlayerInventory(player);
-        this.addComponent(new MachineChargeComp(tile, Ic2GuiComp.machineChargeBox, Ic2GuiComp.machineChargePos));
-        this.addComponent(new MachineProgressComp(tile, Ic2GuiComp.machineProgressBox, Ic2GuiComp.machineProgressPos));
+        this.addComponent(new MachineChargeComp(tile, ContainerThermalCentrifuge.machineChargeBox, ContainerThermalCentrifuge.machineChargePos));
+        this.addComponent(new MachineProgressComp(tile, ContainerThermalCentrifuge.machineProgressBox, ContainerThermalCentrifuge.machineProgressPos));
     }
 
     @Override
