@@ -12,6 +12,7 @@ import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.gui.GuiScreen;
@@ -40,7 +41,7 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
 
     @Override
     public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input) {
-        return metalPress.getRecipeInAndOutput(input, false);
+        return recipeList[0].getRecipeInAndOutput(input, false);
     }
 
     @Override
@@ -69,7 +70,7 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
         if (par1 == null) {
             return false;
         } else {
-            return metalPress.getRecipeInAndOutput(par1, true) != null ? super.isValidInput(par1) : false;
+            return recipeList[0].getRecipeInAndOutput(par1, true) != null ? super.isValidInput(par1) : false;
         }
     }
 
@@ -88,9 +89,16 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
         return true;
     }
 
+    int index = 0;
+    public static IMachineRecipeList[] recipeList;
+//    public IMachineRecipeList.RecipeEntry getRecipeForStack(ItemStack input)
+//    {
+//        return recipeList[index].getRecipe(input);
+//    }
+
     @Override
     public IMachineRecipeList getRecipeList() {
-        return metalPress;
+        return recipeList[0];
     }
 
     private IMachineRecipeList.RecipeEntry getRecipe() {
@@ -200,6 +208,9 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
     }
 
     public static void init(){
+        recipeList = new IMachineRecipeList[3];
+        recipeList[0] = new BasicMachineRecipeList("Rolling");
+        //recipes for future rolling mode
         addRecipe((String)"ingotCopper", 1, new ItemStack(RegistryItem.itemCasings, 2, 0), 0.7f);
         addRecipe((String)"ingotTin", 1, new ItemStack(RegistryItem.itemCasings, 2, 1), 0.7f);
         addRecipe((String)"ingotSilver", 1, new ItemStack(RegistryItem.itemCasings, 2, 2), 0.7f);
@@ -209,6 +220,16 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
         addRecipe((String)"ingotRefinedIron", 1, new ItemStack(RegistryItem.itemCasings, 2, 6), 0.7f);
         addRecipe((String)"ingotSteel", 1, new ItemStack(RegistryItem.itemCasings, 2, 7), 0.7f);
         addRecipe((String)"ingotBronze", 1, new ItemStack(RegistryItem.itemCasings, 2, 8), 0.7f);
+        recipeList[1] = new BasicMachineRecipeList("Extruding");
+        //recipes for future extruding mode
+        addRecipe((String)"ingotCopper", 1, StackUtil.copyWithSize(Ic2Items.copperCable, 3), 0.7f);
+        addRecipe((String)"ingotTin", 1, StackUtil.copyWithSize(Ic2Items.tinCable, 4), 0.7f);
+        addRecipe((String)"ingotBronze", 1, StackUtil.copyWithSize(Ic2Items.bronzeCable, 3), 0.7f);
+        addRecipe((String)"ingotSteel", 1, StackUtil.copyWithSize(Ic2Items.ironCable, 5), 0.7f);
+        addRecipe((String)"ingotGold", 1, StackUtil.copyWithSize(Ic2Items.goldCable, 5), 0.7f);
+        addRecipe(new ItemStack(RegistryItem.itemCasings, 1, 1), StackUtil.copyWithSize(Ic2Items.tinCan, 1), 0.7f);
+        recipeList[2] = new BasicMachineRecipeList("Cutting");
+        //currently no recipes for cutting as that mode is mainly aimed at modpack makers
     }
 
     public static void addRecipe(ItemStack input, ItemStack output) {
@@ -240,7 +261,8 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
     }
 
     public static void addRecipe(IRecipeInput input, ItemStack output, float exp) {
-        metalPress.addRecipe(input, output, exp, makeString(output));
+        //metalPress.addRecipe(input, output, exp, makeString(output));
+        recipeList[0].addRecipe(input, output, exp, makeString(output));
     }
 
     private static String makeString(ItemStack stack) {
