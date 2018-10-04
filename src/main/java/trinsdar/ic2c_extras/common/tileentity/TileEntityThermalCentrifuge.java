@@ -31,6 +31,10 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.inventory.slots.SlotCustom;
+import ic2.core.inventory.slots.SlotDischarge;
+import ic2.core.inventory.slots.SlotOutput;
+import ic2.core.inventory.slots.SlotUpgrade;
 import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
@@ -105,8 +109,9 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
     }
 
     @Override
-    public Slot[] getInventorySlots(InventoryPlayer inventoryPlayer) {
-        return new Slot[0];
+    public Slot[] getInventorySlots(InventoryPlayer player) {
+        Slot[] slots = new Slot[]{new SlotDischarge(this, 2147483647, 0, 11, 53), new SlotCustom(this, 1, 11, 17, new MachineFilter(this)), new SlotOutput(player.player, this, 2, 113, 13), new SlotOutput(player.player, this, 3, 113, 36), new SlotOutput(player.player, this, 4, 113, 59), new SlotUpgrade(this, 5, 152, 44), new SlotUpgrade(this, 6, 152, 62)};
+        return slots;
     }
 
     @Override
