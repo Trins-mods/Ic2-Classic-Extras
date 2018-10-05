@@ -41,7 +41,7 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
 
     @Override
     public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input) {
-        return recipeList[0].getRecipeInAndOutput(input, false);
+        return recipeList[1].getRecipeInAndOutput(input, false);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
         if (par1 == null) {
             return false;
         } else {
-            return recipeList[0].getRecipeInAndOutput(par1, true) != null ? super.isValidInput(par1) : false;
+            return recipeList[1].getRecipeInAndOutput(par1, true) != null ? super.isValidInput(par1) : false;
         }
     }
 
@@ -98,7 +98,7 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
 
     @Override
     public IMachineRecipeList getRecipeList() {
-        return recipeList[0];
+        return recipeList[1];
     }
 
     private IMachineRecipeList.RecipeEntry getRecipe() {
@@ -210,25 +210,25 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
     public static void init(){
         recipeList = new IMachineRecipeList[3];
         recipeList[0] = new BasicMachineRecipeList("Rolling");
-        //recipes for future rolling mode
-        addRecipe((String)"ingotCopper", 1, new ItemStack(RegistryItem.itemCasings, 2, 0), 0.7f);
-        addRecipe((String)"ingotTin", 1, new ItemStack(RegistryItem.itemCasings, 2, 1), 0.7f);
-        addRecipe((String)"ingotSilver", 1, new ItemStack(RegistryItem.itemCasings, 2, 2), 0.7f);
-        addRecipe((String)"ingotLead", 1, new ItemStack(RegistryItem.itemCasings, 2, 3), 0.7f);
-        addRecipe((String)"ingotIron", 1, new ItemStack(RegistryItem.itemCasings, 2, 4), 0.7f);
-        addRecipe((String)"ingotGold", 1, new ItemStack(RegistryItem.itemCasings, 2, 5), 0.7f);
-        addRecipe((String)"ingotRefinedIron", 1, new ItemStack(RegistryItem.itemCasings, 2, 6), 0.7f);
-        addRecipe((String)"ingotSteel", 1, new ItemStack(RegistryItem.itemCasings, 2, 7), 0.7f);
-        addRecipe((String)"ingotBronze", 1, new ItemStack(RegistryItem.itemCasings, 2, 8), 0.7f);
         recipeList[1] = new BasicMachineRecipeList("Extruding");
-        //recipes for future extruding mode
-        addRecipe((String)"ingotCopper", 1, StackUtil.copyWithSize(Ic2Items.copperCable, 3), 0.7f);
-        addRecipe((String)"ingotTin", 1, StackUtil.copyWithSize(Ic2Items.tinCable, 4), 0.7f);
-        addRecipe((String)"ingotBronze", 1, StackUtil.copyWithSize(Ic2Items.bronzeCable, 3), 0.7f);
-        addRecipe((String)"ingotSteel", 1, StackUtil.copyWithSize(Ic2Items.ironCable, 5), 0.7f);
-        addRecipe((String)"ingotGold", 1, StackUtil.copyWithSize(Ic2Items.goldCable, 5), 0.7f);
-        addRecipe(new ItemStack(RegistryItem.itemCasings, 1, 1), StackUtil.copyWithSize(Ic2Items.tinCan, 1), 0.7f);
         recipeList[2] = new BasicMachineRecipeList("Cutting");
+        //recipes for future rolling mode
+        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotCopper", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 0), 0.7f, "copperItemCasingRolling");
+        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 1), 0.7f, "tinItemCasingRolling");
+        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotSilver", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 2), 0.7f, "silverItemCasingRolling");
+        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotLead", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 3), 0.7f, "leadItemCasingRolling");
+        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotIron", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 4), 0.7f, "ironItemCasingRolling");
+        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotGold", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 5), 0.7f, "goldItemCasingRolling");
+        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotRefinedIron", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 6), 0.7f, "refinedIronItemCasingRolling");
+        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotSteel", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 7), 0.7f, "steelItemCasingRolling");
+        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotBronze", 1)),  new ItemStack(RegistryItem.itemCasings, 2, 8), 0.7f, "bronzeItemCasingRolling");
+        //recipes for future extruding mode
+        recipeList[1].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotCopper", 1)),  StackUtil.copyWithSize(Ic2Items.copperCable, 3), 0.7f, "copperCableExtruding");
+        recipeList[1].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotTin", 1)),  StackUtil.copyWithSize(Ic2Items.tinCable, 4), 0.7f, "tinCableExtruding");
+        recipeList[1].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotBronze", 1)),  StackUtil.copyWithSize(Ic2Items.bronzeCable, 3), 0.7f, "bronzeCableExtruding");
+        recipeList[1].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotSteel", 1)),  StackUtil.copyWithSize(Ic2Items.ironCable, 5), 0.7f, "steelCableExtruding");
+        recipeList[1].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotGold", 1)),  StackUtil.copyWithSize(Ic2Items.goldCable, 5), 0.7f, "goldCableExtruding");
+        recipeList[1].addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.itemCasings, 1, 1))),  StackUtil.copyWithSize(Ic2Items.tinCan, 1), 0.7f, "tinCanExtruding");
         //currently no recipes for cutting as that mode is mainly aimed at modpack makers
     }
 
@@ -262,7 +262,7 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
 
     public static void addRecipe(IRecipeInput input, ItemStack output, float exp) {
         //metalPress.addRecipe(input, output, exp, makeString(output));
-        recipeList[0].addRecipe(input, output, exp, makeString(output));
+        recipeList[1].addRecipe(input, output, exp, makeString(output));
     }
 
     private static String makeString(ItemStack stack) {
