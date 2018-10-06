@@ -12,10 +12,12 @@ import trinsdar.ic2c_extras.common.items.RegistryItem;
 import trinsdar.ic2c_extras.common.tileentity.TileEntityMetalPress;
 import trinsdar.ic2c_extras.common.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.common.tileentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.common.util.Ic2cExtrasItemApi;
 
 
 public class CommonProxy
 {
+    public static Ic2cExtrasItemApi itemApi;
     public static Configuration config;
 
     public void preInit()
@@ -30,6 +32,7 @@ public class CommonProxy
         TileEntityOreWashingPlant.init();
         TileEntityThermalCentrifuge.init();
         TileEntityMetalPress.init();
+        //itemApi.init();
     }
 
     public void postInit()
