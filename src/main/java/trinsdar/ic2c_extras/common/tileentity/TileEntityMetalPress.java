@@ -28,6 +28,10 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
 
     public TileEntityMetalPress(){super(3, 10, 400, 32);}
 
+    public static LocaleComp rollingMode = new LangComponentHolder.LocaleGuiComp("container.rollingMode.name");
+    public static LocaleComp extrudingMode = new LangComponentHolder.LocaleGuiComp("container.extrudingMode.name");
+    public static LocaleComp cuttingMode = new LangComponentHolder.LocaleGuiComp("container.cuttingMode.name");
+
     public MachineType getType() {
         return MachineType.macerator;
     }
