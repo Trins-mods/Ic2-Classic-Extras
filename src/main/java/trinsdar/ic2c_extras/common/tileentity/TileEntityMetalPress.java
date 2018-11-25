@@ -20,7 +20,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.Ic2cExtras;
-import trinsdar.ic2c_extras.common.items.RegistryItem;
+import trinsdar.ic2c_extras.common.util.RegistryItem;
 
 import java.util.Iterator;
 

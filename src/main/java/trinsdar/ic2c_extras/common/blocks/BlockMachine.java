@@ -2,7 +2,6 @@ package trinsdar.ic2c_extras.common.blocks;
 
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
-import ic2.core.block.generator.BlockGenerator;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -13,49 +12,74 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.Ic2cExtras;
-import trinsdar.ic2c_extras.common.tileentity.TileEntityAdvancedSteamTurbine;
+import trinsdar.ic2c_extras.common.tileentity.TileEntityMetalPress;
+import trinsdar.ic2c_extras.common.tileentity.TileEntityOreWashingPlant;
+import trinsdar.ic2c_extras.common.tileentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.common.util.RegistryBlock;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class BlockAdvancedSteamTurbine extends BlockMultiID {
-    public BlockAdvancedSteamTurbine(String blockName)
-    {
+public class BlockMachine extends BlockMultiID {
+    public BlockMachine(String name){
         super(Material.IRON);
         this.setHardness(4.0F);
         this.setResistance(20.0F);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(Ic2cExtras.creativeTab);
-        this.setRegistryName(Ic2cExtras.MODID, blockName);
-        this.setUnlocalizedName(Ic2cExtras.MODID + "." + blockName);
+        this.setRegistryName(name);
+        this.setUnlocalizedName(Ic2cExtras.MODID + "." + name);
     }
 
+    @Override
     public List<Integer> getValidMetas() {
         return Arrays.asList(0);
     }
 
     @Override
-    public TileEntityBlock createNewTileEntity(World worldIn, int meta)
-    {
-        return new TileEntityAdvancedSteamTurbine();
+    public TileEntityBlock createNewTileEntity(World worldIn, int meta){
+        if (this == RegistryBlock.metalPress){
+            return new TileEntityMetalPress();
+        }else if (this == RegistryBlock.oreWashingPlant){
+            return new TileEntityOreWashingPlant();
+        }else if (this == RegistryBlock.thermalCentrifuge){
+            return new TileEntityThermalCentrifuge();
+        }else{
+            return null;
+        }
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
+    @SideOnly(Side.CLIENT)
     public TextureAtlasSprite[] getIconSheet(int meta)
     {
         return Ic2Icons.getTextures("ic2c_extras_blocks");
     }
+
     @Override
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getTextureFromState(IBlockState state, EnumFacing side) {
-        if (side == EnumFacing.DOWN) {
-            return Ic2Icons.getTextures("ic2c_extras_blocks")[40];
-        } else if (side == EnumFacing.UP){
-            return Ic2Icons.getTextures("ic2c_extras_blocks")[41];
-        }else {
-            return Ic2Icons.getTextures("ic2c_extras_blocks")[25];
+        if (this == RegistryBlock.metalPress){
+            if (side == EnumFacing.SOUTH) {
+                return Ic2Icons.getTextures("ic2c_extras_blocks")[13];
+            }else {
+                return Ic2Icons.getTextures("ic2c_extras_blocks")[12];
+            }
+        }else if (this == RegistryBlock.oreWashingPlant){
+            if (side == EnumFacing.SOUTH) {
+                return Ic2Icons.getTextures("ic2c_extras_blocks")[18];
+            }else {
+                return Ic2Icons.getTextures("ic2c_extras_blocks")[22];
+            }
+        }else if (this == RegistryBlock.thermalCentrifuge){
+            if (side == EnumFacing.SOUTH) {
+                return Ic2Icons.getTextures("ic2c_extras_blocks")[17];
+            }else {
+                return Ic2Icons.getTextures("ic2c_extras_blocks")[16];
+            }
+        }else{
+            return Ic2Icons.getTextures("ic2c_extras_blocks")[255];
         }
     }
 

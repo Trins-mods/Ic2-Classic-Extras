@@ -3,7 +3,6 @@ package trinsdar.ic2c_extras.common.util;
 import ic2.core.platform.registry.ItemAPI;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.common.items.RegistryItem;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -7,11 +7,15 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.Ic2cExtras;
@@ -19,12 +23,14 @@ import trinsdar.ic2c_extras.Ic2cExtras;
 import java.util.Arrays;
 import java.util.List;
 
-public class BlockSteel extends Block implements ITexturedBlock {
+public class BlockMetal extends Block implements ITexturedBlock {
 
-    public BlockSteel(String blockName){
+    int index;
+    public BlockMetal(String blockName, int index){
         super(Material.IRON);
         this.setHardness(4.0F);
         this.setResistance(10.0F);
+        this.index = index;
         this.setSoundType(SoundType.METAL);
         this.setHarvestLevel("pickaxe", 2);
         this.setCreativeTab(Ic2cExtras.creativeTab);
@@ -32,13 +38,11 @@ public class BlockSteel extends Block implements ITexturedBlock {
         this.setUnlocalizedName(Ic2cExtras.MODID + "." + blockName);
     }
 
-    public List<Integer> getValidMetas() {
-        return Arrays.asList(0);
-    }
-    public boolean isBeaconBase(IBlockAccess worldObj, BlockPos pos, BlockPos beacon) {
-
+    @Override
+    public boolean isBeaconBase(IBlockAccess world, BlockPos pos, BlockPos beacon) {
         return true;
     }
+
 
     @Override
     public AxisAlignedBB getRenderBoundingBox(IBlockState iBlockState) {
@@ -48,10 +52,11 @@ public class BlockSteel extends Block implements ITexturedBlock {
     @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite getTextureFromState(IBlockState iBlockState, EnumFacing enumFacing) {
-        return Ic2Icons.getTextures("ic2c_extras_blocks")[192];
+        return Ic2Icons.getTextures("ic2c_extras_blocks")[index];
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getParticleTexture(IBlockState state) {
         return this.getTextureFromState(state, EnumFacing.SOUTH);
     }

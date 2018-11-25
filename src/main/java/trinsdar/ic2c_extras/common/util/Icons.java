@@ -16,12 +16,7 @@ public class Icons
     {
         addSprite(new Sprites.SpriteData("ic2c_extras_blocks", "ic2c_extras:textures/sprites/blocks.png", new Sprites.SpriteInfo(16, 16)));
         addSprite(new Sprites.SpriteData("ic2c_extras_items", "ic2c_extras:textures/sprites/items.png", new Sprites.SpriteInfo(16, 16)));
-        addTextureEntry(new Sprites.TextureEntry("ic2c_extras_blocks", 0, 0, 1, 12));
-        addTextureEntry(new Sprites.TextureEntry("ic2c_extras_blocks", 1, 0, 2, 12));
-        addTextureEntry(new Sprites.TextureEntry("ic2c_extras_blocks", 0, 12, 1, 13));
-        addTextureEntry(new Sprites.TextureEntry("ic2c_extras_items", 0, 0, 7, 2));
-        addTextureEntry(new Sprites.TextureEntry("ic2c_extras_items", 0, 2, 11, 3));
-        addTextureEntry(new Sprites.TextureEntry("ic2c_extras_items", 0, 3, 9, 4));
-        addTextureEntry(new Sprites.TextureEntry("ic2c_extras_items", 0, 4, 13, 5));
+        addTextureEntry(new Sprites.TextureEntry("ic2c_extras_blocks", 0, 0, 16, 16));
+        addTextureEntry(new Sprites.TextureEntry("ic2c_extras_items", 0, 0, 16, 16));
     }
 }

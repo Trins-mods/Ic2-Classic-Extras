@@ -13,7 +13,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import trinsdar.ic2c_extras.common.items.RegistryItem;
+import trinsdar.ic2c_extras.common.util.RegistryItem;
 
 public class Radiation {
 	private static ArrayList<ItemStack> radiation = null;

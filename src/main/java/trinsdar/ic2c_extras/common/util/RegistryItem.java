@@ -1,10 +1,11 @@
-package trinsdar.ic2c_extras.common.items;
+package trinsdar.ic2c_extras.common.util;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
+import trinsdar.ic2c_extras.common.items.*;
 
 public class RegistryItem
 {
