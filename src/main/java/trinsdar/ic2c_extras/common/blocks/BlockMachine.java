@@ -46,7 +46,7 @@ public class BlockMachine extends BlockMultiID {
         }else if (this == RegistryBlock.thermalCentrifuge){
             return new TileEntityThermalCentrifuge();
         }else{
-            return null;
+            return new TileEntityBlock();
         }
     }
 
@@ -60,6 +60,8 @@ public class BlockMachine extends BlockMultiID {
             return Ic2Icons.getTextures("orewashingplant");
         }else if (this == RegistryBlock.thermalCentrifuge){
             return Ic2Icons.getTextures("thermalcentrifuge");
+        }else if (this == RegistryBlock.blastFurnace){
+            return Ic2Icons.getTextures("blastfurnace");
         }else{
             return Ic2Icons.getTextures("metalpress");
         }

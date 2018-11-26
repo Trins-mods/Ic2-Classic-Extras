@@ -20,8 +20,13 @@ public class RegistryBlock
     public static final BlockMachine
     oreWashingPlant = new BlockMachine("oreWashingPlant"),
     thermalCentrifuge = new BlockMachine("thermalCentrifuge"),
-    metalPress = new BlockMachine("metalPress");
-    public static final BlockAdvancedSteamTurbine advancedSteamTurbine = new BlockAdvancedSteamTurbine("advancedSteamTurbine");
+    metalPress = new BlockMachine("metalPress"),
+    blastFurnace = new BlockMachine("blastFurnace");
+    public static final BlockIc2cEGenerator
+    advancedSteamTurbine = new BlockIc2cEGenerator("advancedSteamTurbine"),
+    solidFuelFirebox = new BlockIc2cEGenerator("solidFuelFirebox"),
+    liquidFuelFirebox = new BlockIc2cEGenerator("liquidFuelFirebox"),
+    electricHeater = new BlockIc2cEGenerator("electricHeater");
     public static final BlockMetal
     steelBlock = new BlockMetal("steelBlock", 0),
     refinedIronBlock = new BlockMetal("refinedIronBlock", 1);
@@ -30,10 +35,14 @@ public class RegistryBlock
     public static final Block[] blocks =
     {
             oreWashingPlant,
-            advancedSteamTurbine,
-            steelBlock,
-            thermalCentrifuge,
             metalPress,
+            thermalCentrifuge,
+            blastFurnace,
+            advancedSteamTurbine,
+            solidFuelFirebox,
+            liquidFuelFirebox,
+            electricHeater,
+            steelBlock,
             refinedIronBlock
     };
 

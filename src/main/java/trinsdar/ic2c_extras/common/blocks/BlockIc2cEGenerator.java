@@ -14,13 +14,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.common.tileentity.TileEntityAdvancedSteamTurbine;
+import trinsdar.ic2c_extras.common.util.RegistryBlock;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class BlockAdvancedSteamTurbine extends BlockMultiID {
-    public BlockAdvancedSteamTurbine(String blockName)
+public class BlockIc2cEGenerator extends BlockMultiID {
+    public BlockIc2cEGenerator(String blockName)
     {
         super(Material.IRON);
         this.setHardness(4.0F);
@@ -38,14 +39,28 @@ public class BlockAdvancedSteamTurbine extends BlockMultiID {
     @Override
     public TileEntityBlock createNewTileEntity(World worldIn, int meta)
     {
-        return new TileEntityAdvancedSteamTurbine();
+        if (this == RegistryBlock.advancedSteamTurbine) {
+            return new TileEntityAdvancedSteamTurbine();
+        }else {
+            return new TileEntityBlock();
+        }
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite[] getIconSheet(int meta)
     {
-        return Ic2Icons.getTextures("advancedsteamturbine");
+        if (this == RegistryBlock.advancedSteamTurbine){
+            return Ic2Icons.getTextures("advancedsteamturbine");
+        }else if (this == RegistryBlock.solidFuelFirebox){
+            return Ic2Icons.getTextures("solidfuelfirebox");
+        }else if (this == RegistryBlock.liquidFuelFirebox){
+            return Ic2Icons.getTextures("liquidfuelfirebox");
+        }else if (this == RegistryBlock.electricHeater){
+            return Ic2Icons.getTextures("electricheater");
+        }else{
+            return Ic2Icons.getTextures("advancedsteamturbine");
+        }
     }
     @Override
     public int getMaxSheetSize(int meta)
