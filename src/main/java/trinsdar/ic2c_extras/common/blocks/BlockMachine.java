@@ -54,39 +54,21 @@ public class BlockMachine extends BlockMultiID {
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite[] getIconSheet(int meta)
     {
-        return Ic2Icons.getTextures("ic2c_extras_blocks");
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTextureFromState(IBlockState state, EnumFacing side) {
         if (this == RegistryBlock.metalPress){
-            if (side == EnumFacing.SOUTH) {
-                return Ic2Icons.getTextures("ic2c_extras_blocks")[13];
-            }else {
-                return Ic2Icons.getTextures("ic2c_extras_blocks")[12];
-            }
+            return Ic2Icons.getTextures("metalpress");
         }else if (this == RegistryBlock.oreWashingPlant){
-            if (side == EnumFacing.SOUTH) {
-                return Ic2Icons.getTextures("ic2c_extras_blocks")[18];
-            }else {
-                return Ic2Icons.getTextures("ic2c_extras_blocks")[22];
-            }
+            return Ic2Icons.getTextures("orewashingplant");
         }else if (this == RegistryBlock.thermalCentrifuge){
-            if (side == EnumFacing.SOUTH) {
-                return Ic2Icons.getTextures("ic2c_extras_blocks")[17];
-            }else {
-                return Ic2Icons.getTextures("ic2c_extras_blocks")[16];
-            }
+            return Ic2Icons.getTextures("thermalcentrifuge");
         }else{
-            return Ic2Icons.getTextures("ic2c_extras_blocks")[255];
+            return Ic2Icons.getTextures("metalpress");
         }
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getParticleTexture(IBlockState state) {
-        return Ic2Icons.getTextures("ic2c_extras_blocks")[16];
+    public int getMaxSheetSize(int meta)
+    {
+        return 1;
     }
 
     @Override

@@ -22,7 +22,10 @@ public class RegistryBlock
     thermalCentrifuge = new BlockMachine("thermalCentrifuge"),
     metalPress = new BlockMachine("metalPress");
     public static final BlockAdvancedSteamTurbine advancedSteamTurbine = new BlockAdvancedSteamTurbine("advancedSteamTurbine");
-    public static final BlockMetal steelBlock = new BlockMetal("steelBlock", 192);
+    public static final BlockMetal
+    steelBlock = new BlockMetal("steelBlock", 0),
+    refinedIronBlock = new BlockMetal("refinedIronBlock", 1);
+
 
     public static final Block[] blocks =
     {
@@ -30,7 +33,8 @@ public class RegistryBlock
             advancedSteamTurbine,
             steelBlock,
             thermalCentrifuge,
-            metalPress
+            metalPress,
+            refinedIronBlock
     };
 
     @SubscribeEvent

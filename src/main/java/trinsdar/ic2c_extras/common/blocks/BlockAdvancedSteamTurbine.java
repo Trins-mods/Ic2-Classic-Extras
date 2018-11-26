@@ -45,24 +45,12 @@ public class BlockAdvancedSteamTurbine extends BlockMultiID {
     @Override
     public TextureAtlasSprite[] getIconSheet(int meta)
     {
-        return Ic2Icons.getTextures("ic2c_extras_blocks");
+        return Ic2Icons.getTextures("advancedsteamturbine");
     }
     @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getTextureFromState(IBlockState state, EnumFacing side) {
-        if (side == EnumFacing.DOWN) {
-            return Ic2Icons.getTextures("ic2c_extras_blocks")[40];
-        } else if (side == EnumFacing.UP){
-            return Ic2Icons.getTextures("ic2c_extras_blocks")[41];
-        }else {
-            return Ic2Icons.getTextures("ic2c_extras_blocks")[25];
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite getParticleTexture(IBlockState state) {
-        return Ic2Icons.getTextures("ic2c_extras_blocks")[16];
+    public int getMaxSheetSize(int meta)
+    {
+        return 1;
     }
 
     @Override
