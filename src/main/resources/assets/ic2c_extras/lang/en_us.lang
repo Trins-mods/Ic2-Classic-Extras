@@ -9,7 +9,7 @@ tile.ic2c_extras.liquidFuelFirebox.name=Liquid Fuel Firebox
 tile.ic2c_extras.electricHeater.name=Electric Heater
 tile.ic2c_extras.steelBlock.name=Steel Block
 tile.ic2c_extras.refinedIronBlock.name=Refined Iron Block
-
+tile.ic2c_extras.leadBlock.name=Lead Block
 
 #Items
 item.ic2c_extras.crushedOre_iron.name=Iron Crushed Ore

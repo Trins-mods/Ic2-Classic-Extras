@@ -17,15 +17,19 @@ import ic2.core.inventory.slots.SlotUpgrade;
 import ic2.core.platform.lang.components.base.LangComponentHolder;
 import ic2.core.platform.lang.storage.Ic2GuiLang;
 import ic2.core.platform.registry.Ic2GuiComp;
+import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.common.tileentity.TileEntityMetalPress;
+import trinsdar.ic2c_extras.common.util.RegistryItem;
 
 public class ContainerMetalPress  extends ContainerTileComponent<TileEntityMetalPress>{
     public static Box2D machineProgressBox = new Box2D(78, 36, 25, 14);
@@ -52,13 +56,14 @@ public class ContainerMetalPress  extends ContainerTileComponent<TileEntityMetal
         this.addComponent(new MachineChargeComp(tile, Ic2GuiComp.machineChargeBox, Ic2GuiComp.machineChargePos));
         this.addComponent(new MachineProgressComp(tile, Ic2GuiComp.machineProgressBox, Ic2GuiComp.machineProgressPos));
 
+
     }
 
     @SideOnly(Side.CLIENT)
     public void onGuiInit(GuiIC2 gui) {
-        gui.registerButton(ContainerMetalPress.rollingButton);
-        gui.registerButton(ContainerMetalPress.extrudingButton);
-        gui.registerButton(ContainerMetalPress.cuttingButton);
+        gui.registerButton(ContainerMetalPress.rollingButton.setItemStack(new ItemStack(RegistryItem.itemCasings, 1, 1)).addText("rolling mode"));
+        gui.registerButton(ContainerMetalPress.extrudingButton.setItemStack(Ic2Items.copperCable).addText("extruding mode"));
+        gui.registerButton(ContainerMetalPress.cuttingButton.setItemStack(new ItemStack(Items.SHEARS)).addText("cutting mode"));
 
     }
 

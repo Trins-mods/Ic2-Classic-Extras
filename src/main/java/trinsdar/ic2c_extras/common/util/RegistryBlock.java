@@ -29,7 +29,8 @@ public class RegistryBlock
     electricHeater = new BlockIc2cEGenerator("electricHeater");
     public static final BlockMetal
     steelBlock = new BlockMetal("steelBlock", 0),
-    refinedIronBlock = new BlockMetal("refinedIronBlock", 1);
+    refinedIronBlock = new BlockMetal("refinedIronBlock", 1),
+    leadBlock = new BlockMetal("leadBlock", 2);
 
 
     public static final Block[] blocks =
@@ -43,7 +44,8 @@ public class RegistryBlock
             liquidFuelFirebox,
             electricHeater,
             steelBlock,
-            refinedIronBlock
+            refinedIronBlock,
+            leadBlock
     };
 
     @SubscribeEvent

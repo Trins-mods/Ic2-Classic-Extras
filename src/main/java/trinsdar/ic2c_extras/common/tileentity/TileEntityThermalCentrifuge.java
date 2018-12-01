@@ -8,7 +8,9 @@ import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityAdvancedMachine;
+import ic2.core.block.machine.med.container.ContainerAdvMachine;
 import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
+import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.*;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
@@ -25,6 +27,7 @@ import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.helpers.FilteredList;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.misc.StackUtil;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.Slot;
@@ -39,6 +42,7 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
 {
     public TileEntityThermalCentrifuge() {
         super( 9, 48, 400);
+        this.setCustomName("tileThermalCentrifuge");
     }
 
     @Override
@@ -107,6 +111,10 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
     @Override
     public ResourceLocation getTexture() {
         return new ResourceLocation("ic2c_extras", "textures/guiSprites/GUIThermalCentrifuge.png");
+    }
+
+    public ContainerIC2 getGuiContainer(EntityPlayer player) {
+        return new ContainerThermalCentrifuge(player.inventory, this);
     }
 
     @Override

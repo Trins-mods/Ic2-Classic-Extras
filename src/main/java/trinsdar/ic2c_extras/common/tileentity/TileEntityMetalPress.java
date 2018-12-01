@@ -7,6 +7,7 @@ import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
 import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
+import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
@@ -20,13 +21,17 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.Ic2cExtras;
+import trinsdar.ic2c_extras.common.container.ContainerMetalPress;
 import trinsdar.ic2c_extras.common.util.RegistryItem;
 
 import java.util.Iterator;
 
 public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
 
-    public TileEntityMetalPress(){super(3, 10, 400, 32);}
+    public TileEntityMetalPress(){
+        super(3, 10, 400, 32);
+        this.setCustomName("tileMetalPress");
+    }
 
     public static LocaleComp rollingMode = new LangComponentHolder.LocaleGuiComp("container.rollingMode.name");
     public static LocaleComp extrudingMode = new LangComponentHolder.LocaleGuiComp("container.extrudingMode.name");
@@ -53,6 +58,11 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
         return new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guimetalpress.png");
     }
 
+    @Override
+    public ContainerIC2 getGuiContainer(EntityPlayer player) {
+        return new ContainerMetalPress(player.inventory, this);
+    }
+
     public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
     {
         return GuiComponentContainer.class;
@@ -77,6 +87,7 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
             return recipeList[1].getRecipeInAndOutput(par1, true) != null ? super.isValidInput(par1) : false;
         }
     }
+
 
     @Override
     public boolean supportsNotify() {
