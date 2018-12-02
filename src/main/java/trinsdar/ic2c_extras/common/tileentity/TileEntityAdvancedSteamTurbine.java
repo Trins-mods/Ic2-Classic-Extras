@@ -1,37 +1,17 @@
 package trinsdar.ic2c_extras.common.tileentity;
 
-import ic2.api.classic.energy.tile.IEnergySourceInfo;
-import ic2.api.classic.network.adv.NetworkField;
-import ic2.api.classic.tile.IInfoTile;
-import ic2.api.classic.tile.machine.IEUStorage;
-import ic2.api.classic.tile.machine.ISpeedMachine;
-import ic2.api.energy.event.EnergyTileLoadEvent;
-import ic2.api.energy.event.EnergyTileUnloadEvent;
-import ic2.api.energy.tile.IEnergyAcceptor;
-import ic2.core.block.base.tile.TileEntityMachine;
-import ic2.core.block.base.util.comparator.ComparatorManager;
-import ic2.core.block.base.util.comparator.comparators.ComparatorEUStorage;
-import ic2.core.block.base.util.comparator.comparators.ComparatorSpeed;
-import ic2.core.block.base.util.info.EmitterInfo;
-import ic2.core.block.base.util.info.EnergyInfo;
-import ic2.core.block.base.util.info.SourceTierInfo;
-import ic2.core.block.base.util.info.SpeedInfo;
-import ic2.core.block.base.util.info.misc.IEmitterTile;
 import ic2.core.block.generator.tile.TileEntityBasicSteamTurbine;
 import ic2.core.fluid.IC2Tank;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
 public class TileEntityAdvancedSteamTurbine extends TileEntityBasicSteamTurbine{
 
+    public TileEntityAdvancedSteamTurbine(){
+        super();
+        this.setCustomName("tileAdvancedSteamTurbine");
+    }
     public FluidTank tank = new IC2Tank(4000);
 
     public int getOutput() {
@@ -73,25 +53,19 @@ public class TileEntityAdvancedSteamTurbine extends TileEntityBasicSteamTurbine{
         return MathHelper.clamp(base, min, max);
     }
 
+    @Override
     public double getOfferedEnergy() {
         return (double)Math.min(160, this.energy);
     }
 
+    @Override
     public int getSourceTier() {
         return 3;
     }
 
+    @Override
     public int getMaxSendingEnergy() {
         return 160;
     }
-
-    @Override
-    public String getName() {
-        return "AdvancedSteamTurbine";
-    }
-
-    @Override
-    public boolean hasCustomName() {
-        return true;
-    }
+    
 }
