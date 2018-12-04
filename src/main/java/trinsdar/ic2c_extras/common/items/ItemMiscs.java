@@ -1,59 +1,56 @@
 package trinsdar.ic2c_extras.common.items;
 
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import trinsdar.ic2c_extras.Ic2cExtras;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class ItemMiscs extends ItemBase {
-
-    public static final String[] itemMiscs = {"lead_ingot", "lead_dust", "stone_dust", "slag", "uranium235", "uranium238", "plutonium", "coil", "heat_conductor", "steel_ingot", "plutonium_enriched_uranium_ingot", "plutonium_enriched_uranium", "iridium_shard"};
-
-    public ItemMiscs(String itemName){
-        super(itemName);
-        this.hasSubtypes = true;
+public class ItemMiscs extends Item implements IStaticTexturedItem {
+    public enum ItemMiscsTypes{
+        LEAD_INGOT,
+        LEAD_DUSTS,
+        STONE_DUSTS,
+        SLAG,
+        URANIUM235,
+        URANIUM238,
+        PLUTONIUM,
+        COIL,
+        HEAT_CONDUCTOR,
+        STEEL_INGOT,
+        PLUTONIUM_ENRICHED_URANIUM_INGOT,
+        PLUTONIUM_ENRICHED_URANIUM,
+        IRIDIUM_SHARD
     }
 
-    @Override
-    public String getUnlocalizedName(ItemStack itemStack) {
-        return this.getUnlocalizedName() + "_" + itemMiscs[itemStack.getMetadata()];
-    }
-
-    @Override
-    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
-    {
-        if (this.isInCreativeTab(tab))
-        {
-            int i = 0;
-
-            for (String itemMisc : itemMiscs)
-            {
-                items.add(new ItemStack(this, 1, i));
-                i++;
-            }
-        }
-    }
-    @Override
-    public List<ItemStack> getValidItemVariants()
-    {
-        List<ItemStack> itemList = new ArrayList<>();
-        for (int i = 0; i < itemMiscs.length; i++)
-        {
-            itemList.add(new ItemStack(this, 1, i));
-        }
-        return itemList;
+    int index;
+    ItemMiscsTypes variant;
+    public ItemMiscs(ItemMiscsTypes variant, int index) {
+        this.index = index;
+        this.variant = variant;
+        setRegistryName(variant.toString().toLowerCase());
+        setUnlocalizedName(Ic2cExtras.MODID + "." + variant.toString().toLowerCase());
+        setCreativeTab(Ic2cExtras.creativeTab);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public TextureAtlasSprite getTexture(ItemStack itemStack)
+    public TextureAtlasSprite getTexture(int meta)
     {
-        return Ic2Icons.getTextures("ic2c_extras_items")[64 + itemStack.getMetadata()];
+        return Ic2Icons.getTextures("ic2c_extras_items")[index];
+    }
+
+    @Override
+    public List<Integer> getValidVariants() {
+        return Arrays.asList(0);
     }
 }
