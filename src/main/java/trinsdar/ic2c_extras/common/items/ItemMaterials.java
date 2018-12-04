@@ -9,6 +9,7 @@ public enum ItemMaterials {
     GOLD,
     REFINED_IRON,
     STEEL,
+    OBSIDIAN,
     BRONZE,
     URANIUM,
     URANIUM235,

@@ -17,25 +17,34 @@ import java.util.List;
 
 public class ItemMiscs extends Item implements IStaticTexturedItem {
     public enum ItemMiscsTypes{
-        LEAD_INGOT,
-        LEAD_DUSTS,
-        STONE_DUSTS,
-        SLAG,
-        URANIUM235,
-        URANIUM238,
-        PLUTONIUM,
-        COIL,
-        HEAT_CONDUCTOR,
-        STEEL_INGOT,
-        PLUTONIUM_ENRICHED_URANIUM_INGOT,
-        PLUTONIUM_ENRICHED_URANIUM,
-        IRIDIUM_SHARD
+        LEAD_INGOT(64),
+        LEAD_DUSTS(65),
+        STONE_DUSTS(66),
+        SLAG(67),
+        URANIUM235(68),
+        URANIUM238(69),
+        PLUTONIUM(70),
+        COIL(71),
+        HEAT_CONDUCTOR(72),
+        STEEL_INGOT(73),
+        PLUTONIUM_ENRICHED_URANIUM_INGOT(74),
+        PLUTONIUM_ENRICHED_URANIUM(75),
+        IRIDIUM_SHARD(76);
+
+        private int id;
+
+        ItemMiscsTypes(int id){
+            this.id = id;
+        }
+
+        public int getID(){
+            return id;
+        }
     }
 
     int index;
     ItemMiscsTypes variant;
-    public ItemMiscs(ItemMiscsTypes variant, int index) {
-        this.index = index;
+    public ItemMiscs(ItemMiscsTypes variant) {
         this.variant = variant;
         setRegistryName(variant.toString().toLowerCase());
         setUnlocalizedName(Ic2cExtras.MODID + "." + variant.toString().toLowerCase());
@@ -46,7 +55,7 @@ public class ItemMiscs extends Item implements IStaticTexturedItem {
     @Override
     public TextureAtlasSprite getTexture(int meta)
     {
-        return Ic2Icons.getTextures("ic2c_extras_items")[index];
+        return Ic2Icons.getTextures("ic2c_extras_items")[variant.getID()];
     }
 
     @Override
