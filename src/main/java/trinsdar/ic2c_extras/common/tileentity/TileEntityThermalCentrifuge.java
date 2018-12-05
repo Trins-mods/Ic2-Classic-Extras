@@ -445,9 +445,9 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
     public static void init() { //recipes in recipes class now
     }
 
-    public static void addRecipe(IRecipeInput input, MachineOutput output)
+    public static void addRecipe(IRecipeInput input, MachineOutput output, String id)
     {
-        thermalCentrifuge.addRecipe(input, output, input.toString());
+        thermalCentrifuge.addRecipe(input, output, id);
     }
 
     private static String makeString(ItemStack stack)

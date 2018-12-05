@@ -1009,9 +1009,9 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
     public static void init() { //recipes in recipes class now
     }
 
-    public static void addRecipe(IRecipeInput input, MachineOutput output)
+    public static void addRecipe(IRecipeInput input, MachineOutput output, String id)
     {
-        oreWashingPlant.addRecipe(input, output, input.toString());
+        oreWashingPlant.addRecipe(input, output, id);
     }
 
     private static String makeString(ItemStack stack)
