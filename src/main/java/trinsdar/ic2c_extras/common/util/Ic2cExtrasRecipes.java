@@ -28,18 +28,18 @@ public class Ic2cExtrasRecipes {
     }
     public static void initReplaceMaceratorRecipes(){
         macerator.removeRecipe(new RecipeInputOreDict("oreIron"));
-        macerator.addRecipe(new RecipeInputOreDict("oreIron"), new ItemStack(RegistryItem.crushedOres,2, 0), 0.7F, "ironOre");
+        macerator.addRecipe(new RecipeInputOreDict("oreIron"), new ItemStack(RegistryItem.ironCrushedOre,2), 0.7F, "ironOre");
         macerator.removeRecipe(new RecipeInputOreDict("oreGold"));
-        macerator.addRecipe(new RecipeInputOreDict("oreGold"), new ItemStack(RegistryItem.crushedOres,2, 1), 1.0F, "goldOre");
+        macerator.addRecipe(new RecipeInputOreDict("oreGold"), new ItemStack(RegistryItem.goldCrushedOre,2), 1.0F, "goldOre");
         macerator.removeRecipe(new RecipeInputOreDict("oreCopper"));
-        macerator.addRecipe(new RecipeInputOreDict("oreCopper"), new ItemStack(RegistryItem.crushedOres,2, 2), 0.3F, "copperOre");
+        macerator.addRecipe(new RecipeInputOreDict("oreCopper"), new ItemStack(RegistryItem.copperCrushedOre,2), 0.3F, "copperOre");
         macerator.removeRecipe(new RecipeInputOreDict("oreTin"));
-        macerator.addRecipe(new RecipeInputOreDict("oreTin"), new ItemStack(RegistryItem.crushedOres,2, 3), 0.4F, "tinOre");
+        macerator.addRecipe(new RecipeInputOreDict("oreTin"), new ItemStack(RegistryItem.tinCrushedOre,2), 0.4F, "tinOre");
         macerator.removeRecipe(new RecipeInputOreDict("oreSilver"));
-        macerator.addRecipe(new RecipeInputOreDict("oreSilver"), new ItemStack(RegistryItem.crushedOres,2, 4), 0.8F, "silverOre");
-        macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
-        macerator.addRecipe(new RecipeInputOreDict("oreUranium"), new ItemStack(RegistryItem.crushedOres,2, 5), 1.0F, "uraniumOre");
+        macerator.addRecipe(new RecipeInputOreDict("oreSilver"), new ItemStack(RegistryItem.silverCrushedOre,2), 0.8F, "silverOre");
         macerator.removeRecipe(new RecipeInputOreDict("oreLead"));
-        macerator.addRecipe(new RecipeInputOreDict("oreLead"), new ItemStack(RegistryItem.crushedOres,2, 6), 0.8F, "leadOre");
+        macerator.addRecipe(new RecipeInputOreDict("oreLead"), new ItemStack(RegistryItem.leadCrushedOre,2), 0.8F, "leadOre");
+        macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
+        macerator.addRecipe(new RecipeInputOreDict("oreUranium"), new ItemStack(RegistryItem.uraniumCrushedOre,2), 1.0F, "uraniumOre");
     }
 }

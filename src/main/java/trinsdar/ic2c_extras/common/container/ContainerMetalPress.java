@@ -61,7 +61,7 @@ public class ContainerMetalPress  extends ContainerTileComponent<TileEntityMetal
 
     @SideOnly(Side.CLIENT)
     public void onGuiInit(GuiIC2 gui) {
-        gui.registerButton(ContainerMetalPress.rollingButton.setItemStack(new ItemStack(RegistryItem.itemCasings, 1, 1)).addText("rolling mode"));
+        gui.registerButton(ContainerMetalPress.rollingButton.setItemStack(new ItemStack(RegistryItem.ironCasing, 1)).addText("rolling mode"));
         gui.registerButton(ContainerMetalPress.extrudingButton.setItemStack(Ic2Items.copperCable).addText("extruding mode"));
         gui.registerButton(ContainerMetalPress.cuttingButton.setItemStack(new ItemStack(Items.SHEARS)).addText("cutting mode"));
 

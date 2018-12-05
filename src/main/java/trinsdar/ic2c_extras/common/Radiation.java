@@ -23,12 +23,12 @@ public class Radiation {
 			radiation = new ArrayList<>();
 			radiation.add(Ic2Items.uraniumDrop);
 			radiation.add(Ic2Items.uraniumIngot);
-			radiation.add(new ItemStack(RegistryItem.itemMiscs, 1, 4));
-			radiation.add(new ItemStack(RegistryItem.itemMiscs, 1, 5));
-			radiation.add(new ItemStack(RegistryItem.itemMiscs, 1, 6));
-			radiation.add(new ItemStack(RegistryItem.tinyDustTypes, 1, 5));
-			radiation.add(new ItemStack(RegistryItem.tinyDustTypes, 1, 9));
-			radiation.add(new ItemStack(RegistryItem.tinyDustTypes, 1, 10));
+			radiation.add(new ItemStack(RegistryItem.uranium235, 1));
+			radiation.add(new ItemStack(RegistryItem.uranium238, 1));
+			radiation.add(new ItemStack(RegistryItem.plutonium, 1));
+			radiation.add(new ItemStack(RegistryItem.uranium235TinyDust, 1));
+			radiation.add(new ItemStack(RegistryItem.uranium238TinyDust, 1));
+			radiation.add(new ItemStack(RegistryItem.plutoniumTinyDust, 1));
 			radiation.add(Ic2Items.redstoneUraniumIngot);
 			radiation.add(Ic2Items.blazeUraniumIngot);
 			radiation.add(Ic2Items.enderPearlUraniumIngot);

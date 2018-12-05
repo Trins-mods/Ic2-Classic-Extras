@@ -23,8 +23,8 @@ public class ItemTinyDust extends Item implements IStaticTexturedItem
     public ItemTinyDust(ItemMaterials variant, int index) {
         this.index = index;
         this.variant = variant;
-        setRegistryName(variant.toString().toLowerCase() + "_casing");
-        setUnlocalizedName(Ic2cExtras.MODID + "." + variant.toString().toLowerCase() + "Casing");
+        setRegistryName(variant.toString().toLowerCase() + "_tiny_dust");
+        setUnlocalizedName(Ic2cExtras.MODID + "." + variant.toString().toLowerCase() + "TinyDust");
         setCreativeTab(Ic2cExtras.creativeTab);
     }
 
