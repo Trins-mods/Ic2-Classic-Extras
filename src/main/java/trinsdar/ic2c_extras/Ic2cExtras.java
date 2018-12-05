@@ -4,11 +4,6 @@ import ic2.api.classic.addon.IC2Plugin;
 import ic2.api.classic.addon.PluginBase;
 import ic2.api.classic.addon.misc.IOverrideObject;
 import ic2.api.classic.addon.misc.SideGateway;
-import ic2.core.item.misc.ItemMisc;
-import ic2.core.platform.lang.components.base.LangComponentHolder;
-import ic2.core.platform.lang.components.base.LocaleCompEntryBase;
-import ic2.core.platform.lang.storage.Ic2ItemLang;
-import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
@@ -18,10 +13,9 @@ import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import trinsdar.ic2c_extras.common.Radiation;
-import trinsdar.ic2c_extras.common.proxy.CommonProxy;
-import trinsdar.ic2c_extras.common.util.CreativeTabIC2CExtras;
-import trinsdar.ic2c_extras.common.util.Icons;
+import trinsdar.ic2c_extras.proxy.CommonProxy;
+import trinsdar.ic2c_extras.util.CreativeTabIC2CExtras;
+import trinsdar.ic2c_extras.util.Icons;
 
 import java.util.Map;
 
@@ -33,7 +27,7 @@ public class Ic2cExtras extends PluginBase
     public static final String VERSION = "@VERSION@";
     public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod";
 
-    public static SideGateway<CommonProxy> gateway = new SideGateway<>("trinsdar.ic2c_extras.common.proxy.ClientProxy", "trinsdar.ic2c_extras.common.proxy.ServerProxy");
+    public static SideGateway<CommonProxy> gateway = new SideGateway<>("trinsdar.ic2c_extras.proxy.ClientProxy", "trinsdar.ic2c_extras.proxy.ServerProxy");
     public static CommonProxy proxy = gateway.get();
 
     @Override
