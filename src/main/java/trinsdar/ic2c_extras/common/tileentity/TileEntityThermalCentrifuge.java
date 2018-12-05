@@ -442,30 +442,12 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
         return true;
     }
 
-    public static void init()
-    {
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.ironPurifiedCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ (Ic2Items.ironDust), new ItemStack(RegistryItem.goldTinyDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.goldPurifiedCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ (Ic2Items.goldDust), new ItemStack(RegistryItem.silverTinyDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.copperPurifiedCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ (Ic2Items.copperDust), new ItemStack(RegistryItem.tinTinyDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.tinPurifiedCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ (Ic2Items.tinDust), new ItemStack(RegistryItem.ironTinyDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.silverPurifiedCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ (Ic2Items.silverDust), new ItemStack(RegistryItem.leadTinyDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.leadPurifiedCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.leadDust, 1), new ItemStack(RegistryItem.copperTinyDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.uraniumPurifiedCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.uranium238, 6), new ItemStack(RegistryItem.uranium235TinyDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.ironCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ (Ic2Items.ironDust), new ItemStack(RegistryItem.goldTinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.goldCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ (Ic2Items.goldDust), new ItemStack(RegistryItem.silverTinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.copperCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ (Ic2Items.copperDust), new ItemStack(RegistryItem.tinTinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.tinCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ (Ic2Items.tinDust), new ItemStack(RegistryItem.ironTinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.silverCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ (Ic2Items.silverDust), new ItemStack(RegistryItem.stoneDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.leadCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.leadDust, 1), new ItemStack(RegistryItem.stoneDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.uraniumCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.uranium238, 4), new ItemStack(RegistryItem.uranium235TinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1)})));
+    public static void init() { //recipes in recipes class now
     }
 
     public static void addRecipe(IRecipeInput input, MachineOutput output)
     {
         thermalCentrifuge.addRecipe(input, output, input.toString());
-    }
-
-    private static void addRecipe(ItemStack itemStack, MachineOutput machineOutput) {
     }
 
     private static String makeString(ItemStack stack)

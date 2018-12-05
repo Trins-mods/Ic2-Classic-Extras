@@ -2,12 +2,16 @@ package trinsdar.ic2c_extras.common.util;
 
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
-import ic2.api.classic.recipe.machine.IMachineRecipeList;
-import ic2.core.block.machine.low.TileEntityMacerator;
+import ic2.api.classic.recipe.machine.MachineOutput;
+import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
-import net.minecraft.init.Items;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import trinsdar.ic2c_extras.common.tileentity.TileEntityOreWashingPlant;
+import trinsdar.ic2c_extras.common.tileentity.TileEntityThermalCentrifuge;
+
+import java.util.Arrays;
 
 import static ic2.api.classic.recipe.ClassicRecipes.macerator;
 
@@ -16,12 +20,14 @@ public class Ic2cExtrasRecipes {
         initShapedRecipes();
         initReplaceRecipes();
         initReplaceMaceratorRecipes();
+        initOreWashingPlantRecipes();
+        initThermalCentrifugeRecipes();
     }
 
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
     public static void initShapedRecipes(){
         recipes.addRecipe(new ItemStack(RegistryBlock.advancedSteamTurbine, 1),
-                new Object[]{" S ", "STS", " S ", 'S', Ic2Items.basicTurbine,'T', Ic2Items.transformerMV});
+                " S ", "STS", " S ", 'S', Ic2Items.basicTurbine,'T', Ic2Items.transformerMV);
 
     }
     public static void initReplaceRecipes(){
@@ -41,5 +47,31 @@ public class Ic2cExtrasRecipes {
         macerator.addRecipe(new RecipeInputOreDict("oreLead"), new ItemStack(RegistryItem.leadCrushedOre,2), 0.8F, "leadOre");
         macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
         macerator.addRecipe(new RecipeInputOreDict("oreUranium"), new ItemStack(RegistryItem.uraniumCrushedOre,2), 1.0F, "uraniumOre");
+    }
+    public static void initOreWashingPlantRecipes(){
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.ironCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.ironPurifiedCrushedOre, 1), new ItemStack(RegistryItem.ironTinyDust, 2), new ItemStack(RegistryItem.stoneDust, 1))));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.goldCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.goldPurifiedCrushedOre, 1), new ItemStack(RegistryItem.goldTinyDust, 2), new ItemStack(RegistryItem.stoneDust, 1))));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.copperCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.copperPurifiedCrushedOre, 1), new ItemStack(RegistryItem.copperTinyDust, 2), new ItemStack(RegistryItem.stoneDust, 1))));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.tinCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.tinPurifiedCrushedOre, 1), new ItemStack(RegistryItem.tinTinyDust, 2, 3), new ItemStack(RegistryItem.stoneDust, 1))));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.silverCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.silverPurifiedCrushedOre, 1), new ItemStack(RegistryItem.silverTinyDust, 2), new ItemStack(RegistryItem.stoneDust, 1))));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.leadCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.leadPurifiedCrushedOre, 1), new ItemStack(RegistryItem.leadTinyDust, 3), new ItemStack(RegistryItem.stoneDust, 1))));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.uraniumCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uraniumPurifiedCrushedOre, 1), new ItemStack(RegistryItem.uranium235TinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputItemStack(new ItemStack(Blocks.GRAVEL, 1))), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.stoneDust, 1))));
+    }
+    public static void initThermalCentrifugeRecipes(){
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.ironPurifiedCrushedOre, 1))), new MachineOutput(null, Arrays.asList((Ic2Items.ironDust), new ItemStack(RegistryItem.goldTinyDust, 1))));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.goldPurifiedCrushedOre, 1))), new MachineOutput(null, Arrays.asList((Ic2Items.goldDust), new ItemStack(RegistryItem.silverTinyDust, 1))));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.copperPurifiedCrushedOre, 1))), new MachineOutput(null, Arrays.asList((Ic2Items.copperDust), new ItemStack(RegistryItem.tinTinyDust, 1))));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.tinPurifiedCrushedOre, 1))), new MachineOutput(null, Arrays.asList((Ic2Items.tinDust), new ItemStack(RegistryItem.ironTinyDust, 1))));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.silverPurifiedCrushedOre, 1))), new MachineOutput(null, Arrays.asList((Ic2Items.silverDust), new ItemStack(RegistryItem.leadTinyDust, 1))));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.leadPurifiedCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.leadDust, 1), new ItemStack(RegistryItem.copperTinyDust, 1))));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.uraniumPurifiedCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uranium238, 6), new ItemStack(RegistryItem.uranium235TinyDust, 1))));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.ironCrushedOre, 1))), new MachineOutput(null, Arrays.asList((Ic2Items.ironDust), new ItemStack(RegistryItem.goldTinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.goldCrushedOre, 1))), new MachineOutput(null, Arrays.asList((Ic2Items.goldDust), new ItemStack(RegistryItem.silverTinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.copperCrushedOre, 1))), new MachineOutput(null, Arrays.asList((Ic2Items.copperDust), new ItemStack(RegistryItem.tinTinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.tinCrushedOre, 1))), new MachineOutput(null, Arrays.asList((Ic2Items.tinDust), new ItemStack(RegistryItem.ironTinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.silverCrushedOre, 1))), new MachineOutput(null, Arrays.asList((Ic2Items.silverDust), new ItemStack(RegistryItem.stoneDust, 1))));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.leadCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.leadDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.uraniumCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uranium238, 4), new ItemStack(RegistryItem.uranium235TinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
     }
 }

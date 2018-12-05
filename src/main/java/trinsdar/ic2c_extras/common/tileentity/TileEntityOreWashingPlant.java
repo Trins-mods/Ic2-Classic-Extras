@@ -135,9 +135,9 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
         this.defaultSensitive = false;
         this.waterTank.addListener(this);
         this.waterTank.setCanFill(true);
-        this.addNetworkFields(new String[]{"soundLevel", "redstoneInverted", "redstoneSensitive"});
-        this.addGuiFields(new String[]{"recipeOperation", "recipeEnergy", "progress", "waterTank"});
-        this.addInfos(new InfoComponent[]{new EnergyUsageInfo(this), new ProgressInfo(this)});
+        this.addNetworkFields("soundLevel", "redstoneInverted", "redstoneSensitive");
+        this.addGuiFields("recipeOperation", "recipeEnergy", "progress", "waterTank");
+        this.addInfos(new EnergyUsageInfo(this), new ProgressInfo(this));
     }
 
     @Override
@@ -152,16 +152,16 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
     {
         this.filter = new MachineFilter(this);
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-        handler.registerDefaultSlotAccess(AccessRule.Both, new int[]{slotFuel});
-        handler.registerDefaultSlotAccess(AccessRule.Import, new int[]{slotInput, slotInputTank});
-        handler.registerDefaultSlotAccess(AccessRule.Export, new int[]{slotOutput, slotOutput2, slotOutput3, slotOutputTank});
-        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), new int[]{0, 2, 4});
-        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), new int[]{1, 3});
-        handler.registerInputFilter(new ArrayFilter(new IFilter[]{CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)}), new int[]{slotFuel});
-        handler.registerOutputFilter(CommonFilters.NotDischargeEU, new int[]{slotFuel});
-        handler.registerSlotType(SlotType.Fuel, new int[]{slotFuel});
-        handler.registerSlotType(SlotType.Input, new int[]{slotInput, slotInputTank});
-        handler.registerSlotType(SlotType.Output, new int[]{slotOutput, slotOutput2, slotOutput3, slotOutputTank});
+        handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
+        handler.registerDefaultSlotAccess(AccessRule.Import, slotInput, slotInputTank);
+        handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput, slotOutput2, slotOutput3, slotOutputTank);
+        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), 0, 2, 4);
+        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), 1, 3);
+        handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
+        handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
+        handler.registerSlotType(SlotType.Fuel, slotFuel);
+        handler.registerSlotType(SlotType.Input, slotInput, slotInputTank);
+        handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2, slotOutput3, slotOutputTank);
     }
 
     @Override
@@ -217,7 +217,7 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
     {
         this.handleChargeSlot(500);
         this.updateNeighbors();
-        if (!((ItemStack) this.inventory.get(slotInputTank)).isEmpty())
+        if (!this.inventory.get(slotInputTank).isEmpty())
         {
             this.handleTank();
         }
@@ -275,7 +275,7 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
 
         for (int i = 0; i < 4; ++i)
         {
-            ItemStack item = (ItemStack) this.inventory.get(i + this.inventory.size() - 4);
+            ItemStack item = this.inventory.get(i + this.inventory.size() - 4);
             if (item.getItem() instanceof IMachineUpgradeItem)
             {
                 ((IMachineUpgradeItem) item.getItem()).onTick(item, this);
@@ -369,7 +369,7 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
 
         for (int i = 0; i < 4; ++i)
         {
-            ItemStack itemStack = (ItemStack) this.inventory.get(i + this.inventory.size() - 4);
+            ItemStack itemStack = this.inventory.get(i + this.inventory.size() - 4);
             if (itemStack.getItem() instanceof IMachineUpgradeItem)
             {
                 IMachineUpgradeItem item = (IMachineUpgradeItem) itemStack.getItem();
@@ -382,7 +382,7 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
 
         for (int i = 0; i < 4; ++i)
         {
-            ItemStack itemStack = (ItemStack) this.inventory.get(i + this.inventory.size() - 4);
+            ItemStack itemStack = this.inventory.get(i + this.inventory.size() - 4);
             if (itemStack.getItem() instanceof IMachineUpgradeItem)
             {
                 IMachineUpgradeItem item = (IMachineUpgradeItem) itemStack.getItem();
@@ -402,15 +402,15 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
     public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list)
     {
         list.addAll(output.getRecipeOutput(this.getMachineWorld().rand, getTileData()));
-        if (!(input instanceof INullableRecipeInput) || !((ItemStack) this.inventory.get(slotInput)).isEmpty())
+        if (!(input instanceof INullableRecipeInput) || !this.inventory.get(slotInput).isEmpty())
         {
-            if (((ItemStack) this.inventory.get(slotInput)).getItem().hasContainerItem((ItemStack) this.inventory.get(slotInput)))
+            if (this.inventory.get(slotInput).getItem().hasContainerItem(this.inventory.get(slotInput)))
             {
-                this.inventory.set(slotInput, ((ItemStack) this.inventory.get(slotInput)).getItem().getContainerItem((ItemStack) this.inventory.get(slotInput)));
+                this.inventory.set(slotInput, this.inventory.get(slotInput).getItem().getContainerItem(this.inventory.get(slotInput)));
             }
             else
             {
-                ((ItemStack) this.inventory.get(slotInput)).shrink(input.getAmount());
+                this.inventory.get(slotInput).shrink(input.getAmount());
             }
 
         }
@@ -426,19 +426,19 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
         {
             for (int i = 0; i < this.results.size(); ++i)
             {
-                ItemStack item = (ItemStack) this.results.get(i);
+                ItemStack item = this.results.get(i);
                 if (item.isEmpty())
                 {
                     this.results.remove(i--);
                 }
-                else if (((ItemStack) this.inventory.get(slotOutput)).isEmpty())
+                else if (this.inventory.get(slotOutput).isEmpty())
                 {
                     this.inventory.set(slotOutput, item.copy());
                     this.results.remove(i--);
                 }
-                else if (StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput), item, false, false))
+                else if (StackUtil.isStackEqual(this.inventory.get(slotOutput), item, false, false))
                 {
-                    int left = ((ItemStack) this.inventory.get(slotOutput)).getMaxStackSize() - ((ItemStack) this.inventory.get(slotOutput)).getCount();
+                    int left = this.inventory.get(slotOutput).getMaxStackSize() - this.inventory.get(slotOutput).getCount();
                     if (left <= 0)
                     {
                         break;
@@ -448,21 +448,21 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
                     {
                         int itemLeft = item.getCount() - left;
                         item.setCount(itemLeft);
-                        ((ItemStack) this.inventory.get(slotOutput)).setCount(((ItemStack) this.inventory.get(slotOutput)).getMaxStackSize());
+                        this.inventory.get(slotOutput).setCount(this.inventory.get(slotOutput).getMaxStackSize());
                         break;
                     }
 
-                    ((ItemStack) this.inventory.get(slotOutput)).grow(item.getCount());
+                    this.inventory.get(slotOutput).grow(item.getCount());
                     this.results.remove(i--);
                 }
-                else if (((ItemStack) this.inventory.get(slotOutput2)).isEmpty())
+                else if (this.inventory.get(slotOutput2).isEmpty())
                 {
                     this.inventory.set(slotOutput2, item.copy());
                     this.results.remove(i--);
                 }
-                else if (StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput2), item, false, false))
+                else if (StackUtil.isStackEqual(this.inventory.get(slotOutput2), item, false, false))
                 {
-                    int left = ((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize() - ((ItemStack) this.inventory.get(slotOutput2)).getCount();
+                    int left = this.inventory.get(slotOutput2).getMaxStackSize() - this.inventory.get(slotOutput2).getCount();
                     if (left <= 0)
                     {
                         break;
@@ -472,21 +472,21 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
                     {
                         int itemLeft = item.getCount() - left;
                         item.setCount(itemLeft);
-                        ((ItemStack) this.inventory.get(slotOutput2)).setCount(((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize());
+                        this.inventory.get(slotOutput2).setCount(this.inventory.get(slotOutput2).getMaxStackSize());
                         break;
                     }
 
-                    ((ItemStack) this.inventory.get(slotOutput2)).grow(item.getCount());
+                    this.inventory.get(slotOutput2).grow(item.getCount());
                     this.results.remove(i--);
                 }
-                else if (((ItemStack) this.inventory.get(slotOutput3)).isEmpty())
+                else if (this.inventory.get(slotOutput3).isEmpty())
                 {
                     this.inventory.set(slotOutput3, item.copy());
                     this.results.remove(i--);
                 }
-                else if (StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput3), item, false, false))
+                else if (StackUtil.isStackEqual(this.inventory.get(slotOutput3), item, false, false))
                 {
-                    int left = ((ItemStack) this.inventory.get(slotOutput3)).getMaxStackSize() - ((ItemStack) this.inventory.get(slotOutput3)).getCount();
+                    int left = this.inventory.get(slotOutput3).getMaxStackSize() - this.inventory.get(slotOutput3).getCount();
                     if (left <= 0)
                     {
                         break;
@@ -496,11 +496,11 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
                     {
                         int itemLeft = item.getCount() - left;
                         item.setCount(itemLeft);
-                        ((ItemStack) this.inventory.get(slotOutput3)).setCount(((ItemStack) this.inventory.get(slotOutput3)).getMaxStackSize());
+                        this.inventory.get(slotOutput3).setCount(this.inventory.get(slotOutput3).getMaxStackSize());
                         break;
                     }
 
-                    ((ItemStack) this.inventory.get(slotOutput3)).grow(item.getCount());
+                    this.inventory.get(slotOutput3).grow(item.getCount());
                     this.results.remove(i--);
                 }
             }
@@ -511,7 +511,7 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
 
     private IMachineRecipeList.RecipeEntry getRecipe()
     {
-        if (((ItemStack) this.inventory.get(slotInput)).isEmpty() && !this.canWorkWithoutItems())
+        if (this.inventory.get(slotInput).isEmpty() && !this.canWorkWithoutItems())
         {
             return null;
         }
@@ -522,14 +522,14 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
                 IRecipeInput recipe = this.lastRecipe.getInput();
                 if (recipe instanceof INullableRecipeInput)
                 {
-                    if (!recipe.matches((ItemStack) this.inventory.get(slotInput)))
+                    if (!recipe.matches(this.inventory.get(slotInput)))
                     {
                         this.lastRecipe = null;
                     }
                 }
-                else if (!((ItemStack) this.inventory.get(slotInput)).isEmpty() && recipe.matches((ItemStack) this.inventory.get(0)))
+                else if (!this.inventory.get(slotInput).isEmpty() && recipe.matches(this.inventory.get(0)))
                 {
-                    if (recipe.getAmount() > ((ItemStack) this.inventory.get(slotInput)).getCount())
+                    if (recipe.getAmount() > this.inventory.get(slotInput).getCount())
                     {
                         return null;
                     }
@@ -542,7 +542,7 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
 
             if (this.lastRecipe == null)
             {
-                IMachineRecipeList.RecipeEntry out = this.getOutputFor(((ItemStack) this.inventory.get(slotInput)).copy());
+                IMachineRecipeList.RecipeEntry out = this.getOutputFor(this.inventory.get(slotInput).copy());
                 if (out == null)
                 {
                     return null;
@@ -556,19 +556,19 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
             {
                 return null;
             }
-            else if (((ItemStack) this.inventory.get(slotOutput)).getCount() >= ((ItemStack) this.inventory.get(slotOutput)).getMaxStackSize())
+            else if (this.inventory.get(slotOutput).getCount() >= this.inventory.get(slotOutput).getMaxStackSize())
             {
                 return null;
             }
-            else if (((ItemStack) this.inventory.get(slotOutput2)).getCount() >= ((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize())
+            else if (this.inventory.get(slotOutput2).getCount() >= this.inventory.get(slotOutput2).getMaxStackSize())
             {
                 return null;
             }
-            else if (((ItemStack) this.inventory.get(slotOutput3)).getCount() >= ((ItemStack) this.inventory.get(slotOutput3)).getMaxStackSize())
+            else if (this.inventory.get(slotOutput3).getCount() >= this.inventory.get(slotOutput3).getMaxStackSize())
             {
                 return null;
             }
-            else if (((ItemStack) this.inventory.get(slotOutput)).isEmpty())
+            else if (this.inventory.get(slotOutput).isEmpty())
             {
                 return this.lastRecipe;
             }
@@ -586,7 +586,7 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
 
                     output = (ItemStack) var4.next();
                 }
-                while (!StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput), output, false, true));
+                while (!StackUtil.isStackEqual(this.inventory.get(slotOutput), output, false, true));
 
                 return this.lastRecipe;
             }
@@ -595,7 +595,7 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
 
     public boolean canWork()
     {
-        return !this.redstoneSensitive ? true : this.isRedstonePowered();
+        return !this.redstoneSensitive || this.isRedstonePowered();
     }
 
     public boolean isRedstonePowered()
@@ -695,7 +695,7 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
 
         for (int i = 0; i < 4; ++i)
         {
-            ItemStack item = (ItemStack) this.inventory.get(i + this.inventory.size() - 4);
+            ItemStack item = this.inventory.get(i + this.inventory.size() - 4);
             if (item.getItem() instanceof IMachineUpgradeItem)
             {
                 IMachineUpgradeItem upgrade = (IMachineUpgradeItem) item.getItem();
@@ -971,13 +971,13 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
     @Override
     public IHasInventory getOutputInventory()
     {
-        return new RangedInventoryWrapper(this, new int[]{slotOutput, slotOutput2, slotOutput3, slotOutputTank});
+        return new RangedInventoryWrapper(this, slotOutput, slotOutput2, slotOutput3, slotOutputTank);
     }
 
     @Override
     public IHasInventory getInputInventory()
     {
-        return new RangedInventoryWrapper(this, new int[]{slotInput, slotInputTank});
+        return new RangedInventoryWrapper(this, slotInput, slotInputTank);
     }
 
     @Override
@@ -995,7 +995,7 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
     @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing)
     {
-        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? true : super.hasCapability(capability, facing);
+        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Override
@@ -1006,24 +1006,12 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
 
 
 
-    public static void init()
-    {
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.ironCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.ironPurifiedCrushedOre, 1), new ItemStack(RegistryItem.ironTinyDust, 2), new ItemStack(RegistryItem.stoneDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.goldCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.goldPurifiedCrushedOre, 1), new ItemStack(RegistryItem.goldTinyDust, 2), new ItemStack(RegistryItem.stoneDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.copperCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.copperPurifiedCrushedOre, 1), new ItemStack(RegistryItem.copperTinyDust, 2), new ItemStack(RegistryItem.stoneDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.tinCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.tinPurifiedCrushedOre, 1), new ItemStack(RegistryItem.tinTinyDust, 2, 3), new ItemStack(RegistryItem.stoneDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.silverCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.silverPurifiedCrushedOre, 1), new ItemStack(RegistryItem.silverTinyDust, 2), new ItemStack(RegistryItem.stoneDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.leadCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.leadPurifiedCrushedOre, 1), new ItemStack(RegistryItem.leadTinyDust, 3), new ItemStack(RegistryItem.stoneDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.uraniumCrushedOre, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{ new ItemStack(RegistryItem.uraniumPurifiedCrushedOre, 1), new ItemStack(RegistryItem.uranium235TinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1)})));
-        addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(Blocks.GRAVEL, 1))), new MachineOutput(null, Arrays.asList(new ItemStack[]{new ItemStack(RegistryItem.stoneDust, 1)})));
+    public static void init() { //recipes in recipes class now
     }
 
     public static void addRecipe(IRecipeInput input, MachineOutput output)
     {
-        oreWashingPlant.addRecipe(input, output, output.toString());
-    }
-
-    private static void addRecipe(ItemStack itemStack, MachineOutput machineOutput) {
+        oreWashingPlant.addRecipe(input, output, input.toString());
     }
 
     private static String makeString(ItemStack stack)
