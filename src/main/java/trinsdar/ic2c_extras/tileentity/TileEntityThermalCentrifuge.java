@@ -66,16 +66,16 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
     protected void addSlots(InventoryHandler handler)
     {
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
-        handler.registerDefaultSlotAccess(AccessRule.Both, new int[]{slotFuel});
-        handler.registerDefaultSlotAccess(AccessRule.Import, new int[]{slotInput});
-        handler.registerDefaultSlotAccess(AccessRule.Export, new int[]{slotOutput, slotOutput2, slotOutput3});
-        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), new int[]{0, 2, 4});
-        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), new int[]{1, 3});
-        handler.registerInputFilter(new ArrayFilter(new IFilter[]{CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)}), new int[]{slotFuel});
-        handler.registerOutputFilter(CommonFilters.NotDischargeEU, new int[]{slotFuel});
-        handler.registerSlotType(SlotType.Fuel, new int[]{slotFuel});
-        handler.registerSlotType(SlotType.Input, new int[]{slotInput});
-        handler.registerSlotType(SlotType.Output, new int[]{slotOutput, slotOutput2, slotOutput3});
+        handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
+        handler.registerDefaultSlotAccess(AccessRule.Import, slotInput);
+        handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput, slotOutput2, slotOutput3);
+        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), 0, 2, 4);
+        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), 1, 3);
+        handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
+        handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
+        handler.registerSlotType(SlotType.Fuel, slotFuel);
+        handler.registerSlotType(SlotType.Input, slotInput);
+        handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2, slotOutput3);
     }
 
     @Override
@@ -132,7 +132,7 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
     @Override
     public IMachineRecipeList.RecipeEntry getRecipe()
     {
-        if (((ItemStack) this.inventory.get(slotInput)).isEmpty() && !this.canWorkWithoutItems())
+        if (this.inventory.get(slotInput).isEmpty() && !this.canWorkWithoutItems())
         {
             return null;
         }
@@ -143,14 +143,14 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
                 IRecipeInput recipe = this.lastRecipe.getInput();
                 if (recipe instanceof INullableRecipeInput)
                 {
-                    if (!recipe.matches((ItemStack) this.inventory.get(slotInput)))
+                    if (!recipe.matches(this.inventory.get(slotInput)))
                     {
                         this.lastRecipe = null;
                     }
                 }
-                else if (!((ItemStack) this.inventory.get(slotInput)).isEmpty() && recipe.matches((ItemStack) this.inventory.get(0)))
+                else if (!this.inventory.get(slotInput).isEmpty() && recipe.matches(this.inventory.get(0)))
                 {
-                    if (recipe.getAmount() > ((ItemStack) this.inventory.get(slotInput)).getCount())
+                    if (recipe.getAmount() > this.inventory.get(slotInput).getCount())
                     {
                         return null;
                     }
@@ -163,7 +163,7 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
 
             if (this.lastRecipe == null)
             {
-                IMachineRecipeList.RecipeEntry out = this.getOutputFor(((ItemStack) this.inventory.get(slotInput)).copy());
+                IMachineRecipeList.RecipeEntry out = this.getOutputFor(this.inventory.get(slotInput).copy());
                 if (out == null)
                 {
                     return null;
@@ -177,19 +177,19 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
             {
                 return null;
             }
-            else if (((ItemStack) this.inventory.get(slotOutput)).getCount() >= ((ItemStack) this.inventory.get(slotOutput)).getMaxStackSize())
+            else if (this.inventory.get(slotOutput).getCount() >= this.inventory.get(slotOutput).getMaxStackSize())
             {
                 return null;
             }
-            else if (((ItemStack) this.inventory.get(slotOutput2)).getCount() >= ((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize())
+            else if (this.inventory.get(slotOutput2).getCount() >= this.inventory.get(slotOutput2).getMaxStackSize())
             {
                 return null;
             }
-            else if (((ItemStack) this.inventory.get(slotOutput3)).getCount() >= ((ItemStack) this.inventory.get(slotOutput3)).getMaxStackSize())
+            else if (this.inventory.get(slotOutput3).getCount() >= this.inventory.get(slotOutput3).getMaxStackSize())
             {
                 return null;
             }
-            else if (((ItemStack) this.inventory.get(slotOutput)).isEmpty())
+            else if (this.inventory.get(slotOutput).isEmpty())
             {
                 return this.lastRecipe;
             }
@@ -207,7 +207,7 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
 
                     output = (ItemStack) var4.next();
                 }
-                while (!StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput), output, false, true));
+                while (!StackUtil.isStackEqual(this.inventory.get(slotOutput), output, false, true));
 
                 return this.lastRecipe;
             }
@@ -240,7 +240,7 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
             this.useEnergy(this.recipeEnergy);
             if (this.progress >= (float) this.recipeOperation)
             {
-                this.operate(entry);
+                this.operate(0, entry);
                 this.progress = 0;
                 this.notifyNeighbors();
             }
@@ -272,7 +272,7 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
 
         for (int i = 0; i < 4; ++i)
         {
-            ItemStack item = (ItemStack) this.inventory.get(i + this.inventory.size() - 4);
+            ItemStack item = this.inventory.get(i + this.inventory.size() - 4);
             if (item.getItem() instanceof IMachineUpgradeItem)
             {
                 ((IMachineUpgradeItem) item.getItem()).onTick(item, this);
@@ -282,31 +282,33 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
         this.updateComparators();
     }
 
-    public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list)
+    @Override
+    public void operateOnce(int slot, IRecipeInput input, MachineOutput output, List<ItemStack> list)
     {
         list.addAll(output.getRecipeOutput(this.getMachineWorld().rand, getTileData()));
-        if (!(input instanceof INullableRecipeInput) || !((ItemStack) this.inventory.get(slotInput)).isEmpty())
+        if (!(input instanceof INullableRecipeInput) || !this.inventory.get(slotInput).isEmpty())
         {
-            if (((ItemStack) this.inventory.get(slotInput)).getItem().hasContainerItem((ItemStack) this.inventory.get(slotInput)))
+            if (this.inventory.get(slotInput).getItem().hasContainerItem(this.inventory.get(slotInput)))
             {
-                this.inventory.set(slotInput, ((ItemStack) this.inventory.get(slotInput)).getItem().getContainerItem((ItemStack) this.inventory.get(slotInput)));
+                this.inventory.set(slotInput, this.inventory.get(slotInput).getItem().getContainerItem(this.inventory.get(slotInput)));
             }
             else
             {
-                ((ItemStack) this.inventory.get(slotInput)).shrink(input.getAmount());
+                this.inventory.get(slotInput).shrink(input.getAmount());
             }
 
         }
     }
 
-    public void operate(IMachineRecipeList.RecipeEntry entry) {
+    @Override
+    public void operate(int slot, IMachineRecipeList.RecipeEntry entry) {
 
         IRecipeInput input = entry.getInput();
         MachineOutput output = entry.getOutput().copy();
 
         for (int i = 0; i < 4; ++i)
         {
-            ItemStack itemStack = (ItemStack) this.inventory.get(i + this.inventory.size() - 4);
+            ItemStack itemStack = this.inventory.get(i + this.inventory.size() - 4);
             if (itemStack.getItem() instanceof IMachineUpgradeItem)
             {
                 IMachineUpgradeItem item = (IMachineUpgradeItem) itemStack.getItem();
@@ -315,11 +317,11 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
         }
 
         List<ItemStack> list = new FilteredList();
-        this.operateOnce(input, output, list);
+        this.operateOnce(slot, input, output, list);
 
         for (int i = 0; i < 4; ++i)
         {
-            ItemStack itemStack = (ItemStack) this.inventory.get(i + this.inventory.size() - 4);
+            ItemStack itemStack = this.inventory.get(i + this.inventory.size() - 4);
             if (itemStack.getItem() instanceof IMachineUpgradeItem)
             {
                 IMachineUpgradeItem item = (IMachineUpgradeItem) itemStack.getItem();
@@ -345,19 +347,19 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
         {
             for (int i = 0; i < this.results.size(); ++i)
             {
-                ItemStack item = (ItemStack) this.results.get(i);
+                ItemStack item = this.results.get(i);
                 if (item.isEmpty())
                 {
                     this.results.remove(i--);
                 }
-                else if (((ItemStack) this.inventory.get(slotOutput)).isEmpty())
+                else if (this.inventory.get(slotOutput).isEmpty())
                 {
                     this.inventory.set(slotOutput, item.copy());
                     this.results.remove(i--);
                 }
-                else if (StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput), item, false, false))
+                else if (StackUtil.isStackEqual(this.inventory.get(slotOutput), item, false, false))
                 {
-                    int left = ((ItemStack) this.inventory.get(slotOutput)).getMaxStackSize() - ((ItemStack) this.inventory.get(slotOutput)).getCount();
+                    int left = this.inventory.get(slotOutput).getMaxStackSize() - this.inventory.get(slotOutput).getCount();
                     if (left <= 0)
                     {
                         break;
@@ -367,21 +369,21 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
                     {
                         int itemLeft = item.getCount() - left;
                         item.setCount(itemLeft);
-                        ((ItemStack) this.inventory.get(slotOutput)).setCount(((ItemStack) this.inventory.get(slotOutput)).getMaxStackSize());
+                        this.inventory.get(slotOutput).setCount(this.inventory.get(slotOutput).getMaxStackSize());
                         break;
                     }
 
-                    ((ItemStack) this.inventory.get(slotOutput)).grow(item.getCount());
+                    this.inventory.get(slotOutput).grow(item.getCount());
                     this.results.remove(i--);
                 }
-                else if (((ItemStack) this.inventory.get(slotOutput2)).isEmpty())
+                else if (this.inventory.get(slotOutput2).isEmpty())
                 {
                     this.inventory.set(slotOutput2, item.copy());
                     this.results.remove(i--);
                 }
-                else if (StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput2), item, false, false))
+                else if (StackUtil.isStackEqual(this.inventory.get(slotOutput2), item, false, false))
                 {
-                    int left = ((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize() - ((ItemStack) this.inventory.get(slotOutput2)).getCount();
+                    int left = this.inventory.get(slotOutput2).getMaxStackSize() - this.inventory.get(slotOutput2).getCount();
                     if (left <= 0)
                     {
                         break;
@@ -391,21 +393,21 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
                     {
                         int itemLeft = item.getCount() - left;
                         item.setCount(itemLeft);
-                        ((ItemStack) this.inventory.get(slotOutput2)).setCount(((ItemStack) this.inventory.get(slotOutput2)).getMaxStackSize());
+                        this.inventory.get(slotOutput2).setCount(this.inventory.get(slotOutput2).getMaxStackSize());
                         break;
                     }
 
-                    ((ItemStack) this.inventory.get(slotOutput2)).grow(item.getCount());
+                    this.inventory.get(slotOutput2).grow(item.getCount());
                     this.results.remove(i--);
                 }
-                else if (((ItemStack) this.inventory.get(slotOutput3)).isEmpty())
+                else if (this.inventory.get(slotOutput3).isEmpty())
                 {
                     this.inventory.set(slotOutput3, item.copy());
                     this.results.remove(i--);
                 }
-                else if (StackUtil.isStackEqual((ItemStack) this.inventory.get(slotOutput3), item, false, false))
+                else if (StackUtil.isStackEqual(this.inventory.get(slotOutput3), item, false, false))
                 {
-                    int left = ((ItemStack) this.inventory.get(slotOutput3)).getMaxStackSize() - ((ItemStack) this.inventory.get(slotOutput3)).getCount();
+                    int left = this.inventory.get(slotOutput3).getMaxStackSize() - this.inventory.get(slotOutput3).getCount();
                     if (left <= 0)
                     {
                         break;
@@ -415,11 +417,11 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
                     {
                         int itemLeft = item.getCount() - left;
                         item.setCount(itemLeft);
-                        ((ItemStack) this.inventory.get(slotOutput3)).setCount(((ItemStack) this.inventory.get(slotOutput3)).getMaxStackSize());
+                        this.inventory.get(slotOutput3).setCount(this.inventory.get(slotOutput3).getMaxStackSize());
                         break;
                     }
 
-                    ((ItemStack) this.inventory.get(slotOutput3)).grow(item.getCount());
+                    this.inventory.get(slotOutput3).grow(item.getCount());
                     this.results.remove(i--);
                 }
             }
@@ -428,16 +430,6 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
 
     }
 
-
-    @Override
-    public String getName() {
-        return "tileThermalCentrifuge";
-    }
-
-    @Override
-    public boolean hasCustomName() {
-        return true;
-    }
 
     public static void init() { //recipes in recipes class now
     }
