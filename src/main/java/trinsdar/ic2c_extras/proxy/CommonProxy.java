@@ -2,6 +2,7 @@ package trinsdar.ic2c_extras.proxy;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import trinsdar.ic2c_extras.util.Ic2cExtrasOredict;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.RegistryBlock;
 import trinsdar.ic2c_extras.util.RegistryItem;
@@ -26,6 +27,7 @@ public class CommonProxy
         TileEntityOreWashingPlant.init();
         TileEntityThermalCentrifuge.init();
         TileEntityMetalPress.init();
+        Ic2cExtrasOredict.init();
         Ic2cExtrasRecipes.init();
     }
 
