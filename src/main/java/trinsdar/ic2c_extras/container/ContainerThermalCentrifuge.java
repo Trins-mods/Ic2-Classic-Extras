@@ -27,9 +27,8 @@ public class ContainerThermalCentrifuge extends ContainerTileComponent<TileEntit
     {
         super(tile);
 
-
-        this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 0, 11, 53));
-        this.addSlotToContainer(new SlotCustom(tile, 1, 11, 17, null));
+        this.addSlotToContainer(new SlotCustom(tile, 0, 11, 17, null));
+        this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 1, 11, 53));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 113, 13));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 113, 36));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 113, 59));
@@ -47,7 +46,7 @@ public class ContainerThermalCentrifuge extends ContainerTileComponent<TileEntit
     @Override
     public ResourceLocation getTexture()
     {
-        return this.getGuiHolder().getTexture();
+        return this.getGuiHolder().getGuiTexture();
     }
 
     @Override

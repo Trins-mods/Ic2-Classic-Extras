@@ -8,6 +8,7 @@ import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityAdvancedMachine;
+import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
 import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.*;
@@ -35,10 +36,10 @@ import trinsdar.ic2c_extras.container.ContainerThermalCentrifuge;
 
 import java.util.*;
 
-public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
+public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 {
     public TileEntityThermalCentrifuge() {
-        super( 9, 48, 400);
+        super( 5, 48, 400, 128);
         this.setCustomName("tileThermalCentrifuge");
     }
 
@@ -47,20 +48,20 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
         return thermalCentrifuge.getRecipeInAndOutput(input, false);
     }
 
+    @Override
+    public ResourceLocation getGuiTexture() {
+        return new ResourceLocation("ic2c_extras", "textures/guiSprites/GUIThermalCentrifuge.png");
+    }
+
     public int progressPerTick;
 
     public static IMachineRecipeList thermalCentrifuge = new BasicMachineRecipeList("thermalCentrifuge");
 
-    public static final int slotFuel = 0;
-    public static final int slotInput = 1;
+    public static final int slotInput = 0;
+    public static final int slotFuel = 1;
     public static final int slotOutput = 2;
     public static final int slotOutput2 = 3;
     public static final int slotOutput3 = 4;
-
-    @Override
-    public int[] getOutputSlots() {
-        return new int[]{slotOutput, slotOutput2, slotOutput3};
-    }
 
     @Override
     protected void addSlots(InventoryHandler handler)
@@ -78,22 +79,6 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
         handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2, slotOutput3);
     }
 
-    @Override
-    public Slot[] getInventorySlots(InventoryPlayer player) {
-        Slot[] slots = new Slot[]{new SlotDischarge(this, 2147483647, 0, 11, 53), new SlotCustom(this, 1, 11, 17, new MachineFilter(this)), new SlotOutput(player.player, this, 2, 113, 13), new SlotOutput(player.player, this, 3, 113, 36), new SlotOutput(player.player, this, 4, 113, 59), new SlotUpgrade(this, 5, 152, 44), new SlotUpgrade(this, 6, 152, 62)};
-        return slots;
-    }
-
-    @Override
-    public Box2D getChargeBox() {
-        return ContainerThermalCentrifuge.machineChargeBox;
-    }
-
-    @Override
-    public Box2D getProgressBox() {
-        return ContainerThermalCentrifuge.machineProgressBox;
-    }
-
     public ResourceLocation getStartSoundFile()
     {
         return Ic2Sounds.maceratorOp;
@@ -106,17 +91,8 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
 
 
     @Override
-    public ResourceLocation getTexture() {
-        return new ResourceLocation("ic2c_extras", "textures/guiSprites/GUIThermalCentrifuge.png");
-    }
-
     public ContainerIC2 getGuiContainer(EntityPlayer player) {
         return new ContainerThermalCentrifuge(player.inventory, this);
-    }
-
-    @Override
-    public LocaleComp getSpeedName() {
-        return new LangComponentHolder.LocaleGuiComp("container.machineHeat.name");
     }
 
     @Override
@@ -129,7 +105,6 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
         return MachineType.macerator;
     }
 
-    @Override
     public IMachineRecipeList.RecipeEntry getRecipe()
     {
         if (this.inventory.get(slotInput).isEmpty() && !this.canWorkWithoutItems())
@@ -215,75 +190,7 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
     }
 
     @Override
-    public void update() {
-        this.handleChargeSlot(500);
-        this.updateNeighbors();
-
-        boolean noRoom = this.addToInventory();
-        IMachineRecipeList.RecipeEntry entry = this.getRecipe();
-        boolean canWork = this.canWork() && !noRoom;
-        boolean operate = canWork && entry != null;
-        if (operate)
-        {
-            this.handleChargeSlot(this.maxEnergy);
-        }
-
-        if (operate && this.energy >= this.energyConsume)
-        {
-            if (!this.getActive())
-            {
-                this.getNetwork().initiateTileEntityEvent(this, 0, false);
-            }
-
-            this.setActive(true);
-            this.progress += this.progressPerTick;
-            this.useEnergy(this.recipeEnergy);
-            if (this.progress >= (float) this.recipeOperation)
-            {
-                this.operate(0, entry);
-                this.progress = 0;
-                this.notifyNeighbors();
-            }
-
-            this.getNetwork().updateTileGuiField(this, "progress");
-        }
-        else
-        {
-            if (this.getActive())
-            {
-                if (this.progress != 0)
-                {
-                    this.getNetwork().initiateTileEntityEvent(this, 1, false);
-                }
-                else
-                {
-                    this.getNetwork().initiateTileEntityEvent(this, 2, false);
-                }
-            }
-
-            if (entry == null && this.progress != 0)
-            {
-                this.progress = 0;
-                this.getNetwork().updateTileGuiField(this, "progress");
-            }
-
-            this.setActive(false);
-        }
-
-        for (int i = 0; i < 4; ++i)
-        {
-            ItemStack item = this.inventory.get(i + this.inventory.size() - 4);
-            if (item.getItem() instanceof IMachineUpgradeItem)
-            {
-                ((IMachineUpgradeItem) item.getItem()).onTick(item, this);
-            }
-        }
-
-        this.updateComparators();
-    }
-
-    @Override
-    public void operateOnce(int slot, IRecipeInput input, MachineOutput output, List<ItemStack> list)
+    public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list)
     {
         list.addAll(output.getRecipeOutput(this.getMachineWorld().rand, getTileData()));
         if (!(input instanceof INullableRecipeInput) || !this.inventory.get(slotInput).isEmpty())
@@ -301,7 +208,7 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
     }
 
     @Override
-    public void operate(int slot, IMachineRecipeList.RecipeEntry entry) {
+    public void operate(IMachineRecipeList.RecipeEntry entry) {
 
         IRecipeInput input = entry.getInput();
         MachineOutput output = entry.getOutput().copy();
@@ -317,7 +224,7 @@ public class TileEntityThermalCentrifuge extends TileEntityAdvancedMachine
         }
 
         List<ItemStack> list = new FilteredList();
-        this.operateOnce(slot, input, output, list);
+        this.operateOnce(input, output, list);
 
         for (int i = 0; i < 4; ++i)
         {
