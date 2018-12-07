@@ -79,11 +79,13 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2, slotOutput3);
     }
 
+    @Override
     public ResourceLocation getStartSoundFile()
     {
         return Ic2Sounds.maceratorOp;
     }
 
+    @Override
     public ResourceLocation getInterruptSoundFile()
     {
         return Ic2Sounds.interruptingSound;
@@ -192,19 +194,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     @Override
     public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list)
     {
-        list.addAll(output.getRecipeOutput(this.getMachineWorld().rand, getTileData()));
-        if (!(input instanceof INullableRecipeInput) || !this.inventory.get(slotInput).isEmpty())
-        {
-            if (this.inventory.get(slotInput).getItem().hasContainerItem(this.inventory.get(slotInput)))
-            {
-                this.inventory.set(slotInput, this.inventory.get(slotInput).getItem().getContainerItem(this.inventory.get(slotInput)));
-            }
-            else
-            {
-                this.inventory.get(slotInput).shrink(input.getAmount());
-            }
-
-        }
+        super.operateOnce(input, output, list);
     }
 
     @Override
@@ -238,103 +228,19 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 
         if (list.size() > 0)
         {
-            this.results.addAll(list);
-            this.addToInventory();
-        }
-    }
-
-    @Override
-    public boolean addToInventory()
-    {
-        if (this.results.isEmpty())
-        {
-            return false;
-        }
-        else
-        {
-            for (int i = 0; i < this.results.size(); ++i)
-            {
-                ItemStack item = this.results.get(i);
-                if (item.isEmpty())
-                {
-                    this.results.remove(i--);
+            for (int i = 0; i < 3 && i < list.size(); i++) {
+                // Dangerous thing here. Might dupe items if there is random rolls
+                ItemStack toAdd = list.get(i);
+                if (toAdd.isEmpty()) {
+                    continue;
                 }
-                else if (this.inventory.get(slotOutput).isEmpty())
-                {
-                    this.inventory.set(slotOutput, item.copy());
-                    this.results.remove(i--);
-                }
-                else if (StackUtil.isStackEqual(this.inventory.get(slotOutput), item, false, false))
-                {
-                    int left = this.inventory.get(slotOutput).getMaxStackSize() - this.inventory.get(slotOutput).getCount();
-                    if (left <= 0)
-                    {
-                        break;
-                    }
-
-                    if (left < item.getCount())
-                    {
-                        int itemLeft = item.getCount() - left;
-                        item.setCount(itemLeft);
-                        this.inventory.get(slotOutput).setCount(this.inventory.get(slotOutput).getMaxStackSize());
-                        break;
-                    }
-
-                    this.inventory.get(slotOutput).grow(item.getCount());
-                    this.results.remove(i--);
-                }
-                else if (this.inventory.get(slotOutput2).isEmpty())
-                {
-                    this.inventory.set(slotOutput2, item.copy());
-                    this.results.remove(i--);
-                }
-                else if (StackUtil.isStackEqual(this.inventory.get(slotOutput2), item, false, false))
-                {
-                    int left = this.inventory.get(slotOutput2).getMaxStackSize() - this.inventory.get(slotOutput2).getCount();
-                    if (left <= 0)
-                    {
-                        break;
-                    }
-
-                    if (left < item.getCount())
-                    {
-                        int itemLeft = item.getCount() - left;
-                        item.setCount(itemLeft);
-                        this.inventory.get(slotOutput2).setCount(this.inventory.get(slotOutput2).getMaxStackSize());
-                        break;
-                    }
-
-                    this.inventory.get(slotOutput2).grow(item.getCount());
-                    this.results.remove(i--);
-                }
-                else if (this.inventory.get(slotOutput3).isEmpty())
-                {
-                    this.inventory.set(slotOutput3, item.copy());
-                    this.results.remove(i--);
-                }
-                else if (StackUtil.isStackEqual(this.inventory.get(slotOutput3), item, false, false))
-                {
-                    int left = this.inventory.get(slotOutput3).getMaxStackSize() - this.inventory.get(slotOutput3).getCount();
-                    if (left <= 0)
-                    {
-                        break;
-                    }
-
-                    if (left < item.getCount())
-                    {
-                        int itemLeft = item.getCount() - left;
-                        item.setCount(itemLeft);
-                        this.inventory.get(slotOutput3).setCount(this.inventory.get(slotOutput3).getMaxStackSize());
-                        break;
-                    }
-
-                    this.inventory.get(slotOutput3).grow(item.getCount());
-                    this.results.remove(i--);
+                if (getStackInSlot(slotOutput + i).isEmpty()) {
+                    setStackInSlot(slotOutput + i, toAdd);
+                } else {
+                    getStackInSlot(slotOutput + i).grow(toAdd.getCount());
                 }
             }
-            return this.results.size() > 0;
         }
-
     }
 
 
