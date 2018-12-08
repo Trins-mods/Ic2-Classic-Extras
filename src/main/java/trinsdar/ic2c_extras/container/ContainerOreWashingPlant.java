@@ -1,6 +1,8 @@
 package trinsdar.ic2c_extras.container;
 
 import ic2.core.inventory.container.ContainerTileComponent;
+import ic2.core.inventory.filters.ArrayFilter;
+import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.gui.components.base.FluidTankComp;
 import ic2.core.inventory.gui.components.base.MachineChargeComp;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
@@ -9,10 +11,12 @@ import ic2.core.inventory.slots.SlotDischarge;
 import ic2.core.inventory.slots.SlotOutput;
 import ic2.core.inventory.slots.SlotUpgrade;
 import ic2.core.platform.registry.Ic2GuiComp;
+import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
 
@@ -27,7 +31,7 @@ public class ContainerOreWashingPlant extends ContainerTileComponent<TileEntityO
         this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 111, 17));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 111, 35));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 111, 53));
-        this.addSlotToContainer(new SlotCustom(tile, 5, 8, 12, null));
+        this.addSlotToContainer(new SlotCustom(tile, 5, 8, 12, new ArrayFilter(new BasicItemFilter(Items.WATER_BUCKET), new BasicItemFilter(Ic2Items.waterCell))));
         this.addSlotToContainer(new SlotCustom(tile, 6, 8, 57, null));
 
         for(int i = 0; i < 4; ++i)

@@ -1,30 +1,16 @@
 package trinsdar.ic2c_extras.tileentity;
 
-import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.INullableRecipeInput;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
-import ic2.api.classic.tile.IRecipeMachine;
 import ic2.api.classic.tile.MachineType;
-import ic2.api.classic.tile.machine.IProgressMachine;
-import ic2.api.energy.EnergyNet;
-import ic2.api.network.INetworkTileEntityEventListener;
 import ic2.api.recipe.IRecipeInput;
-import ic2.core.IC2;
 import ic2.core.RotationList;
-import ic2.core.audio.AudioSource;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
-import ic2.core.block.base.tile.TileEntityElecMachine;
-import ic2.core.block.base.util.comparator.ComparatorManager;
-import ic2.core.block.base.util.comparator.comparators.ComparatorProgress;
-import ic2.core.block.base.util.info.EnergyUsageInfo;
-import ic2.core.block.base.util.info.ProgressInfo;
-import ic2.core.block.base.util.info.misc.IEnergyUser;
 import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
 import ic2.core.fluid.IC2Tank;
-import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.*;
@@ -40,7 +26,6 @@ import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.helpers.FilteredList;
 import ic2.core.util.misc.FluidHelper;
 import ic2.core.util.misc.StackUtil;
-import ic2.core.util.obj.IOutputMachine;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -49,29 +34,31 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fluids.capability.*;
 import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.container.ContainerOreWashingPlant;
 
-import java.util.*;
+import javax.annotation.Nullable;
+import java.util.Iterator;
+import java.util.List;
 
-public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine implements ITankListener
+public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine implements ITankListener, IFluidHandler
 {
 
     @NetworkField(index = 13)
     public IC2Tank waterTank = new IC2Tank(FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 0), 10000);
 
+    public int water = 0;
+    public int maxWater = 10000;
+    public IFilter filterWater = new FluidFilter(FluidRegistry.WATER);
     public static IMachineRecipeList oreWashingPlant = new BasicMachineRecipeList("oreWashingPlant");
+
 
     public static final int slotInput = 0;
     public static final int slotFuel = 1;
@@ -480,6 +467,48 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     public boolean hasCustomName()
     {
         return true;
+    }
+
+    @Override
+    public IFluidTankProperties[] getTankProperties() {
+        return new IFluidTankProperties[]{new FluidTankProperties(new FluidStack(FluidRegistry.LAVA, this.water), 10000)};
+    }
+
+    @Override
+    public int fill(FluidStack resource, boolean doFill) {
+        if (resource != null && resource.getFluid() == FluidRegistry.WATER) {
+            int toAdd = Math.min(resource.amount, maxWater - this.water);
+            if (doFill) {
+                this.water += toAdd;
+                this.getNetwork().updateTileGuiField(this, "fuel");
+            }
+
+            return toAdd;
+        } else {
+            return 0;
+        }
+    }
+
+    @Nullable
+    @Override
+    public FluidStack drain(FluidStack resource, boolean doDrain) {
+        return resource != null && resource.getFluid() == FluidRegistry.WATER ? this.drain(resource.amount, doDrain) : null;
+    }
+
+    @Nullable
+    @Override
+    public FluidStack drain(int maxDrain, boolean doDrain) {
+        int amount = Math.min(maxDrain, this.water);
+        if (amount <= 0) {
+            return null;
+        } else {
+            if (doDrain) {
+                this.water -= amount;
+                this.getNetwork().updateTileGuiField(this, "fuel");
+            }
+
+            return new FluidStack(FluidRegistry.WATER, amount);
+        }
     }
 
     @Override
