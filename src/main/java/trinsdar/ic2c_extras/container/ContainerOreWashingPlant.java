@@ -24,9 +24,9 @@ public class ContainerOreWashingPlant extends ContainerTileComponent<TileEntityO
 
         this.addSlotToContainer(new SlotCustom(tile, 0, 56, 17, null));
         this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 1, 56, 53));
-        this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 113, 13));
-        this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 113, 36));
-        this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 113, 59));
+        this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 111, 17));
+        this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 111, 35));
+        this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 111, 53));
         this.addSlotToContainer(new SlotCustom(tile, 5, 8, 12, null));
         this.addSlotToContainer(new SlotCustom(tile, 6, 8, 57, null));
 
