@@ -15,6 +15,7 @@ import ic2.api.recipe.IRecipeInput;
 import ic2.core.IC2;
 import ic2.core.RotationList;
 import ic2.core.audio.AudioSource;
+import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.base.util.comparator.ComparatorManager;
 import ic2.core.block.base.util.comparator.comparators.ComparatorProgress;
@@ -64,41 +65,8 @@ import trinsdar.ic2c_extras.container.ContainerOreWashingPlant;
 
 import java.util.*;
 
-public class TileEntityOreWashingPlant extends TileEntityElecMachine implements ITankListener, ITickable, IProgressMachine, IRecipeMachine, IOutputMachine, IHasGui, INetworkTileEntityEventListener, IEnergyUser
+public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine implements ITankListener
 {
-
-    @NetworkField(index = 7)
-    public float progress = 0.0F;
-
-    public int defaultEnergyConsume;
-    public int defaultOperationLength;
-    public int defaultMaxInput;
-    public int defaultEnergyStorage;
-    public int energyConsume;
-    public int operationLength;
-    public float progressPerTick;
-
-    @NetworkField(index = 8)
-    public float soundLevel = 1.0F;
-
-    public IMachineRecipeList.RecipeEntry lastRecipe;
-
-    @NetworkField(index = 9)
-    public int recipeOperation;
-
-    @NetworkField(index = 10)
-    public int recipeEnergy;
-
-    @NetworkField(index = 11)
-    public boolean redstoneInverted;
-
-    @NetworkField(index = 12)
-    public boolean redstoneSensitive;
-
-    public boolean defaultSensitive;
-    public List<ItemStack> results = new ArrayList();
-    public AudioSource audioSource;
-    public IFilter filter;
 
     @NetworkField(index = 13)
     public IC2Tank waterTank = new IC2Tank(FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 0), 10000);
@@ -115,34 +83,13 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
 
     public TileEntityOreWashingPlant()
     {
-        this(11, 8, 400, 32);
-    }
-
-    public TileEntityOreWashingPlant(int slots, int energyPerTick, int maxProgress, int maxInput)
-    {
-        super(slots, maxInput);
-        this.setFuelSlot(slotFuel);
+        super(7, 8, 400, 32);
         this.setCustomName("tileOreWashingPlant");
-        this.energyConsume = energyPerTick;
-        this.defaultEnergyConsume = energyPerTick;
-        this.operationLength = maxProgress;
-        this.defaultOperationLength = maxProgress;
-        this.defaultMaxInput = this.maxInput;
-        this.defaultEnergyStorage = energyPerTick * maxProgress;
-        this.defaultSensitive = false;
         this.waterTank.addListener(this);
         this.waterTank.setCanFill(true);
-        this.addNetworkFields("soundLevel", "redstoneInverted", "redstoneSensitive");
         this.addGuiFields("recipeOperation", "recipeEnergy", "progress", "waterTank");
-        this.addInfos(new EnergyUsageInfo(this), new ProgressInfo(this));
     }
 
-    @Override
-    protected void addComparators(ComparatorManager manager)
-    {
-        super.addComparators(manager);
-        manager.addComparatorMode(new ComparatorProgress(this));
-    }
 
     @Override
     protected void addSlots(InventoryHandler handler)
@@ -159,24 +106,6 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
         handler.registerSlotType(SlotType.Fuel, slotFuel);
         handler.registerSlotType(SlotType.Input, slotInput, slotInputTank);
         handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2, slotOutput3, slotOutputTank);
-    }
-
-    @Override
-    public int getEnergyUsage()
-    {
-        return this.recipeEnergy;
-    }
-
-    @Override
-    public float getProgress()
-    {
-        return this.progress;
-    }
-
-    @Override
-    public float getMaxProgress()
-    {
-        return (float) this.recipeOperation;
     }
 
     public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input)
@@ -197,16 +126,6 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
     public ResourceLocation getInterruptSoundFile()
     {
         return Ic2Sounds.interruptingSound;
-    }
-
-    public boolean supportsNotify()
-    {
-        return true;
-    }
-
-    public boolean needsInitialRedstoneUpdate()
-    {
-        return true;
     }
 
     @Override
@@ -300,65 +219,7 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
         }
     }
 
-    public void handleModifiers(IMachineRecipeList.RecipeEntry entry)
-    {
-        if (entry != null && entry.getOutput().getMetadata() != null)
-        {
-            NBTTagCompound nbt = entry.getOutput().getMetadata();
-            double energyMod = nbt.hasKey("RecipeEnergyModifier") ? nbt.getDouble("RecipeEnergyModifier") : 1.0D;
-            int newEnergy = applyModifier(this.energyConsume, nbt.getInteger("RecipeEnergy"), energyMod);
-            if (newEnergy != this.recipeEnergy)
-            {
-                this.recipeEnergy = newEnergy;
-                if (this.recipeEnergy < 1)
-                {
-                    this.recipeEnergy = 1;
-                }
-
-                this.getNetwork().updateTileGuiField(this, "recipeEnergy");
-            }
-
-            double progMod = nbt.hasKey("RecipeTimeModifier") ? nbt.getDouble("RecipeTimeModifier") : 1.0D;
-            int newProgress = applyModifier(this.operationLength, nbt.getInteger("RecipeTime"), progMod);
-            if (newProgress != this.recipeOperation)
-            {
-                this.recipeOperation = newProgress;
-                if (this.recipeOperation < 1)
-                {
-                    this.recipeOperation = 1;
-                }
-
-                this.getNetwork().updateTileGuiField(this, "recipeOperation");
-            }
-
-        }
-        else
-        {
-            if (this.recipeEnergy != this.energyConsume)
-            {
-                this.recipeEnergy = this.energyConsume;
-                if (this.recipeEnergy < 1)
-                {
-                    this.recipeEnergy = 1;
-                }
-
-                this.getNetwork().updateTileGuiField(this, "recipeEnergy");
-            }
-
-            if (this.recipeOperation != this.operationLength)
-            {
-                this.recipeOperation = this.operationLength;
-                if (this.recipeOperation < 1)
-                {
-                    this.recipeOperation = 1;
-                }
-
-                this.getNetwork().updateTileGuiField(this, "recipeOperation");
-            }
-
-        }
-    }
-
+    @Override
     public void operate(IMachineRecipeList.RecipeEntry entry)
     {
         IRecipeInput input = entry.getInput();
@@ -389,121 +250,27 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
 
         if (list.size() > 0)
         {
-            this.results.addAll(list);
-            this.addToInventory();
+            for (int i = 0; i < 4 && i < list.size(); i++) {
+                // Dangerous thing here. Might dupe items if there is random rolls
+                ItemStack toAdd = list.get(i);
+                if (toAdd.isEmpty()) {
+                    continue;
+                }
+                if (getStackInSlot(slotOutput + i).isEmpty()) {
+                    setStackInSlot(slotOutput + i, toAdd);
+                } else {
+                    getStackInSlot(slotOutput + i).grow(toAdd.getCount());
+                }
+            }
             this.waterTank.drain(1000, true);
         }
 
     }
 
+    @Override
     public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list)
     {
-        list.addAll(output.getRecipeOutput(this.getMachineWorld().rand, getTileData()));
-        if (!(input instanceof INullableRecipeInput) || !this.inventory.get(slotInput).isEmpty())
-        {
-            if (this.inventory.get(slotInput).getItem().hasContainerItem(this.inventory.get(slotInput)))
-            {
-                this.inventory.set(slotInput, this.inventory.get(slotInput).getItem().getContainerItem(this.inventory.get(slotInput)));
-            }
-            else
-            {
-                this.inventory.get(slotInput).shrink(input.getAmount());
-            }
-
-        }
-    }
-
-    public boolean addToInventory()
-    {
-        if (this.results.isEmpty())
-        {
-            return false;
-        }
-        else
-        {
-            for (int i = 0; i < this.results.size(); ++i)
-            {
-                ItemStack item = this.results.get(i);
-                if (item.isEmpty())
-                {
-                    this.results.remove(i--);
-                }
-                else if (this.inventory.get(slotOutput).isEmpty())
-                {
-                    this.inventory.set(slotOutput, item.copy());
-                    this.results.remove(i--);
-                }
-                else if (StackUtil.isStackEqual(this.inventory.get(slotOutput), item, false, false))
-                {
-                    int left = this.inventory.get(slotOutput).getMaxStackSize() - this.inventory.get(slotOutput).getCount();
-                    if (left <= 0)
-                    {
-                        break;
-                    }
-
-                    if (left < item.getCount())
-                    {
-                        int itemLeft = item.getCount() - left;
-                        item.setCount(itemLeft);
-                        this.inventory.get(slotOutput).setCount(this.inventory.get(slotOutput).getMaxStackSize());
-                        break;
-                    }
-
-                    this.inventory.get(slotOutput).grow(item.getCount());
-                    this.results.remove(i--);
-                }
-                else if (this.inventory.get(slotOutput2).isEmpty())
-                {
-                    this.inventory.set(slotOutput2, item.copy());
-                    this.results.remove(i--);
-                }
-                else if (StackUtil.isStackEqual(this.inventory.get(slotOutput2), item, false, false))
-                {
-                    int left = this.inventory.get(slotOutput2).getMaxStackSize() - this.inventory.get(slotOutput2).getCount();
-                    if (left <= 0)
-                    {
-                        break;
-                    }
-
-                    if (left < item.getCount())
-                    {
-                        int itemLeft = item.getCount() - left;
-                        item.setCount(itemLeft);
-                        this.inventory.get(slotOutput2).setCount(this.inventory.get(slotOutput2).getMaxStackSize());
-                        break;
-                    }
-
-                    this.inventory.get(slotOutput2).grow(item.getCount());
-                    this.results.remove(i--);
-                }
-                else if (this.inventory.get(slotOutput3).isEmpty())
-                {
-                    this.inventory.set(slotOutput3, item.copy());
-                    this.results.remove(i--);
-                }
-                else if (StackUtil.isStackEqual(this.inventory.get(slotOutput3), item, false, false))
-                {
-                    int left = this.inventory.get(slotOutput3).getMaxStackSize() - this.inventory.get(slotOutput3).getCount();
-                    if (left <= 0)
-                    {
-                        break;
-                    }
-
-                    if (left < item.getCount())
-                    {
-                        int itemLeft = item.getCount() - left;
-                        item.setCount(itemLeft);
-                        this.inventory.get(slotOutput3).setCount(this.inventory.get(slotOutput3).getMaxStackSize());
-                        break;
-                    }
-
-                    this.inventory.get(slotOutput3).grow(item.getCount());
-                    this.results.remove(i--);
-                }
-            }
-
-            return this.results.size() > 0;
-        }
+        super.operateOnce(input, output, list);
     }
 
     private IMachineRecipeList.RecipeEntry getRecipe()
@@ -590,256 +357,6 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
         }
     }
 
-    public boolean canWork()
-    {
-        return !this.redstoneSensitive || this.isRedstonePowered();
-    }
-
-    public boolean isRedstonePowered()
-    {
-        if (this.redstoneInverted)
-        {
-            return !super.isRedstonePowered();
-        }
-        else
-        {
-            return super.isRedstonePowered();
-        }
-    }
-
-    public void handleRedstone()
-    {
-        if (this.redstoneSensitive)
-        {
-            super.handleRedstone();
-        }
-
-    }
-
-    public double getEnergy()
-    {
-        return (double) this.energy;
-    }
-
-    public boolean useEnergy(double amount, boolean simulate)
-    {
-        if ((double) this.energy < amount)
-        {
-            return false;
-        }
-        else
-        {
-            if (!simulate)
-            {
-                this.useEnergy((int) amount);
-            }
-
-            return true;
-        }
-    }
-
-    public void setRedstoneSensitive(boolean active)
-    {
-        if (this.redstoneSensitive != active)
-        {
-            this.redstoneSensitive = active;
-        }
-
-    }
-
-    public boolean isRedstoneSensitive()
-    {
-        return this.redstoneSensitive;
-    }
-
-    public boolean isProcessing()
-    {
-        return this.getActive();
-    }
-
-    @Override
-    public boolean isValidInput(ItemStack itemStack)
-    {
-        return false;
-    }
-
-    public float getRecipeProgress()
-    {
-        float ret = this.progress / (float) this.recipeOperation;
-        if (ret > 1.0F)
-        {
-            ret = 1.0F;
-        }
-
-        return ret;
-    }
-
-    public void setOverclockRates()
-    {
-        this.lastRecipe = null;
-        int extraProcessSpeed = 0;
-        double processingSpeedMultiplier = 1.0D;
-        int extraProcessTime = 0;
-        double processTimeMultiplier = 1.0D;
-        int extraEnergyDemand = 0;
-        double energyDemandMultiplier = 1.0D;
-        int extraEnergyStorage = 0;
-        double energyStorageMultiplier = 1.0D;
-        int extraTier = 0;
-        float soundModfier = 1.0F;
-        boolean redstonePowered = false;
-        this.redstoneSensitive = this.defaultSensitive;
-
-        for (int i = 0; i < 4; ++i)
-        {
-            ItemStack item = this.inventory.get(i + this.inventory.size() - 4);
-            if (item.getItem() instanceof IMachineUpgradeItem)
-            {
-                IMachineUpgradeItem upgrade = (IMachineUpgradeItem) item.getItem();
-                upgrade.onInstalling(item, this);
-                extraProcessSpeed += upgrade.getExtraProcessSpeed(item, this) * item.getCount();
-                processingSpeedMultiplier *= Math.pow(upgrade.getProcessSpeedMultiplier(item, this), (double) item.getCount());
-                extraProcessTime += upgrade.getExtraProcessTime(item, this) * item.getCount();
-                processTimeMultiplier *= Math.pow(upgrade.getProcessTimeMultiplier(item, this), (double) item.getCount());
-                extraEnergyDemand += upgrade.getExtraEnergyDemand(item, this) * item.getCount();
-                energyDemandMultiplier *= Math.pow(upgrade.getEnergyDemandMultiplier(item, this), (double) item.getCount());
-                extraEnergyStorage += upgrade.getExtraEnergyStorage(item, this) * item.getCount();
-                energyStorageMultiplier *= Math.pow(upgrade.getEnergyStorageMultiplier(item, this), (double) item.getCount());
-                soundModfier = (float) ((double) soundModfier * Math.pow((double) upgrade.getSoundVolumeMultiplier(item, this), (double) item.getCount()));
-                extraTier += upgrade.getExtraTier(item, this) * item.getCount();
-                if (upgrade.useRedstoneInverter(item, this))
-                {
-                    redstonePowered = true;
-                }
-            }
-        }
-
-        this.redstoneInverted = redstonePowered;
-        this.progressPerTick = applyFloatModifier(1, extraProcessSpeed, processingSpeedMultiplier);
-        this.energyConsume = applyModifier(this.defaultEnergyConsume, extraEnergyDemand, energyDemandMultiplier);
-        this.operationLength = applyModifier(this.defaultOperationLength, extraProcessTime, processTimeMultiplier);
-        this.setMaxEnergy(applyModifier(this.defaultEnergyStorage, extraEnergyStorage, energyStorageMultiplier));
-        this.tier = this.baseTier + extraTier;
-        if (this.tier > 13)
-        {
-            this.tier = 13;
-        }
-
-        this.maxInput = (int) EnergyNet.instance.getPowerFromTier(this.tier);
-        if (this.energy > this.maxEnergy)
-        {
-            this.energy = this.maxEnergy;
-        }
-
-        this.soundLevel = soundModfier;
-        if (this.progressPerTick < 0.01F)
-        {
-            this.progressPerTick = 0.01F;
-        }
-
-        if (this.operationLength < 1)
-        {
-            this.operationLength = 1;
-        }
-
-        if (this.energyConsume < 1)
-        {
-            this.energyConsume = 1;
-        }
-
-        this.handleModifiers(this.lastRecipe);
-        this.getNetwork().updateTileEntityField(this, "redstoneInverted");
-        this.getNetwork().updateTileEntityField(this, "redstoneSensitive");
-        this.getNetwork().updateTileEntityField(this, "soundLevel");
-        this.getNetwork().updateTileGuiField(this, "maxInput");
-        this.getNetwork().updateTileGuiField(this, "energy");
-    }
-
-    static int applyModifier(int base, int extra, double multiplier)
-    {
-        long ret = Math.round((double) (base + extra) * multiplier);
-        return ret > 2147483647L ? 2147483647 : (int) ret;
-    }
-
-    static float applyFloatModifier(int base, int extra, double multiplier)
-    {
-        double ret = (double) Math.round((double) (base + extra) * multiplier);
-        return ret > 2.147483648E9D ? 2.14748365E9F : (float) ret;
-    }
-
-    public void onLoaded()
-    {
-        super.onLoaded();
-        if (this.isSimulating())
-        {
-            this.setOverclockRates();
-        }
-
-    }
-
-    public void onUnloaded()
-    {
-        if (this.isRendering() && this.audioSource != null)
-        {
-            IC2.audioManager.removeSources(this);
-            this.audioSource.remove();
-            this.audioSource = null;
-        }
-
-        super.onUnloaded();
-    }
-
-    public void onNetworkEvent(int event)
-    {
-        if (this.audioSource != null && this.audioSource.isRemoved())
-        {
-            this.audioSource = null;
-        }
-
-        if (this.audioSource == null && this.getStartSoundFile() != null)
-        {
-            this.audioSource = IC2.audioManager.createSource(this, PositionSpec.Center, this.getStartSoundFile(), true, false, IC2.audioManager.defaultVolume * this.soundLevel);
-        }
-
-        if (event == 0)
-        {
-            if (this.audioSource != null)
-            {
-                this.audioSource.play();
-            }
-        }
-        else if (event == 1)
-        {
-            if (this.audioSource != null)
-            {
-                this.audioSource.stop();
-                if (this.getInterruptSoundFile() != null)
-                {
-                    IC2.audioManager.playOnce(this, PositionSpec.Center, this.getInterruptSoundFile(), false, IC2.audioManager.defaultVolume * this.soundLevel);
-                }
-            }
-        }
-        else if (event == 2 && this.audioSource != null)
-        {
-            this.audioSource.stop();
-        }
-
-    }
-
-    public void onNetworkUpdate(String field)
-    {
-        if (field.equals("isActive") && this.getActive())
-        {
-            this.onNetworkEvent(0);
-        }
-
-        super.onNetworkUpdate(field);
-        if (field.equals("soundLevel") && this.audioSource != null)
-        {
-            this.audioSource.setVolume(IC2.audioManager.defaultVolume * this.soundLevel);
-        }
-
-    }
 
     public FluidStack getFluid()
     {
@@ -892,30 +409,6 @@ public class TileEntityOreWashingPlant extends TileEntityElecMachine implements 
         nbt.setTag("Results", list);
         this.waterTank.writeToNBT(this.getTag(nbt, "Tank"));
         return nbt;
-    }
-
-    @Override
-    public Set<IMachineUpgradeItem.UpgradeType> getSupportedTypes()
-    {
-        return new LinkedHashSet(Arrays.asList(IMachineUpgradeItem.UpgradeType.values()));
-    }
-
-    @Override
-    public World getMachineWorld()
-    {
-        return this.getWorld();
-    }
-
-    @Override
-    public BlockPos getMachinePos()
-    {
-        return this.getPos();
-    }
-
-    @Override
-    public boolean canInteractWith(EntityPlayer player)
-    {
-        return !this.isInvalid();
     }
 
     @Override
