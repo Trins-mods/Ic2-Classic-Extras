@@ -7,40 +7,43 @@ import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
-import ic2.core.block.base.tile.TileEntityAdvancedMachine;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
 import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
 import ic2.core.inventory.container.ContainerIC2;
-import ic2.core.inventory.filters.*;
+import ic2.core.inventory.filters.ArrayFilter;
+import ic2.core.inventory.filters.BasicItemFilter;
+import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.inventory.slots.SlotCustom;
-import ic2.core.inventory.slots.SlotDischarge;
-import ic2.core.inventory.slots.SlotOutput;
-import ic2.core.inventory.slots.SlotUpgrade;
-import ic2.core.platform.lang.components.base.LangComponentHolder;
-import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.helpers.FilteredList;
-import ic2.core.util.math.Box2D;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.container.ContainerThermalCentrifuge;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
 
 public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 {
+    public static final int maxHeat = 1000;
+    public int heat;
     public TileEntityThermalCentrifuge() {
         super( 5, 48, 400, 128);
         this.setCustomName("tileThermalCentrifuge");
+    }
+
+    public float getHeat() {
+        return (float)this.heat;
+    }
+
+    public float getMaxHeat() {
+        return 1000.0F;
     }
 
     @Override
@@ -52,8 +55,6 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     public ResourceLocation getGuiTexture() {
         return new ResourceLocation("ic2c_extras", "textures/guiSprites/GUIThermalCentrifuge.png");
     }
-
-    public int progressPerTick;
 
     public static IMachineRecipeList thermalCentrifuge = new BasicMachineRecipeList("thermalCentrifuge");
 
