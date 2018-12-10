@@ -36,15 +36,14 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     public TileEntityThermalCentrifuge() {
         super( 5, 48, 400, 128);
         this.setCustomName("tileThermalCentrifuge");
+        this.addGuiFields("heat");
     }
 
     public float getHeat() {
         return (float)this.heat;
     }
 
-    public float getMaxHeat() {
-        return 1000.0F;
-    }
+    public float getMaxHeat() { return (float)this.maxHeat; }
 
     @Override
     public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input) {
@@ -106,6 +105,72 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     @Override
     public MachineType getType() {
         return MachineType.macerator;
+    }
+
+    @Override
+    public void update() {
+        this.handleRedstone();
+        this.updateNeighbors();
+        boolean noRoom = this.addToInventory();
+        IMachineRecipeList.RecipeEntry entry = this.getRecipe();
+        boolean canWork = this.canWork() || entry != null && this.energy > 0;
+        boolean operate = canWork && !noRoom && entry != null;
+        if (canWork || entry != null) {
+            this.handleChargeSlot(this.recipeEnergy * this.recipeOperation);
+        }
+
+        if ((canWork || entry != null) && this.energy > 0) {
+            if (this.heat < 1000) {
+                ++this.heat;
+                this.getNetwork().updateTileGuiField(this, "heat");
+            }
+
+            this.useEnergy(1);
+        } else if (this.heat > 0) {
+            this.heat -= Math.min(this.heat, 4);
+            this.getNetwork().updateTileGuiField(this, "heat");
+        }
+
+        if (operate && this.energy >= this.energyConsume) {
+            if (!this.getActive()) {
+                this.getNetwork().initiateTileEntityEvent(this, 0, false);
+            }
+
+            this.setActive(true);
+            this.progress += this.progressPerTick;
+            this.useEnergy(this.recipeEnergy);
+            if (this.progress >= (float)this.recipeOperation) {
+                this.operate(entry);
+                this.progress = 0.0F;
+                this.notifyNeighbors();
+            }
+
+            this.getNetwork().updateTileGuiField(this, "progress");
+        } else {
+            if (this.getActive()) {
+                if (this.progress != 0.0F) {
+                    this.getNetwork().initiateTileEntityEvent(this, 1, false);
+                } else {
+                    this.getNetwork().initiateTileEntityEvent(this, 2, false);
+                }
+            }
+
+            if (entry == null && this.progress != 0.0F) {
+                this.progress = 0.0F;
+                this.getNetwork().updateTileGuiField(this, "progress");
+            }
+
+            this.setActive(false);
+        }
+
+        for(int i = 0; i < 2; ++i) {
+            ItemStack item = (ItemStack)this.inventory.get(i + this.inventory.size() - 2);
+            if (!item.isEmpty() && item.getItem() instanceof IMachineUpgradeItem) {
+                ((IMachineUpgradeItem)item.getItem()).onTick(item, this);
+            }
+        }
+
+        this.updateComparators();
     }
 
     public IMachineRecipeList.RecipeEntry getRecipe()
