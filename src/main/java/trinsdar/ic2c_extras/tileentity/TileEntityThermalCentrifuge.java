@@ -119,7 +119,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
             this.handleChargeSlot(this.recipeEnergy * this.recipeOperation);
         }
 
-        if ((canWork || entry != null) && this.energy > 0) {
+        if ((entry != null) && this.energy > 0) {
             if (this.heat < 1000) {
                 ++this.heat;
                 this.getNetwork().updateTileGuiField(this, "heat");
