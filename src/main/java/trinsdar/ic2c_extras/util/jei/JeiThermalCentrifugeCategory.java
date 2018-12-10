@@ -19,8 +19,8 @@ public class JeiThermalCentrifugeCategory implements IRecipeCategory<JeiThermalC
 
     public JeiThermalCentrifugeCategory(IGuiHelper helper) {
         displayName = new ItemStack(RegistryBlock.thermalCentrifuge);
-        ResourceLocation texture = new ResourceLocation(Ic2cExtras.MODID, "textures/gui/guithermalcentrifuge.png");
-        this.draw = helper.createDrawable(texture, 49, 4, 78, 78);
+        ResourceLocation texture = new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guithermalcentrifuge.png");
+        this.draw = helper.createDrawable(texture, 5, 14, 124, 60);
     }
 
     @Override
@@ -40,16 +40,16 @@ public class JeiThermalCentrifugeCategory implements IRecipeCategory<JeiThermalC
 
     @Override
     public String getUid() {
-        return "thernalCentrifuge";
+        return "thermalCentrifuge";
     }
 
     @Override
     public void setRecipe(IRecipeLayout layout, JeiThermalCentrifugeWrapper arg1, IIngredients ingridient) {
         IGuiItemStackGroup guiItemStacks = layout.getItemStacks();
-        guiItemStacks.init(0, true, 12, 17); //input
-        guiItemStacks.init(1, false, 111, 17); //outputs
-        guiItemStacks.init(2, false, 111, 35);
-        guiItemStacks.init(3, false, 111, 53);
+        guiItemStacks.init(0, true, 5, 2); //input
+        guiItemStacks.init(1, false, 105, 2); //outputs
+        guiItemStacks.init(2, false, 105, 20);
+        guiItemStacks.init(3, false, 105, 38);
         guiItemStacks.set(ingridient);
 
     }

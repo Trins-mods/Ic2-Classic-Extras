@@ -23,6 +23,7 @@ import ic2.core.util.misc.StackUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.container.ContainerThermalCentrifuge;
 
@@ -31,7 +32,7 @@ import java.util.List;
 
 public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 {
-    public static final int maxHeat = 1000;
+    public int maxHeat = 500;
     public int heat;
     public TileEntityThermalCentrifuge() {
         super( 5, 48, 400, 128);
@@ -107,6 +108,38 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         return MachineType.macerator;
     }
 
+//    boolean lastState;
+//    boolean firstCheck = true;
+//
+//    @Override
+//    public boolean canWork() {
+//        boolean superCall = super.canWork();
+//        if (superCall) {
+//            if (world.getTotalWorldTime() % 1200 == 0 || firstCheck) {
+//                lastState = isHeatFull();
+//                firstCheck = false;
+//            }
+//            superCall = superCall && lastState;
+//        }
+//        return superCall;
+//    }
+//
+//    public boolean isHeatFull(){
+//        if (heat == maxHeat){
+//            return true;
+//        }else {
+//            return false;
+//        }
+//    }
+//
+//    @Override
+//    protected EnumActionResult isRecipeStillValid(IMachineRecipeList.RecipeEntry entry) {
+//        if (heat == maxHeat) {
+//            return EnumActionResult.SUCCESS;
+//        }
+//        return EnumActionResult.PASS;
+//    }
+
     @Override
     public void update() {
         this.handleRedstone();
@@ -120,7 +153,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         }
 
         if ((entry != null) && this.energy > 0) {
-            if (this.heat < 1000) {
+            if (this.heat < maxHeat) {
                 ++this.heat;
                 this.getNetwork().updateTileGuiField(this, "heat");
             }
@@ -130,38 +163,40 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
             this.heat -= Math.min(this.heat, 4);
             this.getNetwork().updateTileGuiField(this, "heat");
         }
-
-        if (operate && this.energy >= this.energyConsume) {
-            if (!this.getActive()) {
-                this.getNetwork().initiateTileEntityEvent(this, 0, false);
-            }
-
-            this.setActive(true);
-            this.progress += this.progressPerTick;
-            this.useEnergy(this.recipeEnergy);
-            if (this.progress >= (float)this.recipeOperation) {
-                this.operate(entry);
-                this.progress = 0.0F;
-                this.notifyNeighbors();
-            }
-
-            this.getNetwork().updateTileGuiField(this, "progress");
-        } else {
-            if (this.getActive()) {
-                if (this.progress != 0.0F) {
-                    this.getNetwork().initiateTileEntityEvent(this, 1, false);
-                } else {
-                    this.getNetwork().initiateTileEntityEvent(this, 2, false);
+        if (heat == maxHeat){
+            if (operate && this.energy >= this.energyConsume) {
+                if (!this.getActive()) {
+                    this.getNetwork().initiateTileEntityEvent(this, 0, false);
                 }
-            }
 
-            if (entry == null && this.progress != 0.0F) {
-                this.progress = 0.0F;
+                this.setActive(true);
+                this.progress += this.progressPerTick;
+                this.useEnergy(this.recipeEnergy);
+                if (this.progress >= (float)this.recipeOperation) {
+                    this.operate(entry);
+                    this.progress = 0.0F;
+                    this.notifyNeighbors();
+                }
+
                 this.getNetwork().updateTileGuiField(this, "progress");
-            }
+            } else {
+                if (this.getActive()) {
+                    if (this.progress != 0.0F) {
+                        this.getNetwork().initiateTileEntityEvent(this, 1, false);
+                    } else {
+                        this.getNetwork().initiateTileEntityEvent(this, 2, false);
+                    }
+                }
 
-            this.setActive(false);
+                if (entry == null && this.progress != 0.0F) {
+                    this.progress = 0.0F;
+                    this.getNetwork().updateTileGuiField(this, "progress");
+                }
+
+                this.setActive(false);
+            }
         }
+
 
         for(int i = 0; i < 2; ++i) {
             ItemStack item = (ItemStack)this.inventory.get(i + this.inventory.size() - 2);
