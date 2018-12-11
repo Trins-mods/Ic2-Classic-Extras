@@ -38,7 +38,6 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     public int heat;
     public TileEntityThermalCentrifuge() {
         super( 5, 48, 400, 128);
-        this.setCustomName("tileThermalCentrifuge");
         this.addGuiFields("heat");
     }
 
@@ -111,8 +110,20 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     }
 
     @Override
+    public String getName()
+    {
+        return "Thermal Centrifuge";
+    }
+
+    @Override
     public LocaleComp getBlockName() {
         return Ic2cExtrasLang.thermalCentrifuge;
+    }
+
+    @Override
+    public boolean hasCustomName()
+    {
+        return true;
     }
 
     @Override
