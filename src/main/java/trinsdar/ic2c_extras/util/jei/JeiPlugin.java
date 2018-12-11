@@ -8,6 +8,7 @@ import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
+import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
 
 import javax.annotation.Nonnull;
@@ -29,11 +30,20 @@ public class JeiPlugin implements IModPlugin {
             }
         }, "thermalCentrifuge");
         registry.addRecipes(TileEntityThermalCentrifuge.thermalCentrifuge.getRecipeMap(), "thermalCentrifuge");
+        registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
+            @Override
+            public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
+            {
+                return new JeiOreWashingWrapper(var1);
+            }
+        }, "oreWashing");
+        registry.addRecipes(TileEntityOreWashingPlant.oreWashingPlant.getRecipeMap(), "oreWashing");
     }
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry)
     {
         registry.addRecipeCategories(new JeiThermalCentrifugeCategory(registry.getJeiHelpers().getGuiHelper()));
+        registry.addRecipeCategories(new JeiOreWashingCategory(registry.getJeiHelpers().getGuiHelper()));
     }
 }
