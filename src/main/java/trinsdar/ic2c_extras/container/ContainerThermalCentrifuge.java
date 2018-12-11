@@ -13,7 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
-import trinsdar.ic2c_extras.util.MachineHeatBarComp;
+import trinsdar.ic2c_extras.util.MachineHeatComp;
 
 public class ContainerThermalCentrifuge extends ContainerTileComponent<TileEntityThermalCentrifuge> {
 
@@ -42,7 +42,7 @@ public class ContainerThermalCentrifuge extends ContainerTileComponent<TileEntit
         this.addPlayerInventory(player);
         this.addComponent(new MachineChargeComp(tile, ContainerThermalCentrifuge.machineChargeBox, ContainerThermalCentrifuge.machineChargePos));
         this.addComponent(new MachineProgressComp(tile, ContainerThermalCentrifuge.machineProgressBox, ContainerThermalCentrifuge.machineProgressPos));
-        this.addComponent(new MachineHeatBarComp(tile, ContainerThermalCentrifuge.machineHeatBox, ContainerThermalCentrifuge.machineHeatPos));
+        this.addComponent(new MachineHeatComp(tile, ContainerThermalCentrifuge.machineHeatBox, ContainerThermalCentrifuge.machineHeatPos));
     }
 
     @Override

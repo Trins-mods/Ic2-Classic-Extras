@@ -2,7 +2,6 @@ package trinsdar.ic2c_extras.util;
 
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
-import ic2.core.platform.lang.storage.Ic2InfoLang;
 import ic2.core.platform.player.PlayerHandler;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
@@ -13,11 +12,11 @@ import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
 import java.util.Arrays;
 import java.util.List;
 
-public class MachineHeatBarComp extends GuiComponent {
+public class MachineHeatComp extends GuiComponent {
     TileEntityThermalCentrifuge block;
     Vec2i texPos;
 
-    public MachineHeatBarComp(TileEntityThermalCentrifuge tile, Box2D box, Vec2i pos) {
+    public MachineHeatComp(TileEntityThermalCentrifuge tile, Box2D box, Vec2i pos) {
         super(box);
         this.block = tile;
         this.texPos = pos;

@@ -16,6 +16,7 @@ import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.helpers.FilteredList;
@@ -26,6 +27,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.container.ContainerThermalCentrifuge;
+import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
 
 import java.util.Iterator;
 import java.util.List;
@@ -108,37 +110,10 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         return MachineType.macerator;
     }
 
-//    boolean lastState;
-//    boolean firstCheck = true;
-//
-//    @Override
-//    public boolean canWork() {
-//        boolean superCall = super.canWork();
-//        if (superCall) {
-//            if (world.getTotalWorldTime() % 1200 == 0 || firstCheck) {
-//                lastState = isHeatFull();
-//                firstCheck = false;
-//            }
-//            superCall = superCall && lastState;
-//        }
-//        return superCall;
-//    }
-//
-//    public boolean isHeatFull(){
-//        if (heat == maxHeat){
-//            return true;
-//        }else {
-//            return false;
-//        }
-//    }
-//
-//    @Override
-//    protected EnumActionResult isRecipeStillValid(IMachineRecipeList.RecipeEntry entry) {
-//        if (heat == maxHeat) {
-//            return EnumActionResult.SUCCESS;
-//        }
-//        return EnumActionResult.PASS;
-//    }
+    @Override
+    public LocaleComp getBlockName() {
+        return Ic2cExtrasLang.thermalCentrifuge;
+    }
 
     @Override
     public void update() {
@@ -152,7 +127,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
             this.handleChargeSlot(this.recipeEnergy * this.recipeOperation);
         }
 
-        if ((entry != null) && this.energy > 0) {
+        if ((isRedstonePowered() || (entry != null)) && this.energy > 0) {
             if (this.heat < maxHeat) {
                 ++this.heat;
                 this.getNetwork().updateTileGuiField(this, "heat");
