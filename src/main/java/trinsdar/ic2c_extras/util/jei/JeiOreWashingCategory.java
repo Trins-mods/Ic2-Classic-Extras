@@ -18,6 +18,7 @@ public class JeiOreWashingCategory implements IRecipeCategory<JeiOreWashingWrapp
     IDrawable arrow;
 
     public JeiOreWashingCategory(IGuiHelper helper) {
+
         displayName = new ItemStack(RegistryBlock.oreWashingPlant);
         ResourceLocation texture = new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guiorewashingplant.png");
         this.draw = helper.createDrawable(texture, 5, 11, 124, 63);

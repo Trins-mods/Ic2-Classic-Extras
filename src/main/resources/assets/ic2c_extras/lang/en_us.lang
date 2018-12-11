@@ -61,3 +61,5 @@ item.ic2c_extras.plutonium_enriched_uranium.name=Plutonium Enriched Uranium
 item.ic2c_extras.iridium_shard.name=Iridium Shard
 
 itemGroup.ic2c_extras=Ic2 Classic Extras
+
+tileInfo.heatAmount.name=Heat: %1$s / %2$s
