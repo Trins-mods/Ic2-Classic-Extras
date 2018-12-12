@@ -8,7 +8,6 @@ public class Ic2cExtrasLang {
     public static LocaleComp heat = new LangComponentHolder.LocaleTileInfoComp("tileInfo.heatAmount.name");
 
     public static LocaleComp thermalCentrifuge = new LangComponentHolder.LocaleBlockComp("tile." + Ic2cExtras.MODID + ".thermalCentrifuge");
-
-    public Ic2cExtrasLang(){
-    }
+    public static LocaleComp oreWashingPlant = new LangComponentHolder.LocaleBlockComp("tile." + Ic2cExtras.MODID + ".oreWashingPlant");
+    public static LocaleComp metalPress = new LangComponentHolder.LocaleBlockComp("tile." + Ic2cExtras.MODID + ".metalPress");
 }

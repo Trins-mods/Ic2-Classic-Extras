@@ -22,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.container.ContainerMetalPress;
+import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.RegistryItem;
 
 import java.util.Iterator;
@@ -30,7 +31,6 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
 
     public TileEntityMetalPress(){
         super(3, 10, 400, 32);
-        this.setCustomName("tileMetalPress");
     }
 
     public static LocaleComp rollingMode = new LangComponentHolder.LocaleGuiComp("container.rollingMode.name");
@@ -43,10 +43,8 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
 
     public LocaleComp getBlockName()
     {
-        return new LangComponentHolder.LocaleBlockComp("tile.metalPress");
+        return Ic2cExtrasLang.metalPress;
     }
-
-    public static IMachineRecipeList metalPress = new BasicMachineRecipeList("metalPress");
 
     @Override
     public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input) {
@@ -84,24 +82,8 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
         if (par1 == null) {
             return false;
         } else {
-            return recipeList[1].getRecipeInAndOutput(par1, true) != null ? super.isValidInput(par1) : false;
+            return recipeList[1].getRecipeInAndOutput(par1, true) != null && super.isValidInput(par1);
         }
-    }
-
-
-    @Override
-    public boolean supportsNotify() {
-        return true;
-    }
-
-    @Override
-    public String getName() {
-        return "MetalPress";
-    }
-
-    @Override
-    public boolean hasCustomName() {
-        return true;
     }
 
     int index = 0;
@@ -116,159 +98,53 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
         return recipeList[1];
     }
 
-    private IMachineRecipeList.RecipeEntry getRecipe() {
-        if (((ItemStack)this.inventory.get(0)).isEmpty() && !this.canWorkWithoutItems()) {
-            return null;
-        } else {
-            if (this.lastRecipe != null) {
-                IRecipeInput recipe = this.lastRecipe.getInput();
-                if (recipe instanceof INullableRecipeInput) {
-                    if (!recipe.matches((ItemStack)this.inventory.get(0))) {
-                        this.lastRecipe = null;
-                    }
-                } else if (!((ItemStack)this.inventory.get(0)).isEmpty() && recipe.matches((ItemStack)this.inventory.get(0))) {
-                    if (recipe.getAmount() > ((ItemStack)this.inventory.get(0)).getCount()) {
-                        return null;
-                    }
-                } else {
-                    this.lastRecipe = null;
-                }
-            }
-
-            if (this.lastRecipe == null) {
-                IMachineRecipeList.RecipeEntry out = this.getOutputFor(((ItemStack)this.inventory.get(0)).copy());
-                if (out == null) {
-                    return null;
-                }
-
-                this.lastRecipe = out;
-                this.handleModifiers(out);
-            }
-
-            if (this.lastRecipe == null) {
-                return null;
-            } else if (((ItemStack)this.inventory.get(2)).isEmpty()) {
-                return this.lastRecipe;
-            } else if (((ItemStack)this.inventory.get(2)).getCount() >= ((ItemStack)this.inventory.get(2)).getMaxStackSize()) {
-                return null;
-            } else {
-                Iterator var4 = this.lastRecipe.getOutput().getAllOutputs().iterator();
-
-                ItemStack output;
-                do {
-                    if (!var4.hasNext()) {
-                        return null;
-                    }
-
-                    output = (ItemStack)var4.next();
-                } while(!StackUtil.isStackEqual((ItemStack)this.inventory.get(2), output, false, true));
-
-                return this.lastRecipe;
-            }
-        }
-    }
-
-    @Override
-    public void update() {
-        this.handleRedstone();
-        this.updateNeighbors();
-        boolean noRoom = this.addToInventory();
-        IMachineRecipeList.RecipeEntry entry = this.getRecipe();
-        boolean canWork = this.canWork() && !noRoom;
-        boolean operate = canWork && entry != null;
-        if (operate) {
-            this.handleChargeSlot(this.maxEnergy);
-        }
-
-        if (operate && this.energy >= this.energyConsume) {
-            if (!this.getActive()) {
-                this.getNetwork().initiateTileEntityEvent(this, 0, false);
-            }
-
-            this.setActive(true);
-            this.progress += this.progressPerTick;
-            this.useEnergy(this.recipeEnergy);
-            if (this.progress >= (float)this.recipeOperation) {
-                this.operate(entry);
-                this.progress = 0.0F;
-                this.notifyNeighbors();
-            }
-
-            this.getNetwork().updateTileGuiField(this, "progress");
-        } else {
-            if (this.getActive()) {
-                if (this.progress != 0.0F) {
-                    this.getNetwork().initiateTileEntityEvent(this, 1, false);
-                } else {
-                    this.getNetwork().initiateTileEntityEvent(this, 2, false);
-                }
-            }
-
-            if (entry == null && this.progress != 0.0F) {
-                this.progress = 0.0F;
-                this.getNetwork().updateTileGuiField(this, "progress");
-            }
-
-            this.setActive(false);
-        }
-
-        for(int i = 0; i < 4; ++i) {
-            ItemStack item = (ItemStack)this.inventory.get(i + this.inventory.size() - 4);
-            if (item.getItem() instanceof IMachineUpgradeItem) {
-                ((IMachineUpgradeItem)item.getItem()).onTick(item, this);
-            }
-        }
-
-        this.updateComparators();
-    }
-
     public static void init(){
         recipeList = new IMachineRecipeList[3];
         recipeList[0] = new BasicMachineRecipeList("Rolling");
         recipeList[1] = new BasicMachineRecipeList("Extruding");
         recipeList[2] = new BasicMachineRecipeList("Cutting");
         //recipes for future rolling mode
-        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotCopper", 1)),  new ItemStack(RegistryItem.copperCasing, 2), 0.7f, "copperItemCasingRolling");
-        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(RegistryItem.tinCasing, 2), 0.7f, "tinItemCasingRolling");
-        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotSilver", 1)),  new ItemStack(RegistryItem.silverCasing, 2), 0.7f, "silverItemCasingRolling");
-        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotLead", 1)),  new ItemStack(RegistryItem.leadCasing, 2), 0.7f, "leadItemCasingRolling");
-        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotIron", 1)),  new ItemStack(RegistryItem.ironCasing, 2), 0.7f, "ironItemCasingRolling");
-        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotGold", 1)),  new ItemStack(RegistryItem.goldCasing, 2), 0.7f, "goldItemCasingRolling");
-        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotRefinedIron", 1)),  new ItemStack(RegistryItem.refinedIronCasing, 2), 0.7f, "refinedIronItemCasingRolling");
-        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotSteel", 1)),  new ItemStack(RegistryItem.steelCasing, 2), 0.7f, "steelItemCasingRolling");
-        recipeList[0].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotBronze", 1)),  new ItemStack(RegistryItem.bronzeCasing, 2), 0.7f, "bronzeItemCasingRolling");
+        recipeList[0].addRecipe((new RecipeInputOreDict("ingotCopper", 1)),  new ItemStack(RegistryItem.copperCasing, 2), 0.7f, "copperItemCasingRolling");
+        recipeList[0].addRecipe((new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(RegistryItem.tinCasing, 2), 0.7f, "tinItemCasingRolling");
+        recipeList[0].addRecipe((new RecipeInputOreDict("ingotSilver", 1)),  new ItemStack(RegistryItem.silverCasing, 2), 0.7f, "silverItemCasingRolling");
+        recipeList[0].addRecipe((new RecipeInputOreDict("ingotLead", 1)),  new ItemStack(RegistryItem.leadCasing, 2), 0.7f, "leadItemCasingRolling");
+        recipeList[0].addRecipe((new RecipeInputOreDict("ingotIron", 1)),  new ItemStack(RegistryItem.ironCasing, 2), 0.7f, "ironItemCasingRolling");
+        recipeList[0].addRecipe((new RecipeInputOreDict("ingotGold", 1)),  new ItemStack(RegistryItem.goldCasing, 2), 0.7f, "goldItemCasingRolling");
+        recipeList[0].addRecipe((new RecipeInputOreDict("ingotRefinedIron", 1)),  new ItemStack(RegistryItem.refinedIronCasing, 2), 0.7f, "refinedIronItemCasingRolling");
+        recipeList[0].addRecipe((new RecipeInputOreDict("ingotSteel", 1)),  new ItemStack(RegistryItem.steelCasing, 2), 0.7f, "steelItemCasingRolling");
+        recipeList[0].addRecipe((new RecipeInputOreDict("ingotBronze", 1)),  new ItemStack(RegistryItem.bronzeCasing, 2), 0.7f, "bronzeItemCasingRolling");
         //recipes for future extruding mode
-        recipeList[1].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotCopper", 1)),  StackUtil.copyWithSize(Ic2Items.copperCable, 3), 0.7f, "copperCableExtruding");
-        recipeList[1].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotTin", 1)),  StackUtil.copyWithSize(Ic2Items.tinCable, 4), 0.7f, "tinCableExtruding");
-        recipeList[1].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotBronze", 1)),  StackUtil.copyWithSize(Ic2Items.bronzeCable, 3), 0.7f, "bronzeCableExtruding");
-        recipeList[1].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotSteel", 1)),  StackUtil.copyWithSize(Ic2Items.ironCable, 5), 0.7f, "steelCableExtruding");
-        recipeList[1].addRecipe((IRecipeInput) (new RecipeInputOreDict("ingotGold", 1)),  StackUtil.copyWithSize(Ic2Items.goldCable, 5), 0.7f, "goldCableExtruding");
-        recipeList[1].addRecipe((IRecipeInput) (new RecipeInputItemStack(new ItemStack(RegistryItem.tinCasing, 1))),  StackUtil.copyWithSize(Ic2Items.tinCan, 1), 0.7f, "tinCanExtruding");
+        recipeList[1].addRecipe((new RecipeInputOreDict("ingotCopper", 1)),  StackUtil.copyWithSize(Ic2Items.copperCable, 3), 0.7f, "copperCableExtruding");
+        recipeList[1].addRecipe((new RecipeInputOreDict("ingotTin", 1)),  StackUtil.copyWithSize(Ic2Items.tinCable, 4), 0.7f, "tinCableExtruding");
+        recipeList[1].addRecipe((new RecipeInputOreDict("ingotBronze", 1)),  StackUtil.copyWithSize(Ic2Items.bronzeCable, 3), 0.7f, "bronzeCableExtruding");
+        recipeList[1].addRecipe((new RecipeInputOreDict("ingotSteel", 1)),  StackUtil.copyWithSize(Ic2Items.ironCable, 5), 0.7f, "steelCableExtruding");
+        recipeList[1].addRecipe((new RecipeInputOreDict("ingotGold", 1)),  StackUtil.copyWithSize(Ic2Items.goldCable, 5), 0.7f, "goldCableExtruding");
+        recipeList[1].addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.tinCasing, 1))),  StackUtil.copyWithSize(Ic2Items.tinCan, 1), 0.7f, "tinCanExtruding");
         //currently no recipes for cutting as that mode is mainly aimed at modpack makers
     }
 
     public static void addRecipe(ItemStack input, ItemStack output) {
-        addRecipe((IRecipeInput)(new RecipeInputItemStack(input)), output);
+        addRecipe((new RecipeInputItemStack(input)), output);
     }
 
     public static void addRecipe(ItemStack input, int stacksize, ItemStack output) {
-        addRecipe((IRecipeInput)(new RecipeInputItemStack(input, stacksize)), output);
+        addRecipe((new RecipeInputItemStack(input, stacksize)), output);
     }
 
     public static void addRecipe(String input, int stacksize, ItemStack output) {
-        addRecipe((IRecipeInput)(new RecipeInputOreDict(input, stacksize)), output);
+        addRecipe((new RecipeInputOreDict(input, stacksize)), output);
     }
 
     public static void addRecipe(ItemStack input, ItemStack output, float exp) {
-        addRecipe((IRecipeInput)(new RecipeInputItemStack(input)), output, exp);
+        addRecipe((new RecipeInputItemStack(input)), output, exp);
     }
 
     public static void addRecipe(ItemStack input, int stacksize, ItemStack output, float exp) {
-        addRecipe((IRecipeInput)(new RecipeInputItemStack(input, stacksize)), output, exp);
+        addRecipe((new RecipeInputItemStack(input, stacksize)), output, exp);
     }
 
     public static void addRecipe(String input, int stacksize, ItemStack output, float exp) {
-        addRecipe((IRecipeInput)(new RecipeInputOreDict(input, stacksize)), output, exp);
+        addRecipe((new RecipeInputOreDict(input, stacksize)), output, exp);
     }
 
     public static void addRecipe(IRecipeInput input, ItemStack output) {
@@ -276,7 +152,6 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
     }
 
     public static void addRecipe(IRecipeInput input, ItemStack output, float exp) {
-        //metalPress.addRecipe(input, output, exp, makeString(output));
         recipeList[1].addRecipe(input, output, exp, makeString(output));
     }
 

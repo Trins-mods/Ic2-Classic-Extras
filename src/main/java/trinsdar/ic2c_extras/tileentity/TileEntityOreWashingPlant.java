@@ -43,6 +43,7 @@ import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.*;
 import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.container.ContainerOreWashingPlant;
+import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
 
 import javax.annotation.Nullable;
 import java.util.Iterator;
@@ -56,7 +57,6 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
     public int water = 0;
     public int maxWater = 10000;
-    public IFilter filterWater = new FluidFilter(FluidRegistry.WATER);
     public static IMachineRecipeList oreWashingPlant = new BasicMachineRecipeList("oreWashingPlant");
 
 
@@ -71,10 +71,9 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     public TileEntityOreWashingPlant()
     {
         super(7, 8, 400, 32);
-        this.setCustomName("tileOreWashingPlant");
         this.waterTank.addListener(this);
         this.waterTank.setCanFill(true);
-        this.addGuiFields("recipeOperation", "recipeEnergy", "progress", "waterTank");
+        this.addGuiFields("waterTank");
     }
 
 
@@ -254,12 +253,6 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
     }
 
-    @Override
-    public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list)
-    {
-        super.operateOnce(input, output, list);
-    }
-
     private IMachineRecipeList.RecipeEntry getRecipe()
     {
         if (this.inventory.get(slotInput).isEmpty() && !this.canWorkWithoutItems())
@@ -410,22 +403,11 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         return GuiComponentContainer.class;
     }
 
-    @Override
-    public void onGuiClosed(EntityPlayer entityPlayer)
-    {
-
-    }
-
-    @Override
-    public boolean hasGui(EntityPlayer player)
-    {
-        return true;
-    }
 
     @Override
     public LocaleComp getBlockName()
     {
-        return new LangComponentHolder.LocaleBlockComp("tile.oreWashingPlant");
+        return Ic2cExtrasLang.oreWashingPlant;
     }
 
     public ResourceLocation getGuiTexture()
@@ -455,18 +437,6 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     public IHasInventory getInputInventory()
     {
         return new RangedInventoryWrapper(this, slotInput, slotInputTank);
-    }
-
-    @Override
-    public String getName()
-    {
-        return "OreWashingPlant";
-    }
-
-    @Override
-    public boolean hasCustomName()
-    {
-        return true;
     }
 
     @Override
@@ -533,8 +503,4 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         oreWashingPlant.addRecipe(input, output, id);
     }
 
-    private static String makeString(ItemStack stack)
-    {
-        return stack.getDisplayName();
-    }
 }

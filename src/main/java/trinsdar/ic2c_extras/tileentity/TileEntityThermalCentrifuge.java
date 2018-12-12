@@ -117,10 +117,6 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         return Ic2cExtrasLang.thermalCentrifuge;
     }
 
-    @Override
-    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
-        return GuiComponentContainer.class;
-    }
 
     @Override
     public void update() {
@@ -275,12 +271,6 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     }
 
     @Override
-    public void operateOnce(IRecipeInput input, MachineOutput output, List<ItemStack> list)
-    {
-        super.operateOnce(input, output, list);
-    }
-
-    @Override
     public void operate(IMachineRecipeList.RecipeEntry entry) {
 
         IRecipeInput input = entry.getInput();
@@ -333,10 +323,5 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     public static void addRecipe(IRecipeInput input, MachineOutput output, String id)
     {
         thermalCentrifuge.addRecipe(input, output, id);
-    }
-
-    private static String makeString(ItemStack stack)
-    {
-        return stack.getDisplayName();
     }
 }
