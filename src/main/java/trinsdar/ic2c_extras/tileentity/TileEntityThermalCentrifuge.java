@@ -142,22 +142,24 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
             this.getNetwork().updateTileGuiField(this, "heat");
         }
 
-        if (operate && this.energy >= this.energyConsume) {
-            if (!this.getActive()) {
-                this.getNetwork().initiateTileEntityEvent(this, 0, false);
-            }
+        if (heat == maxHeat){
+            if (operate && this.energy >= this.energyConsume) {
+                if (!this.getActive()) {
+                    this.getNetwork().initiateTileEntityEvent(this, 0, false);
+                }
 
-            this.setActive(true);
-            this.progress += this.progressPerTick;
-            this.useEnergy(this.recipeEnergy);
-            if (this.progress >= (float)this.recipeOperation) {
-                this.operate(entry);
-                this.progress = 0.0F;
-                this.notifyNeighbors();
-            }
+                this.setActive(true);
+                this.progress += this.progressPerTick;
+                this.useEnergy(this.recipeEnergy);
+                if (this.progress >= (float)this.recipeOperation) {
+                    this.operate(entry);
+                    this.progress = 0.0F;
+                    this.notifyNeighbors();
+                }
 
-            this.getNetwork().updateTileGuiField(this, "progress");
-        } else {
+                this.getNetwork().updateTileGuiField(this, "progress");
+            }
+        }else {
             if (this.getActive()) {
                 if (this.progress != 0.0F) {
                     this.getNetwork().initiateTileEntityEvent(this, 1, false);
@@ -177,7 +179,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 
 
         for(int i = 0; i < 2; ++i) {
-            ItemStack item = (ItemStack)this.inventory.get(i + this.inventory.size() - 2);
+            ItemStack item = this.inventory.get(i + this.inventory.size() - 2);
             if (!item.isEmpty() && item.getItem() instanceof IMachineUpgradeItem) {
                 ((IMachineUpgradeItem)item.getItem()).onTick(item, this);
             }
