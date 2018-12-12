@@ -33,6 +33,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
@@ -117,74 +118,35 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     @Override
     public void update()
     {
-        this.handleChargeSlot(500);
-        this.updateNeighbors();
         if (!this.inventory.get(slotInputTank).isEmpty())
         {
             this.handleTank();
         }
+        super.update();
+    }
 
-        boolean noRoom = this.addToInventory();
-        IMachineRecipeList.RecipeEntry entry = this.getRecipe();
-        boolean canWork = this.canWork() && !noRoom;
-        boolean operate = canWork && entry != null && this.waterTank.getFluidAmount() >= 1000;
-        if (operate)
+    @Override
+    public boolean canWork()
+    {
+        if(super.canWork())
         {
-            this.handleChargeSlot(this.maxEnergy);
+            return waterTank.getFluidAmount() >= 1000;
         }
+        return false;
+    }
 
-        if (operate && this.energy >= this.energyConsume)
-        {
-            if (!this.getActive())
-            {
-                this.getNetwork().initiateTileEntityEvent(this, 0, false);
-            }
-
-            this.setActive(true);
-            this.progress += this.progressPerTick;
-            this.useEnergy(this.recipeEnergy);
-            if (this.progress >= (float) this.recipeOperation)
-            {
-                this.operate(entry);
-                this.progress = 0.0F;
-                this.notifyNeighbors();
-            }
-
-            this.getNetwork().updateTileGuiField(this, "progress");
-        }
-        else
-        {
-            if (this.getActive())
-            {
-                if (this.progress != 0.0F)
-                {
-                    this.getNetwork().initiateTileEntityEvent(this, 1, false);
-                }
-                else
-                {
-                    this.getNetwork().initiateTileEntityEvent(this, 2, false);
-                }
-            }
-
-            if (entry == null && this.progress != 0.0F)
-            {
-                this.progress = 0.0F;
-                this.getNetwork().updateTileGuiField(this, "progress");
-            }
-
-            this.setActive(false);
-        }
-
-        for (int i = 0; i < 4; ++i)
-        {
-            ItemStack item = this.inventory.get(i + this.inventory.size() - 4);
-            if (item.getItem() instanceof IMachineUpgradeItem)
-            {
-                ((IMachineUpgradeItem) item.getItem()).onTick(item, this);
+    @Override
+    protected EnumActionResult canFillRecipeIntoOutputs(MachineOutput output) {
+        List<ItemStack> result = output.getAllOutputs();
+        for (int i = 0; i < result.size() && i < 3; i++) {
+            ItemStack stack = getStackInSlot(slotOutput + i);
+            ItemStack extra = result.get(i);
+            if ((!stack.isEmpty() && !StackUtil.isStackEqual(stack, extra, false, true))
+                    || stack.getCount() + extra.getCount() > extra.getMaxStackSize()) {
+                return EnumActionResult.PASS;
             }
         }
-
-        this.updateComparators();
+        return EnumActionResult.SUCCESS;
     }
 
     public void handleTank()
@@ -236,7 +198,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
         if (list.size() > 0)
         {
-            for (int i = 0; i < 4 && i < list.size(); i++) {
+            for (int i = 0; i < 3 && i < list.size(); i++) {
                 // Dangerous thing here. Might dupe items if there is random rolls
                 ItemStack toAdd = list.get(i);
                 if (toAdd.isEmpty()) {
@@ -251,90 +213,6 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
             this.waterTank.drain(1000, true);
         }
 
-    }
-
-    private IMachineRecipeList.RecipeEntry getRecipe()
-    {
-        if (this.inventory.get(slotInput).isEmpty() && !this.canWorkWithoutItems())
-        {
-            return null;
-        }
-        else
-        {
-            if (this.lastRecipe != null)
-            {
-                IRecipeInput recipe = this.lastRecipe.getInput();
-                if (recipe instanceof INullableRecipeInput)
-                {
-                    if (!recipe.matches(this.inventory.get(slotInput)))
-                    {
-                        this.lastRecipe = null;
-                    }
-                }
-                else if (!this.inventory.get(slotInput).isEmpty() && recipe.matches(this.inventory.get(0)))
-                {
-                    if (recipe.getAmount() > this.inventory.get(slotInput).getCount())
-                    {
-                        return null;
-                    }
-                }
-                else
-                {
-                    this.lastRecipe = null;
-                }
-            }
-
-            if (this.lastRecipe == null)
-            {
-                IMachineRecipeList.RecipeEntry out = this.getOutputFor(this.inventory.get(slotInput).copy());
-                if (out == null)
-                {
-                    return null;
-                }
-
-                this.lastRecipe = out;
-                this.handleModifiers(out);
-            }
-
-            if (this.lastRecipe == null)
-            {
-                return null;
-            }
-            else if (this.inventory.get(slotOutput).getCount() >= this.inventory.get(slotOutput).getMaxStackSize())
-            {
-                return null;
-            }
-            else if (this.inventory.get(slotOutput2).getCount() >= this.inventory.get(slotOutput2).getMaxStackSize())
-            {
-                return null;
-            }
-            else if (this.inventory.get(slotOutput3).getCount() >= this.inventory.get(slotOutput3).getMaxStackSize())
-            {
-                return null;
-            }
-            else if (this.inventory.get(slotOutput).isEmpty())
-            {
-                return this.lastRecipe;
-            }
-            else
-            {
-                Iterator var4 = this.lastRecipe.getOutput().getAllOutputs().iterator();
-
-                ItemStack output;
-                do
-                {
-                    if (!var4.hasNext())
-                    {
-                        return null;
-                    }
-
-                    output = (ItemStack) var4.next();
-                }
-                while (!StackUtil.isStackEqual(this.inventory.get(slotOutput), output, false, true));
-
-                return this.lastRecipe;
-            }
-        }
     }
 
 
