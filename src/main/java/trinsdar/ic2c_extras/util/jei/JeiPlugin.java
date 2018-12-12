@@ -1,6 +1,7 @@
 package trinsdar.ic2c_extras.util.jei;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
+import ic2.jeiIntigration.SubModul;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
@@ -8,8 +9,10 @@ import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
+import net.minecraft.item.ItemStack;
 import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.util.RegistryBlock;
 
 import javax.annotation.Nonnull;
 @JEIPlugin
@@ -21,23 +24,26 @@ public class JeiPlugin implements IModPlugin {
 
     @Override
     public void register(@Nonnull IModRegistry registry) {
-
-        registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
-            @Override
-            public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
-            {
-                return new JeiThermalCentrifugeWrapper(var1);
-            }
-        }, "thermalCentrifuge");
-        registry.addRecipes(TileEntityThermalCentrifuge.thermalCentrifuge.getRecipeMap(), "thermalCentrifuge");
-        registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
-            @Override
-            public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
-            {
-                return new JeiOreWashingWrapper(var1);
-            }
-        }, "oreWashing");
-        registry.addRecipes(TileEntityOreWashingPlant.oreWashingPlant.getRecipeMap(), "oreWashing");
+        if (SubModul.load){
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.thermalCentrifuge), new String[] { "thermalCentrifuge" });
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.oreWashingPlant), new String[] { "oreWashing" });
+            registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
+                @Override
+                public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
+                {
+                    return new JeiThermalCentrifugeWrapper(var1);
+                }
+            }, "thermalCentrifuge");
+            registry.addRecipes(TileEntityThermalCentrifuge.thermalCentrifuge.getRecipeMap(), "thermalCentrifuge");
+            registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
+                @Override
+                public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
+                {
+                    return new JeiOreWashingWrapper(var1);
+                }
+            }, "oreWashing");
+            registry.addRecipes(TileEntityOreWashingPlant.oreWashingPlant.getRecipeMap(), "oreWashing");
+        }
     }
 
     @Override
