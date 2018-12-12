@@ -1,14 +1,15 @@
 package trinsdar.ic2c_extras.tileentity;
 
 import ic2.core.block.generator.tile.TileEntityBasicSteamTurbine;
+import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fluids.FluidStack;
+import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
 
 public class TileEntityAdvancedSteamTurbine extends TileEntityBasicSteamTurbine{
 
     public TileEntityAdvancedSteamTurbine(){
         super();
-        this.setCustomName("tileAdvancedSteamTurbine");
     }
 
     @Override
@@ -54,6 +55,11 @@ public class TileEntityAdvancedSteamTurbine extends TileEntityBasicSteamTurbine{
     @Override
     public double getOfferedEnergy() {
         return (double)Math.min(160, this.energy);
+    }
+
+    @Override
+    public LocaleComp getBlockName() {
+        return Ic2cExtrasLang.advancedSteamTurbine;
     }
 
     @Override
