@@ -13,6 +13,7 @@ import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.ArrayFilter;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.CommonFilters;
+import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
@@ -21,6 +22,7 @@ import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.helpers.FilteredList;
 import ic2.core.util.misc.StackUtil;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -106,14 +108,9 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 
     @Override
     public MachineType getType() {
-        return MachineType.macerator;
+        return null;
     }
 
-    @Override
-    public String getName()
-    {
-        return "Thermal Centrifuge";
-    }
 
     @Override
     public LocaleComp getBlockName() {
@@ -121,9 +118,8 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     }
 
     @Override
-    public boolean hasCustomName()
-    {
-        return true;
+    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
+        return GuiComponentContainer.class;
     }
 
     @Override
@@ -149,39 +145,39 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
             this.heat -= Math.min(this.heat, 4);
             this.getNetwork().updateTileGuiField(this, "heat");
         }
-        if (heat == maxHeat){
-            if (operate && this.energy >= this.energyConsume) {
-                if (!this.getActive()) {
-                    this.getNetwork().initiateTileEntityEvent(this, 0, false);
-                }
 
-                this.setActive(true);
-                this.progress += this.progressPerTick;
-                this.useEnergy(this.recipeEnergy);
-                if (this.progress >= (float)this.recipeOperation) {
-                    this.operate(entry);
-                    this.progress = 0.0F;
-                    this.notifyNeighbors();
-                }
-
-                this.getNetwork().updateTileGuiField(this, "progress");
-            } else {
-                if (this.getActive()) {
-                    if (this.progress != 0.0F) {
-                        this.getNetwork().initiateTileEntityEvent(this, 1, false);
-                    } else {
-                        this.getNetwork().initiateTileEntityEvent(this, 2, false);
-                    }
-                }
-
-                if (entry == null && this.progress != 0.0F) {
-                    this.progress = 0.0F;
-                    this.getNetwork().updateTileGuiField(this, "progress");
-                }
-
-                this.setActive(false);
+        if (operate && this.energy >= this.energyConsume) {
+            if (!this.getActive()) {
+                this.getNetwork().initiateTileEntityEvent(this, 0, false);
             }
+
+            this.setActive(true);
+            this.progress += this.progressPerTick;
+            this.useEnergy(this.recipeEnergy);
+            if (this.progress >= (float)this.recipeOperation) {
+                this.operate(entry);
+                this.progress = 0.0F;
+                this.notifyNeighbors();
+            }
+
+            this.getNetwork().updateTileGuiField(this, "progress");
+        } else {
+            if (this.getActive()) {
+                if (this.progress != 0.0F) {
+                    this.getNetwork().initiateTileEntityEvent(this, 1, false);
+                } else {
+                    this.getNetwork().initiateTileEntityEvent(this, 2, false);
+                }
+            }
+
+            if (entry == null && this.progress != 0.0F) {
+                this.progress = 0.0F;
+                this.getNetwork().updateTileGuiField(this, "progress");
+            }
+
+            this.setActive(false);
         }
+
 
 
         for(int i = 0; i < 2; ++i) {
