@@ -117,20 +117,41 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         return Ic2cExtrasLang.thermalCentrifuge;
     }
 
+    @Override
+    protected EnumActionResult canFillRecipeIntoOutputs(MachineOutput output) {
+        List<ItemStack> result = output.getAllOutputs();
+        for (int i = 0; i < result.size() && i < 3; i++) {
+            ItemStack stack = getStackInSlot(slotOutput + i);
+            ItemStack extra = result.get(i);
+            if ((!stack.isEmpty() && !StackUtil.isStackEqual(stack, extra, false, true))
+                    || stack.getCount() + extra.getCount() > extra.getMaxStackSize()) {
+                return EnumActionResult.PASS;
+            }
+        }
+        return EnumActionResult.SUCCESS;
+    }
+
+    @Override
+    public boolean canWork()
+    {
+        if(super.canWork())
+        {
+            return isHeatFull();
+        }
+        return false;
+    }
+
+    public boolean isHeatFull(){
+        if (heat == maxHeat){
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public void update() {
-        this.handleRedstone();
-        this.updateNeighbors();
-        boolean noRoom = this.addToInventory();
-        IMachineRecipeList.RecipeEntry entry = this.getRecipe();
-        boolean canWork = this.canWork() || entry != null && this.energy > 0;
-        boolean operate = canWork && !noRoom && entry != null;
-        if (canWork || entry != null) {
-            this.handleChargeSlot(this.recipeEnergy * this.recipeOperation);
-        }
-
-        if ((isRedstonePowered() || (entry != null)) && this.energy > 0) {
+        super.update();
+        if ((isRedstonePowered() || lastRecipe != null) && this.energy > 0) {
             if (this.heat < maxHeat) {
                 ++this.heat;
                 this.getNetwork().updateTileGuiField(this, "heat");
@@ -140,135 +161,6 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         } else if (this.heat > 0) {
             this.heat -= Math.min(this.heat, 4);
             this.getNetwork().updateTileGuiField(this, "heat");
-        }
-
-        if (heat == maxHeat){
-            if (operate && this.energy >= this.energyConsume) {
-                if (!this.getActive()) {
-                    this.getNetwork().initiateTileEntityEvent(this, 0, false);
-                }
-
-                this.setActive(true);
-                this.progress += this.progressPerTick;
-                this.useEnergy(this.recipeEnergy);
-                if (this.progress >= (float)this.recipeOperation) {
-                    this.operate(entry);
-                    this.progress = 0.0F;
-                    this.notifyNeighbors();
-                }
-
-                this.getNetwork().updateTileGuiField(this, "progress");
-            }
-        }else {
-            if (this.getActive()) {
-                if (this.progress != 0.0F) {
-                    this.getNetwork().initiateTileEntityEvent(this, 1, false);
-                } else {
-                    this.getNetwork().initiateTileEntityEvent(this, 2, false);
-                }
-            }
-
-            if (entry == null && this.progress != 0.0F) {
-                this.progress = 0.0F;
-                this.getNetwork().updateTileGuiField(this, "progress");
-            }
-
-            this.setActive(false);
-        }
-
-
-
-        for(int i = 0; i < 2; ++i) {
-            ItemStack item = this.inventory.get(i + this.inventory.size() - 2);
-            if (!item.isEmpty() && item.getItem() instanceof IMachineUpgradeItem) {
-                ((IMachineUpgradeItem)item.getItem()).onTick(item, this);
-            }
-        }
-
-        this.updateComparators();
-    }
-
-    public IMachineRecipeList.RecipeEntry getRecipe()
-    {
-        if (this.inventory.get(slotInput).isEmpty() && !this.canWorkWithoutItems())
-        {
-            return null;
-        }
-        else
-        {
-            if (this.lastRecipe != null)
-            {
-                IRecipeInput recipe = this.lastRecipe.getInput();
-                if (recipe instanceof INullableRecipeInput)
-                {
-                    if (!recipe.matches(this.inventory.get(slotInput)))
-                    {
-                        this.lastRecipe = null;
-                    }
-                }
-                else if (!this.inventory.get(slotInput).isEmpty() && recipe.matches(this.inventory.get(0)))
-                {
-                    if (recipe.getAmount() > this.inventory.get(slotInput).getCount())
-                    {
-                        return null;
-                    }
-                }
-                else
-                {
-                    this.lastRecipe = null;
-                }
-            }
-
-            if (this.lastRecipe == null)
-            {
-                IMachineRecipeList.RecipeEntry out = this.getOutputFor(this.inventory.get(slotInput).copy());
-                if (out == null)
-                {
-                    return null;
-                }
-
-                this.lastRecipe = out;
-                this.handleModifiers(out);
-            }
-
-            if (this.lastRecipe == null)
-            {
-                return null;
-            }
-            else if (this.inventory.get(slotOutput).getCount() >= this.inventory.get(slotOutput).getMaxStackSize())
-            {
-                return null;
-            }
-            else if (this.inventory.get(slotOutput2).getCount() >= this.inventory.get(slotOutput2).getMaxStackSize())
-            {
-                return null;
-            }
-            else if (this.inventory.get(slotOutput3).getCount() >= this.inventory.get(slotOutput3).getMaxStackSize())
-            {
-                return null;
-            }
-            else if (this.inventory.get(slotOutput).isEmpty())
-            {
-                return this.lastRecipe;
-            }
-            else
-            {
-                Iterator var4 = this.lastRecipe.getOutput().getAllOutputs().iterator();
-
-                ItemStack output;
-                do
-                {
-                    if (!var4.hasNext())
-                    {
-                        return null;
-                    }
-
-                    output = (ItemStack) var4.next();
-                }
-                while (!StackUtil.isStackEqual(this.inventory.get(slotOutput), output, false, true));
-
-                return this.lastRecipe;
-            }
         }
     }
 
