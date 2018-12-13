@@ -137,14 +137,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     {
         if(super.canWork())
         {
-            return isHeatFull();
-        }
-        return false;
-    }
-
-    public boolean isHeatFull(){
-        if (heat == maxHeat){
-            return true;
+            return heat == maxHeat;
         }
         return false;
     }
