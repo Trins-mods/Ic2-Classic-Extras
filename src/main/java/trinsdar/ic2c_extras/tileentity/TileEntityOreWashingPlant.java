@@ -237,34 +237,12 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     {
         super.readFromNBT(nbt);
         this.waterTank.readFromNBT(nbt.getCompoundTag("Tank"));
-        this.progress = nbt.getFloat("progress");
-        this.results.clear();
-        NBTTagList list = nbt.getTagList("Results", 10);
-
-        for (int i = 0; i < list.tagCount(); ++i)
-        {
-            NBTTagCompound data = list.getCompoundTagAt(i);
-            this.results.add(new ItemStack(data));
-        }
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        nbt.setFloat("progress", this.progress);
-        NBTTagList list = new NBTTagList();
-        Iterator var3 = this.results.iterator();
-
-        while (var3.hasNext())
-        {
-            ItemStack item = (ItemStack) var3.next();
-            NBTTagCompound data = new NBTTagCompound();
-            item.writeToNBT(data);
-            list.appendTag(data);
-        }
-
-        nbt.setTag("Results", list);
         this.waterTank.writeToNBT(this.getTag(nbt, "Tank"));
         return nbt;
     }
@@ -328,7 +306,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
             int toAdd = Math.min(resource.amount, maxWater - this.water);
             if (doFill) {
                 this.water += toAdd;
-                this.getNetwork().updateTileGuiField(this, "fuel");
+                this.getNetwork().updateTileGuiField(this, "water");
             }
 
             return toAdd;
@@ -352,7 +330,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         } else {
             if (doDrain) {
                 this.water -= amount;
-                this.getNetwork().updateTileGuiField(this, "fuel");
+                this.getNetwork().updateTileGuiField(this, "water");
             }
 
             return new FluidStack(FluidRegistry.WATER, amount);
