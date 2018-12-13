@@ -2,6 +2,7 @@ package trinsdar.ic2c_extras;
 import ic2.core.IC2;
 import ic2.core.platform.config.ConfigEntry;
 import ic2.core.platform.config.IC2Config;
+import ic2.core.platform.config.components.IConfigNotify;
 import trinsdar.ic2c_extras.proxy.CommonProxy;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Level;
@@ -9,50 +10,26 @@ import org.apache.logging.log4j.Level;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Config {
-    private static final String CATEGORY_GENERAL = "general";
-    private static final String CATEGORY_RADIATION = "radiation";
+public class Config implements IConfigNotify {
+    private static Config config = new Config();
 
-    // This values below you can access elsewhere in your mod:
-    public static boolean isRadiationTurnedOn = true;
+    public Config(){}
 
-    // Call this from CommonProxy.preInit(). It will create our config if it doesn't
-    // exist yet and read the values if it does exist.
-    public static void readConfig() {
-        Configuration cfg = CommonProxy.config;
-        try {
-            cfg.load();
-            initGeneralConfig(cfg);
-            initRadiationConfig(cfg);
-        } catch (Exception e1) {
-            IC2.log.log(Level.ERROR, "Problem loading config file!", e1);
-        } finally {
-            if (cfg.hasChanged()) {
-                cfg.save();
-            }
-        }
-    }
-
-    private static void initGeneralConfig(Configuration cfg) {
-        cfg.addCustomCategoryComment(CATEGORY_GENERAL, "General configuration");
-        // cfg.getBoolean() will get the value in the config if it is already specified there. If not it will create the value.
-    }
-
-    private static void initRadiationConfig(Configuration cfg) {
-        cfg.addCustomCategoryComment(CATEGORY_RADIATION, "Radiation configuration");
-        isRadiationTurnedOn = cfg.getBoolean("radiationSwitch", CATEGORY_GENERAL, isRadiationTurnedOn, "Set to false if you don't want radiation on.");
-
-    }
-    List<ConfigEntry> defaults = new ArrayList();
-
-    private void init(IC2Config config){
+    public static void init(){
         IC2Config.ConfigType bool = IC2Config.ConfigType.Boolean;
         IC2Config.ConfigType intg = IC2Config.ConfigType.Integer;
         IC2Config.ConfigType flo = IC2Config.ConfigType.Float;
         IC2Config.ConfigType txt = IC2Config.ConfigType.String;
-        this.add((new ConfigEntry(bool, "radiation", "enableItemRadiation", "Enable certain items giving radiation", "ItemRadiation", true)).setGameRestart().setServerSync());
+        if (IC2.config.isLoaded()){
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableItemRadiation", "Enable certain items giving radiation", "ItemRadiation", true).setGameRestart().setServerSync());
+            IC2.config.addConfigNotify(config);
+        }else {
+            throw new RuntimeException("The Ic2Classic config is not loaded");
+        }
     }
-    private void add(ConfigEntry par1) {
-        this.defaults.add(par1);
+
+    @Override
+    public void onConfigReloaded(IC2Config config) {
+        Radiation.setConfig(config.getFlag("ItemRadiation"));
     }
 }

@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import trinsdar.ic2c_extras.util.RegistryItem;
 
 public class Radiation {
+	private static boolean radiationEnabled;
 	private static ArrayList<ItemStack> radiation = null;
 
 	private void initRadiation() {
@@ -87,11 +88,13 @@ public class Radiation {
 		EntityPlayer player = event.player;
 		initRadiation();
 
-		if (event.phase == TickEvent.Phase.END) {
-			if (!player.isCreative()) {
-				if (!isFullHazmatSuit(player) && !hasFullQuantumSuit(player)) {
-					if (hasRadiationItem(player)) {
-						player.addPotionEffect(new PotionEffect(IC2Potion.radiation, 1800, 0));
+		if (radiationEnabled){
+			if (event.phase == TickEvent.Phase.END) {
+				if (!player.isCreative()) {
+					if (!isFullHazmatSuit(player) && !hasFullQuantumSuit(player)) {
+						if (hasRadiationItem(player)) {
+							player.addPotionEffect(new PotionEffect(IC2Potion.radiation, 1800, 0));
+						}
 					}
 				}
 			}
@@ -106,14 +109,8 @@ public class Radiation {
 		return false;
 	}
 
-//    public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
-//        boolean server = IC2.platform.isSimulating();
-//        if (server) {
-//            PotionEffect radiation = player.getActivePotionEffect(IC2Potion.radiation);
-//            if (radiation != null && isFullHazmatSuit(player)) {
-//                IC2.platform.removePotion(player, IC2Potion.radiation);
-//            }
-//        }
-//    }
+	public static void setConfig(boolean enabled){
+		radiationEnabled = enabled;
+	}
 
 }
