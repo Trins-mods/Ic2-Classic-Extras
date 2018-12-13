@@ -17,6 +17,7 @@ import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.item.misc.ItemMisc;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
@@ -151,7 +152,8 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     @Override
     public void update() {
         super.update();
-        if ((isRedstonePowered() || lastRecipe != null) && this.energy > 0) {
+
+        if ((isRedstonePowered() || (lastRecipe != null && !this.inventory.get(slotInput).isEmpty())) && this.energy > 0) {
             if (this.heat < maxHeat) {
                 ++this.heat;
                 this.getNetwork().updateTileGuiField(this, "heat");
