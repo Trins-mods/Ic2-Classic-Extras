@@ -27,6 +27,8 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.container.ContainerThermalCentrifuge;
@@ -205,6 +207,17 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         }
     }
 
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+        this.heat = nbt.getInteger("Heat");
+    }
+
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        super.writeToNBT(nbt);
+        nbt.setInteger("Heat", this.heat);
+        return nbt;
+    }
 
     public static void init() { //recipes in recipes class now
     }
