@@ -213,6 +213,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         this.heat = nbt.getInteger("Heat");
     }
 
+    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         nbt.setInteger("Heat", this.heat);
