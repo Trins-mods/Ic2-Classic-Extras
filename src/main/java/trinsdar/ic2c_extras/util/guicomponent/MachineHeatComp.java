@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.util;
+package trinsdar.ic2c_extras.util.guicomponent;
 
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
@@ -8,6 +8,7 @@ import ic2.core.util.math.Vec2i;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
 
 import java.util.Arrays;
 import java.util.List;

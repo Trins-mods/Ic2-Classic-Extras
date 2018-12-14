@@ -25,6 +25,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.tileentity.TileEntityMetalPress;
 import trinsdar.ic2c_extras.util.RegistryItem;
+import trinsdar.ic2c_extras.util.guicomponent.MetalPressButtonsComp;
 
 public class ContainerMetalPress  extends ContainerTileComponent<TileEntityMetalPress>{
     public static Box2D machineProgressBox = new Box2D(78, 36, 25, 14);
@@ -50,44 +51,9 @@ public class ContainerMetalPress  extends ContainerTileComponent<TileEntityMetal
         this.addPlayerInventory(player);
         this.addComponent(new MachineChargeComp(tile, Ic2GuiComp.machineChargeBox, Ic2GuiComp.machineChargePos));
         this.addComponent(new MachineProgressComp(tile, Ic2GuiComp.machineProgressBox, Ic2GuiComp.machineProgressPos));
-
-
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void onGuiInit(GuiIC2 gui) {
-        gui.registerButton(ContainerMetalPress.rollingButton.setItemStack(new ItemStack(RegistryItem.ironCasing, 1)).addText("rolling mode"));
-        gui.registerButton(ContainerMetalPress.extrudingButton.setItemStack(Ic2Items.copperCable).addText("extruding mode"));
-        gui.registerButton(ContainerMetalPress.cuttingButton.setItemStack(new ItemStack(Items.SHEARS)).addText("cutting mode"));
+        this.addComponent(new MetalPressButtonsComp(tile));
 
     }
-
-    @SideOnly(Side.CLIENT)
-    public void onGuiTick(GuiIC2 gui) {
-        gui.getButton(1).enabled = true;
-        gui.getButton(2).enabled = true;
-        gui.getButton(3).enabled = true;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void onButtonClick(GuiIC2 gui, GuiButton button) {
-        int id = button.id;
-        if (id == 1){
-            rollingButton.setTextVisiblity(false);
-            extrudingButton.setTextVisiblity(true);
-
-        }else if (id == 2){
-            extrudingButton.setTextVisiblity(false);
-            cuttingButton.setTextVisiblity(true);
-
-        }else if (id == 3){
-            cuttingButton.setTextVisiblity(false);
-            rollingButton.setTextVisiblity(true);
-
-        }
-
-    }
-
 
     @Override
     public ResourceLocation getTexture() {

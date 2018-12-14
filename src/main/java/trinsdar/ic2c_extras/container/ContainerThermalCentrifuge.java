@@ -13,7 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
-import trinsdar.ic2c_extras.util.MachineHeatComp;
+import trinsdar.ic2c_extras.util.guicomponent.MachineHeatComp;
 
 public class ContainerThermalCentrifuge extends ContainerTileComponent<TileEntityThermalCentrifuge> {
 
