@@ -19,6 +19,7 @@ import java.util.Arrays;
 import static ic2.api.classic.recipe.ClassicRecipes.macerator;
 
 public class Ic2cExtrasRecipes {
+    public static boolean enableHarderUranium;
     public static void init(){
         initShapedRecipes();
         initReplaceRecipes();
@@ -95,5 +96,9 @@ public class Ic2cExtrasRecipes {
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedSilver", 1)), new MachineOutput(null, Arrays.asList((Ic2Items.silverDust), new ItemStack(RegistryItem.stoneDust, 1))), "crushedSilverOre");
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedLead", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.leadDust, 1), new ItemStack(RegistryItem.stoneDust, 1))), "crushedLeadOre");
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uranium238, 4), new ItemStack(RegistryItem.uranium235TinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))), "crushedUraniumOre");
+    }
+
+    public static void setConfig(boolean enabled){
+        enableHarderUranium = enabled;
     }
 }

@@ -6,6 +6,7 @@ import ic2.core.platform.config.components.IConfigNotify;
 import trinsdar.ic2c_extras.proxy.CommonProxy;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Level;
+import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ public class Config implements IConfigNotify {
         IC2Config.ConfigType txt = IC2Config.ConfigType.String;
         if (IC2.config.isLoaded()){
             IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableItemRadiation", "Enable certain items giving radiation", "ItemRadiation", true).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableHarderUranium", "Enable harder uranium processing", "HarderUranium", true).setGameRestart().setServerSync());
             IC2.config.addConfigNotify(config);
         }else {
             throw new RuntimeException("The Ic2Classic config is not loaded");
@@ -31,5 +33,6 @@ public class Config implements IConfigNotify {
     @Override
     public void onConfigReloaded(IC2Config config) {
         Radiation.setConfig(config.getFlag("ItemRadiation"));
+        Ic2cExtrasRecipes.setConfig(config.getFlag("HarderUranium"));
     }
 }
