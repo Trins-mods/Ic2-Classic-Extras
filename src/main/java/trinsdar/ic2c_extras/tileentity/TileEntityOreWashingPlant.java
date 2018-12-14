@@ -297,7 +297,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
     @Override
     public IFluidTankProperties[] getTankProperties() {
-        return new IFluidTankProperties[]{new FluidTankProperties(new FluidStack(FluidRegistry.LAVA, this.water), 10000)};
+        return new IFluidTankProperties[]{new FluidTankProperties(new FluidStack(FluidRegistry.WATER, this.water), 10000)};
     }
 
     @Override

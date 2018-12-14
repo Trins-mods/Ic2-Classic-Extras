@@ -23,7 +23,7 @@ public class Config implements IConfigNotify {
         IC2Config.ConfigType txt = IC2Config.ConfigType.String;
         if (IC2.config.isLoaded()){
             IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableItemRadiation", "Enable certain items giving radiation", "ItemRadiation", true).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableHarderUranium", "Enable harder uranium processing", "HarderUranium", true).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableHarderUranium", "Enable harder uranium processing. Note: this is different then enableHarderEnrichedUran in that it deals with processing the ore and such", "HarderUranium", true).setGameRestart().setServerSync());
             IC2.config.addConfigNotify(config);
         }else {
             throw new RuntimeException("The Ic2Classic config is not loaded");
