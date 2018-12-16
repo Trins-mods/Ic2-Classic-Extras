@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.proxy.CommonProxy;
 import trinsdar.ic2c_extras.util.CreativeTabIC2CExtras;
+import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.Icons;
 
 import java.util.Map;
@@ -53,6 +54,7 @@ public class Ic2cExtras extends PluginBase
     public void init(FMLInitializationEvent fmlInitializationEvent)
     {
         proxy.init();
+        MinecraftForge.EVENT_BUS.register(new Ic2cExtrasRecipes());
     }
 
     @Override
