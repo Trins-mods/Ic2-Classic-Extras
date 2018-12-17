@@ -33,7 +33,7 @@ public class Config implements IConfigNotify {
     }
 
     public static void initConfigOverride(){
-        if (higherRatio){
+        if (higherRatio && Ic2cExtrasRecipes.enableHarderUranium){
             IC2.config.setValue("oreDensityFactor", 1.2F);
         }
     }
