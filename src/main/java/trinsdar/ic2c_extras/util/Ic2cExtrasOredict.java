@@ -19,5 +19,28 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("crushedPurifiedSilver", RegistryItem.silverPurifiedCrushedOre);
         OreDictionary.registerOre("crushedPurifiedLead", RegistryItem.leadPurifiedCrushedOre);
         OreDictionary.registerOre("crushedPurifiedUranium", RegistryItem.uraniumPurifiedCrushedOre);
+
+        OreDictionary.registerOre("dustTinyIron", RegistryItem.ironTinyDust);
+        OreDictionary.registerOre("dustTinyGold", RegistryItem.goldTinyDust);
+        OreDictionary.registerOre("dustTinyCopper", RegistryItem.copperTinyDust);
+        OreDictionary.registerOre("dustTinyTin", RegistryItem.tinTinyDust);
+        OreDictionary.registerOre("dustTinySilver", RegistryItem.silverTinyDust);
+        OreDictionary.registerOre("dustTinyLead", RegistryItem.leadTinyDust);
+        OreDictionary.registerOre("dustTinyObsidian", RegistryItem.obsidianTinyDust);
+        OreDictionary.registerOre("dustTinyBronze", RegistryItem.bronzeTinyDust);
+
+        OreDictionary.registerOre("dustLead", RegistryItem.leadDust);
+        OreDictionary.registerOre("ingotLead", RegistryItem.leadIngot);
+        OreDictionary.registerOre("ingotSteel", RegistryItem.steelIngot);
+
+        OreDictionary.registerOre("casingCopper", RegistryItem.copperCasing);
+        OreDictionary.registerOre("casingTin", RegistryItem.tinCasing);
+        OreDictionary.registerOre("casingSilver", RegistryItem.silverCasing);
+        OreDictionary.registerOre("casingLead", RegistryItem.leadCasing);
+        OreDictionary.registerOre("casingIron", RegistryItem.ironCasing);
+        OreDictionary.registerOre("casingGold", RegistryItem.goldCasing);
+        OreDictionary.registerOre("casingRefinedIron", RegistryItem.refinedIronCasing);
+        OreDictionary.registerOre("casingSteel", RegistryItem.steelCasing);
+        OreDictionary.registerOre("casingBronze", RegistryItem.bronzeCasing);
     }
 }

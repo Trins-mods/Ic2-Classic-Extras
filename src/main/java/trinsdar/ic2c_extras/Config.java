@@ -33,7 +33,5 @@ public class Config implements IConfigNotify {
 
     @Override
     public void onConfigReloaded(IC2Config config) {
-        Radiation.setConfig(config.getFlag("ItemRadiation"));
-        Ic2cExtrasRecipes.setConfig(config.getFlag("HarderUranium"));
     }
 }

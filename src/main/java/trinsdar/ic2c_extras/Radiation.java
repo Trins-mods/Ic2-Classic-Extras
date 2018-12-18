@@ -4,6 +4,7 @@ import static ic2.core.item.armor.standart.ItemHazmatArmor.isFullHazmatSuit;
 
 import java.util.ArrayList;
 
+import ic2.core.IC2;
 import ic2.core.entity.IC2Potion;
 import ic2.core.item.armor.electric.ItemArmorQuantumSuit;
 import ic2.core.platform.registry.Ic2Items;
@@ -16,7 +17,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import trinsdar.ic2c_extras.util.RegistryItem;
 
 public class Radiation {
-	private static boolean radiationEnabled;
 	private static ArrayList<ItemStack> radiation = null;
 
 	private void initRadiation() {
@@ -30,6 +30,8 @@ public class Radiation {
 			radiation.add(new ItemStack(RegistryItem.uranium235TinyDust, 1));
 			radiation.add(new ItemStack(RegistryItem.uranium238TinyDust, 1));
 			radiation.add(new ItemStack(RegistryItem.plutoniumTinyDust, 1));
+			radiation.add(new ItemStack(RegistryItem.plutoniumEnrichedUranium, 1));
+			radiation.add(new ItemStack(RegistryItem.plutoniumEnrichedUraniumIngot, 1));
 			radiation.add(Ic2Items.redstoneUraniumIngot);
 			radiation.add(Ic2Items.blazeUraniumIngot);
 			radiation.add(Ic2Items.enderPearlUraniumIngot);
@@ -88,7 +90,7 @@ public class Radiation {
 		EntityPlayer player = event.player;
 		initRadiation();
 
-		if (radiationEnabled){
+		if (IC2.config.getFlag("ItemRadiation")){
 			if (event.phase == TickEvent.Phase.END) {
 				if (!player.isCreative()) {
 					if (!isFullHazmatSuit(player) && !hasFullQuantumSuit(player)) {
@@ -107,10 +109,6 @@ public class Radiation {
 				return true;
 		}
 		return false;
-	}
-
-	public static void setConfig(boolean enabled){
-		radiationEnabled = enabled;
 	}
 
 }

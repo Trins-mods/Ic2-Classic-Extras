@@ -1,6 +1,7 @@
 package trinsdar.ic2c_extras.util.jei;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
+import ic2.core.IC2;
 import ic2.jeiIntigration.SubModul;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
@@ -50,7 +51,7 @@ public class JeiPlugin implements IModPlugin {
             registry.addRecipes(TileEntityOreWashingPlant.oreWashingPlant.getRecipeMap(), "oreWashing");
 
             IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
-            if (!Ic2cExtrasRecipes.enableHarderUranium){
+            if (!IC2.config.getFlag("HarderUranium")){
                 blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.uranium235));
                 blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.uranium238));
                 blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.uranium235TinyDust));

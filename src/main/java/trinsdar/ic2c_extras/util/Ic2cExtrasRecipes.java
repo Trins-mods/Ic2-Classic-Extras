@@ -3,6 +3,7 @@ package trinsdar.ic2c_extras.util;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
+import ic2.core.IC2;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
@@ -27,7 +28,6 @@ import java.util.Arrays;
 import static ic2.api.classic.recipe.ClassicRecipes.macerator;
 
 public class Ic2cExtrasRecipes {
-    public static boolean enableHarderUranium;
     public static void init(){
         initShapedRecipes();
         initReplaceRecipes();
@@ -105,7 +105,7 @@ public class Ic2cExtrasRecipes {
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedLead", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.leadDust, 1), new ItemStack(RegistryItem.stoneDust, 1))), "crushedLeadOre");
     }
     public static void initHarderUraniumProcessing(){
-        if (enableHarderUranium){
+        if (IC2.config.getFlag("HarderUranium")){
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(Ic2Items.reactorReEnrichedUraniumRod)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.plutonium), StackUtil.copyWithSize(Ic2Items.uraniumDrop, 4))), "reenrichedUraniumRods");
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedUranium", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uranium238, 6), new ItemStack(RegistryItem.uranium235TinyDust, 1))), "purifiedCrushedUraniumOre");
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uranium238, 4), new ItemStack(RegistryItem.uranium235TinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))), "crushedUraniumOre");
@@ -119,14 +119,10 @@ public class Ic2cExtrasRecipes {
     public void onHarvestDropsEvent(BlockEvent.HarvestDropsEvent event) {
         Block block = event.getState().getBlock();
         if (block == Ic2States.uraniumOre.getBlock()){
-            if (enableHarderUranium){
+            if (IC2.config.getFlag("HarderUranium")){
                 event.getDrops().clear();
                 event.getDrops().add(Ic2Items.uraniumOre);
             }
         }
-    }
-
-    public static void setConfig(boolean enabled){
-        enableHarderUranium = enabled;
     }
 }
