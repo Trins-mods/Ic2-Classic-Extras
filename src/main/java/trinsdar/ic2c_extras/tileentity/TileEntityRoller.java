@@ -37,7 +37,7 @@ public class TileEntityRoller extends TileEntityBasicElectricMachine {
 
     public LocaleComp getBlockName()
     {
-        return Ic2cExtrasLang.metalPress;
+        return Ic2cExtrasLang.roller;
     }
 
     @Override

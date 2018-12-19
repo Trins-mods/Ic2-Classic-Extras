@@ -2,6 +2,9 @@
 tile.ic2c_extras.oreWashingPlant.name=Ore Washing Plant
 tile.ic2c_extras.thermalCentrifuge.name=Thermal Centrifuge
 tile.ic2c_extras.metalPress.name=Metal Press
+tile.ic2c_extras.roller.name=Roller
+tile.ic2c_extras.extruder.name=Extruder
+tile.ic2c_extras.cutter.name=Cutter
 tile.ic2c_extras.blastFurnace.name=Blast Furnace
 tile.ic2c_extras.advancedSteamTurbine.name=Advanced Steam Turbine
 tile.ic2c_extras.solidFuelFirebox.name=Solid Fuel Firebox
