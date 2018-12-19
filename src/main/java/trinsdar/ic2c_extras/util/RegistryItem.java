@@ -66,6 +66,10 @@ public class RegistryItem
     plutoniumEnrichedUraniumIngot = new ItemMiscs(ItemMiscsTypes.PLUTONIUM_ENRICHED_URANIUM_INGOT),
     plutoniumEnrichedUranium = new ItemMiscs(ItemMiscsTypes.PLUTONIUM_ENRICHED_URANIUM),
     iridiumShard = new ItemMiscs(ItemMiscsTypes.IRIDIUM_SHARD);
+
+    public static final ItemToolCrafting
+    craftingHammer = new ItemToolCrafting(50, "craftingHammer", 77, true),
+    wireCutters = new ItemToolCrafting(50, "wireCutters", 78, true);
     
 
     public static final Item[] items =
@@ -79,6 +83,7 @@ public class RegistryItem
         refinedIronCasing,
         steelCasing,
         bronzeCasing,
+
         ironCrushedOre,
         goldCrushedOre,
         copperCrushedOre,
@@ -86,6 +91,7 @@ public class RegistryItem
         silverCrushedOre,
         leadCrushedOre,
         uraniumCrushedOre,
+
         ironPurifiedCrushedOre,
         goldPurifiedCrushedOre,
         copperPurifiedCrushedOre,
@@ -93,6 +99,7 @@ public class RegistryItem
         silverPurifiedCrushedOre,
         leadPurifiedCrushedOre,
         uraniumPurifiedCrushedOre,
+
         ironTinyDust,
         goldTinyDust,
         copperTinyDust,
@@ -104,6 +111,7 @@ public class RegistryItem
         bronzeTinyDust,
         uranium238TinyDust,
         plutoniumTinyDust,
+
         leadIngot,
         leadDust,
         stoneDust,
@@ -116,7 +124,9 @@ public class RegistryItem
         steelIngot,
         plutoniumEnrichedUraniumIngot,
         plutoniumEnrichedUranium,
-        iridiumShard
+        iridiumShard,
+        craftingHammer,
+        wireCutters
     };
 
     @SubscribeEvent
