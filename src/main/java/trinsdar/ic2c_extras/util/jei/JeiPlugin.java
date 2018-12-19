@@ -2,16 +2,21 @@ package trinsdar.ic2c_extras.util.jei;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.core.IC2;
+import ic2.core.platform.registry.Ic2Items;
+import ic2.core.platform.registry.Ic2Resources;
 import ic2.jeiIntigration.SubModul;
-import mezz.jei.api.IJeiRuntime;
-import mezz.jei.api.IModPlugin;
-import mezz.jei.api.IModRegistry;
-import mezz.jei.api.JEIPlugin;
+import ic2.jeiIntigration.core.machine.basic.MachineRecipe;
+import ic2.jeiIntigration.core.machine.basic.MachineRecipeCategory;
+import ic2.jeiIntigration.core.machine.basic.MachineRecipeWrapper;
+import mezz.jei.api.*;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
+import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
@@ -50,6 +55,21 @@ public class JeiPlugin implements IModPlugin {
             }, "oreWashing");
             registry.addRecipes(TileEntityOreWashingPlant.oreWashingPlant.getRecipeMap(), "oreWashing");
 
+            registry.handleRecipes(MachineRecipe.class, new MachineRecipeWrapper.MachineManager(), "roller");
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.roller), new String[]{"roller"});
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.metalPress), new String[]{"roller"});
+            registry.addRecipes(Ic2cExtrasRecipes.rolling.getRecipeMap(), "roller");
+
+            registry.handleRecipes(MachineRecipe.class, new MachineRecipeWrapper.MachineManager(), "extruder");
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.extruder), new String[]{"extruder"});
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.metalPress), new String[]{"extruder"});
+            registry.addRecipes(Ic2cExtrasRecipes.extruding.getRecipeMap(), "extruder");
+
+            registry.handleRecipes(MachineRecipe.class, new MachineRecipeWrapper.MachineManager(), "cutter");
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.cutter), new String[]{"cutter"});
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.metalPress), new String[]{"cutter"});
+            registry.addRecipes(Ic2cExtrasRecipes.cutting.getRecipeMap(), "cutter");
+
             IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
             if (!IC2.config.getFlag("HarderUranium")){
                 blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.uranium235));
@@ -69,7 +89,12 @@ public class JeiPlugin implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry)
     {
-        registry.addRecipeCategories(new JeiThermalCentrifugeCategory(registry.getJeiHelpers().getGuiHelper()));
-        registry.addRecipeCategories(new JeiOreWashingCategory(registry.getJeiHelpers().getGuiHelper()));
+        IGuiHelper helper = registry.getJeiHelpers().getGuiHelper();
+        registry.addRecipeCategories(new JeiThermalCentrifugeCategory(helper));
+        registry.addRecipeCategories(new JeiOreWashingCategory(helper));
+        registry.addRecipeCategories(new IRecipeCategory[]{
+                new MachineRecipeCategory(helper, "roller", new ItemStack(RegistryBlock.roller), new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guiroller.png")),
+                new MachineRecipeCategory(helper, "extruder", new ItemStack(RegistryBlock.extruder), new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guiroller.png")),
+                new MachineRecipeCategory(helper, "cutter", new ItemStack(RegistryBlock.cutter), new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guiroller.png"))});
     }
 }
