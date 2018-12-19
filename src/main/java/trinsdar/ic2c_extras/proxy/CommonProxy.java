@@ -26,8 +26,6 @@ public class CommonProxy
 
     public void init()
     {
-        TileEntityOreWashingPlant.init();
-        TileEntityThermalCentrifuge.init();
         TileEntityMetalPress.init();
         Ic2cExtrasOredict.init();
         Ic2cExtrasRecipes.init();

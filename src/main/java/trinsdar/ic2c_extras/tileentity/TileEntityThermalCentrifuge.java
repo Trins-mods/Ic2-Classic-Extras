@@ -31,6 +31,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import trinsdar.ic2c_extras.container.ContainerThermalCentrifuge;
 import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
 
@@ -39,8 +40,10 @@ import java.util.List;
 
 public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 {
-    public int maxHeat = 500;
+    public static int maxHeat = 500;
     public int heat;
+
+    public static final String neededHeat = "neededHeat";
     public TileEntityThermalCentrifuge() {
         super( 5, 48, 400, 128);
         this.addGuiFields("heat");
@@ -220,11 +223,25 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         return nbt;
     }
 
-    public static void init() { //recipes in recipes class now
+    public static int getRequiredHeat(MachineOutput output) {
+        if (output == null || output.getMetadata() == null) {
+            return 0;
+        }
+        return output.getMetadata().getInteger(neededHeat);
     }
 
-    public static void addRecipe(IRecipeInput input, MachineOutput output, String id)
+    protected static NBTTagCompound createNeededHeat(int amount) {
+        maxHeat = amount;
+        if (amount <= 0) {
+            return null;
+        }
+        NBTTagCompound nbt = new NBTTagCompound();
+        nbt.setInteger(neededHeat, amount);
+        return nbt;
+    }
+
+    public static void addRecipe(IRecipeInput input, MachineOutput output)
     {
-        thermalCentrifuge.addRecipe(input, output, id);
+        thermalCentrifuge.addRecipe(input, output, input.getInputs().get(0).getDisplayName());
     }
 }

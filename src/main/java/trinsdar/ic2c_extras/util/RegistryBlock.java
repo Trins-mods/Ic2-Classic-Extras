@@ -21,6 +21,9 @@ public class RegistryBlock
     oreWashingPlant = new BlockMachine("oreWashingPlant"),
     thermalCentrifuge = new BlockMachine("thermalCentrifuge"),
     metalPress = new BlockMachine("metalPress"),
+    roller = new BlockMachine("roller"),
+    extruder = new BlockMachine("extruder"),
+    cutter = new BlockMachine("cutter"),
     blastFurnace = new BlockMachine("blastFurnace");
     public static final BlockIc2cEGenerator
     advancedSteamTurbine = new BlockIc2cEGenerator("advancedSteamTurbine"),
@@ -37,6 +40,9 @@ public class RegistryBlock
     {
             oreWashingPlant,
             metalPress,
+            roller,
+            extruder,
+            cutter,
             thermalCentrifuge,
             blastFurnace,
             advancedSteamTurbine,

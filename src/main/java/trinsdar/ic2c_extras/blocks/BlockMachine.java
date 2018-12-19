@@ -12,9 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.Ic2cExtras;
-import trinsdar.ic2c_extras.tileentity.TileEntityMetalPress;
-import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
-import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.tileentity.*;
 import trinsdar.ic2c_extras.util.RegistryBlock;
 
 import java.util.ArrayList;
@@ -45,6 +43,12 @@ public class BlockMachine extends BlockMultiID {
             return new TileEntityOreWashingPlant();
         }else if (this == RegistryBlock.thermalCentrifuge){
             return new TileEntityThermalCentrifuge();
+        }else if (this == RegistryBlock.roller){
+            return new TileEntityRoller();
+        }else if (this == RegistryBlock.extruder){
+            return new TileEntityExtruder();
+        }else if (this == RegistryBlock.cutter){
+            return new TileEntityCutter();
         }else{
             return new TileEntityBlock();
         }

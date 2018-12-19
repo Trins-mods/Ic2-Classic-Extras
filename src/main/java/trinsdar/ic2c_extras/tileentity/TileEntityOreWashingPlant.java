@@ -349,14 +349,9 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? (T)this.waterTank : super.getCapability(capability, facing);
     }
 
-
-
-    public static void init() { //recipes in recipes class now
-    }
-
-    public static void addRecipe(IRecipeInput input, MachineOutput output, String id)
+    public static void addRecipe(IRecipeInput input, MachineOutput output)
     {
-        oreWashingPlant.addRecipe(input, output, id);
+        oreWashingPlant.addRecipe(input, output, input.getInputs().get(0).getDisplayName());
     }
 
 }

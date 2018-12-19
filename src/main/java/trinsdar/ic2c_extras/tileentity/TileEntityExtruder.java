@@ -1,7 +1,5 @@
 package trinsdar.ic2c_extras.tileentity;
 
-import ic2.api.classic.item.IMachineUpgradeItem;
-import ic2.api.classic.recipe.INullableRecipeInput;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
@@ -21,25 +19,17 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.Ic2cExtras;
+import trinsdar.ic2c_extras.container.ContainerExtruder;
 import trinsdar.ic2c_extras.container.ContainerMetalPress;
 import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
-import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.RegistryItem;
 
-import java.util.Iterator;
-
 import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.extruding;
-import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.rolling;
 
-public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
-
-    public TileEntityMetalPress(){
+public class TileEntityExtruder extends TileEntityBasicElectricMachine {
+    public TileEntityExtruder(){
         super(3, 10, 400, 32);
     }
-
-    public static LocaleComp rollingMode = new LangComponentHolder.LocaleGuiComp("container.rollingMode.name");
-    public static LocaleComp extrudingMode = new LangComponentHolder.LocaleGuiComp("container.extrudingMode.name");
-    public static LocaleComp cuttingMode = new LangComponentHolder.LocaleGuiComp("container.cuttingMode.name");
 
     public MachineType getType() {
         return MachineType.macerator;
@@ -52,7 +42,7 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
 
     @Override
     public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input) {
-        return rolling.getRecipeInAndOutput(input, false);
+        return extruding.getRecipeInAndOutput(input, false);
     }
 
     @Override
@@ -62,7 +52,7 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
 
     @Override
     public ContainerIC2 getGuiContainer(EntityPlayer player) {
-        return new ContainerMetalPress(player.inventory, this);
+        return new ContainerExtruder(player.inventory, this);
     }
 
     public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
@@ -86,7 +76,7 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
         if (par1 == null) {
             return false;
         } else {
-            return rolling.getRecipeInAndOutput(par1, true) != null && super.isValidInput(par1);
+            return extruding.getRecipeInAndOutput(par1, true) != null && super.isValidInput(par1);
         }
     }
 
@@ -99,15 +89,7 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
 
     @Override
     public IMachineRecipeList getRecipeList() {
-        return rolling;
-    }
-
-    public static void init(){
-        recipeList = new IMachineRecipeList[3];
-        recipeList[0] = new BasicMachineRecipeList("rolling");
-        recipeList[1] = new BasicMachineRecipeList("extruding");
-        recipeList[2] = new BasicMachineRecipeList("cutting");
-        //currently no recipes for cutting as that mode is mainly aimed at modpack makers
+        return extruding;
     }
 
     public static void addRecipe(ItemStack input, ItemStack output) {
@@ -139,12 +121,6 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
     }
 
     public static void addRecipe(IRecipeInput input, ItemStack output, float exp) {
-        rolling.addRecipe(input, output, exp, makeString(output));
+        extruding.addRecipe(input, output, exp, output.getDisplayName());
     }
-
-    private static String makeString(ItemStack stack) {
-        return stack.getDisplayName();
-    }
-
-
 }
