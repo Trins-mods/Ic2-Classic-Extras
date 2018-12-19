@@ -10,10 +10,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.blocks.*;
-import trinsdar.ic2c_extras.tileentity.TileEntityAdvancedSteamTurbine;
-import trinsdar.ic2c_extras.tileentity.TileEntityMetalPress;
-import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
-import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.tileentity.*;
 
 public class RegistryBlock
 {
@@ -72,6 +69,9 @@ public class RegistryBlock
          GameRegistry.registerTileEntity(TileEntityAdvancedSteamTurbine.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityAdvancedSteamTurbine"));
          GameRegistry.registerTileEntity(TileEntityThermalCentrifuge.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityThermalCentrifuge"));
          GameRegistry.registerTileEntity(TileEntityMetalPress.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityMetalPress"));
+        GameRegistry.registerTileEntity(TileEntityRoller.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityRoller"));
+        GameRegistry.registerTileEntity(TileEntityExtruder.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityExtruder"));
+        GameRegistry.registerTileEntity(TileEntityCutter.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityCutter"));
     }
 
     @SubscribeEvent
