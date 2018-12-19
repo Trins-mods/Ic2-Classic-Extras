@@ -123,8 +123,8 @@ public class Ic2cExtrasRecipes {
         extruding.addRecipe((new RecipeInputOreDict("ingotCopper", 1)),  StackUtil.copyWithSize(Ic2Items.copperCable, 3), 0.7f, "copperCableExtruding");
         extruding.addRecipe((new RecipeInputOreDict("ingotTin", 1)),  StackUtil.copyWithSize(Ic2Items.tinCable, 4), 0.7f, "tinCableExtruding");
         extruding.addRecipe((new RecipeInputOreDict("ingotBronze", 1)),  StackUtil.copyWithSize(Ic2Items.bronzeCable, 3), 0.7f, "bronzeCableExtruding");
-        extruding.addRecipe((new RecipeInputOreDict("ingotSteel", 1)),  StackUtil.copyWithSize(Ic2Items.ironCable, 5), 0.7f, "steelCableExtruding");
-        extruding.addRecipe((new RecipeInputOreDict("ingotGold", 1)),  StackUtil.copyWithSize(Ic2Items.goldCable, 5), 0.7f, "goldCableExtruding");
+        extruding.addRecipe((new RecipeInputOreDict("ingotSteel", 1)),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f, "steelCableExtruding");
+        extruding.addRecipe((new RecipeInputOreDict("ingotGold", 1)),  StackUtil.copyWithSize(Ic2Items.goldCable, 6), 0.7f, "goldCableExtruding");
         extruding.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.tinCasing, 1))),  StackUtil.copyWithSize(Ic2Items.tinCan, 1), 0.7f, "tinCanExtruding");
     }
     public static void initHarderUraniumProcessing(){

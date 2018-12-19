@@ -47,7 +47,7 @@ public class TileEntityExtruder extends TileEntityBasicElectricMachine {
 
     @Override
     public ResourceLocation getGuiTexture() {
-        return new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guimetalpress.png");
+        return new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guiextruder.png");
     }
 
     @Override

@@ -47,7 +47,7 @@ public class TileEntityRoller extends TileEntityBasicElectricMachine {
 
     @Override
     public ResourceLocation getGuiTexture() {
-        return new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guimetalpress.png");
+        return new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guiroller.png");
     }
 
     @Override
