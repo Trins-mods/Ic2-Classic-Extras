@@ -51,6 +51,25 @@ public class Ic2cExtrasRecipes {
     public static void initShapedRecipes(){
         recipes.addRecipe(new ItemStack(RegistryBlock.advancedSteamTurbine, 1),
                 " S ", "STS", " S ", 'S', Ic2Items.basicTurbine,'T', Ic2Items.transformerMV);
+        recipes.addRecipe(new ItemStack(RegistryBlock.oreWashingPlant, 1),
+                "III", "BCB", "McM", 'I', "ingotRefinedIron",'B', Items.BUCKET, 'C', Ic2Items.machine, 'M', Ic2Items.carbonMesh, 'c', "circuitBasic");
+        recipes.addRecipe(new ItemStack(RegistryBlock.thermalCentrifuge, 1),
+                "CMC", "IAI", "IHI", 'C', RegistryItem.coil,'M', Ic2Items.miningLaser, 'I', "ingotRefinedIron", 'A', Ic2Items.advMachine, 'H', RegistryItem.heatConductor);
+
+        recipes.addRecipe(new ItemStack(RegistryBlock.roller, 1),
+                " C ", "TBT", "ctc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', RegistryItem.coil, 't', RegistryItem.craftingHammer);
+
+        recipes.addRecipe(new ItemStack(RegistryBlock.extruder, 1),
+                " C ", "TBT", "cwc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', RegistryItem.coil, 'w', Ic2Items.copperCable);
+
+        recipes.addRecipe(new ItemStack(RegistryBlock.cutter, 1),
+                " C ", "TBT", "ctc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', RegistryItem.coil, 't', RegistryItem.wireCutters);
+
+        recipes.addRecipe(new ItemStack(RegistryItem.coil, 1),
+                "CCC", "CIC", "CCC", 'I', "ingotRefinedIron",'C', Ic2Items.copperCable);
+
+        recipes.addRecipe(new ItemStack(RegistryItem.coil, 1),
+                "RCR", "RCR", "RCR", 'R', "itemRubber",'C', Ic2Items.copperIngot);
 
     }
 
