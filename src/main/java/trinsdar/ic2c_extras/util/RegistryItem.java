@@ -68,8 +68,8 @@ public class RegistryItem
     iridiumShard = new ItemMiscs(ItemMiscsTypes.IRIDIUM_SHARD);
 
     public static final ItemToolCrafting
-    craftingHammer = new ItemToolCrafting(50, "craftingHammer", 77, true),
-    wireCutters = new ItemToolCrafting(50, "wireCutters", 78, true);
+    craftingHammer = new ItemToolCrafting(80, "craftingHammer", 77, true),
+    wireCutters = new ItemToolCrafting(60, "wireCutters", 78, true);
     
 
     public static final Item[] items =

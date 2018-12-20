@@ -14,6 +14,8 @@ import ic2.core.util.helpers.BlockStateContainerIC2;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -68,8 +70,14 @@ public class Ic2cExtrasRecipes {
         recipes.addRecipe(new ItemStack(RegistryItem.coil, 1),
                 "CCC", "CIC", "CCC", 'I', "ingotRefinedIron",'C', Ic2Items.copperCable);
 
-        recipes.addRecipe(new ItemStack(RegistryItem.coil, 1),
+        recipes.addRecipe(new ItemStack(RegistryItem.heatConductor, 1),
                 "RCR", "RCR", "RCR", 'R', "itemRubber",'C', Ic2Items.copperIngot);
+
+        recipes.addRecipe(new ItemStack(RegistryItem.craftingHammer, 1),
+                "III", "III", " S ", 'I', "ingotRefinedIron",'S', "stickWood");
+
+        recipes.addRecipe(new ItemStack(RegistryItem.wireCutters, 1),
+                "I I", " I ", "S S", 'I', "ingotRefinedIron",'S', "stickWood");
 
     }
 
