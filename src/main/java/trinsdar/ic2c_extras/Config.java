@@ -22,8 +22,10 @@ public class Config implements IConfigNotify {
         IC2Config.ConfigType flo = IC2Config.ConfigType.Float;
         IC2Config.ConfigType txt = IC2Config.ConfigType.String;
         if (IC2.config.isLoaded()){
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableItemRadiation", "Enable certain items giving radiation", "ItemRadiation", true).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableHarderUranium", "Enable harder uranium processing. Note: this is different then enableHarderEnrichedUran in that it deals with processing the ore and such", "HarderUranium", true).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableItemRadiation", "Enables certain items giving radiation", "ItemRadiation", true).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableHarderUranium", "Enables harder uranium processing. Note: this is different then enableHarderEnrichedUran in that it deals with processing the ore and such", "HarderUranium", true).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableCasingsRequirePlates", "Enables casings requiring plates to craft", "CasingsNeedPlates", false).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableCrafingCablesWithPlates", "Enables additional recipe of crafting cables with wire cutter and plates", "CablesWithPlates", false).setGameRestart().setServerSync());
             IC2.config.addConfigNotify(config);
         }else {
             throw new RuntimeException("The Ic2Classic config is not loaded");
@@ -33,5 +35,7 @@ public class Config implements IConfigNotify {
 
     @Override
     public void onConfigReloaded(IC2Config config) {
+        Radiation.setConfig(config.getFlag("ItemRadiation"));
+        Ic2cExtrasRecipes.setConfig(config.getFlag("HarderUranium"), config.getFlag("CasingsNeedPlates"), config.getFlag("CablesWithPlates"));
     }
 }

@@ -17,6 +17,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import trinsdar.ic2c_extras.util.RegistryItem;
 
 public class Radiation {
+	private static boolean radiationEnabled;
 	private static ArrayList<ItemStack> radiation = null;
 
 	private void initRadiation() {
@@ -90,7 +91,7 @@ public class Radiation {
 		EntityPlayer player = event.player;
 		initRadiation();
 
-		if (IC2.config.getFlag("ItemRadiation")){
+		if (radiationEnabled){
 			if (event.phase == TickEvent.Phase.END) {
 				if (!player.isCreative()) {
 					if (!isFullHazmatSuit(player) && !hasFullQuantumSuit(player)) {
@@ -111,4 +112,7 @@ public class Radiation {
 		return false;
 	}
 
+	public static void setConfig(boolean enabled){
+		radiationEnabled = enabled;
+	}
 }

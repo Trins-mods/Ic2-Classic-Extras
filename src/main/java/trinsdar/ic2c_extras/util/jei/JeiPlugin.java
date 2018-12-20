@@ -102,7 +102,7 @@ public class JeiPlugin implements IModPlugin {
             registry.addRecipes(Ic2cExtrasRecipes.cutting.getRecipeMap(), cutterId);
 
             IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
-            if (!IC2.config.getFlag("HarderUranium")){
+            if (!Ic2cExtrasRecipes.enableHarderUranium){
                 blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.uranium235));
                 blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.uranium238));
                 blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.uranium235TinyDust));

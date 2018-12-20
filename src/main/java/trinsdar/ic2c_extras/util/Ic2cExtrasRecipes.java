@@ -30,6 +30,9 @@ import java.util.Arrays;
 import static ic2.api.classic.recipe.ClassicRecipes.macerator;
 
 public class Ic2cExtrasRecipes {
+    public static boolean enableHarderUranium;
+    public static boolean enableCasingsRequirePlates;
+    public static boolean enableCuttingToolWires;
     public static IMachineRecipeList rolling = new BasicMachineRecipeList("rolling");
     public static IMachineRecipeList extruding = new BasicMachineRecipeList("extruding");
     public static IMachineRecipeList cutting = new BasicMachineRecipeList("cutting");
@@ -128,7 +131,7 @@ public class Ic2cExtrasRecipes {
         extruding.addRecipe((new RecipeInputItemStack(new ItemStack(RegistryItem.tinCasing, 1))),  StackUtil.copyWithSize(Ic2Items.tinCan, 1), 0.7f, "tinCanExtruding");
     }
     public static void initHarderUraniumProcessing(){
-        if (IC2.config.getFlag("HarderUranium")){
+        if (enableHarderUranium){
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(Ic2Items.reactorReEnrichedUraniumRod)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.plutonium), StackUtil.copyWithSize(Ic2Items.uraniumDrop, 4))));
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedUranium", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uranium238, 6), new ItemStack(RegistryItem.uranium235TinyDust, 1))));
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uranium238, 4), new ItemStack(RegistryItem.uranium235TinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
@@ -142,10 +145,16 @@ public class Ic2cExtrasRecipes {
     public void onHarvestDropsEvent(BlockEvent.HarvestDropsEvent event) {
         Block block = event.getState().getBlock();
         if (block == Ic2States.uraniumOre.getBlock()){
-            if (IC2.config.getFlag("HarderUranium")){
+            if (enableHarderUranium){
                 event.getDrops().clear();
                 event.getDrops().add(Ic2Items.uraniumOre);
             }
         }
+    }
+
+    public static void setConfig(boolean uranium, boolean casings, boolean wires){
+        enableHarderUranium = uranium;
+        enableCasingsRequirePlates = casings;
+        enableCuttingToolWires = wires;
     }
 }
