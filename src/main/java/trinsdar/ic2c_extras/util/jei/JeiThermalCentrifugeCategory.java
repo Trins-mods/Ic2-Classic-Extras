@@ -1,13 +1,14 @@
 package trinsdar.ic2c_extras.util.jei;
 
 import mezz.jei.api.IGuiHelper;
-import mezz.jei.api.gui.IDrawable;
-import mezz.jei.api.gui.IGuiItemStackGroup;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.util.RegistryBlock;
 
@@ -16,11 +17,27 @@ public class JeiThermalCentrifugeCategory implements IRecipeCategory<JeiThermalC
     IDrawable draw;
     IDrawable slot;
     IDrawable arrow;
+    IDrawable progress;
+    IDrawable charge;
+    IDrawable heat;
 
     public JeiThermalCentrifugeCategory(IGuiHelper helper) {
         displayName = new ItemStack(RegistryBlock.thermalCentrifuge);
         ResourceLocation texture = new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guithermalcentrifuge.png");
         this.draw = helper.createDrawable(texture, 5, 14, 124, 60);
+        IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 45, 17);
+        this.progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);
+        IDrawableStatic heatPic = helper.createDrawable(texture, 176, 31, 24, 17);
+        this.heat = helper.createAnimatedDrawable(heatPic, 300, IDrawableAnimated.StartDirection.LEFT, false);
+        IDrawableStatic chargePic = helper.createDrawable(texture, 176, 0, 13, 14);
+        this.charge = helper.createAnimatedDrawable(chargePic, 500, IDrawableAnimated.StartDirection.TOP, true);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void drawExtras(Minecraft arg0) {
+        this.progress.draw(arg0, 42, 20);
+        this.heat.draw(arg0, 52, 38);
+        this.charge.draw(arg0, 6, 22);
     }
 
     @Override

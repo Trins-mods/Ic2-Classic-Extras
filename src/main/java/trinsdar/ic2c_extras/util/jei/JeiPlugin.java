@@ -19,6 +19,8 @@ import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.util.GuiMachine;
+import trinsdar.ic2c_extras.util.GuiMachine.*;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.RegistryBlock;
 import trinsdar.ic2c_extras.util.RegistryItem;
@@ -28,6 +30,12 @@ import java.util.Arrays;
 
 @JEIPlugin
 public class JeiPlugin implements IModPlugin {
+    public String oreWashingId = "oreWashing";
+    public String thermalCentrifugeId = "thermalCentrifuge";
+    public String rollerId = "roller";
+    public String extruderId = "extruder";
+    public String cutterId = "cutter";
+
     @Override
     public void onRuntimeAvailable(@Nonnull IJeiRuntime arg0) {
         // empty method for construction
@@ -36,8 +44,8 @@ public class JeiPlugin implements IModPlugin {
     @Override
     public void register(@Nonnull IModRegistry registry) {
         if (SubModul.load){
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.thermalCentrifuge), new String[] { "thermalCentrifuge" });
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.oreWashingPlant), new String[] { "oreWashing" });
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.thermalCentrifuge), thermalCentrifugeId);
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.oreWashingPlant), oreWashingId);
             registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
                 @Override
                 public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
@@ -45,30 +53,53 @@ public class JeiPlugin implements IModPlugin {
                     return new JeiThermalCentrifugeWrapper(var1);
                 }
             }, "thermalCentrifuge");
-            registry.addRecipes(TileEntityThermalCentrifuge.thermalCentrifuge.getRecipeMap(), "thermalCentrifuge");
+            registry.addRecipeClickArea(ThermalCentrifugeGui.class, 78, 32, 20, 23, thermalCentrifugeId);
+            registry.addRecipes(TileEntityThermalCentrifuge.thermalCentrifuge.getRecipeMap(), thermalCentrifugeId);
             registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
                 @Override
                 public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
                 {
                     return new JeiOreWashingWrapper(var1);
                 }
-            }, "oreWashing");
-            registry.addRecipes(TileEntityOreWashingPlant.oreWashingPlant.getRecipeMap(), "oreWashing");
+            }, oreWashingId);
+            registry.addRecipeClickArea(OreWashingPlantGui.class, 78, 32, 20, 23, oreWashingId);
+            registry.addRecipes(TileEntityOreWashingPlant.oreWashingPlant.getRecipeMap(), oreWashingId);
 
-            registry.handleRecipes(MachineRecipe.class, new MachineRecipeWrapper.MachineManager(), "roller");
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.roller), new String[]{"roller"});
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.metalPress), new String[]{"roller"});
-            registry.addRecipes(Ic2cExtrasRecipes.rolling.getRecipeMap(), "roller");
+            registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
+                @Override
+                public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
+                {
+                    return new JeiRollerWrapper(var1);
+                }
+            }, "roller");
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.roller), rollerId);
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.metalPress), rollerId);
+            registry.addRecipeClickArea(RollerGui.class, 78, 32, 20, 23, rollerId);
+            registry.addRecipes(Ic2cExtrasRecipes.rolling.getRecipeMap(), rollerId);
 
-            registry.handleRecipes(MachineRecipe.class, new MachineRecipeWrapper.MachineManager(), "extruder");
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.extruder), new String[]{"extruder"});
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.metalPress), new String[]{"extruder"});
-            registry.addRecipes(Ic2cExtrasRecipes.extruding.getRecipeMap(), "extruder");
+            registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
+                @Override
+                public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
+                {
+                    return new JeiExtruderWrapper(var1);
+                }
+            }, extruderId);
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.extruder), extruderId);
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.metalPress), extruderId);
+            registry.addRecipeClickArea(ExtruderGui.class, 78, 32, 20, 23, extruderId);
+            registry.addRecipes(Ic2cExtrasRecipes.extruding.getRecipeMap(), extruderId);
 
-            registry.handleRecipes(MachineRecipe.class, new MachineRecipeWrapper.MachineManager(), "cutter");
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.cutter), new String[]{"cutter"});
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.metalPress), new String[]{"cutter"});
-            registry.addRecipes(Ic2cExtrasRecipes.cutting.getRecipeMap(), "cutter");
+            registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
+                @Override
+                public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
+                {
+                    return new JeiCutterWrapper(var1);
+                }
+            }, cutterId);
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.cutter), cutterId);
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.metalPress), cutterId);
+            registry.addRecipeClickArea(CutterGui.class, 78, 32, 20, 23, cutterId);
+            registry.addRecipes(Ic2cExtrasRecipes.cutting.getRecipeMap(), cutterId);
 
             IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
             if (!IC2.config.getFlag("HarderUranium")){
@@ -92,9 +123,8 @@ public class JeiPlugin implements IModPlugin {
         IGuiHelper helper = registry.getJeiHelpers().getGuiHelper();
         registry.addRecipeCategories(new JeiThermalCentrifugeCategory(helper));
         registry.addRecipeCategories(new JeiOreWashingCategory(helper));
-        registry.addRecipeCategories(new IRecipeCategory[]{
-                new MachineRecipeCategory(helper, "roller", new ItemStack(RegistryBlock.roller), new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guiroller.png")),
-                new MachineRecipeCategory(helper, "extruder", new ItemStack(RegistryBlock.extruder), new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guiroller.png")),
-                new MachineRecipeCategory(helper, "cutter", new ItemStack(RegistryBlock.cutter), new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guiroller.png"))});
+        registry.addRecipeCategories(new JeiRollerCategory(helper));
+        registry.addRecipeCategories(new JeiExtruderCategory(helper));
+        registry.addRecipeCategories(new JeiCutterCategory(helper));
     }
 }
