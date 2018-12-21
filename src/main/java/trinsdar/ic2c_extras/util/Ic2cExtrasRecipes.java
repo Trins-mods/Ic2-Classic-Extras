@@ -15,7 +15,15 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.storage.loot.LootEntryItem;
+import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraft.world.storage.loot.RandomValueRange;
+import net.minecraft.world.storage.loot.conditions.LootCondition;
+import net.minecraft.world.storage.loot.functions.LootFunction;
+import net.minecraft.world.storage.loot.functions.SetMetadata;
+import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -32,6 +40,13 @@ public class Ic2cExtrasRecipes {
     public static boolean enableCasingsRequirePlates;
     public static boolean enableCuttingToolWires;
     public static boolean enableHVCablesRequireSteel;
+    public static int
+    itemQuality = 0,
+    dungeonWeight = 20,
+    netherFortressWeight = 15,
+    jungleTempleWeight = 15,
+    desertTempleWeight = 15,
+    strongholdWeight = 10;
     public static IMachineRecipeList rolling = new BasicMachineRecipeList("rolling");
     public static IMachineRecipeList extruding = new BasicMachineRecipeList("extruding");
     public static IMachineRecipeList cutting = new BasicMachineRecipeList("cutting");
@@ -207,6 +222,37 @@ public class Ic2cExtrasRecipes {
                 event.getDrops().add(Ic2Items.uraniumOre);
             }
         }
+    }
+
+    @SubscribeEvent
+    public void onLootTableLoad(LootTableLoadEvent event) {
+        LootFunction[] funcs = new LootFunction[] { new SetMetadata(new LootCondition[0], new RandomValueRange(0, 3)) };
+        String entryName = "ic2c_extras:iridiumshard";
+        Item shard = RegistryItem.iridiumShard;
+        if(event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON)){
+            event.getTable().getPool("main").addEntry(new LootEntryItem(shard, dungeonWeight, itemQuality, funcs, new LootCondition[0], entryName));
+        }
+
+        else if(event.getName().equals(LootTableList.CHESTS_NETHER_BRIDGE)){
+            event.getTable().getPool("main").addEntry(new LootEntryItem(shard, netherFortressWeight, itemQuality, funcs, new LootCondition[0], entryName));
+        }
+
+        else if(event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CORRIDOR)){
+            event.getTable().getPool("main").addEntry(new LootEntryItem(shard, netherFortressWeight, itemQuality, funcs, new LootCondition[0], entryName));
+        }
+
+        else if(event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CROSSING)){
+            event.getTable().getPool("main").addEntry(new LootEntryItem(shard, netherFortressWeight, itemQuality, funcs, new LootCondition[0], entryName));
+        }
+
+        else if(event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)){
+            event.getTable().getPool("main").addEntry(new LootEntryItem(shard, jungleTempleWeight, itemQuality, funcs, new LootCondition[0], entryName));
+        }
+
+        else if(event.getName().equals(LootTableList.CHESTS_DESERT_PYRAMID)){
+            event.getTable().getPool("main").addEntry(new LootEntryItem(shard, desertTempleWeight, itemQuality, funcs, new LootCondition[0], entryName));
+        }
+
     }
 
     public static void setConfig(boolean uranium, boolean casings, boolean wires, boolean hvCable){
