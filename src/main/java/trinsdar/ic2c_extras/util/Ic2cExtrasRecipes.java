@@ -12,6 +12,7 @@ import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2States;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -199,8 +200,8 @@ public class Ic2cExtrasRecipes {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onHarvestDropsEvent(BlockEvent.HarvestDropsEvent event) {
-        Block block = event.getState().getBlock();
-        if (block == Ic2States.uraniumOre.getBlock()){
+        IBlockState block = event.getState();
+        if (block == Ic2States.uraniumOre){
             if (enableHarderUranium){
                 event.getDrops().clear();
                 event.getDrops().add(Ic2Items.uraniumOre);
