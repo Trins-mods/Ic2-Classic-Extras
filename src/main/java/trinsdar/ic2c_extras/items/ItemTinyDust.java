@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import trinsdar.ic2c_extras.Ic2cExtras;
+import trinsdar.ic2c_extras.IC2CExtras;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,8 +19,8 @@ public class ItemTinyDust extends Item implements IStaticTexturedItem
         this.index = index;
         this.variant = variant;
         setRegistryName(variant.toString().toLowerCase() + "_tiny_dust");
-        setUnlocalizedName(Ic2cExtras.MODID + "." + variant.toString().toLowerCase() + "TinyDust");
-        setCreativeTab(Ic2cExtras.creativeTab);
+        setUnlocalizedName(IC2CExtras.MODID + "." + variant.toString().toLowerCase() + "TinyDust");
+        setCreativeTab(IC2CExtras.creativeTab);
     }
 
     @SideOnly(Side.CLIENT)

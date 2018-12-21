@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import trinsdar.ic2c_extras.Ic2cExtras;
+import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.util.RegistryBlock;
 
 public class JeiExtruderCategory implements IRecipeCategory<JeiExtruderWrapper> {
@@ -22,7 +22,7 @@ public class JeiExtruderCategory implements IRecipeCategory<JeiExtruderWrapper> 
 
     public JeiExtruderCategory(IGuiHelper helper) {
         displayName = new ItemStack(RegistryBlock.extruder);
-        ResourceLocation texture = new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guiextruder.png");
+        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guiextruder.png");
         this.draw = helper.createDrawable(texture, 50, 15, 90, 60);
         IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 23, 16);
         this.progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);

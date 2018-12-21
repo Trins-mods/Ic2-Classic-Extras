@@ -20,11 +20,11 @@ import trinsdar.ic2c_extras.util.Icons;
 
 import java.util.Map;
 
-@IC2Plugin(name = Ic2cExtras.NAME, id = Ic2cExtras.MODID, version = Ic2cExtras.VERSION, hasResourcePack = true)
-public class Ic2cExtras extends PluginBase
+@IC2Plugin(name = IC2CExtras.NAME, id = IC2CExtras.MODID, version = IC2CExtras.VERSION, hasResourcePack = true)
+public class IC2CExtras extends PluginBase
 {
     public static final String MODID = "ic2c_extras";
-    public static final String NAME = "Ic2cExtras";
+    public static final String NAME = "IC2CExtras";
     public static final String VERSION = "@VERSION@";
     public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod";
 

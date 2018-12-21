@@ -13,7 +13,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 version = "${mod_version}"
 group = "trinsdar.ic2c_extras" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "Ic2cExtras"
+archivesBaseName = "IC2CExtras"
 
 
 
@@ -30,7 +30,7 @@ minecraft {
     mappings = "${mappings_version}"
 
     replace "@VERSION@", project.version
-    replaceIn "Ic2cExtras.java"
+    replaceIn "IC2CExtras.java"
 
 }
 

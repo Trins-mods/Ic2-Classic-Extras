@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import trinsdar.ic2c_extras.Ic2cExtras;
+import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.util.RegistryBlock;
 
 public class JeiCutterCategory implements IRecipeCategory<JeiCutterWrapper> {
@@ -22,7 +22,7 @@ public class JeiCutterCategory implements IRecipeCategory<JeiCutterWrapper> {
 
     public JeiCutterCategory(IGuiHelper helper) {
         displayName = new ItemStack(RegistryBlock.cutter);
-        ResourceLocation texture = new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guicutter.png");
+        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guicutter.png");
         this.draw = helper.createDrawable(texture, 50, 15, 90, 60);
         IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 23, 16);
         this.progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);

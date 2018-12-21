@@ -22,11 +22,11 @@ public class Config implements IConfigNotify {
         IC2Config.ConfigType flo = IC2Config.ConfigType.Float;
         IC2Config.ConfigType txt = IC2Config.ConfigType.String;
         if (IC2.config.isLoaded()){
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableItemRadiation", "Enables certain items giving radiation", "ItemRadiation", true).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableHarderUranium", "Enables harder uranium processing. Note: this is different then enableHarderEnrichedUran in that it deals with processing the ore and such", "HarderUranium", true).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableCasingsRequirePlates", "Enables casings requiring plates to craft", "CasingsNeedPlates", false).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableCrafingCablesWithPlates", "Enables additional recipe of crafting cables with wire cutter and plates", "CablesWithPlates", false).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "Ic2cExtras", "enableHVCablesNeedSteel", "Enables the requirement of steel for hv cables. Currently does nothing yet.", "HVCablesNeedSteel", false).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableItemRadiation", "Enables certain items giving radiation", "ItemRadiation", true).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableHarderUranium", "Enables harder uranium processing. Note: this is different then enableHarderEnrichedUran in that it deals with processing the ore and such", "HarderUranium", true).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCasingsRequirePlates", "Enables casings requiring plates to craft", "CasingsNeedPlates", false).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCrafingCablesWithPlates", "Enables additional recipe of crafting cables with wire cutter and plates", "CablesWithPlates", false).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableHVCablesNeedSteel", "Enables the requirement of steel for hv cables. Currently does nothing yet.", "HVCablesNeedSteel", false).setGameRestart().setServerSync());
             IC2.config.addConfigNotify(config);
         }else {
             throw new RuntimeException("The Ic2Classic config is not loaded");

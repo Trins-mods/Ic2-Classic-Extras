@@ -1,32 +1,21 @@
 package trinsdar.ic2c_extras.util.jei;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
-import ic2.core.IC2;
-import ic2.core.platform.registry.Ic2Items;
-import ic2.core.platform.registry.Ic2Resources;
 import ic2.jeiIntigration.SubModul;
-import ic2.jeiIntigration.core.machine.basic.MachineRecipe;
-import ic2.jeiIntigration.core.machine.basic.MachineRecipeCategory;
-import ic2.jeiIntigration.core.machine.basic.MachineRecipeWrapper;
 import mezz.jei.api.*;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
-import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
-import trinsdar.ic2c_extras.util.GuiMachine;
 import trinsdar.ic2c_extras.util.GuiMachine.*;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.RegistryBlock;
 import trinsdar.ic2c_extras.util.RegistryItem;
 
 import javax.annotation.Nonnull;
-import java.util.Arrays;
 
 @JEIPlugin
 public class JeiPlugin implements IModPlugin {

@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import trinsdar.ic2c_extras.Ic2cExtras;
+import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.util.RegistryBlock;
 
 public class JeiThermalCentrifugeCategory implements IRecipeCategory<JeiThermalCentrifugeWrapper> {
@@ -23,7 +23,7 @@ public class JeiThermalCentrifugeCategory implements IRecipeCategory<JeiThermalC
 
     public JeiThermalCentrifugeCategory(IGuiHelper helper) {
         displayName = new ItemStack(RegistryBlock.thermalCentrifuge);
-        ResourceLocation texture = new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guithermalcentrifuge.png");
+        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guithermalcentrifuge.png");
         this.draw = helper.createDrawable(texture, 5, 14, 124, 60);
         IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 45, 17);
         this.progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);

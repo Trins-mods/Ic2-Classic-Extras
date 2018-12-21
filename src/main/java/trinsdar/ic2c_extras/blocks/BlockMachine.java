@@ -11,7 +11,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import trinsdar.ic2c_extras.Ic2cExtras;
+import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.tileentity.*;
 import trinsdar.ic2c_extras.util.RegistryBlock;
 
@@ -25,9 +25,9 @@ public class BlockMachine extends BlockMultiID {
         this.setHardness(4.0F);
         this.setResistance(20.0F);
         this.setSoundType(SoundType.METAL);
-        this.setCreativeTab(Ic2cExtras.creativeTab);
+        this.setCreativeTab(IC2CExtras.creativeTab);
         this.setRegistryName(name);
-        this.setUnlocalizedName(Ic2cExtras.MODID + "." + name);
+        this.setUnlocalizedName(IC2CExtras.MODID + "." + name);
     }
 
     @Override

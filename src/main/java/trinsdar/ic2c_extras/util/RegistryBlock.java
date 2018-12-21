@@ -8,7 +8,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
-import trinsdar.ic2c_extras.Ic2cExtras;
+import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.blocks.*;
 import trinsdar.ic2c_extras.tileentity.*;
 
@@ -65,13 +65,13 @@ public class RegistryBlock
 
     public static void registerTiles()
     {
-         GameRegistry.registerTileEntity(TileEntityOreWashingPlant.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityOreWashingPlant"));
-         GameRegistry.registerTileEntity(TileEntityAdvancedSteamTurbine.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityAdvancedSteamTurbine"));
-         GameRegistry.registerTileEntity(TileEntityThermalCentrifuge.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityThermalCentrifuge"));
-         GameRegistry.registerTileEntity(TileEntityMetalPress.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityMetalPress"));
-        GameRegistry.registerTileEntity(TileEntityRoller.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityRoller"));
-        GameRegistry.registerTileEntity(TileEntityExtruder.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityExtruder"));
-        GameRegistry.registerTileEntity(TileEntityCutter.class, new ResourceLocation(Ic2cExtras.MODID, "tileEntityCutter"));
+         GameRegistry.registerTileEntity(TileEntityOreWashingPlant.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityOreWashingPlant"));
+         GameRegistry.registerTileEntity(TileEntityAdvancedSteamTurbine.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityAdvancedSteamTurbine"));
+         GameRegistry.registerTileEntity(TileEntityThermalCentrifuge.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityThermalCentrifuge"));
+         GameRegistry.registerTileEntity(TileEntityMetalPress.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityMetalPress"));
+        GameRegistry.registerTileEntity(TileEntityRoller.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityRoller"));
+        GameRegistry.registerTileEntity(TileEntityExtruder.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityExtruder"));
+        GameRegistry.registerTileEntity(TileEntityCutter.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityCutter"));
     }
 
     @SubscribeEvent

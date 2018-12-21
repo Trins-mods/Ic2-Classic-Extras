@@ -3,14 +3,11 @@ package trinsdar.ic2c_extras.items;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import trinsdar.ic2c_extras.Ic2cExtras;
+import trinsdar.ic2c_extras.IC2CExtras;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,8 +22,8 @@ public class ItemToolCrafting extends Item implements IStaticTexturedItem {
         this.enchant = enchant;
         this.setMaxDamage(maxDamage);//7
         setRegistryName(name);//"flint_mortar"
-        setUnlocalizedName(Ic2cExtras.MODID + "." + name);//"mortarFlint"
-        setCreativeTab(Ic2cExtras.creativeTab);
+        setUnlocalizedName(IC2CExtras.MODID + "." + name);//"mortarFlint"
+        setCreativeTab(IC2CExtras.creativeTab);
     }
 
     @Override

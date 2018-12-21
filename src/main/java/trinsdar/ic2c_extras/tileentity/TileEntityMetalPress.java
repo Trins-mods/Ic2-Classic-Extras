@@ -1,7 +1,5 @@
 package trinsdar.ic2c_extras.tileentity;
 
-import ic2.api.classic.item.IMachineUpgradeItem;
-import ic2.api.classic.recipe.INullableRecipeInput;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
@@ -13,22 +11,15 @@ import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LangComponentHolder;
 import ic2.core.platform.lang.components.base.LocaleComp;
-import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
-import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.Ic2cExtras;
+import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.container.ContainerMetalPress;
 import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
-import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
-import trinsdar.ic2c_extras.util.RegistryItem;
 
-import java.util.Iterator;
-
-import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.extruding;
 import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.rolling;
 
 public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
@@ -57,7 +48,7 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
 
     @Override
     public ResourceLocation getGuiTexture() {
-        return new ResourceLocation(Ic2cExtras.MODID, "textures/guisprites/guimetalpress.png");
+        return new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guimetalpress.png");
     }
 
     @Override

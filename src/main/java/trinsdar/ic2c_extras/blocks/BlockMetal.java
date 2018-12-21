@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import trinsdar.ic2c_extras.Ic2cExtras;
+import trinsdar.ic2c_extras.IC2CExtras;
 
 import java.util.List;
 
@@ -28,9 +28,9 @@ public class BlockMetal extends Block implements ITexturedBlock {
         this.index = index;
         this.setSoundType(SoundType.METAL);
         this.setHarvestLevel("pickaxe", 2);
-        this.setCreativeTab(Ic2cExtras.creativeTab);
-        this.setRegistryName(Ic2cExtras.MODID, blockName);
-        this.setUnlocalizedName(Ic2cExtras.MODID + "." + blockName);
+        this.setCreativeTab(IC2CExtras.creativeTab);
+        this.setRegistryName(IC2CExtras.MODID, blockName);
+        this.setUnlocalizedName(IC2CExtras.MODID + "." + blockName);
     }
 
     @Override
