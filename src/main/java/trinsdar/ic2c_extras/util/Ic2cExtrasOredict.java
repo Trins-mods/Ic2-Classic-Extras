@@ -29,6 +29,15 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("dustTinyObsidian", RegistryItem.obsidianTinyDust);
         OreDictionary.registerOre("dustTinyBronze", RegistryItem.bronzeTinyDust);
 
+        if (Ic2cExtrasRecipes.enableHarderUranium){
+            OreDictionary.registerOre("dustTinyUranium235", RegistryItem.uranium235TinyDust);
+            OreDictionary.registerOre("dustTinyUranium238", RegistryItem.uranium238TinyDust);
+            OreDictionary.registerOre("dustTinyPlutonium", RegistryItem.plutoniumTinyDust);
+            OreDictionary.registerOre("dustUranium235", RegistryItem.uranium235);
+            OreDictionary.registerOre("dustUranium238", RegistryItem.uranium238);
+            OreDictionary.registerOre("dustPlutonium", RegistryItem.plutonium);
+        }
+
         OreDictionary.registerOre("dustLead", RegistryItem.leadDust);
         OreDictionary.registerOre("ingotLead", RegistryItem.leadIngot);
         OreDictionary.registerOre("ingotSteel", RegistryItem.steelIngot);

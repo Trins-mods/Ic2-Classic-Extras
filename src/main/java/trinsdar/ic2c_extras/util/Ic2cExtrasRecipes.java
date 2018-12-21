@@ -5,6 +5,7 @@ import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.core.IC2;
+import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
@@ -18,12 +19,14 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import trinsdar.ic2c_extras.Ic2cExtras;
 import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
 
@@ -42,7 +45,7 @@ public class Ic2cExtrasRecipes {
 
     public static void init(){
         initShapedRecipes();
-        initReplaceRecipes();
+        initCompressRecipes();
         initFurnaceRecipes();
         initReplaceMaceratorRecipes();
         initMachineRecipes();
@@ -81,7 +84,34 @@ public class Ic2cExtrasRecipes {
 
     }
 
-    public static void initReplaceRecipes(){
+    public static void dustUtil(String dust, ItemStack dusts, String tinyDust, ItemStack tinyDusts) {
+        recipes.addRecipe(StackUtil.copyWithSize(dusts, 1),
+                new Object[]{"TTT", "TTT", "TTT", 'T', tinyDust});
+        recipes.addShapelessRecipe(StackUtil.copyWithSize(tinyDusts, 9),
+                new Object[]{dust});
+
+    }
+
+    public static void ingotUtil(String block, Block blocks, String ingot, ItemStack ingots){
+        recipes.addRecipe(new ItemStack(blocks, 1),
+                new Object[]{"III", "III", "III", 'I', ingot});
+        recipes.addShapelessRecipe(StackUtil.copyWithSize(ingots, 9),
+                new Object[]{block});
+    }
+
+    public static void initCompressRecipes(){
+        Ic2cExtrasRecipes.dustUtil("dustIron", Ic2Items.ironDust, "dustTinyIron", new ItemStack(RegistryItem.ironTinyDust));
+        Ic2cExtrasRecipes.dustUtil("dustGold", Ic2Items.goldDust, "dustTinyGold", new ItemStack(RegistryItem.goldTinyDust));
+        Ic2cExtrasRecipes.dustUtil("dustCopper", Ic2Items.copperDust, "dustTinyCopper", new ItemStack(RegistryItem.copperTinyDust));
+        Ic2cExtrasRecipes.dustUtil("dustTin", Ic2Items.tinDust, "dustTinyTin", new ItemStack(RegistryItem.tinTinyDust));
+        Ic2cExtrasRecipes.dustUtil("dustSilver", Ic2Items.silverDust, "dustTinySilver", new ItemStack(RegistryItem.silverTinyDust));
+        Ic2cExtrasRecipes.dustUtil("dustLead", new ItemStack(RegistryItem.leadDust), "dustTinyLead", new ItemStack(RegistryItem.leadTinyDust));
+        Ic2cExtrasRecipes.dustUtil("dustObsidian", Ic2Items.obsidianDust, "dustTinyObsidian", new ItemStack(RegistryItem.obsidianTinyDust));
+        Ic2cExtrasRecipes.dustUtil("dustBronze", Ic2Items.bronzeDust, "dustTinyBronze", new ItemStack(RegistryItem.bronzeTinyDust));
+
+        Ic2cExtrasRecipes.ingotUtil("blockSteel", RegistryBlock.steelBlock, "ingotSteel", new ItemStack(RegistryItem.steelIngot));
+        Ic2cExtrasRecipes.ingotUtil("blockLead", RegistryBlock.leadBlock, "ingotLead", new ItemStack(RegistryItem.leadIngot));
+        Ic2cExtrasRecipes.ingotUtil("blockRefinedIron", RegistryBlock.refinedIronBlock, "ingotRefinedIron", Ic2Items.refinedIronIngot);
     }
 
     public static void initFurnaceRecipes(){
@@ -164,8 +194,14 @@ public class Ic2cExtrasRecipes {
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedUranium", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uranium238, 6), new ItemStack(RegistryItem.uranium235TinyDust, 1))));
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uranium238, 4), new ItemStack(RegistryItem.uranium235TinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
             TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uraniumPurifiedCrushedOre, 1), new ItemStack(RegistryItem.uranium235TinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
+            TileEntityCompressor.addRecipe(new ItemStack(RegistryItem.plutoniumEnrichedUranium), new ItemStack(RegistryItem.plutoniumEnrichedUraniumIngot));
             recipes.addRecipe((Ic2Items.uraniumDrop),
-                    "UUU", "TTT", "UUU", 'U', RegistryItem.uranium238,'T', RegistryItem.uranium235TinyDust);
+                    "UUU", "TTT", "UUU", 'U', "dustUranium238",'T', "dustTinyUranium235");
+            recipes.addShapelessRecipe((new ItemStack(RegistryItem.plutoniumEnrichedUranium, 2)),
+                    "dropUranium", RegistryItem.plutonium);
+            Ic2cExtrasRecipes.dustUtil("dustUranium235", new ItemStack(RegistryItem.uranium235), "dustTinyUranium235", new ItemStack(RegistryItem.uranium235TinyDust));
+            Ic2cExtrasRecipes.dustUtil("dustUranium238", new ItemStack(RegistryItem.uranium238), "dustTinyUranium238", new ItemStack(RegistryItem.uranium238TinyDust));
+            Ic2cExtrasRecipes.dustUtil("dustPlutonium", new ItemStack(RegistryItem.plutonium), "dustTinyPlutonium", new ItemStack(RegistryItem.plutoniumTinyDust));
         }
     }
 
