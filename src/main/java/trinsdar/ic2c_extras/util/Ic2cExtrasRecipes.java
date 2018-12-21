@@ -5,6 +5,7 @@ import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.core.block.machine.low.TileEntityCompressor;
+import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
@@ -25,6 +26,7 @@ import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraft.world.storage.loot.functions.SetMetadata;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -42,11 +44,11 @@ public class Ic2cExtrasRecipes {
     public static boolean enableHVCablesRequireSteel;
     public static int
     itemQuality = 0,
-    dungeonWeight = 20,
+    dungeonWeight = 10,
     netherFortressWeight = 15,
     jungleTempleWeight = 15,
     desertTempleWeight = 15,
-    strongholdWeight = 10;
+    strongholdWeight = 20;
     public static IMachineRecipeList rolling = new BasicMachineRecipeList("rolling");
     public static IMachineRecipeList extruding = new BasicMachineRecipeList("extruding");
     public static IMachineRecipeList cutting = new BasicMachineRecipeList("cutting");
@@ -116,10 +118,26 @@ public class Ic2cExtrasRecipes {
         Ic2cExtrasRecipes.dustUtil("dustLead", new ItemStack(RegistryItem.leadDust), "dustTinyLead", new ItemStack(RegistryItem.leadTinyDust));
         Ic2cExtrasRecipes.dustUtil("dustObsidian", Ic2Items.obsidianDust, "dustTinyObsidian", new ItemStack(RegistryItem.obsidianTinyDust));
         Ic2cExtrasRecipes.dustUtil("dustBronze", Ic2Items.bronzeDust, "dustTinyBronze", new ItemStack(RegistryItem.bronzeTinyDust));
+        recipes.addRecipe(Ic2Items.iridiumOre,
+                new Object[]{"III", "III", "III", 'I', RegistryItem.iridiumShard});
+        recipes.addShapelessRecipe(new ItemStack(RegistryItem.iridiumShard, 9),
+                new Object[]{Ic2Items.iridiumOre});
 
-        Ic2cExtrasRecipes.ingotUtil("blockSteel", RegistryBlock.steelBlock, "ingotSteel", new ItemStack(RegistryItem.steelIngot));
-        Ic2cExtrasRecipes.ingotUtil("blockLead", RegistryBlock.leadBlock, "ingotLead", new ItemStack(RegistryItem.leadIngot));
-        Ic2cExtrasRecipes.ingotUtil("blockRefinedIron", RegistryBlock.refinedIronBlock, "ingotRefinedIron", Ic2Items.refinedIronIngot);
+        if (Loader.isModLoaded("gtclassic")){
+            TileEntityCompressor.addRecipe("ingotLead", 9, new ItemStack(RegistryBlock.leadBlock));
+            TileEntityCompressor.addRecipe("ingotRefinedIron", 9, new ItemStack(RegistryBlock.refinedIronBlock));
+            TileEntityCompressor.addRecipe("ingotSteel", 9, new ItemStack(RegistryBlock.steelBlock));
+            GameRegistry.addSmelting(RegistryBlock.steelBlock, new ItemStack(RegistryItem.steelIngot, 9), 0.1F);
+            GameRegistry.addSmelting(RegistryBlock.refinedIronBlock, StackUtil.copyWithSize(Ic2Items.refinedIronIngot, 9), 0.1F);
+            GameRegistry.addSmelting(RegistryBlock.leadBlock, new ItemStack(RegistryItem.leadIngot, 9), 0.1F);
+            TileEntityMacerator.addRecipe("blockLead", 1, new ItemStack(RegistryItem.leadDust, 9), 0.1F);
+            TileEntityMacerator.addRecipe("blockRefinedIron", 1, StackUtil.copyWithSize(Ic2Items.ironDust, 9), 0.1F);
+        }else if (!Loader.isModLoaded("gtclassic")){
+            Ic2cExtrasRecipes.ingotUtil("blockSteel", RegistryBlock.steelBlock, "ingotSteel", new ItemStack(RegistryItem.steelIngot));
+            Ic2cExtrasRecipes.ingotUtil("blockLead", RegistryBlock.leadBlock, "ingotLead", new ItemStack(RegistryItem.leadIngot));
+            Ic2cExtrasRecipes.ingotUtil("blockRefinedIron", RegistryBlock.refinedIronBlock, "ingotRefinedIron", Ic2Items.refinedIronIngot);
+        }
+
     }
 
     public static void initFurnaceRecipes(){

@@ -4,6 +4,7 @@ import static ic2.core.item.armor.standart.ItemHazmatArmor.isFullHazmatSuit;
 
 import java.util.ArrayList;
 
+import gtclassic.util.GTItems;
 import ic2.core.IC2;
 import ic2.core.entity.IC2Potion;
 import ic2.core.item.armor.electric.ItemArmorQuantumSuit;
@@ -11,6 +12,7 @@ import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
@@ -74,6 +76,15 @@ public class Radiation {
 			radiation.add(Ic2Items.reactorReEnrichedEnderPearlUraniumRod);
 			radiation.add(Ic2Items.reactorReEnrichedNetherStarUraniumRod);
 			radiation.add(Ic2Items.reactorReEnrichedCharcoalUraniumRod);
+			if (Loader.isModLoaded("gtclassic")){
+				radiation.add(new ItemStack(GTItems.dustUranium));
+				radiation.add(new ItemStack(GTItems.rodPlutoniumSingle));
+				radiation.add(new ItemStack(GTItems.rodPlutoniumDouble));
+				radiation.add(new ItemStack(GTItems.rodPlutoniumQuad));
+				radiation.add(new ItemStack(GTItems.rodThoriumSingle));
+				radiation.add(new ItemStack(GTItems.rodThoriumDouble));
+				radiation.add(new ItemStack(GTItems.rodThoriumQuad));
+			}
 		}
 	}
 
