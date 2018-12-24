@@ -22,7 +22,7 @@ import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.cutting;
 
 public class TileEntityCutter extends TileEntityBasicElectricMachine {
     public TileEntityCutter(){
-        super(3, 10, 400, 32);
+        super(3, 5, 400, 32);
     }
 
     public MachineType getType() {

@@ -22,7 +22,7 @@ import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.extruding;
 
 public class TileEntityExtruder extends TileEntityBasicElectricMachine {
     public TileEntityExtruder(){
-        super(3, 10, 400, 32);
+        super(3, 5, 400, 32);
     }
 
     public MachineType getType() {
