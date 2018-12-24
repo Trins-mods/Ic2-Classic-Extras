@@ -1,6 +1,8 @@
 package trinsdar.ic2c_extras.util;
 
 import net.minecraftforge.oredict.OreDictionary;
+import trinsdar.ic2c_extras.util.registry.RegistryBlock;
+import trinsdar.ic2c_extras.util.registry.RegistryItem;
 
 public class Ic2cExtrasOredict {
     public static void init(){

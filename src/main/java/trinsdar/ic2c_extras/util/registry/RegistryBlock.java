@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.util;
+package trinsdar.ic2c_extras.util.registry;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

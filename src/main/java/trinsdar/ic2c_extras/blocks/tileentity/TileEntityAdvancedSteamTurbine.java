@@ -4,7 +4,7 @@ import ic2.core.block.generator.tile.TileEntityBasicSteamTurbine;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fluids.FluidStack;
-import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
+import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
 public class TileEntityAdvancedSteamTurbine extends TileEntityBasicSteamTurbine{
 

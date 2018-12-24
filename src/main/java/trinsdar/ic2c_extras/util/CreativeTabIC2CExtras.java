@@ -2,6 +2,7 @@ package trinsdar.ic2c_extras.util;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import trinsdar.ic2c_extras.util.registry.RegistryItem;
 
 public class CreativeTabIC2CExtras extends CreativeTabs
 {

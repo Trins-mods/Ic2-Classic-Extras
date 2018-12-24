@@ -26,8 +26,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.blocks.container.ContainerThermalCentrifuge;
-import trinsdar.ic2c_extras.util.Ic2cExtrasResourceLocations;
-import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
+import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
+import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
 import java.util.List;
 

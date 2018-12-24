@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalPress;
-import trinsdar.ic2c_extras.util.RegistryItem;
+import trinsdar.ic2c_extras.util.registry.RegistryItem;
 
 import java.util.Arrays;
 import java.util.List;

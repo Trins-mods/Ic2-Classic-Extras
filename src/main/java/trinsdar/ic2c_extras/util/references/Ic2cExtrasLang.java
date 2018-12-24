@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.util;
+package trinsdar.ic2c_extras.util.references;
 
 import ic2.core.platform.lang.components.base.LangComponentHolder;
 import ic2.core.platform.lang.components.base.LocaleComp;

@@ -10,8 +10,8 @@ import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import net.minecraft.item.ItemStack;
 import trinsdar.ic2c_extras.util.GuiMachine.*;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
-import trinsdar.ic2c_extras.util.RegistryBlock;
-import trinsdar.ic2c_extras.util.RegistryItem;
+import trinsdar.ic2c_extras.util.registry.RegistryBlock;
+import trinsdar.ic2c_extras.util.registry.RegistryItem;
 
 import javax.annotation.Nonnull;
 

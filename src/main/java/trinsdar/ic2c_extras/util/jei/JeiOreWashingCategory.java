@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
-import trinsdar.ic2c_extras.util.RegistryBlock;
+import trinsdar.ic2c_extras.util.registry.RegistryBlock;
 
 public class JeiOreWashingCategory implements IRecipeCategory<JeiOreWashingWrapper> {
     ItemStack displayName;

@@ -8,7 +8,7 @@ import ic2.core.util.math.Vec2i;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
-import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
+import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
 import java.util.Arrays;
 import java.util.List;

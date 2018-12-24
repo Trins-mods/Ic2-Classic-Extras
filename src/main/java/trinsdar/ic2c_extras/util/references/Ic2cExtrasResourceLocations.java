@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.util;
+package trinsdar.ic2c_extras.util.references;
 
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.IC2CExtras;

@@ -39,8 +39,8 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.*;
 import trinsdar.ic2c_extras.blocks.container.ContainerOreWashingPlant;
-import trinsdar.ic2c_extras.util.Ic2cExtrasResourceLocations;
-import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
+import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
+import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
 import javax.annotation.Nullable;
 import java.util.List;

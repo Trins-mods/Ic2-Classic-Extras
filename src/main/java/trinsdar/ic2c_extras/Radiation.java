@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import trinsdar.ic2c_extras.util.RegistryItem;
+import trinsdar.ic2c_extras.util.registry.RegistryItem;
 
 public class Radiation {
 	private static boolean radiationEnabled;

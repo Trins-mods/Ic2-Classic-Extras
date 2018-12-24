@@ -34,6 +34,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.util.registry.RegistryBlock;
+import trinsdar.ic2c_extras.util.registry.RegistryItem;
 
 import java.util.Arrays;
 

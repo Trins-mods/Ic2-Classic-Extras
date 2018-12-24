@@ -15,8 +15,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.blocks.container.ContainerExtruder;
-import trinsdar.ic2c_extras.util.Ic2cExtrasResourceLocations;
-import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
+import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
+import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
 import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.extruding;
 
