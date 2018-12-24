@@ -64,6 +64,12 @@ public class BlockMachine extends BlockMultiID {
             return Ic2Icons.getTextures("orewashingplant");
         }else if (this == RegistryBlock.thermalCentrifuge){
             return Ic2Icons.getTextures("thermalcentrifuge");
+        }else if (this == RegistryBlock.roller){
+            return Ic2Icons.getTextures("roller");
+        } else if (this == RegistryBlock.extruder){
+            return Ic2Icons.getTextures("extruder");
+        }else if (this == RegistryBlock.cutter){
+            return Ic2Icons.getTextures("cutter");
         }else if (this == RegistryBlock.blastFurnace){
             return Ic2Icons.getTextures("blastfurnace");
         }else{
