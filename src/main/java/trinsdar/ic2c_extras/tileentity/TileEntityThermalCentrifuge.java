@@ -93,7 +93,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     @Override
     public ResourceLocation getStartSoundFile()
     {
-        return Ic2Sounds.maceratorOp;
+        return Ic2Sounds.extractorOp;
     }
 
     @Override

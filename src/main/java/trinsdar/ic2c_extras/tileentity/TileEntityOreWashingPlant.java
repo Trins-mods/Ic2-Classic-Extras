@@ -106,7 +106,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
     public ResourceLocation getStartSoundFile()
     {
-        return Ic2Sounds.maceratorOp;
+        return Ic2Sounds.extractorOp;
     }
 
     public ResourceLocation getInterruptSoundFile()

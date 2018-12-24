@@ -56,7 +56,7 @@ public class TileEntityExtruder extends TileEntityBasicElectricMachine {
     }
 
     public ResourceLocation getStartSoundFile() {
-        return Ic2Sounds.maceratorOp;
+        return Ic2Sounds.compressorOp;
     }
 
     public ResourceLocation getInterruptSoundFile() {
