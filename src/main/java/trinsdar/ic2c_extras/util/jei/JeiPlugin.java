@@ -8,8 +8,6 @@ import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import net.minecraft.item.ItemStack;
-import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
-import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.util.GuiMachine.*;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.RegistryBlock;
@@ -41,9 +39,9 @@ public class JeiPlugin implements IModPlugin {
                 {
                     return new JeiThermalCentrifugeWrapper(var1);
                 }
-            }, "thermalCentrifuge");
+            }, thermalCentrifugeId);
             registry.addRecipeClickArea(ThermalCentrifugeGui.class, 78, 32, 20, 23, thermalCentrifugeId);
-            registry.addRecipes(TileEntityThermalCentrifuge.thermalCentrifuge.getRecipeMap(), thermalCentrifugeId);
+            registry.addRecipes(Ic2cExtrasRecipes.thermalCentrifuge.getRecipeMap(), thermalCentrifugeId);
             registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
                 @Override
                 public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
@@ -52,7 +50,7 @@ public class JeiPlugin implements IModPlugin {
                 }
             }, oreWashingId);
             registry.addRecipeClickArea(OreWashingPlantGui.class, 78, 32, 20, 23, oreWashingId);
-            registry.addRecipes(TileEntityOreWashingPlant.oreWashingPlant.getRecipeMap(), oreWashingId);
+            registry.addRecipes(Ic2cExtrasRecipes.oreWashingPlant.getRecipeMap(), oreWashingId);
 
             registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
                 @Override
@@ -103,6 +101,11 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.plutoniumEnrichedUranium));
                 blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.plutoniumEnrichedUraniumIngot));
             }
+            blacklist.addIngredientToBlacklist(new ItemStack(RegistryBlock.metalPress));
+            blacklist.addIngredientToBlacklist(new ItemStack(RegistryBlock.blastFurnace));
+            blacklist.addIngredientToBlacklist(new ItemStack(RegistryBlock.solidFuelFirebox));
+            blacklist.addIngredientToBlacklist(new ItemStack(RegistryBlock.liquidFuelFirebox));
+            blacklist.addIngredientToBlacklist(new ItemStack(RegistryBlock.electricHeater));
         }
     }
 

@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.container.ContainerCutter;
+import trinsdar.ic2c_extras.util.Ic2cExtrasGuiLocations;
 import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
 
 import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.cutting;
@@ -41,7 +42,7 @@ public class TileEntityCutter extends TileEntityBasicElectricMachine {
 
     @Override
     public ResourceLocation getGuiTexture() {
-        return new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guicutter.png");
+        return Ic2cExtrasGuiLocations.cutter;
     }
 
     @Override

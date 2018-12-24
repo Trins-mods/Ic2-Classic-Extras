@@ -81,18 +81,6 @@ public class IC2CExtras extends PluginBase
 
     }
 
-//    private void addEntry(int meta, String name, int texture) {
-//        this.addEntry(meta, name, texture, "i0");
-//    }
-//
-//    private void addEntry(int meta, String name, int texture, String sprite) {
-//        this.unlocalizedNames.put(meta, new LangComponentHolder.LocaleItemComp("item." + name));
-//    }
-//
-//    public void onLoad(){
-//        this.addEntry(180, "itemOreUran", 61);
-//    }
-
     @Override
     public void onServerStopped()
     {

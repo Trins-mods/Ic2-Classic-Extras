@@ -33,10 +33,13 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
 import org.omg.CORBA.PUBLIC_MEMBER;
 import trinsdar.ic2c_extras.container.ContainerThermalCentrifuge;
+import trinsdar.ic2c_extras.util.Ic2cExtrasGuiLocations;
 import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
 
 import java.util.Iterator;
 import java.util.List;
+
+import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.thermalCentrifuge;
 
 public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 {
@@ -62,10 +65,8 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 
     @Override
     public ResourceLocation getGuiTexture() {
-        return new ResourceLocation("ic2c_extras", "textures/guiSprites/GUIThermalCentrifuge.png");
+        return Ic2cExtrasGuiLocations.thermalCentrifuge;
     }
-
-    public static IMachineRecipeList thermalCentrifuge = new BasicMachineRecipeList("thermalCentrifuge");
 
     public static final int slotInput = 0;
     public static final int slotFuel = 1;

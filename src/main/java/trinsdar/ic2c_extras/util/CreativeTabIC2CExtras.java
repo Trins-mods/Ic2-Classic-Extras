@@ -13,6 +13,6 @@ public class CreativeTabIC2CExtras extends CreativeTabs
     @Override
     public ItemStack getTabIconItem()
     {
-        return new ItemStack(RegistryBlock.oreWashingPlant);
+        return new ItemStack(RegistryItem.ironCrushedOre);
     }
 }

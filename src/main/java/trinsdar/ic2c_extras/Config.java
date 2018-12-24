@@ -3,13 +3,7 @@ import ic2.core.IC2;
 import ic2.core.platform.config.ConfigEntry;
 import ic2.core.platform.config.IC2Config;
 import ic2.core.platform.config.components.IConfigNotify;
-import trinsdar.ic2c_extras.proxy.CommonProxy;
-import net.minecraftforge.common.config.Configuration;
-import org.apache.logging.log4j.Level;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Config implements IConfigNotify {
     private static Config config = new Config();

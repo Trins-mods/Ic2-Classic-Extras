@@ -41,10 +41,13 @@ import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.*;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.container.ContainerOreWashingPlant;
+import trinsdar.ic2c_extras.util.Ic2cExtrasGuiLocations;
 import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
 
 import javax.annotation.Nullable;
 import java.util.List;
+
+import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.oreWashingPlant;
 
 public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine implements ITankListener, IFluidHandler
 {
@@ -54,7 +57,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
     public int water = 0;
     public int maxWater = 10000;
-    public static IMachineRecipeList oreWashingPlant = new BasicMachineRecipeList("oreWashingPlant");
+
 
 
     public static final int slotInput = 0;
@@ -264,7 +267,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
     public ResourceLocation getGuiTexture()
     {
-        return new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guiorewashingplant.png");
+        return Ic2cExtrasGuiLocations.oreWashingPlant;
     }
 
     @Override

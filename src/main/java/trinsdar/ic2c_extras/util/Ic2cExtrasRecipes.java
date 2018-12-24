@@ -8,7 +8,6 @@ import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
-import ic2.core.inventory.base.IC2ItemInventory;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
@@ -55,6 +54,8 @@ public class Ic2cExtrasRecipes {
     public static IMachineRecipeList rolling = new BasicMachineRecipeList("rolling");
     public static IMachineRecipeList extruding = new BasicMachineRecipeList("extruding");
     public static IMachineRecipeList cutting = new BasicMachineRecipeList("cutting");
+    public static IMachineRecipeList oreWashingPlant = new BasicMachineRecipeList("oreWashingPlant");
+    public static IMachineRecipeList thermalCentrifuge = new BasicMachineRecipeList("thermalCentrifuge");
 
     static IRecipeInput casing = new RecipeInputCombined(1,
             new IRecipeInput[] { new RecipeInputOreDict("casingRefinedIron"),
@@ -300,11 +301,11 @@ public class Ic2cExtrasRecipes {
         }
 
         else if(event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CORRIDOR)){
-            event.getTable().getPool("main").addEntry(new LootEntryItem(shard, netherFortressWeight, itemQuality, funcs, new LootCondition[0], entryName));
+            event.getTable().getPool("main").addEntry(new LootEntryItem(shard, strongholdWeight, itemQuality, funcs, new LootCondition[0], entryName));
         }
 
         else if(event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CROSSING)){
-            event.getTable().getPool("main").addEntry(new LootEntryItem(shard, netherFortressWeight, itemQuality, funcs, new LootCondition[0], entryName));
+            event.getTable().getPool("main").addEntry(new LootEntryItem(shard, strongholdWeight, itemQuality, funcs, new LootCondition[0], entryName));
         }
 
         else if(event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)){
