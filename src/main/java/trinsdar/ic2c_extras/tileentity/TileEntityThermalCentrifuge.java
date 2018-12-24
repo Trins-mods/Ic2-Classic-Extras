@@ -1,42 +1,34 @@
 package trinsdar.ic2c_extras.tileentity;
 
 import ic2.api.classic.item.IMachineUpgradeItem;
-import ic2.api.classic.recipe.INullableRecipeInput;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
-import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.ArrayFilter;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.CommonFilters;
-import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.item.misc.ItemMisc;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.helpers.FilteredList;
 import ic2.core.util.misc.StackUtil;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
-import org.omg.CORBA.PUBLIC_MEMBER;
 import trinsdar.ic2c_extras.container.ContainerThermalCentrifuge;
-import trinsdar.ic2c_extras.util.Ic2cExtrasGuiLocations;
+import trinsdar.ic2c_extras.util.Ic2cExtrasResourceLocations;
 import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
 
-import java.util.Iterator;
 import java.util.List;
 
 import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.thermalCentrifuge;
@@ -65,7 +57,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 
     @Override
     public ResourceLocation getGuiTexture() {
-        return Ic2cExtrasGuiLocations.thermalCentrifuge;
+        return Ic2cExtrasResourceLocations.thermalCentrifuge;
     }
 
     public static final int slotInput = 0;

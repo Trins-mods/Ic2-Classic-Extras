@@ -16,9 +16,8 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.container.ContainerMetalPress;
-import trinsdar.ic2c_extras.util.Ic2cExtrasGuiLocations;
+import trinsdar.ic2c_extras.util.Ic2cExtrasResourceLocations;
 import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
 
 import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.rolling;
@@ -49,7 +48,7 @@ public class TileEntityMetalPress  extends TileEntityBasicElectricMachine {
 
     @Override
     public ResourceLocation getGuiTexture() {
-        return Ic2cExtrasGuiLocations.metalPress;
+        return Ic2cExtrasResourceLocations.metalPress;
     }
 
     @Override

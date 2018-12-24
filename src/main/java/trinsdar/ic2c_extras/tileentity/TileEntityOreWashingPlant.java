@@ -8,7 +8,6 @@ import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
-import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.container.ContainerIC2;
@@ -39,9 +38,8 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.*;
-import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.container.ContainerOreWashingPlant;
-import trinsdar.ic2c_extras.util.Ic2cExtrasGuiLocations;
+import trinsdar.ic2c_extras.util.Ic2cExtrasResourceLocations;
 import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
 
 import javax.annotation.Nullable;
@@ -106,7 +104,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
     public ResourceLocation getStartSoundFile()
     {
-        return Ic2Sounds.extractorOp;
+        return Ic2cExtrasResourceLocations.oreWashingPlantOp;
     }
 
     public ResourceLocation getInterruptSoundFile()
@@ -267,7 +265,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
     public ResourceLocation getGuiTexture()
     {
-        return Ic2cExtrasGuiLocations.oreWashingPlant;
+        return Ic2cExtrasResourceLocations.oreWashingPlant;
     }
 
     @Override
