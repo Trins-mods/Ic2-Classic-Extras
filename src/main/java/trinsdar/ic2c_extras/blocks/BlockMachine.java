@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
-import trinsdar.ic2c_extras.tileentity.*;
+import trinsdar.ic2c_extras.blocks.tileentity.*;
 import trinsdar.ic2c_extras.util.RegistryBlock;
 
 import java.util.ArrayList;

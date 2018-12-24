@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.container;
+package trinsdar.ic2c_extras.blocks.container;
 
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.components.base.MachineChargeComp;
@@ -12,7 +12,7 @@ import ic2.core.util.math.Vec2i;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.util.guicomponent.MachineHeatComp;
 
 public class ContainerThermalCentrifuge extends ContainerTileComponent<TileEntityThermalCentrifuge> {

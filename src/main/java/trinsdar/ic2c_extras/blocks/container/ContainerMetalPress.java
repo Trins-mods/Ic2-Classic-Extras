@@ -1,8 +1,7 @@
-package trinsdar.ic2c_extras.container;
+package trinsdar.ic2c_extras.blocks.container;
 
 import ic2.api.classic.tile.IMachine;
 import ic2.core.inventory.container.ContainerTileComponent;
-import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.buttons.IconButton;
 import ic2.core.inventory.gui.components.base.MachineChargeComp;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
@@ -12,19 +11,12 @@ import ic2.core.inventory.slots.SlotOutput;
 import ic2.core.inventory.slots.SlotUpgrade;
 import ic2.core.platform.lang.components.base.LangComponentHolder;
 import ic2.core.platform.registry.Ic2GuiComp;
-import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import trinsdar.ic2c_extras.tileentity.TileEntityMetalPress;
-import trinsdar.ic2c_extras.util.RegistryItem;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalPress;
 import trinsdar.ic2c_extras.util.guicomponent.MetalPressButtonsComp;
 
 public class ContainerMetalPress  extends ContainerTileComponent<TileEntityMetalPress>{

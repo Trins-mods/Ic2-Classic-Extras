@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.container;
+package trinsdar.ic2c_extras.blocks.container;
 
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.filters.ArrayFilter;
@@ -18,7 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 
 public class ContainerOreWashingPlant extends ContainerTileComponent<TileEntityOreWashingPlant>
 {

@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.blocks.*;
-import trinsdar.ic2c_extras.tileentity.*;
+import trinsdar.ic2c_extras.blocks.tileentity.*;
 
 public class RegistryBlock
 {

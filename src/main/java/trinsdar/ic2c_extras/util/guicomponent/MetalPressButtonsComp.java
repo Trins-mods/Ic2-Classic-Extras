@@ -1,19 +1,15 @@
 package trinsdar.ic2c_extras.util.guicomponent;
 
-import ic2.core.block.base.tile.TileEntityElectricBlock;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.buttons.IconButton;
 import ic2.core.inventory.gui.components.GuiComponent;
-import ic2.core.platform.lang.components.base.LangComponentHolder;
-import ic2.core.platform.lang.storage.Ic2GuiLang;
 import ic2.core.platform.registry.Ic2GuiComp;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import trinsdar.ic2c_extras.tileentity.TileEntityMetalPress;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalPress;
 import trinsdar.ic2c_extras.util.RegistryItem;
 
 import java.util.Arrays;

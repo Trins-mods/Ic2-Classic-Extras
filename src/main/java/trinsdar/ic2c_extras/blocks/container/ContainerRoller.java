@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.container;
+package trinsdar.ic2c_extras.blocks.container;
 
 import ic2.api.classic.tile.IMachine;
 import ic2.core.inventory.container.ContainerTileComponent;
@@ -12,7 +12,7 @@ import ic2.core.platform.registry.Ic2GuiComp;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.tileentity.TileEntityRoller;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
 
 public class ContainerRoller extends ContainerTileComponent<TileEntityRoller> {
     public ContainerRoller(InventoryPlayer player, TileEntityRoller tile) {

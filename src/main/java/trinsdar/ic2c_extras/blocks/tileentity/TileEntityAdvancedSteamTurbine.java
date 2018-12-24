@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.tileentity;
+package trinsdar.ic2c_extras.blocks.tileentity;
 
 import ic2.core.block.generator.tile.TileEntityBasicSteamTurbine;
 import ic2.core.platform.lang.components.base.LocaleComp;

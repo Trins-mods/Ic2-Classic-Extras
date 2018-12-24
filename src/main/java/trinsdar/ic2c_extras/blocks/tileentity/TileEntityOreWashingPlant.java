@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.tileentity;
+package trinsdar.ic2c_extras.blocks.tileentity;
 
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.network.adv.NetworkField;
@@ -38,7 +38,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.*;
-import trinsdar.ic2c_extras.container.ContainerOreWashingPlant;
+import trinsdar.ic2c_extras.blocks.container.ContainerOreWashingPlant;
 import trinsdar.ic2c_extras.util.Ic2cExtrasResourceLocations;
 import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
 

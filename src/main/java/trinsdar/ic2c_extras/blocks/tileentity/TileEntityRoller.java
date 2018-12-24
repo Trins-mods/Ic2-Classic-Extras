@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.tileentity;
+package trinsdar.ic2c_extras.blocks.tileentity;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.tile.MachineType;
@@ -14,7 +14,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.container.ContainerRoller;
+import trinsdar.ic2c_extras.blocks.container.ContainerRoller;
 import trinsdar.ic2c_extras.util.Ic2cExtrasResourceLocations;
 import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
 

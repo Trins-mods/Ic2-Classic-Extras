@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.tileentity;
+package trinsdar.ic2c_extras.blocks.tileentity;
 
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
@@ -25,7 +25,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.container.ContainerThermalCentrifuge;
+import trinsdar.ic2c_extras.blocks.container.ContainerThermalCentrifuge;
 import trinsdar.ic2c_extras.util.Ic2cExtrasResourceLocations;
 import trinsdar.ic2c_extras.util.Ic2cExtrasLang;
 

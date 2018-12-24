@@ -7,9 +7,7 @@ import trinsdar.ic2c_extras.util.Ic2cExtrasOredict;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.RegistryBlock;
 import trinsdar.ic2c_extras.util.RegistryItem;
-import trinsdar.ic2c_extras.tileentity.TileEntityMetalPress;
-import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
-import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalPress;
 
 
 public class CommonProxy
