@@ -216,6 +216,18 @@ public class Ic2cExtrasRecipes {
         macerator.addRecipe(new RecipeInputOreDict("oreLead"), new ItemStack(RegistryItem.leadCrushedOre,2), 0.8F, "leadOre");
         macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
         macerator.addRecipe(new RecipeInputOreDict("oreUranium"), new ItemStack(RegistryItem.uraniumCrushedOre,2), 1.0F, "uraniumOre");
+        macerator.removeRecipe(new RecipeInputOreDict("orePoorIron"));
+        macerator.addRecipe(new RecipeInputOreDict("orePoorIron", 3), new ItemStack(RegistryItem.ironCrushedOre,2), 0.7F, "ironPoorOre");
+        macerator.removeRecipe(new RecipeInputOreDict("orePoorGold"));
+        macerator.addRecipe(new RecipeInputOreDict("orePoorGold", 3), new ItemStack(RegistryItem.goldCrushedOre,2), 1.0F, "goldPoorOre");
+        macerator.removeRecipe(new RecipeInputOreDict("orePoorCopper"));
+        macerator.addRecipe(new RecipeInputOreDict("orePoorCopper", 3), new ItemStack(RegistryItem.copperCrushedOre,2), 0.3F, "copperPoorOre");
+        macerator.removeRecipe(new RecipeInputOreDict("orePoorTin"));
+        macerator.addRecipe(new RecipeInputOreDict("orePoorTin", 3), new ItemStack(RegistryItem.tinCrushedOre,2), 0.4F, "tinPoorOre");
+        macerator.removeRecipe(new RecipeInputOreDict("orePoorSilver"));
+        macerator.addRecipe(new RecipeInputOreDict("orePoorSilver", 3), new ItemStack(RegistryItem.silverCrushedOre,2), 0.8F, "silverPoorOre");
+        macerator.removeRecipe(new RecipeInputOreDict("orePoorLead"));
+        macerator.addRecipe(new RecipeInputOreDict("orePoorLead", 3), new ItemStack(RegistryItem.leadCrushedOre,2), 0.8F, "leadPoorOre");
     }
 
     public static void initMachineRecipes(){
