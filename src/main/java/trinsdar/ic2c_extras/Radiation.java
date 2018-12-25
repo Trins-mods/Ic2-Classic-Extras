@@ -4,7 +4,7 @@ import static ic2.core.item.armor.standart.ItemHazmatArmor.isFullHazmatSuit;
 
 import java.util.ArrayList;
 
-import gtclassic.util.GTItems;
+import gtclassic.GTItems;
 import ic2.core.entity.IC2Potion;
 import ic2.core.item.armor.electric.ItemArmorQuantumSuit;
 import ic2.core.platform.registry.Ic2Items;
