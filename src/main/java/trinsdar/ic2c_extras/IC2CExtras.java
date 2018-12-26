@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import org.apache.logging.log4j.Logger;
 import trinsdar.ic2c_extras.proxy.CommonProxy;
 import trinsdar.ic2c_extras.util.CreativeTabIC2CExtras;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
@@ -30,6 +31,7 @@ public class IC2CExtras extends PluginBase
 
     public static SideGateway<CommonProxy> gateway = new SideGateway<>("trinsdar.ic2c_extras.proxy.ClientProxy", "trinsdar.ic2c_extras.proxy.ServerProxy");
     public static CommonProxy proxy = gateway.get();
+    public static Logger logger;
 
     @Override
     public boolean canLoad(Side side)

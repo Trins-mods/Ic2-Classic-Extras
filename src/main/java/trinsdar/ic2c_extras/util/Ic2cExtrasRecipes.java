@@ -1,5 +1,9 @@
 package trinsdar.ic2c_extras.util;
 
+import com.mcmoddev.basemetals.data.MaterialNames;
+
+import com.mcmoddev.lib.data.Names;
+import com.mcmoddev.lib.init.Materials;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
@@ -14,6 +18,7 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2States;
 import ic2.core.util.misc.StackUtil;
+import mods.railcraft.api.crafting.Crafters;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -59,6 +64,9 @@ public class Ic2cExtrasRecipes {
     public static IMachineRecipeList oreWashingPlant = new BasicMachineRecipeList("oreWashingPlant");
     public static IMachineRecipeList thermalCentrifuge = new BasicMachineRecipeList("thermalCentrifuge");
 
+    public static MaterialNames materialNamesBme;
+    public static com.mcmoddev.modernmetals.data.MaterialNames materialNamesMme;
+
     static IRecipeInput casing = new RecipeInputCombined(1,
             new IRecipeInput[] { new RecipeInputOreDict("casingRefinedIron"),
                     new RecipeInputOreDict("casingSilver"), new RecipeInputOreDict("casingSteel") });
@@ -71,6 +79,8 @@ public class Ic2cExtrasRecipes {
             new IRecipeInput[] { new RecipeInputOreDict("crushedTin"),
                     new RecipeInputOreDict("crushedPurifiedTin") });
 
+    static ItemStack stoneDust = new ItemStack(RegistryItem.stoneDust);
+
     public static void init(){
         initShapedRecipes();
         initShapelessRecipes();
@@ -79,6 +89,7 @@ public class Ic2cExtrasRecipes {
         initReplaceMaceratorRecipes();
         initMachineRecipes();
         initHarderUraniumProcessing();
+        //initRailcraftRecipes();
     }
 
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
@@ -232,13 +243,13 @@ public class Ic2cExtrasRecipes {
 
     public static void initMachineRecipes(){
         //ore washing plant
-        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedIron", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.ironPurifiedCrushedOre, 1), new ItemStack(RegistryItem.ironTinyDust, 2), new ItemStack(RegistryItem.stoneDust, 1))));
-        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedGold", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.goldPurifiedCrushedOre, 1), new ItemStack(RegistryItem.goldTinyDust, 2), new ItemStack(RegistryItem.stoneDust, 1))));
-        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedCopper", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.copperPurifiedCrushedOre, 1), new ItemStack(RegistryItem.copperTinyDust, 2), new ItemStack(RegistryItem.stoneDust, 1))));
-        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedTin", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.tinPurifiedCrushedOre, 1), new ItemStack(RegistryItem.tinTinyDust, 2, 3), new ItemStack(RegistryItem.stoneDust, 1))));
-        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedSilver", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.silverPurifiedCrushedOre, 1), new ItemStack(RegistryItem.silverTinyDust, 2), new ItemStack(RegistryItem.stoneDust, 1))));
-        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedLead", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.leadPurifiedCrushedOre, 1), new ItemStack(RegistryItem.leadTinyDust, 3), new ItemStack(RegistryItem.stoneDust, 1))));
-        TileEntityOreWashingPlant.addRecipe((new RecipeInputItemStack(new ItemStack(Blocks.GRAVEL, 1))), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.stoneDust, 1))));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedIron", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.ironPurifiedCrushedOre, 1), new ItemStack(RegistryItem.ironTinyDust, 2), stoneDust)));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedGold", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.goldPurifiedCrushedOre, 1), new ItemStack(RegistryItem.goldTinyDust, 2), stoneDust)));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedCopper", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.copperPurifiedCrushedOre, 1), new ItemStack(RegistryItem.copperTinyDust, 2), stoneDust)));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedTin", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.tinPurifiedCrushedOre, 1), new ItemStack(RegistryItem.tinTinyDust, 2, 3), stoneDust)));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedSilver", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.silverPurifiedCrushedOre, 1), new ItemStack(RegistryItem.silverTinyDust, 2), stoneDust)));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedLead", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.leadPurifiedCrushedOre, 1), new ItemStack(RegistryItem.leadTinyDust, 3), stoneDust)));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputItemStack(new ItemStack(Blocks.GRAVEL, 1))), new MachineOutput(null, Arrays.asList(stoneDust)));
 
         //thermal centrifuge recipes
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedIron", 1)), new MachineOutput(null, Arrays.asList((Ic2Items.ironDust), new ItemStack(RegistryItem.goldTinyDust, 1))));
@@ -247,12 +258,12 @@ public class Ic2cExtrasRecipes {
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedTin", 1)), new MachineOutput(null, Arrays.asList((Ic2Items.tinDust), new ItemStack(RegistryItem.ironTinyDust, 1))));
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedSilver", 1)), new MachineOutput(null, Arrays.asList((Ic2Items.silverDust), new ItemStack(RegistryItem.leadTinyDust, 1))));
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedLead", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.leadDust, 1), new ItemStack(RegistryItem.copperTinyDust, 1))));
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedIron", 1)), new MachineOutput(null, Arrays.asList((Ic2Items.ironDust), new ItemStack(RegistryItem.goldTinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedGold", 1)), new MachineOutput(null, Arrays.asList((Ic2Items.goldDust), new ItemStack(RegistryItem.silverTinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedCopper", 1)), new MachineOutput(null, Arrays.asList((Ic2Items.copperDust), new ItemStack(RegistryItem.tinTinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedTin", 1)), new MachineOutput(null, Arrays.asList((Ic2Items.tinDust), new ItemStack(RegistryItem.ironTinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedSilver", 1)), new MachineOutput(null, Arrays.asList((Ic2Items.silverDust), new ItemStack(RegistryItem.stoneDust, 1))));
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedLead", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.leadDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedIron", 1)), new MachineOutput(null, Arrays.asList((Ic2Items.ironDust), new ItemStack(RegistryItem.goldTinyDust, 1), stoneDust)));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedGold", 1)), new MachineOutput(null, Arrays.asList((Ic2Items.goldDust), new ItemStack(RegistryItem.silverTinyDust, 1), stoneDust)));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedCopper", 1)), new MachineOutput(null, Arrays.asList((Ic2Items.copperDust), new ItemStack(RegistryItem.tinTinyDust, 1), stoneDust)));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedTin", 1)), new MachineOutput(null, Arrays.asList((Ic2Items.tinDust), new ItemStack(RegistryItem.ironTinyDust, 1), stoneDust)));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedSilver", 1)), new MachineOutput(null, Arrays.asList((Ic2Items.silverDust), stoneDust)));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedLead", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.leadDust, 1), stoneDust)));
 
         rolling.addRecipe((new RecipeInputOreDict("ingotCopper", 1)),  new ItemStack(RegistryItem.copperCasing, 2), 0.7f, "copperItemCasingRolling");
         rolling.addRecipe((new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(RegistryItem.tinCasing, 2), 0.7f, "tinItemCasingRolling");
@@ -272,13 +283,51 @@ public class Ic2cExtrasRecipes {
         extruding.addRecipe((new RecipeInputOreDict("ingotGold", 1)),  StackUtil.copyWithSize(Ic2Items.goldCable, 6), 0.7f, "goldCableExtruding");
         extruding.addRecipe((new RecipeInputOreDict("casingTin", 1)),  StackUtil.copyWithSize(Ic2Items.tinCan, 1), 0.7f, "tinCanExtruding");
         extruding.addRecipe((new RecipeInputOreDict("casingRefinedIron", 2)),  StackUtil.copyWithSize(Ic2Items.ironFence, 3), 0.7f, "ironFenceExtruding");
+        if (Loader.isModLoaded("basemetals")){
+            TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict("crushedAdamantine", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.ADAMANTINE).getItem(Names.CRUSHED_PURIFIED)), new ItemStack(Materials.getMaterialByName(materialNamesBme.ADAMANTINE).getItem(Names.SMALLPOWDER), 2), new ItemStack(RegistryItem.stoneDust))));
+            TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict("crushedAntimony", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.ANTIMONY).getItem(Names.CRUSHED_PURIFIED)), new ItemStack(Materials.getMaterialByName(materialNamesBme.ANTIMONY).getItem(Names.SMALLPOWDER), 2), new ItemStack(RegistryItem.stoneDust))));
+            TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict("crushedBismuth", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.BISMUTH).getItem(Names.CRUSHED_PURIFIED)), new ItemStack(Materials.getMaterialByName(materialNamesBme.BISMUTH).getItem(Names.SMALLPOWDER), 2), new ItemStack(RegistryItem.stoneDust))));
+            TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict("crushedColdiron", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.COLDIRON).getItem(Names.CRUSHED_PURIFIED)), new ItemStack(Materials.getMaterialByName(materialNamesBme.COLDIRON).getItem(Names.SMALLPOWDER), 2), new ItemStack(RegistryItem.stoneDust))));
+            TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict("crushedNickel", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.NICKEL).getItem(Names.CRUSHED_PURIFIED)), new ItemStack(Materials.getMaterialByName(materialNamesBme.NICKEL).getItem(Names.SMALLPOWDER), 2), new ItemStack(RegistryItem.stoneDust))));
+            TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict("crushedPlatinum", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.PLATINUM).getItem(Names.CRUSHED_PURIFIED)), new ItemStack(Materials.getMaterialByName(materialNamesBme.PLATINUM).getItem(Names.SMALLPOWDER), 2), new ItemStack(RegistryItem.stoneDust))));
+            TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict("crushedStarsteel", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.STARSTEEL).getItem(Names.CRUSHED_PURIFIED)), new ItemStack(Materials.getMaterialByName(materialNamesBme.STARSTEEL).getItem(Names.SMALLPOWDER), 2), new ItemStack(RegistryItem.stoneDust))));
+            TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict("crushedZinc", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.ZINC).getItem(Names.CRUSHED_PURIFIED)), new ItemStack(Materials.getMaterialByName(materialNamesBme.ZINC).getItem(Names.SMALLPOWDER), 2), new ItemStack(RegistryItem.stoneDust))));
+
+            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedAdamantine", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.ADAMANTINE).getItem(Names.POWDER)), new ItemStack(Materials.getMaterialByName(materialNamesBme.ADAMANTINE).getItem(Names.SMALLPOWDER), 1), new ItemStack(RegistryItem.stoneDust))));
+            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedAntimony", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.ANTIMONY).getItem(Names.POWDER)), new ItemStack(Materials.getMaterialByName(materialNamesBme.ANTIMONY).getItem(Names.SMALLPOWDER), 1), new ItemStack(RegistryItem.stoneDust))));
+            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedBismuth", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.BISMUTH).getItem(Names.POWDER)), new ItemStack(Materials.getMaterialByName(materialNamesBme.BISMUTH).getItem(Names.SMALLPOWDER), 1), new ItemStack(RegistryItem.stoneDust))));
+            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedColdiron", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.COLDIRON).getItem(Names.POWDER)), new ItemStack(Materials.getMaterialByName(materialNamesBme.COLDIRON).getItem(Names.SMALLPOWDER), 1), new ItemStack(RegistryItem.stoneDust))));
+            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedNickel", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.NICKEL).getItem(Names.POWDER)), new ItemStack(Materials.getMaterialByName(materialNamesBme.NICKEL).getItem(Names.SMALLPOWDER), 1), new ItemStack(RegistryItem.stoneDust))));
+            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPlatinum", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.PLATINUM).getItem(Names.POWDER)), new ItemStack(Materials.getMaterialByName(materialNamesBme.PLATINUM).getItem(Names.SMALLPOWDER), 1), new ItemStack(RegistryItem.stoneDust))));
+            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedStarsteel", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.STARSTEEL).getItem(Names.POWDER)), new ItemStack(Materials.getMaterialByName(materialNamesBme.STARSTEEL).getItem(Names.SMALLPOWDER), 1), new ItemStack(RegistryItem.stoneDust))));
+            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedZinc", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.ZINC).getItem(Names.POWDER)), new ItemStack(Materials.getMaterialByName(materialNamesBme.ZINC).getItem(Names.SMALLPOWDER), 1), new ItemStack(RegistryItem.stoneDust))));
+
+            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedAdamantine", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.ADAMANTINE).getItem(Names.POWDER)), new ItemStack(Materials.getMaterialByName(materialNamesBme.ADAMANTINE).getItem(Names.SMALLPOWDER), 2))));
+            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedAntimony", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.ANTIMONY).getItem(Names.POWDER)), new ItemStack(Materials.getMaterialByName(materialNamesBme.ANTIMONY).getItem(Names.SMALLPOWDER), 2))));
+            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedBismuth", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.BISMUTH).getItem(Names.POWDER)), new ItemStack(Materials.getMaterialByName(materialNamesBme.BISMUTH).getItem(Names.SMALLPOWDER), 2))));
+            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedColdiron", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.COLDIRON).getItem(Names.POWDER)), new ItemStack(Materials.getMaterialByName(materialNamesBme.COLDIRON).getItem(Names.SMALLPOWDER), 2))));
+            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedNickel", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.NICKEL).getItem(Names.POWDER)), new ItemStack(Materials.getMaterialByName(materialNamesBme.NICKEL).getItem(Names.SMALLPOWDER), 2))));
+            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedPlatinum", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.PLATINUM).getItem(Names.POWDER)), new ItemStack(Materials.getMaterialByName(materialNamesBme.PLATINUM).getItem(Names.SMALLPOWDER), 2))));
+            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedStarsteel", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.STARSTEEL).getItem(Names.POWDER)), new ItemStack(Materials.getMaterialByName(materialNamesBme.STARSTEEL).getItem(Names.SMALLPOWDER), 2))));
+            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedZinc", 1), new MachineOutput(null, Arrays.asList(new ItemStack(Materials.getMaterialByName(materialNamesBme.ZINC).getItem(Names.POWDER)), new ItemStack(Materials.getMaterialByName(materialNamesBme.ZINC).getItem(Names.SMALLPOWDER), 2))));
+        }
+
+        if (Loader.isModLoaded("modernmetals")){
+            
+        }
+    }
+
+    public static void initRailcraftRecipes(){
+        if (Loader.isModLoaded("railcraft")){
+            Crafters.rockCrusher();
+        }
     }
     public static void initHarderUraniumProcessing(){
         if (enableHarderUranium){
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(Ic2Items.reactorReEnrichedUraniumRod)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.plutonium), StackUtil.copyWithSize(Ic2Items.uraniumDrop, 4))));
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedUranium", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uranium238, 6), new ItemStack(RegistryItem.uranium235TinyDust, 1))));
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uranium238, 4), new ItemStack(RegistryItem.uranium235TinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
-            TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uraniumPurifiedCrushedOre, 1), new ItemStack(RegistryItem.uranium235TinyDust, 1), new ItemStack(RegistryItem.stoneDust, 1))));
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uranium238, 4), new ItemStack(RegistryItem.uranium235TinyDust, 1), stoneDust)));
+            TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uraniumPurifiedCrushedOre, 1), new ItemStack(RegistryItem.uranium235TinyDust, 1), stoneDust)));
             TileEntityCompressor.addRecipe(new ItemStack(RegistryItem.plutoniumEnrichedUranium), new ItemStack(RegistryItem.plutoniumEnrichedUraniumIngot));
             recipes.addRecipe((Ic2Items.uraniumDrop),
                     "UUU", "TTT", "UUU", 'U', "dustUranium238",'T', "dustTinyUranium235");
