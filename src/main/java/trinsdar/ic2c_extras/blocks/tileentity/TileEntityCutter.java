@@ -4,7 +4,6 @@ import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
-import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
@@ -14,7 +13,6 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.blocks.container.ContainerCutter;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
@@ -44,10 +42,6 @@ public class TileEntityCutter extends TileEntityBasicElectricMachine {
         return Ic2cExtrasResourceLocations.cutter;
     }
 
-    @Override
-    public ContainerIC2 getGuiContainer(EntityPlayer player) {
-        return new ContainerCutter(player.inventory, this);
-    }
 
     public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
     {
