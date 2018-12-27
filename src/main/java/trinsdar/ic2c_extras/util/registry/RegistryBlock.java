@@ -21,6 +21,9 @@ public class RegistryBlock
     roller = new BlockMachine("roller"),
     extruder = new BlockMachine("extruder"),
     cutter = new BlockMachine("cutter"),
+    impellerizedRoller = new BlockMachine("impellerizedRoller"),
+    liquescentExtruder = new BlockMachine("liquescentExtruder"),
+    airjetCutter = new BlockMachine("airjetCutter"),
     blastFurnace = new BlockMachine("blastFurnace");
     public static final BlockIc2cEGenerator
     advancedSteamTurbine = new BlockIc2cEGenerator("advancedSteamTurbine"),
@@ -40,6 +43,8 @@ public class RegistryBlock
             roller,
             extruder,
             cutter,
+            impellerizedRoller,
+            liquescentExtruder,
             thermalCentrifuge,
             blastFurnace,
             advancedSteamTurbine,

@@ -44,6 +44,7 @@ import trinsdar.ic2c_extras.util.registry.RegistryBlock;
 import trinsdar.ic2c_extras.util.registry.RegistryItem;
 
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 import static ic2.api.classic.recipe.ClassicRecipes.macerator;
 
@@ -381,7 +382,7 @@ public class Ic2cExtrasRecipes {
 
     public static void initRailcraftRecipes(){
         if (Loader.isModLoaded("railcraft")){
-            Crafters.rockCrusher();
+            //Crafters.rockCrusher().getRecipes().removeIf(-> true);
         }
     }
     public static void initHarderUraniumProcessing(){
