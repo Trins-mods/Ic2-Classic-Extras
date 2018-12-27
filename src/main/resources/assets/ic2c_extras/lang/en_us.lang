@@ -7,6 +7,7 @@ tile.ic2c_extras.extruder.name=Extruder
 tile.ic2c_extras.cutter.name=Cutter
 tile.ic2c_extras.impellerizedRoller.name=Impellerized Roller
 tile.ic2c_extras.liquescentExtruder.name=Liquescent Extruder
+tile.ic2c_extras.plasmaCutter.name=Plasma Cutter
 tile.ic2c_extras.blastFurnace.name=Blast Furnace
 tile.ic2c_extras.advancedSteamTurbine.name=Advanced Steam Turbine
 tile.ic2c_extras.solidFuelFirebox.name=Solid Fuel Firebox

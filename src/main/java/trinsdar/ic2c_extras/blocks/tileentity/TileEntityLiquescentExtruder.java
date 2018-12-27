@@ -14,19 +14,18 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
-public class TileEntityImpellerizedRoller extends TileEntityAdvancedMachine {
-    public TileEntityImpellerizedRoller() {
+public class TileEntityLiquescentExtruder extends TileEntityAdvancedMachine {
+    public TileEntityLiquescentExtruder() {
         super(4, 30, 4000);
     }
 
     @Override
     public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input) {
-        return Ic2cExtrasRecipes.rolling.getRecipeInAndOutput(input, false);
+        return Ic2cExtrasRecipes.extruding.getRecipeInAndOutput(input, false);
     }
 
     @Override
@@ -42,7 +41,7 @@ public class TileEntityImpellerizedRoller extends TileEntityAdvancedMachine {
 
     @Override
     public ResourceLocation getTexture() {
-        return Ic2cExtrasResourceLocations.impellerizedRoller;
+        return Ic2cExtrasResourceLocations.liquescentExtruder;
     }
 
     @Override
@@ -52,12 +51,12 @@ public class TileEntityImpellerizedRoller extends TileEntityAdvancedMachine {
 
     @Override
     public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.impellerizedRoller;
+        return Ic2cExtrasLang.liquescentExtruder;
     }
 
     @Override
     public IMachineRecipeList getRecipeList() {
-        return Ic2cExtrasRecipes.rolling;
+        return Ic2cExtrasRecipes.extruding;
     }
 
     @Override

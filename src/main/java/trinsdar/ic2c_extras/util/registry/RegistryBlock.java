@@ -23,7 +23,7 @@ public class RegistryBlock
     cutter = new BlockMachine("cutter"),
     impellerizedRoller = new BlockMachine("impellerizedRoller"),
     liquescentExtruder = new BlockMachine("liquescentExtruder"),
-    airjetCutter = new BlockMachine("airjetCutter"),
+    plasmaCutter = new BlockMachine("plasmaCutter"),
     blastFurnace = new BlockMachine("blastFurnace");
     public static final BlockIc2cEGenerator
     advancedSteamTurbine = new BlockIc2cEGenerator("advancedSteamTurbine"),
@@ -45,6 +45,7 @@ public class RegistryBlock
             cutter,
             impellerizedRoller,
             liquescentExtruder,
+            plasmaCutter,
             thermalCentrifuge,
             blastFurnace,
             advancedSteamTurbine,
@@ -77,6 +78,9 @@ public class RegistryBlock
         GameRegistry.registerTileEntity(TileEntityRoller.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityRoller"));
         GameRegistry.registerTileEntity(TileEntityExtruder.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityExtruder"));
         GameRegistry.registerTileEntity(TileEntityCutter.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityCutter"));
+        GameRegistry.registerTileEntity(TileEntityImpellerizedRoller.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityImpellerizedRoller"));
+        GameRegistry.registerTileEntity(TileEntityLiquescentExtruder.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityLiquescentExtruder"));
+        GameRegistry.registerTileEntity(TileEntityPlasmaCutter.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityPlasmaCutter"));
     }
 
     @SubscribeEvent

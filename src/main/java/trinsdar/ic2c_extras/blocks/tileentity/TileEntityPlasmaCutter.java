@@ -14,19 +14,18 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
-public class TileEntityImpellerizedRoller extends TileEntityAdvancedMachine {
-    public TileEntityImpellerizedRoller() {
+public class TileEntityPlasmaCutter extends TileEntityAdvancedMachine {
+    public TileEntityPlasmaCutter() {
         super(4, 30, 4000);
     }
 
     @Override
     public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input) {
-        return Ic2cExtrasRecipes.rolling.getRecipeInAndOutput(input, false);
+        return Ic2cExtrasRecipes.cutting.getRecipeInAndOutput(input, false);
     }
 
     @Override
@@ -36,13 +35,12 @@ public class TileEntityImpellerizedRoller extends TileEntityAdvancedMachine {
 
     @Override
     public Slot[] getInventorySlots(InventoryPlayer player) {
-        Slot[] slots = new Slot[]{new SlotDischarge(this, 2147483647, 0, 56, 53), new SlotCustom(this, 1, 56, 17, new MachineFilter(this)), new SlotOutput(player.player, this, 2, 113, 35), new SlotOutput(player.player, this, 3, 131, 35)};
-        return slots;
+        return new Slot[]{new SlotDischarge(this, 2147483647, 0, 56, 53), new SlotCustom(this, 1, 56, 17, new MachineFilter(this)), new SlotOutput(player.player, this, 2, 113, 35), new SlotOutput(player.player, this, 3, 131, 35)};
     }
 
     @Override
     public ResourceLocation getTexture() {
-        return Ic2cExtrasResourceLocations.impellerizedRoller;
+        return Ic2cExtrasResourceLocations.plasmaCutter;
     }
 
     @Override
@@ -52,12 +50,12 @@ public class TileEntityImpellerizedRoller extends TileEntityAdvancedMachine {
 
     @Override
     public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.impellerizedRoller;
+        return Ic2cExtrasLang.plasmaCutter;
     }
 
     @Override
     public IMachineRecipeList getRecipeList() {
-        return Ic2cExtrasRecipes.rolling;
+        return Ic2cExtrasRecipes.cutting;
     }
 
     @Override

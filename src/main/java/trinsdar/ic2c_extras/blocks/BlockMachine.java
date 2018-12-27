@@ -49,6 +49,12 @@ public class BlockMachine extends BlockMultiID {
             return new TileEntityExtruder();
         }else if (this == RegistryBlock.cutter){
             return new TileEntityCutter();
+        }else if (this == RegistryBlock.impellerizedRoller){
+            return new TileEntityImpellerizedRoller();
+        }else if (this == RegistryBlock.liquescentExtruder){
+            return new TileEntityLiquescentExtruder();
+        }else if (this == RegistryBlock.plasmaCutter){
+            return new TileEntityPlasmaCutter();
         }else{
             return new TileEntityBlock();
         }
