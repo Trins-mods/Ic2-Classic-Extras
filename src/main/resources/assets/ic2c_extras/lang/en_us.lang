@@ -72,3 +72,4 @@ itemGroup.ic2c_extras=Ic2 Classic Extras
 
 tileInfo.heatAmount.name=Heat: %1$s / %2$s
 jeiInfo.heat.name=%s Heat
+jeiInfo.water.name=%s MB Water

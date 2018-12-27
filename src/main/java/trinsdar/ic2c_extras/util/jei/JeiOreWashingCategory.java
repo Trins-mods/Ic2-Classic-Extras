@@ -24,7 +24,7 @@ public class JeiOreWashingCategory implements IRecipeCategory<JeiOreWashingWrapp
 
         displayName = new ItemStack(RegistryBlock.oreWashingPlant);
         ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guiorewashingplant.png");
-        this.draw = helper.createDrawable(texture, 5, 11, 124, 63);
+        this.draw = helper.createDrawable(texture, 5, 8, 124, 66);
         IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 20, 19);
         this.progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);
         IDrawableStatic chargePic = helper.createDrawable(texture, 176, 0, 13, 14);
@@ -33,8 +33,8 @@ public class JeiOreWashingCategory implements IRecipeCategory<JeiOreWashingWrapp
 
     @SideOnly(Side.CLIENT)
     public void drawExtras(Minecraft arg0) {
-        this.progress.draw(arg0, 76, 22);
-        this.charge.draw(arg0, 51, 25);
+        this.progress.draw(arg0, 76, 25);
+        this.charge.draw(arg0, 51, 28);
     }
 
     @Override
@@ -60,10 +60,10 @@ public class JeiOreWashingCategory implements IRecipeCategory<JeiOreWashingWrapp
     @Override
     public void setRecipe(IRecipeLayout layout, JeiOreWashingWrapper arg1, IIngredients ingridient) {
         IGuiItemStackGroup guiItemStacks = layout.getItemStacks();
-        guiItemStacks.init(0, true, 50, 5); //input
-        guiItemStacks.init(1, false, 105, 5); //outputs
-        guiItemStacks.init(2, false, 105, 23);
-        guiItemStacks.init(3, false, 105, 41);
+        guiItemStacks.init(0, true, 50, 8); //input
+        guiItemStacks.init(1, false, 105, 8); //outputs
+        guiItemStacks.init(2, false, 105, 26);
+        guiItemStacks.init(3, false, 105, 44);
         guiItemStacks.set(ingridient);
 
     }

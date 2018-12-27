@@ -1,10 +1,17 @@
 package trinsdar.ic2c_extras.util.jei;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
+import ic2.core.platform.registry.Ic2Formatters;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,5 +39,11 @@ public class JeiOreWashingWrapper extends BlankRecipeWrapper {
             }
         }
         components.setOutputLists(ItemStack.class, outputs);
+    }
+
+    @Override
+    public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
+        FontRenderer font = minecraft.fontRenderer;
+        font.drawString(Ic2cExtrasLang.jeiWater.getLocalizedFormatted(new Object[]{Ic2Formatters.bigFormat.format((long) 1000)}), 44, 0, Color.gray.getRGB());
     }
 }
