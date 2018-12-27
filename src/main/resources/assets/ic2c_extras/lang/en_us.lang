@@ -71,3 +71,4 @@ item.ic2c_extras.wireCutters.name=Wire Cutters
 itemGroup.ic2c_extras=Ic2 Classic Extras
 
 tileInfo.heatAmount.name=Heat: %1$s / %2$s
+jeiInfo.heat.name=%s Heat

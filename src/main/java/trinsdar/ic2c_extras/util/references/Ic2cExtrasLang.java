@@ -1,11 +1,14 @@
 package trinsdar.ic2c_extras.util.references;
 
 import ic2.core.platform.lang.components.base.LangComponentHolder;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleJEIInfoComp;
+import ic2.core.platform.lang.components.base.LangComponentHolder.LocaleTileInfoComp;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import trinsdar.ic2c_extras.IC2CExtras;
 
 public class Ic2cExtrasLang {
-    public static LocaleComp heat = new LangComponentHolder.LocaleTileInfoComp("tileInfo.heatAmount.name");
+    public static LocaleComp heat = new LocaleTileInfoComp("tileInfo.heatAmount.name");
+    public static LocaleComp jeiHeat = new LocaleJEIInfoComp("jeiInfo.heat.name");
 
     public static LocaleComp thermalCentrifuge = new LangComponentHolder.LocaleBlockComp("tile." + IC2CExtras.MODID + ".thermalCentrifuge");
     public static LocaleComp oreWashingPlant = new LangComponentHolder.LocaleBlockComp("tile." + IC2CExtras.MODID + ".oreWashingPlant");
