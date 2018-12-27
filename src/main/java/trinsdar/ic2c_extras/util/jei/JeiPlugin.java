@@ -31,8 +31,7 @@ public class JeiPlugin implements IModPlugin {
     @Override
     public void register(@Nonnull IModRegistry registry) {
         if (SubModul.load){
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.thermalCentrifuge), thermalCentrifugeId);
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.oreWashingPlant), oreWashingId);
+            //thermal centrifuge
             registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
                 @Override
                 public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
@@ -40,8 +39,11 @@ public class JeiPlugin implements IModPlugin {
                     return new JeiThermalCentrifugeWrapper(var1);
                 }
             }, thermalCentrifugeId);
-            registry.addRecipeClickArea(ThermalCentrifugeGui.class, 78, 32, 20, 23, thermalCentrifugeId);
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.thermalCentrifuge), thermalCentrifugeId);
+            registry.addRecipeClickArea(ThermalCentrifugeGui.class, 48, 32, 44, 20, thermalCentrifugeId);
             registry.addRecipes(Ic2cExtrasRecipes.thermalCentrifuge.getRecipeMap(), thermalCentrifugeId);
+
+            //ore washing plant
             registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
                 @Override
                 public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
@@ -49,9 +51,11 @@ public class JeiPlugin implements IModPlugin {
                     return new JeiOreWashingWrapper(var1);
                 }
             }, oreWashingId);
+            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.oreWashingPlant), oreWashingId);
             registry.addRecipeClickArea(OreWashingPlantGui.class, 78, 32, 20, 23, oreWashingId);
             registry.addRecipes(Ic2cExtrasRecipes.oreWashingPlant.getRecipeMap(), oreWashingId);
 
+            //roller
             registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
                 @Override
                 public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
@@ -64,6 +68,7 @@ public class JeiPlugin implements IModPlugin {
             registry.addRecipeClickArea(RollerGui.class, 78, 32, 20, 23, rollerId);
             registry.addRecipes(Ic2cExtrasRecipes.rolling.getRecipeMap(), rollerId);
 
+            //extruder
             registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
                 @Override
                 public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
@@ -76,6 +81,7 @@ public class JeiPlugin implements IModPlugin {
             registry.addRecipeClickArea(ExtruderGui.class, 78, 32, 20, 23, extruderId);
             registry.addRecipes(Ic2cExtrasRecipes.extruding.getRecipeMap(), extruderId);
 
+            //cutter
             registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
                 @Override
                 public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)

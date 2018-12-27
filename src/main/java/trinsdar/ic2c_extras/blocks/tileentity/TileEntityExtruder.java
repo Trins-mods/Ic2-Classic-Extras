@@ -4,7 +4,6 @@ import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
-import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -13,6 +12,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import trinsdar.ic2c_extras.util.GuiMachine.ExtruderGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
@@ -42,9 +42,10 @@ public class TileEntityExtruder extends TileEntityBasicElectricMachine {
         return Ic2cExtrasResourceLocations.extruder;
     }
 
+    @Override
     public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
     {
-        return GuiComponentContainer.class;
+        return ExtruderGui.class;
     }
 
     public ResourceLocation getStartSoundFile() {

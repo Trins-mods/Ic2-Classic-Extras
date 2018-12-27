@@ -10,10 +10,13 @@ import ic2.core.inventory.slots.SlotOutput;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.lang.storage.Ic2GuiLang;
 import ic2.core.platform.registry.Ic2Sounds;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import trinsdar.ic2c_extras.util.GuiMachine.CutterGui;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
@@ -26,6 +29,11 @@ public class TileEntityPlasmaCutter extends TileEntityAdvancedMachine {
     @Override
     public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input) {
         return Ic2cExtrasRecipes.cutting.getRecipeInAndOutput(input, false);
+    }
+
+    @Override
+    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
+        return CutterGui.class;
     }
 
     @Override

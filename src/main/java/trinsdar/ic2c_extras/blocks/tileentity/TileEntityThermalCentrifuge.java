@@ -19,6 +19,7 @@ import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.helpers.FilteredList;
 import ic2.core.util.misc.StackUtil;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -26,6 +27,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.blocks.container.ContainerThermalCentrifuge;
+import trinsdar.ic2c_extras.util.GuiMachine.ThermalCentrifugeGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
@@ -108,6 +110,12 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     @Override
     public MachineType getType() {
         return null;
+    }
+
+    @Override
+    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
+    {
+        return ThermalCentrifugeGui.class;
     }
 
 

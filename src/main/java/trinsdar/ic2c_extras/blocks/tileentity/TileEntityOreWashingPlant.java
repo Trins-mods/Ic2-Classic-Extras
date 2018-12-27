@@ -12,7 +12,6 @@ import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.*;
-import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
@@ -39,6 +38,7 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.*;
 import trinsdar.ic2c_extras.blocks.container.ContainerOreWashingPlant;
+import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
@@ -253,7 +253,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     @Override
     public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
     {
-        return GuiComponentContainer.class;
+        return OreWashingPlantGui.class;
     }
 
 
