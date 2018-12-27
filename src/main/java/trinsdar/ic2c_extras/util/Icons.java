@@ -18,7 +18,6 @@ public class Icons
         addSprite(new Sprites.SpriteData("roller", "ic2c_extras:textures/sprites/roller.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("extruder", "ic2c_extras:textures/sprites/extruder.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("cutter", "ic2c_extras:textures/sprites/cutter.png", new Sprites.SpriteInfo(1, 12)));
-        addSprite(new Sprites.SpriteData("metalpress", "ic2c_extras:textures/sprites/metalpress.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("advancedsteamturbine", "ic2c_extras:textures/sprites/advancedsteamturbine.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("blastfurnace", "ic2c_extras:textures/sprites/blastfurnace.png", new Sprites.SpriteInfo(1, 12)));
         addSprite(new Sprites.SpriteData("solidfuelfirebox", "ic2c_extras:textures/sprites/solidfuelfirebox.png", new Sprites.SpriteInfo(1, 12)));
@@ -31,7 +30,6 @@ public class Icons
         addTextureEntry(new Sprites.TextureEntry("roller", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("extruder", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("cutter", 0, 0, 1, 12));
-        addTextureEntry(new Sprites.TextureEntry("metalpress", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("advancedsteamturbine", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("blastfurnace", 0, 0, 1, 12));
         addTextureEntry(new Sprites.TextureEntry("solidfuelfirebox", 0, 0, 1, 12));

@@ -9,7 +9,6 @@ public class Ic2cExtrasLang {
 
     public static LocaleComp thermalCentrifuge = new LangComponentHolder.LocaleBlockComp("tile." + IC2CExtras.MODID + ".thermalCentrifuge");
     public static LocaleComp oreWashingPlant = new LangComponentHolder.LocaleBlockComp("tile." + IC2CExtras.MODID + ".oreWashingPlant");
-    public static LocaleComp metalPress = new LangComponentHolder.LocaleBlockComp("tile." + IC2CExtras.MODID + ".metalPress");
     public static LocaleComp roller = new LangComponentHolder.LocaleBlockComp("tile." + IC2CExtras.MODID + ".roller");
     public static LocaleComp extruder = new LangComponentHolder.LocaleBlockComp("tile." + IC2CExtras.MODID + ".extruder");
     public static LocaleComp cutter = new LangComponentHolder.LocaleBlockComp("tile." + IC2CExtras.MODID + ".cutter");

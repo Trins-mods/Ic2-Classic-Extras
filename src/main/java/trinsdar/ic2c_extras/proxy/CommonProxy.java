@@ -7,7 +7,6 @@ import trinsdar.ic2c_extras.util.Ic2cExtrasOredict;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.registry.RegistryBlock;
 import trinsdar.ic2c_extras.util.registry.RegistryItem;
-import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalPress;
 
 
 public class CommonProxy
@@ -24,7 +23,6 @@ public class CommonProxy
 
     public void init()
     {
-        TileEntityMetalPress.init();
         Ic2cExtrasOredict.init();
         Ic2cExtrasRecipes.init();
     }

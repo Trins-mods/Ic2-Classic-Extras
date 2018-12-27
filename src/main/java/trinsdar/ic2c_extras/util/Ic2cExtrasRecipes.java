@@ -92,7 +92,6 @@ public class Ic2cExtrasRecipes {
         initHarderUraniumProcessing();
         //initRailcraftRecipes();
     }
-
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
     public static void initShapedRecipes(){
         recipes.addRecipe(new ItemStack(RegistryBlock.advancedSteamTurbine, 1),
@@ -110,6 +109,15 @@ public class Ic2cExtrasRecipes {
 
         recipes.addRecipe(new ItemStack(RegistryBlock.cutter, 1),
                 " C ", "TBT", "ctc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', RegistryItem.coil, 't', RegistryItem.wireCutters);
+
+        recipes.addRecipe(new ItemStack(RegistryBlock.impellerizedRoller, 1),
+                "CCC", "CRC", "CBC", 'R', RegistryBlock.roller,'B', Ic2Items.advMachine, 'C', RegistryItem.craftingHammer);
+
+        recipes.addRecipe(new ItemStack(RegistryBlock.liquescentExtruder, 1),
+                "CCC", "CEC", "CBC", 'E', RegistryBlock.extruder,'B', Ic2Items.advMachine, 'C', Ic2Items.goldCable);
+
+        recipes.addRecipe(new ItemStack(RegistryBlock.plasmaCutter, 1),
+                "CCC", "CcC", "CBC", 'c', RegistryBlock.cutter,'B', Ic2Items.advMachine, 'C', RegistryItem.wireCutters);
 
         recipes.addRecipe(new ItemStack(RegistryItem.coil, 1),
                 "CCC", "CIC", "CCC", 'I', "ingotRefinedIron",'C', Ic2Items.copperCable);

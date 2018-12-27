@@ -12,7 +12,6 @@ public class Ic2cExtrasResourceLocations {
     public static ResourceLocation impellerizedRoller = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guiimpellerizedroller.png");
     public static ResourceLocation liquescentExtruder = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guiliquescentextruder.png");
     public static ResourceLocation plasmaCutter = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guiplasmacutter.png");
-    public static ResourceLocation metalPress = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guimetalpress.png");
 
     public static ResourceLocation oreWashingPlantOp = new ResourceLocation(IC2CExtras.MODID, "sounds/orewashingplantop.ogg");
     //public static ResourceLocation thermalCentrifugeOp = new ResourceLocation(IC2CExtras.MODID, "sounds/thermalcentrifugeop.ogg");

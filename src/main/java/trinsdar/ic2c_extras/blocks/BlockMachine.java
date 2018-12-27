@@ -37,9 +37,7 @@ public class BlockMachine extends BlockMultiID {
 
     @Override
     public TileEntityBlock createNewTileEntity(World worldIn, int meta){
-        if (this == RegistryBlock.metalPress){
-            return new TileEntityMetalPress();
-        }else if (this == RegistryBlock.oreWashingPlant){
+        if (this == RegistryBlock.oreWashingPlant){
             return new TileEntityOreWashingPlant();
         }else if (this == RegistryBlock.thermalCentrifuge){
             return new TileEntityThermalCentrifuge();
@@ -64,9 +62,7 @@ public class BlockMachine extends BlockMultiID {
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite[] getIconSheet(int meta)
     {
-        if (this == RegistryBlock.metalPress){
-            return Ic2Icons.getTextures("metalpress");
-        }else if (this == RegistryBlock.oreWashingPlant){
+        if (this == RegistryBlock.oreWashingPlant){
             return Ic2Icons.getTextures("orewashingplant");
         }else if (this == RegistryBlock.thermalCentrifuge){
             return Ic2Icons.getTextures("thermalcentrifuge");
@@ -79,7 +75,7 @@ public class BlockMachine extends BlockMultiID {
         }else if (this == RegistryBlock.blastFurnace){
             return Ic2Icons.getTextures("blastfurnace");
         }else{
-            return Ic2Icons.getTextures("metalpress");
+            return Ic2Icons.getTextures("roller");
         }
     }
 
