@@ -101,7 +101,6 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.plutoniumEnrichedUranium));
                 blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.plutoniumEnrichedUraniumIngot));
             }
-            blacklist.addIngredientToBlacklist(new ItemStack(RegistryBlock.metalPress));
             blacklist.addIngredientToBlacklist(new ItemStack(RegistryBlock.blastFurnace));
             blacklist.addIngredientToBlacklist(new ItemStack(RegistryBlock.solidFuelFirebox));
             blacklist.addIngredientToBlacklist(new ItemStack(RegistryBlock.liquidFuelFirebox));
