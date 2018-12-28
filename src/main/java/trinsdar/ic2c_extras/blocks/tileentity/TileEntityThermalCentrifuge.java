@@ -14,6 +14,8 @@ import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.item.recipe.entry.RecipeInputItemStack;
+import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
@@ -25,6 +27,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.blocks.container.ContainerThermalCentrifuge;
 import trinsdar.ic2c_extras.util.GuiMachine.ThermalCentrifugeGui;
@@ -37,7 +40,7 @@ import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.thermalCentrifuge;
 
 public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 {
-    public static int maxHeat = 500;
+    public static int maxHeat;
     public int heat;
 
     public static final String neededHeat = "neededHeat";
@@ -241,8 +244,9 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         return nbt;
     }
 
-    public static void addRecipe(IRecipeInput input, MachineOutput output)
+    public static void addRecipe(IRecipeInput input, int heat, ItemStack... output)
     {
-        thermalCentrifuge.addRecipe(input, output, input.getInputs().get(0).getDisplayName());
+        thermalCentrifuge.addRecipe(input, new MachineOutput(createNeededHeat(heat), output), input.getInputs().get(0).getDisplayName());
     }
+
 }
