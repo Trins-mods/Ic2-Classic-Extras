@@ -27,6 +27,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.storage.loot.LootEntryItem;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraft.world.storage.loot.RandomValueRange;
@@ -39,15 +40,19 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.util.registry.RegistryBlock;
 import trinsdar.ic2c_extras.util.registry.RegistryItem;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import static ic2.api.classic.recipe.ClassicRecipes.macerator;
+import static ic2.api.classic.recipe.ClassicRecipes.massfabAmplifier;
 
 public class Ic2cExtrasRecipes {
     public static boolean enableHarderUranium;
@@ -91,6 +96,7 @@ public class Ic2cExtrasRecipes {
         initReplaceMaceratorRecipes();
         initMachineRecipes();
         initHarderUraniumProcessing();
+        postInit();
         //initRailcraftRecipes();
     }
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
@@ -247,6 +253,58 @@ public class Ic2cExtrasRecipes {
         macerator.addRecipe(new RecipeInputOreDict("orePoorSilver", 3), new ItemStack(RegistryItem.silverCrushedOre,2), 0.8F, "silverPoorOre");
         macerator.removeRecipe(new RecipeInputOreDict("orePoorLead"));
         macerator.addRecipe(new RecipeInputOreDict("orePoorLead", 3), new ItemStack(RegistryItem.leadCrushedOre,2), 0.8F, "leadPoorOre");
+    }
+
+    public static void postInit() {
+        int lowHeat = 250;
+        int mediumHeat = 300;
+        ItemStack stoneDust = new ItemStack(RegistryItem.stoneDust);
+        Set<String> crushedBlacklist = new HashSet();
+        crushedBlacklist.addAll(Arrays.asList("crushedIron", "crushedGold", "crushedSilver", "crushedLead", "crushedCopper", "crushedTin", "crushedUranium"));
+        Set<String> crushedPurifiedBlackList = new HashSet();
+        crushedPurifiedBlackList.addAll(Arrays.asList("crushedPurifiedIron", "crushedPurifiedGold", "crushedPurifiedSilver", "crushedPurifiedLead", "crushedPurifiedCopper", "crushedPurifiedTin", "crushedPurifiedUranium"));
+        String[] var2 = OreDictionary.getOreNames();
+        int var3 = var2.length;
+
+        for(int var4 = 0; var4 < var3; ++var4) {
+            String id = var2[var4];
+            String dust;
+            String tinyDust;
+            String purifiedCrushedOre;
+            NonNullList listDust;
+            NonNullList listTinyDust;
+            NonNullList listPurifiedCrushedOre;
+            if (id.startsWith("crushed")) {
+                if (!crushedBlacklist.contains(id)) {
+                    tinyDust = "dustTiny" + id.substring(7);
+                    dust = "dust" + id.substring(7);
+                    purifiedCrushedOre = "crushedPurified" + id.substring(7);
+                    if (OreDictionary.doesOreNameExist(dust) && OreDictionary.doesOreNameExist(tinyDust) && OreDictionary.doesOreNameExist(purifiedCrushedOre)) {
+                        listDust = OreDictionary.getOres(dust,  false);
+                        listTinyDust = OreDictionary.getOres(tinyDust, false);
+                        listPurifiedCrushedOre = OreDictionary.getOres(purifiedCrushedOre,false);
+                        if (!listDust.isEmpty() && !listTinyDust.isEmpty() && !listPurifiedCrushedOre.isEmpty()) {
+                            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(id, 1), mediumHeat, (ItemStack)listDust.get(0), (ItemStack)listTinyDust.get(0), stoneDust);
+                            TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict(id, 1), new MachineOutput(null, Arrays.asList((ItemStack)listPurifiedCrushedOre.get(0), StackUtil.copyWithSize((ItemStack)listTinyDust.get(0), 2), stoneDust)));
+                        }
+                    }
+                }
+            } else if (id.startsWith("crushedPurified")) {
+                if (!crushedPurifiedBlackList.contains(id)){
+                    dust = "dust" + id.substring(16);
+                    tinyDust = "dustTiny" + id.substring(16);
+                    if (OreDictionary.doesOreNameExist(dust) && OreDictionary.doesOreNameExist(tinyDust)) {
+                        listDust = OreDictionary.getOres(dust, false);
+                        listTinyDust = OreDictionary.getOres(tinyDust, false);
+                        if (!listDust.isEmpty() && !listTinyDust.isEmpty()) {
+                            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(id, 1), lowHeat, (ItemStack)listDust.get(0), StackUtil.copyWithSize((ItemStack)listTinyDust.get(0), 2));
+                        }
+                    }
+                }
+
+            }
+        }
+
     }
 
     static final String[] myMaterialNamesBme = {
