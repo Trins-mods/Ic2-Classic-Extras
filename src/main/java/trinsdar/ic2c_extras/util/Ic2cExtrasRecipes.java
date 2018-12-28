@@ -289,10 +289,11 @@ public class Ic2cExtrasRecipes {
                         }
                     }
                 }
-            } else if (id.startsWith("crushedPurified")) {
+            }
+            if (id.startsWith("crushedPurified")) {
                 if (!crushedPurifiedBlackList.contains(id)){
-                    dust = "dust" + id.substring(16);
-                    tinyDust = "dustTiny" + id.substring(16);
+                    dust = "dust" + id.substring(15);
+                    tinyDust = "dustTiny" + id.substring(15);
                     if (OreDictionary.doesOreNameExist(dust) && OreDictionary.doesOreNameExist(tinyDust)) {
                         listDust = OreDictionary.getOres(dust, false);
                         listTinyDust = OreDictionary.getOres(tinyDust, false);
