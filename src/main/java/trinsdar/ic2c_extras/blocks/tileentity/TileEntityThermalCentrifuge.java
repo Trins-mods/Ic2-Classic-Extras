@@ -125,6 +125,14 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     }
 
     @Override
+    protected EnumActionResult isRecipeStillValid(IMachineRecipeList.RecipeEntry entry) {
+        if (heat == getRequiredHeat(entry.getOutput())) {
+            return EnumActionResult.SUCCESS;
+        }
+        return EnumActionResult.PASS;
+    }
+
+    @Override
     protected EnumActionResult canFillRecipeIntoOutputs(MachineOutput output) {
         List<ItemStack> result = output.getAllOutputs();
         for (int i = 0; i < result.size() && i < 3; i++) {
@@ -138,15 +146,15 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         return EnumActionResult.SUCCESS;
     }
 
-    @Override
-    public boolean canWork()
-    {
-        if(super.canWork())
-        {
-            return heat == maxHeat;
-        }
-        return false;
-    }
+//    @Override
+//    public boolean canWork()
+//    {
+//        if(super.canWork())
+//        {
+//            return heat == maxHeat;
+//        }
+//        return false;
+//    }
 
     @Override
     public void update() {
@@ -162,6 +170,9 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         } else if (this.heat > 0) {
             this.heat -= Math.min(this.heat, 4);
             this.getNetwork().updateTileGuiField(this, "heat");
+        }
+        if (this.heat > maxHeat){
+            this.heat = maxHeat;
         }
     }
 
