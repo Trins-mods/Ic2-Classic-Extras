@@ -261,15 +261,19 @@ public class Ic2cExtrasRecipes {
         ItemStack stoneDust = new ItemStack(RegistryItem.stoneDust);
         Set<String> crushedBlacklist = new HashSet();
         Set<String> crushedPurifiedBlackList = new HashSet();
+        Set<String> plateBlacklist = new HashSet();
         crushedBlacklist.addAll(Arrays.asList("crushedIron", "crushedGold", "crushedSilver", "crushedLead", "crushedCopper", "crushedTin", "crushedUranium"));
         crushedPurifiedBlackList.addAll(Arrays.asList("crushedPurifiedIron", "crushedPurifiedGold", "crushedPurifiedSilver", "crushedPurifiedLead", "crushedPurifiedCopper", "crushedPurifiedTin", "crushedPurifiedUranium"));
+        plateBlacklist.addAll(Arrays.asList("plateIron", "plateGold", "plateSilver", "plateLead", "plateCopper", "plateTin", "plateRefinedIron", "plateSteel", "plateBronze"));
         if (Loader.isModLoaded("basemetals")){
             crushedBlacklist.addAll(Arrays.asList("crushedAdamantine", "crushedAntimony", "crushedBismuth", "crushedColdiron", "crushedNickel", "crushedPlatinum", "crushedStarsteel", "crushedZinc"));
             crushedPurifiedBlackList.addAll(Arrays.asList("crushedPurifiedAdamantine", "crushedPurifiedAntimony", "crushedPurifiedBismuth", "crushedPurifiedColdiron", "crushedPurifiedNickel", "crushedPurifiedPlatinum", "crushedPurifiedStarsteel", "crushedPurifiedZinc"));
+            plateBlacklist.addAll(Arrays.asList("plateAdamantine", "plateAntimony", "plateBismuth", "plateColdiron", "plateNickel", "platePlatinum", "plateStarsteel", "plateZinc"));
         }
         if (Loader.isModLoaded("modernmetals")){
-            crushedBlacklist.addAll(Arrays.asList("crushedAluminum", "crushedBeryllium", "crushedBoron", "crushedCadmium", "crushedChromium", "crushedIridium", "crushedMagnesium", "crushedManganese", "crushedOsmium", "crushedPlutonium", "crushedRutile", "crushedTantalum", "crushedTitanium", "crushedThorium", "crushedTungsten", "crushedUranium", "crushedZirconium"));
-            crushedPurifiedBlackList.addAll(Arrays.asList("crushedPurifiedAluminum", "crushedPurifiedBeryllium", "crushedPurifiedBoron", "crushedPurifiedCadmium", "crushedPurifiedChromium", "crushedPurifiedIridium", "crushedPurifiedMagnesium", "crushedPurifiedManganese", "crushedPurifiedOsmium", "crushedPurifiedPlutonium", "crushedPurifiedRutile", "crushedPurifiedTantalum", "crushedPurifiedTitanium", "crushedPurifiedThorium", "crushedPurifiedTungsten", "crushedPurifiedUranium", "crushedPurifiedZirconium"));
+            crushedBlacklist.addAll(Arrays.asList("crushedAluminum", "crushedAluminium", "crushedBeryllium", "crushedBoron", "crushedCadmium", "crushedChrome", "crushedChromium", "crushedIridium", "crushedMagnesium", "crushedManganese", "crushedOsmium", "crushedPlutonium", "crushedRutile", "crushedTantalum", "crushedTitanium", "crushedThorium", "crushedTungsten", "crushedZirconium"));
+            crushedPurifiedBlackList.addAll(Arrays.asList("crushedPurifiedAluminum", "crushedPurifiedAluminium", "crushedPurifiedBeryllium", "crushedPurifiedBoron", "crushedPurifiedCadmium", "crushedPurifiedChrome", "crushedPurifiedChromium", "crushedPurifiedIridium", "crushedPurifiedMagnesium", "crushedPurifiedManganese", "crushedPurifiedOsmium", "crushedPurifiedPlutonium", "crushedPurifiedRutile", "crushedPurifiedTantalum", "crushedPurifiedTitanium", "crushedPurifiedThorium", "crushedPurifiedTungsten", "crushedPurifiedZirconium"));
+            plateBlacklist.addAll(Arrays.asList("plateAluminum", "plateAluminium", "plateAluminumbrass", "plateAluminiumbrass", "plateBeryllium", "plateBoron", "plateCadmium", "plateChrome", "plateChromium", "plateGalvanizedsteel", "plateIridium", "plateMagnesium", "plateManganese", "plateNichrome", "plateOsmium", "platePlutonium", "plateRutile", "plateStainlesssteel", "plateTantalum", "plateTitanium", "plateThorium", "plateTungsten", "plateUranium", "plateZirconium"));
         }
         String[] var2 = OreDictionary.getOreNames();
         int var3 = var2.length;
@@ -279,9 +283,11 @@ public class Ic2cExtrasRecipes {
             String dust;
             String tinyDust;
             String purifiedCrushedOre;
+            String casing;
             NonNullList listDust;
             NonNullList listTinyDust;
             NonNullList listPurifiedCrushedOre;
+            NonNullList listCasings;
             if (id.startsWith("crushed")) {
                 if (!crushedBlacklist.contains(id)) {
                     tinyDust = "dustTiny" + id.substring(7);
@@ -307,6 +313,18 @@ public class Ic2cExtrasRecipes {
                         listTinyDust = OreDictionary.getOres(tinyDust, false);
                         if (!listDust.isEmpty() && !listTinyDust.isEmpty()) {
                             TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(id, 1), lowHeat, (ItemStack)listDust.get(0), StackUtil.copyWithSize((ItemStack)listTinyDust.get(0), 2));
+                        }
+                    }
+                }
+
+            }
+            if (id.startsWith("plate")) {
+                if (!plateBlacklist.contains(id)){
+                    casing = "casing" + id.substring(5);
+                    if (OreDictionary.doesOreNameExist(casing)) {
+                        listCasings = OreDictionary.getOres(casing, false);
+                        if (!listCasings.isEmpty()) {
+                            rolling.addRecipe(new RecipeInputOreDict(id, 1), StackUtil.copyWithSize((ItemStack)listCasings.get(0), 2), casing + "Rolling");
                         }
                     }
                 }
