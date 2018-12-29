@@ -5,8 +5,14 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
-import trinsdar.ic2c_extras.items.*;
+import trinsdar.ic2c_extras.items.ItemCasings;
+import trinsdar.ic2c_extras.items.ItemCrushedOre;
+import trinsdar.ic2c_extras.items.ItemMaterials;
+import trinsdar.ic2c_extras.items.ItemMiscs;
 import trinsdar.ic2c_extras.items.ItemMiscs.ItemMiscsTypes;
+import trinsdar.ic2c_extras.items.ItemPurifiedCrushedOre;
+import trinsdar.ic2c_extras.items.ItemTinyDust;
+import trinsdar.ic2c_extras.items.ItemToolCrafting;
 
 public class RegistryItem
 {

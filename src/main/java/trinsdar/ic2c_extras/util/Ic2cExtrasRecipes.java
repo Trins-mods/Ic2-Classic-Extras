@@ -52,7 +52,6 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import static ic2.api.classic.recipe.ClassicRecipes.macerator;
-import static ic2.api.classic.recipe.ClassicRecipes.massfabAmplifier;
 
 public class Ic2cExtrasRecipes {
     public static boolean enableHarderUranium;
