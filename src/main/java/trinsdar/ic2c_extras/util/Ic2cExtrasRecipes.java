@@ -195,6 +195,30 @@ public class Ic2cExtrasRecipes {
         recipes.addShapelessRecipe(new ItemStack(RegistryItem.iridiumShard, 9),
                 new Object[]{Ic2Items.iridiumOre});
 
+        if (enableCasingsWithHammer){
+            if (enableCasingsRequirePlates){
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.copperCasing, 2), new Object[]{"plateCopper", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.tinCasing, 2), new Object[]{"plateTin", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.silverCasing, 2), new Object[]{"plateSilver", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.leadCasing, 2), new Object[]{"plateLead", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.ironCasing, 2), new Object[]{"plateIron", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.goldCasing, 2), new Object[]{"plateGold", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.refinedIronCasing, 2), new Object[]{"plateRefinedIron", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.steelCasing, 2), new Object[]{"plateSteel", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.bronzeCasing, 2), new Object[]{"plateBronze", RegistryItem.craftingHammer});
+            }else{
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.copperCasing, 2), new Object[]{"ingotCopper", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.tinCasing, 2), new Object[]{"ingotTin", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.silverCasing, 2), new Object[]{"ingotSilver", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.leadCasing, 2), new Object[]{"ingotLead", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.ironCasing, 2), new Object[]{"ingotIron", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.goldCasing, 2), new Object[]{"ingotGold", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.refinedIronCasing, 2), new Object[]{"ingotRefinedIron", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.steelCasing, 2), new Object[]{"ingotSteel", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.bronzeCasing, 2), new Object[]{"ingotBronze", RegistryItem.craftingHammer});
+            }
+        }
+
         if (Loader.isModLoaded("gtclassic")){
             TileEntityCompressor.addRecipe("ingotLead", 9, new ItemStack(RegistryBlock.leadBlock));
             TileEntityCompressor.addRecipe("ingotRefinedIron", 9, new ItemStack(RegistryBlock.refinedIronBlock));
@@ -263,10 +287,12 @@ public class Ic2cExtrasRecipes {
         Set<String> crushedPurifiedBlackList = new HashSet();
         Set<String> plateBlacklist = new HashSet();
         Set<String> ingotWhitelist = new HashSet();
+        Set<String> gemBlacklist = new HashSet();
         crushedBlacklist.addAll(Arrays.asList("crushedIron", "crushedGold", "crushedSilver", "crushedLead", "crushedCopper", "crushedTin", "crushedUranium"));
         crushedPurifiedBlackList.addAll(Arrays.asList("crushedPurifiedIron", "crushedPurifiedGold", "crushedPurifiedSilver", "crushedPurifiedLead", "crushedPurifiedCopper", "crushedPurifiedTin", "crushedPurifiedUranium"));
         plateBlacklist.addAll(Arrays.asList("plateIron", "plateGold", "plateSilver", "plateLead", "plateCopper", "plateTin", "plateRefinedIron", "plateSteel", "plateBronze"));
         ingotWhitelist.addAll(Arrays.asList("ingotIron", "ingotGold", "ingotSilver", "ingotLead", "ingotCopper", "ingotTin", "ingotRefinedIron", "ingotSteel", "ingotBronze"));
+        gemBlacklist.addAll(Arrays.asList("ingotDiamond", "ingotEmerald", "ingotQuartz"));
         if (Loader.isModLoaded("basemetals")){
             crushedBlacklist.addAll(Arrays.asList("crushedAdamantine", "crushedAntimony", "crushedBismuth", "crushedColdiron", "crushedNickel", "crushedPlatinum", "crushedStarsteel", "crushedZinc"));
             crushedPurifiedBlackList.addAll(Arrays.asList("crushedPurifiedAdamantine", "crushedPurifiedAntimony", "crushedPurifiedBismuth", "crushedPurifiedColdiron", "crushedPurifiedNickel", "crushedPurifiedPlatinum", "crushedPurifiedStarsteel", "crushedPurifiedZinc"));
@@ -335,22 +361,26 @@ public class Ic2cExtrasRecipes {
 
             }
             if (id.startsWith("ingot")){
-                if (ingotWhitelist.contains(id)){
+                if (ingotWhitelist.contains(id) && !gemBlacklist.contains(id)){
                     plate = "plate" + id.substring(5);
                     if (enableCasingsRequirePlates){
                         if (OreDictionary.doesOreNameExist(plate)) {
                             listPlates = OreDictionary.getOres(plate, false);
                             if (!listPlates.isEmpty()) {
                                 rolling.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack)listPlates.get(0), plate + "Rolling");
+                                if (enableCasingsWithHammer){
+                                    recipes.addShapelessRecipe((ItemStack)listPlates.get(0), new Object[]{id, RegistryItem.craftingHammer});
+                                }
                             }
                         }
                     }
-                } else if (!ingotWhitelist.contains(id)){
+                } else if (!ingotWhitelist.contains(id) && !gemBlacklist.contains(id)){
                     plate = "plate" + id.substring(5);
                     if (OreDictionary.doesOreNameExist(plate)) {
                         listPlates = OreDictionary.getOres(plate, false);
                         if (!listPlates.isEmpty()) {
                             rolling.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack)listPlates.get(0), plate + "Rolling");
+                            recipes.addShapelessRecipe((ItemStack)listPlates.get(0), new Object[]{id, RegistryItem.craftingHammer});
                         }
                     }
                 }
@@ -425,15 +455,15 @@ public class Ic2cExtrasRecipes {
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedLead", 1)), mediumHeat, new ItemStack(RegistryItem.leadDust, 1), stoneDust);
 
         if (enableCasingsRequirePlates){
-            rolling.addRecipe((new RecipeInputOreDict("plateCopper", 1)),  new ItemStack(RegistryItem.copperCasing, 2), 0.7f, "copperItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateTin", 1)),  new ItemStack(RegistryItem.tinCasing, 2), 0.7f, "tinItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateSilver", 1)),  new ItemStack(RegistryItem.silverCasing, 2), 0.7f, "silverItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateLead", 1)),  new ItemStack(RegistryItem.leadCasing, 2), 0.7f, "leadItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateIron", 1)),  new ItemStack(RegistryItem.ironCasing, 2), 0.7f, "ironItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateGold", 1)),  new ItemStack(RegistryItem.goldCasing, 2), 0.7f, "goldItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateRefinedIron", 1)),  new ItemStack(RegistryItem.refinedIronCasing, 2), 0.7f, "refinedIronItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateSteel", 1)),  new ItemStack(RegistryItem.steelCasing, 2), 0.7f, "steelItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateBronze", 1)),  new ItemStack(RegistryItem.bronzeCasing, 2), 0.7f, "bronzeItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateCopper", 1)),  new ItemStack(RegistryItem.copperCasing, 2), 0.7f, "copperPlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateTin", 1)),  new ItemStack(RegistryItem.tinCasing, 2), 0.7f, "tinPlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateSilver", 1)),  new ItemStack(RegistryItem.silverCasing, 2), 0.7f, "silverPlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateLead", 1)),  new ItemStack(RegistryItem.leadCasing, 2), 0.7f, "leadPlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateIron", 1)),  new ItemStack(RegistryItem.ironCasing, 2), 0.7f, "ironPlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateGold", 1)),  new ItemStack(RegistryItem.goldCasing, 2), 0.7f, "goldPlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateRefinedIron", 1)),  new ItemStack(RegistryItem.refinedIronCasing, 2), 0.7f, "refinedIronPlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateSteel", 1)),  new ItemStack(RegistryItem.steelCasing, 2), 0.7f, "steelPlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateBronze", 1)),  new ItemStack(RegistryItem.bronzeCasing, 2), 0.7f, "bronzePlateItemCasingRolling");
         }else if (!enableCasingsRequirePlates){
             rolling.addRecipe((new RecipeInputOreDict("ingotCopper", 1)),  new ItemStack(RegistryItem.copperCasing, 2), 0.7f, "copperItemCasingRolling");
             rolling.addRecipe((new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(RegistryItem.tinCasing, 2), 0.7f, "tinItemCasingRolling");
@@ -473,6 +503,7 @@ public class Ic2cExtrasRecipes {
                     ItemStack smallPowder2 = new ItemStack(mat.getItem(Names.SMALLPOWDER), 2);
                     ItemStack casings = new ItemStack(mat.getItem(Names.CASING), 2);
 
+                    recipes.addShapelessRecipe(casings, new Object[]{plateName, RegistryItem.craftingHammer});
                     rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
 
                     TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict(crushedName, 1), new MachineOutput(null, Arrays.asList(crushedPurified, smallPowder2, stoneDust)));
@@ -498,6 +529,7 @@ public class Ic2cExtrasRecipes {
                     ItemStack smallPowder2 = new ItemStack(mat.getItem(Names.SMALLPOWDER), 2);
                     ItemStack casings = new ItemStack(mat.getItem(Names.CASING), 2);
 
+                    recipes.addShapelessRecipe(casings, new Object[]{plateName, RegistryItem.craftingHammer});
                     rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
 
                     TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict(crushedName, 1), new MachineOutput(null, Arrays.asList(crushedPurified, smallPowder2, stoneDust)));
@@ -513,6 +545,7 @@ public class Ic2cExtrasRecipes {
                     String plateName = "plate" + oreName;
                     ItemStack casings = new ItemStack(mat.getItem(Names.CASING), 2);
 
+                    recipes.addShapelessRecipe(casings, new Object[]{plateName, RegistryItem.craftingHammer});
                     rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
                 }
             }

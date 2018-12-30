@@ -71,7 +71,8 @@ public class RegistryItem
     steelIngot = new ItemMiscs(ItemMiscsTypes.STEEL_INGOT),
     plutoniumEnrichedUraniumIngot = new ItemMiscs(ItemMiscsTypes.PLUTONIUM_ENRICHED_URANIUM_INGOT),
     plutoniumEnrichedUranium = new ItemMiscs(ItemMiscsTypes.PLUTONIUM_ENRICHED_URANIUM),
-    iridiumShard = new ItemMiscs(ItemMiscsTypes.IRIDIUM_SHARD);
+    iridiumShard = new ItemMiscs(ItemMiscsTypes.IRIDIUM_SHARD),
+    refinedIronPlate = new ItemMiscs(ItemMiscsTypes.REFINED_IRON_PLATE);
 
     public static final ItemToolCrafting
     craftingHammer = new ItemToolCrafting(80, "craftingHammer", 77, true),
@@ -131,6 +132,7 @@ public class RegistryItem
         plutoniumEnrichedUraniumIngot,
         plutoniumEnrichedUranium,
         iridiumShard,
+        refinedIronPlate,
         craftingHammer,
         wireCutters
     };

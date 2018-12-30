@@ -65,6 +65,7 @@ item.ic2c_extras.steel_ingot.name=Steel Ingot
 item.ic2c_extras.plutonium_enriched_uranium_ingot.name=Plutonium Enriched Uranium Ingot
 item.ic2c_extras.plutonium_enriched_uranium.name=Plutonium Enriched Uranium
 item.ic2c_extras.iridium_shard.name=Iridium Shard
+item.ic2c_extras.refined_iron_plate.name=Refined Iron Plate
 item.ic2c_extras.craftingHammer.name=Crafting Hammer
 item.ic2c_extras.wireCutters.name=Wire Cutters
 
