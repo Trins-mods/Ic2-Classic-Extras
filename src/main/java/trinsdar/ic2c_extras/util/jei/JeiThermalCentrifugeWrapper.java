@@ -1,6 +1,7 @@
 package trinsdar.ic2c_extras.util.jei;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
+import ic2.api.classic.recipe.machine.IMachineRecipeList.RecipeEntry;
 import ic2.core.platform.lang.storage.Ic2InfoLang;
 import ic2.core.platform.registry.Ic2Formatters;
 import mezz.jei.api.ingredients.IIngredients;
@@ -11,15 +12,15 @@ import net.minecraft.item.ItemStack;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class JeiThermalCentrifugeWrapper extends BlankRecipeWrapper {
-    IMachineRecipeList.RecipeEntry entry;
+    RecipeEntry entry;
 
-    public JeiThermalCentrifugeWrapper(IMachineRecipeList.RecipeEntry recipe) {
+    public JeiThermalCentrifugeWrapper(RecipeEntry recipe) {
         this.entry = recipe;
     }
 
@@ -44,6 +45,6 @@ public class JeiThermalCentrifugeWrapper extends BlankRecipeWrapper {
     @Override
     public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
         FontRenderer font = minecraft.fontRenderer;
-        font.drawString(Ic2cExtrasLang.jeiHeat.getLocalizedFormatted(new Object[]{Ic2Formatters.bigFormat.format((long) TileEntityThermalCentrifuge.maxHeat)}), 44, 12, Color.gray.getRGB());
+        font.drawString(Ic2cExtrasLang.jeiHeat.getLocalizedFormatted(new Object[]{Ic2Formatters.bigFormat.format((long) TileEntityThermalCentrifuge.getRequiredHeat(entry.getOutput()))}), 44, 12, Color.gray.getRGB());
     }
 }

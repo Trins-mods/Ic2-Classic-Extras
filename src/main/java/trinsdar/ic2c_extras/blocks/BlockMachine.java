@@ -12,7 +12,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
-import trinsdar.ic2c_extras.blocks.tileentity.*;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityCutter;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityExtruder;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityImpellerizedRoller;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityLiquescentExtruder;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityPlasmaCutter;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.util.registry.RegistryBlock;
 
 import java.util.ArrayList;

@@ -2,7 +2,11 @@ package trinsdar.ic2c_extras.util.jei;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.jeiIntigration.SubModul;
-import mezz.jei.api.*;
+import mezz.jei.api.IGuiHelper;
+import mezz.jei.api.IJeiRuntime;
+import mezz.jei.api.IModPlugin;
+import mezz.jei.api.IModRegistry;
+import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;

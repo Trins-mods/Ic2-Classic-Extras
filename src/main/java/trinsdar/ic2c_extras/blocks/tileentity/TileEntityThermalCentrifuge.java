@@ -37,7 +37,7 @@ import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.thermalCentrifuge;
 
 public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 {
-    public static int maxHeat = 500;
+    public static int maxHeat;
     public int heat;
 
     public static final String neededHeat = "neededHeat";
@@ -125,6 +125,14 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     }
 
     @Override
+    protected EnumActionResult isRecipeStillValid(IMachineRecipeList.RecipeEntry entry) {
+        if (heat == getRequiredHeat(entry.getOutput())) {
+            return EnumActionResult.SUCCESS;
+        }
+        return EnumActionResult.PASS;
+    }
+
+    @Override
     protected EnumActionResult canFillRecipeIntoOutputs(MachineOutput output) {
         List<ItemStack> result = output.getAllOutputs();
         for (int i = 0; i < result.size() && i < 3; i++) {
@@ -138,24 +146,27 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         return EnumActionResult.SUCCESS;
     }
 
-    @Override
-    public boolean canWork()
-    {
-        if(super.canWork())
-        {
-            return heat == maxHeat;
-        }
-        return false;
-    }
+//    @Override
+//    public boolean canWork()
+//    {
+//        if(super.canWork())
+//        {
+//            return heat == maxHeat;
+//        }
+//        return false;
+//    }
 
     @Override
     public void update() {
         super.update();
 
         if ((isRedstonePowered() || (lastRecipe != null && !this.inventory.get(slotInput).isEmpty())) && this.energy > 0) {
-            if (this.heat < maxHeat) {
+            if (this.heat < getMaxHeat()) {
                 ++this.heat;
                 this.getNetwork().updateTileGuiField(this, "heat");
+            }
+            if (this.heat > getMaxHeat()){
+                this.heat = (int)getMaxHeat();
             }
 
             this.useEnergy(1);
@@ -163,6 +174,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
             this.heat -= Math.min(this.heat, 4);
             this.getNetwork().updateTileGuiField(this, "heat");
         }
+
     }
 
     @Override
@@ -241,8 +253,9 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         return nbt;
     }
 
-    public static void addRecipe(IRecipeInput input, MachineOutput output)
+    public static void addRecipe(IRecipeInput input, int heat, ItemStack... output)
     {
-        thermalCentrifuge.addRecipe(input, output, input.getInputs().get(0).getDisplayName());
+        thermalCentrifuge.addRecipe(input, new MachineOutput(createNeededHeat(heat), output), input.getInputs().get(0).getDisplayName());
     }
+
 }

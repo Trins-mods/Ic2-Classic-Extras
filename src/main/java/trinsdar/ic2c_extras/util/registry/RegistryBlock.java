@@ -9,8 +9,18 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import trinsdar.ic2c_extras.IC2CExtras;
-import trinsdar.ic2c_extras.blocks.*;
-import trinsdar.ic2c_extras.blocks.tileentity.*;
+import trinsdar.ic2c_extras.blocks.BlockIc2cEGenerator;
+import trinsdar.ic2c_extras.blocks.BlockMachine;
+import trinsdar.ic2c_extras.blocks.BlockMetal;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityAdvancedSteamTurbine;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityCutter;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityExtruder;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityImpellerizedRoller;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityLiquescentExtruder;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityPlasmaCutter;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
 
 public class RegistryBlock
 {

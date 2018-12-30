@@ -5,8 +5,14 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
-import trinsdar.ic2c_extras.items.*;
+import trinsdar.ic2c_extras.items.ItemCasings;
+import trinsdar.ic2c_extras.items.ItemCrushedOre;
+import trinsdar.ic2c_extras.items.ItemMaterials;
+import trinsdar.ic2c_extras.items.ItemMiscs;
 import trinsdar.ic2c_extras.items.ItemMiscs.ItemMiscsTypes;
+import trinsdar.ic2c_extras.items.ItemPurifiedCrushedOre;
+import trinsdar.ic2c_extras.items.ItemTinyDust;
+import trinsdar.ic2c_extras.items.ItemToolCrafting;
 
 public class RegistryItem
 {
@@ -65,7 +71,8 @@ public class RegistryItem
     steelIngot = new ItemMiscs(ItemMiscsTypes.STEEL_INGOT),
     plutoniumEnrichedUraniumIngot = new ItemMiscs(ItemMiscsTypes.PLUTONIUM_ENRICHED_URANIUM_INGOT),
     plutoniumEnrichedUranium = new ItemMiscs(ItemMiscsTypes.PLUTONIUM_ENRICHED_URANIUM),
-    iridiumShard = new ItemMiscs(ItemMiscsTypes.IRIDIUM_SHARD);
+    iridiumShard = new ItemMiscs(ItemMiscsTypes.IRIDIUM_SHARD),
+    refinedIronPlate = new ItemMiscs(ItemMiscsTypes.REFINED_IRON_PLATE);
 
     public static final ItemToolCrafting
     craftingHammer = new ItemToolCrafting(80, "craftingHammer", 77, true),
@@ -125,6 +132,7 @@ public class RegistryItem
         plutoniumEnrichedUraniumIngot,
         plutoniumEnrichedUranium,
         iridiumShard,
+        refinedIronPlate,
         craftingHammer,
         wireCutters
     };
