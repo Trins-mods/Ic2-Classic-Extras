@@ -55,6 +55,8 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("casingSteel", RegistryItem.steelCasing);
         OreDictionary.registerOre("casingBronze", RegistryItem.bronzeCasing);
 
+        OreDictionary.registerOre("craftingToolForgeHammer", RegistryItem.craftingHammer);
+
         OreDictionary.registerOre("blockSteel", RegistryBlock.steelBlock);
         OreDictionary.registerOre("blockRefinedIron", RegistryBlock.refinedIronBlock);
         OreDictionary.registerOre("blockLead", RegistryBlock.leadBlock);

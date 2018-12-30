@@ -288,6 +288,7 @@ public class Ic2cExtrasRecipes {
         Set<String> plateBlacklist = new HashSet();
         Set<String> ingotWhitelist = new HashSet();
         Set<String> gemBlacklist = new HashSet();
+        Set<String> ingotBmeMmeBlacklist = new HashSet();
         crushedBlacklist.addAll(Arrays.asList("crushedIron", "crushedGold", "crushedSilver", "crushedLead", "crushedCopper", "crushedTin", "crushedUranium"));
         crushedPurifiedBlackList.addAll(Arrays.asList("crushedPurifiedIron", "crushedPurifiedGold", "crushedPurifiedSilver", "crushedPurifiedLead", "crushedPurifiedCopper", "crushedPurifiedTin", "crushedPurifiedUranium"));
         plateBlacklist.addAll(Arrays.asList("plateIron", "plateGold", "plateSilver", "plateLead", "plateCopper", "plateTin", "plateRefinedIron", "plateSteel", "plateBronze"));
@@ -297,11 +298,13 @@ public class Ic2cExtrasRecipes {
             crushedBlacklist.addAll(Arrays.asList("crushedAdamantine", "crushedAntimony", "crushedBismuth", "crushedColdiron", "crushedNickel", "crushedPlatinum", "crushedStarsteel", "crushedZinc"));
             crushedPurifiedBlackList.addAll(Arrays.asList("crushedPurifiedAdamantine", "crushedPurifiedAntimony", "crushedPurifiedBismuth", "crushedPurifiedColdiron", "crushedPurifiedNickel", "crushedPurifiedPlatinum", "crushedPurifiedStarsteel", "crushedPurifiedZinc"));
             plateBlacklist.addAll(Arrays.asList("plateAdamantine", "plateAntimony", "plateBismuth", "plateColdiron", "plateNickel", "platePlatinum", "plateStarsteel", "plateZinc"));
+            ingotBmeMmeBlacklist.addAll(Arrays.asList("ingotAdamantine", "ingotAntimony", "ingotBismuth", "ingotColdiron", "ingotNickel", "ingotPlatinum", "ingotStarsteel", "ingotZinc"));
         }
         if (Loader.isModLoaded("modernmetals")){
             crushedBlacklist.addAll(Arrays.asList("crushedAluminum", "crushedAluminium", "crushedBeryllium", "crushedBoron", "crushedCadmium", "crushedChrome", "crushedChromium", "crushedIridium", "crushedMagnesium", "crushedManganese", "crushedOsmium", "crushedPlutonium", "crushedRutile", "crushedTantalum", "crushedTitanium", "crushedThorium", "crushedTungsten", "crushedZirconium"));
             crushedPurifiedBlackList.addAll(Arrays.asList("crushedPurifiedAluminum", "crushedPurifiedAluminium", "crushedPurifiedBeryllium", "crushedPurifiedBoron", "crushedPurifiedCadmium", "crushedPurifiedChrome", "crushedPurifiedChromium", "crushedPurifiedIridium", "crushedPurifiedMagnesium", "crushedPurifiedManganese", "crushedPurifiedOsmium", "crushedPurifiedPlutonium", "crushedPurifiedRutile", "crushedPurifiedTantalum", "crushedPurifiedTitanium", "crushedPurifiedThorium", "crushedPurifiedTungsten", "crushedPurifiedZirconium"));
             plateBlacklist.addAll(Arrays.asList("plateAluminum", "plateAluminium", "plateAluminumbrass", "plateAluminiumbrass", "plateBeryllium", "plateBoron", "plateCadmium", "plateChrome", "plateChromium", "plateGalvanizedsteel", "plateIridium", "plateMagnesium", "plateManganese", "plateNichrome", "plateOsmium", "platePlutonium", "plateRutile", "plateStainlesssteel", "plateTantalum", "plateTitanium", "plateThorium", "plateTungsten", "plateUranium", "plateZirconium"));
+            ingotBmeMmeBlacklist.addAll(Arrays.asList("ingotAluminum", "ingotAluminium", "ingotAluminumbrass", "ingotAluminiumbrass", "ingotBeryllium", "ingotBoron", "ingotCadmium", "ingotChrome", "ingotChromium", "ingotGalvanizedsteel", "ingotIridium", "ingotMagnesium", "ingotManganese", "ingotNichrome", "ingotOsmium", "ingotPlutonium", "ingotRutile", "ingotStainlesssteel", "ingotTantalum", "ingotTitanium", "ingotThorium", "ingotTungsten", "ingotUranium", "ingotZirconium"));
         }
         String[] var2 = OreDictionary.getOreNames();
         int var3 = var2.length;
@@ -374,7 +377,7 @@ public class Ic2cExtrasRecipes {
                             }
                         }
                     }
-                } else if (!ingotWhitelist.contains(id) && !gemBlacklist.contains(id)){
+                } else if (!ingotWhitelist.contains(id) && !gemBlacklist.contains(id) && !ingotBmeMmeBlacklist.contains(id)){
                     plate = "plate" + id.substring(5);
                     if (OreDictionary.doesOreNameExist(plate)) {
                         listPlates = OreDictionary.getOres(plate, false);
@@ -497,13 +500,15 @@ public class Ic2cExtrasRecipes {
                     String crushedName = "crushed" + oreName;
                     String crushedPurifiedName = "crushedPurified" + oreName;
                     String plateName = "plate" + oreName;
+                    String ingotName = "ingot" + oreName;
                     ItemStack crushedPurified = new ItemStack(mat.getItem(Names.CRUSHED_PURIFIED));
                     ItemStack powder1 = new ItemStack(mat.getItem(Names.POWDER));
                     ItemStack smallPowder1 = new ItemStack(mat.getItem(Names.SMALLPOWDER), 1);
                     ItemStack smallPowder2 = new ItemStack(mat.getItem(Names.SMALLPOWDER), 2);
                     ItemStack casings = new ItemStack(mat.getItem(Names.CASING), 2);
+                    ItemStack plates = new ItemStack(mat.getItem(Names.PLATE), 1);
 
-                    recipes.addShapelessRecipe(casings, new Object[]{plateName, RegistryItem.craftingHammer});
+                    rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
                     rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
 
                     TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict(crushedName, 1), new MachineOutput(null, Arrays.asList(crushedPurified, smallPowder2, stoneDust)));
@@ -523,13 +528,15 @@ public class Ic2cExtrasRecipes {
                     String crushedName = "crushed" + oreName;
                     String crushedPurifiedName = "crushedPurified" + oreName;
                     String plateName = "plate" + oreName;
+                    String ingotName = "ingot" + oreName;
                     ItemStack crushedPurified = new ItemStack(mat.getItem(Names.CRUSHED_PURIFIED));
                     ItemStack powder1 = new ItemStack(mat.getItem(Names.POWDER));
                     ItemStack smallPowder1 = new ItemStack(mat.getItem(Names.SMALLPOWDER), 1);
                     ItemStack smallPowder2 = new ItemStack(mat.getItem(Names.SMALLPOWDER), 2);
                     ItemStack casings = new ItemStack(mat.getItem(Names.CASING), 2);
+                    ItemStack plates = new ItemStack(mat.getItem(Names.PLATE), 1);
 
-                    recipes.addShapelessRecipe(casings, new Object[]{plateName, RegistryItem.craftingHammer});
+                    rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
                     rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
 
                     TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict(crushedName, 1), new MachineOutput(null, Arrays.asList(crushedPurified, smallPowder2, stoneDust)));
@@ -543,9 +550,11 @@ public class Ic2cExtrasRecipes {
                     MMDMaterial mat = Materials.getMaterialByName(matName);
                     String oreName = matName.substring(0, 1).toUpperCase() + matName.substring(1).toLowerCase();
                     String plateName = "plate" + oreName;
+                    String ingotName = "ingot" + oreName;
                     ItemStack casings = new ItemStack(mat.getItem(Names.CASING), 2);
+                    ItemStack plates = new ItemStack(mat.getItem(Names.PLATE), 1);
 
-                    recipes.addShapelessRecipe(casings, new Object[]{plateName, RegistryItem.craftingHammer});
+                    rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
                     rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
                 }
             }
