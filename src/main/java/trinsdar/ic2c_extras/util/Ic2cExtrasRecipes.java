@@ -501,23 +501,13 @@ public class Ic2cExtrasRecipes {
                     String crushedPurifiedName = "crushedPurified" + oreName;
                     String plateName = "plate" + oreName;
                     String ingotName = "ingot" + oreName;
-                    ItemStack crushedPurified = new ItemStack(mat.getItem(Names.CRUSHED_PURIFIED));
-                    ItemStack powder1 = new ItemStack(mat.getItem(Names.POWDER));
-                    ItemStack smallPowder1 = new ItemStack(mat.getItem(Names.SMALLPOWDER), 1);
-                    ItemStack smallPowder2 = new ItemStack(mat.getItem(Names.SMALLPOWDER), 2);
-                    ItemStack casings = new ItemStack(mat.getItem(Names.CASING), 2);
-                    ItemStack plates = new ItemStack(mat.getItem(Names.PLATE), 1);
-
-                    System.out.println("Rolling Machine Add Recipe");
-                    System.out.println("matName :" + matName);
-                    System.out.println("mat :" + mat);
-                    System.out.println("oreName :" + oreName);
-                    System.out.println("Input:");
-                    System.out.println("new RecipeInputOreDict(ingotName, 1) :  " + new RecipeInputOreDict(ingotName, 1).toString());
-                    System.out.println("Output:");
-                    System.out.println("plates :" + plates);
-                    System.out.println("casings :" + casings);
-                    System.out.println("Names :" + Names.PLATE);
+                    ItemStack crushedPurified = mat.getItemStack(Names.CRUSHED_PURIFIED);
+                    ItemStack powder1 = mat.getItemStack(Names.POWDER);
+                    ItemStack smallPowder1 = mat.getItemStack(Names.SMALLPOWDER);
+                    ItemStack smallPowder2 = mat.getItemStack(Names.SMALLPOWDER, 2);
+                    ItemStack casings = mat.getItemStack(Names.CASING, 2);
+                    ItemStack plates = mat.getBlockItemStack(Names.PLATE);
+                    
                     rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
                     rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
 
@@ -539,12 +529,12 @@ public class Ic2cExtrasRecipes {
                     String crushedPurifiedName = "crushedPurified" + oreName;
                     String plateName = "plate" + oreName;
                     String ingotName = "ingot" + oreName;
-                    ItemStack crushedPurified = new ItemStack(mat.getItem(Names.CRUSHED_PURIFIED));
-                    ItemStack powder1 = new ItemStack(mat.getItem(Names.POWDER));
-                    ItemStack smallPowder1 = new ItemStack(mat.getItem(Names.SMALLPOWDER), 1);
-                    ItemStack smallPowder2 = new ItemStack(mat.getItem(Names.SMALLPOWDER), 2);
-                    ItemStack casings = new ItemStack(mat.getItem(Names.CASING), 2);
-                    ItemStack plates = new ItemStack(mat.getItem(Names.PLATE), 1);
+                    ItemStack crushedPurified = mat.getItemStack(Names.CRUSHED_PURIFIED);
+                    ItemStack powder1 = mat.getItemStack(Names.POWDER);
+                    ItemStack smallPowder1 = mat.getItemStack(Names.SMALLPOWDER);
+                    ItemStack smallPowder2 = mat.getItemStack(Names.SMALLPOWDER, 2);
+                    ItemStack casings = mat.getItemStack(Names.CASING, 2);
+                    ItemStack plates = mat.getBlockItemStack(Names.PLATE);
 
                     rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
                     rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
@@ -561,8 +551,8 @@ public class Ic2cExtrasRecipes {
                     String oreName = matName.substring(0, 1).toUpperCase() + matName.substring(1).toLowerCase();
                     String plateName = "plate" + oreName;
                     String ingotName = "ingot" + oreName;
-                    ItemStack casings = new ItemStack(mat.getItem(Names.CASING), 2);
-                    ItemStack plates = new ItemStack(mat.getItem(Names.PLATE), 1);
+                    ItemStack casings = mat.getItemStack(Names.CASING, 2);
+                    ItemStack plates = mat.getBlockItemStack(Names.PLATE);
 
                     rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
                     rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
