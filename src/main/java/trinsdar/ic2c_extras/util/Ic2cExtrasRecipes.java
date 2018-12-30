@@ -508,6 +508,16 @@ public class Ic2cExtrasRecipes {
                     ItemStack casings = new ItemStack(mat.getItem(Names.CASING), 2);
                     ItemStack plates = new ItemStack(mat.getItem(Names.PLATE), 1);
 
+                    System.out.println("Rolling Machine Add Recipe");
+                    System.out.println("matName :" + matName);
+                    System.out.println("mat :" + mat);
+                    System.out.println("oreName :" + oreName);
+                    System.out.println("Input:");
+                    System.out.println("new RecipeInputOreDict(ingotName, 1) :  " + new RecipeInputOreDict(ingotName, 1).toString());
+                    System.out.println("Output:");
+                    System.out.println("plates :" + plates);
+                    System.out.println("casings :" + casings);
+                    System.out.println("Names :" + Names.PLATE);
                     rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
                     rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
 
