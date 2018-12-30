@@ -496,7 +496,7 @@ public class Ic2cExtrasRecipes {
             if (Options.isModEnabled("ic2")){
                 for (String matName : myMaterialNamesBme) {
                     MMDMaterial mat = Materials.getMaterialByName(matName);
-                    String oreName = matName.substring(0, 1).toUpperCase() + matName.substring(1).toLowerCase();
+                    String oreName = mat.getCapitalizedName();
                     String crushedName = "crushed" + oreName;
                     String crushedPurifiedName = "crushedPurified" + oreName;
                     String plateName = "plate" + oreName;
@@ -507,7 +507,7 @@ public class Ic2cExtrasRecipes {
                     ItemStack smallPowder2 = mat.getItemStack(Names.SMALLPOWDER, 2);
                     ItemStack casings = mat.getItemStack(Names.CASING, 2);
                     ItemStack plates = mat.getBlockItemStack(Names.PLATE);
-                    
+
                     rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
                     rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
 
@@ -524,7 +524,7 @@ public class Ic2cExtrasRecipes {
             if (Options.isModEnabled("ic2")){
                 for (String matName : myMaterialNamesMme) {
                     MMDMaterial mat = Materials.getMaterialByName(matName);
-                    String oreName = matName.substring(0, 1).toUpperCase() + matName.substring(1).toLowerCase();
+                    String oreName = mat.getCapitalizedName();
                     String crushedName = "crushed" + oreName;
                     String crushedPurifiedName = "crushedPurified" + oreName;
                     String plateName = "plate" + oreName;
@@ -548,7 +548,7 @@ public class Ic2cExtrasRecipes {
 
                 for (String matName : myMaterialNamesMmeExtra) {
                     MMDMaterial mat = Materials.getMaterialByName(matName);
-                    String oreName = matName.substring(0, 1).toUpperCase() + matName.substring(1).toLowerCase();
+                    String oreName = mat.getCapitalizedName();
                     String plateName = "plate" + oreName;
                     String ingotName = "ingot" + oreName;
                     ItemStack casings = mat.getItemStack(Names.CASING, 2);
