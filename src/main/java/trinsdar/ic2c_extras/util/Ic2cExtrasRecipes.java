@@ -36,6 +36,8 @@ import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraft.world.storage.loot.functions.SetMetadata;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -49,7 +51,6 @@ import trinsdar.ic2c_extras.util.registry.RegistryItem;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import static ic2.api.classic.recipe.ClassicRecipes.macerator;
 
@@ -166,7 +167,35 @@ public class Ic2cExtrasRecipes {
     }
 
     public static void initShapelessRecipes(){
+        FluidStack water = new FluidStack(FluidRegistry.WATER, 1000);
         recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.bronzeDust, 4), new Object[]{crushedCopper, crushedCopper, crushedCopper, crushedTin});
+
+        recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.constructionFoam, 4), new Object[]{water, "dustRedstone", "dustCoal", "dustStone", "dustStone", "dustStone"});
+        recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.constructionFoam, 4), new Object[]{water, "dustRedstone", "dustCharcoal", "dustStone", "dustStone", "dustStone"});
+
+        if (enableCasingsWithHammer){
+            if (enableCasingsRequirePlates){
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.copperCasing, 2), new Object[]{"plateCopper", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.tinCasing, 2), new Object[]{"plateTin", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.silverCasing, 2), new Object[]{"plateSilver", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.leadCasing, 2), new Object[]{"plateLead", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.ironCasing, 2), new Object[]{"plateIron", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.goldCasing, 2), new Object[]{"plateGold", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.refinedIronCasing, 2), new Object[]{"plateRefinedIron", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.steelCasing, 2), new Object[]{"plateSteel", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.bronzeCasing, 2), new Object[]{"plateBronze", RegistryItem.craftingHammer});
+            }else{
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.copperCasing, 2), new Object[]{"ingotCopper", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.tinCasing, 2), new Object[]{"ingotTin", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.silverCasing, 2), new Object[]{"ingotSilver", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.leadCasing, 2), new Object[]{"ingotLead", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.ironCasing, 2), new Object[]{"ingotIron", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.goldCasing, 2), new Object[]{"ingotGold", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.refinedIronCasing, 2), new Object[]{"ingotRefinedIron", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.steelCasing, 2), new Object[]{"ingotSteel", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.bronzeCasing, 2), new Object[]{"ingotBronze", RegistryItem.craftingHammer});
+            }
+        }
     }
 
     public static void dustUtil(String dust, ItemStack dusts, String tinyDust, ItemStack tinyDusts) {
@@ -197,30 +226,6 @@ public class Ic2cExtrasRecipes {
                 new Object[]{"III", "III", "III", 'I', RegistryItem.iridiumShard});
         recipes.addShapelessRecipe(new ItemStack(RegistryItem.iridiumShard, 9),
                 new Object[]{Ic2Items.iridiumOre});
-
-        if (enableCasingsWithHammer){
-            if (enableCasingsRequirePlates){
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.copperCasing, 2), new Object[]{"plateCopper", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.tinCasing, 2), new Object[]{"plateTin", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.silverCasing, 2), new Object[]{"plateSilver", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.leadCasing, 2), new Object[]{"plateLead", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.ironCasing, 2), new Object[]{"plateIron", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.goldCasing, 2), new Object[]{"plateGold", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.refinedIronCasing, 2), new Object[]{"plateRefinedIron", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.steelCasing, 2), new Object[]{"plateSteel", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.bronzeCasing, 2), new Object[]{"plateBronze", RegistryItem.craftingHammer});
-            }else{
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.copperCasing, 2), new Object[]{"ingotCopper", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.tinCasing, 2), new Object[]{"ingotTin", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.silverCasing, 2), new Object[]{"ingotSilver", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.leadCasing, 2), new Object[]{"ingotLead", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.ironCasing, 2), new Object[]{"ingotIron", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.goldCasing, 2), new Object[]{"ingotGold", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.refinedIronCasing, 2), new Object[]{"ingotRefinedIron", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.steelCasing, 2), new Object[]{"ingotSteel", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.bronzeCasing, 2), new Object[]{"ingotBronze", RegistryItem.craftingHammer});
-            }
-        }
 
         if (Loader.isModLoaded("gtclassic")){
             TileEntityCompressor.addRecipe("ingotLead", 9, new ItemStack(RegistryBlock.leadBlock));
