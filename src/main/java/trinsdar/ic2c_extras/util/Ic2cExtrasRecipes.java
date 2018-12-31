@@ -173,6 +173,14 @@ public class Ic2cExtrasRecipes {
         recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.constructionFoam, 4), new Object[]{water, "dustRedstone", "dustCoal", "dustStone", "dustStone", "dustStone"});
         recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.constructionFoam, 4), new Object[]{water, "dustRedstone", "dustCharcoal", "dustStone", "dustStone", "dustStone"});
 
+        if (enableCuttingToolWires){
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.copperCable, 3), new Object[]{"plateCopper", RegistryItem.wireCutters});
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.goldCable, 6), new Object[]{"plateGold", RegistryItem.wireCutters});
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.tinCable, 4), new Object[]{"plateTin", RegistryItem.wireCutters});
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, 6), new Object[]{"plateRefinedIron", RegistryItem.wireCutters});
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.bronzeCable, 3), new Object[]{"plateBronze", RegistryItem.wireCutters});
+        }
+
         if (enableCasingsWithHammer){
             if (enableCasingsRequirePlates){
                 recipes.addShapelessRecipe(new ItemStack(RegistryItem.copperCasing, 2), new Object[]{"plateCopper", RegistryItem.craftingHammer});
