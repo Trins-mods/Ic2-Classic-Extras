@@ -59,6 +59,7 @@ public class Ic2cExtrasRecipes {
     public static boolean enableCuttingToolWires;
     public static boolean enableHVCablesRequireSteel;
     public static boolean enableCasingsWithHammer;
+    public static boolean enableAutoOredictRecipes;
     public static int
     itemQuality = 0,
     dungeonWeight = 10,
@@ -309,81 +310,83 @@ public class Ic2cExtrasRecipes {
         String[] var2 = OreDictionary.getOreNames();
         int var3 = var2.length;
 
-        for(int var4 = 0; var4 < var3; ++var4) {
-            String id = var2[var4];
-            String dust;
-            String tinyDust;
-            String purifiedCrushedOre;
-            String casing;
-            String plate;
-            NonNullList listDust;
-            NonNullList listTinyDust;
-            NonNullList listPurifiedCrushedOre;
-            NonNullList listCasings;
-            NonNullList listPlates;
-            if (id.startsWith("crushed")) {
-                if (!crushedBlacklist.contains(id)) {
-                    tinyDust = "dustTiny" + id.substring(7);
-                    dust = "dust" + id.substring(7);
-                    purifiedCrushedOre = "crushedPurified" + id.substring(7);
-                    if (OreDictionary.doesOreNameExist(dust) && OreDictionary.doesOreNameExist(tinyDust) && OreDictionary.doesOreNameExist(purifiedCrushedOre)) {
-                        listDust = OreDictionary.getOres(dust,  false);
-                        listTinyDust = OreDictionary.getOres(tinyDust, false);
-                        listPurifiedCrushedOre = OreDictionary.getOres(purifiedCrushedOre,false);
-                        if (!listDust.isEmpty() && !listTinyDust.isEmpty() && !listPurifiedCrushedOre.isEmpty()) {
-                            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(id, 1), mediumHeat, (ItemStack)listDust.get(0), (ItemStack)listTinyDust.get(0), stoneDust);
-                            TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict(id, 1), new MachineOutput(null, Arrays.asList((ItemStack)listPurifiedCrushedOre.get(0), StackUtil.copyWithSize((ItemStack)listTinyDust.get(0), 2), stoneDust)));
+        if (enableAutoOredictRecipes){
+            for(int var4 = 0; var4 < var3; ++var4) {
+                String id = var2[var4];
+                String dust;
+                String tinyDust;
+                String purifiedCrushedOre;
+                String casing;
+                String plate;
+                NonNullList listDust;
+                NonNullList listTinyDust;
+                NonNullList listPurifiedCrushedOre;
+                NonNullList listCasings;
+                NonNullList listPlates;
+                if (id.startsWith("crushed")) {
+                    if (!crushedBlacklist.contains(id)) {
+                        tinyDust = "dustTiny" + id.substring(7);
+                        dust = "dust" + id.substring(7);
+                        purifiedCrushedOre = "crushedPurified" + id.substring(7);
+                        if (OreDictionary.doesOreNameExist(dust) && OreDictionary.doesOreNameExist(tinyDust) && OreDictionary.doesOreNameExist(purifiedCrushedOre)) {
+                            listDust = OreDictionary.getOres(dust,  false);
+                            listTinyDust = OreDictionary.getOres(tinyDust, false);
+                            listPurifiedCrushedOre = OreDictionary.getOres(purifiedCrushedOre,false);
+                            if (!listDust.isEmpty() && !listTinyDust.isEmpty() && !listPurifiedCrushedOre.isEmpty()) {
+                                TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(id, 1), mediumHeat, (ItemStack)listDust.get(0), (ItemStack)listTinyDust.get(0), stoneDust);
+                                TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict(id, 1), new MachineOutput(null, Arrays.asList((ItemStack)listPurifiedCrushedOre.get(0), StackUtil.copyWithSize((ItemStack)listTinyDust.get(0), 2), stoneDust)));
+                            }
                         }
                     }
                 }
-            }
-            if (id.startsWith("crushedPurified")) {
-                if (!crushedPurifiedBlackList.contains(id)){
-                    dust = "dust" + id.substring(15);
-                    tinyDust = "dustTiny" + id.substring(15);
-                    if (OreDictionary.doesOreNameExist(dust) && OreDictionary.doesOreNameExist(tinyDust)) {
-                        listDust = OreDictionary.getOres(dust, false);
-                        listTinyDust = OreDictionary.getOres(tinyDust, false);
-                        if (!listDust.isEmpty() && !listTinyDust.isEmpty()) {
-                            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(id, 1), lowHeat, (ItemStack)listDust.get(0), StackUtil.copyWithSize((ItemStack)listTinyDust.get(0), 2));
+                if (id.startsWith("crushedPurified")) {
+                    if (!crushedPurifiedBlackList.contains(id)){
+                        dust = "dust" + id.substring(15);
+                        tinyDust = "dustTiny" + id.substring(15);
+                        if (OreDictionary.doesOreNameExist(dust) && OreDictionary.doesOreNameExist(tinyDust)) {
+                            listDust = OreDictionary.getOres(dust, false);
+                            listTinyDust = OreDictionary.getOres(tinyDust, false);
+                            if (!listDust.isEmpty() && !listTinyDust.isEmpty()) {
+                                TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(id, 1), lowHeat, (ItemStack)listDust.get(0), StackUtil.copyWithSize((ItemStack)listTinyDust.get(0), 2));
+                            }
                         }
                     }
-                }
 
-            }
-            if (id.startsWith("plate")) {
-                if (!plateBlacklist.contains(id)){
-                    casing = "casing" + id.substring(5);
-                    if (OreDictionary.doesOreNameExist(casing)) {
-                        listCasings = OreDictionary.getOres(casing, false);
-                        if (!listCasings.isEmpty()) {
-                            rolling.addRecipe(new RecipeInputOreDict(id, 1), StackUtil.copyWithSize((ItemStack)listCasings.get(0), 2), casing + "Rolling");
+                }
+                if (id.startsWith("plate")) {
+                    if (!plateBlacklist.contains(id)){
+                        casing = "casing" + id.substring(5);
+                        if (OreDictionary.doesOreNameExist(casing)) {
+                            listCasings = OreDictionary.getOres(casing, false);
+                            if (!listCasings.isEmpty()) {
+                                rolling.addRecipe(new RecipeInputOreDict(id, 1), StackUtil.copyWithSize((ItemStack)listCasings.get(0), 2), casing + "Rolling");
+                            }
                         }
                     }
-                }
 
-            }
-            if (id.startsWith("ingot")){
-                if (ingotWhitelist.contains(id) && !gemBlacklist.contains(id)){
-                    plate = "plate" + id.substring(5);
-                    if (enableCasingsRequirePlates){
+                }
+                if (id.startsWith("ingot")){
+                    if (ingotWhitelist.contains(id) && !gemBlacklist.contains(id)){
+                        plate = "plate" + id.substring(5);
+                        if (enableCasingsRequirePlates){
+                            if (OreDictionary.doesOreNameExist(plate)) {
+                                listPlates = OreDictionary.getOres(plate, false);
+                                if (!listPlates.isEmpty()) {
+                                    rolling.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack)listPlates.get(0), plate + "Rolling");
+                                    if (enableCasingsWithHammer){
+                                        recipes.addShapelessRecipe((ItemStack)listPlates.get(0), new Object[]{id, RegistryItem.craftingHammer});
+                                    }
+                                }
+                            }
+                        }
+                    } else if (!ingotWhitelist.contains(id) && !gemBlacklist.contains(id) && !ingotBmeMmeBlacklist.contains(id)){
+                        plate = "plate" + id.substring(5);
                         if (OreDictionary.doesOreNameExist(plate)) {
                             listPlates = OreDictionary.getOres(plate, false);
                             if (!listPlates.isEmpty()) {
                                 rolling.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack)listPlates.get(0), plate + "Rolling");
-                                if (enableCasingsWithHammer){
-                                    recipes.addShapelessRecipe((ItemStack)listPlates.get(0), new Object[]{id, RegistryItem.craftingHammer});
-                                }
+                                recipes.addShapelessRecipe((ItemStack)listPlates.get(0), new Object[]{id, RegistryItem.craftingHammer});
                             }
-                        }
-                    }
-                } else if (!ingotWhitelist.contains(id) && !gemBlacklist.contains(id) && !ingotBmeMmeBlacklist.contains(id)){
-                    plate = "plate" + id.substring(5);
-                    if (OreDictionary.doesOreNameExist(plate)) {
-                        listPlates = OreDictionary.getOres(plate, false);
-                        if (!listPlates.isEmpty()) {
-                            rolling.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack)listPlates.get(0), plate + "Rolling");
-                            recipes.addShapelessRecipe((ItemStack)listPlates.get(0), new Object[]{id, RegistryItem.craftingHammer});
                         }
                     }
                 }
@@ -509,14 +512,21 @@ public class Ic2cExtrasRecipes {
                         ItemStack casings = mat.getItemStack(Names.CASING, 2);
                         ItemStack plates = mat.getBlockItemStack(Names.PLATE);
 
-                        rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
-                        rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
+                        if (Options.enableModderSupportThings()){
+                            if (Options.isThingEnabled("plate")){
+                                rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
+                            }
+                            rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
+                        }
 
-                        TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict(crushedName, 1), new MachineOutput(null, Arrays.asList(crushedPurified, smallPowder2, stoneDust)));
+                        if (Options.isThingEnabled("basics")){
+                            TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict(crushedName, 1), new MachineOutput(null, Arrays.asList(crushedPurified, smallPowder2, stoneDust)));
 
-                        TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(crushedName, 1), mediumHeat, powder1, smallPowder1, stoneDust);
+                            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(crushedName, 1), mediumHeat, powder1, smallPowder1, stoneDust);
 
-                        TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(crushedPurifiedName, 1), lowHeat, powder1, smallPowder2);
+                            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(crushedPurifiedName, 1), lowHeat, powder1, smallPowder2);
+                        }
+
                     }
                 }
             }
@@ -539,14 +549,20 @@ public class Ic2cExtrasRecipes {
                         ItemStack casings = mat.getItemStack(Names.CASING, 2);
                         ItemStack plates = mat.getBlockItemStack(Names.PLATE);
 
-                        rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
-                        rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
+                        if (Options.enableModderSupportThings()){
+                            if (Options.isThingEnabled("plate")){
+                                rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
+                            }
+                            rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
+                        }
 
-                        TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict(crushedName, 1), new MachineOutput(null, Arrays.asList(crushedPurified, smallPowder2, stoneDust)));
+                        if (Options.isThingEnabled("basics")){
+                            TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict(crushedName, 1), new MachineOutput(null, Arrays.asList(crushedPurified, smallPowder2, stoneDust)));
 
-                        TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(crushedName, 1), mediumHeat, powder1, smallPowder1, stoneDust);
+                            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(crushedName, 1), mediumHeat, powder1, smallPowder1, stoneDust);
 
-                        TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(crushedPurifiedName, 1), lowHeat, powder1, smallPowder2);
+                            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(crushedPurifiedName, 1), lowHeat, powder1, smallPowder2);
+                        }
                     }
                 }
 
@@ -559,8 +575,12 @@ public class Ic2cExtrasRecipes {
                         ItemStack casings = mat.getItemStack(Names.CASING, 2);
                         ItemStack plates = mat.getBlockItemStack(Names.PLATE);
 
-                        rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
-                        rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
+                        if (Options.enableModderSupportThings()){
+                            if (Options.isThingEnabled("plate")){
+                                rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
+                            }
+                            rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
+                        }
                     }
                 }
             }
@@ -635,11 +655,12 @@ public class Ic2cExtrasRecipes {
 
     }
 
-    public static void setConfig(boolean uranium, boolean casings, boolean wires, boolean hvCable, boolean hammer){
+    public static void setConfig(boolean uranium, boolean casings, boolean wires, boolean hvCable, boolean hammer, boolean oredict){
         enableHarderUranium = uranium;
         enableCasingsRequirePlates = casings;
         enableCuttingToolWires = wires;
         enableHVCablesRequireSteel = hvCable;
         enableCasingsWithHammer = hammer;
+        enableAutoOredictRecipes = oredict;
     }
 }
