@@ -37,7 +37,7 @@ import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.thermalCentrifuge;
 
 public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 {
-    public static int maxHeat;
+    public static int maxHeat = 250;
     public int heat;
 
     public static final String neededHeat = "neededHeat";
@@ -244,7 +244,6 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     }
 
     protected static NBTTagCompound createNeededHeat(int amount) {
-        maxHeat = amount;
         if (amount <= 0) {
             return null;
         }
