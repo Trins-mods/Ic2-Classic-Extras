@@ -37,7 +37,7 @@ import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.thermalCentrifuge;
 
 public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 {
-    public static int maxHeat = 250;
+    public static int maxHeat = 500;
     public int heat;
 
     public static final String neededHeat = "neededHeat";
@@ -126,7 +126,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 
     @Override
     protected EnumActionResult isRecipeStillValid(IMachineRecipeList.RecipeEntry entry) {
-        if (heat == getRequiredHeat(entry.getOutput())) {
+        if (heat >= getRequiredHeat(entry.getOutput())) {
             return EnumActionResult.SUCCESS;
         }
         return EnumActionResult.PASS;
