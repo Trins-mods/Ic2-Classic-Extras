@@ -23,6 +23,7 @@ public class Config implements IConfigNotify {
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCrafingCasingsWithHammer", "Enables additional recipe of crafting casings with crafting hammer", "CasingsWithHammer", false).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableHVCablesNeedSteel", "Enables the requirement of steel for hv cables. Currently does nothing yet.", "HVCablesNeedSteel", false).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableAutoOredictRecipes", "Enables adding recipes for crushed ore, purified crushed ore, casings, ect. to ore washing plant, thermal centrifuge, roller, and crafting table.", "AutoOredictRecipes", true).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableLootEntries", "Enables adding tiny plutonium and iridium shards to vanilla loot tables", "LootEntries", true).setGameRestart().setServerSync());
             IC2.config.addConfigNotify(config);
         }else {
             throw new RuntimeException("The Ic2Classic config is not loaded");
@@ -33,6 +34,6 @@ public class Config implements IConfigNotify {
     @Override
     public void onConfigReloaded(IC2Config config) {
         Radiation.setConfig(config.getFlag("ItemRadiation"));
-        Ic2cExtrasRecipes.setConfig(config.getFlag("HarderUranium"), config.getFlag("CasingsNeedPlates"), config.getFlag("CablesWithPlates"), config.getFlag("HVCablesNeedSteel"), config.getFlag("CasingsWithHammer"), config.getFlag("AutoOredictRecipes"));
+        Ic2cExtrasRecipes.setConfig(config.getFlag("HarderUranium"), config.getFlag("CasingsNeedPlates"), config.getFlag("CablesWithPlates"), config.getFlag("HVCablesNeedSteel"), config.getFlag("CasingsWithHammer"), config.getFlag("AutoOredictRecipes"), config.getFlag("LootEntries"));
     }
 }

@@ -60,13 +60,15 @@ public class Ic2cExtrasRecipes {
     public static boolean enableHVCablesRequireSteel;
     public static boolean enableCasingsWithHammer;
     public static boolean enableAutoOredictRecipes;
+    public static boolean enableLootEntries;
     public static int
     itemQuality = 0,
     dungeonWeight = 10,
     netherFortressWeight = 15,
     jungleTempleWeight = 15,
     desertTempleWeight = 15,
-    strongholdWeight = 20;
+    strongholdWeight = 20,
+    tinyPlutonioumWeight = 5;
     public static IMachineRecipeList rolling = new BasicMachineRecipeList("rolling");
     public static IMachineRecipeList extruding = new BasicMachineRecipeList("extruding");
     public static IMachineRecipeList cutting = new BasicMachineRecipeList("cutting");
@@ -627,40 +629,52 @@ public class Ic2cExtrasRecipes {
     @SubscribeEvent
     public void onLootTableLoad(LootTableLoadEvent event) {
         LootFunction[] funcs = new LootFunction[] { new SetMetadata(new LootCondition[0], new RandomValueRange(0, 3)) };
-        String entryName = "ic2c_extras:iridiumshard";
+        String entryNameIridium = "ic2c_extras:iridiumshard";
+        String entryNamePlutonium = "ic2c_extras:tinyplutonium";
         Item shard = RegistryItem.iridiumShard;
-        if(event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON)){
-            event.getTable().getPool("main").addEntry(new LootEntryItem(shard, dungeonWeight, itemQuality, funcs, new LootCondition[0], entryName));
+        Item plutonium = RegistryItem.plutoniumTinyDust;
+        if (enableLootEntries){
+            if(event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON)){
+                event.getTable().getPool("main").addEntry(new LootEntryItem(shard, dungeonWeight, itemQuality, funcs, new LootCondition[0], entryNameIridium));
+                event.getTable().getPool("main").addEntry(new LootEntryItem(plutonium, tinyPlutonioumWeight, itemQuality, funcs, new LootCondition[0], entryNamePlutonium));
+            }
+
+            else if(event.getName().equals(LootTableList.CHESTS_NETHER_BRIDGE)){
+                event.getTable().getPool("main").addEntry(new LootEntryItem(shard, netherFortressWeight, itemQuality, funcs, new LootCondition[0], entryNameIridium));
+                event.getTable().getPool("main").addEntry(new LootEntryItem(plutonium, tinyPlutonioumWeight, itemQuality, funcs, new LootCondition[0], entryNamePlutonium));
+            }
+
+            else if(event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CORRIDOR)){
+                event.getTable().getPool("main").addEntry(new LootEntryItem(shard, strongholdWeight, itemQuality, funcs, new LootCondition[0], entryNameIridium));
+                event.getTable().getPool("main").addEntry(new LootEntryItem(plutonium, tinyPlutonioumWeight, itemQuality, funcs, new LootCondition[0], entryNamePlutonium));
+            }
+
+            else if(event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CROSSING)){
+                event.getTable().getPool("main").addEntry(new LootEntryItem(shard, strongholdWeight, itemQuality, funcs, new LootCondition[0], entryNameIridium));
+                event.getTable().getPool("main").addEntry(new LootEntryItem(plutonium, tinyPlutonioumWeight, itemQuality, funcs, new LootCondition[0], entryNamePlutonium));
+            }
+
+            else if(event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)){
+                event.getTable().getPool("main").addEntry(new LootEntryItem(shard, jungleTempleWeight, itemQuality, funcs, new LootCondition[0], entryNameIridium));
+                event.getTable().getPool("main").addEntry(new LootEntryItem(plutonium, tinyPlutonioumWeight, itemQuality, funcs, new LootCondition[0], entryNamePlutonium));
+            }
+
+            else if(event.getName().equals(LootTableList.CHESTS_DESERT_PYRAMID)){
+                event.getTable().getPool("main").addEntry(new LootEntryItem(shard, desertTempleWeight, itemQuality, funcs, new LootCondition[0], entryNameIridium));
+                event.getTable().getPool("main").addEntry(new LootEntryItem(plutonium, tinyPlutonioumWeight, itemQuality, funcs, new LootCondition[0], entryNamePlutonium));
+            }
         }
 
-        else if(event.getName().equals(LootTableList.CHESTS_NETHER_BRIDGE)){
-            event.getTable().getPool("main").addEntry(new LootEntryItem(shard, netherFortressWeight, itemQuality, funcs, new LootCondition[0], entryName));
-        }
-
-        else if(event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CORRIDOR)){
-            event.getTable().getPool("main").addEntry(new LootEntryItem(shard, strongholdWeight, itemQuality, funcs, new LootCondition[0], entryName));
-        }
-
-        else if(event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CROSSING)){
-            event.getTable().getPool("main").addEntry(new LootEntryItem(shard, strongholdWeight, itemQuality, funcs, new LootCondition[0], entryName));
-        }
-
-        else if(event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)){
-            event.getTable().getPool("main").addEntry(new LootEntryItem(shard, jungleTempleWeight, itemQuality, funcs, new LootCondition[0], entryName));
-        }
-
-        else if(event.getName().equals(LootTableList.CHESTS_DESERT_PYRAMID)){
-            event.getTable().getPool("main").addEntry(new LootEntryItem(shard, desertTempleWeight, itemQuality, funcs, new LootCondition[0], entryName));
-        }
 
     }
 
-    public static void setConfig(boolean uranium, boolean casings, boolean wires, boolean hvCable, boolean hammer, boolean oredict){
+    public static void setConfig(boolean uranium, boolean casings, boolean wires, boolean hvCable, boolean hammer, boolean oredict, boolean loot){
         enableHarderUranium = uranium;
         enableCasingsRequirePlates = casings;
         enableCuttingToolWires = wires;
         enableHVCablesRequireSteel = hvCable;
         enableCasingsWithHammer = hammer;
         enableAutoOredictRecipes = oredict;
+        enableLootEntries = loot;
     }
 }
