@@ -36,7 +36,16 @@ minecraft {
 
 repositories{
     maven { // JEI
-        url "http://dvs1.progwml6.com/files/maven"
+        name 'DVS1 Maven FS'
+        url 'http://dvs1.progwml6.com/files/maven/'
+    }
+    maven { // The One Probe
+        name 'tterrag'
+        url 'http://maven.tterrag.com/'
+    }
+    maven {
+        name = "CurseForge"
+        url = "https://minecraft.curseforge.com/api/maven/"
     }
     maven { // Tesla
         name 'MMD'
@@ -55,6 +64,12 @@ dependencies {
     runtime "com.mcmoddev:BaseMetals:${mc_version}-${bme_version}"
     deobfProvided "com.mcmoddev:ModernMetals:${mc_version}-${mme_version}"
     runtime "com.mcmoddev:ModernMetals:${mc_version}-${mme_version}"
+    //one probe
+    deobfProvided "mcjty.theoneprobe:TheOneProbe-${mc_version}:${mc_version}-${top_version}"
+    runtime "mcjty.theoneprobe:TheOneProbe-${mc_version}:${mc_version}-${top_version}"
+
+    //baubles
+    compile 'baubles:Baubles:1.12:1.5.2'
 }
 
 processResources {
