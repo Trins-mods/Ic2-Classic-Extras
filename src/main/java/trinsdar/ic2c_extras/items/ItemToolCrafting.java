@@ -20,9 +20,9 @@ public class ItemToolCrafting extends Item implements IStaticTexturedItem {
         this.maxStackSize = 1;
         this.itemIndex = index;
         this.enchant = enchant;
-        this.setMaxDamage(maxDamage);//7
-        setRegistryName(name);//"flint_mortar"
-        setUnlocalizedName(IC2CExtras.MODID + "." + name);//"mortarFlint"
+        this.setMaxDamage(maxDamage);
+        setRegistryName(name);
+        setUnlocalizedName(IC2CExtras.MODID + "." + name);
         setCreativeTab(IC2CExtras.creativeTab);
     }
 

@@ -6,6 +6,7 @@ import com.mcmoddev.lib.data.Names;
 import com.mcmoddev.lib.init.Materials;
 import com.mcmoddev.lib.material.MMDMaterial;
 import com.mcmoddev.lib.util.Config.Options;
+import gtclassic.GTItems;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
@@ -126,7 +127,7 @@ public class Ic2cExtrasRecipes {
                 "CMC", "IAI", "IHI", 'C', RegistryItem.coil,'M', Ic2Items.miningLaser, 'I', getRefinedIronIngot(), 'A', Ic2Items.advMachine, 'H', RegistryItem.heatConductor);
 
         recipes.addRecipe(new ItemStack(RegistryBlock.roller, 1),
-                " C ", "TBT", "ctc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', RegistryItem.coil, 't', RegistryItem.craftingHammer);
+                " C ", "TBT", "ctc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', RegistryItem.coil, 't', Blocks.PISTON);
 
         recipes.addRecipe(new ItemStack(RegistryBlock.extruder, 1),
                 " C ", "TBT", "cwc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', RegistryItem.coil, 'w', Ic2Items.ironFence);
@@ -135,7 +136,7 @@ public class Ic2cExtrasRecipes {
                 " C ", "TBT", "ctc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', RegistryItem.coil, 't', Ic2Items.cutter);
 
         recipes.addRecipe(new ItemStack(RegistryBlock.impellerizedRoller, 1),
-                "CCC", "CRC", "CBC", 'R', RegistryBlock.roller,'B', Ic2Items.advMachine, 'C', RegistryItem.craftingHammer);
+                "CCC", "CRC", "CBC", 'R', RegistryBlock.roller,'B', Ic2Items.advMachine, 'C', Blocks.STICKY_PISTON);
 
         recipes.addRecipe(new ItemStack(RegistryBlock.liquescentExtruder, 1),
                 "CCC", "CEC", "CBC", 'E', RegistryBlock.extruder,'B', Ic2Items.advMachine, 'C', Ic2Items.ironFence);
