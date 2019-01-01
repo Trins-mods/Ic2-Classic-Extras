@@ -11,6 +11,7 @@ import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
+import ic2.core.IC2;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
@@ -58,7 +59,7 @@ public class Ic2cExtrasRecipes {
     public static boolean enableHarderUranium;
     public static boolean enableCasingsRequirePlates;
     public static boolean enableCuttingToolWires;
-    public static boolean enableHVCablesRequireSteel;
+    public static boolean enableCertainRecipesRequireSteel;
     public static boolean enableCasingsWithHammer;
     public static boolean enableAutoOredictRecipes;
     public static boolean enableLootEntries;
@@ -91,10 +92,22 @@ public class Ic2cExtrasRecipes {
             new IRecipeInput[] { new RecipeInputOreDict("crushedTin"),
                     new RecipeInputOreDict("crushedPurifiedTin") });
 
+    private static String getRefinedIronIngot() { // TODO check if this loads to early because its static
+        return IC2.config.getFlag("SteelRecipes") ? "ingotSteel" : "ingotRefinedIron";
+    }
+
+    private static String getRefinedIronPlate() {
+        return IC2.config.getFlag("SteelRecipes") ? "plateSteel" : "plateRefinedIron";
+    }
+
+    private static String getRefinedIronCasing() {
+        return IC2.config.getFlag("SteelRecipes") ? "casingSteel" : "casingRefinedIron";
+    }
 
     public static void init(){
         initShapedRecipes();
         initShapelessRecipes();
+        initReplaceRecipes();
         initCompressRecipes();
         initFurnaceRecipes();
         initReplaceMaceratorRecipes();
@@ -108,39 +121,39 @@ public class Ic2cExtrasRecipes {
         recipes.addRecipe(new ItemStack(RegistryBlock.advancedSteamTurbine, 1),
                 " S ", "STS", " S ", 'S', Ic2Items.basicTurbine,'T', Ic2Items.transformerMV);
         recipes.addRecipe(new ItemStack(RegistryBlock.oreWashingPlant, 1),
-                "III", "BCB", "McM", 'I', "ingotRefinedIron",'B', Items.BUCKET, 'C', Ic2Items.machine, 'M', Ic2Items.carbonMesh, 'c', "circuitBasic");
+                "III", "BCB", "McM", 'I', getRefinedIronIngot(),'B', Items.BUCKET, 'C', Ic2Items.machine, 'M', Ic2Items.carbonMesh, 'c', "circuitBasic");
         recipes.addRecipe(new ItemStack(RegistryBlock.thermalCentrifuge, 1),
-                "CMC", "IAI", "IHI", 'C', RegistryItem.coil,'M', Ic2Items.miningLaser, 'I', "ingotRefinedIron", 'A', Ic2Items.advMachine, 'H', RegistryItem.heatConductor);
+                "CMC", "IAI", "IHI", 'C', RegistryItem.coil,'M', Ic2Items.miningLaser, 'I', getRefinedIronIngot(), 'A', Ic2Items.advMachine, 'H', RegistryItem.heatConductor);
 
         recipes.addRecipe(new ItemStack(RegistryBlock.roller, 1),
                 " C ", "TBT", "ctc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', RegistryItem.coil, 't', RegistryItem.craftingHammer);
 
         recipes.addRecipe(new ItemStack(RegistryBlock.extruder, 1),
-                " C ", "TBT", "cwc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', RegistryItem.coil, 'w', Ic2Items.copperCable);
+                " C ", "TBT", "cwc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', RegistryItem.coil, 'w', Ic2Items.ironFence);
 
         recipes.addRecipe(new ItemStack(RegistryBlock.cutter, 1),
-                " C ", "TBT", "ctc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', RegistryItem.coil, 't', RegistryItem.wireCutters);
+                " C ", "TBT", "ctc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', RegistryItem.coil, 't', Ic2Items.cutter);
 
         recipes.addRecipe(new ItemStack(RegistryBlock.impellerizedRoller, 1),
                 "CCC", "CRC", "CBC", 'R', RegistryBlock.roller,'B', Ic2Items.advMachine, 'C', RegistryItem.craftingHammer);
 
         recipes.addRecipe(new ItemStack(RegistryBlock.liquescentExtruder, 1),
-                "CCC", "CEC", "CBC", 'E', RegistryBlock.extruder,'B', Ic2Items.advMachine, 'C', Ic2Items.goldCable);
+                "CCC", "CEC", "CBC", 'E', RegistryBlock.extruder,'B', Ic2Items.advMachine, 'C', Ic2Items.ironFence);
 
         recipes.addRecipe(new ItemStack(RegistryBlock.plasmaCutter, 1),
-                "CCC", "CcC", "CBC", 'c', RegistryBlock.cutter,'B', Ic2Items.advMachine, 'C', RegistryItem.wireCutters);
+                "CCC", "CcC", "CBC", 'c', RegistryBlock.cutter,'B', Ic2Items.advMachine, 'C', Ic2Items.cutter);
 
         recipes.addRecipe(new ItemStack(RegistryItem.coil, 1),
-                "CCC", "CIC", "CCC", 'I', "ingotRefinedIron",'C', Ic2Items.copperCable);
+                "CCC", "CIC", "CCC", 'I', getRefinedIronIngot(),'C', Ic2Items.copperCable);
 
         recipes.addRecipe(new ItemStack(RegistryItem.heatConductor, 1),
                 "RCR", "RCR", "RCR", 'R', "itemRubber",'C', Ic2Items.copperIngot);
 
         recipes.addRecipe(new ItemStack(RegistryItem.craftingHammer, 1),
-                "III", "III", " S ", 'I', "ingotRefinedIron",'S', "stickWood");
+                "III", "III", " S ", 'I', getRefinedIronIngot(),'S', "stickWood");
 
         recipes.addRecipe(new ItemStack(RegistryItem.wireCutters, 1),
-                "I I", " I ", "S S", 'I', "ingotRefinedIron",'S', "stickWood");
+                "I I", " I ", "S S", 'I', getRefinedIronIngot(),'S', "stickWood");
 
         recipes.addRecipe(Ic2Items.battery,
                 " C ", "TRT", "TRT", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'T', "casingTin");
@@ -158,67 +171,90 @@ public class Ic2cExtrasRecipes {
                     "CRC", "CcC", "CRC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', casing);
         }else{
             recipes.addRecipe(Ic2Items.electricCircuit,
-                    "CCC", "RcR", "CCC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', "casingRefinedIron");
+                    "CCC", "RcR", "CCC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', getRefinedIronCasing());
             recipes.addRecipe(Ic2Items.electricCircuit,
-                    "CRC", "CcC", "CRC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', "casingRefinedIron");
+                    "CRC", "CcC", "CRC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', getRefinedIronCasing());
         }
 
 
     }
 
+    public static void initReplaceRecipes(){
+        if (!IC2.config.getFlag("SteelRecipes") && enableCertainRecipesRequireSteel){
+            recipes.overrideRecipe("shaped_HV Cable", StackUtil.copyWithSize(Ic2Items.ironCable, 12), "III", 'I', "ingotSteel");
+            recipes.overrideRecipe("shaped_Insulated HV Cable", StackUtil.copyWithSize(Ic2Items.insulatedIronCable, 4), " R ", "RIR", " R ", 'R', "itemRubber", 'I', "ingotSteel");
+            recipes.overrideRecipe("shaped_2xIns. HV Cable", StackUtil.copyWithSize(Ic2Items.doubleInsulatedIronCable, 4), "RRR", "RIR", "RRR", 'R', "itemRubber", 'I', "ingotSteel");
+            recipes.overrideRecipe("shaped_Plasma Cable", StackUtil.copyWithSize(Ic2Items.plasmaCable, 4), "CCC", "IPI", "CCC", 'C', Ic2Items.carbonPlate, 'I', "ingotSteel", 'P', Ic2Items.plasmaCore);
+            recipes.overrideRecipe("shaped_Advanced Machine Block", Ic2Items.advMachine, "ICI", "AMA", "ICI", 'I', "ingotSteel", 'C', Ic2Items.carbonPlate, 'A', Ic2Items.advancedAlloy, 'M', Ic2Items.machine);
+            recipes.overrideRecipe("shaped_Advanced Machine Block_1", Ic2Items.advMachine, "IAI", "CMC", "IAI", 'I', "ingotSteel", 'C', Ic2Items.carbonPlate, 'A', Ic2Items.advancedAlloy, 'M', Ic2Items.machine);
+            recipes.overrideRecipe("shaped_Tesla Coil", Ic2Items.teslaCoil, "RRR", "RMR", "ICI", 'R', "dustRedstone", 'M', Ic2Items.transformerMV, 'I', "ingotSteel", 'C', "circuitBasic");
+        }
+
+    }
+
     public static void initShapelessRecipes(){
         FluidStack water = new FluidStack(FluidRegistry.WATER, 1000);
-        recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.bronzeDust, 4), new Object[]{crushedCopper, crushedCopper, crushedCopper, crushedTin});
+        recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.bronzeDust, 4), crushedCopper, crushedCopper, crushedCopper, crushedTin);
 
-        recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.constructionFoam, 4), new Object[]{water, "dustRedstone", "dustCoal", "dustStone", "dustStone", "dustStone"});
-        recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.constructionFoam, 4), new Object[]{water, "dustRedstone", "dustCharcoal", "dustStone", "dustStone", "dustStone"});
+        recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.constructionFoam, 4), water, "dustRedstone", "dustCoal", "dustStone", "dustStone", "dustStone");
+        recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.constructionFoam, 4), water, "dustRedstone", "dustCharcoal", "dustStone", "dustStone", "dustStone");
+
 
         if (enableCuttingToolWires){
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.copperCable, 3), new Object[]{"plateCopper", RegistryItem.wireCutters});
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.goldCable, 6), new Object[]{"plateGold", RegistryItem.wireCutters});
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.tinCable, 4), new Object[]{"plateTin", RegistryItem.wireCutters});
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, 6), new Object[]{"plateRefinedIron", RegistryItem.wireCutters});
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.bronzeCable, 3), new Object[]{"plateBronze", RegistryItem.wireCutters});
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.copperCable, 3), "plateCopper", RegistryItem.wireCutters);
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.goldCable, 6), "plateGold", RegistryItem.wireCutters);
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.tinCable, 4), "plateTin", RegistryItem.wireCutters);
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.bronzeCable, 3), "plateBronze", RegistryItem.wireCutters);
+            if (!IC2.config.getFlag("SteelRecipes")){
+                if (enableCertainRecipesRequireSteel){
+                    recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, 6), "plateSteel", RegistryItem.wireCutters);
+                }else{
+                    recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, 6), "plateRefinedIron", RegistryItem.wireCutters);
+                }
+
+            }else{
+                recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, 6), "plateSteel", RegistryItem.wireCutters);
+            }
         }
 
         if (enableCasingsWithHammer){
             if (enableCasingsRequirePlates){
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.copperCasing, 2), new Object[]{"plateCopper", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.tinCasing, 2), new Object[]{"plateTin", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.silverCasing, 2), new Object[]{"plateSilver", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.leadCasing, 2), new Object[]{"plateLead", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.ironCasing, 2), new Object[]{"plateIron", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.goldCasing, 2), new Object[]{"plateGold", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.refinedIronCasing, 2), new Object[]{"plateRefinedIron", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.steelCasing, 2), new Object[]{"plateSteel", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.bronzeCasing, 2), new Object[]{"plateBronze", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.copperCasing, 2), "plateCopper", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.tinCasing, 2), "plateTin", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.silverCasing, 2), "plateSilver", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.leadCasing, 2), "plateLead", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.ironCasing, 2), "plateIron", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.goldCasing, 2), "plateGold", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.refinedIronCasing, 2), "plateRefinedIron", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.steelCasing, 2), "plateSteel", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.bronzeCasing, 2), "plateBronze", RegistryItem.craftingHammer);
             }else{
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.copperCasing, 2), new Object[]{"ingotCopper", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.tinCasing, 2), new Object[]{"ingotTin", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.silverCasing, 2), new Object[]{"ingotSilver", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.leadCasing, 2), new Object[]{"ingotLead", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.ironCasing, 2), new Object[]{"ingotIron", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.goldCasing, 2), new Object[]{"ingotGold", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.refinedIronCasing, 2), new Object[]{"ingotRefinedIron", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.steelCasing, 2), new Object[]{"ingotSteel", RegistryItem.craftingHammer});
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.bronzeCasing, 2), new Object[]{"ingotBronze", RegistryItem.craftingHammer});
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.copperCasing, 2), "ingotCopper", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.tinCasing, 2), "ingotTin", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.silverCasing, 2), "ingotSilver", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.leadCasing, 2), "ingotLead", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.ironCasing, 2), "ingotIron", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.goldCasing, 2), "ingotGold", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.refinedIronCasing, 2), "ingotRefinedIron", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.steelCasing, 2), "ingotSteel", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(RegistryItem.bronzeCasing, 2), "ingotBronze", RegistryItem.craftingHammer);
             }
         }
     }
 
     public static void dustUtil(String dust, ItemStack dusts, String tinyDust, ItemStack tinyDusts) {
         recipes.addRecipe(StackUtil.copyWithSize(dusts, 1),
-                new Object[]{"TTT", "TTT", "TTT", 'T', tinyDust});
+                "TTT", "TTT", "TTT", 'T', tinyDust);
         recipes.addShapelessRecipe(StackUtil.copyWithSize(tinyDusts, 9),
-                new Object[]{dust});
+                dust);
 
     }
 
     public static void ingotUtil(String block, Block blocks, String ingot, ItemStack ingots){
         recipes.addRecipe(new ItemStack(blocks, 1),
-                new Object[]{"III", "III", "III", 'I', ingot});
+                "III", "III", "III", 'I', ingot);
         recipes.addShapelessRecipe(StackUtil.copyWithSize(ingots, 9),
-                new Object[]{block});
+                block);
     }
 
     public static void initCompressRecipes(){
@@ -231,9 +267,9 @@ public class Ic2cExtrasRecipes {
         Ic2cExtrasRecipes.dustUtil("dustObsidian", Ic2Items.obsidianDust, "dustTinyObsidian", new ItemStack(RegistryItem.obsidianTinyDust));
         Ic2cExtrasRecipes.dustUtil("dustBronze", Ic2Items.bronzeDust, "dustTinyBronze", new ItemStack(RegistryItem.bronzeTinyDust));
         recipes.addRecipe(Ic2Items.iridiumOre,
-                new Object[]{"III", "III", "III", 'I', RegistryItem.iridiumShard});
+                "III", "III", "III", 'I', RegistryItem.iridiumShard);
         recipes.addShapelessRecipe(new ItemStack(RegistryItem.iridiumShard, 9),
-                new Object[]{Ic2Items.iridiumOre});
+                Ic2Items.iridiumOre);
 
         if (Loader.isModLoaded("gtclassic")){
             TileEntityCompressor.addRecipe("ingotLead", 9, new ItemStack(RegistryBlock.leadBlock));
@@ -497,17 +533,25 @@ public class Ic2cExtrasRecipes {
             rolling.addRecipe((new RecipeInputOreDict("ingotBronze", 1)),  new ItemStack(RegistryItem.bronzeCasing, 2), 0.7f, "bronzeItemCasingRolling");
         }
 
-        rolling.addRecipe((new RecipeInputOreDict("casingRefinedIron", 1)),  StackUtil.copyWithSize(Ic2Items.miningPipe, 1), 0.7f, "ironFenceExtruding");
+        rolling.addRecipe((new RecipeInputOreDict(getRefinedIronCasing(), 1)),  StackUtil.copyWithSize(Ic2Items.miningPipe, 1), 0.7f, "miningPipeRolling");
 
         extruding.addRecipe(new RecipeInputOreDict("ingotCopper", 1),  StackUtil.copyWithSize(Ic2Items.copperCable, 3), 0.7f, "copperCableExtruding");
         extruding.addRecipe(new RecipeInputOreDict("ingotTin", 1),  StackUtil.copyWithSize(Ic2Items.tinCable, 4), 0.7f, "tinCableExtruding");
         extruding.addRecipe(new RecipeInputOreDict("ingotBronze", 1),  StackUtil.copyWithSize(Ic2Items.bronzeCable, 3), 0.7f, "bronzeCableExtruding");
-        extruding.addRecipe(new RecipeInputOreDict("ingotRefinedIron", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f, "HVCableExtruding");
         extruding.addRecipe(new RecipeInputOreDict("ingotGold", 1),  StackUtil.copyWithSize(Ic2Items.goldCable, 6), 0.7f, "goldCableExtruding");
         extruding.addRecipe(new RecipeInputOreDict("casingTin", 1),  StackUtil.copyWithSize(Ic2Items.tinCan, 1), 0.7f, "tinCanExtruding");
-        extruding.addRecipe(new RecipeInputOreDict("casingRefinedIron", 2),  StackUtil.copyWithSize(Ic2Items.ironFence, 3), 0.7f, "ironFenceExtruding");
+        extruding.addRecipe(new RecipeInputOreDict(getRefinedIronCasing(), 2),  StackUtil.copyWithSize(Ic2Items.ironFence, 3), 0.7f, "ironFenceExtruding");
+        if (!IC2.config.getFlag("SteelRecipes")){
+            if(enableCertainRecipesRequireSteel){
+                extruding.addRecipe(new RecipeInputOreDict("ingotSteel", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f, "HVCableExtruding");
+            }else {
+                extruding.addRecipe(new RecipeInputOreDict("ingotRefinedIron", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f, "HVCableExtruding");
+            }
+        }else {
+            extruding.addRecipe(new RecipeInputOreDict("ingotSteel", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f, "HVCableExtruding");
+        }
 
-        cutting.addRecipe(new RecipeInputOreDict("ingotRefinedIron", 3), Ic2Items.turbineBlade, "turbineBladeCutting");
+        cutting.addRecipe(new RecipeInputOreDict(getRefinedIronIngot(), 3), Ic2Items.turbineBlade, "turbineBladeCutting");
 
         if (Loader.isModLoaded("basemetals")){
 
@@ -685,7 +729,7 @@ public class Ic2cExtrasRecipes {
         enableHarderUranium = uranium;
         enableCasingsRequirePlates = casings;
         enableCuttingToolWires = wires;
-        enableHVCablesRequireSteel = hvCable;
+        enableCertainRecipesRequireSteel = hvCable;
         enableCasingsWithHammer = hammer;
         enableAutoOredictRecipes = oredict;
         enableLootEntries = loot;

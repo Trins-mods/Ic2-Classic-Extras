@@ -21,7 +21,7 @@ public class Config implements IConfigNotify {
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCasingsRequirePlates", "Enables casings requiring plates to craft. Note the only plate that i add is refined iron plates so if you enable this you will need another mod that adds plates.", "CasingsNeedPlates", false).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCrafingCablesWithPlates", "Enables additional recipe of crafting cables with wire cutter and plates", "CablesWithPlates", false).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCrafingCasingsWithHammer", "Enables additional recipe of crafting casings with crafting hammer", "CasingsWithHammer", false).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableHVCablesNeedSteel", "Enables the requirement of steel for hv cables. Currently does nothing yet.", "HVCablesNeedSteel", false).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCertainRecipesNeedSteel", "Enables the requirement of steel for hv cables, plasma cables, advanced machine blocks, and tesla coils. Does nothing if enableSteelRecipes is true.", "CertainRecipesNeedSteel", false).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableAutoOredictRecipes", "Enables adding recipes for crushed ore, purified crushed ore, casings, ect. to ore washing plant, thermal centrifuge, roller, and crafting table.", "AutoOredictRecipes", true).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableLootEntries", "Enables adding tiny plutonium and iridium shards to vanilla loot tables", "LootEntries", true).setGameRestart().setServerSync());
             IC2.config.addConfigNotify(config);
@@ -34,6 +34,6 @@ public class Config implements IConfigNotify {
     @Override
     public void onConfigReloaded(IC2Config config) {
         Radiation.setConfig(config.getFlag("ItemRadiation"));
-        Ic2cExtrasRecipes.setConfig(config.getFlag("HarderUranium"), config.getFlag("CasingsNeedPlates"), config.getFlag("CablesWithPlates"), config.getFlag("HVCablesNeedSteel"), config.getFlag("CasingsWithHammer"), config.getFlag("AutoOredictRecipes"), config.getFlag("LootEntries"));
+        Ic2cExtrasRecipes.setConfig(config.getFlag("HarderUranium"), config.getFlag("CasingsNeedPlates"), config.getFlag("CablesWithPlates"), config.getFlag("CertainRecipesNeedSteel"), config.getFlag("CasingsWithHammer"), config.getFlag("AutoOredictRecipes"), config.getFlag("LootEntries"));
     }
 }
