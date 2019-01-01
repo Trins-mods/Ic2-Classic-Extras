@@ -72,7 +72,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
     public TileEntityOreWashingPlant()
     {
-        super(7, 8, 400, 32);
+        super(7, 16, 400, 32);
         this.waterTank.addListener(this);
         this.waterTank.setCanFill(true);
         this.addGuiFields("waterTank");
