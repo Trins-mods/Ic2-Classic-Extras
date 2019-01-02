@@ -11,6 +11,7 @@ import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
+import ic2.api.item.IC2Items;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.IC2;
 import ic2.core.block.machine.low.TileEntityCompressor;
@@ -22,7 +23,12 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2States;
 import ic2.core.util.misc.StackUtil;
+import mods.railcraft.api.core.RailcraftCore;
 import mods.railcraft.api.crafting.Crafters;
+import mods.railcraft.common.core.RailcraftObjects;
+import mods.railcraft.common.items.RailcraftItems;
+import mods.railcraft.common.plugins.ic2.IC2Plugin;
+import mods.railcraft.common.util.crafting.RailcraftIngredient;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -115,7 +121,7 @@ public class Ic2cExtrasRecipes {
         initMachineRecipes();
         initHarderUraniumProcessing();
         postInit();
-        //initRailcraftRecipes();
+        initRailcraftRecipes();
     }
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
     public static void initShapedRecipes(){
@@ -651,6 +657,7 @@ public class Ic2cExtrasRecipes {
     public static void initRailcraftRecipes(){
         if (Loader.isModLoaded("railcraft")){
             //Crafters.rockCrusher().getRecipes().removeIf(-> true);
+            macerator.addRecipe(new RecipeInputOreDict("itemSlag"), RailcraftItems.DUST.getStack(1, 4), "Ground Blast Furnace Slag");
         }
     }
     public static void initHarderUraniumProcessing(){

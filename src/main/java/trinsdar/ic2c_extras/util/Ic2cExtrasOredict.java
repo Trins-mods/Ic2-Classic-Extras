@@ -45,6 +45,7 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("ingotSteel", RegistryItem.steelIngot);
         OreDictionary.registerOre("plateRefinedIron", RegistryItem.refinedIronPlate);
         OreDictionary.registerOre("dustStone", RegistryItem.stoneDust);
+        OreDictionary.registerOre("itemSlag", RegistryItem.slag);
 
         OreDictionary.registerOre("casingCopper", RegistryItem.copperCasing);
         OreDictionary.registerOre("casingTin", RegistryItem.tinCasing);
