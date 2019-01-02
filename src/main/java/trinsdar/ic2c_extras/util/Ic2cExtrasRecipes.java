@@ -88,23 +88,19 @@ public class Ic2cExtrasRecipes {
     public static com.mcmoddev.modernmetals.data.MaterialNames materialNamesMme;
 
     static IRecipeInput casing = new RecipeInputCombined(1,
-            new IRecipeInput[] { new RecipeInputOreDict("casingRefinedIron"),
-                    new RecipeInputOreDict("casingSilver"), new RecipeInputOreDict("casingSteel") });
+            new RecipeInputOreDict("casingRefinedIron"),
+            new RecipeInputOreDict("casingSilver"), new RecipeInputOreDict("casingSteel"));
 
     static IRecipeInput crushedCopper = new RecipeInputCombined(1,
-            new IRecipeInput[] { new RecipeInputOreDict("crushedCopper"),
-                    new RecipeInputOreDict("crushedPurifiedCopper") });
+            new RecipeInputOreDict("crushedCopper"),
+            new RecipeInputOreDict("crushedPurifiedCopper"));
 
     static IRecipeInput crushedTin = new RecipeInputCombined(1,
-            new IRecipeInput[] { new RecipeInputOreDict("crushedTin"),
-                    new RecipeInputOreDict("crushedPurifiedTin") });
+            new RecipeInputOreDict("crushedTin"),
+            new RecipeInputOreDict("crushedPurifiedTin"));
 
     private static String getRefinedIronIngot() { // TODO check if this loads to early because its static
         return IC2.config.getFlag("SteelRecipes") ? "ingotSteel" : "ingotRefinedIron";
-    }
-
-    private static String getRefinedIronPlate() {
-        return IC2.config.getFlag("SteelRecipes") ? "plateSteel" : "plateRefinedIron";
     }
 
     private static String getRefinedIronCasing() {
@@ -171,11 +167,14 @@ public class Ic2cExtrasRecipes {
         recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.emptyCell, 16),
                 " T ", "T T", " T ", 'T', "casingTin");
 
+        recipes.addRecipe(new ItemStack(RegistryItem.energiumDust, 9), "RRR", "RDR", "RRR", 'R', new RecipeInputOreDict("dustRedstone", 2), 'D', "dustDiamond");
+
         if (Loader.isModLoaded("gtclassic")){
             recipes.addRecipe(Ic2Items.electricCircuit,
                     "CCC", "RcR", "CCC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', casing);
             recipes.addRecipe(Ic2Items.electricCircuit,
                     "CRC", "CcC", "CRC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', casing);
+            recipes.addRecipe(new ItemStack(RegistryItem.energiumDust, 9), "RRR", "RDR", "RRR", 'R', new ItemStack(Items.REDSTONE, 2), 'D', "dustRuby");
         }else{
             recipes.addRecipe(Ic2Items.electricCircuit,
                     "CCC", "RcR", "CCC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', getRefinedIronCasing());
@@ -548,6 +547,12 @@ public class Ic2cExtrasRecipes {
         extruding.addRecipe(new RecipeInputOreDict("ingotGold", 1),  StackUtil.copyWithSize(Ic2Items.goldCable, 6), 0.7f, "goldCableExtruding");
         extruding.addRecipe(new RecipeInputOreDict("casingTin", 1),  StackUtil.copyWithSize(Ic2Items.tinCan, 1), 0.7f, "tinCanExtruding");
         extruding.addRecipe(new RecipeInputOreDict(getRefinedIronCasing(), 2),  StackUtil.copyWithSize(Ic2Items.ironFence, 3), 0.7f, "ironFenceExtruding");
+
+        macerator.addRecipe(new RecipeInputOreDict("gemDiamond"), new ItemStack(RegistryItem.diamondDust), 0.5F, "Diamond Dust");
+        macerator.addRecipe(new RecipeInputItemStack(Ic2Items.energyCrystal), new ItemStack(RegistryItem.energiumDust, 6), "Energium Dust");
+
+        TileEntityCompressor.addRecipe(new ItemStack(RegistryItem.energiumDust), 6, Ic2Items.energyCrystal);
+
         if (!IC2.config.getFlag("SteelRecipes")){
             if(enableCertainRecipesRequireSteel){
                 extruding.addRecipe(new RecipeInputOreDict("ingotSteel", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f, "HVCableExtruding");

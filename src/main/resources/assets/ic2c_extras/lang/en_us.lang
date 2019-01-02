@@ -66,6 +66,8 @@ item.ic2c_extras.plutonium_enriched_uranium_ingot.name=Plutonium Enriched Uraniu
 item.ic2c_extras.plutonium_enriched_uranium.name=Plutonium Enriched Uranium
 item.ic2c_extras.iridium_shard.name=Iridium Shard
 item.ic2c_extras.refined_iron_plate.name=Refined Iron Plate
+item.ic2c_extras.diamond_dust.name=Diamond Dust
+item.ic2c_extras.energium_dust.name=Energium Dust
 item.ic2c_extras.craftingHammer.name=Crafting Hammer
 item.ic2c_extras.wireCutters.name=Wire Cutters
 

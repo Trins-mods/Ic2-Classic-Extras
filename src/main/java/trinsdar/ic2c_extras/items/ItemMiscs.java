@@ -26,7 +26,9 @@ public class ItemMiscs extends Item implements IStaticTexturedItem {
         PLUTONIUM_ENRICHED_URANIUM_INGOT(74),
         PLUTONIUM_ENRICHED_URANIUM(75),
         IRIDIUM_SHARD(76),
-        REFINED_IRON_PLATE(79);
+        REFINED_IRON_PLATE(79),
+        DIAMOND_DUST(43),
+        ENERGIUM_DUST(44);
 
         private int id;
 
