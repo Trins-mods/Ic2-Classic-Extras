@@ -121,6 +121,7 @@ public class Ic2cExtrasRecipes {
     }
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
     public static void initShapedRecipes(){
+        FluidStack water = new FluidStack(FluidRegistry.WATER, 1000);
         recipes.addRecipe(new ItemStack(RegistryBlock.advancedSteamTurbine, 1),
                 " S ", "STS", " S ", 'S', Ic2Items.basicTurbine,'T', Ic2Items.transformerMV);
         recipes.addRecipe(new ItemStack(RegistryBlock.oreWashingPlant, 1),
@@ -163,6 +164,11 @@ public class Ic2cExtrasRecipes {
 
         recipes.addRecipe(Ic2Items.fuelCan,
                 " TT", "T T", "TTT", 'T', "casingTin");
+
+        recipes.addRecipe(Ic2Items.reactorCoolantCellSimple, " T ", "TWT", " T ", 'T', "casingTin", 'W', water);
+        recipes.addRecipe(Ic2Items.reactorCoolantCellTriple, "TTT", "CCC", "TTT", 'T', "casingTin", 'C', Ic2Items.reactorCoolantCellSimple);
+        recipes.addRecipe(Ic2Items.reactorCoolantCellTriple, "TTT", "WWW", "TTT", 'T', new RecipeInputOreDict("casingTin", 2), 'W', StackUtil.copyWithSize(Ic2Items.waterCell, 2));
+        recipes.addRecipe(Ic2Items.reactorCoolantCellSix, "TCT", "TDT", "TCT", 'T', "casingTin", 'C', Ic2Items.reactorCoolantCellTriple, 'D', Ic2Items.denseCopperPlate);
 
         recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.emptyCell, 16),
                 " T ", "T T", " T ", 'T', "casingTin");
