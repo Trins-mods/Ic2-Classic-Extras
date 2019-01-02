@@ -733,11 +733,11 @@ public class Ic2cExtrasRecipes {
 
     }
 
-    public static void setConfig(boolean uranium, boolean casings, boolean wires, boolean hvCable, boolean hammer, boolean oredict, boolean loot){
+    public static void setConfig(boolean uranium, boolean casings, boolean wires, boolean steel, boolean hammer, boolean oredict, boolean loot){
         enableHarderUranium = uranium;
         enableCasingsRequirePlates = casings;
         enableCuttingToolWires = wires;
-        enableCertainRecipesRequireSteel = hvCable;
+        enableCertainRecipesRequireSteel = steel;
         enableCasingsWithHammer = hammer;
         enableAutoOredictRecipes = oredict;
         enableLootEntries = loot;
