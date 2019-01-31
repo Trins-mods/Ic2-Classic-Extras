@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.util;
 
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import trinsdar.ic2c_extras.util.registry.RegistryBlock;
 import trinsdar.ic2c_extras.util.registry.RegistryItem;
@@ -58,8 +59,8 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("casingSteel", RegistryItem.steelCasing);
         OreDictionary.registerOre("casingBronze", RegistryItem.bronzeCasing);
 
-        OreDictionary.registerOre("craftingToolForgeHammer", RegistryItem.craftingHammer);
-        OreDictionary.registerOre("craftingToolWireCutter", RegistryItem.wireCutters);
+        OreDictionary.registerOre("craftingToolForgeHammer", new ItemStack(RegistryItem.craftingHammer, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("craftingToolWireCutter", new ItemStack(RegistryItem.wireCutters, 1, OreDictionary.WILDCARD_VALUE));
 
         OreDictionary.registerOre("blockSteel", RegistryBlock.steelBlock);
         OreDictionary.registerOre("blockRefinedIron", RegistryBlock.refinedIronBlock);

@@ -67,7 +67,7 @@ public class Ic2cExtrasRecipes {
     public static boolean enableCasingsRequirePlates;
     public static boolean enableCuttingToolWires;
     public static boolean enableCertainRecipesRequireSteel;
-    public static boolean enableCasingsWithHammer;
+    public static boolean enableHammerRecipes;
     public static boolean enableAutoOredictRecipes;
     public static boolean enableLootEntries;
     public static int
@@ -229,7 +229,7 @@ public class Ic2cExtrasRecipes {
             }
         }
 
-        if (enableCasingsWithHammer){
+        if (enableHammerRecipes){
             if (enableCasingsRequirePlates){
                 recipes.addShapelessRecipe(new ItemStack(RegistryItem.copperCasing, 2), "plateCopper", RegistryItem.craftingHammer);
                 recipes.addShapelessRecipe(new ItemStack(RegistryItem.tinCasing, 2), "plateTin", RegistryItem.craftingHammer);
@@ -436,8 +436,8 @@ public class Ic2cExtrasRecipes {
                                 listPlates = OreDictionary.getOres(plate, false);
                                 if (!listPlates.isEmpty()) {
                                     rolling.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack)listPlates.get(0), plate + "Rolling");
-                                    if (enableCasingsWithHammer){
-                                        recipes.addShapelessRecipe((ItemStack)listPlates.get(0), new Object[]{id, RegistryItem.craftingHammer});
+                                    if (enableHammerRecipes){
+                                        recipes.addShapelessRecipe((ItemStack)listPlates.get(0), id, "craftingToolForgeHammer");
                                     }
                                 }
                             }
@@ -448,7 +448,9 @@ public class Ic2cExtrasRecipes {
                             listPlates = OreDictionary.getOres(plate, false);
                             if (!listPlates.isEmpty()) {
                                 rolling.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack)listPlates.get(0), plate + "Rolling");
-                                recipes.addShapelessRecipe((ItemStack)listPlates.get(0), new Object[]{id, RegistryItem.craftingHammer});
+                                if (enableHammerRecipes){
+                                    recipes.addShapelessRecipe((ItemStack)listPlates.get(0), id, "craftingToolForgeHammer");
+                                }
                             }
                         }
                     }
@@ -533,7 +535,7 @@ public class Ic2cExtrasRecipes {
             rolling.addRecipe((new RecipeInputOreDict("plateRefinedIron", 1)),  new ItemStack(RegistryItem.refinedIronCasing, 2), 0.7f, "refinedIronPlateItemCasingRolling");
             rolling.addRecipe((new RecipeInputOreDict("plateSteel", 1)),  new ItemStack(RegistryItem.steelCasing, 2), 0.7f, "steelPlateItemCasingRolling");
             rolling.addRecipe((new RecipeInputOreDict("plateBronze", 1)),  new ItemStack(RegistryItem.bronzeCasing, 2), 0.7f, "bronzePlateItemCasingRolling");
-        }else if (!enableCasingsRequirePlates){
+        }else {
             rolling.addRecipe((new RecipeInputOreDict("ingotCopper", 1)),  new ItemStack(RegistryItem.copperCasing, 2), 0.7f, "copperItemCasingRolling");
             rolling.addRecipe((new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(RegistryItem.tinCasing, 2), 0.7f, "tinItemCasingRolling");
             rolling.addRecipe((new RecipeInputOreDict("ingotSilver", 1)),  new ItemStack(RegistryItem.silverCasing, 2), 0.7f, "silverItemCasingRolling");
@@ -590,10 +592,12 @@ public class Ic2cExtrasRecipes {
                         ItemStack plates = mat.getBlockItemStack(Names.PLATE);
 
                         if (Options.enableModderSupportThings()){
-                            if (Options.isThingEnabled("plate")){
-                                rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
+                            if (enableHammerRecipes){
+                                if (Options.isThingEnabled("plate")){
+                                    rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
+                                }
+                                rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
                             }
-                            rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
                         }
 
                         if (Options.isThingEnabled("basics")){
@@ -627,10 +631,12 @@ public class Ic2cExtrasRecipes {
                         ItemStack plates = mat.getBlockItemStack(Names.PLATE);
 
                         if (Options.enableModderSupportThings()){
-                            if (Options.isThingEnabled("plate")){
-                                rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
+                            if (enableHammerRecipes){
+                                if (Options.isThingEnabled("plate")){
+                                    rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
+                                }
+                                rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
                             }
-                            rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
                         }
 
                         if (Options.isThingEnabled("basics")){
@@ -653,10 +659,12 @@ public class Ic2cExtrasRecipes {
                         ItemStack plates = mat.getBlockItemStack(Names.PLATE);
 
                         if (Options.enableModderSupportThings()){
-                            if (Options.isThingEnabled("plate")){
-                                rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
+                            if (enableHammerRecipes){
+                                if (Options.isThingEnabled("plate")){
+                                    rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
+                                }
+                                rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
                             }
-                            rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
                         }
                     }
                 }
@@ -713,29 +721,16 @@ public class Ic2cExtrasRecipes {
             if(event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON)){
                 event.getTable().getPool("main").addEntry(new LootEntryItem(shard, dungeonWeight, itemQuality, funcs, new LootCondition[0], entryNameIridium));
                 event.getTable().getPool("main").addEntry(new LootEntryItem(plutonium, tinyPlutonioumWeight, itemQuality, funcs, new LootCondition[0], entryNamePlutonium));
-            }
-
-            else if(event.getName().equals(LootTableList.CHESTS_NETHER_BRIDGE)){
+            }else if(event.getName().equals(LootTableList.CHESTS_NETHER_BRIDGE)){
                 event.getTable().getPool("main").addEntry(new LootEntryItem(shard, netherFortressWeight, itemQuality, funcs, new LootCondition[0], entryNameIridium));
                 event.getTable().getPool("main").addEntry(new LootEntryItem(plutonium, tinyPlutonioumWeight, itemQuality, funcs, new LootCondition[0], entryNamePlutonium));
-            }
-
-            else if(event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CORRIDOR)){
+            }else if(event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CORRIDOR) || event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CROSSING)){
                 event.getTable().getPool("main").addEntry(new LootEntryItem(shard, strongholdWeight, itemQuality, funcs, new LootCondition[0], entryNameIridium));
                 event.getTable().getPool("main").addEntry(new LootEntryItem(plutonium, tinyPlutonioumWeight, itemQuality, funcs, new LootCondition[0], entryNamePlutonium));
-            }
-
-            else if(event.getName().equals(LootTableList.CHESTS_STRONGHOLD_CROSSING)){
-                event.getTable().getPool("main").addEntry(new LootEntryItem(shard, strongholdWeight, itemQuality, funcs, new LootCondition[0], entryNameIridium));
-                event.getTable().getPool("main").addEntry(new LootEntryItem(plutonium, tinyPlutonioumWeight, itemQuality, funcs, new LootCondition[0], entryNamePlutonium));
-            }
-
-            else if(event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)){
+            }else if(event.getName().equals(LootTableList.CHESTS_JUNGLE_TEMPLE)){
                 event.getTable().getPool("main").addEntry(new LootEntryItem(shard, jungleTempleWeight, itemQuality, funcs, new LootCondition[0], entryNameIridium));
                 event.getTable().getPool("main").addEntry(new LootEntryItem(plutonium, tinyPlutonioumWeight, itemQuality, funcs, new LootCondition[0], entryNamePlutonium));
-            }
-
-            else if(event.getName().equals(LootTableList.CHESTS_DESERT_PYRAMID)){
+            }else if(event.getName().equals(LootTableList.CHESTS_DESERT_PYRAMID)){
                 event.getTable().getPool("main").addEntry(new LootEntryItem(shard, desertTempleWeight, itemQuality, funcs, new LootCondition[0], entryNameIridium));
                 event.getTable().getPool("main").addEntry(new LootEntryItem(plutonium, tinyPlutonioumWeight, itemQuality, funcs, new LootCondition[0], entryNamePlutonium));
             }
@@ -749,7 +744,7 @@ public class Ic2cExtrasRecipes {
         enableCasingsRequirePlates = casings;
         enableCuttingToolWires = wires;
         enableCertainRecipesRequireSteel = steel;
-        enableCasingsWithHammer = hammer;
+        enableHammerRecipes = hammer;
         enableAutoOredictRecipes = oredict;
         enableLootEntries = loot;
     }
