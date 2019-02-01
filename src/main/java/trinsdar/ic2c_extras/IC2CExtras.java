@@ -4,6 +4,8 @@ import ic2.api.classic.addon.IC2Plugin;
 import ic2.api.classic.addon.PluginBase;
 import ic2.api.classic.addon.misc.IOverrideObject;
 import ic2.api.classic.addon.misc.SideGateway;
+import ic2.api.recipe.IBasicMachineRecipeManager;
+import ic2.api.recipe.Recipes;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
@@ -49,7 +51,11 @@ public class IC2CExtras extends PluginBase
     @Override
     public void preInit(FMLPreInitializationEvent fmlPreInitializationEvent)
     {
-
+        Recipes.metalformerExtruding = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.extruding.toIC2Exp();
+        Recipes.metalformerCutting = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.cutting.toIC2Exp();
+        Recipes.metalformerRolling = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.rolling.toIC2Exp();
+        Recipes.oreWashing = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.oreWashingPlant.toIC2Exp();
+        Recipes.centrifuge = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.thermalCentrifuge.toIC2Exp();
     }
 
     @Override

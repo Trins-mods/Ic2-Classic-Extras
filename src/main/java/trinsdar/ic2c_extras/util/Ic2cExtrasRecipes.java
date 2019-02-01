@@ -23,12 +23,8 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2States;
 import ic2.core.util.misc.StackUtil;
-import mods.railcraft.api.core.RailcraftCore;
 import mods.railcraft.api.crafting.Crafters;
-import mods.railcraft.common.core.RailcraftObjects;
 import mods.railcraft.common.items.RailcraftItems;
-import mods.railcraft.common.plugins.ic2.IC2Plugin;
-import mods.railcraft.common.util.crafting.RailcraftIngredient;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -460,44 +456,6 @@ public class Ic2cExtrasRecipes {
 
     }
 
-    static final String[] myMaterialNamesBme = {
-            materialNamesBme.ADAMANTINE,
-            materialNamesBme.ANTIMONY,
-            materialNamesBme.BISMUTH,
-            materialNamesBme.COLDIRON,
-            materialNamesBme.NICKEL,
-            materialNamesBme.PLATINUM,
-            materialNamesBme.STARSTEEL,
-            materialNamesBme.ZINC
-    };
-
-    static final String[] myMaterialNamesMme = {
-            materialNamesMme.ALUMINUM,
-            materialNamesMme.BERYLLIUM,
-            materialNamesMme.BORON,
-            materialNamesMme.CADMIUM,
-            materialNamesMme.CHROMIUM,
-            materialNamesMme.IRIDIUM,
-            materialNamesMme.MAGNESIUM,
-            materialNamesMme.MANGANESE,
-            materialNamesMme.OSMIUM,
-            materialNamesMme.PLUTONIUM,
-            materialNamesMme.RUTILE,
-            materialNamesMme.TANTALUM,
-            materialNamesMme.THORIUM,
-            materialNamesMme.TITANIUM,
-            materialNamesMme.TUNGSTEN,
-            materialNamesMme.ZIRCONIUM
-    };
-
-    static final String[] myMaterialNamesMmeExtra = {
-            materialNamesMme.ALUMINUM_BRASS,
-            materialNamesMme.GALVANIZED_STEEL,
-            materialNamesMme.NICHROME,
-            materialNamesMme.STAINLESS_STEEL,
-            materialNamesMme.URANIUM
-    };
-
     public static void initMachineRecipes(){
         int lowHeat = 250;
         int mediumHeat = 300;
@@ -572,105 +530,6 @@ public class Ic2cExtrasRecipes {
         }
 
         cutting.addRecipe(new RecipeInputOreDict(getRefinedIronIngot(), 3), Ic2Items.turbineBlade, "turbineBladeCutting");
-
-        if (Loader.isModLoaded("basemetals")){
-
-            if (Options.isModEnabled("ic2")){
-                for (String matName : myMaterialNamesBme) {
-                    if (Materials.hasMaterial(matName)){
-                        MMDMaterial mat = Materials.getMaterialByName(matName);
-                        String oreName = mat.getCapitalizedName();
-                        String crushedName = "crushed" + oreName;
-                        String crushedPurifiedName = "crushedPurified" + oreName;
-                        String plateName = "plate" + oreName;
-                        String ingotName = "ingot" + oreName;
-                        ItemStack crushedPurified = mat.getItemStack(Names.CRUSHED_PURIFIED);
-                        ItemStack powder1 = mat.getItemStack(Names.POWDER);
-                        ItemStack smallPowder1 = mat.getItemStack(Names.SMALLPOWDER);
-                        ItemStack smallPowder2 = mat.getItemStack(Names.SMALLPOWDER, 2);
-                        ItemStack casings = mat.getItemStack(Names.CASING, 2);
-                        ItemStack plates = mat.getBlockItemStack(Names.PLATE);
-
-                        if (Options.enableModderSupportThings()){
-                            if (enableHammerRecipes){
-                                if (Options.isThingEnabled("plate")){
-                                    rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
-                                }
-                                rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
-                            }
-                        }
-
-                        if (Options.isThingEnabled("basics")){
-                            TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict(crushedName, 1), new MachineOutput(null, Arrays.asList(crushedPurified, smallPowder2, stoneDust)));
-
-                            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(crushedName, 1), mediumHeat, powder1, smallPowder1, stoneDust);
-
-                            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(crushedPurifiedName, 1), lowHeat, powder1, smallPowder2);
-                        }
-
-                    }
-                }
-            }
-        }
-
-        if (Loader.isModLoaded("modernmetals")){
-            if (Options.isModEnabled("ic2")){
-                for (String matName : myMaterialNamesMme) {
-                    if (Materials.hasMaterial(matName)){
-                        MMDMaterial mat = Materials.getMaterialByName(matName);
-                        String oreName = mat.getCapitalizedName();
-                        String crushedName = "crushed" + oreName;
-                        String crushedPurifiedName = "crushedPurified" + oreName;
-                        String plateName = "plate" + oreName;
-                        String ingotName = "ingot" + oreName;
-                        ItemStack crushedPurified = mat.getItemStack(Names.CRUSHED_PURIFIED);
-                        ItemStack powder1 = mat.getItemStack(Names.POWDER);
-                        ItemStack smallPowder1 = mat.getItemStack(Names.SMALLPOWDER);
-                        ItemStack smallPowder2 = mat.getItemStack(Names.SMALLPOWDER, 2);
-                        ItemStack casings = mat.getItemStack(Names.CASING, 2);
-                        ItemStack plates = mat.getBlockItemStack(Names.PLATE);
-
-                        if (Options.enableModderSupportThings()){
-                            if (enableHammerRecipes){
-                                if (Options.isThingEnabled("plate")){
-                                    rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
-                                }
-                                rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
-                            }
-                        }
-
-                        if (Options.isThingEnabled("basics")){
-                            TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict(crushedName, 1), new MachineOutput(null, Arrays.asList(crushedPurified, smallPowder2, stoneDust)));
-
-                            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(crushedName, 1), mediumHeat, powder1, smallPowder1, stoneDust);
-
-                            TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(crushedPurifiedName, 1), lowHeat, powder1, smallPowder2);
-                        }
-                    }
-                }
-
-                for (String matName : myMaterialNamesMmeExtra) {
-                    if (Materials.hasMaterial(matName)){
-                        MMDMaterial mat = Materials.getMaterialByName(matName);
-                        String oreName = mat.getCapitalizedName();
-                        String plateName = "plate" + oreName;
-                        String ingotName = "ingot" + oreName;
-                        ItemStack casings = mat.getItemStack(Names.CASING, 2);
-                        ItemStack plates = mat.getBlockItemStack(Names.PLATE);
-
-                        if (Options.enableModderSupportThings()){
-                            if (enableHammerRecipes){
-                                if (Options.isThingEnabled("plate")){
-                                    rolling.addRecipe(new RecipeInputOreDict(ingotName, 1), plates, ingotName + "Rolling");
-                                }
-                                rolling.addRecipe(new RecipeInputOreDict(plateName, 1), casings, plateName + "Rolling");
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
     }
 
     public static void initRailcraftRecipes(){

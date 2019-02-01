@@ -28,8 +28,8 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.blocks.container.ContainerThermalCentrifuge;
 import trinsdar.ic2c_extras.util.GuiMachine.ThermalCentrifugeGui;
-import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
+import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     public static int maxHeat = 500;
     public int heat;
 
-    public static final String neededHeat = "neededHeat";
+    public static final String neededHeat = "minHeat";
     public TileEntityThermalCentrifuge() {
         super( 5, 48, 400, 128);
         this.addGuiFields("heat");
