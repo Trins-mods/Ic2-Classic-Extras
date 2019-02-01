@@ -340,9 +340,6 @@ public class Ic2cExtrasRecipes {
     }
 
     public static void postInit() {
-        int lowHeat = 250;
-        int mediumHeat = 300;
-        ItemStack stoneDust = new ItemStack(RegistryItem.stoneDust);
         Set<String> crushedBlacklist = new HashSet();
         Set<String> crushedPurifiedBlackList = new HashSet();
         Set<String> plateBlacklist = new HashSet();
@@ -355,14 +352,10 @@ public class Ic2cExtrasRecipes {
         ingotWhitelist.addAll(Arrays.asList("ingotIron", "ingotGold", "ingotSilver", "ingotLead", "ingotCopper", "ingotTin", "ingotRefinedIron", "ingotSteel", "ingotBronze"));
         gemBlacklist.addAll(Arrays.asList("ingotDiamond", "ingotEmerald", "ingotQuartz"));
         if (Loader.isModLoaded("basemetals")){
-            crushedBlacklist.addAll(Arrays.asList("crushedAdamantine", "crushedAntimony", "crushedBismuth", "crushedColdiron", "crushedNickel", "crushedPlatinum", "crushedStarsteel", "crushedZinc"));
-            crushedPurifiedBlackList.addAll(Arrays.asList("crushedPurifiedAdamantine", "crushedPurifiedAntimony", "crushedPurifiedBismuth", "crushedPurifiedColdiron", "crushedPurifiedNickel", "crushedPurifiedPlatinum", "crushedPurifiedStarsteel", "crushedPurifiedZinc"));
             plateBlacklist.addAll(Arrays.asList("plateAdamantine", "plateAntimony", "plateBismuth", "plateColdiron", "plateNickel", "platePlatinum", "plateStarsteel", "plateZinc"));
             ingotBmeMmeBlacklist.addAll(Arrays.asList("ingotAdamantine", "ingotAntimony", "ingotBismuth", "ingotColdiron", "ingotNickel", "ingotPlatinum", "ingotStarsteel", "ingotZinc"));
         }
         if (Loader.isModLoaded("modernmetals")){
-            crushedBlacklist.addAll(Arrays.asList("crushedAluminum", "crushedAluminium", "crushedBeryllium", "crushedBoron", "crushedCadmium", "crushedChrome", "crushedChromium", "crushedIridium", "crushedMagnesium", "crushedManganese", "crushedOsmium", "crushedPlutonium", "crushedRutile", "crushedTantalum", "crushedTitanium", "crushedThorium", "crushedTungsten", "crushedZirconium"));
-            crushedPurifiedBlackList.addAll(Arrays.asList("crushedPurifiedAluminum", "crushedPurifiedAluminium", "crushedPurifiedBeryllium", "crushedPurifiedBoron", "crushedPurifiedCadmium", "crushedPurifiedChrome", "crushedPurifiedChromium", "crushedPurifiedIridium", "crushedPurifiedMagnesium", "crushedPurifiedManganese", "crushedPurifiedOsmium", "crushedPurifiedPlutonium", "crushedPurifiedRutile", "crushedPurifiedTantalum", "crushedPurifiedTitanium", "crushedPurifiedThorium", "crushedPurifiedTungsten", "crushedPurifiedZirconium"));
             plateBlacklist.addAll(Arrays.asList("plateAluminum", "plateAluminium", "plateAluminumbrass", "plateAluminiumbrass", "plateBeryllium", "plateBoron", "plateCadmium", "plateChrome", "plateChromium", "plateGalvanizedsteel", "plateIridium", "plateMagnesium", "plateManganese", "plateNichrome", "plateOsmium", "platePlutonium", "plateRutile", "plateStainlesssteel", "plateTantalum", "plateTitanium", "plateThorium", "plateTungsten", "plateUranium", "plateZirconium"));
             ingotBmeMmeBlacklist.addAll(Arrays.asList("ingotAluminum", "ingotAluminium", "ingotAluminumbrass", "ingotAluminiumbrass", "ingotBeryllium", "ingotBoron", "ingotCadmium", "ingotChrome", "ingotChromium", "ingotGalvanizedsteel", "ingotIridium", "ingotMagnesium", "ingotManganese", "ingotNichrome", "ingotOsmium", "ingotPlutonium", "ingotRutile", "ingotStainlesssteel", "ingotTantalum", "ingotTitanium", "ingotThorium", "ingotTungsten", "ingotUranium", "ingotZirconium"));
         }
@@ -372,14 +365,8 @@ public class Ic2cExtrasRecipes {
         if (enableAutoOredictRecipes){
             for(int var4 = 0; var4 < var3; ++var4) {
                 String id = var2[var4];
-                String dust;
-                String tinyDust;
-                String purifiedCrushedOre;
                 String casing;
                 String plate;
-                NonNullList listDust;
-                NonNullList listTinyDust;
-                NonNullList listPurifiedCrushedOre;
                 NonNullList listCasings;
                 NonNullList listPlates;
                 if (id.startsWith("plate")) {
