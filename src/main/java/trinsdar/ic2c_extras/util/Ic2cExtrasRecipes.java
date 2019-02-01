@@ -382,36 +382,6 @@ public class Ic2cExtrasRecipes {
                 NonNullList listPurifiedCrushedOre;
                 NonNullList listCasings;
                 NonNullList listPlates;
-                if (id.startsWith("crushed")) {
-                    if (!crushedBlacklist.contains(id)) {
-                        tinyDust = "dustTiny" + id.substring(7);
-                        dust = "dust" + id.substring(7);
-                        purifiedCrushedOre = "crushedPurified" + id.substring(7);
-                        if (OreDictionary.doesOreNameExist(dust) && OreDictionary.doesOreNameExist(tinyDust) && OreDictionary.doesOreNameExist(purifiedCrushedOre)) {
-                            listDust = OreDictionary.getOres(dust,  false);
-                            listTinyDust = OreDictionary.getOres(tinyDust, false);
-                            listPurifiedCrushedOre = OreDictionary.getOres(purifiedCrushedOre,false);
-                            if (!listDust.isEmpty() && !listTinyDust.isEmpty() && !listPurifiedCrushedOre.isEmpty()) {
-                                TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(id, 1), mediumHeat, (ItemStack)listDust.get(0), (ItemStack)listTinyDust.get(0), stoneDust);
-                                TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict(id, 1), new MachineOutput(null, Arrays.asList((ItemStack)listPurifiedCrushedOre.get(0), StackUtil.copyWithSize((ItemStack)listTinyDust.get(0), 2), stoneDust)));
-                            }
-                        }
-                    }
-                }
-                if (id.startsWith("crushedPurified")) {
-                    if (!crushedPurifiedBlackList.contains(id)){
-                        dust = "dust" + id.substring(15);
-                        tinyDust = "dustTiny" + id.substring(15);
-                        if (OreDictionary.doesOreNameExist(dust) && OreDictionary.doesOreNameExist(tinyDust)) {
-                            listDust = OreDictionary.getOres(dust, false);
-                            listTinyDust = OreDictionary.getOres(tinyDust, false);
-                            if (!listDust.isEmpty() && !listTinyDust.isEmpty()) {
-                                TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict(id, 1), lowHeat, (ItemStack)listDust.get(0), StackUtil.copyWithSize((ItemStack)listTinyDust.get(0), 2));
-                            }
-                        }
-                    }
-
-                }
                 if (id.startsWith("plate")) {
                     if (!plateBlacklist.contains(id)){
                         casing = "casing" + id.substring(5);
