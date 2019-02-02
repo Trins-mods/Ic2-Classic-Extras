@@ -18,6 +18,7 @@ tile.ic2c_extras.refinedIronBlock.name=Refined Iron Block
 tile.ic2c_extras.leadBlock.name=Lead Block
 
 #Items
+item.itemOreUran.name=Uranium Fuel
 item.ic2c_extras.ironCrushedOre.name=Crushed Iron Ore
 item.ic2c_extras.goldCrushedOre.name=Crushed Gold Ore
 item.ic2c_extras.copperCrushedOre.name=Crushed Copper Ore
