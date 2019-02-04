@@ -6,7 +6,11 @@ import ic2.api.classic.addon.misc.IOverrideObject;
 import ic2.api.classic.addon.misc.SideGateway;
 import ic2.api.recipe.IBasicMachineRecipeManager;
 import ic2.api.recipe.Recipes;
+import ic2.core.block.machine.high.TileEntityUraniumEnricher;
+import ic2.core.inventory.filters.BasicItemFilter;
+import ic2.core.inventory.filters.CommonFilters;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
@@ -20,6 +24,7 @@ import trinsdar.ic2c_extras.proxy.CommonProxy;
 import trinsdar.ic2c_extras.util.CreativeTabIC2CExtras;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.Icons;
+import trinsdar.ic2c_extras.util.registry.RegistryItem;
 
 import java.util.Map;
 
@@ -56,6 +61,8 @@ public class IC2CExtras extends PluginBase
         Recipes.metalformerRolling = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.rolling.toIC2Exp();
         Recipes.oreWashing = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.oreWashingPlant.toIC2Exp();
         Recipes.centrifuge = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.thermalCentrifuge.toIC2Exp();
+        TileEntityUraniumEnricher.URANIUM_INGOT_REFERENCE = new ItemStack(RegistryItem.plutoniumEnrichedUraniumIngot);
+        CommonFilters.uranFilter = new BasicItemFilter(new ItemStack(RegistryItem.plutoniumEnrichedUraniumIngot));
     }
 
     @Override
