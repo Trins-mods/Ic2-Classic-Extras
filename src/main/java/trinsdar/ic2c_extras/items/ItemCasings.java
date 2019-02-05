@@ -15,12 +15,9 @@ import java.util.List;
 public class ItemCasings extends Item implements IStaticTexturedItem {
 
     int index;
-    ItemMaterials variant;
-    public ItemCasings(ItemMaterials variant, int index) {
+    public ItemCasings(String variant, int index) {
         this.index = index;
-        this.variant = variant;
-        setRegistryName(variant.toString().toLowerCase() + "_casing");
-        setUnlocalizedName(IC2CExtras.MODID + "." + variant.toString().toLowerCase() + "Casing");
+        setUnlocalizedName(variant + "Casing");
         setCreativeTab(IC2CExtras.creativeTab);
     }
 

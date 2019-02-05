@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
-import trinsdar.ic2c_extras.util.registry.RegistryBlock;
+import trinsdar.ic2c_extras.util.Registry;
 
 public class JeiOreWashingCategory implements IRecipeCategory<JeiOreWashingWrapper> {
     ItemStack displayName;
@@ -26,7 +26,7 @@ public class JeiOreWashingCategory implements IRecipeCategory<JeiOreWashingWrapp
 
     public JeiOreWashingCategory(IGuiHelper helper) {
 
-        displayName = new ItemStack(RegistryBlock.oreWashingPlant);
+        displayName = new ItemStack(Registry.oreWashingPlant);
         ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guiorewashingplant.png");
         this.draw = helper.createDrawable(texture, 5, 8, 124, 66);
         IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 20, 19);

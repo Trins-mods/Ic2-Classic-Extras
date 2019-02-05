@@ -14,8 +14,7 @@ import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import net.minecraft.item.ItemStack;
 import trinsdar.ic2c_extras.util.GuiMachine.*;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
-import trinsdar.ic2c_extras.util.registry.RegistryBlock;
-import trinsdar.ic2c_extras.util.registry.RegistryItem;
+import trinsdar.ic2c_extras.util.Registry;
 
 import javax.annotation.Nonnull;
 
@@ -43,7 +42,7 @@ public class JeiPlugin implements IModPlugin {
                     return new JeiThermalCentrifugeWrapper(var1);
                 }
             }, thermalCentrifugeId);
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.thermalCentrifuge), thermalCentrifugeId);
+            registry.addRecipeCatalyst(new ItemStack(Registry.thermalCentrifuge), thermalCentrifugeId);
             registry.addRecipeClickArea(ThermalCentrifugeGui.class, 48, 32, 44, 20, thermalCentrifugeId);
             registry.addRecipes(Ic2cExtrasRecipes.thermalCentrifuge.getRecipeMap(), thermalCentrifugeId);
 
@@ -55,7 +54,7 @@ public class JeiPlugin implements IModPlugin {
                     return new JeiOreWashingWrapper(var1);
                 }
             }, oreWashingId);
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.oreWashingPlant), oreWashingId);
+            registry.addRecipeCatalyst(new ItemStack(Registry.oreWashingPlant), oreWashingId);
             registry.addRecipeClickArea(OreWashingPlantGui.class, 78, 32, 20, 23, oreWashingId);
             registry.addRecipes(Ic2cExtrasRecipes.oreWashingPlant.getRecipeMap(), oreWashingId);
 
@@ -67,8 +66,8 @@ public class JeiPlugin implements IModPlugin {
                     return new JeiRollerWrapper(var1);
                 }
             }, "roller");
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.roller), rollerId);
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.impellerizedRoller), rollerId);
+            registry.addRecipeCatalyst(new ItemStack(Registry.roller), rollerId);
+            registry.addRecipeCatalyst(new ItemStack(Registry.impellerizedRoller), rollerId);
             registry.addRecipeClickArea(RollerGui.class, 78, 32, 20, 23, rollerId);
             registry.addRecipes(Ic2cExtrasRecipes.rolling.getRecipeMap(), rollerId);
 
@@ -80,8 +79,8 @@ public class JeiPlugin implements IModPlugin {
                     return new JeiExtruderWrapper(var1);
                 }
             }, extruderId);
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.extruder), extruderId);
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.liquescentExtruder), extruderId);
+            registry.addRecipeCatalyst(new ItemStack(Registry.extruder), extruderId);
+            registry.addRecipeCatalyst(new ItemStack(Registry.liquescentExtruder), extruderId);
             registry.addRecipeClickArea(ExtruderGui.class, 78, 32, 20, 23, extruderId);
             registry.addRecipes(Ic2cExtrasRecipes.extruding.getRecipeMap(), extruderId);
 
@@ -93,28 +92,28 @@ public class JeiPlugin implements IModPlugin {
                     return new JeiCutterWrapper(var1);
                 }
             }, cutterId);
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.cutter), cutterId);
-            registry.addRecipeCatalyst(new ItemStack(RegistryBlock.plasmaCutter), cutterId);
+            registry.addRecipeCatalyst(new ItemStack(Registry.cutter), cutterId);
+            registry.addRecipeCatalyst(new ItemStack(Registry.plasmaCutter), cutterId);
             registry.addRecipeClickArea(CutterGui.class, 78, 32, 20, 23, cutterId);
             registry.addRecipes(Ic2cExtrasRecipes.cutting.getRecipeMap(), cutterId);
 
             IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
             if (!Ic2cExtrasRecipes.enableHarderUranium){
-                blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.uranium235));
-                blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.uranium238));
-                blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.uranium235TinyDust));
-                blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.uranium238TinyDust));
-                blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.uraniumCrushedOre));
-                blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.uraniumPurifiedCrushedOre));
-                blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.plutonium));
-                blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.plutoniumTinyDust));
-                blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.plutoniumEnrichedUranium));
-                blacklist.addIngredientToBlacklist(new ItemStack(RegistryItem.plutoniumEnrichedUraniumIngot));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium235));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium235TinyDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238TinyDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uraniumCrushedOre));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uraniumPurifiedCrushedOre));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutonium));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumTinyDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumEnrichedUranium));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumEnrichedUraniumIngot));
             }
-            blacklist.addIngredientToBlacklist(new ItemStack(RegistryBlock.blastFurnace));
-            blacklist.addIngredientToBlacklist(new ItemStack(RegistryBlock.solidFuelFirebox));
-            blacklist.addIngredientToBlacklist(new ItemStack(RegistryBlock.liquidFuelFirebox));
-            blacklist.addIngredientToBlacklist(new ItemStack(RegistryBlock.electricHeater));
+            blacklist.addIngredientToBlacklist(new ItemStack(Registry.blastFurnace));
+            blacklist.addIngredientToBlacklist(new ItemStack(Registry.solidFuelFirebox));
+            blacklist.addIngredientToBlacklist(new ItemStack(Registry.liquidFuelFirebox));
+            blacklist.addIngredientToBlacklist(new ItemStack(Registry.electricHeater));
         }
     }
 

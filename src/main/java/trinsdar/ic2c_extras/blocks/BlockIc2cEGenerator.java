@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityAdvancedSteamTurbine;
-import trinsdar.ic2c_extras.util.registry.RegistryBlock;
+import trinsdar.ic2c_extras.util.Registry;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,8 +27,7 @@ public class BlockIc2cEGenerator extends BlockMultiID {
         this.setResistance(20.0F);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(IC2CExtras.creativeTab);
-        this.setRegistryName(IC2CExtras.MODID, blockName);
-        this.setUnlocalizedName(IC2CExtras.MODID + "." + blockName);
+        this.setUnlocalizedName(blockName);
     }
 
     public List<Integer> getValidMetas() {
@@ -38,7 +37,7 @@ public class BlockIc2cEGenerator extends BlockMultiID {
     @Override
     public TileEntityBlock createNewTileEntity(World worldIn, int meta)
     {
-        if (this == RegistryBlock.advancedSteamTurbine) {
+        if (this == Registry.advancedSteamTurbine) {
             return new TileEntityAdvancedSteamTurbine();
         }else {
             return new TileEntityBlock();
@@ -49,13 +48,13 @@ public class BlockIc2cEGenerator extends BlockMultiID {
     @Override
     public TextureAtlasSprite[] getIconSheet(int meta)
     {
-        if (this == RegistryBlock.advancedSteamTurbine){
+        if (this == Registry.advancedSteamTurbine){
             return Ic2Icons.getTextures("advancedsteamturbine");
-        }else if (this == RegistryBlock.solidFuelFirebox){
+        }else if (this == Registry.solidFuelFirebox){
             return Ic2Icons.getTextures("solidfuelfirebox");
-        }else if (this == RegistryBlock.liquidFuelFirebox){
+        }else if (this == Registry.liquidFuelFirebox){
             return Ic2Icons.getTextures("liquidfuelfirebox");
-        }else if (this == RegistryBlock.electricHeater){
+        }else if (this == Registry.electricHeater){
             return Ic2Icons.getTextures("electricheater");
         }else{
             return Ic2Icons.getTextures("advancedsteamturbine");

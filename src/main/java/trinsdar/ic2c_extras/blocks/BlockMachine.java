@@ -20,7 +20,7 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityPlasmaCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
-import trinsdar.ic2c_extras.util.registry.RegistryBlock;
+import trinsdar.ic2c_extras.util.Registry;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,8 +33,7 @@ public class BlockMachine extends BlockMultiID {
         this.setResistance(20.0F);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(IC2CExtras.creativeTab);
-        this.setRegistryName(name);
-        this.setUnlocalizedName(IC2CExtras.MODID + "." + name);
+        this.setUnlocalizedName(name);
     }
 
     @Override
@@ -44,21 +43,21 @@ public class BlockMachine extends BlockMultiID {
 
     @Override
     public TileEntityBlock createNewTileEntity(World worldIn, int meta){
-        if (this == RegistryBlock.oreWashingPlant){
+        if (this == Registry.oreWashingPlant){
             return new TileEntityOreWashingPlant();
-        }else if (this == RegistryBlock.thermalCentrifuge){
+        }else if (this == Registry.thermalCentrifuge){
             return new TileEntityThermalCentrifuge();
-        }else if (this == RegistryBlock.roller){
+        }else if (this == Registry.roller){
             return new TileEntityRoller();
-        }else if (this == RegistryBlock.extruder){
+        }else if (this == Registry.extruder){
             return new TileEntityExtruder();
-        }else if (this == RegistryBlock.cutter){
+        }else if (this == Registry.cutter){
             return new TileEntityCutter();
-        }else if (this == RegistryBlock.impellerizedRoller){
+        }else if (this == Registry.impellerizedRoller){
             return new TileEntityImpellerizedRoller();
-        }else if (this == RegistryBlock.liquescentExtruder){
+        }else if (this == Registry.liquescentExtruder){
             return new TileEntityLiquescentExtruder();
-        }else if (this == RegistryBlock.plasmaCutter){
+        }else if (this == Registry.plasmaCutter){
             return new TileEntityPlasmaCutter();
         }else{
             return new TileEntityBlock();
@@ -69,23 +68,23 @@ public class BlockMachine extends BlockMultiID {
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite[] getIconSheet(int meta)
     {
-        if (this == RegistryBlock.oreWashingPlant){
+        if (this == Registry.oreWashingPlant){
             return Ic2Icons.getTextures("orewashingplant");
-        }else if (this == RegistryBlock.thermalCentrifuge){
+        }else if (this == Registry.thermalCentrifuge){
             return Ic2Icons.getTextures("thermalcentrifuge");
-        }else if (this == RegistryBlock.roller){
+        }else if (this == Registry.roller){
             return Ic2Icons.getTextures("roller");
-        } else if (this == RegistryBlock.extruder){
+        } else if (this == Registry.extruder){
             return Ic2Icons.getTextures("extruder");
-        }else if (this == RegistryBlock.cutter){
+        }else if (this == Registry.cutter){
             return Ic2Icons.getTextures("cutter");
-        }else if (this == RegistryBlock.impellerizedRoller){
+        }else if (this == Registry.impellerizedRoller){
             return Ic2Icons.getTextures("impellerizedroller");
-        }else if (this == RegistryBlock.liquescentExtruder){
+        }else if (this == Registry.liquescentExtruder){
             return Ic2Icons.getTextures("liquescentextruder");
-        }else if (this == RegistryBlock.plasmaCutter){
+        }else if (this == Registry.plasmaCutter){
             return Ic2Icons.getTextures("plasmacutter");
-        }else if (this == RegistryBlock.blastFurnace){
+        }else if (this == Registry.blastFurnace){
             return Ic2Icons.getTextures("blastfurnace");
         }else{
             return Ic2Icons.getTextures("roller");

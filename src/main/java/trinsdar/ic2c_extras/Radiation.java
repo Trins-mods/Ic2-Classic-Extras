@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
-import trinsdar.ic2c_extras.util.registry.RegistryItem;
+import trinsdar.ic2c_extras.util.Registry;
 
 public class Radiation {
 	private static boolean radiationEnabled;
@@ -26,14 +26,14 @@ public class Radiation {
 			radiation = new ArrayList<>();
 			radiation.add(Ic2Items.uraniumDrop);
 			radiation.add(Ic2Items.uraniumIngot);
-			radiation.add(new ItemStack(RegistryItem.uranium235, 1));
-			radiation.add(new ItemStack(RegistryItem.uranium238, 1));
-			radiation.add(new ItemStack(RegistryItem.plutonium, 1));
-			radiation.add(new ItemStack(RegistryItem.uranium235TinyDust, 1));
-			radiation.add(new ItemStack(RegistryItem.uranium238TinyDust, 1));
-			radiation.add(new ItemStack(RegistryItem.plutoniumTinyDust, 1));
-			radiation.add(new ItemStack(RegistryItem.plutoniumEnrichedUranium, 1));
-			radiation.add(new ItemStack(RegistryItem.plutoniumEnrichedUraniumIngot, 1));
+			radiation.add(new ItemStack(Registry.uranium235, 1));
+			radiation.add(new ItemStack(Registry.uranium238, 1));
+			radiation.add(new ItemStack(Registry.plutonium, 1));
+			radiation.add(new ItemStack(Registry.uranium235TinyDust, 1));
+			radiation.add(new ItemStack(Registry.uranium238TinyDust, 1));
+			radiation.add(new ItemStack(Registry.plutoniumTinyDust, 1));
+			radiation.add(new ItemStack(Registry.plutoniumEnrichedUranium, 1));
+			radiation.add(new ItemStack(Registry.plutoniumEnrichedUraniumIngot, 1));
 			radiation.add(Ic2Items.redstoneUraniumIngot);
 			radiation.add(Ic2Items.blazeUraniumIngot);
 			radiation.add(Ic2Items.enderPearlUraniumIngot);

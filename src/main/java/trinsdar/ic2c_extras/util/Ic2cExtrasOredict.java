@@ -2,68 +2,66 @@ package trinsdar.ic2c_extras.util;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import trinsdar.ic2c_extras.util.registry.RegistryBlock;
-import trinsdar.ic2c_extras.util.registry.RegistryItem;
 
 public class Ic2cExtrasOredict {
     public static void init(){
-        OreDictionary.registerOre("crushedIron", RegistryItem.ironCrushedOre);
-        OreDictionary.registerOre("crushedGold", RegistryItem.goldCrushedOre);
-        OreDictionary.registerOre("crushedCopper", RegistryItem.copperCrushedOre);
-        OreDictionary.registerOre("crushedTin", RegistryItem.tinCrushedOre);
-        OreDictionary.registerOre("crushedSilver", RegistryItem.silverCrushedOre);
-        OreDictionary.registerOre("crushedLead", RegistryItem.leadCrushedOre);
-        OreDictionary.registerOre("crushedUranium", RegistryItem.uraniumCrushedOre);
+        OreDictionary.registerOre("crushedIron", Registry.ironCrushedOre);
+        OreDictionary.registerOre("crushedGold", Registry.goldCrushedOre);
+        OreDictionary.registerOre("crushedCopper", Registry.copperCrushedOre);
+        OreDictionary.registerOre("crushedTin", Registry.tinCrushedOre);
+        OreDictionary.registerOre("crushedSilver", Registry.silverCrushedOre);
+        OreDictionary.registerOre("crushedLead", Registry.leadCrushedOre);
+        OreDictionary.registerOre("crushedUranium", Registry.uraniumCrushedOre);
 
-        OreDictionary.registerOre("crushedPurifiedIron", RegistryItem.ironPurifiedCrushedOre);
-        OreDictionary.registerOre("crushedPurifiedGold", RegistryItem.goldPurifiedCrushedOre);
-        OreDictionary.registerOre("crushedPurifiedCopper", RegistryItem.copperPurifiedCrushedOre);
-        OreDictionary.registerOre("crushedPurifiedTin", RegistryItem.tinPurifiedCrushedOre);
-        OreDictionary.registerOre("crushedPurifiedSilver", RegistryItem.silverPurifiedCrushedOre);
-        OreDictionary.registerOre("crushedPurifiedLead", RegistryItem.leadPurifiedCrushedOre);
-        OreDictionary.registerOre("crushedPurifiedUranium", RegistryItem.uraniumPurifiedCrushedOre);
+        OreDictionary.registerOre("crushedPurifiedIron", Registry.ironPurifiedCrushedOre);
+        OreDictionary.registerOre("crushedPurifiedGold", Registry.goldPurifiedCrushedOre);
+        OreDictionary.registerOre("crushedPurifiedCopper", Registry.copperPurifiedCrushedOre);
+        OreDictionary.registerOre("crushedPurifiedTin", Registry.tinPurifiedCrushedOre);
+        OreDictionary.registerOre("crushedPurifiedSilver", Registry.silverPurifiedCrushedOre);
+        OreDictionary.registerOre("crushedPurifiedLead", Registry.leadPurifiedCrushedOre);
+        OreDictionary.registerOre("crushedPurifiedUranium", Registry.uraniumPurifiedCrushedOre);
 
-        OreDictionary.registerOre("dustTinyIron", RegistryItem.ironTinyDust);
-        OreDictionary.registerOre("dustTinyGold", RegistryItem.goldTinyDust);
-        OreDictionary.registerOre("dustTinyCopper", RegistryItem.copperTinyDust);
-        OreDictionary.registerOre("dustTinyTin", RegistryItem.tinTinyDust);
-        OreDictionary.registerOre("dustTinySilver", RegistryItem.silverTinyDust);
-        OreDictionary.registerOre("dustTinyLead", RegistryItem.leadTinyDust);
-        OreDictionary.registerOre("dustTinyObsidian", RegistryItem.obsidianTinyDust);
-        OreDictionary.registerOre("dustTinyBronze", RegistryItem.bronzeTinyDust);
+        OreDictionary.registerOre("dustTinyIron", Registry.ironTinyDust);
+        OreDictionary.registerOre("dustTinyGold", Registry.goldTinyDust);
+        OreDictionary.registerOre("dustTinyCopper", Registry.copperTinyDust);
+        OreDictionary.registerOre("dustTinyTin", Registry.tinTinyDust);
+        OreDictionary.registerOre("dustTinySilver", Registry.silverTinyDust);
+        OreDictionary.registerOre("dustTinyLead", Registry.leadTinyDust);
+        OreDictionary.registerOre("dustTinyObsidian", Registry.obsidianTinyDust);
+        OreDictionary.registerOre("dustTinyBronze", Registry.bronzeTinyDust);
 
         if (Ic2cExtrasRecipes.enableHarderUranium){
-            OreDictionary.registerOre("dustTinyUranium235", RegistryItem.uranium235TinyDust);
-            OreDictionary.registerOre("dustTinyUranium238", RegistryItem.uranium238TinyDust);
-            OreDictionary.registerOre("dustTinyPlutonium", RegistryItem.plutoniumTinyDust);
-            OreDictionary.registerOre("dustUranium235", RegistryItem.uranium235);
-            OreDictionary.registerOre("dustUranium238", RegistryItem.uranium238);
-            OreDictionary.registerOre("dustPlutonium", RegistryItem.plutonium);
+            OreDictionary.registerOre("dustTinyUranium235", Registry.uranium235TinyDust);
+            OreDictionary.registerOre("dustTinyUranium238", Registry.uranium238TinyDust);
+            OreDictionary.registerOre("dustTinyPlutonium", Registry.plutoniumTinyDust);
+            OreDictionary.registerOre("dustUranium235", Registry.uranium235);
+            OreDictionary.registerOre("dustUranium238", Registry.uranium238);
+            OreDictionary.registerOre("dustPlutonium", Registry.plutonium);
         }
 
-        OreDictionary.registerOre("dustLead", RegistryItem.leadDust);
-        OreDictionary.registerOre("ingotLead", RegistryItem.leadIngot);
-        OreDictionary.registerOre("ingotSteel", RegistryItem.steelIngot);
-        OreDictionary.registerOre("plateRefinedIron", RegistryItem.refinedIronPlate);
-        OreDictionary.registerOre("dustStone", RegistryItem.stoneDust);
-        OreDictionary.registerOre("dustDiamond", RegistryItem.diamondDust);
-        OreDictionary.registerOre("itemSlag", RegistryItem.slag);
+        OreDictionary.registerOre("dustLead", Registry.leadDust);
+        OreDictionary.registerOre("ingotLead", Registry.leadIngot);
+        OreDictionary.registerOre("ingotSteel", Registry.steelIngot);
+        OreDictionary.registerOre("plateRefinedIron", Registry.refinedIronPlate);
+        OreDictionary.registerOre("dustStone", Registry.stoneDust);
+        OreDictionary.registerOre("dustDiamond", Registry.diamondDust);
+        OreDictionary.registerOre("itemSlag", Registry.slag);
 
-        OreDictionary.registerOre("casingCopper", RegistryItem.copperCasing);
-        OreDictionary.registerOre("casingTin", RegistryItem.tinCasing);
-        OreDictionary.registerOre("casingSilver", RegistryItem.silverCasing);
-        OreDictionary.registerOre("casingLead", RegistryItem.leadCasing);
-        OreDictionary.registerOre("casingIron", RegistryItem.ironCasing);
-        OreDictionary.registerOre("casingGold", RegistryItem.goldCasing);
-        OreDictionary.registerOre("casingRefinedIron", RegistryItem.refinedIronCasing);
-        OreDictionary.registerOre("casingSteel", RegistryItem.steelCasing);
-        OreDictionary.registerOre("casingBronze", RegistryItem.bronzeCasing);
+        OreDictionary.registerOre("casingCopper", Registry.copperCasing);
+        OreDictionary.registerOre("casingTin", Registry.tinCasing);
+        OreDictionary.registerOre("casingSilver", Registry.silverCasing);
+        OreDictionary.registerOre("casingLead", Registry.leadCasing);
+        OreDictionary.registerOre("casingIron", Registry.ironCasing);
+        OreDictionary.registerOre("casingGold", Registry.goldCasing);
+        OreDictionary.registerOre("casingRefinedIron", Registry.refinedIronCasing);
+        OreDictionary.registerOre("casingSteel", Registry.steelCasing);
+        OreDictionary.registerOre("casingBronze", Registry.bronzeCasing);
 
-        OreDictionary.registerOre("craftingToolForgeHammer", new ItemStack(RegistryItem.craftingHammer, 1, OreDictionary.WILDCARD_VALUE));
-        OreDictionary.registerOre("craftingToolWireCutter", new ItemStack(RegistryItem.wireCutters, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("craftingToolForgeHammer", new ItemStack(Registry.craftingHammer, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("craftingToolWireCutter", new ItemStack(Registry.wireCutters, 1, OreDictionary.WILDCARD_VALUE));
 
-        OreDictionary.registerOre("blockSteel", RegistryBlock.steelBlock);
-        OreDictionary.registerOre("blockRefinedIron", RegistryBlock.refinedIronBlock);
-        OreDictionary.registerOre("blockLead", RegistryBlock.leadBlock);
+        OreDictionary.registerOre("blockSteel", Registry.steelBlock);
+        OreDictionary.registerOre("blockRefinedIron", Registry.refinedIronBlock);
+        OreDictionary.registerOre("blockLead", Registry.leadBlock);
     }
 }

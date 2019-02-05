@@ -29,8 +29,7 @@ public class BlockMetal extends Block implements ITexturedBlock {
         this.setSoundType(SoundType.METAL);
         this.setHarvestLevel("pickaxe", 2);
         this.setCreativeTab(IC2CExtras.creativeTab);
-        this.setRegistryName(IC2CExtras.MODID, blockName);
-        this.setUnlocalizedName(IC2CExtras.MODID + "." + blockName);
+        this.setUnlocalizedName(blockName);
     }
 
     @Override

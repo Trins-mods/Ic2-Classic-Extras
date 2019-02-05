@@ -2,7 +2,6 @@ package trinsdar.ic2c_extras.util;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import trinsdar.ic2c_extras.util.registry.RegistryItem;
 
 public class CreativeTabIC2CExtras extends CreativeTabs
 {
@@ -14,6 +13,6 @@ public class CreativeTabIC2CExtras extends CreativeTabs
     @Override
     public ItemStack getTabIconItem()
     {
-        return new ItemStack(RegistryItem.ironCrushedOre);
+        return new ItemStack(Registry.ironCrushedOre);
     }
 }

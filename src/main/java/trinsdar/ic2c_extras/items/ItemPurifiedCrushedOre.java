@@ -13,12 +13,9 @@ import java.util.List;
 
 public class ItemPurifiedCrushedOre extends Item implements IStaticTexturedItem {
     int index;
-    ItemMaterials variant;
-    public ItemPurifiedCrushedOre(ItemMaterials variant, int index) {
+    public ItemPurifiedCrushedOre(String variant, int index) {
         this.index = index;
-        this.variant = variant;
-        setRegistryName(variant.toString().toLowerCase() + "_purified_crushed_ore");
-        setUnlocalizedName(IC2CExtras.MODID + "." + variant.toString().toLowerCase() + "PurifiedCrushedOre");
+        setUnlocalizedName(variant + "PurifiedCrushedOre");
         setCreativeTab(IC2CExtras.creativeTab);
     }
 

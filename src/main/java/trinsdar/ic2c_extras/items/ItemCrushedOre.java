@@ -15,12 +15,9 @@ public class ItemCrushedOre extends Item implements IStaticTexturedItem
 {
 
     int index;
-    ItemMaterials variant;
-    public ItemCrushedOre(ItemMaterials variant, int index) {
+    public ItemCrushedOre(String variant, int index) {
         this.index = index;
-        this.variant = variant;
-        setRegistryName(variant.toString().toLowerCase() + "_crushed_ore");
-        setUnlocalizedName(IC2CExtras.MODID + "." + variant.toString().toLowerCase() + "CrushedOre");
+        setUnlocalizedName(variant + "CrushedOre");
         setCreativeTab(IC2CExtras.creativeTab);
     }
 

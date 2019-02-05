@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
-import trinsdar.ic2c_extras.util.registry.RegistryBlock;
+import trinsdar.ic2c_extras.util.Registry;
 
 public class JeiExtruderCategory implements IRecipeCategory<JeiExtruderWrapper> {
     ItemStack displayName;
@@ -25,7 +25,7 @@ public class JeiExtruderCategory implements IRecipeCategory<JeiExtruderWrapper> 
     IDrawable charge;
 
     public JeiExtruderCategory(IGuiHelper helper) {
-        displayName = new ItemStack(RegistryBlock.extruder);
+        displayName = new ItemStack(Registry.extruder);
         ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guiextruder.png");
         this.draw = helper.createDrawable(texture, 50, 15, 90, 60);
         IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 23, 16);

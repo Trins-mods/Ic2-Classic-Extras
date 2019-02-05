@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
-import trinsdar.ic2c_extras.util.registry.RegistryBlock;
+import trinsdar.ic2c_extras.util.Registry;
 
 public class JeiRollerCategory implements IRecipeCategory<JeiRollerWrapper> {
     ItemStack displayName;
@@ -25,7 +25,7 @@ public class JeiRollerCategory implements IRecipeCategory<JeiRollerWrapper> {
     IDrawable charge;
 
     public JeiRollerCategory(IGuiHelper helper) {
-        displayName = new ItemStack(RegistryBlock.roller);
+        displayName = new ItemStack(Registry.roller);
         ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guiroller.png");
         this.draw = helper.createDrawable(texture, 50, 15, 90, 60);
         IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 23, 16);

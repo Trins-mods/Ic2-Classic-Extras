@@ -14,12 +14,9 @@ import java.util.List;
 public class ItemTinyDust extends Item implements IStaticTexturedItem
 {
     int index;
-    ItemMaterials variant;
-    public ItemTinyDust(ItemMaterials variant, int index) {
+    public ItemTinyDust(String variant, int index) {
         this.index = index;
-        this.variant = variant;
-        setRegistryName(variant.toString().toLowerCase() + "_tiny_dust");
-        setUnlocalizedName(IC2CExtras.MODID + "." + variant.toString().toLowerCase() + "TinyDust");
+        setUnlocalizedName(variant + "TinyDust");
         setCreativeTab(IC2CExtras.creativeTab);
     }
 

@@ -24,7 +24,7 @@ import trinsdar.ic2c_extras.proxy.CommonProxy;
 import trinsdar.ic2c_extras.util.CreativeTabIC2CExtras;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.Icons;
-import trinsdar.ic2c_extras.util.registry.RegistryItem;
+import trinsdar.ic2c_extras.util.Registry;
 
 import java.util.Map;
 
@@ -62,8 +62,8 @@ public class IC2CExtras extends PluginBase
         Recipes.oreWashing = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.oreWashingPlant.toIC2Exp();
         Recipes.centrifuge = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.thermalCentrifuge.toIC2Exp();
         if (Ic2cExtrasRecipes.enableHarderUranium){
-            TileEntityUraniumEnricher.URANIUM_INGOT_REFERENCE = new ItemStack(RegistryItem.plutoniumEnrichedUraniumIngot);
-            CommonFilters.uranFilter = new BasicItemFilter(new ItemStack(RegistryItem.plutoniumEnrichedUraniumIngot));
+            TileEntityUraniumEnricher.URANIUM_INGOT_REFERENCE = new ItemStack(Registry.plutoniumEnrichedUraniumIngot);
+            CommonFilters.uranFilter = new BasicItemFilter(new ItemStack(Registry.plutoniumEnrichedUraniumIngot));
         }
     }
 

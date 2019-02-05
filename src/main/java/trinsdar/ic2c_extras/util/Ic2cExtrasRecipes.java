@@ -2,16 +2,10 @@ package trinsdar.ic2c_extras.util;
 
 import com.mcmoddev.basemetals.data.MaterialNames;
 
-import com.mcmoddev.lib.data.Names;
-import com.mcmoddev.lib.init.Materials;
-import com.mcmoddev.lib.material.MMDMaterial;
-import com.mcmoddev.lib.util.Config.Options;
-import gtclassic.GTItems;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
-import ic2.api.item.IC2Items;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.IC2;
 import ic2.core.block.machine.low.TileEntityCompressor;
@@ -23,7 +17,6 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2States;
 import ic2.core.util.misc.StackUtil;
-import mods.railcraft.api.crafting.Crafters;
 import mods.railcraft.common.items.RailcraftItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -49,8 +42,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
-import trinsdar.ic2c_extras.util.registry.RegistryBlock;
-import trinsdar.ic2c_extras.util.registry.RegistryItem;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -118,41 +109,41 @@ public class Ic2cExtrasRecipes {
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
     public static void initShapedRecipes(){
         FluidStack water = new FluidStack(FluidRegistry.WATER, 1000);
-        recipes.addRecipe(new ItemStack(RegistryBlock.advancedSteamTurbine, 1),
+        recipes.addRecipe(new ItemStack(Registry.advancedSteamTurbine, 1),
                 " S ", "STS", " S ", 'S', Ic2Items.basicTurbine,'T', Ic2Items.transformerMV);
-        recipes.addRecipe(new ItemStack(RegistryBlock.oreWashingPlant, 1),
+        recipes.addRecipe(new ItemStack(Registry.oreWashingPlant, 1),
                 "III", "BCB", "McM", 'I', getRefinedIronIngot(),'B', Items.BUCKET, 'C', Ic2Items.machine, 'M', Ic2Items.carbonMesh, 'c', "circuitBasic");
-        recipes.addRecipe(new ItemStack(RegistryBlock.thermalCentrifuge, 1),
-                "CMC", "IAI", "IHI", 'C', RegistryItem.coil,'M', Ic2Items.miningLaser, 'I', getRefinedIronIngot(), 'A', Ic2Items.advMachine, 'H', RegistryItem.heatConductor);
+        recipes.addRecipe(new ItemStack(Registry.thermalCentrifuge, 1),
+                "CMC", "IAI", "IHI", 'C', Registry.coil,'M', Ic2Items.miningLaser, 'I', getRefinedIronIngot(), 'A', Ic2Items.advMachine, 'H', Registry.heatConductor);
 
-        recipes.addRecipe(new ItemStack(RegistryBlock.roller, 1),
-                " C ", "TBT", "ctc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', RegistryItem.coil, 't', Blocks.PISTON);
+        recipes.addRecipe(new ItemStack(Registry.roller, 1),
+                " C ", "TBT", "ctc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', Registry.coil, 't', Blocks.PISTON);
 
-        recipes.addRecipe(new ItemStack(RegistryBlock.extruder, 1),
-                " C ", "TBT", "cwc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', RegistryItem.coil, 'w', Ic2Items.ironFence);
+        recipes.addRecipe(new ItemStack(Registry.extruder, 1),
+                " C ", "TBT", "cwc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', Registry.coil, 'w', Ic2Items.ironFence);
 
-        recipes.addRecipe(new ItemStack(RegistryBlock.cutter, 1),
-                " C ", "TBT", "ctc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', RegistryItem.coil, 't', Ic2Items.cutter);
+        recipes.addRecipe(new ItemStack(Registry.cutter, 1),
+                " C ", "TBT", "ctc", 'C', "circuitBasic",'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', Registry.coil, 't', Ic2Items.cutter);
 
-        recipes.addRecipe(new ItemStack(RegistryBlock.impellerizedRoller, 1),
-                "CCC", "CRC", "CBC", 'R', RegistryBlock.roller,'B', Ic2Items.advMachine, 'C', Blocks.STICKY_PISTON);
+        recipes.addRecipe(new ItemStack(Registry.impellerizedRoller, 1),
+                "CCC", "CRC", "CBC", 'R', Registry.roller,'B', Ic2Items.advMachine, 'C', Blocks.STICKY_PISTON);
 
-        recipes.addRecipe(new ItemStack(RegistryBlock.liquescentExtruder, 1),
-                "CCC", "CEC", "CBC", 'E', RegistryBlock.extruder,'B', Ic2Items.advMachine, 'C', Ic2Items.ironFence);
+        recipes.addRecipe(new ItemStack(Registry.liquescentExtruder, 1),
+                "CCC", "CEC", "CBC", 'E', Registry.extruder,'B', Ic2Items.advMachine, 'C', Ic2Items.ironFence);
 
-        recipes.addRecipe(new ItemStack(RegistryBlock.plasmaCutter, 1),
-                "CCC", "CcC", "CBC", 'c', RegistryBlock.cutter,'B', Ic2Items.advMachine, 'C', Ic2Items.cutter);
+        recipes.addRecipe(new ItemStack(Registry.plasmaCutter, 1),
+                "CCC", "CcC", "CBC", 'c', Registry.cutter,'B', Ic2Items.advMachine, 'C', Ic2Items.cutter);
 
-        recipes.addRecipe(new ItemStack(RegistryItem.coil, 1),
+        recipes.addRecipe(new ItemStack(Registry.coil, 1),
                 "CCC", "CIC", "CCC", 'I', getRefinedIronIngot(),'C', Ic2Items.copperCable);
 
-        recipes.addRecipe(new ItemStack(RegistryItem.heatConductor, 1),
+        recipes.addRecipe(new ItemStack(Registry.heatConductor, 1),
                 "RCR", "RCR", "RCR", 'R', "itemRubber",'C', Ic2Items.copperIngot);
 
-        recipes.addRecipe(new ItemStack(RegistryItem.craftingHammer, 1),
+        recipes.addRecipe(new ItemStack(Registry.craftingHammer, 1),
                 "III", "III", " S ", 'I', getRefinedIronIngot(),'S', "stickWood");
 
-        recipes.addRecipe(new ItemStack(RegistryItem.wireCutters, 1),
+        recipes.addRecipe(new ItemStack(Registry.wireCutters, 1),
                 "I I", " I ", "S S", 'I', getRefinedIronIngot(),'S', "stickWood");
 
         recipes.addRecipe(Ic2Items.battery,
@@ -169,14 +160,14 @@ public class Ic2cExtrasRecipes {
         recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.emptyCell, 16),
                 " T ", "T T", " T ", 'T', "casingTin");
 
-        recipes.addRecipe(new ItemStack(RegistryItem.energiumDust, 9), "RRR", "RDR", "RRR", 'R', new RecipeInputOreDict("dustRedstone", 2), 'D', "dustDiamond");
+        recipes.addRecipe(new ItemStack(Registry.energiumDust, 9), "RRR", "RDR", "RRR", 'R', new RecipeInputOreDict("dustRedstone", 2), 'D', "dustDiamond");
 
         if (Loader.isModLoaded("gtclassic")){
             recipes.addRecipe(Ic2Items.electricCircuit,
                     "CCC", "RcR", "CCC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', casing);
             recipes.addRecipe(Ic2Items.electricCircuit,
                     "CRC", "CcC", "CRC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', casing);
-            recipes.addRecipe(new ItemStack(RegistryItem.energiumDust, 9), "RRR", "RDR", "RRR", 'R', new ItemStack(Items.REDSTONE, 2), 'D', "dustRuby");
+            recipes.addRecipe(new ItemStack(Registry.energiumDust, 9), "RRR", "RDR", "RRR", 'R', new ItemStack(Items.REDSTONE, 2), 'D', "dustRuby");
         }else{
             recipes.addRecipe(Ic2Items.electricCircuit,
                     "CCC", "RcR", "CCC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', getRefinedIronCasing());
@@ -209,43 +200,43 @@ public class Ic2cExtrasRecipes {
 
 
         if (enableCuttingToolWires){
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.copperCable, 3), "plateCopper", RegistryItem.wireCutters);
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.goldCable, 6), "plateGold", RegistryItem.wireCutters);
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.tinCable, 4), "plateTin", RegistryItem.wireCutters);
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.bronzeCable, 3), "plateBronze", RegistryItem.wireCutters);
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.copperCable, 3), "plateCopper", Registry.wireCutters);
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.goldCable, 6), "plateGold", Registry.wireCutters);
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.tinCable, 4), "plateTin", Registry.wireCutters);
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.bronzeCable, 3), "plateBronze", Registry.wireCutters);
             if (!IC2.config.getFlag("SteelRecipes")){
                 if (enableCertainRecipesRequireSteel){
-                    recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, 6), "plateSteel", RegistryItem.wireCutters);
+                    recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, 6), "plateSteel", Registry.wireCutters);
                 }else{
-                    recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, 6), "plateRefinedIron", RegistryItem.wireCutters);
+                    recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, 6), "plateRefinedIron", Registry.wireCutters);
                 }
 
             }else{
-                recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, 6), "plateSteel", RegistryItem.wireCutters);
+                recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, 6), "plateSteel", Registry.wireCutters);
             }
         }
 
         if (enableHammerRecipes){
             if (enableCasingsRequirePlates){
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.copperCasing, 2), "plateCopper", RegistryItem.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.tinCasing, 2), "plateTin", RegistryItem.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.silverCasing, 2), "plateSilver", RegistryItem.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.leadCasing, 2), "plateLead", RegistryItem.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.ironCasing, 2), "plateIron", RegistryItem.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.goldCasing, 2), "plateGold", RegistryItem.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.refinedIronCasing, 2), "plateRefinedIron", RegistryItem.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.steelCasing, 2), "plateSteel", RegistryItem.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.bronzeCasing, 2), "plateBronze", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.copperCasing, 2), "plateCopper", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.tinCasing, 2), "plateTin", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.silverCasing, 2), "plateSilver", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.leadCasing, 2), "plateLead", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.ironCasing, 2), "plateIron", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.goldCasing, 2), "plateGold", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.refinedIronCasing, 2), "plateRefinedIron", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.steelCasing, 2), "plateSteel", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.bronzeCasing, 2), "plateBronze", Registry.craftingHammer);
             }else{
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.copperCasing, 2), "ingotCopper", RegistryItem.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.tinCasing, 2), "ingotTin", RegistryItem.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.silverCasing, 2), "ingotSilver", RegistryItem.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.leadCasing, 2), "ingotLead", RegistryItem.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.ironCasing, 2), "ingotIron", RegistryItem.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.goldCasing, 2), "ingotGold", RegistryItem.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.refinedIronCasing, 2), "ingotRefinedIron", RegistryItem.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.steelCasing, 2), "ingotSteel", RegistryItem.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(RegistryItem.bronzeCasing, 2), "ingotBronze", RegistryItem.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.copperCasing, 2), "ingotCopper", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.tinCasing, 2), "ingotTin", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.silverCasing, 2), "ingotSilver", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.leadCasing, 2), "ingotLead", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.ironCasing, 2), "ingotIron", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.goldCasing, 2), "ingotGold", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.refinedIronCasing, 2), "ingotRefinedIron", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.steelCasing, 2), "ingotSteel", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.bronzeCasing, 2), "ingotBronze", Registry.craftingHammer);
             }
         }
     }
@@ -266,77 +257,77 @@ public class Ic2cExtrasRecipes {
     }
 
     public static void initCompressRecipes(){
-        Ic2cExtrasRecipes.dustUtil("dustIron", Ic2Items.ironDust, "dustTinyIron", new ItemStack(RegistryItem.ironTinyDust));
-        Ic2cExtrasRecipes.dustUtil("dustGold", Ic2Items.goldDust, "dustTinyGold", new ItemStack(RegistryItem.goldTinyDust));
-        Ic2cExtrasRecipes.dustUtil("dustCopper", Ic2Items.copperDust, "dustTinyCopper", new ItemStack(RegistryItem.copperTinyDust));
-        Ic2cExtrasRecipes.dustUtil("dustTin", Ic2Items.tinDust, "dustTinyTin", new ItemStack(RegistryItem.tinTinyDust));
-        Ic2cExtrasRecipes.dustUtil("dustSilver", Ic2Items.silverDust, "dustTinySilver", new ItemStack(RegistryItem.silverTinyDust));
-        Ic2cExtrasRecipes.dustUtil("dustLead", new ItemStack(RegistryItem.leadDust), "dustTinyLead", new ItemStack(RegistryItem.leadTinyDust));
-        Ic2cExtrasRecipes.dustUtil("dustObsidian", Ic2Items.obsidianDust, "dustTinyObsidian", new ItemStack(RegistryItem.obsidianTinyDust));
-        Ic2cExtrasRecipes.dustUtil("dustBronze", Ic2Items.bronzeDust, "dustTinyBronze", new ItemStack(RegistryItem.bronzeTinyDust));
+        Ic2cExtrasRecipes.dustUtil("dustIron", Ic2Items.ironDust, "dustTinyIron", new ItemStack(Registry.ironTinyDust));
+        Ic2cExtrasRecipes.dustUtil("dustGold", Ic2Items.goldDust, "dustTinyGold", new ItemStack(Registry.goldTinyDust));
+        Ic2cExtrasRecipes.dustUtil("dustCopper", Ic2Items.copperDust, "dustTinyCopper", new ItemStack(Registry.copperTinyDust));
+        Ic2cExtrasRecipes.dustUtil("dustTin", Ic2Items.tinDust, "dustTinyTin", new ItemStack(Registry.tinTinyDust));
+        Ic2cExtrasRecipes.dustUtil("dustSilver", Ic2Items.silverDust, "dustTinySilver", new ItemStack(Registry.silverTinyDust));
+        Ic2cExtrasRecipes.dustUtil("dustLead", new ItemStack(Registry.leadDust), "dustTinyLead", new ItemStack(Registry.leadTinyDust));
+        Ic2cExtrasRecipes.dustUtil("dustObsidian", Ic2Items.obsidianDust, "dustTinyObsidian", new ItemStack(Registry.obsidianTinyDust));
+        Ic2cExtrasRecipes.dustUtil("dustBronze", Ic2Items.bronzeDust, "dustTinyBronze", new ItemStack(Registry.bronzeTinyDust));
         recipes.addRecipe(Ic2Items.iridiumOre,
-                "III", "III", "III", 'I', RegistryItem.iridiumShard);
-        recipes.addShapelessRecipe(new ItemStack(RegistryItem.iridiumShard, 9),
+                "III", "III", "III", 'I', Registry.iridiumShard);
+        recipes.addShapelessRecipe(new ItemStack(Registry.iridiumShard, 9),
                 Ic2Items.iridiumOre);
 
         if (Loader.isModLoaded("gtclassic")){
-            TileEntityCompressor.addRecipe("ingotLead", 9, new ItemStack(RegistryBlock.leadBlock));
-            TileEntityCompressor.addRecipe("ingotRefinedIron", 9, new ItemStack(RegistryBlock.refinedIronBlock));
-            TileEntityCompressor.addRecipe("ingotSteel", 9, new ItemStack(RegistryBlock.steelBlock));
-            GameRegistry.addSmelting(RegistryBlock.steelBlock, new ItemStack(RegistryItem.steelIngot, 9), 0.1F);
-            GameRegistry.addSmelting(RegistryBlock.refinedIronBlock, StackUtil.copyWithSize(Ic2Items.refinedIronIngot, 9), 0.1F);
-            GameRegistry.addSmelting(RegistryBlock.leadBlock, new ItemStack(RegistryItem.leadIngot, 9), 0.1F);
-            TileEntityMacerator.addRecipe("blockLead", 1, new ItemStack(RegistryItem.leadDust, 9), 0.1F);
+            TileEntityCompressor.addRecipe("ingotLead", 9, new ItemStack(Registry.leadBlock));
+            TileEntityCompressor.addRecipe("ingotRefinedIron", 9, new ItemStack(Registry.refinedIronBlock));
+            TileEntityCompressor.addRecipe("ingotSteel", 9, new ItemStack(Registry.steelBlock));
+            GameRegistry.addSmelting(Registry.steelBlock, new ItemStack(Registry.steelIngot, 9), 0.1F);
+            GameRegistry.addSmelting(Registry.refinedIronBlock, StackUtil.copyWithSize(Ic2Items.refinedIronIngot, 9), 0.1F);
+            GameRegistry.addSmelting(Registry.leadBlock, new ItemStack(Registry.leadIngot, 9), 0.1F);
+            TileEntityMacerator.addRecipe("blockLead", 1, new ItemStack(Registry.leadDust, 9), 0.1F);
             TileEntityMacerator.addRecipe("blockRefinedIron", 1, StackUtil.copyWithSize(Ic2Items.ironDust, 9), 0.1F);
         }else if (!Loader.isModLoaded("gtclassic")){
-            Ic2cExtrasRecipes.ingotUtil("blockSteel", RegistryBlock.steelBlock, "ingotSteel", new ItemStack(RegistryItem.steelIngot));
-            Ic2cExtrasRecipes.ingotUtil("blockLead", RegistryBlock.leadBlock, "ingotLead", new ItemStack(RegistryItem.leadIngot));
-            Ic2cExtrasRecipes.ingotUtil("blockRefinedIron", RegistryBlock.refinedIronBlock, "ingotRefinedIron", Ic2Items.refinedIronIngot);
+            Ic2cExtrasRecipes.ingotUtil("blockSteel", Registry.steelBlock, "ingotSteel", new ItemStack(Registry.steelIngot));
+            Ic2cExtrasRecipes.ingotUtil("blockLead", Registry.leadBlock, "ingotLead", new ItemStack(Registry.leadIngot));
+            Ic2cExtrasRecipes.ingotUtil("blockRefinedIron", Registry.refinedIronBlock, "ingotRefinedIron", Ic2Items.refinedIronIngot);
         }
 
     }
 
     public static void initFurnaceRecipes(){
-        GameRegistry.addSmelting(RegistryItem.ironCrushedOre, new ItemStack(Items.IRON_INGOT), 0.7F);
-        GameRegistry.addSmelting(RegistryItem.goldCrushedOre, new ItemStack(Items.GOLD_INGOT), 1.0F);
-        GameRegistry.addSmelting(RegistryItem.copperCrushedOre, StackUtil.copyWithSize(Ic2Items.copperIngot, 1), 0.5F);
-        GameRegistry.addSmelting(RegistryItem.tinCrushedOre, StackUtil.copyWithSize(Ic2Items.tinIngot, 1), 0.5F);
-        GameRegistry.addSmelting(RegistryItem.silverCrushedOre, StackUtil.copyWithSize(Ic2Items.silverIngot, 1), 0.5F);
-        GameRegistry.addSmelting(RegistryItem.leadCrushedOre, new ItemStack(RegistryItem.leadIngot), 0.5F);
-        GameRegistry.addSmelting(RegistryItem.ironPurifiedCrushedOre, new ItemStack(Items.IRON_INGOT), 0.7F);
-        GameRegistry.addSmelting(RegistryItem.goldPurifiedCrushedOre, new ItemStack(Items.GOLD_INGOT), 1.0F);
-        GameRegistry.addSmelting(RegistryItem.copperPurifiedCrushedOre, StackUtil.copyWithSize(Ic2Items.copperIngot, 1), 0.5F);
-        GameRegistry.addSmelting(RegistryItem.tinPurifiedCrushedOre, StackUtil.copyWithSize(Ic2Items.tinIngot, 1), 0.5F);
-        GameRegistry.addSmelting(RegistryItem.silverPurifiedCrushedOre, StackUtil.copyWithSize(Ic2Items.silverIngot, 1), 0.5F);
-        GameRegistry.addSmelting(RegistryItem.leadPurifiedCrushedOre, new ItemStack(RegistryItem.leadIngot), 0.5F);
-        GameRegistry.addSmelting(RegistryItem.leadDust, new ItemStack(RegistryItem.leadIngot), 0.5F);
+        GameRegistry.addSmelting(Registry.ironCrushedOre, new ItemStack(Items.IRON_INGOT), 0.7F);
+        GameRegistry.addSmelting(Registry.goldCrushedOre, new ItemStack(Items.GOLD_INGOT), 1.0F);
+        GameRegistry.addSmelting(Registry.copperCrushedOre, StackUtil.copyWithSize(Ic2Items.copperIngot, 1), 0.5F);
+        GameRegistry.addSmelting(Registry.tinCrushedOre, StackUtil.copyWithSize(Ic2Items.tinIngot, 1), 0.5F);
+        GameRegistry.addSmelting(Registry.silverCrushedOre, StackUtil.copyWithSize(Ic2Items.silverIngot, 1), 0.5F);
+        GameRegistry.addSmelting(Registry.leadCrushedOre, new ItemStack(Registry.leadIngot), 0.5F);
+        GameRegistry.addSmelting(Registry.ironPurifiedCrushedOre, new ItemStack(Items.IRON_INGOT), 0.7F);
+        GameRegistry.addSmelting(Registry.goldPurifiedCrushedOre, new ItemStack(Items.GOLD_INGOT), 1.0F);
+        GameRegistry.addSmelting(Registry.copperPurifiedCrushedOre, StackUtil.copyWithSize(Ic2Items.copperIngot, 1), 0.5F);
+        GameRegistry.addSmelting(Registry.tinPurifiedCrushedOre, StackUtil.copyWithSize(Ic2Items.tinIngot, 1), 0.5F);
+        GameRegistry.addSmelting(Registry.silverPurifiedCrushedOre, StackUtil.copyWithSize(Ic2Items.silverIngot, 1), 0.5F);
+        GameRegistry.addSmelting(Registry.leadPurifiedCrushedOre, new ItemStack(Registry.leadIngot), 0.5F);
+        GameRegistry.addSmelting(Registry.leadDust, new ItemStack(Registry.leadIngot), 0.5F);
     }
 
     public static void initReplaceMaceratorRecipes(){
         macerator.removeRecipe(new RecipeInputOreDict("oreIron"));
-        macerator.addRecipe(new RecipeInputOreDict("oreIron"), new ItemStack(RegistryItem.ironCrushedOre,2), 0.7F, "ironOre");
+        macerator.addRecipe(new RecipeInputOreDict("oreIron"), new ItemStack(Registry.ironCrushedOre,2), 0.7F, "ironOre");
         macerator.removeRecipe(new RecipeInputOreDict("oreGold"));
-        macerator.addRecipe(new RecipeInputOreDict("oreGold"), new ItemStack(RegistryItem.goldCrushedOre,2), 1.0F, "goldOre");
+        macerator.addRecipe(new RecipeInputOreDict("oreGold"), new ItemStack(Registry.goldCrushedOre,2), 1.0F, "goldOre");
         macerator.removeRecipe(new RecipeInputOreDict("oreCopper"));
-        macerator.addRecipe(new RecipeInputOreDict("oreCopper"), new ItemStack(RegistryItem.copperCrushedOre,2), 0.3F, "copperOre");
+        macerator.addRecipe(new RecipeInputOreDict("oreCopper"), new ItemStack(Registry.copperCrushedOre,2), 0.3F, "copperOre");
         macerator.removeRecipe(new RecipeInputOreDict("oreTin"));
-        macerator.addRecipe(new RecipeInputOreDict("oreTin"), new ItemStack(RegistryItem.tinCrushedOre,2), 0.4F, "tinOre");
+        macerator.addRecipe(new RecipeInputOreDict("oreTin"), new ItemStack(Registry.tinCrushedOre,2), 0.4F, "tinOre");
         macerator.removeRecipe(new RecipeInputOreDict("oreSilver"));
-        macerator.addRecipe(new RecipeInputOreDict("oreSilver"), new ItemStack(RegistryItem.silverCrushedOre,2), 0.8F, "silverOre");
+        macerator.addRecipe(new RecipeInputOreDict("oreSilver"), new ItemStack(Registry.silverCrushedOre,2), 0.8F, "silverOre");
         macerator.removeRecipe(new RecipeInputOreDict("oreLead"));
-        macerator.addRecipe(new RecipeInputOreDict("oreLead"), new ItemStack(RegistryItem.leadCrushedOre,2), 0.8F, "leadOre");
+        macerator.addRecipe(new RecipeInputOreDict("oreLead"), new ItemStack(Registry.leadCrushedOre,2), 0.8F, "leadOre");
         macerator.removeRecipe(new RecipeInputOreDict("orePoorIron"));
-        macerator.addRecipe(new RecipeInputOreDict("orePoorIron", 3), new ItemStack(RegistryItem.ironCrushedOre,2), 0.7F, "ironPoorOre");
+        macerator.addRecipe(new RecipeInputOreDict("orePoorIron", 3), new ItemStack(Registry.ironCrushedOre,2), 0.7F, "ironPoorOre");
         macerator.removeRecipe(new RecipeInputOreDict("orePoorGold"));
-        macerator.addRecipe(new RecipeInputOreDict("orePoorGold", 3), new ItemStack(RegistryItem.goldCrushedOre,2), 1.0F, "goldPoorOre");
+        macerator.addRecipe(new RecipeInputOreDict("orePoorGold", 3), new ItemStack(Registry.goldCrushedOre,2), 1.0F, "goldPoorOre");
         macerator.removeRecipe(new RecipeInputOreDict("orePoorCopper"));
-        macerator.addRecipe(new RecipeInputOreDict("orePoorCopper", 3), new ItemStack(RegistryItem.copperCrushedOre,2), 0.3F, "copperPoorOre");
+        macerator.addRecipe(new RecipeInputOreDict("orePoorCopper", 3), new ItemStack(Registry.copperCrushedOre,2), 0.3F, "copperPoorOre");
         macerator.removeRecipe(new RecipeInputOreDict("orePoorTin"));
-        macerator.addRecipe(new RecipeInputOreDict("orePoorTin", 3), new ItemStack(RegistryItem.tinCrushedOre,2), 0.4F, "tinPoorOre");
+        macerator.addRecipe(new RecipeInputOreDict("orePoorTin", 3), new ItemStack(Registry.tinCrushedOre,2), 0.4F, "tinPoorOre");
         macerator.removeRecipe(new RecipeInputOreDict("orePoorSilver"));
-        macerator.addRecipe(new RecipeInputOreDict("orePoorSilver", 3), new ItemStack(RegistryItem.silverCrushedOre,2), 0.8F, "silverPoorOre");
+        macerator.addRecipe(new RecipeInputOreDict("orePoorSilver", 3), new ItemStack(Registry.silverCrushedOre,2), 0.8F, "silverPoorOre");
         macerator.removeRecipe(new RecipeInputOreDict("orePoorLead"));
-        macerator.addRecipe(new RecipeInputOreDict("orePoorLead", 3), new ItemStack(RegistryItem.leadCrushedOre,2), 0.8F, "leadPoorOre");
+        macerator.addRecipe(new RecipeInputOreDict("orePoorLead", 3), new ItemStack(Registry.leadCrushedOre,2), 0.8F, "leadPoorOre");
     }
 
     public static void postInit() {
@@ -416,50 +407,50 @@ public class Ic2cExtrasRecipes {
     public static void initMachineRecipes(){
         int lowHeat = 250;
         int mediumHeat = 300;
-        ItemStack stoneDust = new ItemStack(RegistryItem.stoneDust);
+        ItemStack stoneDust = new ItemStack(Registry.stoneDust);
         //ore washing plant
-        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedIron", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.ironPurifiedCrushedOre, 1), new ItemStack(RegistryItem.ironTinyDust, 2), stoneDust)));
-        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedGold", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.goldPurifiedCrushedOre, 1), new ItemStack(RegistryItem.goldTinyDust, 2), stoneDust)));
-        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedCopper", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.copperPurifiedCrushedOre, 1), new ItemStack(RegistryItem.copperTinyDust, 2), stoneDust)));
-        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedTin", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.tinPurifiedCrushedOre, 1), new ItemStack(RegistryItem.tinTinyDust, 2), stoneDust)));
-        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedSilver", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.silverPurifiedCrushedOre, 1), new ItemStack(RegistryItem.silverTinyDust, 2), stoneDust)));
-        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedLead", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.leadPurifiedCrushedOre, 1), new ItemStack(RegistryItem.leadTinyDust, 3), stoneDust)));
-        TileEntityOreWashingPlant.addRecipe((new RecipeInputItemStack(new ItemStack(Blocks.GRAVEL, 1))), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.stoneDust))));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedIron", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(Registry.ironPurifiedCrushedOre, 1), new ItemStack(Registry.ironTinyDust, 2), stoneDust)));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedGold", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(Registry.goldPurifiedCrushedOre, 1), new ItemStack(Registry.goldTinyDust, 2), stoneDust)));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedCopper", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(Registry.copperPurifiedCrushedOre, 1), new ItemStack(Registry.copperTinyDust, 2), stoneDust)));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedTin", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(Registry.tinPurifiedCrushedOre, 1), new ItemStack(Registry.tinTinyDust, 2), stoneDust)));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedSilver", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(Registry.silverPurifiedCrushedOre, 1), new ItemStack(Registry.silverTinyDust, 2), stoneDust)));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedLead", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(Registry.leadPurifiedCrushedOre, 1), new ItemStack(Registry.leadTinyDust, 3), stoneDust)));
+        TileEntityOreWashingPlant.addRecipe((new RecipeInputItemStack(new ItemStack(Blocks.GRAVEL, 1))), new MachineOutput(null, Arrays.asList(new ItemStack(Registry.stoneDust))));
 
         //thermal centrifuge recipes
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedIron", 1)), lowHeat, Ic2Items.ironDust, new ItemStack(RegistryItem.goldTinyDust, 1));
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedGold", 1)), lowHeat, Ic2Items.goldDust, new ItemStack(RegistryItem.silverTinyDust, 1));
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedCopper", 1)), lowHeat, Ic2Items.copperDust, new ItemStack(RegistryItem.tinTinyDust, 1));
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedTin", 1)), lowHeat, Ic2Items.tinDust, new ItemStack(RegistryItem.ironTinyDust, 1));
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedSilver", 1)), lowHeat, Ic2Items.silverDust, new ItemStack(RegistryItem.leadTinyDust, 1));
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedLead", 1)), lowHeat, new ItemStack(RegistryItem.leadDust, 1), new ItemStack(RegistryItem.copperTinyDust, 1));
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedIron", 1)), mediumHeat, Ic2Items.ironDust, new ItemStack(RegistryItem.goldTinyDust, 1), stoneDust);
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedGold", 1)), mediumHeat, Ic2Items.goldDust, new ItemStack(RegistryItem.silverTinyDust, 1), stoneDust);
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedCopper", 1)), mediumHeat, Ic2Items.copperDust, new ItemStack(RegistryItem.tinTinyDust, 1), stoneDust);
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedTin", 1)), mediumHeat, Ic2Items.tinDust, new ItemStack(RegistryItem.ironTinyDust, 1), stoneDust);
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedIron", 1)), lowHeat, Ic2Items.ironDust, new ItemStack(Registry.goldTinyDust, 1));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedGold", 1)), lowHeat, Ic2Items.goldDust, new ItemStack(Registry.silverTinyDust, 1));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedCopper", 1)), lowHeat, Ic2Items.copperDust, new ItemStack(Registry.tinTinyDust, 1));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedTin", 1)), lowHeat, Ic2Items.tinDust, new ItemStack(Registry.ironTinyDust, 1));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedSilver", 1)), lowHeat, Ic2Items.silverDust, new ItemStack(Registry.leadTinyDust, 1));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedLead", 1)), lowHeat, new ItemStack(Registry.leadDust, 1), new ItemStack(Registry.copperTinyDust, 1));
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedIron", 1)), mediumHeat, Ic2Items.ironDust, new ItemStack(Registry.goldTinyDust, 1), stoneDust);
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedGold", 1)), mediumHeat, Ic2Items.goldDust, new ItemStack(Registry.silverTinyDust, 1), stoneDust);
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedCopper", 1)), mediumHeat, Ic2Items.copperDust, new ItemStack(Registry.tinTinyDust, 1), stoneDust);
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedTin", 1)), mediumHeat, Ic2Items.tinDust, new ItemStack(Registry.ironTinyDust, 1), stoneDust);
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedSilver", 1)), mediumHeat, Ic2Items.silverDust, stoneDust);
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedLead", 1)), mediumHeat, new ItemStack(RegistryItem.leadDust, 1), stoneDust);
+        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedLead", 1)), mediumHeat, new ItemStack(Registry.leadDust, 1), stoneDust);
 
         if (enableCasingsRequirePlates){
-            rolling.addRecipe((new RecipeInputOreDict("plateCopper", 1)),  new ItemStack(RegistryItem.copperCasing, 2), 0.7f, "copperPlateItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateTin", 1)),  new ItemStack(RegistryItem.tinCasing, 2), 0.7f, "tinPlateItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateSilver", 1)),  new ItemStack(RegistryItem.silverCasing, 2), 0.7f, "silverPlateItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateLead", 1)),  new ItemStack(RegistryItem.leadCasing, 2), 0.7f, "leadPlateItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateIron", 1)),  new ItemStack(RegistryItem.ironCasing, 2), 0.7f, "ironPlateItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateGold", 1)),  new ItemStack(RegistryItem.goldCasing, 2), 0.7f, "goldPlateItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateRefinedIron", 1)),  new ItemStack(RegistryItem.refinedIronCasing, 2), 0.7f, "refinedIronPlateItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateSteel", 1)),  new ItemStack(RegistryItem.steelCasing, 2), 0.7f, "steelPlateItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateBronze", 1)),  new ItemStack(RegistryItem.bronzeCasing, 2), 0.7f, "bronzePlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateCopper", 1)),  new ItemStack(Registry.copperCasing, 2), 0.7f, "copperPlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateTin", 1)),  new ItemStack(Registry.tinCasing, 2), 0.7f, "tinPlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateSilver", 1)),  new ItemStack(Registry.silverCasing, 2), 0.7f, "silverPlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateLead", 1)),  new ItemStack(Registry.leadCasing, 2), 0.7f, "leadPlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateIron", 1)),  new ItemStack(Registry.ironCasing, 2), 0.7f, "ironPlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateGold", 1)),  new ItemStack(Registry.goldCasing, 2), 0.7f, "goldPlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateRefinedIron", 1)),  new ItemStack(Registry.refinedIronCasing, 2), 0.7f, "refinedIronPlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateSteel", 1)),  new ItemStack(Registry.steelCasing, 2), 0.7f, "steelPlateItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("plateBronze", 1)),  new ItemStack(Registry.bronzeCasing, 2), 0.7f, "bronzePlateItemCasingRolling");
         }else {
-            rolling.addRecipe((new RecipeInputOreDict("ingotCopper", 1)),  new ItemStack(RegistryItem.copperCasing, 2), 0.7f, "copperItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(RegistryItem.tinCasing, 2), 0.7f, "tinItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("ingotSilver", 1)),  new ItemStack(RegistryItem.silverCasing, 2), 0.7f, "silverItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("ingotLead", 1)),  new ItemStack(RegistryItem.leadCasing, 2), 0.7f, "leadItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("ingotIron", 1)),  new ItemStack(RegistryItem.ironCasing, 2), 0.7f, "ironItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("ingotGold", 1)),  new ItemStack(RegistryItem.goldCasing, 2), 0.7f, "goldItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("ingotRefinedIron", 1)),  new ItemStack(RegistryItem.refinedIronCasing, 2), 0.7f, "refinedIronItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("ingotSteel", 1)),  new ItemStack(RegistryItem.steelCasing, 2), 0.7f, "steelItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("ingotBronze", 1)),  new ItemStack(RegistryItem.bronzeCasing, 2), 0.7f, "bronzeItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("ingotCopper", 1)),  new ItemStack(Registry.copperCasing, 2), 0.7f, "copperItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(Registry.tinCasing, 2), 0.7f, "tinItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("ingotSilver", 1)),  new ItemStack(Registry.silverCasing, 2), 0.7f, "silverItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("ingotLead", 1)),  new ItemStack(Registry.leadCasing, 2), 0.7f, "leadItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("ingotIron", 1)),  new ItemStack(Registry.ironCasing, 2), 0.7f, "ironItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("ingotGold", 1)),  new ItemStack(Registry.goldCasing, 2), 0.7f, "goldItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("ingotRefinedIron", 1)),  new ItemStack(Registry.refinedIronCasing, 2), 0.7f, "refinedIronItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("ingotSteel", 1)),  new ItemStack(Registry.steelCasing, 2), 0.7f, "steelItemCasingRolling");
+            rolling.addRecipe((new RecipeInputOreDict("ingotBronze", 1)),  new ItemStack(Registry.bronzeCasing, 2), 0.7f, "bronzeItemCasingRolling");
         }
 
         rolling.addRecipe((new RecipeInputOreDict(getRefinedIronCasing(), 1)),  StackUtil.copyWithSize(Ic2Items.miningPipe, 1), 0.7f, "miningPipeRolling");
@@ -471,10 +462,10 @@ public class Ic2cExtrasRecipes {
         extruding.addRecipe(new RecipeInputOreDict("casingTin", 1),  StackUtil.copyWithSize(Ic2Items.tinCan, 1), 0.7f, "tinCanExtruding");
         extruding.addRecipe(new RecipeInputOreDict(getRefinedIronCasing(), 2),  StackUtil.copyWithSize(Ic2Items.ironFence, 3), 0.7f, "ironFenceExtruding");
 
-        macerator.addRecipe(new RecipeInputOreDict("gemDiamond"), new ItemStack(RegistryItem.diamondDust), 0.5F, "Diamond Dust");
-        macerator.addRecipe(new RecipeInputItemStack(Ic2Items.energyCrystal), new ItemStack(RegistryItem.energiumDust, 6), "Energium Dust");
+        macerator.addRecipe(new RecipeInputOreDict("gemDiamond"), new ItemStack(Registry.diamondDust), 0.5F, "Diamond Dust");
+        macerator.addRecipe(new RecipeInputItemStack(Ic2Items.energyCrystal), new ItemStack(Registry.energiumDust, 6), "Energium Dust");
 
-        TileEntityCompressor.addRecipe(new ItemStack(RegistryItem.energiumDust), 6, Ic2Items.energyCrystal);
+        TileEntityCompressor.addRecipe(new ItemStack(Registry.energiumDust), 6, Ic2Items.energyCrystal);
 
         if (!IC2.config.getFlag("SteelRecipes")){
             if(enableCertainRecipesRequireSteel){
@@ -496,22 +487,22 @@ public class Ic2cExtrasRecipes {
         }
     }
     public static void initHarderUraniumProcessing(){
-        ItemStack stoneDust = new ItemStack(RegistryItem.stoneDust);
+        ItemStack stoneDust = new ItemStack(Registry.stoneDust);
         if (enableHarderUranium){
             macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
-            macerator.addRecipe(new RecipeInputOreDict("oreUranium"), new ItemStack(RegistryItem.uraniumCrushedOre,2), 1.0F, "uraniumOre");
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(Ic2Items.reactorReEnrichedUraniumRod)), 500, new ItemStack(RegistryItem.plutoniumTinyDust, 2), new ItemStack(RegistryItem.uranium238, 4));
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedUranium", 1)), 400, new ItemStack(RegistryItem.uranium238, 6), new ItemStack(RegistryItem.uranium235TinyDust, 1));
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), 450, new ItemStack(RegistryItem.uranium238, 4), new ItemStack(RegistryItem.uranium235TinyDust, 1), stoneDust);
-            TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(RegistryItem.uraniumPurifiedCrushedOre, 1), new ItemStack(RegistryItem.uranium235TinyDust, 1), stoneDust)));
-            TileEntityCompressor.addRecipe(new ItemStack(RegistryItem.plutoniumEnrichedUranium), new ItemStack(RegistryItem.plutoniumEnrichedUraniumIngot));
+            macerator.addRecipe(new RecipeInputOreDict("oreUranium"), new ItemStack(Registry.uraniumCrushedOre,2), 1.0F, "uraniumOre");
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(Ic2Items.reactorReEnrichedUraniumRod)), 500, new ItemStack(Registry.plutoniumTinyDust, 2), new ItemStack(Registry.uranium238, 4));
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedUranium", 1)), 400, new ItemStack(Registry.uranium238, 6), new ItemStack(Registry.uranium235TinyDust, 1));
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), 450, new ItemStack(Registry.uranium238, 4), new ItemStack(Registry.uranium235TinyDust, 1), stoneDust);
+            TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(Registry.uraniumPurifiedCrushedOre, 1), new ItemStack(Registry.uranium235TinyDust, 1), stoneDust)));
+            TileEntityCompressor.addRecipe(new ItemStack(Registry.plutoniumEnrichedUranium), new ItemStack(Registry.plutoniumEnrichedUraniumIngot));
             recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.uraniumDrop, 1),
                     "UUU", "TTT", "UUU", 'U', "dustUranium238",'T', "dustTinyUranium235");
-            recipes.addShapelessRecipe((new ItemStack(RegistryItem.plutoniumEnrichedUranium, 2)),
-                    "dropUranium", RegistryItem.plutonium);
-            Ic2cExtrasRecipes.dustUtil("dustUranium235", new ItemStack(RegistryItem.uranium235), "dustTinyUranium235", new ItemStack(RegistryItem.uranium235TinyDust));
-            Ic2cExtrasRecipes.dustUtil("dustUranium238", new ItemStack(RegistryItem.uranium238), "dustTinyUranium238", new ItemStack(RegistryItem.uranium238TinyDust));
-            Ic2cExtrasRecipes.dustUtil("dustPlutonium", new ItemStack(RegistryItem.plutonium), "dustTinyPlutonium", new ItemStack(RegistryItem.plutoniumTinyDust));
+            recipes.addShapelessRecipe((new ItemStack(Registry.plutoniumEnrichedUranium, 2)),
+                    "dropUranium", Registry.plutonium);
+            Ic2cExtrasRecipes.dustUtil("dustUranium235", new ItemStack(Registry.uranium235), "dustTinyUranium235", new ItemStack(Registry.uranium235TinyDust));
+            Ic2cExtrasRecipes.dustUtil("dustUranium238", new ItemStack(Registry.uranium238), "dustTinyUranium238", new ItemStack(Registry.uranium238TinyDust));
+            Ic2cExtrasRecipes.dustUtil("dustPlutonium", new ItemStack(Registry.plutonium), "dustTinyPlutonium", new ItemStack(Registry.plutoniumTinyDust));
         }
     }
 
@@ -531,8 +522,8 @@ public class Ic2cExtrasRecipes {
         LootFunction[] funcs = new LootFunction[] { new SetMetadata(new LootCondition[0], new RandomValueRange(0, 3)) };
         String entryNameIridium = "ic2c_extras:iridiumshard";
         String entryNamePlutonium = "ic2c_extras:tinyplutonium";
-        Item shard = RegistryItem.iridiumShard;
-        Item plutonium = RegistryItem.plutoniumTinyDust;
+        Item shard = Registry.iridiumShard;
+        Item plutonium = Registry.plutoniumTinyDust;
         if (enableLootEntries){
             if(event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON)){
                 event.getTable().getPool("main").addEntry(new LootEntryItem(shard, dungeonWeight, itemQuality, funcs, new LootCondition[0], entryNameIridium));
