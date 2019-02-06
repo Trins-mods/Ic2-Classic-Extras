@@ -239,10 +239,14 @@ public class Ic2cExtrasRecipes {
         }
     }
 
-    public static void dustUtil(String dust, ItemStack dusts, String tinyDust, ItemStack tinyDusts) {
+    public static void dustUtil(String dust, ItemStack dusts, String tinyDust, ItemStack tinyDusts, String smallDust, ItemStack smallDusts) {
         recipes.addRecipe(StackUtil.copyWithSize(dusts, 1),
                 "TTT", "TTT", "TTT", 'T', tinyDust);
         recipes.addShapelessRecipe(StackUtil.copyWithSize(tinyDusts, 9),
+                dust);
+        recipes.addRecipe(StackUtil.copyWithSize(dusts, 1),
+                "SS", "SS", 'S', smallDust);
+        recipes.addShapelessRecipe(StackUtil.copyWithSize(smallDusts, 4),
                 dust);
 
     }
@@ -255,14 +259,14 @@ public class Ic2cExtrasRecipes {
     }
 
     public static void initCompressRecipes(){
-        Ic2cExtrasRecipes.dustUtil("dustIron", Ic2Items.ironDust, "dustTinyIron", new ItemStack(Registry.ironTinyDust));
-        Ic2cExtrasRecipes.dustUtil("dustGold", Ic2Items.goldDust, "dustTinyGold", new ItemStack(Registry.goldTinyDust));
-        Ic2cExtrasRecipes.dustUtil("dustCopper", Ic2Items.copperDust, "dustTinyCopper", new ItemStack(Registry.copperTinyDust));
-        Ic2cExtrasRecipes.dustUtil("dustTin", Ic2Items.tinDust, "dustTinyTin", new ItemStack(Registry.tinTinyDust));
-        Ic2cExtrasRecipes.dustUtil("dustSilver", Ic2Items.silverDust, "dustTinySilver", new ItemStack(Registry.silverTinyDust));
-        Ic2cExtrasRecipes.dustUtil("dustLead", new ItemStack(Registry.leadDust), "dustTinyLead", new ItemStack(Registry.leadTinyDust));
-        Ic2cExtrasRecipes.dustUtil("dustObsidian", Ic2Items.obsidianDust, "dustTinyObsidian", new ItemStack(Registry.obsidianTinyDust));
-        Ic2cExtrasRecipes.dustUtil("dustBronze", Ic2Items.bronzeDust, "dustTinyBronze", new ItemStack(Registry.bronzeTinyDust));
+        Ic2cExtrasRecipes.dustUtil("dustIron", Ic2Items.ironDust, "dustTinyIron", new ItemStack(Registry.ironTinyDust), "dustSmallIron", new ItemStack(Registry.ironSmallDust));
+        Ic2cExtrasRecipes.dustUtil("dustGold", Ic2Items.goldDust, "dustTinyGold", new ItemStack(Registry.goldTinyDust), "dustSmallGold", new ItemStack(Registry.goldSmallDust));
+        Ic2cExtrasRecipes.dustUtil("dustCopper", Ic2Items.copperDust, "dustTinyCopper", new ItemStack(Registry.copperTinyDust), "dustSmallCopper", new ItemStack(Registry.copperSmallDust));
+        Ic2cExtrasRecipes.dustUtil("dustTin", Ic2Items.tinDust, "dustTinyTin", new ItemStack(Registry.tinTinyDust), "dustSmallTin", new ItemStack(Registry.tinSmallDust));
+        Ic2cExtrasRecipes.dustUtil("dustSilver", Ic2Items.silverDust, "dustTinySilver", new ItemStack(Registry.silverTinyDust), "dustSmallSilver", new ItemStack(Registry.silverSmallDust));
+        Ic2cExtrasRecipes.dustUtil("dustLead", new ItemStack(Registry.leadDust), "dustTinyLead", new ItemStack(Registry.leadTinyDust), "dustSmallLead", new ItemStack(Registry.leadSmallDust));
+        Ic2cExtrasRecipes.dustUtil("dustObsidian", Ic2Items.obsidianDust, "dustTinyObsidian", new ItemStack(Registry.obsidianTinyDust), "dustSmallObsidian", new ItemStack(Registry.obsidianSmallDust));
+        Ic2cExtrasRecipes.dustUtil("dustBronze", Ic2Items.bronzeDust, "dustTinyBronze", new ItemStack(Registry.bronzeTinyDust), "dustSmallBronze", new ItemStack(Registry.bronzeSmallDust));
         recipes.addRecipe(Ic2Items.iridiumOre,
                 "III", "III", "III", 'I', Registry.iridiumShard);
         recipes.addShapelessRecipe(new ItemStack(Registry.iridiumShard, 9),
@@ -489,7 +493,7 @@ public class Ic2cExtrasRecipes {
         if (enableHarderUranium){
             macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
             macerator.addRecipe(new RecipeInputOreDict("oreUranium"), new ItemStack(Registry.uraniumCrushedOre,2), 1.0F, "uraniumOre");
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(Ic2Items.reactorReEnrichedUraniumRod)), 500, new ItemStack(Registry.plutoniumTinyDust, 2), new ItemStack(Registry.uranium238, 4));
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(Ic2Items.reactorReEnrichedUraniumRod)), 500, new ItemStack(Registry.plutoniumTinyDust, 2), new ItemStack(Registry.uranium238SmallDust, 2));
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedUranium", 1)), 400, new ItemStack(Registry.uranium238, 6), new ItemStack(Registry.uranium235TinyDust, 1));
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), 450, new ItemStack(Registry.uranium238, 4), new ItemStack(Registry.uranium235TinyDust, 1), stoneDust);
             TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), new MachineOutput(null, Arrays.asList(new ItemStack(Registry.uraniumPurifiedCrushedOre, 1), new ItemStack(Registry.uranium235TinyDust, 1), stoneDust)));
@@ -498,9 +502,9 @@ public class Ic2cExtrasRecipes {
                     "UUU", "TTT", "UUU", 'U', "dustUranium238",'T', "dustTinyUranium235");
             recipes.addShapelessRecipe((new ItemStack(Registry.plutoniumEnrichedUranium, 2)),
                     "dropUranium", Registry.plutonium);
-            Ic2cExtrasRecipes.dustUtil("dustUranium235", new ItemStack(Registry.uranium235), "dustTinyUranium235", new ItemStack(Registry.uranium235TinyDust));
-            Ic2cExtrasRecipes.dustUtil("dustUranium238", new ItemStack(Registry.uranium238), "dustTinyUranium238", new ItemStack(Registry.uranium238TinyDust));
-            Ic2cExtrasRecipes.dustUtil("dustPlutonium", new ItemStack(Registry.plutonium), "dustTinyPlutonium", new ItemStack(Registry.plutoniumTinyDust));
+            Ic2cExtrasRecipes.dustUtil("dustUranium235", new ItemStack(Registry.uranium235), "dustTinyUranium235", new ItemStack(Registry.uranium235TinyDust), "dustSmallUranium235", new ItemStack(Registry.uranium235SmallDust));
+            Ic2cExtrasRecipes.dustUtil("dustUranium238", new ItemStack(Registry.uranium238), "dustTinyUranium238", new ItemStack(Registry.uranium238TinyDust), "dustSmallUranium238", new ItemStack(Registry.uranium238SmallDust));
+            Ic2cExtrasRecipes.dustUtil("dustPlutonium", new ItemStack(Registry.plutonium), "dustTinyPlutonium", new ItemStack(Registry.plutoniumTinyDust), "dustSmallPlutonium", new ItemStack(Registry.plutoniumSmallDust));
         }
     }
 

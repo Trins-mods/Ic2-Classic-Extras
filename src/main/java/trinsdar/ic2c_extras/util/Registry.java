@@ -21,6 +21,7 @@ import trinsdar.ic2c_extras.items.ItemCasings;
 import trinsdar.ic2c_extras.items.ItemCrushedOre;
 import trinsdar.ic2c_extras.items.ItemMiscs;
 import trinsdar.ic2c_extras.items.ItemPurifiedCrushedOre;
+import trinsdar.ic2c_extras.items.ItemSmallDust;
 import trinsdar.ic2c_extras.items.ItemTinyDust;
 import trinsdar.ic2c_extras.items.ItemToolCrafting;
 
@@ -98,6 +99,19 @@ public class Registry
             uranium238TinyDust = new ItemTinyDust(uranium + "238", 41),
             plutoniumTinyDust = new ItemTinyDust("plutonium", 42);
 
+    public static final ItemSmallDust
+            ironSmallDust = new ItemSmallDust(iron, 32),
+            goldSmallDust = new ItemSmallDust(gold, 33),
+            copperSmallDust = new ItemSmallDust(copper, 34),
+            tinSmallDust = new ItemSmallDust(tin, 35),
+            silverSmallDust = new ItemSmallDust(silver, 36),
+            leadSmallDust = new ItemSmallDust(lead, 37),
+            uranium235SmallDust = new ItemSmallDust(uranium + "235", 38),
+            obsidianSmallDust = new ItemSmallDust("obsidian", 39),
+            bronzeSmallDust = new ItemSmallDust(bronze, 40),
+            uranium238SmallDust = new ItemSmallDust(uranium + "238", 41),
+            plutoniumSmallDust = new ItemSmallDust("plutonium", 42);
+
     public static final ItemMiscs
             leadIngot = new ItemMiscs("leadIngot", 64),
             leadDust = new ItemMiscs("leadDust", 65),
@@ -173,6 +187,17 @@ public class Registry
         IC2.getInstance().createItem(bronzeTinyDust);
         IC2.getInstance().createItem(uranium238TinyDust);
         IC2.getInstance().createItem(plutoniumTinyDust);
+        IC2.getInstance().createItem(ironSmallDust);
+        IC2.getInstance().createItem(goldSmallDust);
+        IC2.getInstance().createItem(copperSmallDust);
+        IC2.getInstance().createItem(tinSmallDust);
+        IC2.getInstance().createItem(silverSmallDust);
+        IC2.getInstance().createItem(leadSmallDust);
+        IC2.getInstance().createItem(uranium235SmallDust);
+        IC2.getInstance().createItem(obsidianSmallDust);
+        IC2.getInstance().createItem(bronzeSmallDust);
+        IC2.getInstance().createItem(uranium238SmallDust);
+        IC2.getInstance().createItem(plutoniumSmallDust);
         IC2.getInstance().createItem(leadIngot);
         IC2.getInstance().createItem(leadDust);
         IC2.getInstance().createItem(stoneDust);

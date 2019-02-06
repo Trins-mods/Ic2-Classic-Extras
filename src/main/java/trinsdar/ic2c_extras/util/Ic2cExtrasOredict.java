@@ -30,10 +30,22 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("dustTinyObsidian", Registry.obsidianTinyDust);
         OreDictionary.registerOre("dustTinyBronze", Registry.bronzeTinyDust);
 
+        OreDictionary.registerOre("dustSmallIron", Registry.ironSmallDust);
+        OreDictionary.registerOre("dustSmallGold", Registry.goldSmallDust);
+        OreDictionary.registerOre("dustSmallCopper", Registry.copperSmallDust);
+        OreDictionary.registerOre("dustSmallTin", Registry.tinSmallDust);
+        OreDictionary.registerOre("dustSmallSilver", Registry.silverSmallDust);
+        OreDictionary.registerOre("dustSmallLead", Registry.leadSmallDust);
+        OreDictionary.registerOre("dustSmallObsidian", Registry.obsidianSmallDust);
+        OreDictionary.registerOre("dustSmallBronze", Registry.bronzeSmallDust);
+
         if (Ic2cExtrasRecipes.enableHarderUranium){
             OreDictionary.registerOre("dustTinyUranium235", Registry.uranium235TinyDust);
             OreDictionary.registerOre("dustTinyUranium238", Registry.uranium238TinyDust);
             OreDictionary.registerOre("dustTinyPlutonium", Registry.plutoniumTinyDust);
+            OreDictionary.registerOre("dustSmallUranium235", Registry.uranium235SmallDust);
+            OreDictionary.registerOre("dustSmallUranium238", Registry.uranium238SmallDust);
+            OreDictionary.registerOre("dustSmallPlutonium", Registry.plutoniumSmallDust);
             OreDictionary.registerOre("dustUranium235", Registry.uranium235);
             OreDictionary.registerOre("dustUranium238", Registry.uranium238);
             OreDictionary.registerOre("dustPlutonium", Registry.plutonium);
