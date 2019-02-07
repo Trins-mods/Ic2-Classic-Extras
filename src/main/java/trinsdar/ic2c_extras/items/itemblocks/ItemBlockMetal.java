@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.items;
+package trinsdar.ic2c_extras.items.itemblocks;
 
 import ic2.core.item.block.ItemBlockRare;
 import ic2.core.platform.lang.components.base.LangComponentHolder;

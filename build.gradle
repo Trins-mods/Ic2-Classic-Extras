@@ -51,7 +51,6 @@ repositories{
         name 'MMD'
         url 'https://maven.mcmoddev.com/'
     }
-
 }
 
 dependencies {

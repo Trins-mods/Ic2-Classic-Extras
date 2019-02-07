@@ -129,6 +129,7 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.goldCasing));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.refinedIronCasing));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.steelCasing));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.bronzeCasing));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.ironCrushedOre));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.goldCrushedOre));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.copperCrushedOre));
@@ -136,7 +137,58 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.silverCrushedOre));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.leadCrushedOre));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uraniumCrushedOre));
-                
+
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.ironPurifiedCrushedOre));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.goldPurifiedCrushedOre));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.copperPurifiedCrushedOre));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.tinPurifiedCrushedOre));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.silverPurifiedCrushedOre));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.leadPurifiedCrushedOre));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uraniumPurifiedCrushedOre));
+
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.ironTinyDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.goldTinyDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.copperTinyDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.tinTinyDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.silverTinyDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.leadTinyDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium235TinyDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.obsidianTinyDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.bronzeTinyDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238TinyDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumTinyDust));
+
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.ironSmallDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.goldSmallDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.copperSmallDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.tinSmallDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.silverSmallDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.leadSmallDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium235SmallDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.obsidianSmallDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.bronzeSmallDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238SmallDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumSmallDust));
+
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.leadIngot));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.leadDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.stoneDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.slag));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium235));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutonium));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.coil));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.heatConductor));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.steelIngot));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumEnrichedUraniumIngot));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumEnrichedUranium));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.iridiumShard));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.refinedIronPlate));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.diamondDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.energiumDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.craftingHammer));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.wireCutters));
+
             }else if (!Ic2cExtrasRecipes.enableHarderUranium){
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium235));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238));

@@ -17,7 +17,9 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityPlasmaCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
-import trinsdar.ic2c_extras.items.ItemBlockMetal;
+import trinsdar.ic2c_extras.items.itemblocks.ItemBlockGenerator;
+import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMachine;
+import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMetal;
 import trinsdar.ic2c_extras.items.ItemCasings;
 import trinsdar.ic2c_extras.items.ItemCrushedOre;
 import trinsdar.ic2c_extras.items.ItemMiscs;
@@ -137,16 +139,16 @@ public class Registry
 
 
     public static void init(){
-        IC2.getInstance().createBlock(oreWashingPlant, ItemBlockRare.class);
-        IC2.getInstance().createBlock(thermalCentrifuge, ItemBlockRare.class);
-        IC2.getInstance().createBlock(roller, ItemBlockRare.class);
-        IC2.getInstance().createBlock(extruder, ItemBlockRare.class);
-        IC2.getInstance().createBlock(cutter, ItemBlockRare.class);
-        IC2.getInstance().createBlock(impellerizedRoller, ItemBlockRare.class);
-        IC2.getInstance().createBlock(liquescentExtruder, ItemBlockRare.class);
-        IC2.getInstance().createBlock(plasmaCutter, ItemBlockRare.class);
+        IC2.getInstance().createBlock(oreWashingPlant, ItemBlockMachine.class);
+        IC2.getInstance().createBlock(thermalCentrifuge, ItemBlockMachine.class);
+        IC2.getInstance().createBlock(roller, ItemBlockMachine.class);
+        IC2.getInstance().createBlock(extruder, ItemBlockMachine.class);
+        IC2.getInstance().createBlock(cutter, ItemBlockMachine.class);
+        IC2.getInstance().createBlock(impellerizedRoller, ItemBlockMachine.class);
+        IC2.getInstance().createBlock(liquescentExtruder, ItemBlockMachine.class);
+        IC2.getInstance().createBlock(plasmaCutter, ItemBlockMachine.class);
         IC2.getInstance().createBlock(blastFurnace, ItemBlockRare.class);
-        IC2.getInstance().createBlock(advancedSteamTurbine, ItemBlockRare.class);
+        IC2.getInstance().createBlock(advancedSteamTurbine, ItemBlockGenerator.class);
         IC2.getInstance().createBlock(solidFuelFirebox, ItemBlockRare.class);
         IC2.getInstance().createBlock(liquidFuelFirebox, ItemBlockRare.class);
         IC2.getInstance().createBlock(electricHeater, ItemBlockRare.class);
