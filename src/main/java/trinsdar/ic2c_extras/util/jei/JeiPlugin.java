@@ -1,6 +1,7 @@
 package trinsdar.ic2c_extras.util.jei;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
+import ic2.core.IC2;
 import ic2.jeiIntigration.SubModul;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiRuntime;
@@ -98,7 +99,45 @@ public class JeiPlugin implements IModPlugin {
             registry.addRecipes(Ic2cExtrasRecipes.cutting.getRecipeMap(), cutterId);
 
             IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
-            if (!Ic2cExtrasRecipes.enableHarderUranium){
+            blacklist.addIngredientToBlacklist(new ItemStack(Registry.blastFurnace));
+            blacklist.addIngredientToBlacklist(new ItemStack(Registry.solidFuelFirebox));
+            blacklist.addIngredientToBlacklist(new ItemStack(Registry.liquidFuelFirebox));
+            blacklist.addIngredientToBlacklist(new ItemStack(Registry.electricHeater));
+            if (IC2.config.getFlag("NonRadiation")){
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.oreWashingPlant));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.thermalCentrifuge));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.roller));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.extruder));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.cutter));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.impellerizedRoller));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.liquescentExtruder));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plasmaCutter));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.blastFurnace));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.advancedSteamTurbine));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.solidFuelFirebox));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.liquidFuelFirebox));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.electricHeater));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.steelBlock));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.refinedIronBlock));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.leadBlock));
+
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.copperCasing));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.tinCasing));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.silverCasing));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.leadCasing));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.ironCasing));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.goldCasing));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.refinedIronCasing));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.steelCasing));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.ironCrushedOre));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.goldCrushedOre));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.copperCrushedOre));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.tinCrushedOre));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.silverCrushedOre));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.leadCrushedOre));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uraniumCrushedOre));
+                
+            }else if (!Ic2cExtrasRecipes.enableHarderUranium){
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium235));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium235TinyDust));
@@ -110,10 +149,6 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumEnrichedUranium));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumEnrichedUraniumIngot));
             }
-            blacklist.addIngredientToBlacklist(new ItemStack(Registry.blastFurnace));
-            blacklist.addIngredientToBlacklist(new ItemStack(Registry.solidFuelFirebox));
-            blacklist.addIngredientToBlacklist(new ItemStack(Registry.liquidFuelFirebox));
-            blacklist.addIngredientToBlacklist(new ItemStack(Registry.electricHeater));
         }
     }
 

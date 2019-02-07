@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.proxy;
 
+import ic2.core.IC2;
 import net.minecraftforge.common.config.Configuration;
 import trinsdar.ic2c_extras.Config;
 import trinsdar.ic2c_extras.util.Ic2cExtrasOredict;
@@ -20,8 +21,10 @@ public class CommonProxy
 
     public void init()
     {
-        Ic2cExtrasOredict.init();
-        Ic2cExtrasRecipes.init();
+        if (!IC2.config.getFlag("NonRadiation")){
+            Ic2cExtrasOredict.init();
+            Ic2cExtrasRecipes.init();
+        }
     }
 
     public void postInit()

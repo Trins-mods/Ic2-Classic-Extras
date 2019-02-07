@@ -16,6 +16,7 @@ public class Config implements IConfigNotify {
         IC2Config.ConfigType flo = IC2Config.ConfigType.Float;
         IC2Config.ConfigType txt = IC2Config.ConfigType.String;
         if (IC2.config.isLoaded()){
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "disableNonRadiation", "Disables everything in the mod except for radiation. If true the only other config option that does anything is the Radiation config.", "NonRadiation", false).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableItemRadiation", "Enables certain items giving radiation", "ItemRadiation", true).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableHarderUranium", "Enables harder uranium processing. Note: this is different then enableHarderEnrichedUran in that it deals with processing the ore and such", "HarderUranium", true).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCasingsRequirePlates", "Enables casings requiring plates to craft. Note the only plate that i add is refined iron plates so if you enable this you will need another mod that adds plates.", "CasingsNeedPlates", false).setGameRestart().setServerSync());

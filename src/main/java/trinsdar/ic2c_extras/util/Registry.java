@@ -17,6 +17,7 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityPlasmaCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.items.ItemBlockMetal;
 import trinsdar.ic2c_extras.items.ItemCasings;
 import trinsdar.ic2c_extras.items.ItemCrushedOre;
 import trinsdar.ic2c_extras.items.ItemMiscs;
@@ -149,9 +150,9 @@ public class Registry
         IC2.getInstance().createBlock(solidFuelFirebox, ItemBlockRare.class);
         IC2.getInstance().createBlock(liquidFuelFirebox, ItemBlockRare.class);
         IC2.getInstance().createBlock(electricHeater, ItemBlockRare.class);
-        IC2.getInstance().createBlock(steelBlock, ItemBlockRare.class);
-        IC2.getInstance().createBlock(refinedIronBlock, ItemBlockRare.class);
-        IC2.getInstance().createBlock(leadBlock, ItemBlockRare.class);
+        IC2.getInstance().createBlock(steelBlock, ItemBlockMetal.class);
+        IC2.getInstance().createBlock(refinedIronBlock, ItemBlockMetal.class);
+        IC2.getInstance().createBlock(leadBlock, ItemBlockMetal.class);
 
         IC2.getInstance().createItem(copperCasing);
         IC2.getInstance().createItem(tinCasing);

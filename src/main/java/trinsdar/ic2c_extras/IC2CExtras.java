@@ -6,6 +6,7 @@ import ic2.api.classic.addon.misc.IOverrideObject;
 import ic2.api.classic.addon.misc.SideGateway;
 import ic2.api.recipe.IBasicMachineRecipeManager;
 import ic2.api.recipe.Recipes;
+import ic2.core.IC2;
 import ic2.core.block.machine.high.TileEntityUraniumEnricher;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.CommonFilters;
@@ -56,15 +57,18 @@ public class IC2CExtras extends PluginBase
     @Override
     public void preInit(FMLPreInitializationEvent fmlPreInitializationEvent)
     {
-        Recipes.metalformerExtruding = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.extruding.toIC2Exp();
-        Recipes.metalformerCutting = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.cutting.toIC2Exp();
-        Recipes.metalformerRolling = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.rolling.toIC2Exp();
-        Recipes.oreWashing = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.oreWashingPlant.toIC2Exp();
-        Recipes.centrifuge = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.thermalCentrifuge.toIC2Exp();
-        if (Ic2cExtrasRecipes.enableHarderUranium){
-            TileEntityUraniumEnricher.URANIUM_INGOT_REFERENCE = new ItemStack(Registry.plutoniumEnrichedUraniumIngot);
-            CommonFilters.uranFilter = new BasicItemFilter(new ItemStack(Registry.plutoniumEnrichedUraniumIngot));
+        if (!IC2.config.getFlag("NonRadiation")){
+            Recipes.metalformerExtruding = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.extruding.toIC2Exp();
+            Recipes.metalformerCutting = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.cutting.toIC2Exp();
+            Recipes.metalformerRolling = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.rolling.toIC2Exp();
+            Recipes.oreWashing = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.oreWashingPlant.toIC2Exp();
+            Recipes.centrifuge = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.thermalCentrifuge.toIC2Exp();
+            if (Ic2cExtrasRecipes.enableHarderUranium){
+                TileEntityUraniumEnricher.URANIUM_INGOT_REFERENCE = new ItemStack(Registry.plutoniumEnrichedUraniumIngot);
+                CommonFilters.uranFilter = new BasicItemFilter(new ItemStack(Registry.plutoniumEnrichedUraniumIngot));
+            }
         }
+
     }
 
     @Override
