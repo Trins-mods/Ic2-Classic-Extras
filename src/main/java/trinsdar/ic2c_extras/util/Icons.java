@@ -29,7 +29,7 @@ public class Icons
         addSprite(new SpriteData("solidfuelfirebox", "ic2c_extras:textures/sprites/solidfuelfirebox.png", new SpriteInfo(1, 12)));
         addSprite(new SpriteData("liquidfuelfirebox", "ic2c_extras:textures/sprites/liquidfuelfirebox.png", new SpriteInfo(1, 12)));
         addSprite(new SpriteData("electricheater", "ic2c_extras:textures/sprites/electricheater.png", new SpriteInfo(1, 12)));
-        addSprite(new SpriteData("ic2c_extras_items", "ic2c_extras:textures/sprites/items.png", new SpriteInfo(16, 5)));
+        addSprite(new SpriteData("ic2c_extras_items", "ic2c_extras:textures/sprites/items.png", new SpriteInfo(16, 6)));
         addTextureEntry(new TextureEntry("ic2c_extras_blocks", 0, 0, 2, 2));
         addTextureEntry(new TextureEntry("thermalcentrifuge", 0, 0, 1, 12));
         addTextureEntry(new TextureEntry("orewashingplant", 0, 0, 1, 12));
@@ -44,6 +44,6 @@ public class Icons
         addTextureEntry(new TextureEntry("solidfuelfirebox", 0, 0, 1, 12));
         addTextureEntry(new TextureEntry("liquidfuelfirebox", 0, 0, 1, 12));
         addTextureEntry(new TextureEntry("electricheater", 0, 0, 1, 12));
-        addTextureEntry(new TextureEntry("ic2c_extras_items", 0, 0, 16, 5));
+        addTextureEntry(new TextureEntry("ic2c_extras_items", 0, 0, 16, 6));
     }
 }

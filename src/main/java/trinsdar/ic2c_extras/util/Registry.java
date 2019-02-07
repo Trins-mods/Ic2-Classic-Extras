@@ -100,17 +100,17 @@ public class Registry
             plutoniumTinyDust = new ItemTinyDust("plutonium", 42);
 
     public static final ItemSmallDust
-            ironSmallDust = new ItemSmallDust(iron, 32),
-            goldSmallDust = new ItemSmallDust(gold, 33),
-            copperSmallDust = new ItemSmallDust(copper, 34),
-            tinSmallDust = new ItemSmallDust(tin, 35),
-            silverSmallDust = new ItemSmallDust(silver, 36),
-            leadSmallDust = new ItemSmallDust(lead, 37),
-            uranium235SmallDust = new ItemSmallDust(uranium + "235", 38),
-            obsidianSmallDust = new ItemSmallDust("obsidian", 39),
-            bronzeSmallDust = new ItemSmallDust(bronze, 40),
-            uranium238SmallDust = new ItemSmallDust(uranium + "238", 41),
-            plutoniumSmallDust = new ItemSmallDust("plutonium", 42);
+            ironSmallDust = new ItemSmallDust(iron, 80),
+            goldSmallDust = new ItemSmallDust(gold, 81),
+            copperSmallDust = new ItemSmallDust(copper, 82),
+            tinSmallDust = new ItemSmallDust(tin, 83),
+            silverSmallDust = new ItemSmallDust(silver, 84),
+            leadSmallDust = new ItemSmallDust(lead, 85),
+            uranium235SmallDust = new ItemSmallDust(uranium + "235", 86),
+            obsidianSmallDust = new ItemSmallDust("obsidian", 87),
+            bronzeSmallDust = new ItemSmallDust(bronze, 88),
+            uranium238SmallDust = new ItemSmallDust(uranium + "238", 89),
+            plutoniumSmallDust = new ItemSmallDust("plutonium", 90);
 
     public static final ItemMiscs
             leadIngot = new ItemMiscs("leadIngot", 64),
