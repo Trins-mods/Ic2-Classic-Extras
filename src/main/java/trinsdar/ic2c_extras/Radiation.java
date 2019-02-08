@@ -75,15 +75,6 @@ public class Radiation {
 			radiation.add(Ic2Items.reactorReEnrichedEnderPearlUraniumRod);
 			radiation.add(Ic2Items.reactorReEnrichedNetherStarUraniumRod);
 			radiation.add(Ic2Items.reactorReEnrichedCharcoalUraniumRod);
-			if (Loader.isModLoaded("gtclassic")){
-				radiation.add(new ItemStack(GTItems.dustUranium));
-				radiation.add(new ItemStack(GTItems.rodPlutoniumSingle));
-				radiation.add(new ItemStack(GTItems.rodPlutoniumDouble));
-				radiation.add(new ItemStack(GTItems.rodPlutoniumQuad));
-				radiation.add(new ItemStack(GTItems.rodThoriumSingle));
-				radiation.add(new ItemStack(GTItems.rodThoriumDouble));
-				radiation.add(new ItemStack(GTItems.rodThoriumQuad));
-			}
 		}
 	}
 
