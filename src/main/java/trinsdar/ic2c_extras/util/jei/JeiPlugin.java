@@ -181,7 +181,7 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.heatConductor));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.steelIngot));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumEnrichedUraniumIngot));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumEnrichedUranium));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.doubleEnrichedUraniumIngot));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.iridiumShard));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.refinedIronPlate));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.diamondDust));
@@ -194,11 +194,14 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium235TinyDust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238TinyDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium235SmallDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238SmallDust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uraniumCrushedOre));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uraniumPurifiedCrushedOre));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutonium));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumTinyDust));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumEnrichedUranium));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumSmallDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.doubleEnrichedUraniumIngot));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumEnrichedUraniumIngot));
             }
         }

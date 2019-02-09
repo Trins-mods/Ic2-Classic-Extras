@@ -127,11 +127,12 @@ public class Registry
             heatConductor = new ItemMiscs("heatConductor", 72),
             steelIngot = new ItemMiscs("steelIngot", 73),
             plutoniumEnrichedUraniumIngot = new ItemMiscs("plutoniumEnrichedUraniumIngot", 74),
-            plutoniumEnrichedUranium = new ItemMiscs("plutoniumEnrichedUranium", 75),
+            doubleEnrichedUraniumIngot = new ItemMiscs("doubleEnrichedUraniumIngot", 75),
             iridiumShard = new ItemMiscs("iridiumShard", 76),
             refinedIronPlate = new ItemMiscs("refinedIronPlate", 79),
             diamondDust = new ItemMiscs("diamondDust", 43),
             energiumDust = new ItemMiscs("energiumDust", 44);
+
 
     public static final ItemToolCrafting
             craftingHammer = new ItemToolCrafting(80, "craftingHammer", 77, true),
@@ -212,7 +213,7 @@ public class Registry
         IC2.getInstance().createItem(heatConductor);
         IC2.getInstance().createItem(steelIngot);
         IC2.getInstance().createItem(plutoniumEnrichedUraniumIngot);
-        IC2.getInstance().createItem(plutoniumEnrichedUranium);
+        IC2.getInstance().createItem(doubleEnrichedUraniumIngot);
         IC2.getInstance().createItem(iridiumShard);
         IC2.getInstance().createItem(refinedIronPlate);
         IC2.getInstance().createItem(diamondDust);

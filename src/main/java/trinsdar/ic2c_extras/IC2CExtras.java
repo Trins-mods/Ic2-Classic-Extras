@@ -63,10 +63,6 @@ public class IC2CExtras extends PluginBase
             Recipes.metalformerRolling = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.rolling.toIC2Exp();
             Recipes.oreWashing = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.oreWashingPlant.toIC2Exp();
             Recipes.centrifuge = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.thermalCentrifuge.toIC2Exp();
-            if (Ic2cExtrasRecipes.enableHarderUranium){
-                TileEntityUraniumEnricher.URANIUM_INGOT_REFERENCE = new ItemStack(Registry.plutoniumEnrichedUraniumIngot);
-                CommonFilters.uranFilter = new BasicItemFilter(new ItemStack(Registry.plutoniumEnrichedUraniumIngot));
-            }
         }
 
     }
