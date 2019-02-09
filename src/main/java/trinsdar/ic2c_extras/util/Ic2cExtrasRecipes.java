@@ -136,7 +136,7 @@ public class Ic2cExtrasRecipes {
                 "CCC", "CIC", "CCC", 'I', IC2.getRefinedIron(),'C', Ic2Items.copperCable);
 
         recipes.addRecipe(new ItemStack(Registry.heatConductor, 1),
-                "RBR", "RBR", "RBR", 'R', "itemRubber",'B', "ingotBronze");
+                "RRB", "RBR", "BRR", 'R', "itemRubber",'B', "ingotBronze");
 
         recipes.addRecipe(new ItemStack(Registry.craftingHammer, 1),
                 "III", "III", " S ", 'I', IC2.getRefinedIron(),'S', "stickWood");
