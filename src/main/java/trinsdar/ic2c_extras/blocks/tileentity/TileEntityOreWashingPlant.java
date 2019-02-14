@@ -62,6 +62,8 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     @NetworkField(index = 13)
     public IC2Tank waterTank = new IC2Tank(FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 0), 10000);
 
+
+    public static final String waterAmount = "amount";
     public int water = 0;
     public int maxWater = 10000;
 
@@ -215,7 +217,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         {
             this.results.addAll(list);
             this.addToInventory();
-            this.waterTank.drain(1000, true);
+            this.waterTank.drain(getRequiredWater(output), true);
         }
 
     }
@@ -354,9 +356,30 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? (T)this.waterTank : super.getCapability(capability, facing);
     }
 
+    public static int getRequiredWater(MachineOutput output) {
+        if (output == null || output.getMetadata() == null) {
+            return 0;
+        }
+        return output.getMetadata().getInteger(waterAmount);
+    }
+
+    protected static NBTTagCompound createNeededWater(int amount) {
+        if (amount <= 0) {
+            return null;
+        }
+        NBTTagCompound nbt = new NBTTagCompound();
+        nbt.setInteger(waterAmount, amount);
+        return nbt;
+    }
+
     public static void addRecipe(IRecipeInput input, MachineOutput output)
     {
         oreWashingPlant.addRecipe(input, output, input.getInputs().get(0).getDisplayName());
+    }
+
+    public static void addRecipe(IRecipeInput input, int water, ItemStack... output)
+    {
+        oreWashingPlant.addRecipe(input, new MachineOutput(createNeededWater(water), output), input.getInputs().get(0).getDisplayName());
     }
 
 }
