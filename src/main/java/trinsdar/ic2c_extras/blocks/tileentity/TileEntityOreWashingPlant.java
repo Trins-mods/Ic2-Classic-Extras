@@ -134,13 +134,11 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     @Override
-    public boolean canWork()
-    {
-        if(super.canWork())
-        {
-            return waterTank.getFluidAmount() >= 1000;
+    protected EnumActionResult isRecipeStillValid(IMachineRecipeList.RecipeEntry entry) {
+        if (waterTank.getFluidAmount() >= getRequiredWater(entry.getOutput())){
+            return EnumActionResult.SUCCESS;
         }
-        return false;
+        return EnumActionResult.PASS;
     }
 
     @Override
@@ -182,44 +180,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
             list.add(new SimpleStackOutput(result.get(i), slotOutput + (i % 3)));
         }
         consumeInput(input);
-    }
-
-    @Override
-    public void operate(IMachineRecipeList.RecipeEntry entry)
-    {
-        IRecipeInput input = entry.getInput();
-        MachineOutput output = entry.getOutput().copy();
-
-        for (int i = 0; i < 4; ++i)
-        {
-            ItemStack itemStack = this.inventory.get(i + this.inventory.size() - 4);
-            if (itemStack.getItem() instanceof IMachineUpgradeItem)
-            {
-                IMachineUpgradeItem item = (IMachineUpgradeItem) itemStack.getItem();
-                item.onProcessEndPre(itemStack, this, output);
-            }
-        }
-
-        List<IStackOutput> list = new ArrayList<>();
-        this.operateOnce(input, output, list);
-
-        for (int i = 0; i < 4; ++i)
-        {
-            ItemStack itemStack = this.inventory.get(i + this.inventory.size() - 4);
-            if (itemStack.getItem() instanceof IMachineUpgradeItem)
-            {
-                IMachineUpgradeItem item = (IMachineUpgradeItem) itemStack.getItem();
-                item.onProcessEndPost(itemStack, this, input, output, list);
-            }
-        }
-
-        if (list.size() > 0)
-        {
-            this.results.addAll(list);
-            this.addToInventory();
-            this.waterTank.drain(getRequiredWater(output), true);
-        }
-
+        this.waterTank.drain(getRequiredWater(output), true);
     }
 
 
@@ -370,11 +331,6 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setInteger(waterAmount, amount);
         return nbt;
-    }
-
-    public static void addRecipe(IRecipeInput input, MachineOutput output)
-    {
-        oreWashingPlant.addRecipe(input, output, input.getInputs().get(0).getDisplayName());
     }
 
     public static void addRecipe(IRecipeInput input, int water, ItemStack... output)
