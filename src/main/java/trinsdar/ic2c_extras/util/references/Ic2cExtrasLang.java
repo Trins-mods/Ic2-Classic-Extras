@@ -11,13 +11,13 @@ public class Ic2cExtrasLang {
     public static LocaleComp jeiHeat = new LocaleJEIInfoComp("jeiInfo.heat.name");
     public static LocaleComp jeiWater = new LocaleJEIInfoComp("jeiInfo.water.name");
 
-    public static LocaleComp thermalCentrifuge = new LangComponentHolder.LocaleBlockComp("tile." +".thermalCentrifuge");
-    public static LocaleComp oreWashingPlant = new LangComponentHolder.LocaleBlockComp("tile." + ".oreWashingPlant");
-    public static LocaleComp roller = new LangComponentHolder.LocaleBlockComp("tile." + ".roller");
-    public static LocaleComp extruder = new LangComponentHolder.LocaleBlockComp("tile." + ".extruder");
-    public static LocaleComp cutter = new LangComponentHolder.LocaleBlockComp("tile." + ".cutter");
-    public static LocaleComp impellerizedRoller = new LangComponentHolder.LocaleBlockComp("tile." + ".impellerizedRoller");
-    public static LocaleComp liquescentExtruder = new LangComponentHolder.LocaleBlockComp("tile." + ".liquescentExtruder");
-    public static LocaleComp plasmaCutter = new LangComponentHolder.LocaleBlockComp("tile." + ".plasmaCutter");
-    public static LocaleComp advancedSteamTurbine = new LangComponentHolder.LocaleBlockComp("tile." + ".advancedSteamTurbine");
+    public static LocaleComp thermalCentrifuge = new LangComponentHolder.LocaleBlockComp("tile." +"thermalCentrifuge");
+    public static LocaleComp oreWashingPlant = new LangComponentHolder.LocaleBlockComp("tile." + "oreWashingPlant");
+    public static LocaleComp roller = new LangComponentHolder.LocaleBlockComp("tile." + "roller");
+    public static LocaleComp extruder = new LangComponentHolder.LocaleBlockComp("tile." + "extruder");
+    public static LocaleComp cutter = new LangComponentHolder.LocaleBlockComp("tile." + "cutter");
+    public static LocaleComp impellerizedRoller = new LangComponentHolder.LocaleBlockComp("tile." + "impellerizedRoller");
+    public static LocaleComp liquescentExtruder = new LangComponentHolder.LocaleBlockComp("tile." + "liquescentExtruder");
+    public static LocaleComp plasmaCutter = new LangComponentHolder.LocaleBlockComp("tile." + "plasmaCutter");
+    public static LocaleComp advancedSteamTurbine = new LangComponentHolder.LocaleBlockComp("tile." + "advancedSteamTurbine");
 }

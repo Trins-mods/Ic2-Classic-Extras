@@ -4,10 +4,12 @@ import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
+import ic2.api.classic.tile.IStackOutput;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
+import ic2.core.block.base.util.output.SimpleStackOutput;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.container.ContainerIC2;
@@ -22,7 +24,6 @@ import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
-import ic2.core.util.helpers.FilteredList;
 import ic2.core.util.misc.FluidHelper;
 import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.ITankListener;
@@ -46,10 +47,11 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import trinsdar.ic2c_extras.blocks.container.ContainerOreWashingPlant;
 import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
-import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
+import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.oreWashingPlant;
@@ -172,6 +174,15 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     @Override
+    public void operateOnce(IRecipeInput input, MachineOutput output, List<IStackOutput> list) {
+        List<ItemStack> result = output.getRecipeOutput(getWorld().rand, getTileData());
+        for (int i = 0; i < result.size(); i++) {
+            list.add(new SimpleStackOutput(result.get(i), slotOutput + (i % 3)));
+        }
+        consumeInput(input);
+    }
+
+    @Override
     public void operate(IMachineRecipeList.RecipeEntry entry)
     {
         IRecipeInput input = entry.getInput();
@@ -187,7 +198,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
             }
         }
 
-        List<ItemStack> list = new FilteredList();
+        List<IStackOutput> list = new ArrayList<>();
         this.operateOnce(input, output, list);
 
         for (int i = 0; i < 4; ++i)
@@ -202,18 +213,8 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
         if (list.size() > 0)
         {
-            for (int i = 0; i < 3 && i < list.size(); i++) {
-                // Dangerous thing here. Might dupe items if there is random rolls
-                ItemStack toAdd = list.get(i);
-                if (toAdd.isEmpty()) {
-                    continue;
-                }
-                if (getStackInSlot(slotOutput + i).isEmpty()) {
-                    setStackInSlot(slotOutput + i, toAdd);
-                } else {
-                    getStackInSlot(slotOutput + i).grow(toAdd.getCount());
-                }
-            }
+            this.results.addAll(list);
+            this.addToInventory();
             this.waterTank.drain(1000, true);
         }
 

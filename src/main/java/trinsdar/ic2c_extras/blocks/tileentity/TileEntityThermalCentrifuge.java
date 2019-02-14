@@ -1,12 +1,13 @@
 package trinsdar.ic2c_extras.blocks.tileentity;
 
-import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
+import ic2.api.classic.tile.IStackOutput;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
+import ic2.core.block.base.util.output.SimpleStackOutput;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.ArrayFilter;
 import ic2.core.inventory.filters.BasicItemFilter;
@@ -17,7 +18,6 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
-import ic2.core.util.helpers.FilteredList;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -146,6 +146,15 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         return EnumActionResult.SUCCESS;
     }
 
+    @Override
+    public void operateOnce(IRecipeInput input, MachineOutput output, List<IStackOutput> list) {
+        List<ItemStack> result = output.getRecipeOutput(getWorld().rand, getTileData());
+        for (int i = 0; i < result.size(); i++) {
+            list.add(new SimpleStackOutput(result.get(i), slotOutput + (i % 3)));
+        }
+        consumeInput(input);
+    }
+
 //    @Override
 //    public boolean canWork()
 //    {
@@ -175,52 +184,6 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
             this.getNetwork().updateTileGuiField(this, "heat");
         }
 
-    }
-
-    @Override
-    public void operate(IMachineRecipeList.RecipeEntry entry) {
-
-        IRecipeInput input = entry.getInput();
-        MachineOutput output = entry.getOutput().copy();
-
-        for (int i = 0; i < 4; ++i)
-        {
-            ItemStack itemStack = this.inventory.get(i + this.inventory.size() - 4);
-            if (itemStack.getItem() instanceof IMachineUpgradeItem)
-            {
-                IMachineUpgradeItem item = (IMachineUpgradeItem) itemStack.getItem();
-                item.onProcessEndPre(itemStack, this, output);
-            }
-        }
-
-        List<ItemStack> list = new FilteredList();
-        this.operateOnce(input, output, list);
-
-        for (int i = 0; i < 4; ++i)
-        {
-            ItemStack itemStack = this.inventory.get(i + this.inventory.size() - 4);
-            if (itemStack.getItem() instanceof IMachineUpgradeItem)
-            {
-                IMachineUpgradeItem item = (IMachineUpgradeItem) itemStack.getItem();
-                item.onProcessEndPost(itemStack, this, input, output, list);
-            }
-        }
-
-        if (list.size() > 0)
-        {
-            for (int i = 0; i < 3 && i < list.size(); i++) {
-                // Dangerous thing here. Might dupe items if there is random rolls
-                ItemStack toAdd = list.get(i);
-                if (toAdd.isEmpty()) {
-                    continue;
-                }
-                if (getStackInSlot(slotOutput + i).isEmpty()) {
-                    setStackInSlot(slotOutput + i, toAdd);
-                } else {
-                    getStackInSlot(slotOutput + i).grow(toAdd.getCount());
-                }
-            }
-        }
     }
 
     @Override
