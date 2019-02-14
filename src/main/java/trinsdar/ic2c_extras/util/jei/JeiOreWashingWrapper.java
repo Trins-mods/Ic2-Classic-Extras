@@ -7,6 +7,7 @@ import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
 import java.awt.Color;
@@ -42,6 +43,6 @@ public class JeiOreWashingWrapper extends BlankRecipeWrapper {
     @Override
     public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
         FontRenderer font = minecraft.fontRenderer;
-        font.drawString(Ic2cExtrasLang.jeiWater.getLocalizedFormatted(new Object[]{Ic2Formatters.bigFormat.format((long) 1000)}), 44, 0, Color.gray.getRGB());
+        font.drawString(Ic2cExtrasLang.jeiWater.getLocalizedFormatted(Ic2Formatters.bigFormat.format((long) TileEntityOreWashingPlant.getRequiredWater(entry.getOutput()))), 44, 0, Color.gray.getRGB());
     }
 }

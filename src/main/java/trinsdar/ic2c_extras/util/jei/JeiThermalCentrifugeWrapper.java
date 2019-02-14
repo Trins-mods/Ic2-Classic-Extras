@@ -45,6 +45,6 @@ public class JeiThermalCentrifugeWrapper extends BlankRecipeWrapper {
     @Override
     public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
         FontRenderer font = minecraft.fontRenderer;
-        font.drawString(Ic2cExtrasLang.jeiHeat.getLocalizedFormatted(new Object[]{Ic2Formatters.bigFormat.format((long) TileEntityThermalCentrifuge.getRequiredHeat(entry.getOutput()))}), 44, 12, Color.gray.getRGB());
+        font.drawString(Ic2cExtrasLang.jeiHeat.getLocalizedFormatted(Ic2Formatters.bigFormat.format((long) TileEntityThermalCentrifuge.getRequiredHeat(entry.getOutput()))), 44, 12, Color.gray.getRGB());
     }
 }
