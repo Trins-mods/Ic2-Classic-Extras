@@ -123,8 +123,8 @@ public class Ic2cExtrasRecipes {
         recipes.addRecipe(new ItemStack(Registry.extruder, 1),
                 " C ", "TBT", "cwc", 'C', basicCircuit,'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', Registry.coil, 'w', Ic2Items.ironFence);
 
-        recipes.addRecipe(new ItemStack(Registry.cutter, 1),
-                " C ", "TBT", "ctc", 'C', basicCircuit,'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', Registry.coil, 't', Ic2Items.cutter);
+        //recipes.addRecipe(new ItemStack(Registry.cutter, 1),
+        //        " C ", "TBT", "ctc", 'C', basicCircuit,'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', Registry.coil, 't', Ic2Items.cutter);
 
         recipes.addRecipe(new ItemStack(Registry.impellerizedRoller, 1),
                 "CCC", "CRC", "CBC", 'R', Registry.roller,'B', Ic2Items.advMachine, 'C', Blocks.STICKY_PISTON);
@@ -132,8 +132,8 @@ public class Ic2cExtrasRecipes {
         recipes.addRecipe(new ItemStack(Registry.liquescentExtruder, 1),
                 "CCC", "CEC", "CBC", 'E', Registry.extruder,'B', Ic2Items.advMachine, 'C', Ic2Items.ironFence);
 
-        recipes.addRecipe(new ItemStack(Registry.plasmaCutter, 1),
-                "CCC", "CcC", "CBC", 'c', Registry.cutter,'B', Ic2Items.advMachine, 'C', Ic2Items.cutter);
+        //recipes.addRecipe(new ItemStack(Registry.plasmaCutter, 1),
+        //        "CCC", "CcC", "CBC", 'c', Registry.cutter,'B', Ic2Items.advMachine, 'C', Ic2Items.cutter);
 
         recipes.addRecipe(new ItemStack(Registry.coil, 1),
                 "CCC", "CIC", "CCC", 'I', IC2.getRefinedIron(),'C', Ic2Items.copperCable);
@@ -482,7 +482,7 @@ public class Ic2cExtrasRecipes {
             extruding.addRecipe(new RecipeInputOreDict("ingotSteel", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f, "HVCableExtruding");
         }
 
-        cutting.addRecipe(new RecipeInputOreDict(IC2.getRefinedIron(), 3), Ic2Items.turbineBlade, "turbineBladeCutting");
+        //cutting.addRecipe(new RecipeInputOreDict(IC2.getRefinedIron(), 3), Ic2Items.turbineBlade, "turbineBladeCutting");
     }
 
     public static void initRailcraftRecipes(){
