@@ -202,6 +202,5 @@ public class JeiPlugin implements IModPlugin {
         registry.addRecipeCategories(new JeiOreWashingCategory(helper));
         registry.addRecipeCategories(new JeiRollerCategory(helper));
         registry.addRecipeCategories(new JeiExtruderCategory(helper));
-        registry.addRecipeCategories(new JeiCutterCategory(helper));
     }
 }
