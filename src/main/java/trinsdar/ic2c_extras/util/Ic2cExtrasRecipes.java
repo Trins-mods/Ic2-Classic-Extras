@@ -58,6 +58,7 @@ public class Ic2cExtrasRecipes {
     public static boolean enableCuttingToolWires;
     public static boolean enableCertainRecipesRequireSteel;
     public static boolean enableHammerRecipes;
+    public static boolean enableTwoPlatesPerIngot;
     public static boolean enableAutoOredictRecipes;
     public static boolean enableLootEntries;
     public static int
@@ -386,7 +387,11 @@ public class Ic2cExtrasRecipes {
                                 if (!listPlates.isEmpty()) {
                                     rolling.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack)listPlates.get(0), plate + "Rolling");
                                     if (enableHammerRecipes){
-                                        recipes.addShapelessRecipe((ItemStack)listPlates.get(0), id, "craftingToolForgeHammer");
+                                        if (enableTwoPlatesPerIngot){
+                                            recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", "I", 'H', "craftingToolForgeHammer", 'I', id  );
+                                        }else {
+                                            recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", 'H', "craftingToolForgeHammer", 'I', id );
+                                        }
                                     }
                                 }
                             }
@@ -398,7 +403,11 @@ public class Ic2cExtrasRecipes {
                             if (!listPlates.isEmpty()) {
                                 rolling.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack)listPlates.get(0), plate + "Rolling");
                                 if (enableHammerRecipes){
-                                    recipes.addShapelessRecipe((ItemStack)listPlates.get(0), id, "craftingToolForgeHammer");
+                                    if (enableTwoPlatesPerIngot){
+                                        recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", "I", 'H', "craftingToolForgeHammer", 'I', id );
+                                    }else {
+                                        recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", 'H', "craftingToolForgeHammer", 'I', id );
+                                    }
                                 }
                             }
                         }
@@ -406,7 +415,6 @@ public class Ic2cExtrasRecipes {
                 }
             }
         }
-
     }
 
     public static void initMachineRecipes(){
@@ -551,12 +559,13 @@ public class Ic2cExtrasRecipes {
 
     }
 
-    public static void setConfig(boolean uranium, boolean casings, boolean wires, boolean steel, boolean hammer, boolean oredict, boolean loot){
+    public static void setConfig(boolean uranium, boolean casings, boolean wires, boolean steel, boolean hammer, boolean oredict, boolean loot, boolean twoPlates){
         enableHarderUranium = uranium;
         enableCasingsRequirePlates = casings;
         enableCuttingToolWires = wires;
         enableCertainRecipesRequireSteel = steel;
         enableHammerRecipes = hammer;
+        enableTwoPlatesPerIngot = twoPlates;
         enableAutoOredictRecipes = oredict;
         enableLootEntries = loot;
     }

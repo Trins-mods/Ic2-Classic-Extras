@@ -85,19 +85,6 @@ public class JeiPlugin implements IModPlugin {
             registry.addRecipeClickArea(ExtruderGui.class, 78, 32, 20, 23, extruderId);
             registry.addRecipes(Ic2cExtrasRecipes.extruding.getRecipeMap(), extruderId);
 
-            //cutter
-            registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
-                @Override
-                public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
-                {
-                    return new JeiCutterWrapper(var1);
-                }
-            }, cutterId);
-            registry.addRecipeCatalyst(new ItemStack(Registry.cutter), cutterId);
-            registry.addRecipeCatalyst(new ItemStack(Registry.plasmaCutter), cutterId);
-            registry.addRecipeClickArea(CutterGui.class, 78, 32, 20, 23, cutterId);
-            registry.addRecipes(Ic2cExtrasRecipes.cutting.getRecipeMap(), cutterId);
-
             IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
             blacklist.addIngredientToBlacklist(new ItemStack(Registry.blastFurnace));
             blacklist.addIngredientToBlacklist(new ItemStack(Registry.solidFuelFirebox));
