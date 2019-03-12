@@ -19,7 +19,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalWasher;
 
 public class ContainerThermalWasher extends ContainerTileComponent<TileEntityThermalWasher>
@@ -30,8 +29,8 @@ public class ContainerThermalWasher extends ContainerTileComponent<TileEntityThe
     {
         super(tile);
 
-        this.addSlotToContainer(new SlotCustom(tile, 0, 56, 17, null));
-        this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 1, 56, 53));
+        this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 0, 56, 53));
+        this.addSlotToContainer(new SlotCustom(tile, 1, 56, 17, null));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 111, 17));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 111, 35));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 111, 53));

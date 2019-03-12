@@ -48,7 +48,6 @@ import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
-import trinsdar.ic2c_extras.blocks.container.ContainerOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.container.ContainerThermalWasher;
 import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
@@ -64,8 +63,8 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     public int water = 0;
     public int maxWater = 20000;
 
-    public static final int slotInput = 0;
-    public static final int slotFuel = 1;
+    public static final int slotFuel = 0;
+    public static final int slotInput = 1;
     public static final int slotOutput = 2;
     public static final int slotOutput2 = 3;
     public static final int slotOutput3 = 4;
@@ -87,8 +86,8 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
         handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
         handler.registerDefaultSlotAccess(AccessRule.Import, slotInput, slotInputTank);
         handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput, slotOutput2, slotOutput3, slotOutputTank);
-        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), 0, 2, 4);
-        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), 1, 3);
+        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), 1, 2, 4);
+        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), 0, 3);
         handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
         handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
         handler.registerSlotType(SlotType.Fuel, slotFuel);
@@ -226,11 +225,6 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     }
 
     @Override
-    public IMachineRecipeList.RecipeEntry getRecipe() {
-        return this.getRecipe(0);
-    }
-
-    @Override
     public IHasInventory getOutputInventory()
     {
         return new RangedInventoryWrapper(this, slotOutput, slotOutput2, slotOutput3, slotOutputTank);
@@ -240,11 +234,6 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     public IHasInventory getInputInventory()
     {
         return new RangedInventoryWrapper(this, slotInput, slotInputTank);
-    }
-
-    @Override
-    public boolean isValidInput(ItemStack par1) {
-        return this.inventory.get(slotInput).isEmpty() ? true : StackUtil.isStackEqual((ItemStack)this.inventory.get(slotInput), par1, false, true);
     }
 
     public FluidStack getFluid()
