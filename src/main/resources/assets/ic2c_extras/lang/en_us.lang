@@ -1,6 +1,7 @@
 #Blocks
 tile.oreWashingPlant.name=Ore Washing Plant
 tile.thermalCentrifuge.name=Thermal Centrifuge
+tile.thermalWasher.name=Thermal Washer
 tile.metalPress.name=Metal Press
 tile.roller.name=Roller
 tile.extruder.name=Extruder
