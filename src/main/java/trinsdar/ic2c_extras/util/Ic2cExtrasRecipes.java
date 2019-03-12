@@ -115,6 +115,8 @@ public class Ic2cExtrasRecipes {
                 " S ", "STS", " S ", 'S', Ic2Items.basicTurbine,'T', Ic2Items.transformerMV);
         recipes.addRecipe(new ItemStack(Registry.oreWashingPlant, 1),
                 "III", "BCB", "McM", 'I', IC2.getRefinedIron(),'B', Items.BUCKET, 'C', Ic2Items.machine, 'M', Ic2Items.carbonMesh, 'c', basicCircuit);
+        recipes.addRecipe(new ItemStack(Registry.thermalWasher, 1),
+                "BBB", "BAB", "BOB", 'B', Items.BUCKET, 'A', Ic2Items.advMachine, 'O', Registry.oreWashingPlant);
         recipes.addRecipe(new ItemStack(Registry.thermalCentrifuge, 1),
                 "CMC", "IAI", "IHI", 'C', Registry.coil,'M', Ic2Items.miningLaser, 'I', IC2.getRefinedIron(), 'A', Ic2Items.advMachine, 'H', Registry.heatConductor);
 

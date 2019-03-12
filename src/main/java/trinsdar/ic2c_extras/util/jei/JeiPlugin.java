@@ -56,6 +56,7 @@ public class JeiPlugin implements IModPlugin {
                 }
             }, oreWashingId);
             registry.addRecipeCatalyst(new ItemStack(Registry.oreWashingPlant), oreWashingId);
+            registry.addRecipeCatalyst(new ItemStack(Registry.thermalWasher), oreWashingId);
             registry.addRecipeClickArea(OreWashingPlantGui.class, 78, 32, 20, 23, oreWashingId);
             registry.addRecipes(Ic2cExtrasRecipes.oreWashingPlant.getRecipeMap(), oreWashingId);
 
