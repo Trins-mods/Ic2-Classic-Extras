@@ -11,6 +11,7 @@ import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityAdvancedMachine;
 import ic2.core.block.base.util.output.SimpleStackOutput;
 import ic2.core.fluid.IC2Tank;
+import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.ArrayFilter;
 import ic2.core.inventory.filters.BasicItemFilter;
@@ -205,7 +206,11 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
 
     @Override
     public void operateOnce(int slot, IRecipeInput input, MachineOutput output, List<IStackOutput> list) {
-        super.operateOnce(slot, input, output, list);
+        List<ItemStack> result = output.getRecipeOutput(getWorld().rand, getTileData());
+        for (int i = 0; i < result.size(); i++) {
+            list.add(new SimpleStackOutput(result.get(i), slotOutput + (i % 3)));
+        }
+        consumeInput(input);
         this.waterTank.drain(getRequiredWater(output), true);
     }
 
@@ -218,6 +223,28 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
             }
 
         }
+    }
+
+    @Override
+    public IMachineRecipeList.RecipeEntry getRecipe() {
+        return this.getRecipe(0);
+    }
+
+    @Override
+    public IHasInventory getOutputInventory()
+    {
+        return new RangedInventoryWrapper(this, slotOutput, slotOutput2, slotOutput3, slotOutputTank);
+    }
+
+    @Override
+    public IHasInventory getInputInventory()
+    {
+        return new RangedInventoryWrapper(this, slotInput, slotInputTank);
+    }
+
+    @Override
+    public boolean isValidInput(ItemStack par1) {
+        return this.inventory.get(slotInput).isEmpty() ? true : StackUtil.isStackEqual((ItemStack)this.inventory.get(slotInput), par1, false, true);
     }
 
     public FluidStack getFluid()
