@@ -17,6 +17,7 @@ public class Icons
     {
         addSprite(new SpriteData("ic2c_extras_blocks", "ic2c_extras:textures/sprites/blocks.png", new SpriteInfo(2, 2)));
         addSprite(new SpriteData("thermalcentrifuge", "ic2c_extras:textures/sprites/thermalcentrifuge.png", new SpriteInfo(1, 12)));
+        addSprite(new SpriteData("thermalwasher", "ic2c_extras:textures/sprites/thermalwasher.png", new SpriteInfo(1, 12)));
         addSprite(new SpriteData("orewashingplant", "ic2c_extras:textures/sprites/orewashingplant.png", new SpriteInfo(1, 12)));
         addSprite(new SpriteData("roller", "ic2c_extras:textures/sprites/roller.png", new SpriteInfo(1, 12)));
         addSprite(new SpriteData("extruder", "ic2c_extras:textures/sprites/extruder.png", new SpriteInfo(1, 12)));
@@ -32,6 +33,7 @@ public class Icons
         addSprite(new SpriteData("ic2c_extras_items", "ic2c_extras:textures/sprites/items.png", new SpriteInfo(16, 6)));
         addTextureEntry(new TextureEntry("ic2c_extras_blocks", 0, 0, 2, 2));
         addTextureEntry(new TextureEntry("thermalcentrifuge", 0, 0, 1, 12));
+        addTextureEntry(new TextureEntry("thermalwasher", 0, 0, 1, 12));
         addTextureEntry(new TextureEntry("orewashingplant", 0, 0, 1, 12));
         addTextureEntry(new TextureEntry("roller", 0, 0, 1, 12));
         addTextureEntry(new TextureEntry("extruder", 0, 0, 1, 12));
