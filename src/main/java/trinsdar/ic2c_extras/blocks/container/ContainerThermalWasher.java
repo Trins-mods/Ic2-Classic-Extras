@@ -24,6 +24,8 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalWasher;
 
 public class ContainerThermalWasher extends ContainerTileComponent<TileEntityThermalWasher>
 {
+    public static Vec2i speedTextPos = new Vec2i(80, 53);
+
     public ContainerThermalWasher(InventoryPlayer player, TileEntityThermalWasher tile)
     {
         super(tile);
@@ -45,7 +47,7 @@ public class ContainerThermalWasher extends ContainerTileComponent<TileEntityThe
         this.addComponent(new MachineChargeComp(tile, Ic2GuiComp.machineChargeBox, Ic2GuiComp.machineChargePos));
         this.addComponent(new MachineProgressComp(tile, Ic2GuiComp.machineProgressBox, Ic2GuiComp.machineProgressPos));
         this.addComponent(new FluidTankComp(new Box2D(13, 32, 16, 58), tile.waterTank, new Vec2i(176, 133), new Box2D(32, 13, 16, 58)));
-        this.addComponent(new MachineSpeedComp(tile, tile.getSpeedName()));
+        this.addComponent(new MachineSpeedComp(tile, tile.getSpeedName(), speedTextPos));
     }
 
     @Override
