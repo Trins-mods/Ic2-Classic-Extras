@@ -20,6 +20,7 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityPlasmaCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalWasher;
 import trinsdar.ic2c_extras.util.Registry;
 
 import java.util.ArrayList;
@@ -47,18 +48,16 @@ public class BlockMachine extends BlockMultiID {
             return new TileEntityOreWashingPlant();
         }else if (this == Registry.thermalCentrifuge){
             return new TileEntityThermalCentrifuge();
+        }else if (this == Registry.thermalWasher){
+            return new TileEntityThermalWasher();
         }else if (this == Registry.roller){
             return new TileEntityRoller();
         }else if (this == Registry.extruder){
             return new TileEntityExtruder();
-        }else if (this == Registry.cutter){
-            return new TileEntityCutter();
         }else if (this == Registry.impellerizedRoller){
             return new TileEntityImpellerizedRoller();
         }else if (this == Registry.liquescentExtruder){
             return new TileEntityLiquescentExtruder();
-        }else if (this == Registry.plasmaCutter){
-            return new TileEntityPlasmaCutter();
         }else{
             return new TileEntityBlock();
         }
@@ -76,14 +75,10 @@ public class BlockMachine extends BlockMultiID {
             return Ic2Icons.getTextures("roller");
         } else if (this == Registry.extruder){
             return Ic2Icons.getTextures("extruder");
-        }else if (this == Registry.cutter){
-            return Ic2Icons.getTextures("cutter");
         }else if (this == Registry.impellerizedRoller){
             return Ic2Icons.getTextures("impellerizedroller");
         }else if (this == Registry.liquescentExtruder){
             return Ic2Icons.getTextures("liquescentextruder");
-        }else if (this == Registry.plasmaCutter){
-            return Ic2Icons.getTextures("plasmacutter");
         }else if (this == Registry.blastFurnace){
             return Ic2Icons.getTextures("blastfurnace");
         }else{

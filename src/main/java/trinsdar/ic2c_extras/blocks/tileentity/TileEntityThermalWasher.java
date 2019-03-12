@@ -1,17 +1,16 @@
 package trinsdar.ic2c_extras.blocks.tileentity;
 
-import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.network.adv.NetworkField;
+import ic2.api.classic.recipe.INullableRecipeInput;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.IStackOutput;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
-import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
+import ic2.core.block.base.tile.TileEntityAdvancedMachine;
 import ic2.core.block.base.util.output.SimpleStackOutput;
 import ic2.core.fluid.IC2Tank;
-import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.ArrayFilter;
 import ic2.core.inventory.filters.BasicItemFilter;
@@ -22,6 +21,7 @@ import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.lang.storage.Ic2GuiLang;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.misc.FluidHelper;
@@ -29,7 +29,9 @@ import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
@@ -46,28 +48,20 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import trinsdar.ic2c_extras.blocks.container.ContainerOreWashingPlant;
+import trinsdar.ic2c_extras.blocks.container.ContainerThermalWasher;
 import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
+import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 
-import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.oreWashingPlant;
-
-public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine implements ITankListener, IFluidHandler
-{
-
+public class TileEntityThermalWasher extends TileEntityAdvancedMachine implements ITankListener, IFluidHandler {
     @NetworkField(index = 13)
-    public IC2Tank waterTank = new IC2Tank(FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 0), 10000);
-
-
-    public static final String waterAmount = "amount";
+    public IC2Tank waterTank = new IC2Tank(FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 0), 20000);
     public int water = 0;
-    public int maxWater = 10000;
-
-
+    public int maxWater = 20000;
 
     public static final int slotInput = 0;
     public static final int slotFuel = 1;
@@ -77,19 +71,17 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     public static final int slotInputTank = 5;
     public static final int slotOutputTank = 6;
 
-    public TileEntityOreWashingPlant()
-    {
-        super(7, 16, 400, 32);
+    public TileEntityThermalWasher() {
+        super(7, 48, 4000);
         this.waterTank.addListener(this);
         this.waterTank.setCanFill(true);
         this.addGuiFields("waterTank");
     }
 
-
     @Override
     protected void addSlots(InventoryHandler handler)
     {
-        this.filter = new MachineFilter(this);
+        //this.filter = new MachineFilter(this);
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
         handler.registerDefaultSlotAccess(AccessRule.Import, slotInput, slotInputTank);
@@ -103,13 +95,56 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2, slotOutput3, slotOutputTank);
     }
 
-    public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input)
-    {
-        return oreWashingPlant.getRecipeInAndOutput(input, false);
+
+
+    @Override
+    public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input) {
+        return Ic2cExtrasRecipes.oreWashingPlant.getRecipeInAndOutput(input, false);
     }
 
     @Override
-    public ResourceLocation getStartSoundFile()
+    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
+    {
+        return OreWashingPlantGui.class;
+    }
+
+    @Override
+    public int[] getOutputSlots() {
+        return new int[]{slotOutput, slotOutput2, slotOutput3};
+    }
+
+    @Override
+    public Slot[] getInventorySlots(InventoryPlayer inventoryPlayer) {
+        return new Slot[0];
+    }
+
+    @Override
+    public ResourceLocation getTexture() {
+        return Ic2cExtrasResourceLocations.thermalWasher;
+    }
+
+    @Override
+    public LocaleComp getSpeedName() {
+        return Ic2GuiLang.machineHeat;
+    }
+
+    @Override
+    public LocaleComp getBlockName() {
+        return Ic2cExtrasLang.thermalWasher;
+    }
+
+    @Override
+    public IMachineRecipeList getRecipeList() {
+        return Ic2cExtrasRecipes.oreWashingPlant;
+    }
+
+    @Override
+    public MachineType getType() {
+        return null;
+    }
+
+    @Override
+    public ResourceLocation getProcessSoundFile()
     {
         return Ic2cExtrasResourceLocations.oreWashingPlantOp;
     }
@@ -121,6 +156,12 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     @Override
+    public ContainerIC2 getGuiContainer(EntityPlayer player)
+    {
+        return new ContainerThermalWasher(player.inventory, this);
+    }
+
+    @Override
     public void update()
     {
         if (!this.inventory.get(slotInputTank).isEmpty())
@@ -128,14 +169,6 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
             this.handleTank();
         }
         super.update();
-    }
-
-    @Override
-    protected EnumActionResult isRecipeStillValid(IMachineRecipeList.RecipeEntry entry) {
-        if (waterTank.getFluidAmount() >= getRequiredWater(entry.getOutput())){
-            return EnumActionResult.SUCCESS;
-        }
-        return EnumActionResult.PASS;
     }
 
     @Override
@@ -171,93 +204,31 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     @Override
-    public void operateOnce(IRecipeInput input, MachineOutput output, List<IStackOutput> list) {
-        List<ItemStack> result = output.getRecipeOutput(getWorld().rand, getTileData());
-        for (int i = 0; i < result.size(); i++) {
-            list.add(new SimpleStackOutput(result.get(i), slotOutput + (i % 3)));
-        }
-        consumeInput(input);
+    public void operateOnce(int slot, IRecipeInput input, MachineOutput output, List<IStackOutput> list) {
+        super.operateOnce(slot, input, output, list);
         this.waterTank.drain(getRequiredWater(output), true);
     }
 
+    public void consumeInput(IRecipeInput input) {
+        if (!(input instanceof INullableRecipeInput) || !this.inventory.get(slotInput).isEmpty()) {
+            if (this.inventory.get(slotInput).getItem().hasContainerItem(this.inventory.get(slotInput))) {
+                this.inventory.set(slotInput, this.inventory.get(0).getItem().getContainerItem(this.inventory.get(slotInput)));
+            } else {
+                this.inventory.get(slotInput).shrink(input.getAmount());
+            }
+
+        }
+    }
 
     public FluidStack getFluid()
     {
         return this.waterTank.getFluid();
     }
 
-    public int getPixel()
-    {
-        return (int) ((double) this.waterTank.getFluidAmount() / (double) this.waterTank.getCapacity() * 58.0D);
-    }
-
     @Override
     public void onTankChanged(IFluidTank tank)
     {
         this.getNetwork().updateTileGuiField(this, "waterTank");
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound nbt)
-    {
-        super.readFromNBT(nbt);
-        this.waterTank.readFromNBT(nbt.getCompoundTag("Tank"));
-    }
-
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
-    {
-        super.writeToNBT(nbt);
-        this.waterTank.writeToNBT(this.getTag(nbt, "Tank"));
-        return nbt;
-    }
-
-    @Override
-    public ContainerIC2 getGuiContainer(EntityPlayer player)
-    {
-        return new ContainerOreWashingPlant(player.inventory, this);
-    }
-
-    @Override
-    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
-    {
-        return OreWashingPlantGui.class;
-    }
-
-
-    @Override
-    public LocaleComp getBlockName()
-    {
-        return Ic2cExtrasLang.oreWashingPlant;
-    }
-
-    public ResourceLocation getGuiTexture()
-    {
-        return Ic2cExtrasResourceLocations.oreWashingPlant;
-    }
-
-    @Override
-    public MachineType getType()
-    {
-        return MachineType.macerator;
-    }
-
-    @Override
-    public IMachineRecipeList getRecipeList()
-    {
-        return oreWashingPlant;
-    }
-
-    @Override
-    public IHasInventory getOutputInventory()
-    {
-        return new RangedInventoryWrapper(this, slotOutput, slotOutput2, slotOutput3, slotOutputTank);
-    }
-
-    @Override
-    public IHasInventory getInputInventory()
-    {
-        return new RangedInventoryWrapper(this, slotInput, slotInputTank);
     }
 
     @Override
@@ -303,6 +274,21 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     @Override
+    public void readFromNBT(NBTTagCompound nbt)
+    {
+        super.readFromNBT(nbt);
+        this.waterTank.readFromNBT(nbt.getCompoundTag("Tank"));
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
+    {
+        super.writeToNBT(nbt);
+        this.waterTank.writeToNBT(this.getTag(nbt, "Tank"));
+        return nbt;
+    }
+
+    @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing)
     {
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
@@ -314,25 +300,18 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? (T)this.waterTank : super.getCapability(capability, facing);
     }
 
+    @Override
+    protected EnumActionResult isRecipeStillValid(IMachineRecipeList.RecipeEntry entry) {
+        if (waterTank.getFluidAmount() >= getRequiredWater(entry.getOutput())){
+            return EnumActionResult.SUCCESS;
+        }
+        return EnumActionResult.PASS;
+    }
+
     public static int getRequiredWater(MachineOutput output) {
         if (output == null || output.getMetadata() == null) {
             return 0;
         }
-        return output.getMetadata().getInteger(waterAmount);
+        return output.getMetadata().getInteger(TileEntityOreWashingPlant.waterAmount);
     }
-
-    protected static NBTTagCompound createNeededWater(int amount) {
-        if (amount <= 0) {
-            return null;
-        }
-        NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setInteger(waterAmount, amount);
-        return nbt;
-    }
-
-    public static void addRecipe(IRecipeInput input, int water, ItemStack... output)
-    {
-        oreWashingPlant.addRecipe(input, new MachineOutput(createNeededWater(water), output), input.getInputs().get(0).getDisplayName());
-    }
-
 }

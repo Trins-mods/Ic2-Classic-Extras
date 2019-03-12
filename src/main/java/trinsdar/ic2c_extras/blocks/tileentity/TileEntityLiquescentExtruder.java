@@ -44,8 +44,7 @@ public class TileEntityLiquescentExtruder extends TileEntityAdvancedMachine {
 
     @Override
     public Slot[] getInventorySlots(InventoryPlayer player) {
-        Slot[] slots = new Slot[]{new SlotDischarge(this, 2147483647, 0, 56, 53), new SlotCustom(this, 1, 56, 17, new MachineFilter(this)), new SlotOutput(player.player, this, 2, 113, 35), new SlotOutput(player.player, this, 3, 131, 35)};
-        return slots;
+        return new Slot[]{new SlotDischarge(this, 2147483647, 0, 56, 53), new SlotCustom(this, 1, 56, 17, new MachineFilter(this)), new SlotOutput(player.player, this, 2, 113, 35), new SlotOutput(player.player, this, 3, 131, 35)};
     }
 
     @Override

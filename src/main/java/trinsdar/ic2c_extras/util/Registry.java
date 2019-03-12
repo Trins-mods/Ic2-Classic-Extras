@@ -17,6 +17,7 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityPlasmaCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalWasher;
 import trinsdar.ic2c_extras.items.itemblocks.ItemBlockGenerator;
 import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMachine;
 import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMetal;
@@ -33,6 +34,7 @@ public class Registry
     public static final BlockMachine
     oreWashingPlant = new BlockMachine("oreWashingPlant"),
     thermalCentrifuge = new BlockMachine("thermalCentrifuge"),
+    thermalWasher = new BlockMachine("thermalWasher"),
     roller = new BlockMachine("roller"),
     extruder = new BlockMachine("extruder"),
     cutter = new BlockMachine("cutter"),
@@ -142,6 +144,7 @@ public class Registry
     public static void init(){
         IC2.getInstance().createBlock(oreWashingPlant, ItemBlockMachine.class);
         IC2.getInstance().createBlock(thermalCentrifuge, ItemBlockMachine.class);
+        IC2.getInstance().createBlock(thermalWasher, ItemBlockMachine.class);
         IC2.getInstance().createBlock(roller, ItemBlockMachine.class);
         IC2.getInstance().createBlock(extruder, ItemBlockMachine.class);
         //IC2.getInstance().createBlock(cutter, ItemBlockMachine.class);
@@ -227,6 +230,7 @@ public class Registry
         GameRegistry.registerTileEntity(TileEntityOreWashingPlant.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityOreWashingPlant"));
         GameRegistry.registerTileEntity(TileEntityAdvancedSteamTurbine.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityAdvancedSteamTurbine"));
         GameRegistry.registerTileEntity(TileEntityThermalCentrifuge.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityThermalCentrifuge"));
+        GameRegistry.registerTileEntity(TileEntityThermalWasher.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityThermalWasher"));
         GameRegistry.registerTileEntity(TileEntityRoller.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityRoller"));
         GameRegistry.registerTileEntity(TileEntityExtruder.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityExtruder"));
         //GameRegistry.registerTileEntity(TileEntityCutter.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityCutter"));
