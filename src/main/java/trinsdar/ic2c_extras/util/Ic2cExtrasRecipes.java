@@ -166,13 +166,7 @@ public class Ic2cExtrasRecipes {
 
         recipes.addRecipe(new ItemStack(Registry.energiumDust, 9), "RRR", "RDR", "RRR", 'R', new RecipeInputOreDict("dustRedstone", 2), 'D', "dustDiamond");
 
-        if (Loader.isModLoaded("gtclassic")){
-            recipes.addRecipe(Ic2Items.electricCircuit,
-                    "CCC", "RcR", "CCC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', casing);
-            recipes.addRecipe(Ic2Items.electricCircuit,
-                    "CRC", "CcC", "CRC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', casing);
-            recipes.addRecipe(new ItemStack(Registry.energiumDust, 9), "RRR", "RDR", "RRR", 'R', new ItemStack(Items.REDSTONE, 2), 'D', "dustRuby");
-        }else{
+        if (!Loader.isModLoaded("gtclassic")){
             recipes.addRecipe(Ic2Items.electricCircuit,
                     "CCC", "RcR", "CCC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', getRefinedIronCasing());
             recipes.addRecipe(Ic2Items.electricCircuit,
