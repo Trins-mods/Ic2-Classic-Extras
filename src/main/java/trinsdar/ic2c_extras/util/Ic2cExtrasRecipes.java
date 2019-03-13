@@ -80,7 +80,7 @@ public class Ic2cExtrasRecipes {
 
     static IRecipeInput casing = new RecipeInputCombined(1,
             new RecipeInputOreDict("casingRefinedIron"),
-            new RecipeInputOreDict("casingSilver"), new RecipeInputOreDict("casingSteel"));
+            new RecipeInputOreDict("casingBronze"), new RecipeInputOreDict("casingSteel"));
 
     static IRecipeInput crushedCopper = new RecipeInputCombined(1,
             new RecipeInputOreDict("crushedCopper"),
@@ -116,15 +116,15 @@ public class Ic2cExtrasRecipes {
         recipes.addRecipe(new ItemStack(Registry.oreWashingPlant, 1),
                 "III", "BCB", "McM", 'I', IC2.getRefinedIron(),'B', Items.BUCKET, 'C', Ic2Items.machine, 'M', Ic2Items.carbonMesh, 'c', basicCircuit);
         recipes.addRecipe(new ItemStack(Registry.thermalWasher, 1),
-                "BBB", "BAB", "BOB", 'B', Items.BUCKET, 'A', Ic2Items.advMachine, 'O', Registry.oreWashingPlant);
+                "BBB", "BOB", "BAB", 'B', Items.BUCKET, 'O', Registry.oreWashingPlant, 'A', Ic2Items.advMachine);
         recipes.addRecipe(new ItemStack(Registry.thermalCentrifuge, 1),
                 "CMC", "IAI", "IHI", 'C', Registry.coil,'M', Ic2Items.miningLaser, 'I', IC2.getRefinedIron(), 'A', Ic2Items.advMachine, 'H', Registry.heatConductor);
 
         recipes.addRecipe(new ItemStack(Registry.roller, 1),
-                " C ", "TBT", "ctc", 'C', basicCircuit,'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', Registry.coil, 't', Blocks.PISTON);
+                "CPC", "PBP", "cPc", 'C', basicCircuit, 'B', Ic2Items.machine, 'c', Registry.coil, 'P', Blocks.PISTON);
 
         recipes.addRecipe(new ItemStack(Registry.extruder, 1),
-                " C ", "TBT", "cwc", 'C', basicCircuit,'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', Registry.coil, 'w', Ic2Items.ironFence);
+                "iCi", "cMc", "iCi", 'C', basicCircuit, 'i', casing, 'M', Ic2Items.machine, 'c', Registry.coil);
 
         //recipes.addRecipe(new ItemStack(Registry.cutter, 1),
         //        " C ", "TBT", "ctc", 'C', basicCircuit,'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', Registry.coil, 't', Ic2Items.cutter);
