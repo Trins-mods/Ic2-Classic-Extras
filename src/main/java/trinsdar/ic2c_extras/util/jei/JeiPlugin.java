@@ -13,7 +13,11 @@ import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import net.minecraft.item.ItemStack;
-import trinsdar.ic2c_extras.util.GuiMachine.*;
+import net.minecraftforge.fml.common.Loader;
+import trinsdar.ic2c_extras.util.GuiMachine.ExtruderGui;
+import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
+import trinsdar.ic2c_extras.util.GuiMachine.RollerGui;
+import trinsdar.ic2c_extras.util.GuiMachine.ThermalCentrifugeGui;
 import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.Registry;
 
@@ -91,6 +95,13 @@ public class JeiPlugin implements IModPlugin {
             blacklist.addIngredientToBlacklist(new ItemStack(Registry.solidFuelFirebox));
             blacklist.addIngredientToBlacklist(new ItemStack(Registry.liquidFuelFirebox));
             blacklist.addIngredientToBlacklist(new ItemStack(Registry.electricHeater));
+            if (Loader.isModLoaded("gtclassic")){
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.refinedIronPlate));
+            }
+            if (Loader.isModLoaded("railcraft") || Loader.isModLoaded("immersiveengineering") || Loader.isModLoaded("gtclassic")){
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.bronzePlate));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.steelPlate));
+            }
             if (IC2.config.getFlag("NonRadiation")){
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.oreWashingPlant));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.thermalCentrifuge));

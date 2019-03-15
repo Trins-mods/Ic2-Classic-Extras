@@ -1,6 +1,7 @@
 package trinsdar.ic2c_extras.util;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class Ic2cExtrasOredict {
@@ -54,9 +55,13 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("dustLead", Registry.leadDust);
         OreDictionary.registerOre("ingotLead", Registry.leadIngot);
         OreDictionary.registerOre("ingotSteel", Registry.steelIngot);
-        OreDictionary.registerOre("plateRefinedIron", Registry.refinedIronPlate);
-        OreDictionary.registerOre("plateBronze", Registry.bronzePlate);
-        OreDictionary.registerOre("plateSteel", Registry.steelPlate);
+        if (!Loader.isModLoaded("gtclassic")){
+            OreDictionary.registerOre("plateRefinedIron", Registry.refinedIronPlate);
+        }
+        if (!Loader.isModLoaded("railcraft") && !Loader.isModLoaded("immersiveengineering") && !Loader.isModLoaded("gtclassic")){
+            OreDictionary.registerOre("plateBronze", Registry.bronzePlate);
+            OreDictionary.registerOre("plateSteel", Registry.steelPlate);
+        }
         OreDictionary.registerOre("dustStone", Registry.stoneDust);
         OreDictionary.registerOre("dustDiamond", Registry.diamondDust);
         OreDictionary.registerOre("itemSlag", Registry.slag);
