@@ -132,6 +132,8 @@ public class Registry
             doubleEnrichedUraniumIngot = new ItemMiscs("doubleEnrichedUraniumIngot", 75),
             iridiumShard = new ItemMiscs("iridiumShard", 76),
             refinedIronPlate = new ItemMiscs("refinedIronPlate", 79),
+            bronzePlate = new ItemMiscs("bronzePlate", 57),
+            steelPlate = new ItemMiscs("steelPlate", 58),
             diamondDust = new ItemMiscs("diamondDust", 43),
             energiumDust = new ItemMiscs("energiumDust", 44);
 
@@ -219,6 +221,8 @@ public class Registry
         IC2.getInstance().createItem(doubleEnrichedUraniumIngot);
         IC2.getInstance().createItem(iridiumShard);
         IC2.getInstance().createItem(refinedIronPlate);
+        IC2.getInstance().createItem(bronzePlate);
+        IC2.getInstance().createItem(steelPlate);
         IC2.getInstance().createItem(diamondDust);
         IC2.getInstance().createItem(energiumDust);
         IC2.getInstance().createItem(craftingHammer);
