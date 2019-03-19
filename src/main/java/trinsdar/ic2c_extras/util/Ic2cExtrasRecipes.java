@@ -337,6 +337,7 @@ public class Ic2cExtrasRecipes {
         Set<String> crushedPurifiedBlackList = new HashSet();
         Set<String> plateBlacklist = new HashSet();
         Set<String> ingotWhitelist = new HashSet();
+        Set<String> ingotGTBlacklist = new HashSet();
         Set<String> gemBlacklist = new HashSet();
         Set<String> ingotBmeMmeBlacklist = new HashSet();
         crushedBlacklist.addAll(Arrays.asList("crushedIron", "crushedGold", "crushedSilver", "crushedLead", "crushedCopper", "crushedTin", "crushedUranium"));
@@ -344,6 +345,9 @@ public class Ic2cExtrasRecipes {
         plateBlacklist.addAll(Arrays.asList("plateIron", "plateGold", "plateSilver", "plateLead", "plateCopper", "plateTin", "plateRefinedIron", "plateSteel", "plateBronze"));
         ingotWhitelist.addAll(Arrays.asList("ingotIron", "ingotGold", "ingotSilver", "ingotLead", "ingotCopper", "ingotTin", "ingotRefinedIron", "ingotSteel", "ingotBronze"));
         gemBlacklist.addAll(Arrays.asList("ingotDiamond", "ingotEmerald", "ingotQuartz", "ingotIridium"));
+        if (Loader.isModLoaded("gtclassic")){
+            ingotGTBlacklist.addAll(Arrays.asList("ingotGermanium", "ingotTungsten", "ingotInvar", "ingotZinc", "ingotManganese", "ingotMagnalium", "ingotElectrum", "ingotConstantan", "ingotAluminum", "ingotGraphite", "ingotPlatinum", "ingotChrome", "ingotBrass", "ingotPlutonium", "ingotTungstensteel", "ingotTitanium", "ingotNickel", "ingotOsmium", "ingotNichrome", "ingotTantalum"));
+        }
         if (Loader.isModLoaded("basemetals")){
             plateBlacklist.addAll(Arrays.asList("plateAdamantine", "plateAntimony", "plateBismuth", "plateColdiron", "plateNickel", "platePlatinum", "plateStarsteel", "plateZinc"));
             ingotBmeMmeBlacklist.addAll(Arrays.asList("ingotAdamantine", "ingotAntimony", "ingotBismuth", "ingotColdiron", "ingotNickel", "ingotPlatinum", "ingotStarsteel", "ingotZinc"));
@@ -386,7 +390,9 @@ public class Ic2cExtrasRecipes {
                                         if (enableTwoPlatesPerIngot){
                                             recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", "I", 'H', "craftingToolForgeHammer", 'I', id  );
                                         }else {
-                                            recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", 'H', "craftingToolForgeHammer", 'I', id );
+                                            if(!Loader.isModLoaded("gtclassic")){
+                                                recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", 'H', "craftingToolForgeHammer", 'I', id );
+                                            }
                                         }
                                     }
                                 }
@@ -402,7 +408,9 @@ public class Ic2cExtrasRecipes {
                                     if (enableTwoPlatesPerIngot){
                                         recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", "I", 'H', "craftingToolForgeHammer", 'I', id );
                                     }else {
-                                        recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", 'H', "craftingToolForgeHammer", 'I', id );
+                                        if (!ingotGTBlacklist.contains(id)){
+                                            recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", 'H', "craftingToolForgeHammer", 'I', id );
+                                        }
                                     }
                                 }
                             }
