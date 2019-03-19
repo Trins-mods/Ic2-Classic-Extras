@@ -1,0 +1,30 @@
+[
+{
+   "modid": "ic2c_extras",
+   "name": "Ic2c Extras",
+   "description": "Extra things for Ic2 classic",
+   "version": "${modversion}",
+   "mcversion": "${mcversion}",
+   "url": "",
+   "updateUrl": "",
+   "authorList": ["Trinsdar"],
+   "credits": "The Forge and FML guys, for making this example",
+   "logoFile": "",
+   "screenshots": [],
+   "dependencies": []
+ },
+ {
+   "modid": "ic2c_extrasdupeprvnt",
+   "name": "Ic2c Extras Dupe Preventer",
+   "description": "A class within Ic2c Extras to prevent 2 versions being run at the same time and to make sure people have the correct dependencies.",
+   "version": "${modversion}",
+   "mcversion": "${mcversion}",
+   "url": "",
+   "updateUrl": "",
+   "authorList": ["Trinsdar"],
+   "credits": "The Forge and FML guys, for making this example",
+   "logoFile": "",
+   "screenshots": [],
+   "dependencies": []
+ }
+ ]
