@@ -150,9 +150,6 @@ public class Ic2cExtrasRecipes {
         recipes.addRecipe(new ItemStack(Registry.wireCutters, 1),
                 "I I", " I ", "S S", 'I', IC2.getRefinedIron(),'S', "stickWood");
 
-        recipes.addRecipe(Ic2Items.battery,
-                " C ", "TRT", "TRT", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'T', "casingTin");
-
         recipes.addRecipe(Ic2Items.fuelCan,
                 " TT", "T T", "TTT", 'T', "casingTin");
 
@@ -166,7 +163,12 @@ public class Ic2cExtrasRecipes {
 
         recipes.addRecipe(new ItemStack(Registry.energiumDust, 9), "RRR", "RDR", "RRR", 'R', new RecipeInputOreDict("dustRedstone", 2), 'D', "dustDiamond");
 
-        if (!Loader.isModLoaded("gtclassic")){
+        if (Loader.isModLoaded("gtclassic")){
+            recipes.addRecipe(Ic2Items.battery,
+                    " C ", "TRT", "TRT", 'C', Ic2Items.copperCable,'R', Items.REDSTONE, 'T', "casingTin");
+        }else {
+            recipes.addRecipe(Ic2Items.battery,
+                    " C ", "TRT", "TRT", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'T', "casingTin");
             recipes.addRecipe(Ic2Items.electricCircuit,
                     "CCC", "RcR", "CCC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', getRefinedIronCasing());
             recipes.addRecipe(Ic2Items.electricCircuit,
