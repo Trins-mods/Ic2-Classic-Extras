@@ -218,25 +218,25 @@ public class Ic2cExtrasRecipes {
 
         if (enableHammerRecipes){
             if (enableCasingsRequirePlates){
-                recipes.addShapelessRecipe(new ItemStack(Registry.copperCasing, 2), "plateCopper", Registry.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(Registry.tinCasing, 2), "plateTin", Registry.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(Registry.silverCasing, 2), "plateSilver", Registry.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(Registry.leadCasing, 2), "plateLead", Registry.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(Registry.ironCasing, 2), "plateIron", Registry.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(Registry.goldCasing, 2), "plateGold", Registry.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(Registry.refinedIronCasing, 2), "plateRefinedIron", Registry.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(Registry.steelCasing, 2), "plateSteel", Registry.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(Registry.bronzeCasing, 2), "plateBronze", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.copperCasing, 2), "plateCopper", "craftingToolForgeHammer");
+                recipes.addShapelessRecipe(new ItemStack(Registry.tinCasing, 2), "plateTin", "craftingToolForgeHammer");
+                recipes.addShapelessRecipe(new ItemStack(Registry.silverCasing, 2), "plateSilver", "craftingToolForgeHammer");
+                recipes.addShapelessRecipe(new ItemStack(Registry.leadCasing, 2), "plateLead", "craftingToolForgeHammer");
+                recipes.addShapelessRecipe(new ItemStack(Registry.ironCasing, 2), "plateIron", "craftingToolForgeHammer");
+                recipes.addShapelessRecipe(new ItemStack(Registry.goldCasing, 2), "plateGold", "craftingToolForgeHammer");
+                recipes.addShapelessRecipe(new ItemStack(Registry.refinedIronCasing, 2), "plateRefinedIron", "craftingToolForgeHammer");
+                recipes.addShapelessRecipe(new ItemStack(Registry.steelCasing, 2), "plateSteel", "craftingToolForgeHammer");
+                recipes.addShapelessRecipe(new ItemStack(Registry.bronzeCasing, 2), "plateBronze", "craftingToolForgeHammer");
             }else{
-                recipes.addShapelessRecipe(new ItemStack(Registry.copperCasing, 2), "ingotCopper", Registry.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(Registry.tinCasing, 2), "ingotTin", Registry.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(Registry.silverCasing, 2), "ingotSilver", Registry.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(Registry.leadCasing, 2), "ingotLead", Registry.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(Registry.ironCasing, 2), "ingotIron", Registry.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(Registry.goldCasing, 2), "ingotGold", Registry.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(Registry.refinedIronCasing, 2), "ingotRefinedIron", Registry.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(Registry.steelCasing, 2), "ingotSteel", Registry.craftingHammer);
-                recipes.addShapelessRecipe(new ItemStack(Registry.bronzeCasing, 2), "ingotBronze", Registry.craftingHammer);
+                recipes.addShapelessRecipe(new ItemStack(Registry.copperCasing, 2), "ingotCopper", "craftingToolForgeHammer");
+                recipes.addShapelessRecipe(new ItemStack(Registry.tinCasing, 2), "ingotTin", "craftingToolForgeHammer");
+                recipes.addShapelessRecipe(new ItemStack(Registry.silverCasing, 2), "ingotSilver", "craftingToolForgeHammer");
+                recipes.addShapelessRecipe(new ItemStack(Registry.leadCasing, 2), "ingotLead", "craftingToolForgeHammer");
+                recipes.addShapelessRecipe(new ItemStack(Registry.ironCasing, 2), "ingotIron", "craftingToolForgeHammer");
+                recipes.addShapelessRecipe(new ItemStack(Registry.goldCasing, 2), "ingotGold", "craftingToolForgeHammer");
+                recipes.addShapelessRecipe(new ItemStack(Registry.refinedIronCasing, 2), "ingotRefinedIron", "craftingToolForgeHammer");
+                recipes.addShapelessRecipe(new ItemStack(Registry.steelCasing, 2), "ingotSteel", "craftingToolForgeHammer");
+                recipes.addShapelessRecipe(new ItemStack(Registry.bronzeCasing, 2), "ingotBronze", "craftingToolForgeHammer");
             }
         }
     }
