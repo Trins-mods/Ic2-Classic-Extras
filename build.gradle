@@ -75,18 +75,16 @@ processResources {
     inputs.property "modversion", "${mod_version}"
     inputs.property "mcversion", "${mc_version}"
 
-    // replace stuff in ic2c_extras.info, nothing else
+    // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
-        include 'ic2c_extras.info'
-        include 'ic2c_extras_dp.info'
+        include 'mcmod.info'
                 
         // replace version and mcversion
         expand 'modversion':"${mod_version}", 'mcversion':"${mc_version}"
     }
         
-    // copy everything else except the ic2c_extras.info
+    // copy everything else except the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
-        exclude 'ic2c_extras.info'
-        exclude 'ic2c_extras_dp.info'
+        exclude 'mcmod.info'
     }
 }
