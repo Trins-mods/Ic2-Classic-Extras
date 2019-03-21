@@ -346,7 +346,7 @@ public class Ic2cExtrasRecipes {
         crushedPurifiedBlackList.addAll(Arrays.asList("crushedPurifiedIron", "crushedPurifiedGold", "crushedPurifiedSilver", "crushedPurifiedLead", "crushedPurifiedCopper", "crushedPurifiedTin", "crushedPurifiedUranium"));
         plateBlacklist.addAll(Arrays.asList("plateIron", "plateGold", "plateSilver", "plateLead", "plateCopper", "plateTin", "plateRefinedIron", "plateSteel", "plateBronze"));
         ingotWhitelist.addAll(Arrays.asList("ingotIron", "ingotGold", "ingotSilver", "ingotLead", "ingotCopper", "ingotTin", "ingotRefinedIron", "ingotSteel", "ingotBronze"));
-        gemBlacklist.addAll(Arrays.asList("ingotDiamond", "ingotEmerald", "ingotQuartz", "ingotIridium"));
+        gemBlacklist.addAll(Arrays.asList("ingotDiamond", "ingotEmerald", "ingotQuartz", "ingotIridium", "ingotCoal"));
         if (Loader.isModLoaded("gtclassic")){
             ingotGTBlacklist.addAll(Arrays.asList("ingotGermanium", "ingotTungsten", "ingotInvar", "ingotZinc", "ingotManganese", "ingotMagnalium", "ingotElectrum", "ingotConstantan", "ingotAluminum", "ingotGraphite", "ingotPlatinum", "ingotChrome", "ingotBrass", "ingotPlutonium", "ingotTungstensteel", "ingotTitanium", "ingotNickel", "ingotOsmium", "ingotNichrome", "ingotTantalum"));
         }
