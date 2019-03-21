@@ -24,7 +24,8 @@ public class Config implements IConfigNotify {
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCrafingHammerRecipes", "Enables crafting plates and casings with the hammer", "HammerRecipes", true).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableManualPlatesTwoIngots", "Enables manual crafting of plates taking 2 ingots", "PlatesTwoIngots", false).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCertainRecipesNeedSteel", "Enables the requirement of steel for hv cables, plasma cables, advanced machine blocks, and tesla coils. Does nothing if enableSteelRecipes is true.", "CertainRecipesNeedSteel", false).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableAutoOredictRecipes", "Enables adding recipes for crushed ore, purified crushed ore, casings, ect. to ore washing plant, thermal centrifuge, roller, and crafting table.", "AutoOredictRecipes", true).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableAutoOredictRecipes", "Enables adding recipes for plates and casings to roller and crafting table.", "AutoOredictRecipes", true).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCauldronCrushedOre", "Enables the ability to wash crushed ore with a cauldron when gtclassic is loaded.", "CauldronCrushedOre", true).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableLootEntries", "Enables adding tiny plutonium and iridium shards to vanilla loot tables", "LootEntries", true).setGameRestart().setServerSync());
             IC2.config.addConfigNotify(config);
         }else {

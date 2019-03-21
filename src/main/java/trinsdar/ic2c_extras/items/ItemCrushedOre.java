@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.items;
 
+import ic2.core.IC2;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.block.properties.PropertyInteger;
@@ -46,7 +47,7 @@ public class ItemCrushedOre extends Item implements IStaticTexturedItem
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         ItemStack stoneDust = new ItemStack(Registry.stoneDust);
-        if (Loader.isModLoaded("gtclassic")){
+        if (Loader.isModLoaded("gtclassic") && IC2.config.getFlag("CauldronCrushedOre")){
             if (this == Registry.copperCrushedOre){
                 washCrushedOre(player, worldIn, pos, hand, Registry.copperCrushedOre, new ItemStack(Registry.copperPurifiedCrushedOre, 1), new ItemStack(Registry.copperTinyDust, 1), stoneDust);
             }

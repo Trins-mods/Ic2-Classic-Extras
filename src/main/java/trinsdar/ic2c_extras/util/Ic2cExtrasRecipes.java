@@ -133,7 +133,7 @@ public class Ic2cExtrasRecipes {
                 "CCC", "CRC", "CBC", 'R', Registry.roller,'B', Ic2Items.advMachine, 'C', Blocks.STICKY_PISTON);
 
         recipes.addRecipe(new ItemStack(Registry.liquescentExtruder, 1),
-                "CCC", "CEC", "CBC", 'E', Registry.extruder,'B', Ic2Items.advMachine, 'C', Ic2Items.ironFence);
+                "CCC", "CEC", "CBC", 'E', Registry.extruder,'B', Ic2Items.advMachine, 'C', casing);
 
         //recipes.addRecipe(new ItemStack(Registry.plasmaCutter, 1),
         //        "CCC", "CcC", "CBC", 'c', Registry.cutter,'B', Ic2Items.advMachine, 'C', Ic2Items.cutter);
