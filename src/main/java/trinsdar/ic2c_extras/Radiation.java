@@ -4,7 +4,9 @@ import static ic2.core.item.armor.standart.ItemHazmatArmor.isFullHazmatSuit;
 
 import java.util.ArrayList;
 
+import gtclassic.GTBlocks;
 import gtclassic.GTItems;
+import gtclassic.block.GTBlock;
 import ic2.core.entity.IC2Potion;
 import ic2.core.item.armor.electric.ItemArmorQuantumSuit;
 import ic2.core.platform.registry.Ic2Items;
@@ -75,6 +77,11 @@ public class Radiation {
 			radiation.add(Ic2Items.reactorReEnrichedEnderPearlUraniumRod);
 			radiation.add(Ic2Items.reactorReEnrichedNetherStarUraniumRod);
 			radiation.add(Ic2Items.reactorReEnrichedCharcoalUraniumRod);
+			if (Loader.isModLoaded("gtclassic")){
+				radiation.add(new ItemStack(GTBlocks.smallPlutonium));
+				radiation.add(new ItemStack(GTBlocks.medPlutonium));
+				radiation.add(new ItemStack(GTBlocks.largePlutonium));
+			}
 		}
 	}
 
