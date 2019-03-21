@@ -14,6 +14,8 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
+import trinsdar.ic2c_extras.util.GuiMachine;
+import trinsdar.ic2c_extras.util.GuiMachine.CutterGui;
 import trinsdar.ic2c_extras.util.GuiMachine.ExtruderGui;
 import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
 import trinsdar.ic2c_extras.util.GuiMachine.RollerGui;
@@ -89,6 +91,19 @@ public class JeiPlugin implements IModPlugin {
             registry.addRecipeCatalyst(new ItemStack(Registry.liquescentExtruder), extruderId);
             registry.addRecipeClickArea(ExtruderGui.class, 78, 32, 20, 23, extruderId);
             registry.addRecipes(Ic2cExtrasRecipes.extruding.getRecipeMap(), extruderId);
+
+            //extruder
+            registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>(){
+                @Override
+                public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1)
+                {
+                    return new JeiCutterWrapper(var1);
+                }
+            }, cutterId);
+            registry.addRecipeCatalyst(new ItemStack(Registry.cutter), cutterId);
+            registry.addRecipeCatalyst(new ItemStack(Registry.plasmaCutter), cutterId);
+            registry.addRecipeClickArea(CutterGui.class, 78, 32, 20, 23, cutterId);
+            registry.addRecipes(Ic2cExtrasRecipes.cutting.getRecipeMap(), cutterId);
 
             IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
             blacklist.addIngredientToBlacklist(new ItemStack(Registry.blastFurnace));
@@ -214,5 +229,6 @@ public class JeiPlugin implements IModPlugin {
         registry.addRecipeCategories(new JeiOreWashingCategory(helper));
         registry.addRecipeCategories(new JeiRollerCategory(helper));
         registry.addRecipeCategories(new JeiExtruderCategory(helper));
+        registry.addRecipeCategories(new JeiCutterCategory(helper));
     }
 }

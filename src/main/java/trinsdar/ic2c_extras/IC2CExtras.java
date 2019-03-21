@@ -60,7 +60,7 @@ public class IC2CExtras extends PluginBase
     {
         if (!IC2.config.getFlag("NonRadiation")){
             Recipes.metalformerExtruding = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.extruding.toIC2Exp();
-            Recipes.metalformerCutting = (IBasicMachineRecipeManager) ClassicRecipes.sawMill.toIC2Exp();
+            Recipes.metalformerCutting = (IBasicMachineRecipeManager) Ic2cExtrasRecipes.cutting.toIC2Exp();
             Recipes.metalformerRolling = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.rolling.toIC2Exp();
             Recipes.oreWashing = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.oreWashingPlant.toIC2Exp();
             Recipes.centrifuge = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.thermalCentrifuge.toIC2Exp();
