@@ -495,8 +495,6 @@ public class Ic2cExtrasRecipes {
         }else {
             extruding.addRecipe(new RecipeInputOreDict("ingotSteel", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f, "HVCableExtruding");
         }
-
-        //cutting.addRecipe(new RecipeInputOreDict(IC2.getRefinedIron(), 3), Ic2Items.turbineBlade, "turbineBladeCutting");
     }
 
     public static void initRailcraftRecipes(){
