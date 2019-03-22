@@ -31,6 +31,7 @@ import trinsdar.ic2c_extras.util.GuiMachine.ThermalCentrifugeGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
+import javax.swing.plaf.synth.SynthDesktopIconUI;
 import java.util.List;
 
 import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.thermalCentrifuge;
@@ -50,7 +51,13 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         return (float)this.heat;
     }
 
-    public float getMaxHeat() { return (float)this.maxHeat; }
+    public float getMaxHeat() {
+        if (lastRecipe == null){
+            return (float) maxHeat;
+        }else {
+            return (float) getRequiredHeat(lastRecipe.getOutput());
+        }
+    }
 
     @Override
     public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input) {
@@ -201,7 +208,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 
     public static int getRequiredHeat(MachineOutput output) {
         if (output == null || output.getMetadata() == null) {
-            return 0;
+            return 1;
         }
         return output.getMetadata().getInteger(neededHeat);
     }
