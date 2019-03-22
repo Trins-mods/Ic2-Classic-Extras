@@ -4,15 +4,15 @@ import static ic2.core.item.armor.standart.ItemHazmatArmor.isFullHazmatSuit;
 
 import java.util.ArrayList;
 
-import gtclassic.GTBlocks;
-import gtclassic.GTItems;
-import gtclassic.block.GTBlock;
 import ic2.core.entity.IC2Potion;
 import ic2.core.item.armor.electric.ItemArmorQuantumSuit;
 import ic2.core.platform.registry.Ic2Items;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -78,11 +78,25 @@ public class Radiation {
 			radiation.add(Ic2Items.reactorReEnrichedNetherStarUraniumRod);
 			radiation.add(Ic2Items.reactorReEnrichedCharcoalUraniumRod);
 			if (Loader.isModLoaded("gtclassic")){
-				radiation.add(new ItemStack(GTBlocks.smallPlutonium));
-				radiation.add(new ItemStack(GTBlocks.medPlutonium));
-				radiation.add(new ItemStack(GTBlocks.largePlutonium));
+				radiation.add(new ItemStack(getBlock("gtclassic:rod_plutonium_small")));
+				radiation.add(new ItemStack(getBlock("gtclassic:rod_plutonium_med")));
+				radiation.add(new ItemStack(getBlock("gtclassic:rod_plutonium_large")));
+				radiation.add(new ItemStack(getItem("gtclassic:uranium_dustsmall")));
+				radiation.add(new ItemStack(getItem("gtclassic:uranium_dust")));
+				radiation.add(new ItemStack(getItem("gtclassic:plutonium_dustsmall")));
+				radiation.add(new ItemStack(getItem("gtclassic:plutonium_dust")));
 			}
 		}
+	}
+
+	public static Item getItem(String name) {
+		ResourceLocation loc = new ResourceLocation(name);
+		return Item.getByNameOrId(loc.toString());
+	}
+
+	public static Block getBlock(String name) {
+		ResourceLocation loc = new ResourceLocation(name);
+		return Block.getBlockFromName(loc.toString());
 	}
 
 	public boolean hasFullQuantumSuit(EntityPlayer player) {

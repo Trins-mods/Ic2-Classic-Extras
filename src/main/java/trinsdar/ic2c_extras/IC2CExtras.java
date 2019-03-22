@@ -52,7 +52,6 @@ public class IC2CExtras extends PluginBase
     public void preInit(FMLPreInitializationEvent fmlPreInitializationEvent, Map<String, IOverrideObject> map)
     {
         proxy.preInit();
-        MinecraftForge.EVENT_BUS.register(new Radiation());
     }
 
     @Override
@@ -73,6 +72,7 @@ public class IC2CExtras extends PluginBase
     {
         proxy.init();
         MinecraftForge.EVENT_BUS.register(new Ic2cExtrasRecipes());
+        MinecraftForge.EVENT_BUS.register(new Radiation());
     }
 
     @Override
