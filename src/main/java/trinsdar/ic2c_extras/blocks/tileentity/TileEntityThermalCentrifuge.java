@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.blocks.tileentity;
 
+import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.IStackOutput;
@@ -38,6 +39,7 @@ import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.thermalCentrifuge;
 
 public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 {
+    @NetworkField(index = 13)
     public static int maxHeat = 500;
     public int heat;
 
@@ -175,8 +177,8 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     @Override
     public void update() {
         super.update();
-
         if ((isRedstonePowered() || (lastRecipe != null && !this.inventory.get(slotInput).isEmpty())) && this.energy > 0) {
+            maxHeat = (int)getMaxHeat();
             if (this.heat < getMaxHeat()) {
                 ++this.heat;
                 this.getNetwork().updateTileGuiField(this, "heat");
@@ -187,6 +189,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 
             this.useEnergy(1);
         } else if (this.heat > 0) {
+            maxHeat = 500;
             this.heat -= Math.min(this.heat, 4);
             this.getNetwork().updateTileGuiField(this, "heat");
         }

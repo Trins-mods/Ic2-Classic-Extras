@@ -34,7 +34,7 @@ public class MachineHeatComp extends GuiComponent {
         if (heat > 0) {
             int x = gui.getXOffset();
             int y = gui.getYOffset();
-            float per = heat / this.block.getMaxHeat();
+            float per = heat / this.block.maxHeat;
             if (per > 1.0F) {
                 per = 1.0F;
             }
@@ -57,7 +57,7 @@ public class MachineHeatComp extends GuiComponent {
     public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
         if (this.isMouseOver(mouseX, mouseY) && PlayerHandler.getClientPlayerHandler().hasEUReader()) {
             tooltips.add(Ic2cExtrasLang.heat
-                    .getLocalizedFormatted(new Object[] { this.block.getHeat(), this.block.getMaxHeat() }));
+                    .getLocalizedFormatted(new Object[] { this.block.getHeat(), this.block.maxHeat }));
         }
 
     }
