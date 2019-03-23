@@ -54,11 +54,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     }
 
     public float getMaxHeat() {
-        if (lastRecipe == null){
-            return (float) maxHeat;
-        }else {
-            return (float) getRequiredHeat(lastRecipe.getOutput());
-        }
+        return (float) getRequiredHeat(lastRecipe.getOutput());
     }
 
     @Override
@@ -177,7 +173,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     @Override
     public void update() {
         super.update();
-        if ((isRedstonePowered() || (lastRecipe != null && !this.inventory.get(slotInput).isEmpty())) && this.energy > 0) {
+        if ((lastRecipe != null && !this.inventory.get(slotInput).isEmpty()) && this.energy > 0) {
             maxHeat = (int)getMaxHeat();
             if (this.heat < getMaxHeat()) {
                 ++this.heat;
@@ -185,6 +181,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
             }
             if (this.heat > getMaxHeat()){
                 this.heat = (int)getMaxHeat();
+                this.getNetwork().updateTileGuiField(this, "heat");
             }
 
             this.useEnergy(1);
