@@ -40,13 +40,14 @@ import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.thermalCentrifuge;
 public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 {
     @NetworkField(index = 13)
-    public static int maxHeat = 500;
+    public int maxHeat = 500;
+    @NetworkField(index = 14)
     public int heat;
 
     public static final String neededHeat = "minHeat";
     public TileEntityThermalCentrifuge() {
         super( 5, 48, 400, 128);
-        this.addGuiFields("heat");
+        this.addGuiFields("heat", "maxHeat");
     }
 
     public float getHeat() {
@@ -174,7 +175,12 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     public void update() {
         super.update();
         if ((lastRecipe != null && !this.inventory.get(slotInput).isEmpty()) && this.energy > 0) {
-            maxHeat = (int)getMaxHeat();
+            int newMaxHeat = (int)getMaxHeat();
+            if(newMaxHeat != maxHeat)
+            {
+                maxHeat = newMaxHeat;
+                getNetwork().updateTileGuiField(this, "maxHeat");
+            }
             if (this.heat < getMaxHeat()) {
                 ++this.heat;
                 this.getNetwork().updateTileGuiField(this, "heat");
@@ -186,7 +192,12 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 
             this.useEnergy(1);
         } else if (this.heat > 0) {
-            maxHeat = 500;
+            int newMaxHeat = 500;
+            if(newMaxHeat != maxHeat)
+            {
+                maxHeat = newMaxHeat;
+                getNetwork().updateTileGuiField(this, "maxHeat");
+            }
             this.heat -= Math.min(this.heat, 4);
             this.getNetwork().updateTileGuiField(this, "heat");
         }
