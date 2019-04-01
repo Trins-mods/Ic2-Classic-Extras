@@ -6,6 +6,7 @@ tile.metalPress.name=Metal Press
 tile.roller.name=Roller
 tile.extruder.name=Extruder
 tile.cutter.name=Cutter
+tile.dirt9000.name=Dirt 9000
 tile.impellerizedRoller.name=Impellerized Roller
 tile.liquescentExtruder.name=Liquescent Extruder
 tile.plasmaCutter.name=Plasma Cutter

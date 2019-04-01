@@ -41,7 +41,8 @@ public class Registry
     impellerizedRoller = new BlockMachine("impellerizedRoller"),
     liquescentExtruder = new BlockMachine("liquescentExtruder"),
     plasmaCutter = new BlockMachine("plasmaCutter"),
-    blastFurnace = new BlockMachine("blastFurnace");
+    blastFurnace = new BlockMachine("blastFurnace"),
+    dirt9000 = new BlockMachine("dirt9000");
     public static final BlockIc2cEGenerator
     advancedSteamTurbine = new BlockIc2cEGenerator("advancedSteamTurbine"),
     solidFuelFirebox = new BlockIc2cEGenerator("solidFuelFirebox"),
@@ -150,6 +151,7 @@ public class Registry
         IC2.getInstance().createBlock(roller, ItemBlockMachine.class);
         IC2.getInstance().createBlock(extruder, ItemBlockMachine.class);
         IC2.getInstance().createBlock(cutter, ItemBlockMachine.class);
+        IC2.getInstance().createBlock(dirt9000, ItemBlockMachine.class);
         IC2.getInstance().createBlock(impellerizedRoller, ItemBlockMachine.class);
         IC2.getInstance().createBlock(liquescentExtruder, ItemBlockMachine.class);
         IC2.getInstance().createBlock(plasmaCutter, ItemBlockMachine.class);

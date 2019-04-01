@@ -106,6 +106,7 @@ public class Ic2cExtrasRecipes {
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
     public static void initShapedRecipes(){
         FluidStack water = new FluidStack(FluidRegistry.WATER, 1000);
+        recipes.addRecipe(new ItemStack(Registry.dirt9000), "DDD", "DCD", "DDD", 'D', Items.DIAMOND, 'C', Ic2Items.machine);
         recipes.addRecipe(new ItemStack(Registry.advancedSteamTurbine, 1),
                 " S ", "STS", " S ", 'S', Ic2Items.basicTurbine,'T', Ic2Items.transformerMV);
         recipes.addRecipe(new ItemStack(Registry.oreWashingPlant, 1),
