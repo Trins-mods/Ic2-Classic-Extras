@@ -316,7 +316,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
     public static int getRequiredWater(MachineOutput output) {
         if (output == null || output.getMetadata() == null) {
-            return 0;
+            return 1000;
         }
         return output.getMetadata().getInteger(waterAmount);
     }

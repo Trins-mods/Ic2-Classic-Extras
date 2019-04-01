@@ -1,11 +1,8 @@
 package trinsdar.ic2c_extras.util;
 
-import com.mcmoddev.basemetals.data.MaterialNames;
-
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
-import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.IC2;
 import ic2.core.block.machine.high.TileEntityUraniumEnricher;
@@ -20,7 +17,7 @@ import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2States;
 import ic2.core.util.misc.StackUtil;
-import mods.railcraft.common.items.RailcraftItems;
+import mods.railcraft.api.crafting.Crafters;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -61,6 +58,7 @@ public class Ic2cExtrasRecipes {
     public static boolean enableTwoPlatesPerIngot;
     public static boolean enableAutoOredictRecipes;
     public static boolean enableLootEntries;
+    public static boolean enableUraniumOreDropReplacement;
     public static int
     itemQuality = 0,
     dungeonWeight = 10,
@@ -74,9 +72,6 @@ public class Ic2cExtrasRecipes {
     public static IMachineRecipeList cutting = new BasicMachineRecipeList("cutting");
     public static IMachineRecipeList oreWashingPlant = new BasicMachineRecipeList("oreWashingPlant");
     public static IMachineRecipeList thermalCentrifuge = new BasicMachineRecipeList("thermalCentrifuge");
-
-    public static MaterialNames materialNamesBme;
-    public static com.mcmoddev.modernmetals.data.MaterialNames materialNamesMme;
 
     static IRecipeInput casing = new RecipeInputCombined(1,
             new RecipeInputOreDict("casingRefinedIron"),
@@ -364,22 +359,8 @@ public class Ic2cExtrasRecipes {
         if (enableAutoOredictRecipes){
             for(int var4 = 0; var4 < var3; ++var4) {
                 String id = var2[var4];
-                String casing;
                 String plate;
-                NonNullList listCasings;
                 NonNullList listPlates;
-                if (id.startsWith("plate")) {
-                    if (!plateBlacklist.contains(id)){
-                        casing = "casing" + id.substring(5);
-                        if (OreDictionary.doesOreNameExist(casing)) {
-                            listCasings = OreDictionary.getOres(casing, false);
-                            if (!listCasings.isEmpty()) {
-                                rolling.addRecipe(new RecipeInputOreDict(id, 1), StackUtil.copyWithSize((ItemStack)listCasings.get(0), 2), casing + "Rolling");
-                            }
-                        }
-                    }
-
-                }
                 if (id.startsWith("ingot")){
                     if (ingotWhitelist.contains(id) && !gemBlacklist.contains(id)){
                         plate = "plate" + id.substring(5);
@@ -388,13 +369,11 @@ public class Ic2cExtrasRecipes {
                                 listPlates = OreDictionary.getOres(plate, false);
                                 if (!listPlates.isEmpty()) {
                                     rolling.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack)listPlates.get(0), plate + "Rolling");
-                                    if (enableHammerRecipes){
+                                    if (enableHammerRecipes && !Loader.isModLoaded("gtclassic")){
                                         if (enableTwoPlatesPerIngot){
                                             recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", "I", 'H', "craftingToolForgeHammer", 'I', id  );
                                         }else {
-                                            if(!Loader.isModLoaded("gtclassic")){
-                                                recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", 'H', "craftingToolForgeHammer", 'I', id );
-                                            }
+                                            recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", 'H', "craftingToolForgeHammer", 'I', id );
                                         }
                                     }
                                 }
@@ -406,13 +385,11 @@ public class Ic2cExtrasRecipes {
                             listPlates = OreDictionary.getOres(plate, false);
                             if (!listPlates.isEmpty()) {
                                 rolling.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack)listPlates.get(0), plate + "Rolling");
-                                if (enableHammerRecipes){
+                                if (enableHammerRecipes && !ingotGTBlacklist.contains(id)){
                                     if (enableTwoPlatesPerIngot){
                                         recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", "I", 'H', "craftingToolForgeHammer", 'I', id );
                                     }else {
-                                        if (!ingotGTBlacklist.contains(id)){
-                                            recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", 'H', "craftingToolForgeHammer", 'I', id );
-                                        }
+                                        recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", 'H', "craftingToolForgeHammer", 'I', id );
                                     }
                                 }
                             }
@@ -497,12 +474,22 @@ public class Ic2cExtrasRecipes {
         }
     }
 
+    public static void removeRockCrusherRecipes(ItemStack stack){
+        Crafters.rockCrusher().getRecipes().removeIf(r -> stack.equals(r.getOutputs().get(0).getOutput()));
+    }
+
     public static void initRailcraftRecipes(){
         if (Loader.isModLoaded("railcraft")){
-            //Crafters.rockCrusher().getRecipes().removeIf(-> true);
-            macerator.addRecipe(new RecipeInputOreDict("itemSlag"), RailcraftItems.DUST.getStack(1, 4), "Ground Blast Furnace Slag");
+            removeRockCrusherRecipes(Ic2Items.ironDust);
+            removeRockCrusherRecipes(Ic2Items.goldDust);
+            removeRockCrusherRecipes(Ic2Items.copperDust);
+            removeRockCrusherRecipes(Ic2Items.tinDust);
+            removeRockCrusherRecipes(Ic2Items.silverDust);
+            removeRockCrusherRecipes(Ic2Items.uraniumDrop);
         }
     }
+
+
     public static void initHarderUraniumProcessing(){
         ItemStack stoneDust = new ItemStack(Registry.stoneDust);
         if (enableHarderUranium){
@@ -527,7 +514,7 @@ public class Ic2cExtrasRecipes {
     public void onHarvestDropsEvent(BlockEvent.HarvestDropsEvent event) {
         IBlockState block = event.getState();
         if (block == Ic2States.uraniumOre){
-            if (enableHarderUranium){
+            if (enableUraniumOreDropReplacement){
                 event.getDrops().clear();
                 event.getDrops().add(Ic2Items.uraniumOre);
             }
@@ -563,7 +550,7 @@ public class Ic2cExtrasRecipes {
 
     }
 
-    public static void setConfig(boolean uranium, boolean casings, boolean wires, boolean steel, boolean hammer, boolean oredict, boolean loot, boolean twoPlates){
+    public static void setConfig(boolean uranium, boolean casings, boolean wires, boolean steel, boolean hammer, boolean oredict, boolean loot, boolean twoPlates, boolean uraniumDrop){
         enableHarderUranium = uranium;
         enableCasingsRequirePlates = casings;
         enableCuttingToolWires = wires;
@@ -572,5 +559,6 @@ public class Ic2cExtrasRecipes {
         enableTwoPlatesPerIngot = twoPlates;
         enableAutoOredictRecipes = oredict;
         enableLootEntries = loot;
+        enableUraniumOreDropReplacement = uraniumDrop;
     }
 }

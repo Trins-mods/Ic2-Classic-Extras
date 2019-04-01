@@ -27,6 +27,7 @@ public class Config implements IConfigNotify {
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableAutoOredictRecipes", "Enables adding recipes for plates and casings to roller and crafting table.", "AutoOredictRecipes", true).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCauldronCrushedOre", "Enables the ability to wash crushed ore with a cauldron when gtclassic is loaded.", "CauldronCrushedOre", true).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableLootEntries", "Enables adding tiny plutonium and iridium shards to vanilla loot tables", "LootEntries", true).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableUraniumOreDropReplacement", "Enables replacing the drop of uranium ore with the block instead of uranium ore item.", "UraniumOreDropReplacement", true).setGameRestart().setServerSync());
             IC2.config.addConfigNotify(config);
         }else {
             throw new RuntimeException("The Ic2Classic config is not loaded");
@@ -37,6 +38,6 @@ public class Config implements IConfigNotify {
     @Override
     public void onConfigReloaded(IC2Config config) {
         Radiation.setConfig(config.getFlag("ItemRadiation"));
-        Ic2cExtrasRecipes.setConfig(config.getFlag("HarderUranium"), config.getFlag("CasingsNeedPlates"), config.getFlag("CablesWithPlates"), config.getFlag("CertainRecipesNeedSteel"), config.getFlag("HammerRecipes"), config.getFlag("AutoOredictRecipes"), config.getFlag("LootEntries"), config.getFlag("PlatesTwoIngots"));
+        Ic2cExtrasRecipes.setConfig(config.getFlag("HarderUranium"), config.getFlag("CasingsNeedPlates"), config.getFlag("CablesWithPlates"), config.getFlag("CertainRecipesNeedSteel"), config.getFlag("HammerRecipes"), config.getFlag("AutoOredictRecipes"), config.getFlag("LootEntries"), config.getFlag("PlatesTwoIngots"), config.getFlag("UraniumOreDropReplacement"));
     }
 }
