@@ -29,7 +29,7 @@ public class CommonProxy
 
     public void postInit()
     {
-
+        Ic2cExtrasRecipes.initRailcraftRecipes();
     }
 }
 
