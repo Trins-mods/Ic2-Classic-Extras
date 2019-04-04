@@ -3,6 +3,7 @@ package trinsdar.ic2c_extras.util;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.OreDictionary;
+import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 
 public class Ic2cExtrasOredict {
     public static void init(){

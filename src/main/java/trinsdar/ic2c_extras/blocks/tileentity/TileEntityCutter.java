@@ -16,7 +16,7 @@ import trinsdar.ic2c_extras.util.GuiMachine.CutterGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
-import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.cutting;
+import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.cutting;
 
 public class TileEntityCutter extends TileEntityBasicElectricMachine {
     public TileEntityCutter(){

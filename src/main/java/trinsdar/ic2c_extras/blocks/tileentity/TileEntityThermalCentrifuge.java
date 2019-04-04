@@ -32,10 +32,9 @@ import trinsdar.ic2c_extras.util.GuiMachine.ThermalCentrifugeGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
-import javax.swing.plaf.synth.SynthDesktopIconUI;
 import java.util.List;
 
-import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.thermalCentrifuge;
+import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.thermalCentrifuge;
 
 public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 {

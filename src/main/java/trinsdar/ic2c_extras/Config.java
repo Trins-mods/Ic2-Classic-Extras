@@ -3,7 +3,7 @@ import ic2.core.IC2;
 import ic2.core.platform.config.ConfigEntry;
 import ic2.core.platform.config.IC2Config;
 import ic2.core.platform.config.components.IConfigNotify;
-import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
+import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 
 public class Config implements IConfigNotify {
     private static Config config = new Config();

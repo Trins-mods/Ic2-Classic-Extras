@@ -14,13 +14,12 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
-import trinsdar.ic2c_extras.util.GuiMachine;
 import trinsdar.ic2c_extras.util.GuiMachine.CutterGui;
 import trinsdar.ic2c_extras.util.GuiMachine.ExtruderGui;
 import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
 import trinsdar.ic2c_extras.util.GuiMachine.RollerGui;
 import trinsdar.ic2c_extras.util.GuiMachine.ThermalCentrifugeGui;
-import trinsdar.ic2c_extras.util.Ic2cExtrasRecipes;
+import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.Registry;
 
 import javax.annotation.Nonnull;

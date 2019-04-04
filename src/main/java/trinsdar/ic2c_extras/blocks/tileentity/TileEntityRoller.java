@@ -16,7 +16,7 @@ import trinsdar.ic2c_extras.util.GuiMachine.RollerGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
-import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.rolling;
+import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.rolling;
 
 public class TileEntityRoller extends TileEntityBasicElectricMachine {
     public TileEntityRoller(){

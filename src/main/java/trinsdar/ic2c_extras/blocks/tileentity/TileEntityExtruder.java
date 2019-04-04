@@ -16,7 +16,7 @@ import trinsdar.ic2c_extras.util.GuiMachine.ExtruderGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
-import static trinsdar.ic2c_extras.util.Ic2cExtrasRecipes.extruding;
+import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.extruding;
 
 public class TileEntityExtruder extends TileEntityBasicElectricMachine {
     public TileEntityExtruder(){
