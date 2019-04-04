@@ -475,11 +475,11 @@ public class Ic2cExtrasRecipes {
         }
     }
 
-    public static void removeRockCrusherRecipes(ItemStack output){
+    private static void removeRockCrusherRecipes(ItemStack output){
         Crafters.rockCrusher().getRecipes().removeIf(r -> output.isItemEqual(r.getOutputs().get(0).getOutput()));
     }
 
-    public static void addRockCrusherRecipe(Ingredient input, Item output){
+    private static void addRockCrusherRecipe(Ingredient input, Item output){
         Crafters.rockCrusher().makeRecipe(input).name("ic2:crushedOre")
                 .addOutput(new ItemStack(output, 2))
                 .register();
