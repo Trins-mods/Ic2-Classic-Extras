@@ -3,6 +3,7 @@ package trinsdar.ic2c_extras.proxy;
 import ic2.core.IC2;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import trinsdar.ic2c_extras.Config;
 import trinsdar.ic2c_extras.gtintegration.MaterialGen;
 import trinsdar.ic2c_extras.recipes.RailcraftRecipes;
@@ -15,9 +16,8 @@ public class CommonProxy
 {
     public static Configuration config;
 
-    public void preInit()
+    public void preInit(FMLPreInitializationEvent event)
     {
-        Config.init();
         Registry.init();
         MaterialGen.init();
         Registry.initMaterials();

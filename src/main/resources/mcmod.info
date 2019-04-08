@@ -14,9 +14,9 @@
    "dependencies": []
  },
  {
-   "modid": "ic2c_extrasdupeprvnt",
-   "name": "Ic2c Extras Dupe Preventer",
-   "description": "A class within Ic2c Extras to prevent 2 versions being run at the same time and to make sure people have the correct dependencies.",
+   "modid": "ic2c_extrasconfigt",
+   "name": "Ic2c Extras Config Loader",
+   "description": "A class within Ic2c Extras to add config entries to the Ic2 config",
    "version": "${modversion}",
    "mcversion": "${mcversion}",
    "url": "",

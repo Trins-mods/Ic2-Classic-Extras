@@ -11,6 +11,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -24,33 +26,27 @@ import trinsdar.ic2c_extras.util.Icons;
 
 import java.util.Map;
 
-@IC2Plugin(name = IC2CExtras.NAME, id = IC2CExtras.MODID, version = IC2CExtras.VERSION, hasResourcePack = true)
-public class IC2CExtras extends PluginBase
+@Mod(name = IC2CExtras.NAME, modid = IC2CExtras.MODID, version = IC2CExtras.VERSION, dependencies = IC2CExtras.DEPENDS)
+public class IC2CExtras
 {
     public static final String MODID = "ic2c_extras";
     public static final String NAME = "IC2CExtras";
     public static final String VERSION = "@VERSION@";
-    public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod";
+    public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod;after:gtclassic";
+    public static final CreativeTabs creativeTab = new CreativeTabIC2CExtras(MODID);
 
-    public static SideGateway<CommonProxy> gateway = new SideGateway<>("trinsdar.ic2c_extras.proxy.ClientProxy", "trinsdar.ic2c_extras.proxy.ServerProxy");
-    public static CommonProxy proxy = gateway.get();
+    @SidedProxy(clientSide = "trinsdar.ic2c_extras.proxy.ClientProxy", serverSide = "trinsdar.ic2c_extras.proxy.ServerProxy")
+    public static CommonProxy proxy;
+
+    @Mod.Instance
+    public static IC2CExtras instance;
+
     public static Logger logger;
 
-    @Override
-    public boolean canLoad(Side side)
+    @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event)
     {
-        return Loader.isModLoaded("ic2-classic-spmod");
-    }
-
-    @Override
-    public void preInit(FMLPreInitializationEvent fmlPreInitializationEvent, Map<String, IOverrideObject> map)
-    {
-        proxy.preInit();
-    }
-
-    @Override
-    public void preInit(FMLPreInitializationEvent fmlPreInitializationEvent)
-    {
+        proxy.preInit(event);
         if (!IC2.config.getFlag("NonRadiation")){
             Recipes.metalformerExtruding = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.extruding.toIC2Exp();
             Recipes.metalformerCutting = (IBasicMachineRecipeManager) Ic2cExtrasRecipes.cutting.toIC2Exp();
@@ -61,7 +57,7 @@ public class IC2CExtras extends PluginBase
 
     }
 
-    @Override
+    @Mod.EventHandler
     public void init(FMLInitializationEvent fmlInitializationEvent)
     {
         proxy.init();
@@ -69,35 +65,11 @@ public class IC2CExtras extends PluginBase
         MinecraftForge.EVENT_BUS.register(new Radiation());
     }
 
-    @Override
+    @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent fmlPostInitializationEvent)
     {
         proxy.postInit();
     }
 
-    @Override
-    public void gameLoaded(FMLLoadCompleteEvent fmlLoadCompleteEvent)
-    {
 
-    }
-
-    @Override
-    public void onTextureLoad()
-    {
-        Icons.loadSprites();
-    }
-
-    @Override
-    public void onServerStarting(MinecraftServer minecraftServer)
-    {
-
-    }
-
-    @Override
-    public void onServerStopped()
-    {
-
-    }
-
-    public static final CreativeTabs creativeTab = new CreativeTabIC2CExtras(MODID);
 }
