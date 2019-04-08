@@ -4,6 +4,7 @@ import ic2.core.IC2;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Loader;
 import trinsdar.ic2c_extras.Config;
+import trinsdar.ic2c_extras.gtintegration.MaterialGen;
 import trinsdar.ic2c_extras.recipes.RailcraftRecipes;
 import trinsdar.ic2c_extras.util.Ic2cExtrasOredict;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
@@ -18,6 +19,8 @@ public class CommonProxy
     {
         Config.init();
         Registry.init();
+        MaterialGen.init();
+        Registry.initMaterials();
         Registry.registerTiles();
     }
 

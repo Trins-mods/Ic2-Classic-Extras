@@ -2,6 +2,7 @@ package trinsdar.ic2c_extras.util;
 
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockRare;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import trinsdar.ic2c_extras.IC2CExtras;
@@ -18,6 +19,7 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityPlasmaCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalWasher;
+import trinsdar.ic2c_extras.gtintegration.MaterialGen;
 import trinsdar.ic2c_extras.items.itemblocks.ItemBlockGenerator;
 import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMachine;
 import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMetal;
@@ -227,6 +229,12 @@ public class Registry
         IC2.getInstance().createItem(energiumDust);
         IC2.getInstance().createItem(craftingHammer);
         IC2.getInstance().createItem(wireCutters);
+    }
+
+    public static void initMaterials(){
+        for (Item item : MaterialGen.itemMap.values()) {
+            IC2.getInstance().createItem(item);
+        }
     }
 
     public static void registerTiles()
