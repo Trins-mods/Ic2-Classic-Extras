@@ -3,7 +3,9 @@ package trinsdar.ic2c_extras.util;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.OreDictionary;
+import trinsdar.ic2c_extras.gtintegration.MaterialGen;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
+import trinsdar.ic2c_extras.recipes.RecipeCrushed;
 
 public class Ic2cExtrasOredict {
     public static void init(){
@@ -83,5 +85,14 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("blockSteel", Registry.steelBlock);
         OreDictionary.registerOre("blockRefinedIron", Registry.refinedIronBlock);
         OreDictionary.registerOre("blockLead", Registry.leadBlock);
+
+        if (Loader.isModLoaded("gtclassic")){
+            for (RecipeCrushed.RecipeCauldronEnum recipes : RecipeCrushed.RecipeCauldronEnum.values()) {
+                OreDictionary.registerOre("crushed" + recipes.getInput().getDisplayName(), MaterialGen.getStack(recipes.getInput(), "crushedore", 1));
+            }
+            for (RecipeCrushed.RecipeThermalCentrifugeEnum recipes : RecipeCrushed.RecipeThermalCentrifugeEnum.values()) {
+                OreDictionary.registerOre("crushedPurified" + recipes.getInput().getDisplayName(), MaterialGen.getStack(recipes.getInput(), "purifiedcrushedore", 1));
+            }
+        }
     }
 }

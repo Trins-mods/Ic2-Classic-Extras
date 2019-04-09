@@ -1,28 +1,27 @@
 package trinsdar.ic2c_extras.gtintegration;
 
-import gtclassic.GTBlocks;
 import gtclassic.GTOreRegistry;
 import gtclassic.block.GTBlockOreStone;
 import gtclassic.material.GTMaterial;
-import gtclassic.material.GTMaterialFlag;
-import gtclassic.material.GTMaterialItem;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import trinsdar.ic2c_extras.util.Registry;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 public class MaterialGen {
     public static LinkedHashMap<String, Item> itemMap = new LinkedHashMap<>();
     public static void init(){
+        Set<GTOreRegistry> ores = new HashSet<>();
+        ores.addAll(Arrays.asList(GTOreRegistry.CALCITE, GTOreRegistry.CINNABAR, GTOreRegistry.GRAPHITE, GTOreRegistry.IRIDIUM, GTOreRegistry.ANTHRACITE, GTOreRegistry.OLIVINE, GTOreRegistry.RUBY, GTOreRegistry.SALTPETER, GTOreRegistry.SAPPHIRE, GTOreRegistry.SODALITE, GTOreRegistry.SULFUR, GTOreRegistry.SALT, GTOreRegistry.VIBRANIUM));
         for (Block ore : Block.REGISTRY){
-            System.out.println("getting blocks");
             if (ore instanceof GTBlockOreStone){
                 GTBlockOreStone ore2 = (GTBlockOreStone)ore;
                 GTOreRegistry registry = ore2.getOreEntry();
-                System.out.println("found a gt ore");
-                if (registry != GTOreRegistry.CALCITE && registry != GTOreRegistry.CINNABAR && registry != GTOreRegistry.GRAPHITE && registry != GTOreRegistry.IRIDIUM && registry != GTOreRegistry.ANTHRACITE && registry != GTOreRegistry.OLIVINE && registry != GTOreRegistry.RUBY && registry != GTOreRegistry.SALTPETER && registry != GTOreRegistry.SAPPHIRE && registry != GTOreRegistry.SODALITE && registry != GTOreRegistry.SULFUR && registry != GTOreRegistry.SALT && registry != GTOreRegistry.VIBRANIUM){
+                if (!ores.contains(registry)){
                     createCrushedOre(ore2.getOreEntry().getMaterial());
                     createPurifiedCrushedOre(ore2.getOreEntry().getMaterial());
                 }

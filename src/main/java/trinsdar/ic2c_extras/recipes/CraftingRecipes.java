@@ -36,6 +36,13 @@ public class CraftingRecipes {
     private static String basicCircuit = "circuitBasic";
 
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
+    public static void init(){
+        initShapedRecipes();
+        initShapelessRecipes();
+        initReplaceRecipes();
+        initCompressRecipes();
+    }
+
     public static void initShapedRecipes(){
         FluidStack water = new FluidStack(FluidRegistry.WATER, 1000);
         recipes.addRecipe(new ItemStack(Registry.advancedSteamTurbine, 1),

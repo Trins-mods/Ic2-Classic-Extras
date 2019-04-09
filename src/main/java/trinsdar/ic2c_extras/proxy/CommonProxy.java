@@ -19,9 +19,11 @@ public class CommonProxy
     public void preInit(FMLPreInitializationEvent event)
     {
         Registry.init();
-        MaterialGen.init();
-        Registry.initMaterials();
         Registry.registerTiles();
+        if (Loader.isModLoaded("gtclassic")){
+            MaterialGen.init();
+            Registry.initMaterials();
+        }
     }
 
     public void init()

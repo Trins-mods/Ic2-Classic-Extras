@@ -48,24 +48,12 @@ public class ItemCrushedOre extends Item implements IStaticTexturedItem
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         ItemStack stoneDust = new ItemStack(Registry.stoneDust);
         if (Loader.isModLoaded("gtclassic") && IC2.config.getFlag("CauldronCrushedOre")){
-            if (this == Registry.copperCrushedOre){
-                washCrushedOre(player, worldIn, pos, hand, Registry.copperCrushedOre, new ItemStack(Registry.copperPurifiedCrushedOre, 1), new ItemStack(Registry.copperTinyDust, 1), stoneDust);
-            }
-            if (this == Registry.tinCrushedOre){
-                washCrushedOre(player, worldIn, pos, hand, Registry.tinCrushedOre, new ItemStack(Registry.tinPurifiedCrushedOre, 1), new ItemStack(Registry.tinTinyDust, 1), stoneDust);
-            }
-            if (this == Registry.ironCrushedOre){
-                washCrushedOre(player, worldIn, pos, hand, Registry.ironCrushedOre, new ItemStack(Registry.ironPurifiedCrushedOre, 1), new ItemStack(Registry.ironTinyDust, 1), stoneDust);
-            }
-            if (this == Registry.goldCrushedOre){
-                washCrushedOre(player, worldIn, pos, hand, Registry.goldCrushedOre, new ItemStack(Registry.goldPurifiedCrushedOre, 1), new ItemStack(Registry.goldTinyDust, 1), stoneDust);
-            }
-            if (this == Registry.silverCrushedOre){
-                washCrushedOre(player, worldIn, pos, hand, Registry.silverCrushedOre, new ItemStack(Registry.silverPurifiedCrushedOre, 1), new ItemStack(Registry.silverTinyDust, 1), stoneDust);
-            }
-            if (this == Registry.leadCrushedOre){
-                washCrushedOre(player, worldIn, pos, hand, Registry.leadCrushedOre, new ItemStack(Registry.leadPurifiedCrushedOre, 1), new ItemStack(Registry.leadTinyDust, 1), stoneDust);
-            }
+            washCrushedOre(player, worldIn, pos, hand, Registry.copperCrushedOre, new ItemStack(Registry.copperPurifiedCrushedOre, 1), new ItemStack(Registry.copperTinyDust, 2), stoneDust);
+            washCrushedOre(player, worldIn, pos, hand, Registry.tinCrushedOre, new ItemStack(Registry.tinPurifiedCrushedOre, 1), new ItemStack(Registry.tinTinyDust, 2), stoneDust);
+            washCrushedOre(player, worldIn, pos, hand, Registry.ironCrushedOre, new ItemStack(Registry.ironPurifiedCrushedOre, 1), new ItemStack(Registry.ironTinyDust, 2), stoneDust);
+            washCrushedOre(player, worldIn, pos, hand, Registry.goldCrushedOre, new ItemStack(Registry.goldPurifiedCrushedOre, 1), new ItemStack(Registry.goldTinyDust, 2), stoneDust);
+            washCrushedOre(player, worldIn, pos, hand, Registry.silverCrushedOre, new ItemStack(Registry.silverPurifiedCrushedOre, 1), new ItemStack(Registry.silverTinyDust, 2), stoneDust);
+            washCrushedOre(player, worldIn, pos, hand, Registry.leadCrushedOre, new ItemStack(Registry.leadPurifiedCrushedOre, 1), new ItemStack(Registry.leadTinyDust, 2), stoneDust);
         }
         return EnumActionResult.PASS;
     }

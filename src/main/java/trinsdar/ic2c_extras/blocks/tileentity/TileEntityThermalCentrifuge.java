@@ -32,6 +32,7 @@ import trinsdar.ic2c_extras.util.GuiMachine.ThermalCentrifugeGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.thermalCentrifuge;
@@ -234,7 +235,16 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 
     public static void addRecipe(IRecipeInput input, int heat, ItemStack... output)
     {
-        thermalCentrifuge.addRecipe(input, new MachineOutput(createNeededHeat(heat), output), input.getInputs().get(0).getDisplayName());
+        List<ItemStack> outputlist = new ArrayList<>();
+        for (ItemStack stack : output) {
+            outputlist.add(stack);
+        }
+        addRecipe(input, heat, outputlist);
+    }
+
+    public static void addRecipe(IRecipeInput input, int heat, List<ItemStack> outputlist)
+    {
+        thermalCentrifuge.addRecipe(input, new MachineOutput(createNeededHeat(heat), outputlist), input.getInputs().get(0).getDisplayName());
     }
 
 }

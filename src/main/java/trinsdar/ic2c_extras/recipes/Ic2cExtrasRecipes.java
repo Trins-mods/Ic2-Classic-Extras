@@ -22,6 +22,7 @@ import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraft.world.storage.loot.functions.SetMetadata;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
@@ -59,15 +60,12 @@ public class Ic2cExtrasRecipes {
     }
 
     public static void init(){
-        CraftingRecipes.initShapedRecipes();
-        CraftingRecipes.initShapelessRecipes();
-        CraftingRecipes.initReplaceRecipes();
-        CraftingRecipes.initCompressRecipes();
-        MachineRecipes.initFurnaceRecipes();
-        MachineRecipes.initReplaceMaceratorRecipes();
-        MachineRecipes.initMachineRecipes();
+        CraftingRecipes.init();
+        MachineRecipes.init();
         initHarderUraniumProcessing();
-        MachineRecipes.postInit();
+        if (Loader.isModLoaded("gtclassic")){
+            GTRecipes.init();
+        }
     }
 
 

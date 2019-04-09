@@ -86,6 +86,37 @@ item.energiumDust.name=Energium Dust
 item.craftingHammer.name=Crafting Hammer
 item.wireCutters.name=Wire Cutters
 
+item.ic2c_extras.bauxiteCrushedOre.name=Crushed Bauxite Ore
+item.ic2c_extras.bauxitePurifiedCrushedOre.name=Purified Crushed Bauxite Ore
+item.ic2c_extras.chromiteCrushedOre.name=Crushed Chromite Ore
+item.ic2c_extras.chromitePurifiedCrushedOre.name=Purified Crushed Chromite Ore
+item.ic2c_extras.cryoliteCrushedOre.name=Crushed Cryolite Ore
+item.ic2c_extras.cryolitePurifiedCrushedOre.name=Purified Crushed Cryolite Ore
+item.ic2c_extras.galenaCrushedOre.name=Crushed Galena Ore
+item.ic2c_extras.galenaPurifiedCrushedOre.name=Purified Crushed Galena Ore
+item.ic2c_extras.garnieriteCrushedOre.name=Crushed Garnierite Ore
+item.ic2c_extras.garnieritePurifiedCrushedOre.name=Purified Crushed Garnierite Ore
+item.ic2c_extras.limoniteCrushedOre.name=Crushed Limonite Ore
+item.ic2c_extras.limonitePurifiedCrushedOre.name=Purified Crushed Limonite Ore
+item.ic2c_extras.malachiteCrushedOre.name=Crushed Malachite Ore
+item.ic2c_extras.malachitePurifiedCrushedOre.name=Purified Crushed Malachite Ore
+item.ic2c_extras.pyriteCrushedOre.name=Crushed Pyrite Ore
+item.ic2c_extras.pyritePurifiedCrushedOre.name=Purified Crushed Pyrite Ore
+item.ic2c_extras.sheldoniteCrushedOre.name=Crushed Sheldonite Ore
+item.ic2c_extras.sheldonitePurifiedCrushedOre.name=Purified Crushed Sheldonite Ore
+item.ic2c_extras.sphaleriteCrushedOre.name=Crushed Sphalerite Ore
+item.ic2c_extras.sphaleritePurifiedCrushedOre.name=Purified Crushed Sphalerite Ore
+item.ic2c_extras.tantaliteCrushedOre.name=Crushed Tantalite Ore
+item.ic2c_extras.tantalitePurifiedCrushedOre.name=Purified Crushed Tantalite Ore
+item.ic2c_extras.tetrahedriteCrushedOre.name=Crushed Tetrahedrite Ore
+item.ic2c_extras.tetrahedritePurifiedCrushedOre.name=Purified Crushed Tetrahedrite Ore
+item.ic2c_extras.tungstateCrushedOre.name=Crushed Tungstate Ore
+item.ic2c_extras.tungstatePurifiedCrushedOre.name=Purified Crushed Tungstate Ore
+item.ic2c_extras.pyrolusiteCrushedOre.name=Crushed Pyrolusite Ore
+item.ic2c_extras.pyrolusitePurifiedCrushedOre.name=Purified Crushed Pyrolusite Ore
+item.ic2c_extras.molybdeniteCrushedOre.name=Crushed Molybdenite Ore
+item.ic2c_extras.molybdenitePurifiedCrushedOre.name=Purified Crushed Molybdenite Ore
+
 itemGroup.ic2c_extras=Ic2 Classic Extras
 
 tileInfo.heatAmount.name=Heat: %1$s / %2$s

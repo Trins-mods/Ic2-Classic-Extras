@@ -1,11 +1,7 @@
 package trinsdar.ic2c_extras.gtintegration;
 
-import gtclassic.GTMod;
 import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
-import gtclassic.material.GTMaterialFlag;
-import gtclassic.material.GTMaterialGen;
-import gtclassic.recipe.GTRecipeCauldron;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
@@ -26,6 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
+import trinsdar.ic2c_extras.recipes.RecipeCrushed;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -88,7 +85,7 @@ public class MaterialItem extends Item implements IStaticTexturedItem, GTColorIt
     public EnumActionResult onItemUse(EntityPlayer e, World w, BlockPos p, EnumHand h, EnumFacing facing, float hitX,
                                       float hitY, float hitZ) {
 
-        for (GTRecipeCauldron.GTRecipeCauldronEnum recipes : GTRecipeCauldron.GTRecipeCauldronEnum.values()) {
+        for (RecipeCrushed.RecipeCauldronEnum recipes : RecipeCrushed.RecipeCauldronEnum.values()) {
             washDust(e, w, p, h, recipes.getInput(), recipes.getOutputs());
         }
         return EnumActionResult.PASS;
@@ -98,15 +95,15 @@ public class MaterialItem extends Item implements IStaticTexturedItem, GTColorIt
      * Creates the behavior of washing dust if the input material matches
      */
     public EnumActionResult washDust(EntityPlayer player, World world, BlockPos pos, EnumHand hand, GTMaterial input,
-                                     GTMaterial... outputs) {
+                                     ItemStack... outputs) {
         IBlockState state = world.getBlockState(pos);
         PropertyInteger level = PropertyInteger.create("level", 0, 3);
-        if (this.material == input && layered) {
+        if (this == MaterialGen.getStack(input, "crushedore", 1).getItem() && layered) {
             if (state.getBlock() == Blocks.CAULDRON && state.getValue(level).intValue() > 0) {
                 player.getHeldItem(hand).shrink(1);
                 Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(level).intValue() - 1);
-                for (GTMaterial mat : outputs) {
-                    player.dropItem(GTMaterialGen.getSmallDust(mat, 1), false);
+                for (ItemStack stack : outputs) {
+                    player.dropItem(stack, false);
                 }
                 world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
                         1.0F);

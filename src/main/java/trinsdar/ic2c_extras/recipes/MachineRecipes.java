@@ -29,6 +29,13 @@ import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.rolling;
 
 public class MachineRecipes {
 
+    public static void init(){
+        initMachineRecipes();
+        initFurnaceRecipes();
+        initReplaceMaceratorRecipes();
+        postInit();
+    }
+
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
     public static void postInit() {
         Set<String> crushedBlacklist = new HashSet();
