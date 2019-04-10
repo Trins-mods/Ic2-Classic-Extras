@@ -16,7 +16,7 @@ public class MaterialGen {
     public static LinkedHashMap<String, Item> itemMap = new LinkedHashMap<>();
     public static void init(){
         Set<GTOreRegistry> ores = new HashSet<>();
-        ores.addAll(Arrays.asList(GTOreRegistry.CALCITE, GTOreRegistry.CINNABAR, GTOreRegistry.GRAPHITE, GTOreRegistry.IRIDIUM, GTOreRegistry.ANTHRACITE, GTOreRegistry.OLIVINE, GTOreRegistry.RUBY, GTOreRegistry.SALTPETER, GTOreRegistry.SAPPHIRE, GTOreRegistry.SODALITE, GTOreRegistry.SULFUR, GTOreRegistry.SALT, GTOreRegistry.VIBRANIUM));
+        ores.addAll(Arrays.asList(GTOreRegistry.CALCITE, GTOreRegistry.CINNABAR, GTOreRegistry.GRAPHITE, GTOreRegistry.ANTHRACITE, GTOreRegistry.OLIVINE, GTOreRegistry.RUBY, GTOreRegistry.SALTPETER, GTOreRegistry.SAPPHIRE, GTOreRegistry.SODALITE, GTOreRegistry.SULFUR, GTOreRegistry.SALT, GTOreRegistry.VIBRANIUM));
         for (Block ore : Block.REGISTRY){
             if (ore instanceof GTBlockOreStone){
                 GTBlockOreStone ore2 = (GTBlockOreStone)ore;
