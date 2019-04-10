@@ -5,6 +5,7 @@ import gtclassic.material.GTMaterialGen;
 import gtclassic.recipe.GTRecipeCauldron;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
+import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import net.minecraft.item.ItemStack;
@@ -26,24 +27,23 @@ public class RecipeCrushed {
      * handle these random list I need - some of them will be enums.
      */
 
-    static ItemStack stonedust = new ItemStack(Registry.stoneDust);
     static String purifiedCrushedOre = "purifiedcrushedore";
     public enum RecipeCauldronEnum {
-        BAUXITE(GTMaterial.Bauxite, MaterialGen.getStack(GTMaterial.Bauxite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Bauxite, 1), stonedust),
-        CHROMITE(GTMaterial.Chromite, MaterialGen.getStack(GTMaterial.Chromite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Chromite, 1), stonedust),
-        CRYOLITE(GTMaterial.Cryolite, MaterialGen.getStack(GTMaterial.Cryolite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Cryolite, 1), stonedust),
-        GALENA(GTMaterial.Galena, MaterialGen.getStack(GTMaterial.Galena, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Galena, 1), stonedust),
-        GARNIERITE(GTMaterial.Garnierite, MaterialGen.getStack(GTMaterial.Garnierite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Garnierite, 1), stonedust),
-        LIMONITE(GTMaterial.Limonite, MaterialGen.getStack(GTMaterial.Limonite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Limonite, 1), stonedust),
-        MALACHITE(GTMaterial.Malachite, MaterialGen.getStack(GTMaterial.Malachite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Malachite, 1), stonedust),
-        PYRITE(GTMaterial.Pyrite, MaterialGen.getStack(GTMaterial.Pyrite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Pyrite, 1), stonedust),
-        SHELDONITE(GTMaterial.Sheldonite, MaterialGen.getStack(GTMaterial.Sheldonite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Sheldonite, 1), stonedust),
-        SPHALERITE(GTMaterial.Sphalerite, MaterialGen.getStack(GTMaterial.Sphalerite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Sphalerite, 1), stonedust),
-        TANTALITE(GTMaterial.Tantalite, MaterialGen.getStack(GTMaterial.Tantalite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Tantalite, 1), stonedust),
-        TETRAHEDRITE(GTMaterial.Tetrahedrite, MaterialGen.getStack(GTMaterial.Tetrahedrite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Tetrahedrite, 1), stonedust),
-        TUNGSTATE(GTMaterial.Tungstate, MaterialGen.getStack(GTMaterial.Tungstate, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Tungstate, 1), stonedust),
-        PYROLUSITE(GTMaterial.Pyrolusite, MaterialGen.getStack(GTMaterial.Pyrolusite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Pyrolusite, 1), stonedust),
-        MOLYBDENITE(GTMaterial.Molybdenite, MaterialGen.getStack(GTMaterial.Molybdenite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Molybdenite, 1), stonedust);
+        BAUXITE(GTMaterial.Bauxite, MaterialGen.getStack(GTMaterial.Bauxite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Bauxite, 1), new ItemStack(Registry.stoneDust)),
+        CHROMITE(GTMaterial.Chromite, MaterialGen.getStack(GTMaterial.Chromite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Chromite, 1), new ItemStack(Registry.stoneDust)),
+        CRYOLITE(GTMaterial.Cryolite, MaterialGen.getStack(GTMaterial.Cryolite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Cryolite, 1), new ItemStack(Registry.stoneDust)),
+        GALENA(GTMaterial.Galena, MaterialGen.getStack(GTMaterial.Galena, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Galena, 1), new ItemStack(Registry.stoneDust)),
+        GARNIERITE(GTMaterial.Garnierite, MaterialGen.getStack(GTMaterial.Garnierite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Garnierite, 1), new ItemStack(Registry.stoneDust)),
+        LIMONITE(GTMaterial.Limonite, MaterialGen.getStack(GTMaterial.Limonite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Limonite, 1), new ItemStack(Registry.stoneDust)),
+        MALACHITE(GTMaterial.Malachite, MaterialGen.getStack(GTMaterial.Malachite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Malachite, 1), new ItemStack(Registry.stoneDust)),
+        PYRITE(GTMaterial.Pyrite, MaterialGen.getStack(GTMaterial.Pyrite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Pyrite, 1), new ItemStack(Registry.stoneDust)),
+        SHELDONITE(GTMaterial.Sheldonite, MaterialGen.getStack(GTMaterial.Sheldonite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Sheldonite, 1), new ItemStack(Registry.stoneDust)),
+        SPHALERITE(GTMaterial.Sphalerite, MaterialGen.getStack(GTMaterial.Sphalerite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Sphalerite, 1), new ItemStack(Registry.stoneDust)),
+        TANTALITE(GTMaterial.Tantalite, MaterialGen.getStack(GTMaterial.Tantalite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Tantalite, 1), new ItemStack(Registry.stoneDust)),
+        TETRAHEDRITE(GTMaterial.Tetrahedrite, MaterialGen.getStack(GTMaterial.Tetrahedrite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Tetrahedrite, 1), new ItemStack(Registry.stoneDust)),
+        TUNGSTATE(GTMaterial.Tungstate, MaterialGen.getStack(GTMaterial.Tungstate, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Tungstate, 1), new ItemStack(Registry.stoneDust)),
+        PYROLUSITE(GTMaterial.Pyrolusite, MaterialGen.getStack(GTMaterial.Pyrolusite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Pyrolusite, 1), new ItemStack(Registry.stoneDust)),
+        MOLYBDENITE(GTMaterial.Molybdenite, MaterialGen.getStack(GTMaterial.Molybdenite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Molybdenite, 1), new ItemStack(Registry.stoneDust));
 
         GTMaterial input;
         ItemStack[] outputs;
@@ -116,13 +116,14 @@ public class RecipeCrushed {
         for (RecipeCrushed.RecipeThermalCentrifugeEnum recipes : RecipeCrushed.RecipeThermalCentrifugeEnum.values()) {
             addThermalCentrifugeRecipe(recipes.getInput(), recipes.getOutputs());
             addThermalCentrifugeRecipe2(recipes.getInput(), recipes.getOutputs());
+            TileEntityMacerator.addRecipe(new RecipeInputOreDict("crushedPurified" + recipes.getInput().getDisplayName()), GT.getDust(recipes.getInput(), 1));
         }
-        addFakeCauldronRecipe(new ItemStack(Registry.ironCrushedOre), new ItemStack(Registry.ironPurifiedCrushedOre), new ItemStack(Registry.ironTinyDust, 2), stonedust);
-        addFakeCauldronRecipe(new ItemStack(Registry.goldCrushedOre), new ItemStack(Registry.goldPurifiedCrushedOre), new ItemStack(Registry.goldTinyDust, 2), stonedust);
-        addFakeCauldronRecipe(new ItemStack(Registry.copperCrushedOre), new ItemStack(Registry.copperPurifiedCrushedOre), new ItemStack(Registry.copperTinyDust, 2), stonedust);
-        addFakeCauldronRecipe(new ItemStack(Registry.tinCrushedOre), new ItemStack(Registry.tinPurifiedCrushedOre), new ItemStack(Registry.tinTinyDust, 2), stonedust);
-        addFakeCauldronRecipe(new ItemStack(Registry.silverCrushedOre), new ItemStack(Registry.silverPurifiedCrushedOre), new ItemStack(Registry.silverTinyDust, 2), stonedust);
-        addFakeCauldronRecipe(new ItemStack(Registry.leadCrushedOre), new ItemStack(Registry.leadPurifiedCrushedOre), new ItemStack(Registry.leadTinyDust, 2), stonedust);
+        addFakeCauldronRecipe(new ItemStack(Registry.ironCrushedOre), new ItemStack(Registry.ironPurifiedCrushedOre), new ItemStack(Registry.ironTinyDust, 2), new ItemStack(Registry.stoneDust));
+        addFakeCauldronRecipe(new ItemStack(Registry.goldCrushedOre), new ItemStack(Registry.goldPurifiedCrushedOre), new ItemStack(Registry.goldTinyDust, 2), new ItemStack(Registry.stoneDust));
+        addFakeCauldronRecipe(new ItemStack(Registry.copperCrushedOre), new ItemStack(Registry.copperPurifiedCrushedOre), new ItemStack(Registry.copperTinyDust, 2), new ItemStack(Registry.stoneDust));
+        addFakeCauldronRecipe(new ItemStack(Registry.tinCrushedOre), new ItemStack(Registry.tinPurifiedCrushedOre), new ItemStack(Registry.tinTinyDust, 2), new ItemStack(Registry.stoneDust));
+        addFakeCauldronRecipe(new ItemStack(Registry.silverCrushedOre), new ItemStack(Registry.silverPurifiedCrushedOre), new ItemStack(Registry.silverTinyDust, 2), new ItemStack(Registry.stoneDust));
+        addFakeCauldronRecipe(new ItemStack(Registry.leadCrushedOre), new ItemStack(Registry.leadPurifiedCrushedOre), new ItemStack(Registry.leadTinyDust, 2), new ItemStack(Registry.stoneDust));
     }
 
     public static void addFakeCauldronRecipe(GTMaterial input, ItemStack... outputs) {
@@ -161,7 +162,7 @@ public class RecipeCrushed {
         for (ItemStack stack : outputs) {
             outputlist.add(stack);
         }
-        outputlist.add(stonedust);
+        outputlist.add(new ItemStack(Registry.stoneDust));
         TileEntityThermalCentrifuge.addRecipe(input1, 250, outputlist);
     }
 }
