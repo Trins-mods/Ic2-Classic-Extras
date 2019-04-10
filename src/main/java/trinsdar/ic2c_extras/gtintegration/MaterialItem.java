@@ -85,9 +85,21 @@ public class MaterialItem extends Item implements IStaticTexturedItem, GTColorIt
     public EnumActionResult onItemUse(EntityPlayer e, World w, BlockPos p, EnumHand h, EnumFacing facing, float hitX,
                                       float hitY, float hitZ) {
 
-        for (RecipeCrushed.RecipeCauldronEnum recipes : RecipeCrushed.RecipeCauldronEnum.values()) {
-            washDust(e, w, p, h, recipes.getInput(), recipes.getOutputs());
-        }
+        washDust(e, w, p, h, GTMaterial.Bauxite, MaterialGen.getStack(GTMaterial.Bauxite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Bauxite, 1), new ItemStack(Registry.stoneDust));
+        washDust(e, w, p, h, GTMaterial.Chromite, MaterialGen.getStack(GTMaterial.Chromite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Chromite, 1), new ItemStack(Registry.stoneDust));
+        washDust(e, w, p, h, GTMaterial.Cryolite, MaterialGen.getStack(GTMaterial.Cryolite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Cryolite, 1), new ItemStack(Registry.stoneDust));
+        washDust(e, w, p, h, GTMaterial.Galena, MaterialGen.getStack(GTMaterial.Galena, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Galena, 1), new ItemStack(Registry.stoneDust));
+        washDust(e, w, p, h, GTMaterial.Garnierite, MaterialGen.getStack(GTMaterial.Garnierite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Garnierite, 1), new ItemStack(Registry.stoneDust));
+        washDust(e, w, p, h, GTMaterial.Limonite, MaterialGen.getStack(GTMaterial.Limonite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Limonite, 1), new ItemStack(Registry.stoneDust));
+        washDust(e, w, p, h, GTMaterial.Malachite, MaterialGen.getStack(GTMaterial.Malachite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Malachite, 1), new ItemStack(Registry.stoneDust));
+        washDust(e, w, p, h, GTMaterial.Pyrite, MaterialGen.getStack(GTMaterial.Pyrite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Pyrite, 1), new ItemStack(Registry.stoneDust));
+        washDust(e, w, p, h, GTMaterial.Sheldonite, MaterialGen.getStack(GTMaterial.Sheldonite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Sheldonite, 1), new ItemStack(Registry.stoneDust));
+        washDust(e, w, p, h, GTMaterial.Sphalerite, MaterialGen.getStack(GTMaterial.Sphalerite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Sphalerite, 1), new ItemStack(Registry.stoneDust));
+        washDust(e, w, p, h, GTMaterial.Tantalite, MaterialGen.getStack(GTMaterial.Tantalite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Tantalite, 1), new ItemStack(Registry.stoneDust));
+        washDust(e, w, p, h, GTMaterial.Tetrahedrite, MaterialGen.getStack(GTMaterial.Tetrahedrite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Tetrahedrite, 1), new ItemStack(Registry.stoneDust));
+        washDust(e, w, p, h, GTMaterial.Tungstate, MaterialGen.getStack(GTMaterial.Tungstate, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Tungstate, 1), new ItemStack(Registry.stoneDust));
+        washDust(e, w, p, h, GTMaterial.Pyrolusite, MaterialGen.getStack(GTMaterial.Pyrolusite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Pyrolusite, 1), new ItemStack(Registry.stoneDust));
+        washDust(e, w, p, h, GTMaterial.Molybdenite, MaterialGen.getStack(GTMaterial.Molybdenite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Molybdenite, 1), new ItemStack(Registry.stoneDust));
         return EnumActionResult.PASS;
     }
 
