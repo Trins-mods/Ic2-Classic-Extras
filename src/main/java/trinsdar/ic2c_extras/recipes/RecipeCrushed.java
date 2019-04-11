@@ -9,6 +9,7 @@ import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.gtintegration.MaterialGen;
@@ -49,6 +50,8 @@ public class RecipeCrushed {
     }
     
     public static void addAllRecipes(GTMaterial input, ItemStack[] oreWashingOutput, ItemStack... thermalOutput){
+        OreDictionary.registerOre("crushedPurified" + input.getDisplayName(), MaterialGen.getStack(input, "purifiedcrushedore", 1));
+        OreDictionary.registerOre("crushed" + input.getDisplayName(), MaterialGen.getStack(input, "crushedore", 1));
         addFakeCauldronRecipe(input, oreWashingOutput);
         addOreWasherRecipe(input, oreWashingOutput);
         addThermalCentrifugeRecipe(input, thermalOutput);

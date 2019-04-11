@@ -2,6 +2,7 @@ package trinsdar.ic2c_extras.gtintegration;
 
 import gtclassic.color.GTColorItemInterface;
 import gtclassic.material.GTMaterial;
+import gtclassic.material.GTMaterialGen;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.ILayeredItemModel;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
@@ -23,6 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.recipes.RecipeCrushed;
+import trinsdar.ic2c_extras.util.Registry;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -81,6 +83,11 @@ public class MaterialItem extends Item implements IStaticTexturedItem, GTColorIt
     /**
      * Called when a Block is right-clicked with this Item
      */
+
+    static GTMaterialGen GT;
+    static GTMaterial M;
+
+    static String purifiedCrushedOre = "purifiedcrushedore";
     @Override
     public EnumActionResult onItemUse(EntityPlayer e, World w, BlockPos p, EnumHand h, EnumFacing facing, float hitX,
                                       float hitY, float hitZ) {

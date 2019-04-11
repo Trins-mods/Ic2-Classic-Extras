@@ -85,14 +85,5 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("blockSteel", Registry.steelBlock);
         OreDictionary.registerOre("blockRefinedIron", Registry.refinedIronBlock);
         OreDictionary.registerOre("blockLead", Registry.leadBlock);
-
-        if (Loader.isModLoaded("gtclassic")){
-            for (RecipeCrushed.RecipeCauldronEnum recipes : RecipeCrushed.RecipeCauldronEnum.values()) {
-                OreDictionary.registerOre("crushed" + recipes.getInput().getDisplayName(), MaterialGen.getStack(recipes.getInput(), "crushedore", 1));
-            }
-            for (RecipeCrushed.RecipeThermalCentrifugeEnum recipes : RecipeCrushed.RecipeThermalCentrifugeEnum.values()) {
-                OreDictionary.registerOre("crushedPurified" + recipes.getInput().getDisplayName(), MaterialGen.getStack(recipes.getInput(), "purifiedcrushedore", 1));
-            }
-        }
     }
 }
