@@ -116,6 +116,8 @@ item.ic2c_extras.pyrolusiteCrushedOre.name=Crushed Pyrolusite Ore
 item.ic2c_extras.pyrolusitePurifiedCrushedOre.name=Purified Crushed Pyrolusite Ore
 item.ic2c_extras.molybdeniteCrushedOre.name=Crushed Molybdenite Ore
 item.ic2c_extras.molybdenitePurifiedCrushedOre.name=Purified Crushed Molybdenite Ore
+item.ic2c_extras.iridiumCrushedOre.name=Crushed Iridium Ore
+item.ic2c_extras.iridiumPurifiedCrushedOre.name=Purified Crushed Iridium Ore
 
 itemGroup.ic2c_extras=Ic2 Classic Extras
 

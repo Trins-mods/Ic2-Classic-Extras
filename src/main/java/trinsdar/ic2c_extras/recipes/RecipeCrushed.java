@@ -41,6 +41,7 @@ public class RecipeCrushed {
         addAllRecipes(GTMaterial.Tungstate, new ItemStack[]{MaterialGen.getStack(GTMaterial.Tungstate, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Tungstate, 1), new ItemStack(Registry.stoneDust)}, GT.getDust(GTMaterial.Tungstate, 1), GT.getSmallDust(GTMaterial.Tungstate, 1));
         addAllRecipes(GTMaterial.Pyrolusite, new ItemStack[]{MaterialGen.getStack(GTMaterial.Pyrolusite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Pyrolusite, 1), new ItemStack(Registry.stoneDust)}, GT.getDust(GTMaterial.Pyrolusite, 1), GT.getSmallDust(GTMaterial.Pyrolusite, 1));
         addAllRecipes(GTMaterial.Molybdenite, new ItemStack[]{MaterialGen.getStack(GTMaterial.Molybdenite, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Molybdenite, 1), new ItemStack(Registry.stoneDust)}, GT.getDust(GTMaterial.Molybdenite, 1), GT.getSmallDust(GTMaterial.Molybdenite, 1));
+        addAllRecipes(GTMaterial.Iridium, new ItemStack[]{MaterialGen.getStack(GTMaterial.Iridium, purifiedCrushedOre, 1), GT.getSmallDust(GTMaterial.Iridium, 1), new ItemStack(Registry.stoneDust)}, GT.getDust(GTMaterial.Iridium, 1), GT.getSmallDust(GTMaterial.Iridium, 1));
         addFakeCauldronRecipe(new ItemStack(Registry.ironCrushedOre), new ItemStack(Registry.ironPurifiedCrushedOre), new ItemStack(Registry.ironTinyDust, 2), new ItemStack(Registry.stoneDust));
         addFakeCauldronRecipe(new ItemStack(Registry.goldCrushedOre), new ItemStack(Registry.goldPurifiedCrushedOre), new ItemStack(Registry.goldTinyDust, 2), new ItemStack(Registry.stoneDust));
         addFakeCauldronRecipe(new ItemStack(Registry.copperCrushedOre), new ItemStack(Registry.copperPurifiedCrushedOre), new ItemStack(Registry.copperTinyDust, 2), new ItemStack(Registry.stoneDust));
@@ -96,6 +97,6 @@ public class RecipeCrushed {
             outputlist.add(stack);
         }
         outputlist.add(new ItemStack(Registry.stoneDust));
-        TileEntityThermalCentrifuge.addRecipe(input1, 250, outputlist);
+        TileEntityThermalCentrifuge.addRecipe(input1, 300, outputlist);
     }
 }

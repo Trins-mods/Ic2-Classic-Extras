@@ -39,6 +39,7 @@ public class GTRecipes {
         macerator.removeRecipe(new RecipeInputOreDict("oreTungstate"));
         macerator.removeRecipe(new RecipeInputOreDict("orePyrolusite"));
         macerator.removeRecipe(new RecipeInputOreDict("oreMolybdenite"));
+        macerator.removeRecipe(new RecipeInputOreDict("oreIridium"));
 
 
 
@@ -57,6 +58,7 @@ public class GTRecipes {
         addMaceratorRecipe("oreTungstate", MaterialGen.getStack(GTMaterial.Tungstate, crushedOre, 2));
         addMaceratorRecipe("orePyrolusite", MaterialGen.getStack(GTMaterial.Pyrolusite, crushedOre, 2));
         addMaceratorRecipe("oreMolybdenite", MaterialGen.getStack(GTMaterial.Molybdenite, crushedOre, 2));
+        addMaceratorRecipe("oreIridium", MaterialGen.getStack(GTMaterial.Iridium, crushedOre, 2));
     }
     public static void addMaceratorRecipe(String input, ItemStack output){
         TileEntityMacerator.addRecipe(input, 1, output);
