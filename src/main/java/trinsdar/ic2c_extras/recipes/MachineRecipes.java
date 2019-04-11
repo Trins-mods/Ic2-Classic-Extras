@@ -4,6 +4,7 @@ import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.IC2;
 import ic2.core.block.machine.low.TileEntityCompressor;
+import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
@@ -134,6 +135,12 @@ public class MachineRecipes {
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedTin", 1)), mediumHeat, Ic2Items.tinDust, new ItemStack(Registry.ironTinyDust, 1), stoneDust);
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedSilver", 1)), mediumHeat, Ic2Items.silverDust, stoneDust);
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedLead", 1)), mediumHeat, new ItemStack(Registry.leadDust, 1), stoneDust);
+        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedIron", 1)), Ic2Items.ironDust);
+        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedGold", 1)), Ic2Items.goldDust);
+        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedCopper", 1)), Ic2Items.copperDust);
+        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedTin", 1)),  Ic2Items.tinDust);
+        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedSilver", 1)), Ic2Items.silverDust);
+        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedLead", 1)), new ItemStack(Registry.leadDust, 1));
 
         if (Ic2cExtrasRecipes.enableCasingsRequirePlates){
             rolling.addRecipe((new RecipeInputOreDict("plateCopper", 1)),  new ItemStack(Registry.copperCasing, 2), 0.7f, "copperPlateItemCasingRolling");
