@@ -9,6 +9,7 @@ import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.blocks.BlockIc2cEGenerator;
 import trinsdar.ic2c_extras.blocks.BlockMachine;
 import trinsdar.ic2c_extras.blocks.BlockMetal;
+import trinsdar.ic2c_extras.blocks.BlockStoneDust;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityAdvancedSteamTurbine;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityExtruder;
@@ -53,6 +54,7 @@ public class Registry
     steelBlock = new BlockMetal("steelBlock", 0),
     refinedIronBlock = new BlockMetal("refinedIronBlock", 1),
     leadBlock = new BlockMetal("leadBlock", 2);
+    public static final BlockStoneDust stoneDustBlock = new BlockStoneDust();
 
     static String copper = "copper";
     static String tin = "tin";
@@ -163,6 +165,7 @@ public class Registry
         IC2.getInstance().createBlock(steelBlock, ItemBlockMetal.class);
         IC2.getInstance().createBlock(refinedIronBlock, ItemBlockMetal.class);
         IC2.getInstance().createBlock(leadBlock, ItemBlockMetal.class);
+        IC2.getInstance().createBlock(stoneDustBlock, ItemBlockMetal.class);
 
         IC2.getInstance().createItem(copperCasing);
         IC2.getInstance().createItem(tinCasing);

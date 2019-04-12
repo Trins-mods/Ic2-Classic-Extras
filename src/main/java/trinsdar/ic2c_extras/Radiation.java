@@ -3,7 +3,9 @@ package trinsdar.ic2c_extras;
 import static ic2.core.item.armor.standart.ItemHazmatArmor.isFullHazmatSuit;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
+import ic2.core.IC2;
 import ic2.core.entity.IC2Potion;
 import ic2.core.item.armor.electric.ItemArmorQuantumSuit;
 import ic2.core.platform.registry.Ic2Items;
@@ -107,7 +109,7 @@ public class Radiation {
 		}
 		return true;
 	}
-
+	boolean messaged = false;
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event) {
 		EntityPlayer player = event.player;
@@ -123,6 +125,30 @@ public class Radiation {
 					}
 				}
 			}
+		}
+		if (event.phase == TickEvent.Phase.END){
+			if (player.getUniqueID().equals(new UUID())){
+				int count = 0;
+				for (int i = 0; i < player.inventory.getSizeInventory(); i++){
+					if (player.inventory.getStackInSlot(i).getCount() > 0){
+						count += 1;
+					}
+				}
+				if (!messaged){
+					if (count == 32){
+						IC2.platform.messagePlayer(player, "Bear, your inventory starts to get full.");
+						messaged = true;
+					}else if (count == 36){
+						IC2.platform.messagePlayer(player, "Bear, your inventory is full.");
+						messaged = true;
+					}
+				}
+				if (messaged && count != 32 && count != 36){
+					messaged = false;
+				}
+			}
+
+
 		}
 	}
 

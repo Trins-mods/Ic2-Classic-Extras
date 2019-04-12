@@ -17,7 +17,9 @@ public class ItemBlockMetal extends ItemBlockRare {
             return new LangComponentHolder.LocaleBlockComp("tile.steelBlock");
         }else if (this.getBlock() == Registry.refinedIronBlock){
             return new LangComponentHolder.LocaleBlockComp("tile.refinedIronBlock");
-        }else {
+        }else if (this.getBlock() == Registry.stoneDustBlock) {
+            return new LangComponentHolder.LocaleBlockComp("tile.stoneDustBlock");
+        } else {
             return new LangComponentHolder.LocaleBlockComp("tile.leadBlock");
         }
     }
