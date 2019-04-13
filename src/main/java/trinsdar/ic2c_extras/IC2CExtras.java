@@ -46,6 +46,7 @@ public class IC2CExtras
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+        logger = event.getModLog();
         proxy.preInit(event);
         if (!IC2.config.getFlag("NonRadiation")){
             Recipes.metalformerExtruding = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.extruding.toIC2Exp();

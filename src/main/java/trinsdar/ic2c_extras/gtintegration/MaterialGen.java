@@ -1,11 +1,13 @@
 package trinsdar.ic2c_extras.gtintegration;
 
+import gtclassic.GTMod;
 import gtclassic.GTOreRegistry;
 import gtclassic.block.GTBlockOreStone;
 import gtclassic.material.GTMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import trinsdar.ic2c_extras.IC2CExtras;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -28,6 +30,19 @@ public class MaterialGen {
                 }
             }
         }
+        createTinyDust(GTMaterial.Alumina);
+        createTinyDust(GTMaterial.Platinum);
+        createTinyDust(GTMaterial.Nickel);
+        createTinyDust(GTMaterial.Zinc);
+        createTinyDust(GTMaterial.Tantalum);
+        createTinyDust(GTMaterial.Manganese);
+        createTinyDust(GTMaterial.Molybdenum);
+        createTinyDust(GTMaterial.Osmium);
+    }
+
+    public static void localizationUtil(GTMaterial mat) {
+        GTMod.logger.info("item.ic2c_extras." + mat.getName() + "TinyDust" + ".name=" + "Tiny Piles of "
+                + mat.getDisplayName() + " Dust");
     }
     public static void createCrushedOre(GTMaterial mat) {
         itemMap.put(mat.getName() + "_crushedore", new MaterialItem(mat, "CrushedOre", 7, true));

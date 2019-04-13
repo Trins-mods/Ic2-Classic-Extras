@@ -78,11 +78,11 @@ public class GTRecipes {
 
         GTTileMultiIndustrialProcessor.addGrinderRecipe("oreChromite", 1, MaterialGen.getStack(M.Chromite, crushedOre, 2), GT.getSmallDust(M.Chrome, 1), GT.getSmallDust(M.Iron, 1));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreCyrolite", 1, MaterialGen.getStack(M.Cryolite, crushedOre, 4));
+        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreCryolite", 1, MaterialGen.getStack(M.Cryolite, crushedOre, 4));
 
         GTTileMultiIndustrialProcessor.addGrinderRecipe("oreGalena", 1, MaterialGen.getStack(M.Galena, crushedOre, 2), GT.getSmallDust(M.Silver, 2));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreGarnierite", 1, MaterialGen.getStack(M.Nickel, crushedOre, 3), GT.getSmallDust(M.Platinum, 1),
+        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreGarnierite", 1, MaterialGen.getStack(M.Garnierite, crushedOre, 3), GT.getSmallDust(M.Platinum, 1),
                 GT.getSmallDust(M.Copper, 1));
 
         GTTileMultiIndustrialProcessor.addGrinderRecipe("oreLimonite", 1, MaterialGen.getStack(M.Limonite, crushedOre, 5), GT.getSmallDust(M.Iron, 2));
