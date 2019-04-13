@@ -22,8 +22,9 @@ public class MaterialGen {
                 GTBlockOreStone ore2 = (GTBlockOreStone)ore;
                 GTOreRegistry registry = ore2.getOreEntry();
                 if (!ores.contains(registry)){
-                    createCrushedOre(ore2.getOreEntry().getMaterial());
-                    createPurifiedCrushedOre(ore2.getOreEntry().getMaterial());
+                    createCrushedOre(registry.getMaterial());
+                    createPurifiedCrushedOre(registry.getMaterial());
+                    createTinyDust(registry.getMaterial());
                 }
             }
         }
@@ -34,6 +35,10 @@ public class MaterialGen {
 
     public static void createPurifiedCrushedOre(GTMaterial mat) {
         itemMap.put(mat.getName() + "_purifiedcrushedore", new MaterialItem(mat, "PurifiedCrushedOre", 9, false));
+    }
+
+    public static void createTinyDust(GTMaterial mat) {
+        itemMap.put(mat.getName() + "_tinydust", new MaterialItem(mat, "TinyDust", 10, false));
     }
 
     public static ItemStack getStack(GTMaterial mat, String suffix, int count) {
