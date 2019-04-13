@@ -58,6 +58,7 @@ public class RecipeCrushed {
         addThermalCentrifugeRecipe(input, thermalOutput);
         addThermalCentrifugeRecipe2(input, thermalOutput);
         TileEntityMacerator.addRecipe(new RecipeInputOreDict("crushedPurified" + input.getDisplayName()), GT.getDust(input, 1));
+        TileEntityMacerator.addRecipe(new RecipeInputOreDict("crushed" + input.getDisplayName()), GT.getDust(input, 1));
     }
 
     public static void addFakeCauldronRecipe(GTMaterial input, ItemStack... outputs) {

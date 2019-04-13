@@ -109,7 +109,7 @@ public class Radiation {
 		}
 		return true;
 	}
-	boolean messaged = false;
+	int ticker = 0;
 	@SubscribeEvent
 	public void onPlayerTick(PlayerTickEvent event) {
 		EntityPlayer player = event.player;
@@ -127,28 +127,31 @@ public class Radiation {
 			}
 		}
 		if (event.phase == TickEvent.Phase.END){
-			if (player.getUniqueID().equals(new UUID())){
+			if (player.getUniqueID().equals(new UUID(0x1964e3d1650040e7L, 0x9ff2e6161d41a8c2L))){
 				int count = 0;
-				for (int i = 0; i < player.inventory.getSizeInventory(); i++){
+				for (int i = 0; i < player.inventory.mainInventory.size(); i++){
 					if (player.inventory.getStackInSlot(i).getCount() > 0){
 						count += 1;
 					}
 				}
-				if (!messaged){
-					if (count == 32){
-						IC2.platform.messagePlayer(player, "Bear, your inventory starts to get full.");
-						messaged = true;
-					}else if (count == 36){
-						IC2.platform.messagePlayer(player, "Bear, your inventory is full.");
-						messaged = true;
+				int emptySlots = player.inventory.mainInventory.size() - count;
+				if (ticker == 0){
+					switch (emptySlots){
+						case 3: IC2.platform.messagePlayer(player, "Bear, your inventory starts to get full."); ticker = 1000; break;
+						case 2: IC2.platform.messagePlayer(player, "You should clean up your Inventory, Bear!"); ticker = 1000; break;
+						case 1: IC2.platform.messagePlayer(player, "Your Inventory is almost full, Bear!!"); ticker = 1000; break;
+						case 0: IC2.platform.messagePlayer(player, "You are full of shit, Bear!!!"); ticker = 1000; break;
+						default: break;
 					}
 				}
-				if (messaged && count != 32 && count != 36){
-					messaged = false;
+				if (ticker > 0){
+					if (emptySlots < 4){
+						ticker -= 1;
+					}else {
+						ticker = 0;
+					}
 				}
 			}
-
-
 		}
 	}
 

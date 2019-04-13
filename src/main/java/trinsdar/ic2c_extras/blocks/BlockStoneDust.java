@@ -65,7 +65,7 @@ public class BlockStoneDust extends BlockFalling implements ITexturedBlock {
     @Override
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
         if (entityIn instanceof EntityPlayer) {
-            ((EntityPlayer) entityIn).addPotionEffect(new PotionEffect(MobEffects.SPEED, 2, 0));
+            ((EntityPlayer) entityIn).addPotionEffect(new PotionEffect(MobEffects.SPEED, 4, 0));
         }
     }
 }
