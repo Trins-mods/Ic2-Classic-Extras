@@ -34,7 +34,6 @@ public class GTRecipes {
     public static void initReplaceMaceratorRecipes(){
         macerator.removeRecipe(new RecipeInputOreDict("oreBauxite"));
         macerator.removeRecipe(new RecipeInputOreDict("oreChromite"));
-        macerator.removeRecipe(new RecipeInputOreDict("oreCryolite"));
         macerator.removeRecipe(new RecipeInputOreDict("oreGalena"));
         macerator.removeRecipe(new RecipeInputOreDict("oreGarnierite"));
         macerator.removeRecipe(new RecipeInputOreDict("oreLimonite"));
@@ -53,7 +52,6 @@ public class GTRecipes {
 
         addMaceratorRecipe("oreBauxite", MaterialGen.getStack(GTMaterial.Bauxite, crushedOre, 4));
         addMaceratorRecipe("oreChromite", MaterialGen.getStack(GTMaterial.Chromite, crushedOre, 2));
-        addMaceratorRecipe("oreCryolite", MaterialGen.getStack(GTMaterial.Cryolite, crushedOre, 2));
         addMaceratorRecipe("oreGalena", MaterialGen.getStack(GTMaterial.Galena, crushedOre, 2));
         addMaceratorRecipe("oreGarnierite", MaterialGen.getStack(GTMaterial.Garnierite, crushedOre, 2));
         addMaceratorRecipe("oreLimonite", MaterialGen.getStack(GTMaterial.Limonite, crushedOre, 2));
@@ -77,8 +75,6 @@ public class GTRecipes {
         GTTileMultiIndustrialProcessor.addGrinderRecipe("oreBauxite", 1, MaterialGen.getStack(M.Bauxite, crushedOre, 4), GT.getDust(M.Alumina, 1));
 
         GTTileMultiIndustrialProcessor.addGrinderRecipe("oreChromite", 1, MaterialGen.getStack(M.Chromite, crushedOre, 2), GT.getSmallDust(M.Chrome, 1), GT.getSmallDust(M.Iron, 1));
-
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreCryolite", 1, MaterialGen.getStack(M.Cryolite, crushedOre, 4));
 
         GTTileMultiIndustrialProcessor.addGrinderRecipe("oreGalena", 1, MaterialGen.getStack(M.Galena, crushedOre, 2), GT.getSmallDust(M.Silver, 2));
 
