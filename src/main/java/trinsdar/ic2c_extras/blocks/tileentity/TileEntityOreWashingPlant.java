@@ -34,7 +34,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -81,6 +83,10 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         this.waterTank.addListener(this);
         this.waterTank.setCanFill(true);
         this.addGuiFields("waterTank");
+    }
+
+    public IC2Tank getWaterTank(){
+        return this.waterTank;
     }
 
 

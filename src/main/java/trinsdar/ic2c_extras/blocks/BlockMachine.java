@@ -2,13 +2,22 @@ package trinsdar.ic2c_extras.blocks;
 
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
@@ -94,6 +103,28 @@ public class BlockMachine extends BlockMultiID {
         }else{
             return Ic2Icons.getTextures("roller");
         }
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (this == Registry.oreWashingPlant){
+            ItemStack playerStack = player.getHeldItem(hand);
+            TileEntityOreWashingPlant tile = (TileEntityOreWashingPlant) worldIn.getTileEntity(pos);
+            if (!playerStack.isEmpty()) {
+                if (playerStack == Ic2Items.waterCell && tile.getWaterTank().getFluidAmount() + 1000 < tile.getWaterTank().getCapacity()) {
+                    tile.getWaterTank().fill(new FluidStack(FluidRegistry.WATER, 1000), true);
+                    playerStack.shrink(1);
+                    if (!player.inventory.addItemStackToInventory(Ic2Items.emptyCell)) {
+                        player.dropItem(Ic2Items.emptyCell, false);
+                    }
+
+                    return false;
+                }
+            }
+
+            return super.onBlockActivated(worldIn, pos, state, player, hand, facing, hitX, hitY, hitZ);
+        }
+        return super.onBlockActivated(worldIn, pos, state, player, hand, facing, hitX, hitY, hitZ);
     }
 
     @Override
