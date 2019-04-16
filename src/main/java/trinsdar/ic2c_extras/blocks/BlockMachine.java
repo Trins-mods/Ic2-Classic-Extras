@@ -104,7 +104,7 @@ public class BlockMachine extends BlockMultiID {
             return Ic2Icons.getTextures("roller");
         }
     }
-    
+
     @Override
     public int getMaxSheetSize(int meta)
     {

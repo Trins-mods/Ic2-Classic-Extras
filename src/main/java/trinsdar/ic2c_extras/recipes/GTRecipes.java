@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.recipes;
 
+import com.sun.org.apache.xpath.internal.operations.Gt;
 import gtclassic.GTItems;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
@@ -128,6 +129,7 @@ public class GTRecipes {
         GTTileElectricSmelter.addRecipe("dustTinySilver", 9, new ItemStack(GTItems.moldIngot), Ic2Items.silverIngot);
         GTTileElectricSmelter.addRecipe("dustTinyLead", 9, new ItemStack(GTItems.moldIngot), GT.getIngot(M.Lead, 1));
         GTTileElectricSmelter.addRecipe("dustTinyBronze", 9, new ItemStack(GTItems.moldIngot), Ic2Items.bronzeIngot);
+        Ic2cExtrasRecipes.extruding.addRecipe(new RecipeInputOreDict("plateTantalum", 1), new ItemStack(GTItems.foilTantalum, 2), "Tantalum Foil");
     }
 
     public static void initFurnaceRecipes(){
