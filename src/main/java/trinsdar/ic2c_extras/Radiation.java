@@ -141,10 +141,10 @@ public class Radiation {
 					int emptySlots = player.inventory.mainInventory.size() - count;
 					if (ticker == 0){
 						switch (emptySlots){
-							case 3: IC2.platform.messagePlayer(player, "Bear, your inventory starts to get full."); ticker = 1200; break;
-							case 2: IC2.platform.messagePlayer(player, "You should clean up your Inventory, Bear!"); ticker = 1200; break;
-							case 1: IC2.platform.messagePlayer(player, "Your Inventory is almost full, Bear!!"); ticker = 1200; break;
-							case 0: IC2.platform.messagePlayer(player, "You are full of shit, Bear!!!"); ticker = 1200; break;
+							case 3: IC2.platform.messagePlayer(player, "Bear, your inventory starts to get full."); ticker = 2400; break;
+							case 2: IC2.platform.messagePlayer(player, "You should clean up your Inventory, Bear!"); ticker = 2400; break;
+							case 1: IC2.platform.messagePlayer(player, "Your Inventory is almost full, Bear!!"); ticker = 2400; break;
+							case 0: IC2.platform.messagePlayer(player, "You are full of shit, Bear!!!"); ticker = 2400; break;
 							default: break;
 						}
 					}
