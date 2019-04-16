@@ -1,6 +1,5 @@
 package trinsdar.ic2c_extras.recipes;
 
-import com.sun.org.apache.xpath.internal.operations.Gt;
 import gtclassic.GTItems;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
@@ -8,9 +7,7 @@ import gtclassic.tile.GTTileElectricSmelter;
 import gtclassic.tile.GTTileMultiIndustrialProcessor;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
-import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.low.TileEntityMacerator;
-import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.init.Items;
@@ -34,10 +31,13 @@ public class GTRecipes {
     static GTMaterial M;
     public static void initReplaceMaceratorRecipes(){
         macerator.removeRecipe(new RecipeInputOreDict("oreBauxite"));
+        macerator.removeRecipe(new RecipeInputOreDict("oreBismuthtine"));
+        macerator.removeRecipe(new RecipeInputOreDict("oreCassiterite"));
         macerator.removeRecipe(new RecipeInputOreDict("oreChromite"));
         macerator.removeRecipe(new RecipeInputOreDict("oreGalena"));
         macerator.removeRecipe(new RecipeInputOreDict("oreGarnierite"));
         macerator.removeRecipe(new RecipeInputOreDict("oreLimonite"));
+        macerator.removeRecipe(new RecipeInputOreDict("oreMagnetite"));
         macerator.removeRecipe(new RecipeInputOreDict("oreMalachite"));
         macerator.removeRecipe(new RecipeInputOreDict("orePyrite"));
         macerator.removeRecipe(new RecipeInputOreDict("oreSheldonite"));
@@ -52,10 +52,13 @@ public class GTRecipes {
 
 
         addMaceratorRecipe("oreBauxite", MaterialGen.getStack(GTMaterial.Bauxite, crushedOre, 4));
+        addMaceratorRecipe("oreBismuthtine", MaterialGen.getStack(GTMaterial.Bismuthtine, crushedOre, 2));
+        addMaceratorRecipe("oreCassiterite", MaterialGen.getStack(GTMaterial.Cassiterite, crushedOre, 2));
         addMaceratorRecipe("oreChromite", MaterialGen.getStack(GTMaterial.Chromite, crushedOre, 2));
         addMaceratorRecipe("oreGalena", MaterialGen.getStack(GTMaterial.Galena, crushedOre, 2));
         addMaceratorRecipe("oreGarnierite", MaterialGen.getStack(GTMaterial.Garnierite, crushedOre, 2));
         addMaceratorRecipe("oreLimonite", MaterialGen.getStack(GTMaterial.Limonite, crushedOre, 2));
+        addMaceratorRecipe("oreMagnetite", MaterialGen.getStack(GTMaterial.Magnetite, crushedOre, 2));
         addMaceratorRecipe("oreMalachite", MaterialGen.getStack(GTMaterial.Malachite, crushedOre, 2));
         addMaceratorRecipe("orePyrite", MaterialGen.getStack(GTMaterial.Pyrite, crushedOre, 5));
         addMaceratorRecipe("oreSheldonite", MaterialGen.getStack(GTMaterial.Sheldonite, crushedOre, 2));
@@ -133,6 +136,8 @@ public class GTRecipes {
     }
 
     public static void initFurnaceRecipes(){
+        GameRegistry.addSmelting(MaterialGen.getStack(M.Bismuthtine, crushedOre, 1), GT.getNugget(M.Bismuth, 3), 0.1F);
+        GameRegistry.addSmelting(MaterialGen.getStack(M.Cassiterite, crushedOre, 1), GT.getNugget(M.Tin, 3), 0.1F);
         GameRegistry.addSmelting(MaterialGen.getStack(M.Galena, crushedOre, 1), GT.getNugget(M.Lead, 3), 0.1F);
         GameRegistry.addSmelting(MaterialGen.getStack(M.Garnierite, crushedOre, 1), GT.getNugget(M.Nickel, 3), 0.1F);
         GameRegistry.addSmelting(MaterialGen.getStack(M.Limonite, crushedOre, 1), GT.get(Items.IRON_NUGGET, 3), 0.1F);
@@ -142,6 +147,8 @@ public class GTRecipes {
         GameRegistry.addSmelting(MaterialGen.getStack(M.Sphalerite, crushedOre, 1), GT.getNugget(M.Zinc, 3), 0.1F);
         GameRegistry.addSmelting(MaterialGen.getStack(M.Tetrahedrite, crushedOre, 1), GT.getNugget(M.Copper, 3), 0.1F);
 
+        GameRegistry.addSmelting(MaterialGen.getStack(M.Bismuthtine, purifiedCrushedOre, 1), GT.getNugget(M.Bismuth, 3), 0.1F);
+        GameRegistry.addSmelting(MaterialGen.getStack(M.Cassiterite, purifiedCrushedOre, 1), GT.getNugget(M.Tin, 3), 0.1F);
         GameRegistry.addSmelting(MaterialGen.getStack(M.Galena, purifiedCrushedOre, 1), GT.getNugget(M.Lead, 3), 0.1F);
         GameRegistry.addSmelting(MaterialGen.getStack(M.Garnierite, purifiedCrushedOre, 1), GT.getNugget(M.Nickel, 3), 0.1F);
         GameRegistry.addSmelting(MaterialGen.getStack(M.Limonite, purifiedCrushedOre, 1), GT.get(Items.IRON_NUGGET, 3), 0.1F);

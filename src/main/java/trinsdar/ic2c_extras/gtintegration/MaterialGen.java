@@ -7,7 +7,6 @@ import gtclassic.ore.GTOreStone;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import trinsdar.ic2c_extras.IC2CExtras;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -18,7 +17,7 @@ public class MaterialGen {
     public static LinkedHashMap<String, Item> itemMap = new LinkedHashMap<>();
     public static void init(){
         Set<GTOreRegistry> ores = new HashSet<>();
-        ores.addAll(Arrays.asList(GTOreRegistry.CALCITE, GTOreRegistry.CINNABAR, GTOreRegistry.GRAPHITE, GTOreRegistry.ANTHRACITE, GTOreRegistry.OLIVINE, GTOreRegistry.RUBY, GTOreRegistry.SALTPETER, GTOreRegistry.SAPPHIRE, GTOreRegistry.SODALITE, GTOreRegistry.SULFUR, GTOreRegistry.SALT, GTOreRegistry.VIBRANIUM, GTOreRegistry.BISMUTHTINE, GTOreRegistry.CASSITERITE, GTOreRegistry.MAGNETITE, GTOreRegistry.BASALT));
+        ores.addAll(Arrays.asList(GTOreRegistry.CALCITE, GTOreRegistry.CINNABAR, GTOreRegistry.GRAPHITE, GTOreRegistry.ANTHRACITE, GTOreRegistry.OLIVINE, GTOreRegistry.RUBY, GTOreRegistry.SALTPETER, GTOreRegistry.SAPPHIRE, GTOreRegistry.SODALITE, GTOreRegistry.SULFUR, GTOreRegistry.SALT, GTOreRegistry.VIBRANIUM, GTOreRegistry.BASALT, GTOreRegistry.CRYOLITE));
         for (Block ore : Block.REGISTRY){
             if (ore instanceof GTOreStone){
                 GTOreStone ore2 = (GTOreStone)ore;
@@ -38,6 +37,7 @@ public class MaterialGen {
         createTinyDust(GTMaterial.Manganese);
         createTinyDust(GTMaterial.Molybdenum);
         createTinyDust(GTMaterial.Osmium);
+        createTinyDust(GTMaterial.Bismuth);
     }
 
     public static void localizationUtil(GTMaterial mat) {
