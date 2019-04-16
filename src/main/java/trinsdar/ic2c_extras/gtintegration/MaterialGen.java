@@ -1,9 +1,9 @@
 package trinsdar.ic2c_extras.gtintegration;
 
 import gtclassic.GTMod;
-import gtclassic.GTOreRegistry;
-import gtclassic.block.GTBlockOreStone;
 import gtclassic.material.GTMaterial;
+import gtclassic.ore.GTOreRegistry;
+import gtclassic.ore.GTOreStone;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -18,10 +18,10 @@ public class MaterialGen {
     public static LinkedHashMap<String, Item> itemMap = new LinkedHashMap<>();
     public static void init(){
         Set<GTOreRegistry> ores = new HashSet<>();
-        ores.addAll(Arrays.asList(GTOreRegistry.CALCITE, GTOreRegistry.CINNABAR, GTOreRegistry.GRAPHITE, GTOreRegistry.ANTHRACITE, GTOreRegistry.OLIVINE, GTOreRegistry.RUBY, GTOreRegistry.SALTPETER, GTOreRegistry.SAPPHIRE, GTOreRegistry.SODALITE, GTOreRegistry.SULFUR, GTOreRegistry.SALT, GTOreRegistry.VIBRANIUM));
+        ores.addAll(Arrays.asList(GTOreRegistry.CALCITE, GTOreRegistry.CINNABAR, GTOreRegistry.GRAPHITE, GTOreRegistry.ANTHRACITE, GTOreRegistry.OLIVINE, GTOreRegistry.RUBY, GTOreRegistry.SALTPETER, GTOreRegistry.SAPPHIRE, GTOreRegistry.SODALITE, GTOreRegistry.SULFUR, GTOreRegistry.SALT, GTOreRegistry.VIBRANIUM, GTOreRegistry.BISMUTHTINE, GTOreRegistry.CASSITERITE, GTOreRegistry.MAGNETITE, GTOreRegistry.BASALT));
         for (Block ore : Block.REGISTRY){
-            if (ore instanceof GTBlockOreStone){
-                GTBlockOreStone ore2 = (GTBlockOreStone)ore;
+            if (ore instanceof GTOreStone){
+                GTOreStone ore2 = (GTOreStone)ore;
                 GTOreRegistry registry = ore2.getOreEntry();
                 if (!ores.contains(registry)){
                     createCrushedOre(registry.getMaterial());
