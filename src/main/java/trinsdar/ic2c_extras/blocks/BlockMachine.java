@@ -104,29 +104,7 @@ public class BlockMachine extends BlockMultiID {
             return Ic2Icons.getTextures("roller");
         }
     }
-
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (this == Registry.oreWashingPlant){
-            ItemStack playerStack = player.getHeldItem(hand);
-            TileEntityOreWashingPlant tile = (TileEntityOreWashingPlant) worldIn.getTileEntity(pos);
-            if (!playerStack.isEmpty()) {
-                if (playerStack == Ic2Items.waterCell && tile.getWaterTank().getFluidAmount() + 1000 < tile.getWaterTank().getCapacity()) {
-                    tile.getWaterTank().fill(new FluidStack(FluidRegistry.WATER, 1000), true);
-                    playerStack.shrink(1);
-                    if (!player.inventory.addItemStackToInventory(Ic2Items.emptyCell)) {
-                        player.dropItem(Ic2Items.emptyCell, false);
-                    }
-
-                    return false;
-                }
-            }
-
-            return super.onBlockActivated(worldIn, pos, state, player, hand, facing, hitX, hitY, hitZ);
-        }
-        return super.onBlockActivated(worldIn, pos, state, player, hand, facing, hitX, hitY, hitZ);
-    }
-
+    
     @Override
     public int getMaxSheetSize(int meta)
     {
