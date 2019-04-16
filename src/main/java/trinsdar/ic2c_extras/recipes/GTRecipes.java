@@ -129,7 +129,7 @@ public class GTRecipes {
         GTTileElectricSmelter.addRecipe("dustTinySilver", 9, new ItemStack(GTItems.moldIngot), Ic2Items.silverIngot);
         GTTileElectricSmelter.addRecipe("dustTinyLead", 9, new ItemStack(GTItems.moldIngot), GT.getIngot(M.Lead, 1));
         GTTileElectricSmelter.addRecipe("dustTinyBronze", 9, new ItemStack(GTItems.moldIngot), Ic2Items.bronzeIngot);
-        Ic2cExtrasRecipes.extruding.addRecipe(new RecipeInputOreDict("plateTantalum", 1), new ItemStack(GTItems.foilTantalum, 2), "Tantalum Foil");
+        //Ic2cExtrasRecipes.extruding.addRecipe(new RecipeInputOreDict("plateTantalum", 1), new ItemStack(GTItems.foilTantalum, 2), "Tantalum Foil");
     }
 
     public static void initFurnaceRecipes(){
