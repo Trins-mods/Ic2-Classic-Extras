@@ -25,6 +25,7 @@ import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.misc.FluidHelper;
 import ic2.core.util.misc.StackUtil;
+import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,6 +34,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.common.capabilities.Capability;
@@ -46,6 +48,7 @@ import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
+import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.blocks.container.ContainerOreWashingPlant;
 import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
@@ -56,7 +59,7 @@ import java.util.List;
 
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.oreWashingPlant;
 
-public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine implements ITankListener, IFluidHandler
+public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine implements ITankListener, IFluidHandler, IClickable
 {
 
     @NetworkField(index = 13)
@@ -339,4 +342,36 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         oreWashingPlant.addRecipe(input, new MachineOutput(createNeededWater(water), output), input.getInputs().get(0).getDisplayName());
     }
 
+    @Override
+    public boolean hasRightClick() {
+        return true;
+    }
+
+    @Override
+    public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
+        ItemStack playerStack = player.getHeldItem(hand);
+        if (!playerStack.isEmpty()) {
+            ItemStack result = FluidUtil.tryEmptyContainer(playerStack, this, this.waterTank.getCapacity() - this.waterTank.getFluidAmount(), player, true).getResult();
+            if (!result.isEmpty()) {
+                playerStack.shrink(1);
+                this.waterTank.fill(new FluidStack(FluidRegistry.WATER, 1000), true);
+                if (!player.inventory.addItemStackToInventory(result)) {
+                    player.dropItem(result, false);
+                }
+
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean hasLeftClick() {
+        return false;
+    }
+
+    @Override
+    public void onLeftClick(EntityPlayer entityPlayer, Side side) {
+
+    }
 }
