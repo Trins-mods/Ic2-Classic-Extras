@@ -60,9 +60,9 @@ public class GTRecipes {
         addMaceratorRecipe("oreLimonite", MaterialGen.getStack(GTMaterial.Limonite, crushedOre, 2));
         addMaceratorRecipe("oreMagnetite", MaterialGen.getStack(GTMaterial.Magnetite, crushedOre, 2));
         addMaceratorRecipe("oreMalachite", MaterialGen.getStack(GTMaterial.Malachite, crushedOre, 2));
-        addMaceratorRecipe("orePyrite", MaterialGen.getStack(GTMaterial.Pyrite, crushedOre, 5));
+        addMaceratorRecipe("orePyrite", MaterialGen.getStack(GTMaterial.Pyrite, crushedOre, 2));
         addMaceratorRecipe("oreSheldonite", MaterialGen.getStack(GTMaterial.Sheldonite, crushedOre, 2));
-        addMaceratorRecipe("oreSphalerite", MaterialGen.getStack(GTMaterial.Sphalerite, crushedOre, 5));
+        addMaceratorRecipe("oreSphalerite", MaterialGen.getStack(GTMaterial.Sphalerite, crushedOre, 2));
         addMaceratorRecipe("oreTantalite", MaterialGen.getStack(GTMaterial.Tantalite, crushedOre, 2));
         addMaceratorRecipe("oreTetrahedrite", MaterialGen.getStack(GTMaterial.Tetrahedrite, crushedOre, 2));
         addMaceratorRecipe("oreTungstate", MaterialGen.getStack(GTMaterial.Tungstate, crushedOre, 2));
