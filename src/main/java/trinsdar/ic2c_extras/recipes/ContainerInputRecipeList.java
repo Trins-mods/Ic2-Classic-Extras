@@ -15,16 +15,16 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public class MetalPresserRecipeList {
-    public static final MetalPresserRecipe INVALID_RECIPE = new MetalPresserRecipe(null, ItemStack.EMPTY,
+public class ContainerInputRecipeList {
+    public static final ContainerInputRecipe INVALID_RECIPE = new ContainerInputRecipe(null, ItemStack.EMPTY,
             new MachineOutput(null, new ArrayList<ItemStack>()), "Invalid");
 
-    protected List<MetalPresserRecipe> recipes = new ArrayList<MetalPresserRecipe>();
-    protected Map<String, MetalPresserRecipe> recipeMap = new LinkedHashMap<String, MetalPresserRecipe>();
+    protected List<ContainerInputRecipe> recipes = new ArrayList<ContainerInputRecipe>();
+    protected Map<String, ContainerInputRecipe> recipeMap = new LinkedHashMap<String, ContainerInputRecipe>();
     protected Map<ItemWithMeta, IRecipeInput> validInputs = new LinkedHashMap<ItemWithMeta, IRecipeInput>();
     String category;
 
-    public MetalPresserRecipeList(String category) {
+    public ContainerInputRecipeList(String category) {
         this.category = category;
     }
 
@@ -46,7 +46,7 @@ public class MetalPresserRecipeList {
             IC2CExtras.logger.info("Recipe[" + input +"," + press + "] as input " + category);
             return;
         }
-        MetalPresserRecipe recipe = new MetalPresserRecipe(input, press, output, id);
+        ContainerInputRecipe recipe = new ContainerInputRecipe(input, press, output, id);
         recipes.add(recipe);
         recipeMap.put(id, recipe);
         ItemStack stack = input.getInputs().get(0);
@@ -75,8 +75,8 @@ public class MetalPresserRecipeList {
         return false;
     }
 
-    public MetalPresserRecipe getRecipe(Predicate<MetalPresserRecipe> checker) {
-        for (MetalPresserRecipe recipe : recipes) {
+    public ContainerInputRecipe getRecipe(Predicate<ContainerInputRecipe> checker) {
+        for (ContainerInputRecipe recipe : recipes) {
             if (checker.test(recipe)) {
                 return recipe;
             }
@@ -84,7 +84,7 @@ public class MetalPresserRecipeList {
         return INVALID_RECIPE;
     }
 
-    public MetalPresserRecipe getFromID(String id) {
+    public ContainerInputRecipe getFromID(String id) {
         return recipeMap.get(id);
     }
 
@@ -100,13 +100,13 @@ public class MetalPresserRecipeList {
         return false;
     }
 
-    public static class MetalPresserRecipe {
+    public static class ContainerInputRecipe {
         IRecipeInput input;
         ItemStack press;
         MachineOutput outputs;
         String id;
 
-        public MetalPresserRecipe(IRecipeInput input, ItemStack press, MachineOutput outputs, String id) {
+        public ContainerInputRecipe(IRecipeInput input, ItemStack press, MachineOutput outputs, String id) {
             this.input = input;
             this.press = press;
             this.outputs = outputs;
@@ -135,7 +135,7 @@ public class MetalPresserRecipeList {
 
     }
 
-    public Collection<MetalPresserRecipe> getRecipeList() {
-        return new ArrayList<MetalPresserRecipe>(recipes);
+    public Collection<ContainerInputRecipe> getRecipeList() {
+        return new ArrayList<ContainerInputRecipe>(recipes);
     }
 }
