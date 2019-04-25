@@ -75,7 +75,9 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
     public ContainerInputRecipe lastRecipe;
     public final boolean supportsUpgrades;
     public final int upgradeSlots;
-
+    public static int slotInput;
+    public static int slotInputContainer;
+    public static int slotOutput;
     public AudioSource audioSource;
 
     LinkedList<IStackOutput> outputs = new LinkedList<IStackOutput>();
@@ -147,22 +149,13 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
     }
 
     public void process(ContainerInputRecipe recipe) {
-        for (ItemStack stack : recipe.getOutputs().getRecipeOutput(getWorld().rand, getTileData())) {
-            outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
-        }
         int[] inputs = getInputSlots();
         IRecipeInput input = recipe.getInput();
-        if (input == null) {
-            continue;
-        }
-        ItemStack stack = inventory.get(currentMutation[i]);
+        ItemStack stack = inventory.get(slotInput);
         if (stack.getItem().hasContainerItem(stack)) {
-            inventory.set(currentMutation, stack.getItem().getContainerItem(stack));
+            inventory.set(slotInput, stack.getItem().getContainerItem(stack));
         } else {
             stack.shrink(input.getAmount());
-        }
-        for (int i = 0; i < inputs.length; i++) {
-
         }
         addToInventory();
         if (supportsUpgrades) {
@@ -193,7 +186,7 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
             return null;
         }
         if (lastRecipe != null) {
-            if (!checkRecipe(lastRecipe, currentMutation)) {
+            if (!checkRecipe(lastRecipe)) {
                 lastRecipe = null;
                 applyRecipeEffect(null);
             }
@@ -203,8 +196,7 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
                 @Override
                 public boolean test(ContainerInputRecipe t) {
                     for (int[] mutation : getRecipeMutations()) {
-                        if (checkRecipe(t, mutation)) {
-                            currentMutation = mutation;
+                        if (checkRecipe(t)) {
                             return true;
                         }
                     }
@@ -375,12 +367,9 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
         getNetwork().updateTileGuiField(this, "energy");
     }
 
-    public boolean checkRecipe(ContainerInputRecipe entry, int[] mutation) {
-        int[] inputs = getInputSlots();
-        for (int i = 0; i < inputs.length; i++) {
-            if (!entry.matches(inputs[i], inventory.get(mutation[i]))) {
-                return false;
-            }
+    public boolean checkRecipe(ContainerInputRecipe entry) {
+        if (!entry.matches(inventory.get(slotInputContainer))) {
+            return false;
         }
         return true;
     }
