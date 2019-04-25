@@ -13,6 +13,7 @@ import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.ArrayFilter;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.CommonFilters;
+import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
@@ -77,6 +78,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     @Override
     protected void addSlots(InventoryHandler handler)
     {
+        this.filter = new MachineFilter(this);
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
         handler.registerDefaultSlotAccess(AccessRule.Import, slotInput);
@@ -84,6 +86,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutput, slotOutput2, slotOutput3);
         handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), slotInput);
         handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
+        handler.registerInputFilter(this.filter, slotInput);
         handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
         handler.registerSlotType(SlotType.Fuel, slotFuel);
         handler.registerSlotType(SlotType.Input, slotInput);
@@ -165,16 +168,6 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         }
         consumeInput(input);
     }
-
-//    @Override
-//    public boolean canWork()
-//    {
-//        if(super.canWork())
-//        {
-//            return heat == maxHeat;
-//        }
-//        return false;
-//    }
 
     @Override
     public void update() {
