@@ -83,13 +83,13 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     @Override
     protected void addSlots(InventoryHandler handler)
     {
-        //this.filter = new MachineFilter(this);
+        //=this.filter = new MachineFilter(this);
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
-        handler.registerDefaultSlotAccess(AccessRule.Import, slotInput, slotInputTank);
+        handler.registerDefaultSlotAccess(AccessRule.Import, slotInput);
         handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput, slotOutput2, slotOutput3, slotOutputTank);
-        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), 1, 2, 4);
-        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), 0, 3);
+        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutput, slotOutput2, slotOutput3);
+        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), slotInput);
         handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
         handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
         handler.registerSlotType(SlotType.Fuel, slotFuel);

@@ -81,8 +81,8 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
         handler.registerDefaultSlotAccess(AccessRule.Import, slotInput);
         handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput, slotOutput2, slotOutput3);
-        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), 0, 2, 4);
-        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), 1, 3);
+        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutput, slotOutput2, slotOutput3);
+        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), slotInput);
         handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
         handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
         handler.registerSlotType(SlotType.Fuel, slotFuel);

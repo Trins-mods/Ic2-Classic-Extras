@@ -99,14 +99,15 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         this.filter = new MachineFilter(this);
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
-        handler.registerDefaultSlotAccess(AccessRule.Import, slotInput, slotInputTank);
+        handler.registerDefaultSlotAccess(AccessRule.Import, slotInput);
         handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput, slotOutput2, slotOutput3, slotOutputTank);
-        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), 0, 2, 4);
-        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), 1, 3);
+        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutput, slotOutput2, slotOutput3);
+        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), slotInput);
         handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
+        handler.registerInputFilter(this.filter, slotInput);
         handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
         handler.registerSlotType(SlotType.Fuel, slotFuel);
-        handler.registerSlotType(SlotType.Input, slotInput, slotInputTank);
+        handler.registerSlotType(SlotType.Input, slotInput);
         handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2, slotOutput3, slotOutputTank);
     }
 
