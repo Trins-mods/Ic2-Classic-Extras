@@ -139,6 +139,11 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     }
 
     @Override
+    public boolean canWork() {
+        return heat == maxHeat && super.canWork();
+    }
+
+    @Override
     protected EnumActionResult canFillRecipeIntoOutputs(MachineOutput output) {
         List<ItemStack> result = output.getAllOutputs();
         for (int i = 0; i < result.size() && i < 3; i++) {
