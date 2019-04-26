@@ -13,6 +13,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.blocks.container.ContainerMetalPresser;
 import trinsdar.ic2c_extras.blocks.container.ContainerOreWashingPlant;
 import trinsdar.ic2c_extras.recipes.ContainerInputRecipeList;
@@ -29,7 +30,7 @@ public class TileEntityMetalPresser extends TileEntityContainerInputBase {
     public static final ContainerInputRecipeList metalPresser = new ContainerInputRecipeList("metalPresser");
 
     public TileEntityMetalPresser() {
-        super(4, 2, 5, 400, 32);
+        super(4, 2, 5, 200, 128);
         slotInput = 0;
         slotInputContainer = 1;
         slotOutput = 3;
@@ -87,7 +88,7 @@ public class TileEntityMetalPresser extends TileEntityContainerInputBase {
 
     public ResourceLocation getGuiTexture()
     {
-        return Ic2cExtrasResourceLocations.oreWashingPlant;
+        return new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guimetalpresser.png");
     }
 
     public static void addRecipe(IRecipeInput input, ItemStack press, ItemStack output)

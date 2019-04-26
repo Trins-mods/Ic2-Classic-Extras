@@ -87,7 +87,7 @@ public class CraftingRecipes {
         recipes.addRecipe(Ic2Items.fuelCan,
                 " TT", "T T", "TTT", 'T', "casingTin");
 
-        recipes.addRecipe(new ItemStack(Registry.stoneDustBlock), "SS", "SS", 'S', Registry.stoneDust);
+        recipes.addRecipe(new ItemStack(Registry.stoneDustBlock), "SS", "SS", 'S', "dustStone");
 
         recipes.addRecipe(Ic2Items.reactorCoolantCellSimple, " T ", "TWT", " T ", 'T', "casingTin", 'W', water);
         recipes.addRecipe(Ic2Items.reactorCoolantCellTriple, "TTT", "CCC", "TTT", 'T', "casingTin", 'C', Ic2Items.reactorCoolantCellSimple);
