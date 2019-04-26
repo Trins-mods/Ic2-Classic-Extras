@@ -2,22 +2,13 @@ package trinsdar.ic2c_extras.blocks;
 
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
-import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
@@ -25,7 +16,7 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityExtruder;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityImpellerizedRoller;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityLiquescentExtruder;
-import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalPresser;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalBender;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityPlasmaCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
@@ -72,8 +63,8 @@ public class BlockMachine extends BlockMultiID {
             return new TileEntityLiquescentExtruder();
         }else if (this == Registry.plasmaCutter){
             return new TileEntityPlasmaCutter();
-        }else if (this == Registry.metalPresser){
-            return new TileEntityMetalPresser();
+        }else if (this == Registry.metalBender){
+            return new TileEntityMetalBender();
         }else{
             return new TileEntityBlock();
         }
@@ -103,6 +94,8 @@ public class BlockMachine extends BlockMultiID {
             return Ic2Icons.getTextures("plasmacutter");
         }else if (this == Registry.blastFurnace){
             return Ic2Icons.getTextures("blastfurnace");
+        }else if (this == Registry.metalBender){
+            return Ic2Icons.getTextures("metalbender");
         }else{
             return Ic2Icons.getTextures("roller");
         }

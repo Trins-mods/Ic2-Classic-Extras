@@ -4,8 +4,10 @@ import ic2.core.platform.textures.Sprites;
 import ic2.core.platform.textures.Sprites.SpriteData;
 import ic2.core.platform.textures.Sprites.SpriteInfo;
 import ic2.core.platform.textures.Sprites.TextureEntry;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import trinsdar.ic2c_extras.IC2CExtras;
 
 import static ic2.core.platform.textures.Ic2Icons.*;
 
@@ -22,6 +24,7 @@ public class Icons
         addSprite(new SpriteData("roller", "ic2c_extras:textures/sprites/roller.png", new SpriteInfo(1, 12)));
         addSprite(new SpriteData("extruder", "ic2c_extras:textures/sprites/extruder.png", new SpriteInfo(1, 12)));
         addSprite(new SpriteData("cutter", "ic2c_extras:textures/sprites/cutter.png", new SpriteInfo(1, 12)));
+        addSprite(new SpriteData("metalbender", "ic2c_extras:textures/sprites/metalbender.png", new SpriteInfo(1, 12)));
         addSprite(new SpriteData("impellerizedroller", "ic2c_extras:textures/sprites/impellerizedroller.png", new SpriteInfo(1, 12)));
         addSprite(new SpriteData("liquescentextruder", "ic2c_extras:textures/sprites/liquescentextruder.png", new SpriteInfo(1, 12)));
         addSprite(new SpriteData("plasmacutter", "ic2c_extras:textures/sprites/plasmacutter.png", new SpriteInfo(1, 12)));
@@ -38,6 +41,7 @@ public class Icons
         addTextureEntry(new TextureEntry("roller", 0, 0, 1, 12));
         addTextureEntry(new TextureEntry("extruder", 0, 0, 1, 12));
         addTextureEntry(new TextureEntry("cutter", 0, 0, 1, 12));
+        addTextureEntry(new TextureEntry("metalbender", 0, 0, 1, 12));
         addTextureEntry(new TextureEntry("impellerizedroller", 0, 0, 1, 12));
         addTextureEntry(new TextureEntry("liquescentextruder", 0, 0, 1, 12));
         addTextureEntry(new TextureEntry("plasmacutter", 0, 0, 1, 12));
@@ -47,5 +51,7 @@ public class Icons
         addTextureEntry(new TextureEntry("liquidfuelfirebox", 0, 0, 1, 12));
         addTextureEntry(new TextureEntry("electricheater", 0, 0, 1, 12));
         addTextureEntry(new TextureEntry("ic2c_extras_items", 0, 0, 16, 6));
+
+        addCustomTexture("metalbender", 0, 9, new ResourceLocation(IC2CExtras.MODID,"animations/emetalbender_front"));
     }
 }

@@ -1,11 +1,8 @@
 package trinsdar.ic2c_extras.blocks.tileentity;
 
 import ic2.api.classic.item.IMachineUpgradeItem;
-import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
-import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
-import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.IFilter;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -14,8 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.IC2CExtras;
-import trinsdar.ic2c_extras.blocks.container.ContainerMetalPresser;
-import trinsdar.ic2c_extras.blocks.container.ContainerOreWashingPlant;
+import trinsdar.ic2c_extras.blocks.container.ContainerMetalBender;
 import trinsdar.ic2c_extras.recipes.ContainerInputRecipeList;
 import trinsdar.ic2c_extras.util.GuiMachine;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
@@ -25,11 +21,11 @@ import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class TileEntityMetalPresser extends TileEntityContainerInputBase {
+public class TileEntityMetalBender extends TileEntityContainerInputBase {
 
-    public static final ContainerInputRecipeList metalPresser = new ContainerInputRecipeList("metalPresser");
+    public static final ContainerInputRecipeList metalBender = new ContainerInputRecipeList("metalBender");
 
-    public TileEntityMetalPresser() {
+    public TileEntityMetalBender() {
         super(4, 2, 5, 200, 128);
         slotInput = 0;
         slotInputContainer = 1;
@@ -59,7 +55,7 @@ public class TileEntityMetalPresser extends TileEntityContainerInputBase {
 
     @Override
     public ContainerInputRecipeList getRecipeList() {
-        return metalPresser;
+        return metalBender;
     }
 
     @Override
@@ -70,29 +66,29 @@ public class TileEntityMetalPresser extends TileEntityContainerInputBase {
     @Override
     public ContainerIC2 getGuiContainer(EntityPlayer player)
     {
-        return new ContainerMetalPresser(player.inventory, this);
+        return new ContainerMetalBender(player.inventory, this);
     }
 
     @Override
     public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
     {
-        return GuiMachine.MetalPresserGui.class;
+        return GuiMachine.MetalBenderGui.class;
     }
 
 
     @Override
     public LocaleComp getBlockName()
     {
-        return Ic2cExtrasLang.oreWashingPlant;
+        return Ic2cExtrasLang.metalBender;
     }
 
     public ResourceLocation getGuiTexture()
     {
-        return new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guimetalpresser.png");
+        return Ic2cExtrasResourceLocations.metalBender;
     }
 
     public static void addRecipe(IRecipeInput input, ItemStack press, ItemStack output)
     {
-        metalPresser.addRecipe(input, press, new MachineOutput(null, output), input.getInputs().get(0).getDisplayName());
+        metalBender.addRecipe(input, press, new MachineOutput(null, output), input.getInputs().get(0).getDisplayName());
     }
 }

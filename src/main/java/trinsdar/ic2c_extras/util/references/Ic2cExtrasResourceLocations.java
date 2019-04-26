@@ -8,6 +8,7 @@ public class Ic2cExtrasResourceLocations {
     public static ResourceLocation thermalCentrifuge = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guithermalcentrifuge.png");
     public static ResourceLocation thermalWasher = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guithermalwasher.png");
     public static ResourceLocation roller = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guiroller.png");
+    public static ResourceLocation metalBender = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guimetalbender.png");
     public static ResourceLocation extruder = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guiextruder.png");
     public static ResourceLocation cutter = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guicutter.png");
     public static ResourceLocation impellerizedRoller = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guiimpellerizedroller.png");

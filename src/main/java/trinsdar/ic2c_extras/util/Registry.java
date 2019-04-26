@@ -15,7 +15,7 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityExtruder;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityImpellerizedRoller;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityLiquescentExtruder;
-import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalPresser;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalBender;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityPlasmaCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
@@ -46,7 +46,7 @@ public class Registry
     liquescentExtruder = new BlockMachine("liquescentExtruder"),
     plasmaCutter = new BlockMachine("plasmaCutter"),
     blastFurnace = new BlockMachine("blastFurnace"),
-    metalPresser = new BlockMachine("metalPresser");
+    metalBender = new BlockMachine("metalBender");
     public static final BlockIc2cEGenerator
     advancedSteamTurbine = new BlockIc2cEGenerator("advancedSteamTurbine"),
     solidFuelFirebox = new BlockIc2cEGenerator("solidFuelFirebox"),
@@ -159,7 +159,7 @@ public class Registry
         IC2.getInstance().createBlock(impellerizedRoller, ItemBlockMachine.class);
         IC2.getInstance().createBlock(liquescentExtruder, ItemBlockMachine.class);
         IC2.getInstance().createBlock(plasmaCutter, ItemBlockMachine.class);
-        IC2.getInstance().createBlock(metalPresser, ItemBlockMachine.class);
+        IC2.getInstance().createBlock(metalBender, ItemBlockMachine.class);
         IC2.getInstance().createBlock(blastFurnace, ItemBlockRare.class);
         IC2.getInstance().createBlock(advancedSteamTurbine, ItemBlockGenerator.class);
         IC2.getInstance().createBlock(solidFuelFirebox, ItemBlockRare.class);
@@ -255,6 +255,6 @@ public class Registry
         GameRegistry.registerTileEntity(TileEntityImpellerizedRoller.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityImpellerizedRoller"));
         GameRegistry.registerTileEntity(TileEntityLiquescentExtruder.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityLiquescentExtruder"));
         GameRegistry.registerTileEntity(TileEntityPlasmaCutter.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityPlasmaCutter"));
-        GameRegistry.registerTileEntity(TileEntityMetalPresser.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityMetalPresser"));
+        GameRegistry.registerTileEntity(TileEntityMetalBender.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityMetalBender"));
     }
 }
