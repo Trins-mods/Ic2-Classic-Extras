@@ -70,8 +70,6 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
     @NetworkField(index = 12)
     public boolean redstoneSensitive;
     public boolean defaultSensitive;
-
-    public int[] currentMutation = getRecipeMutations()[0];
     public ContainerInputRecipe lastRecipe;
     public final boolean supportsUpgrades;
     public final int upgradeSlots;
@@ -149,21 +147,22 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
     }
 
     public void process(ContainerInputRecipe recipe) {
-        int[] inputs = getInputSlots();
         IRecipeInput input = recipe.getInput();
+        ItemStack container = inventory.get(slotInputContainer);
         ItemStack stack = inventory.get(slotInput);
+        if (container.getItem().hasContainerItem(container)){
+            inventory.set(slotInputContainer, container.getItem().getContainerItem(stack));
+        }
         if (stack.getItem().hasContainerItem(stack)) {
             inventory.set(slotInput, stack.getItem().getContainerItem(stack));
         } else {
             stack.shrink(input.getAmount());
         }
         addToInventory();
-        if (supportsUpgrades) {
-            for (int i = 0; i < upgradeSlots; i++) {
-                ItemStack item = inventory.get(i + inventory.size() - upgradeSlots);
-                if (item.getItem() instanceof IMachineUpgradeItem) {
-                    ((IMachineUpgradeItem) item.getItem()).onProcessFinished(item, this);
-                }
+        for (int i = 0; i < upgradeSlots; i++) {
+            ItemStack item = inventory.get(i + inventory.size() - upgradeSlots);
+            if (item.getItem() instanceof IMachineUpgradeItem) {
+                ((IMachineUpgradeItem) item.getItem()).onProcessFinished(item, this);
             }
         }
     }
@@ -195,10 +194,8 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
             lastRecipe = getRecipeList().getRecipe(new Predicate<ContainerInputRecipe>() {
                 @Override
                 public boolean test(ContainerInputRecipe t) {
-                    for (int[] mutation : getRecipeMutations()) {
-                        if (checkRecipe(t)) {
-                            return true;
-                        }
+                    if (checkRecipe(t)) {
+                        return true;
                     }
                     return false;
                 }
@@ -292,9 +289,6 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
     }
 
     public void setOverclockRates() {
-        if (!supportsUpgrades) {
-            return;
-        }
         lastRecipe = null;
         int extraProcessSpeed = 0;
         double processingSpeedMultiplier = 1.0D;
@@ -368,15 +362,13 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
     }
 
     public boolean checkRecipe(ContainerInputRecipe entry) {
-        if (!entry.matches(inventory.get(slotInputContainer))) {
+        if (!entry.matches(inventory.get(slotInput), inventory.get(slotInputContainer))) {
             return false;
         }
         return true;
     }
 
     public abstract int[] getInputSlots();
-
-    public abstract int[][] getRecipeMutations();
 
     public abstract IFilter[] getInputFilters(int[] slots);
 
