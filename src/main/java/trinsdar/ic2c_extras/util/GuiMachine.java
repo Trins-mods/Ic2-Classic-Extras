@@ -34,8 +34,8 @@ public class GuiMachine {
         }
     }
 
-    public static class MetalPressGui extends MachineGui {
-        public MetalPressGui(ContainerComponent container) {
+    public static class MetalPresserGui extends MachineGui {
+        public MetalPresserGui(ContainerComponent container) {
             super(container);
         }
     }

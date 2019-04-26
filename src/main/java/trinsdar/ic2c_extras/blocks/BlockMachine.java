@@ -25,6 +25,7 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityExtruder;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityImpellerizedRoller;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityLiquescentExtruder;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalPresser;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityPlasmaCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
@@ -71,6 +72,8 @@ public class BlockMachine extends BlockMultiID {
             return new TileEntityLiquescentExtruder();
         }else if (this == Registry.plasmaCutter){
             return new TileEntityPlasmaCutter();
+        }else if (this == Registry.metalPresser){
+            return new TileEntityMetalPresser();
         }else{
             return new TileEntityBlock();
         }
