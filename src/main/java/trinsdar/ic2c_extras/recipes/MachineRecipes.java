@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.recipes;
 
+import gtclassic.GTItems;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.core.IC2;
@@ -16,7 +17,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
-import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalPresser;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalBender;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.util.Registry;
@@ -197,7 +198,7 @@ public class MachineRecipes {
         extruding.addRecipe(new RecipeInputOreDict("casingTin", 1),  StackUtil.copyWithSize(Ic2Items.tinCan, 1), 0.7f, "tinCanExtruding");
         extruding.addRecipe(new RecipeInputOreDict(Ic2cExtrasRecipes.getRefinedIronCasing(), 2),  StackUtil.copyWithSize(Ic2Items.ironFence, 3), 0.7f, "ironFenceExtruding");
 
-        TileEntityMetalPresser.addRecipe(new RecipeInputOreDict("ingotIron"), new ItemStack(Blocks.ANVIL), Ic2Items.refinedIronIngot);
+        TileEntityMetalBender.addRecipe(new RecipeInputOreDict("ingotIron"), new ItemStack(GTItems.grinderTungstensteel), Ic2Items.refinedIronIngot);
 
         macerator.addRecipe(new RecipeInputOreDict("gemDiamond"), new ItemStack(Registry.diamondDust), 0.5F, "Diamond Dust");
         macerator.addRecipe(new RecipeInputItemStack(Ic2Items.energyCrystal), new ItemStack(Registry.energiumDust, 6), "Energium Dust");
