@@ -28,7 +28,7 @@ public class ItemBlockMachine extends ItemBlockRare {
     }
 
     public int getMaxInput(){
-        if (this.getBlock() == Registry.thermalCentrifuge || this.getBlock() == Registry.impellerizedRoller || this.getBlock() == Registry.liquescentExtruder || this.getBlock() == Registry.plasmaCutter || this.getBlock() == Registry.thermalWasher){
+        if (this.getBlock() == Registry.thermalCentrifuge || this.getBlock() == Registry.impellerizedRoller || this.getBlock() == Registry.liquescentExtruder || this.getBlock() == Registry.plasmaCutter || this.getBlock() == Registry.thermalWasher || this.getBlock() == Registry.metalBender){
             return 128;
         }else {
             return 32;
