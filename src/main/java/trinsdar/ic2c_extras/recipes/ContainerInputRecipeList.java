@@ -126,7 +126,7 @@ public class ContainerInputRecipeList {
         }
 
         public boolean matches(ItemStack stack, ItemStack container) {
-            return input == null ? stack.isEmpty() : (input.matches(stack) && input.getAmount() <= stack.getCount() && press.isItemEqual(container));
+            return input == null ? stack.isEmpty() : (input.matches(stack) && input.getAmount() <= stack.getCount() && press.isItemEqualIgnoreDurability(container));
         }
 
         public MachineOutput getOutputs() {

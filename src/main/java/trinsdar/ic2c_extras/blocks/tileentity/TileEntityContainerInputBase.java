@@ -155,9 +155,9 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
         IRecipeInput input = recipe.getInput();
         ItemStack container = inventory.get(slotInputContainer);
         ItemStack stack = inventory.get(slotInput);
-//        if (container.getItem().hasContainerItem(container)){
-//            container.damageItem(1, this);
-//        }
+        if (container.getItem().hasContainerItem(container)){
+            inventory.set(slotInputContainer, container.getItem().getContainerItem(container));
+        }
         if (stack.getItem().hasContainerItem(stack)) {
             inventory.set(slotInput, stack.getItem().getContainerItem(stack));
         } else {
