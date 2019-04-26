@@ -52,6 +52,6 @@ public class Icons
         addTextureEntry(new TextureEntry("electricheater", 0, 0, 1, 12));
         addTextureEntry(new TextureEntry("ic2c_extras_items", 0, 0, 16, 6));
 
-        addCustomTexture("metalbender", 0, 9, new ResourceLocation(IC2CExtras.MODID,"animations/emetalbender_front"));
+        addCustomTexture("metalbender", 0, 9, new ResourceLocation(IC2CExtras.MODID,"animations/metalbender_front"));
     }
 }
