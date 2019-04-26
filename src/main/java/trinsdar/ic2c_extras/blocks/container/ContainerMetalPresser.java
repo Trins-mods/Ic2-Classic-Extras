@@ -40,7 +40,7 @@ public class ContainerMetalPresser extends ContainerTileComponent<TileEntityMeta
 
         for(int i = 0; i < 2; ++i)
         {
-            this.addSlotToContainer(new SlotUpgrade2(tile, 3 + i, 152, 8 + i * 18));
+            this.addSlotToContainer(new SlotUpgrade2(tile, 4 + i, 152, 8 + i * 18));
         }
 
         this.addPlayerInventory(player);

@@ -2,7 +2,9 @@ package trinsdar.ic2c_extras.blocks.tileentity;
 
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
+import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.MachineType;
+import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.IFilter;
@@ -86,5 +88,10 @@ public class TileEntityMetalPresser extends TileEntityContainerInputBase {
     public ResourceLocation getGuiTexture()
     {
         return Ic2cExtrasResourceLocations.oreWashingPlant;
+    }
+
+    public static void addRecipe(IRecipeInput input, ItemStack press, ItemStack output)
+    {
+        metalPresser.addRecipe(input, press, new MachineOutput(null, output), input.getInputs().get(0).getDisplayName());
     }
 }

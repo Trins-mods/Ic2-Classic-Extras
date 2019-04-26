@@ -17,6 +17,7 @@ import ic2.core.block.base.util.info.EnergyUsageInfo;
 import ic2.core.block.base.util.info.ProgressInfo;
 import ic2.core.block.base.util.info.misc.IEnergyUser;
 import ic2.core.block.base.util.output.MultiSlotOutput;
+import ic2.core.block.base.util.output.SimpleStackOutput;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.filters.IFilter;
@@ -147,12 +148,16 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
     }
 
     public void process(ContainerInputRecipe recipe) {
+        for (ItemStack stack : recipe.getOutputs().getRecipeOutput(getWorld().rand, getTileData())) {
+            outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
+        }
+
         IRecipeInput input = recipe.getInput();
         ItemStack container = inventory.get(slotInputContainer);
         ItemStack stack = inventory.get(slotInput);
-        if (container.getItem().hasContainerItem(container)){
-            inventory.set(slotInputContainer, container.getItem().getContainerItem(stack));
-        }
+//        if (container.getItem().hasContainerItem(container)){
+//            container.damageItem(1, this);
+//        }
         if (stack.getItem().hasContainerItem(stack)) {
             inventory.set(slotInput, stack.getItem().getContainerItem(stack));
         } else {
@@ -208,23 +213,14 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
         if (lastRecipe == null) {
             return null;
         }
-        int empty = 0;
-        int[] outputSlots = getOutputSlots();
-        for (int slot : outputSlots) {
-            if (getStackInSlot(slot).isEmpty()) {
-                empty++;
-            }
-        }
-        if (empty == outputSlots.length) {
+        if (getStackInSlot(slotOutput).isEmpty()){
             return lastRecipe;
         }
         for (ItemStack output : lastRecipe.getOutputs().getAllOutputs()) {
-            for (int outputSlot : outputSlots) {
-                if (StackUtil.isStackEqual(inventory.get(outputSlot), output, false, true)) {
-                    if (inventory.get(outputSlot).getCount() + output.getCount() <= inventory.get(outputSlot)
-                            .getMaxStackSize()) {
-                        return lastRecipe;
-                    }
+            if (StackUtil.isStackEqual(inventory.get(slotOutput), output, false, true)) {
+                if (inventory.get(slotOutput).getCount() + output.getCount() <= inventory.get(slotOutput)
+                        .getMaxStackSize()) {
+                    return lastRecipe;
                 }
             }
         }
@@ -529,7 +525,7 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
 
     @Override
     public boolean hasGui(EntityPlayer player) {
-        return false;
+        return true;
     }
 
 }
