@@ -6,6 +6,7 @@ import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.IStackOutput;
 import ic2.api.classic.tile.machine.IProgressMachine;
+import ic2.api.classic.tile.machine.ISpeedMachine;
 import ic2.api.energy.EnergyNet;
 import ic2.api.network.INetworkTileEntityEventListener;
 import ic2.api.recipe.IRecipeInput;
@@ -15,7 +16,9 @@ import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.base.util.info.EnergyUsageInfo;
 import ic2.core.block.base.util.info.ProgressInfo;
+import ic2.core.block.base.util.info.SpeedInfo;
 import ic2.core.block.base.util.info.misc.IEnergyUser;
+import ic2.core.block.base.util.output.IStackRegistry;
 import ic2.core.block.base.util.output.MultiSlotOutput;
 import ic2.core.block.base.util.output.SimpleStackOutput;
 import ic2.core.inventory.base.IHasGui;
@@ -30,6 +33,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -43,9 +47,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.function.Predicate;
 
-public abstract class TileEntityContainerInputBase extends TileEntityElecMachine implements IOutputMachine, IProgressMachine, IEnergyUser, ITickable, IHasGui, INetworkTileEntityEventListener {
+public abstract class TileEntityContainerInputBase extends TileEntityElecMachine implements IOutputMachine, IProgressMachine, ISpeedMachine, IEnergyUser, ITickable, IHasGui, INetworkTileEntityEventListener {
     @NetworkField(index = 7)
-    public float progress = 0;
+    public int progress = 0;
 
     // Defaults
     public int defaultEnergyConsume;
@@ -60,15 +64,22 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
     @NetworkField(index = 8)
     public float soundLevel = 1F;
 
+    @NetworkField(
+            index = 9,
+            compression = NetworkField.BitLevel.Bit16
+    )
+    public int speed;
+    public static final int maxSpeed = 10000;
+
     // Current Usage & Time
-    @NetworkField(index = 9)
-    public int recipeOperation;
     @NetworkField(index = 10)
+    public int recipeOperation;
+    @NetworkField(index = 11)
     public int recipeEnergy;
 
-    @NetworkField(index = 11)
-    public boolean redstoneInverted;
     @NetworkField(index = 12)
+    public boolean redstoneInverted;
+    @NetworkField(index = 13)
     public boolean redstoneSensitive;
     public boolean defaultSensitive;
     public ContainerInputRecipe lastRecipe;
@@ -89,13 +100,14 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
         defaultEnergyConsume = energyPerTick;
         operationLength = maxProgress;
         defaultOperationLength = maxProgress;
+        speed = 0;
         defaultMaxInput = maxInput;
         defaultEnergyStorage = energyPerTick * maxProgress;
         defaultSensitive = false;
         progressPerTick = 1F;
         addNetworkFields("soundLevel", "redstoneInverted", "redstoneSensitive");
-        addGuiFields("recipeOperation", "recipeEnergy", "progress");
-        addInfos(new EnergyUsageInfo(this), new ProgressInfo(this));
+        addGuiFields("recipeOperation", "recipeEnergy", "progress", "speed");
+        addInfos(new EnergyUsageInfo(this), new ProgressInfo(this), new SpeedInfo(this));
     }
 
     @Override
@@ -109,12 +121,23 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
         if (operate) {
             handleChargeSlot(maxEnergy);
         }
+        if ((isRedstonePowered() || recipe != null) && this.energy > 0) {
+            if (this.speed < 10000) {
+                ++this.speed;
+                this.getNetwork().updateTileGuiField(this, "speed");
+            }
+
+            this.useEnergy(1);
+        } else if (this.speed > 0) {
+            this.speed -= Math.min(this.speed, 4);
+            this.getNetwork().updateTileGuiField(this, "speed");
+        }
         if (operate && energy >= energyConsume) {
             if (!getActive()) {
                 getNetwork().initiateTileEntityEvent(this, 0, false);
             }
             setActive(true);
-            progress += progressPerTick;
+            progress += (float) speed / 30 * progressPerTick;
             useEnergy(recipeEnergy);
             if (progress >= recipeOperation) {
                 process(recipe);
@@ -145,6 +168,16 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
             }
         }
         updateComparators();
+    }
+
+    @Override
+    public float getSpeed() {
+        return speed;
+    }
+
+    @Override
+    public float getMaxSpeed() {
+        return maxSpeed;
     }
 
     public void process(ContainerInputRecipe recipe) {
@@ -186,6 +219,9 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
     }
 
     public ContainerInputRecipe getRecipe() {
+        if (inventory.get(slotInput).isEmpty() || inventory.get(slotInputContainer).isEmpty()) {
+            return null;
+        }
         if (lastRecipe == ContainerInputRecipeList.INVALID_RECIPE) {
             return null;
         }
@@ -415,6 +451,11 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
     }
 
     @Override
+    public boolean isRedstonePowered() {
+        return this.redstoneInverted != super.isRedstonePowered();
+    }
+
+    @Override
     public boolean isProcessing() {
         return getActive();
     }
@@ -510,6 +551,40 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
             this.audioSource.stop();
         }
 
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+        this.progress = nbt.getInteger("progress");
+        this.speed = nbt.getInteger("Speed");
+        this.outputs.clear();
+        NBTTagList list = nbt.getTagList("Results", 10);
+
+        for(int i = 0; i < list.tagCount(); ++i) {
+            IStackOutput output = IStackRegistry.INSTANCE.readNBT(list.getCompoundTagAt(i));
+            if (output != null) {
+                this.outputs.add(output);
+            }
+        }
+
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        super.writeToNBT(nbt);
+        nbt.setInteger("progress", this.progress);
+        nbt.setInteger("Speed", this.speed);
+        NBTTagList list = new NBTTagList();
+        Iterator var3 = this.outputs.iterator();
+
+        while(var3.hasNext()) {
+            IStackOutput item = (IStackOutput)var3.next();
+            list.appendTag(IStackRegistry.INSTANCE.saveNBT(item));
+        }
+
+        nbt.setTag("Results", list);
+        return nbt;
     }
 
     @Override

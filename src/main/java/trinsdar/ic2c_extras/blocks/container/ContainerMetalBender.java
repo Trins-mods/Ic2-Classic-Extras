@@ -3,9 +3,11 @@ package trinsdar.ic2c_extras.blocks.container;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.components.base.MachineChargeComp;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
+import ic2.core.inventory.gui.components.base.MachineSpeedComp;
 import ic2.core.inventory.slots.SlotCustom;
 import ic2.core.inventory.slots.SlotDischarge;
 import ic2.core.inventory.slots.SlotOutput;
+import ic2.core.platform.lang.storage.Ic2GuiLang;
 import ic2.core.platform.registry.Ic2GuiComp;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -31,6 +33,7 @@ public class ContainerMetalBender extends ContainerTileComponent<TileEntityMetal
         this.addPlayerInventory(player);
         this.addComponent(new MachineChargeComp(tile, Ic2GuiComp.machineChargeBox, Ic2GuiComp.machineChargePos));
         this.addComponent(new MachineProgressComp(tile, Ic2GuiComp.machineProgressBox, Ic2GuiComp.machineProgressPos));
+        this.addComponent(new MachineSpeedComp(tile, Ic2GuiLang.machineSpeed));
     }
 
     @Override

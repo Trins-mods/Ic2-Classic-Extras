@@ -85,6 +85,12 @@ item.bronzePlate.name=Bronze Plate
 item.steelPlate.name=Steel Plate
 item.diamondDust.name=Diamond Dust
 item.energiumDust.name=Energium Dust
+item.blankPress.name=Blank Press
+item.rollingPress.name=Rolling Press
+item.extrudingPress.name=Extruding Press
+item.cuttingPress.name=Cutting Press
+item.lathingPress.name=Lathing Press
+item.gearingPress.name=Gearing Press
 item.craftingHammer.name=Crafting Hammer
 item.wireCutters.name=Wire Cutters
 

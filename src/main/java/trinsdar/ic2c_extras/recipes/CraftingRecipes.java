@@ -72,11 +72,20 @@ public class CraftingRecipes {
         //recipes.addRecipe(new ItemStack(Registry.plasmaCutter, 1),
         //        "CCC", "CcC", "CBC", 'c', Registry.cutter,'B', Ic2Items.advMachine, 'C', Ic2Items.cutter);
 
+
+
         recipes.addRecipe(new ItemStack(Registry.coil, 1),
                 "CCC", "CIC", "CCC", 'I', IC2.getRefinedIron(),'C', Ic2Items.copperCable);
 
         recipes.addRecipe(new ItemStack(Registry.heatConductor, 1),
                 "RRB", "RBR", "BRR", 'R', "itemRubber",'B', "ingotBronze");
+
+        recipes.addRecipe(new ItemStack(Registry.blankPress), "H", "P", "P", 'H', "craftingToolForgeHammer", 'P', "plateRefinedIron");
+        recipes.addRecipe(new ItemStack(Registry.rollingPress), "H", "P", 'H', "craftingToolForgeHammer", 'P', Registry.blankPress);
+        recipes.addRecipe(new ItemStack(Registry.extrudingPress), "CP", 'C', "craftingToolWireCutter", 'P', Registry.blankPress);
+        recipes.addRecipe(new ItemStack(Registry.cuttingPress), "P ", " C", 'P', Registry.blankPress, 'C', "craftingToolWireCutter");
+        recipes.addRecipe(new ItemStack(Registry.lathingPress), " P", "C ", 'P', Registry.blankPress, 'C', "craftingToolWireCutter");
+        recipes.addRecipe(new ItemStack(Registry.gearingPress), "C", "P", 'C', "craftingToolWireCutter", 'P', Registry.blankPress);
 
         recipes.addRecipe(new ItemStack(Registry.craftingHammer, 1),
                 "III", "III", " S ", 'I', IC2.getRefinedIron(),'S', "stickWood");

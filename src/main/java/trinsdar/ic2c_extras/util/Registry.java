@@ -69,84 +69,90 @@ public class Registry
     static String uranium = "uranium";
 
     public static final ItemCasings
-            copperCasing = new ItemCasings(copper, 48),
-            tinCasing = new ItemCasings(tin, 49),
-            silverCasing = new ItemCasings(silver, 50),
-            leadCasing = new ItemCasings(lead, 51),
-            ironCasing = new ItemCasings(iron, 52),
-            goldCasing = new ItemCasings(gold, 53),
-            refinedIronCasing = new ItemCasings("refinedIron", 54),
-            steelCasing = new ItemCasings(steel, 55),
-            bronzeCasing = new ItemCasings(bronze, 56);
+    copperCasing = new ItemCasings(copper, 48),
+    tinCasing = new ItemCasings(tin, 49),
+    silverCasing = new ItemCasings(silver, 50),
+    leadCasing = new ItemCasings(lead, 51),
+    ironCasing = new ItemCasings(iron, 52),
+    goldCasing = new ItemCasings(gold, 53),
+    refinedIronCasing = new ItemCasings("refinedIron", 54),
+    steelCasing = new ItemCasings(steel, 55),
+    bronzeCasing = new ItemCasings(bronze, 56);
 
     public static final ItemCrushedOre
-            ironCrushedOre = new ItemCrushedOre(iron, 0),
-            goldCrushedOre = new ItemCrushedOre(gold, 1),
-            copperCrushedOre = new ItemCrushedOre(copper, 2),
-            tinCrushedOre = new ItemCrushedOre(tin, 3),
-            silverCrushedOre = new ItemCrushedOre(silver, 4),
-            leadCrushedOre = new ItemCrushedOre(lead, 5),
-            uraniumCrushedOre = new ItemCrushedOre(uranium, 6);
+    ironCrushedOre = new ItemCrushedOre(iron, 0),
+    goldCrushedOre = new ItemCrushedOre(gold, 1),
+    copperCrushedOre = new ItemCrushedOre(copper, 2),
+    tinCrushedOre = new ItemCrushedOre(tin, 3),
+    silverCrushedOre = new ItemCrushedOre(silver, 4),
+    leadCrushedOre = new ItemCrushedOre(lead, 5),
+    uraniumCrushedOre = new ItemCrushedOre(uranium, 6);
 
     public static final ItemPurifiedCrushedOre
-            ironPurifiedCrushedOre = new ItemPurifiedCrushedOre(iron, 16),
-            goldPurifiedCrushedOre = new ItemPurifiedCrushedOre(gold, 17),
-            copperPurifiedCrushedOre = new ItemPurifiedCrushedOre(copper, 18),
-            tinPurifiedCrushedOre = new ItemPurifiedCrushedOre(tin, 19),
-            silverPurifiedCrushedOre = new ItemPurifiedCrushedOre(silver, 20),
-            leadPurifiedCrushedOre = new ItemPurifiedCrushedOre(lead, 21),
-            uraniumPurifiedCrushedOre = new ItemPurifiedCrushedOre(uranium, 22);
+    ironPurifiedCrushedOre = new ItemPurifiedCrushedOre(iron, 16),
+    goldPurifiedCrushedOre = new ItemPurifiedCrushedOre(gold, 17),
+    copperPurifiedCrushedOre = new ItemPurifiedCrushedOre(copper, 18),
+    tinPurifiedCrushedOre = new ItemPurifiedCrushedOre(tin, 19),
+    silverPurifiedCrushedOre = new ItemPurifiedCrushedOre(silver, 20),
+    leadPurifiedCrushedOre = new ItemPurifiedCrushedOre(lead, 21),
+    uraniumPurifiedCrushedOre = new ItemPurifiedCrushedOre(uranium, 22);
 
     public static final ItemTinyDust
-            ironTinyDust = new ItemTinyDust(iron, 32),
-            goldTinyDust = new ItemTinyDust(gold, 33),
-            copperTinyDust = new ItemTinyDust(copper, 34),
-            tinTinyDust = new ItemTinyDust(tin, 35),
-            silverTinyDust = new ItemTinyDust(silver, 36),
-            leadTinyDust = new ItemTinyDust(lead, 37),
-            uranium235TinyDust = new ItemTinyDust(uranium + "235", 38),
-            obsidianTinyDust = new ItemTinyDust("obsidian", 39),
-            bronzeTinyDust = new ItemTinyDust(bronze, 40),
-            uranium238TinyDust = new ItemTinyDust(uranium + "238", 41),
-            plutoniumTinyDust = new ItemTinyDust("plutonium", 42);
+    ironTinyDust = new ItemTinyDust(iron, 32),
+    goldTinyDust = new ItemTinyDust(gold, 33),
+    copperTinyDust = new ItemTinyDust(copper, 34),
+    tinTinyDust = new ItemTinyDust(tin, 35),
+    silverTinyDust = new ItemTinyDust(silver, 36),
+    leadTinyDust = new ItemTinyDust(lead, 37),
+    uranium235TinyDust = new ItemTinyDust(uranium + "235", 38),
+    obsidianTinyDust = new ItemTinyDust("obsidian", 39),
+    bronzeTinyDust = new ItemTinyDust(bronze, 40),
+    uranium238TinyDust = new ItemTinyDust(uranium + "238", 41),
+    plutoniumTinyDust = new ItemTinyDust("plutonium", 42);
 
     public static final ItemSmallDust
-            ironSmallDust = new ItemSmallDust(iron, 80),
-            goldSmallDust = new ItemSmallDust(gold, 81),
-            copperSmallDust = new ItemSmallDust(copper, 82),
-            tinSmallDust = new ItemSmallDust(tin, 83),
-            silverSmallDust = new ItemSmallDust(silver, 84),
-            leadSmallDust = new ItemSmallDust(lead, 85),
-            uranium235SmallDust = new ItemSmallDust(uranium + "235", 86),
-            obsidianSmallDust = new ItemSmallDust("obsidian", 87),
-            bronzeSmallDust = new ItemSmallDust(bronze, 88),
-            uranium238SmallDust = new ItemSmallDust(uranium + "238", 89),
-            plutoniumSmallDust = new ItemSmallDust("plutonium", 90);
+    ironSmallDust = new ItemSmallDust(iron, 80),
+    goldSmallDust = new ItemSmallDust(gold, 81),
+    copperSmallDust = new ItemSmallDust(copper, 82),
+    tinSmallDust = new ItemSmallDust(tin, 83),
+    silverSmallDust = new ItemSmallDust(silver, 84),
+    leadSmallDust = new ItemSmallDust(lead, 85),
+    uranium235SmallDust = new ItemSmallDust(uranium + "235", 86),
+    obsidianSmallDust = new ItemSmallDust("obsidian", 87),
+    bronzeSmallDust = new ItemSmallDust(bronze, 88),
+    uranium238SmallDust = new ItemSmallDust(uranium + "238", 89),
+    plutoniumSmallDust = new ItemSmallDust("plutonium", 90);
 
     public static final ItemMiscs
-            leadIngot = new ItemMiscs("leadIngot", 64),
-            leadDust = new ItemMiscs("leadDust", 65),
-            stoneDust = new ItemMiscs("stoneDust", 66),
-            slag = new ItemMiscs("slag", 67),
-            uranium235 = new ItemMiscs("uranium235", 68),
-            uranium238 = new ItemMiscs("uranium238", 69),
-            plutonium = new ItemMiscs("plutonium", 70),
-            coil = new ItemMiscs("coil", 71),
-            heatConductor = new ItemMiscs("heatConductor", 72),
-            steelIngot = new ItemMiscs("steelIngot", 73),
-            plutoniumEnrichedUraniumIngot = new ItemMiscs("plutoniumEnrichedUraniumIngot", 74),
-            doubleEnrichedUraniumIngot = new ItemMiscs("doubleEnrichedUraniumIngot", 75),
-            iridiumShard = new ItemMiscs("iridiumShard", 76),
-            refinedIronPlate = new ItemMiscs("refinedIronPlate", 79),
-            bronzePlate = new ItemMiscs("bronzePlate", 57),
-            steelPlate = new ItemMiscs("steelPlate", 58),
-            diamondDust = new ItemMiscs("diamondDust", 43),
-            energiumDust = new ItemMiscs("energiumDust", 44);
+    leadIngot = new ItemMiscs("leadIngot", 64),
+    leadDust = new ItemMiscs("leadDust", 65),
+    stoneDust = new ItemMiscs("stoneDust", 66),
+    slag = new ItemMiscs("slag", 67),
+    uranium235 = new ItemMiscs("uranium235", 68),
+    uranium238 = new ItemMiscs("uranium238", 69),
+    plutonium = new ItemMiscs("plutonium", 70),
+    coil = new ItemMiscs("coil", 71),
+    heatConductor = new ItemMiscs("heatConductor", 72),
+    steelIngot = new ItemMiscs("steelIngot", 73),
+    plutoniumEnrichedUraniumIngot = new ItemMiscs("plutoniumEnrichedUraniumIngot", 74),
+    doubleEnrichedUraniumIngot = new ItemMiscs("doubleEnrichedUraniumIngot", 75),
+    iridiumShard = new ItemMiscs("iridiumShard", 76),
+    refinedIronPlate = new ItemMiscs("refinedIronPlate", 79),
+    bronzePlate = new ItemMiscs("bronzePlate", 57),
+    steelPlate = new ItemMiscs("steelPlate", 58),
+    diamondDust = new ItemMiscs("diamondDust", 43),
+    energiumDust = new ItemMiscs("energiumDust", 44),
+    blankPress = new ItemMiscs("blankPress", 45),
+    rollingPress = new ItemMiscs("rollingPress", 59),
+    extrudingPress = new ItemMiscs("extrudingPress", 60),
+    cuttingPress = new ItemMiscs("cuttingPress", 61),
+    lathingPress = new ItemMiscs("lathingPress", 62),
+    gearingPress = new ItemMiscs("gearingPress", 63);
 
 
     public static final ItemToolCrafting
-            craftingHammer = new ItemToolCrafting(80, "craftingHammer", 77, true),
-            wireCutters = new ItemToolCrafting(60, "wireCutters", 78, true);
+    craftingHammer = new ItemToolCrafting(80, "craftingHammer", 77, true),
+    wireCutters = new ItemToolCrafting(60, "wireCutters", 78, true);
 
 
     public static void init(){
@@ -233,6 +239,12 @@ public class Registry
         IC2.getInstance().createItem(steelPlate);
         IC2.getInstance().createItem(diamondDust);
         IC2.getInstance().createItem(energiumDust);
+        IC2.getInstance().createItem(blankPress);
+        IC2.getInstance().createItem(rollingPress);
+        IC2.getInstance().createItem(extrudingPress);
+        IC2.getInstance().createItem(cuttingPress);
+        IC2.getInstance().createItem(lathingPress);
+        IC2.getInstance().createItem(gearingPress);
         IC2.getInstance().createItem(craftingHammer);
         IC2.getInstance().createItem(wireCutters);
     }

@@ -26,7 +26,7 @@ public class TileEntityMetalBender extends TileEntityContainerInputBase {
     public static final ContainerInputRecipeList metalBender = new ContainerInputRecipeList("metalBender");
 
     public TileEntityMetalBender() {
-        super(4, 2, 5, 200, 128);
+        super(4, 2, 15, 4000, 128);
         slotInput = 0;
         slotInputContainer = 1;
         slotOutput = 3;
