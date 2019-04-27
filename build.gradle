@@ -51,6 +51,10 @@ repositories{
         name 'MMD'
         url 'https://maven.mcmoddev.com/'
     }
+    maven {
+        name = "jared"
+        url = "http://maven.blamejared.com"
+    }
 }
 
 dependencies {
@@ -65,6 +69,19 @@ dependencies {
     //one probe
     deobfProvided "mcjty.theoneprobe:TheOneProbe-${mc_version}:${mc_version}-${top_version}"
     runtime "mcjty.theoneprobe:TheOneProbe-${mc_version}:${mc_version}-${top_version}"
+
+    deobfCompile(group: 'CraftTweaker2', name: 'ZenScript', version: craft_tweaker_version) {
+        exclude group: 'org.ow2.asm'
+        exclude group: 'com.google.code.gson'
+    }
+    deobfCompile(group: 'CraftTweaker2', name: 'CraftTweaker2-API', version: craft_tweaker_version) {
+        exclude group: 'org.ow2.asm'
+        exclude group: 'com.google.code.gson'
+    }
+    deobfCompile(group: 'CraftTweaker2', name: 'CraftTweaker2-MC1120-Main', version: "1.12-${craft_tweaker_version}") {
+        exclude group: 'org.ow2.asm'
+        exclude group: 'com.google.code.gson'
+    }
 
     //baubles
     compile 'baubles:Baubles:1.12:1.5.2'
