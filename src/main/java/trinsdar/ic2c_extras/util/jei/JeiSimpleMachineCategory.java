@@ -14,19 +14,20 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
-import trinsdar.ic2c_extras.util.Registry;
 
-public class JeiExtruderCategory implements IRecipeCategory<JeiExtruderWrapper> {
+public class JeiSimpleMachineCategory implements IRecipeCategory<JeiSimpleMachineWrapper> {
     ItemStack displayName;
     IDrawable draw;
     IDrawable slot;
     IDrawable arrow;
     IDrawable progress;
     IDrawable charge;
+    String id;
 
-    public JeiExtruderCategory(IGuiHelper helper) {
-        displayName = new ItemStack(Registry.extruder);
-        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guiextruder.png");
+    public JeiSimpleMachineCategory(IGuiHelper helper, ItemStack displayName, String id) {
+        this.displayName = displayName;
+        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/gui" + id + ".png");
+        this.id = id;
         this.draw = helper.createDrawable(texture, 50, 15, 90, 60);
         IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 23, 16);
         this.progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);
@@ -57,11 +58,11 @@ public class JeiExtruderCategory implements IRecipeCategory<JeiExtruderWrapper> 
 
     @Override
     public String getUid() {
-        return "extruder";
+        return id;
     }
 
     @Override
-    public void setRecipe(IRecipeLayout layout, JeiExtruderWrapper arg1, IIngredients ingridient) {
+    public void setRecipe(IRecipeLayout layout, JeiSimpleMachineWrapper arg1, IIngredients ingridient) {
         IGuiItemStackGroup guiItemStacks = layout.getItemStacks();
         guiItemStacks.init(0, true, 5, 1);
         guiItemStacks.init(1, false, 65, 19);

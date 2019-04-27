@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class JeiCutterWrapper extends BlankRecipeWrapper {
+public class JeiSimpleMachineWrapper extends BlankRecipeWrapper {
     IMachineRecipeList.RecipeEntry entry;
 
-    public JeiCutterWrapper(IMachineRecipeList.RecipeEntry recipe) {
+    public JeiSimpleMachineWrapper(IMachineRecipeList.RecipeEntry recipe) {
         this.entry = recipe;
     }
 
