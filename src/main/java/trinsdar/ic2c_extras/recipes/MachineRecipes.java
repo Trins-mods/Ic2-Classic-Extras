@@ -3,6 +3,7 @@ package trinsdar.ic2c_extras.recipes;
 import gtclassic.GTItems;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
+import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.core.IC2;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityMacerator;
@@ -27,6 +28,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static ic2.api.classic.recipe.ClassicRecipes.macerator;
+import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.cutting;
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.extruding;
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.rolling;
 
@@ -37,6 +39,7 @@ public class MachineRecipes {
         initFurnaceRecipes();
         initReplaceMaceratorRecipes();
         postInit();
+        initMetalBenderRecipes();
     }
 
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
@@ -71,7 +74,11 @@ public class MachineRecipes {
             for(int var4 = 0; var4 < var3; ++var4) {
                 String id = var2[var4];
                 String plate;
+                String gear;
+                String rod;
                 NonNullList listPlates;
+                NonNullList listGears;
+                NonNullList listRods;
                 if (id.startsWith("ingot")){
                     if (ingotWhitelist.contains(id) && !gemBlacklist.contains(id)){
                         plate = "plate" + id.substring(5);
@@ -103,6 +110,22 @@ public class MachineRecipes {
                                         recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", 'H', "craftingToolForgeHammer", 'I', id );
                                     }
                                 }
+                            }
+                        }
+                    }
+                    if (!gemBlacklist.contains(id)){
+                        gear = "gear" + id.substring(5);
+                        rod = "rod" + id.substring(5);
+                        if (OreDictionary.doesOreNameExist(gear)) {
+                            listGears = OreDictionary.getOres(gear, false);
+                            if (!listGears.isEmpty()) {
+                                TileEntityMetalBender.addRecipe(new RecipeInputOreDict(id, 4), new ItemStack(Registry.gearingPress), (ItemStack)listGears.get(0));
+                            }
+                        }
+                        if (OreDictionary.doesOreNameExist(rod)) {
+                            listRods = OreDictionary.getOres(rod, false);
+                            if (!listRods.isEmpty()) {
+                                TileEntityMetalBender.addRecipe(new RecipeInputOreDict(id, 1), new ItemStack(Registry.lathingPress), StackUtil.copyWithSize((ItemStack)listRods.get(0), 2));
                             }
                         }
                     }
@@ -198,8 +221,6 @@ public class MachineRecipes {
         extruding.addRecipe(new RecipeInputOreDict("casingTin", 1),  StackUtil.copyWithSize(Ic2Items.tinCan, 1), 0.7f, "tinCanExtruding");
         extruding.addRecipe(new RecipeInputOreDict(Ic2cExtrasRecipes.getRefinedIronCasing(), 2),  StackUtil.copyWithSize(Ic2Items.ironFence, 3), 0.7f, "ironFenceExtruding");
 
-        TileEntityMetalBender.addRecipe(new RecipeInputOreDict("ingotIron"), new ItemStack(GTItems.grinderTungstensteel), Ic2Items.refinedIronIngot);
-
         macerator.addRecipe(new RecipeInputOreDict("gemDiamond"), new ItemStack(Registry.diamondDust), 0.5F, "Diamond Dust");
         macerator.addRecipe(new RecipeInputItemStack(Ic2Items.energyCrystal), new ItemStack(Registry.energiumDust, 6), "Energium Dust");
 
@@ -257,5 +278,19 @@ public class MachineRecipes {
         macerator.addRecipe(new RecipeInputOreDict("orePoorSilver", 3), new ItemStack(Registry.silverCrushedOre,2), 0.8F, "silverPoorOre");
         macerator.removeRecipe(new RecipeInputOreDict("orePoorLead"));
         macerator.addRecipe(new RecipeInputOreDict("orePoorLead", 3), new ItemStack(Registry.leadCrushedOre,2), 0.8F, "leadPoorOre");
+    }
+
+    public static void initMetalBenderRecipes(){
+        for (IMachineRecipeList.RecipeEntry recipe : rolling.getRecipeMap()){
+            TileEntityMetalBender.addRecipe(recipe.getInput(), new ItemStack(Registry.rollingPress), recipe.getOutput());
+        }
+
+        for (IMachineRecipeList.RecipeEntry recipe : extruding.getRecipeMap()){
+            TileEntityMetalBender.addRecipe(recipe.getInput(), new ItemStack(Registry.extrudingPress), recipe.getOutput());
+        }
+
+        for (IMachineRecipeList.RecipeEntry recipe : cutting.getRecipeMap()){
+            TileEntityMetalBender.addRecipe(recipe.getInput(), new ItemStack(Registry.cuttingPress), recipe.getOutput());
+        }
     }
 }

@@ -80,6 +80,7 @@ public class JeiPlugin implements IModPlugin {
             }, rollerId);
             registry.addRecipeCatalyst(new ItemStack(Registry.roller), rollerId);
             registry.addRecipeCatalyst(new ItemStack(Registry.impellerizedRoller), rollerId);
+            registry.addRecipeCatalyst(new ItemStack(Registry.metalBender), rollerId);
             registry.addRecipeClickArea(RollerGui.class, 78, 32, 20, 23, rollerId);
             registry.addRecipes(Ic2cExtrasRecipes.rolling.getRecipeMap(), rollerId);
 
@@ -93,6 +94,7 @@ public class JeiPlugin implements IModPlugin {
             }, extruderId);
             registry.addRecipeCatalyst(new ItemStack(Registry.extruder), extruderId);
             registry.addRecipeCatalyst(new ItemStack(Registry.liquescentExtruder), extruderId);
+            registry.addRecipeCatalyst(new ItemStack(Registry.metalBender), extruderId);
             registry.addRecipeClickArea(ExtruderGui.class, 78, 32, 20, 23, extruderId);
             registry.addRecipes(Ic2cExtrasRecipes.extruding.getRecipeMap(), extruderId);
 
@@ -106,6 +108,7 @@ public class JeiPlugin implements IModPlugin {
             }, cutterId);
             registry.addRecipeCatalyst(new ItemStack(Registry.cutter), cutterId);
             registry.addRecipeCatalyst(new ItemStack(Registry.plasmaCutter), cutterId);
+            registry.addRecipeCatalyst(new ItemStack(Registry.metalBender), cutterId);
             registry.addRecipeClickArea(CutterGui.class, 78, 32, 20, 23, cutterId);
             registry.addRecipes(Ic2cExtrasRecipes.cutting.getRecipeMap(), cutterId);
 

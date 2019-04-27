@@ -72,7 +72,7 @@ public class CraftingRecipes {
         //recipes.addRecipe(new ItemStack(Registry.plasmaCutter, 1),
         //        "CCC", "CcC", "CBC", 'c', Registry.cutter,'B', Ic2Items.advMachine, 'C', Ic2Items.cutter);
 
-
+        recipes.addRecipe(new ItemStack(Registry.metalBender), " c ", "RAE", "rcr", 'c', "circuitAdvanced", 'R', Registry.impellerizedRoller, 'A', Ic2Items.advMachine, 'E', Registry.liquescentExtruder, 'r', Ic2cExtrasRecipes.getRefinedIronCasing());
 
         recipes.addRecipe(new ItemStack(Registry.coil, 1),
                 "CCC", "CIC", "CCC", 'I', IC2.getRefinedIron(),'C', Ic2Items.copperCable);
