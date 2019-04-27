@@ -3,11 +3,21 @@ package trinsdar.ic2c_extras.blocks.tileentity;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
+import ic2.core.RotationList;
 import ic2.core.inventory.container.ContainerIC2;
+import ic2.core.inventory.filters.ArrayFilter;
+import ic2.core.inventory.filters.BasicItemFilter;
+import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.filters.IFilter;
+import ic2.core.inventory.filters.MachineFilter;
+import ic2.core.inventory.management.AccessRule;
+import ic2.core.inventory.management.InventoryHandler;
+import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.IC2CExtras;
@@ -30,6 +40,22 @@ public class TileEntityMetalBender extends TileEntityContainerInputBase {
         slotInput = 0;
         slotInputContainer = 1;
         slotOutput = 3;
+    }
+
+    @Override
+    protected void addSlots(InventoryHandler handler)
+    {
+        handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
+        handler.registerDefaultSlotAccess(AccessRule.Both, 2);
+        handler.registerDefaultSlotAccess(AccessRule.Import, slotInput);
+        handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput);
+        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutput);
+        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), slotInput);
+        handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), 2);
+        handler.registerOutputFilter(CommonFilters.NotDischargeEU, 2);
+        handler.registerSlotType(SlotType.Fuel, 2);
+        handler.registerSlotType(SlotType.Input, slotInput);
+        handler.registerSlotType(SlotType.Output, slotOutput);
     }
 
 
