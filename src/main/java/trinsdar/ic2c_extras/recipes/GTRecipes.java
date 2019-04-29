@@ -4,7 +4,7 @@ import gtclassic.GTItems;
 import gtclassic.material.GTMaterial;
 import gtclassic.material.GTMaterialGen;
 import gtclassic.tile.GTTileElectricSmelter;
-import gtclassic.tile.GTTileMultiIndustrialProcessor;
+import gtclassic.tile.GTTileShredder;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.core.block.machine.low.TileEntityMacerator;
@@ -76,54 +76,54 @@ public class GTRecipes {
     }
 
     public static void initOtherMachineRecipes(){
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreBauxite", 1, MaterialGen.getStack(M.Bauxite, purifiedCrushedOre, 4), GT.getDust(M.Alumina, 1));
+        GTTileShredder.addGrinderRecipe("oreBauxite", 1, MaterialGen.getStack(M.Bauxite, crushedOre, 4), GT.getDust(M.Alumina, 1));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreChromite", 1, MaterialGen.getStack(M.Chromite, purifiedCrushedOre, 2), GT.getSmallDust(M.Chrome, 1), GT.getSmallDust(M.Iron, 1));
+        GTTileShredder.addGrinderRecipe("oreChromite", 1, MaterialGen.getStack(M.Chromite, crushedOre, 2), GT.getSmallDust(M.Chrome, 1), GT.getSmallDust(M.Iron, 1));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreGalena", 1, MaterialGen.getStack(M.Galena, purifiedCrushedOre, 2), GT.getSmallDust(M.Silver, 2));
+        GTTileShredder.addGrinderRecipe("oreGalena", 1, MaterialGen.getStack(M.Galena, crushedOre, 2), GT.getSmallDust(M.Silver, 2));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreGarnierite", 1, MaterialGen.getStack(M.Garnierite, purifiedCrushedOre, 3), GT.getSmallDust(M.Platinum, 1),
+        GTTileShredder.addGrinderRecipe("oreGarnierite", 1, MaterialGen.getStack(M.Garnierite, crushedOre, 3), GT.getSmallDust(M.Platinum, 1),
                 GT.getSmallDust(M.Copper, 1));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreLimonite", 1, MaterialGen.getStack(M.Limonite, purifiedCrushedOre, 5), GT.getSmallDust(M.Iron, 2));
+        GTTileShredder.addGrinderRecipe("oreLimonite", 1, MaterialGen.getStack(M.Limonite, crushedOre, 2), GT.getSmallDust(M.Iron, 2));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreMalachite", 1, MaterialGen.getStack(M.Malachite, purifiedCrushedOre, 2), GT.getDust(M.Calcite, 1), GT.getSmallDust(M.Copper, 2));
+        GTTileShredder.addGrinderRecipe("oreMalachite", 1, MaterialGen.getStack(M.Malachite, crushedOre, 2), GT.getDust(M.Calcite, 1), GT.getSmallDust(M.Copper, 2));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("orePyrite", 1, MaterialGen.getStack(M.Pyrite, purifiedCrushedOre, 2),  GT.getSmallDust(M.Iron, 2));
+        GTTileShredder.addGrinderRecipe("orePyrite", 1, MaterialGen.getStack(M.Pyrite, crushedOre, 2),  GT.getSmallDust(M.Iron, 2));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreSheldonite", 1, MaterialGen.getStack(M.Sheldonite, purifiedCrushedOre, 2), GT.getDust(M.Nickel, 1), GT.getSmallDust(M.Platinum, 1));
+        GTTileShredder.addGrinderRecipe("oreSheldonite", 1, MaterialGen.getStack(M.Sheldonite, crushedOre, 2), GT.getDust(M.Nickel, 1), GT.getSmallDust(M.Platinum, 1));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreSphalerite", 1, MaterialGen.getStack(M.Sphalerite, purifiedCrushedOre, 2), GT.getDust(M.Zinc, 1), GT.getSmallDust(M.GarnetYellow, 1));
+        GTTileShredder.addGrinderRecipe("oreSphalerite", 1, MaterialGen.getStack(M.Sphalerite, crushedOre, 2), GT.getDust(M.Zinc, 1), GT.getSmallDust(M.GarnetYellow, 1));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreTantalite", 1, MaterialGen.getStack(M.Tantalite, purifiedCrushedOre, 2), GT.getSmallDust(M.Niobium, 2), GT.getSmallDust(M.Tantalum, 1));
+        GTTileShredder.addGrinderRecipe("oreTantalite", 1, MaterialGen.getStack(M.Tantalite, crushedOre, 2), GT.getSmallDust(M.Niobium, 2), GT.getSmallDust(M.Tantalum, 1));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreTetrahedrite", 1, MaterialGen.getStack(M.Tetrahedrite, purifiedCrushedOre, 2), GT.getSmallDust(M.Copper, 2), GT.getSmallDust(M.Zinc, 1));
+        GTTileShredder.addGrinderRecipe("oreTetrahedrite", 1, MaterialGen.getStack(M.Tetrahedrite, crushedOre, 2), GT.getSmallDust(M.Copper, 2), GT.getSmallDust(M.Zinc, 1));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreTungstate", 1, MaterialGen.getStack(M.Tungstate, purifiedCrushedOre, 2), GT.getSmallDust(M.Iron, 3), GT.getSmallDust(M.Manganese, 3));
+        GTTileShredder.addGrinderRecipe("oreTungstate", 1, MaterialGen.getStack(M.Tungstate, crushedOre, 2), GT.getSmallDust(M.Iron, 3), GT.getSmallDust(M.Manganese, 3));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("orePyrolusite", 1, MaterialGen.getStack(M.Pyrolusite, purifiedCrushedOre, 2), GT.getSmallDust(M.Manganese, 2));
+        GTTileShredder.addGrinderRecipe("orePyrolusite", 1, MaterialGen.getStack(M.Pyrolusite, crushedOre, 2), GT.getSmallDust(M.Manganese, 2));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreMolybdenite", 1, MaterialGen.getStack(M.Molybdenite, purifiedCrushedOre, 2), GT.getSmallDust(M.Molybdenum, 2));
+        GTTileShredder.addGrinderRecipe("oreMolybdenite", 1, MaterialGen.getStack(M.Molybdenite, crushedOre, 2), GT.getSmallDust(M.Molybdenum, 2));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreIridium", 1, MaterialGen.getStack(M.Iridium, purifiedCrushedOre, 2), GT.getSmallDust(M.Platinum, 2));
+        GTTileShredder.addGrinderRecipe("oreIridium", 1, MaterialGen.getStack(M.Iridium, crushedOre, 2), GT.getSmallDust(M.Platinum, 2));
 
         //and some vanilla ic2 ores
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreCopper", 1, new ItemStack(Registry.copperPurifiedCrushedOre, 2), GT.getSmallDust(M.Gold, 1),
+        GTTileShredder.addGrinderRecipe("oreCopper", 1, new ItemStack(Registry.copperCrushedOre, 2), GT.getSmallDust(M.Gold, 1),
                 GT.getSmallDust(M.Nickel, 1));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreUranium", 1, new ItemStack(Registry.uraniumPurifiedCrushedOre, 2), new ItemStack(Registry.uranium238SmallDust, 2), new ItemStack(Registry.uranium235SmallDust));
+        GTTileShredder.addGrinderRecipe("oreUranium", 1, new ItemStack(Registry.uraniumCrushedOre, 2), new ItemStack(Registry.uranium238SmallDust, 2), new ItemStack(Registry.uranium235SmallDust));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreIron", 1, new ItemStack(Registry.ironPurifiedCrushedOre, 2), GT.getSmallDust(M.Iron, 1),
+        GTTileShredder.addGrinderRecipe("oreIron", 1, new ItemStack(Registry.ironCrushedOre, 2), GT.getSmallDust(M.Iron, 1),
                 GT.getSmallDust(M.Nickel, 1));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreGold", 1, new ItemStack(Registry.goldPurifiedCrushedOre, 2), GT.getSmallDust(M.Copper, 1),
+        GTTileShredder.addGrinderRecipe("oreGold", 1, new ItemStack(Registry.goldCrushedOre, 2), GT.getSmallDust(M.Copper, 1),
                 GT.getSmallDust(M.Nickel, 1));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreTin", 1, new ItemStack(Registry.tinPurifiedCrushedOre, 2), GT.getSmallDust(M.Iron, 1),
+        GTTileShredder.addGrinderRecipe("oreTin", 1, new ItemStack(Registry.tinCrushedOre, 2), GT.getSmallDust(M.Iron, 1),
                 GT.getSmallDust(M.Zinc, 1));
 
-        GTTileMultiIndustrialProcessor.addGrinderRecipe("oreSilver", 1, new ItemStack(Registry.silverPurifiedCrushedOre, 2), GT.getSmallDust(M.Lead, 2));
+        GTTileShredder.addGrinderRecipe("oreSilver", 1, new ItemStack(Registry.silverCrushedOre, 2), GT.getSmallDust(M.Lead, 2));
 
         GTTileElectricSmelter.addRecipe("dustTinyIron", 9, new ItemStack(GTItems.moldIngot), new ItemStack(Items.IRON_INGOT));
         GTTileElectricSmelter.addRecipe("dustTinyGold", 9, new ItemStack(GTItems.moldIngot), new ItemStack(Items.GOLD_INGOT));
