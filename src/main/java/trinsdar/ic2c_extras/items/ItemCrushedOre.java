@@ -63,7 +63,9 @@ public class ItemCrushedOre extends Item implements IStaticTexturedItem
         IBlockState state = world.getBlockState(pos);
         if (this == input) {
             if (state.getBlock() == Blocks.CAULDRON && state.getValue(LEVEL).intValue() > 0) {
-                player.getHeldItem(hand).shrink(1);
+                if (!player.capabilities.isCreativeMode){
+                    player.getHeldItem(hand).shrink(1);
+                }
                 Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
                 for (ItemStack stack: outputs) {
                     ItemHandlerHelper.giveItemToPlayer(player, stack);
