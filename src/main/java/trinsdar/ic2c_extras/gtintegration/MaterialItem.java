@@ -22,6 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.recipes.RecipeCrushed;
 import trinsdar.ic2c_extras.util.Registry;
@@ -122,7 +123,7 @@ public class MaterialItem extends Item implements IStaticTexturedItem, GTColorIt
                 player.getHeldItem(hand).shrink(1);
                 Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(level).intValue() - 1);
                 for (ItemStack stack : outputs) {
-                    player.dropItem(stack, false);
+                    ItemHandlerHelper.giveItemToPlayer(player, stack);
                 }
                 world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,
                         1.0F);
