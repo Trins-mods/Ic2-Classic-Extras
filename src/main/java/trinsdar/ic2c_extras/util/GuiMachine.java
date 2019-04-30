@@ -39,4 +39,10 @@ public class GuiMachine {
             super(container);
         }
     }
+
+    public static class BlockCuttingGui extends MachineGui{
+        public BlockCuttingGui(ContainerComponent container) {
+            super(container);
+        }
+    }
 }

@@ -23,10 +23,12 @@ public class TileEntityRoller extends TileEntityBasicElectricMachine {
         super(3, 5, 400, 32);
     }
 
+    @Override
     public MachineType getType() {
-        return MachineType.macerator;
+        return null;
     }
 
+    @Override
     public LocaleComp getBlockName()
     {
         return Ic2cExtrasLang.roller;
@@ -48,18 +50,22 @@ public class TileEntityRoller extends TileEntityBasicElectricMachine {
         return RollerGui.class;
     }
 
+    @Override
     public ResourceLocation getStartSoundFile() {
         return Ic2Sounds.compressorOp;
     }
 
+    @Override
     public ResourceLocation getInterruptSoundFile() {
         return Ic2Sounds.interruptingSound;
     }
 
+    @Override
     public double getWrenchDropRate() {
-        return 0.8500000238418579D;
+        return 1.0D;
     }
 
+    @Override
     public boolean isValidInput(ItemStack par1) {
         if (par1 == null) {
             return false;

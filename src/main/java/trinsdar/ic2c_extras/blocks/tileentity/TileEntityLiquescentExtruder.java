@@ -73,6 +73,11 @@ public class TileEntityLiquescentExtruder extends TileEntityAdvancedMachine {
     }
 
     @Override
+    public double getWrenchDropRate() {
+        return 1.0D;
+    }
+
+    @Override
     public ResourceLocation getProcessSoundFile() {
         return Ic2Sounds.compressorOp;
     }

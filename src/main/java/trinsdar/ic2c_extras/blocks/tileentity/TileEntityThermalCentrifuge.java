@@ -122,6 +122,11 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     }
 
     @Override
+    public double getWrenchDropRate() {
+        return 1.0D;
+    }
+
+    @Override
     public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
     {
         return ThermalCentrifugeGui.class;

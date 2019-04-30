@@ -247,7 +247,12 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     @Override
     public MachineType getType()
     {
-        return MachineType.macerator;
+        return null;
+    }
+
+    @Override
+    public double getWrenchDropRate() {
+        return 1.0D;
     }
 
     @Override

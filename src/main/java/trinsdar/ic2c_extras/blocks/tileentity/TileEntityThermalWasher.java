@@ -146,6 +146,11 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     }
 
     @Override
+    public double getWrenchDropRate() {
+        return 1.0D;
+    }
+
+    @Override
     public ResourceLocation getProcessSoundFile()
     {
         return Ic2cExtrasResourceLocations.oreWashingPlantOp;

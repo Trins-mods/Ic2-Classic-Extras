@@ -108,6 +108,11 @@ public class TileEntityMetalBender extends TileEntityContainerInputBase {
         return Ic2cExtrasLang.metalBender;
     }
 
+    @Override
+    public double getWrenchDropRate() {
+        return 1.0D;
+    }
+
     public ResourceLocation getGuiTexture()
     {
         return Ic2cExtrasResourceLocations.metalBender;

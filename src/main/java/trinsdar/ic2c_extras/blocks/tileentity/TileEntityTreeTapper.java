@@ -33,6 +33,11 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
     }
 
     @Override
+    public double getWrenchDropRate() {
+        return 1.0D;
+    }
+
+    @Override
     public boolean canInteractWith(EntityPlayer entityPlayer) {
         return false;
     }

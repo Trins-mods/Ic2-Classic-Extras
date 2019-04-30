@@ -4,6 +4,7 @@ import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
+import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -12,15 +13,14 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.util.GuiMachine.ExtruderGui;
-import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
+import trinsdar.ic2c_extras.util.GuiMachine;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
+import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
-import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.extruding;
-
-public class TileEntityExtruder extends TileEntityBasicElectricMachine {
-    public TileEntityExtruder(){
-        super(3, 5, 400, 32);
+public class TileEntityBlockCuttingMachine extends TileEntityBasicElectricMachine {
+    public static IMachineRecipeList blockCutting = new BasicMachineRecipeList("blockCutting");
+    public TileEntityBlockCuttingMachine(){
+        super(4, 5, 400, 32);
     }
 
     @Override
@@ -31,24 +31,24 @@ public class TileEntityExtruder extends TileEntityBasicElectricMachine {
     @Override
     public LocaleComp getBlockName()
     {
-        return Ic2cExtrasLang.extruder;
+        return Ic2cExtrasLang.blockCuttingMachine;
+    }
+
+    @Override
+    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
+        return GuiMachine.BlockCuttingGui.class;
     }
 
     @Override
     public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input) {
-        return extruding.getRecipeInAndOutput(input, false);
+        return blockCutting.getRecipeInAndOutput(input, false);
     }
 
     @Override
     public ResourceLocation getGuiTexture() {
-        return Ic2cExtrasResourceLocations.extruder;
+        return Ic2cExtrasResourceLocations.blockCuttingMachine;
     }
 
-    @Override
-    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
-    {
-        return ExtruderGui.class;
-    }
 
     @Override
     public ResourceLocation getStartSoundFile() {
@@ -65,24 +65,18 @@ public class TileEntityExtruder extends TileEntityBasicElectricMachine {
         return 1.0D;
     }
 
+    @Override
     public boolean isValidInput(ItemStack par1) {
         if (par1 == null) {
             return false;
         } else {
-            return extruding.getRecipeInAndOutput(par1, true) != null && super.isValidInput(par1);
+            return blockCutting.getRecipeInAndOutput(par1, true) != null && super.isValidInput(par1);
         }
     }
 
-    int index = 0;
-    public static IMachineRecipeList[] recipeList;
-//    public IMachineRecipeList.RecipeEntry getRecipeForStack(ItemStack input)
-//    {
-//        return recipeList[index].getRecipe(input);
-//    }
-
     @Override
     public IMachineRecipeList getRecipeList() {
-        return extruding;
+        return blockCutting;
     }
 
     public static void addRecipe(ItemStack input, ItemStack output) {
@@ -114,6 +108,6 @@ public class TileEntityExtruder extends TileEntityBasicElectricMachine {
     }
 
     public static void addRecipe(IRecipeInput input, ItemStack output, float exp) {
-        extruding.addRecipe(input, output, exp, output.getDisplayName());
+        blockCutting.addRecipe(input, output, exp, output.getDisplayName());
     }
 }

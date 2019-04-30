@@ -24,7 +24,7 @@ public class TileEntityCutter extends TileEntityBasicElectricMachine {
     }
 
     public MachineType getType() {
-        return MachineType.macerator;
+        return null;
     }
 
     public LocaleComp getBlockName()
@@ -57,7 +57,7 @@ public class TileEntityCutter extends TileEntityBasicElectricMachine {
     }
 
     public double getWrenchDropRate() {
-        return 0.8500000238418579D;
+        return 1.0D;
     }
 
     public boolean isValidInput(ItemStack par1) {
@@ -67,13 +67,6 @@ public class TileEntityCutter extends TileEntityBasicElectricMachine {
             return cutting.getRecipeInAndOutput(par1, true) != null && super.isValidInput(par1);
         }
     }
-
-    int index = 0;
-    public static IMachineRecipeList[] recipeList;
-//    public IMachineRecipeList.RecipeEntry getRecipeForStack(ItemStack input)
-//    {
-//        return recipeList[index].getRecipe(input);
-//    }
 
     @Override
     public IMachineRecipeList getRecipeList() {
