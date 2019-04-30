@@ -1,6 +1,7 @@
 package trinsdar.ic2c_extras.blocks.tileentity;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
+import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
@@ -12,6 +13,7 @@ import ic2.core.platform.registry.Ic2Sounds;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.util.GuiMachine;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
@@ -19,6 +21,7 @@ import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 public class TileEntityBlockCuttingMachine extends TileEntityBasicElectricMachine {
     public static IMachineRecipeList blockCutting = new BasicMachineRecipeList("blockCutting");
+    public static final String hardness = "hardness";
     public TileEntityBlockCuttingMachine(){
         super(4, 5, 400, 32);
     }
@@ -79,35 +82,39 @@ public class TileEntityBlockCuttingMachine extends TileEntityBasicElectricMachin
         return blockCutting;
     }
 
-    public static void addRecipe(ItemStack input, ItemStack output) {
-        addRecipe((new RecipeInputItemStack(input)), output);
+    public static int getBladeHardness(MachineOutput output) {
+        if (output == null || output.getMetadata() == null) {
+            return 0;
+        }
+        return output.getMetadata().getInteger(hardness);
     }
 
-    public static void addRecipe(ItemStack input, int stacksize, ItemStack output) {
-        addRecipe((new RecipeInputItemStack(input, stacksize)), output);
+    protected static NBTTagCompound createBladeHardness(int amount) {
+        if (amount < 0) {
+            return null;
+        }
+        NBTTagCompound nbt = new NBTTagCompound();
+        nbt.setInteger(hardness, amount);
+        return nbt;
     }
 
-    public static void addRecipe(String input, int stacksize, ItemStack output) {
-        addRecipe((new RecipeInputOreDict(input, stacksize)), output);
+    public static void addRecipe(ItemStack input, int hardness, ItemStack output) {
+        addRecipe((new RecipeInputItemStack(input)), hardness, output);
     }
 
-    public static void addRecipe(ItemStack input, ItemStack output, float exp) {
-        addRecipe((new RecipeInputItemStack(input)), output, exp);
+    public static void addRecipe(ItemStack input, int stacksize, int hardness, ItemStack output) {
+        addRecipe((new RecipeInputItemStack(input, stacksize)), hardness, output);
     }
 
-    public static void addRecipe(ItemStack input, int stacksize, ItemStack output, float exp) {
-        addRecipe((new RecipeInputItemStack(input, stacksize)), output, exp);
+    public static void addRecipe(String input, int stacksize, int hardness, ItemStack output) {
+        addRecipe((new RecipeInputOreDict(input, stacksize)), hardness, output);
     }
 
-    public static void addRecipe(String input, int stacksize, ItemStack output, float exp) {
-        addRecipe((new RecipeInputOreDict(input, stacksize)), output, exp);
+    public static void addRecipe(String input, int hardness, ItemStack output) {
+        addRecipe((new RecipeInputOreDict(input, 1)), hardness, output);
     }
 
-    public static void addRecipe(IRecipeInput input, ItemStack output) {
-        addRecipe(input, output, 0.0F);
-    }
-
-    public static void addRecipe(IRecipeInput input, ItemStack output, float exp) {
-        blockCutting.addRecipe(input, output, exp, output.getDisplayName());
+    public static void addRecipe(IRecipeInput input, int hardness, ItemStack output) {
+        blockCutting.addRecipe(input, new MachineOutput(createBladeHardness(hardness), output), output.getDisplayName());
     }
 }
