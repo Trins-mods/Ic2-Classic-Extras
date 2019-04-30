@@ -49,8 +49,9 @@ public class ContainerInputRecipeList {
         ContainerInputRecipe recipe = new ContainerInputRecipe(input, press, output, id);
         recipes.add(recipe);
         recipeMap.put(id, recipe);
-        ItemStack stack = input.getInputs().get(0);
-        validInputs.put(new ItemWithMeta(stack), input);
+        for (ItemStack stack : input.getInputs()){
+            validInputs.put(new ItemWithMeta(stack), input);
+        }
     }
 
     public static String getRecipeID(Set<String> ids, String base, int index) {

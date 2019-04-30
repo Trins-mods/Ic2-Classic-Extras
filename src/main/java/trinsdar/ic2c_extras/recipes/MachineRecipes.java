@@ -55,7 +55,7 @@ public class MachineRecipes {
         crushedPurifiedBlackList.addAll(Arrays.asList("crushedPurifiedIron", "crushedPurifiedGold", "crushedPurifiedSilver", "crushedPurifiedLead", "crushedPurifiedCopper", "crushedPurifiedTin", "crushedPurifiedUranium"));
         plateBlacklist.addAll(Arrays.asList("plateIron", "plateGold", "plateSilver", "plateLead", "plateCopper", "plateTin", "plateRefinedIron", "plateSteel", "plateBronze"));
         ingotWhitelist.addAll(Arrays.asList("ingotIron", "ingotGold", "ingotSilver", "ingotLead", "ingotCopper", "ingotTin", "ingotRefinedIron", "ingotSteel", "ingotBronze"));
-        gemBlacklist.addAll(Arrays.asList("ingotDiamond", "ingotEmerald", "ingotQuartz", "ingotIridium", "ingotCoal"));
+        gemBlacklist.addAll(Arrays.asList("ingotDiamond", "ingotEmerald", "ingotQuartz", "ingotIridium", "ingotCoal", "ingotRedstone"));
         if (Loader.isModLoaded("gtclassic")){
             ingotGTBlacklist.addAll(Arrays.asList("ingotGermanium", "ingotTungsten", "ingotInvar", "ingotZinc", "ingotManganese", "ingotMagnalium", "ingotBismuthBronze", "ingotElectrum", "ingotConstantan", "ingotAluminum", "ingotAluminium", "ingotGraphite", "ingotPlatinum", "ingotChrome", "ingotBrass", "ingotPlutonium", "ingotStainlessSteel", "ingotTungstensteel", "ingotTitanium", "ingotNickel", "ingotOsmium", "ingotNichrome", "ingotTantalum", "ingotBismuthr"));
         }
