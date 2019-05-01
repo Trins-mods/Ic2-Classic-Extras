@@ -51,6 +51,6 @@ public class ItemToolCrafting extends Item implements IStaticTexturedItem {
     @Override
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getTexture(int meta) {
-        return Ic2Icons.getTextures("ic2c_extras_items")[this.itemIndex];
+        return Ic2Icons.getTextures("ic2c_extras_tools")[this.itemIndex];
     }
 }

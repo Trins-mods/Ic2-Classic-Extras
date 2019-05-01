@@ -45,15 +45,15 @@ public class MaterialGen {
                 + mat.getDisplayName() + " Dust");
     }
     public static void createCrushedOre(GTMaterial mat) {
-        itemMap.put(mat.getName() + "_crushedore", new MaterialItem(mat, "CrushedOre", 7, true));
+        itemMap.put(mat.getName() + "_crushedore", new MaterialItem(mat, "CrushedOre", 0, true));
     }
 
     public static void createPurifiedCrushedOre(GTMaterial mat) {
-        itemMap.put(mat.getName() + "_purifiedcrushedore", new MaterialItem(mat, "PurifiedCrushedOre", 9, false));
+        itemMap.put(mat.getName() + "_purifiedcrushedore", new MaterialItem(mat, "PurifiedCrushedOre", 2, false));
     }
 
     public static void createTinyDust(GTMaterial mat) {
-        itemMap.put(mat.getName() + "_tinydust", new MaterialItem(mat, "TinyDust", 10, false));
+        itemMap.put(mat.getName() + "_tinydust", new MaterialItem(mat, "TinyDust", 3, false));
     }
 
     public static ItemStack getStack(GTMaterial mat, String suffix, int count) {

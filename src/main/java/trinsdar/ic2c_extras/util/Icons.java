@@ -17,41 +17,36 @@ public class Icons
     @SideOnly(Side.CLIENT)
     public static void loadSprites()
     {
-        addSprite(new SpriteData("ic2c_extras_blocks", "ic2c_extras:textures/sprites/blocks.png", new SpriteInfo(2, 2)));
-        addSprite(new SpriteData("thermalcentrifuge", "ic2c_extras:textures/sprites/thermalcentrifuge.png", new SpriteInfo(1, 12)));
-        addSprite(new SpriteData("thermalwasher", "ic2c_extras:textures/sprites/thermalwasher.png", new SpriteInfo(1, 12)));
-        addSprite(new SpriteData("orewashingplant", "ic2c_extras:textures/sprites/orewashingplant.png", new SpriteInfo(1, 12)));
-        addSprite(new SpriteData("roller", "ic2c_extras:textures/sprites/roller.png", new SpriteInfo(1, 12)));
-        addSprite(new SpriteData("extruder", "ic2c_extras:textures/sprites/extruder.png", new SpriteInfo(1, 12)));
-        addSprite(new SpriteData("cutter", "ic2c_extras:textures/sprites/cutter.png", new SpriteInfo(1, 12)));
-        addSprite(new SpriteData("metalbender", "ic2c_extras:textures/sprites/metalbender.png", new SpriteInfo(1, 12)));
-        addSprite(new SpriteData("impellerizedroller", "ic2c_extras:textures/sprites/impellerizedroller.png", new SpriteInfo(1, 12)));
-        addSprite(new SpriteData("liquescentextruder", "ic2c_extras:textures/sprites/liquescentextruder.png", new SpriteInfo(1, 12)));
-        addSprite(new SpriteData("plasmacutter", "ic2c_extras:textures/sprites/plasmacutter.png", new SpriteInfo(1, 12)));
-        addSprite(new SpriteData("advancedsteamturbine", "ic2c_extras:textures/sprites/advancedsteamturbine.png", new SpriteInfo(1, 12)));
-        addSprite(new SpriteData("blastfurnace", "ic2c_extras:textures/sprites/blastfurnace.png", new SpriteInfo(1, 12)));
-        addSprite(new SpriteData("solidfuelfirebox", "ic2c_extras:textures/sprites/solidfuelfirebox.png", new SpriteInfo(1, 12)));
-        addSprite(new SpriteData("liquidfuelfirebox", "ic2c_extras:textures/sprites/liquidfuelfirebox.png", new SpriteInfo(1, 12)));
-        addSprite(new SpriteData("electricheater", "ic2c_extras:textures/sprites/electricheater.png", new SpriteInfo(1, 12)));
-        addSprite(new SpriteData("ic2c_extras_items", "ic2c_extras:textures/sprites/items.png", new SpriteInfo(16, 6)));
-        addTextureEntry(new TextureEntry("ic2c_extras_blocks", 0, 0, 2, 2));
-        addTextureEntry(new TextureEntry("thermalcentrifuge", 0, 0, 1, 12));
-        addTextureEntry(new TextureEntry("thermalwasher", 0, 0, 1, 12));
-        addTextureEntry(new TextureEntry("orewashingplant", 0, 0, 1, 12));
-        addTextureEntry(new TextureEntry("roller", 0, 0, 1, 12));
-        addTextureEntry(new TextureEntry("extruder", 0, 0, 1, 12));
-        addTextureEntry(new TextureEntry("cutter", 0, 0, 1, 12));
-        addTextureEntry(new TextureEntry("metalbender", 0, 0, 1, 12));
-        addTextureEntry(new TextureEntry("impellerizedroller", 0, 0, 1, 12));
-        addTextureEntry(new TextureEntry("liquescentextruder", 0, 0, 1, 12));
-        addTextureEntry(new TextureEntry("plasmacutter", 0, 0, 1, 12));
-        addTextureEntry(new TextureEntry("advancedsteamturbine", 0, 0, 1, 12));
-        addTextureEntry(new TextureEntry("blastfurnace", 0, 0, 1, 12));
-        addTextureEntry(new TextureEntry("solidfuelfirebox", 0, 0, 1, 12));
-        addTextureEntry(new TextureEntry("liquidfuelfirebox", 0, 0, 1, 12));
-        addTextureEntry(new TextureEntry("electricheater", 0, 0, 1, 12));
-        addTextureEntry(new TextureEntry("ic2c_extras_items", 0, 0, 16, 6));
-
+        makeSprites("ic2c_extras_blocks", "blocks", 2, 2);
+        makeSprites("thermalcentrifuge", "thermalcentrifuge", 1, 12);
+        makeSprites("thermalwasher", "thermalwasher", 1, 12);
+        makeSprites("orewashingplant", "orewashingplant", 1, 12);
+        makeSprites("roller", "roller", 1, 12);
+        makeSprites("extruder", "extruder", 1, 12);
+        makeSprites("cutter", "cutter", 1, 12);
+        makeSprites("metalbender", "metalbender", 1, 12);
+        makeSprites("impellerizedroller", "impellerizedroller", 1, 12);
+        makeSprites("liquescentextruder", "liquescentextruder", 1, 12);
+        makeSprites("plasmacutter", "plasmacutter", 1, 12);
+        makeSprites("advancedsteamturbine", "advancedsteamturbine", 1, 12);
+        makeSprites("blastfurnace", "blastfurnace", 1, 12);
+        makeSprites("solidfuelfirebox", "solidfuelfirebox", 1, 12);
+        makeSprites("liquidfuelfirebox", "liquidfuelfirebox", 1, 12);
+        makeSprites("electricheater", "electricheater", 1, 12);
+        makeSprites("ic2c_extras_misc_items", "misc_items", 16, 2);
+        makeSprites("ic2c_extras_crushed_ore", "crushed_ore", 7, 1);
+        makeSprites("ic2c_extras_purified_crushed_ore", "purified_crushed_ore", 7, 1);
+        makeSprites("ic2c_extras_item_casings", "item_casings", 16, 1);
+        makeSprites("ic2c_extras_materials", "materials", 5, 1);
+        makeSprites("ic2c_extras_presses", "presses", 16, 2);
+        makeSprites("ic2c_extras_small_dust", "small_dust", 16, 1);
+        makeSprites("ic2c_extras_tiny_dust", "tiny_dust", 16, 1);
+        makeSprites("ic2c_extras_tools", "tools", 6, 1);
         addCustomTexture("metalbender", 0, 9, new ResourceLocation(IC2CExtras.MODID,"animations/metalbender_front"));
+    }
+
+    public static void makeSprites(String id, String fileName, int maxX, int maxY){
+        addSprite(new SpriteData(id, "ic2c_extras:textures/sprites/" + fileName + ".png", new SpriteInfo(maxX, maxY)));
+        addTextureEntry(new TextureEntry(id, 0, 0, maxX, maxY));
     }
 }

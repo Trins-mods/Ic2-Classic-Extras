@@ -23,7 +23,7 @@ public class ItemPurifiedCrushedOre extends Item implements IStaticTexturedItem 
     @Override
     public TextureAtlasSprite getTexture(int meta)
     {
-        return Ic2Icons.getTextures("ic2c_extras_items")[index];
+        return Ic2Icons.getTextures("ic2c_extras_purified_crushed_ore")[index];
     }
 
     @Override

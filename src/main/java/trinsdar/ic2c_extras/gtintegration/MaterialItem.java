@@ -54,7 +54,7 @@ public class MaterialItem extends Item implements IStaticTexturedItem, GTColorIt
     @Override
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite getTexture(int i) {
-        return Ic2Icons.getTextures(IC2CExtras.MODID + "_items")[id];
+        return Ic2Icons.getTextures(IC2CExtras.MODID + "_materials")[id];
     }
 
     @Override
@@ -78,7 +78,7 @@ public class MaterialItem extends Item implements IStaticTexturedItem, GTColorIt
 
     @Override
     public TextureAtlasSprite getTexture(int index, ItemStack var2) {
-        return Ic2Icons.getTextures(IC2CExtras.MODID + "_items")[id + index];
+        return Ic2Icons.getTextures(IC2CExtras.MODID + "_materials")[id + index];
     }
 
     /**

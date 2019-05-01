@@ -24,7 +24,7 @@ public class ItemTinyDust extends Item implements IStaticTexturedItem
     @Override
     public TextureAtlasSprite getTexture(int meta)
     {
-        return Ic2Icons.getTextures("ic2c_extras_items")[index];
+        return Ic2Icons.getTextures("ic2c_extras_tiny_dust")[index];
     }
 
     @Override

@@ -13,8 +13,10 @@ import java.util.List;
 
 public class ItemMiscs extends Item implements IStaticTexturedItem {
     int index;
-    public ItemMiscs(String  name, int id) {
+    boolean press;
+    public ItemMiscs(String  name, int id, boolean press) {
         this.index = id;
+        this.press = press;
         setUnlocalizedName(name);
         setCreativeTab(IC2CExtras.creativeTab);
     }
@@ -23,7 +25,10 @@ public class ItemMiscs extends Item implements IStaticTexturedItem {
     @Override
     public TextureAtlasSprite getTexture(int meta)
     {
-        return Ic2Icons.getTextures("ic2c_extras_items")[index];
+        if (press){
+            return Ic2Icons.getTextures("ic2c_extras_presses")[index];
+        }
+        return Ic2Icons.getTextures("ic2c_extras_misc_items")[index];
     }
 
     @Override
