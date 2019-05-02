@@ -3,7 +3,8 @@ package trinsdar.ic2c_extras.util.guicomponent;
 import ic2.api.classic.tile.IMachine;
 import ic2.core.IC2;
 import ic2.core.inventory.slots.SlotUpgrade;
-import trinsdar.ic2c_extras.blocks.tileentity.TileEntityContainerInputBase;
+import trinsdar.ic2c_extras.blocks.tileentity.base.TileEntityContainerInputBase;
+import trinsdar.ic2c_extras.blocks.tileentity.base.TileEntityFluidCannerBase;
 
 public class SlotUpgrade2 extends SlotUpgrade {
     public SlotUpgrade2(IMachine par1, int par2, int par3, int par4) {
@@ -15,6 +16,9 @@ public class SlotUpgrade2 extends SlotUpgrade {
         if (IC2.platform.isSimulating()) {
             if (getMachine() instanceof TileEntityContainerInputBase) {
                 ((TileEntityContainerInputBase) getMachine()).setOverclockRates();
+            }
+            if (getMachine() instanceof TileEntityFluidCannerBase){
+
             }
         }
     }

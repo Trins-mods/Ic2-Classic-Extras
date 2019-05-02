@@ -1,10 +1,9 @@
 package trinsdar.ic2c_extras.util.jei;
 
-import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.item.ItemStack;
-import trinsdar.ic2c_extras.recipes.ContainerInputRecipeList;
+import trinsdar.ic2c_extras.util.recipelists.ContainerInputRecipeList;
 
 import java.util.ArrayList;
 import java.util.Arrays;

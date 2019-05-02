@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.blocks.tileentity;
+package trinsdar.ic2c_extras.blocks.tileentity.base;
 
 import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.item.IMachineUpgradeItem;
@@ -20,7 +20,6 @@ import ic2.core.block.base.util.info.SpeedInfo;
 import ic2.core.block.base.util.info.misc.IEnergyUser;
 import ic2.core.block.base.util.output.IStackRegistry;
 import ic2.core.block.base.util.output.MultiSlotOutput;
-import ic2.core.block.base.util.output.SimpleStackOutput;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.filters.IFilter;
@@ -40,8 +39,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import trinsdar.ic2c_extras.recipes.ContainerInputRecipeList;
-import trinsdar.ic2c_extras.recipes.ContainerInputRecipeList.ContainerInputRecipe;
+import trinsdar.ic2c_extras.util.recipelists.ContainerInputRecipeList;
+import trinsdar.ic2c_extras.util.recipelists.ContainerInputRecipeList.ContainerInputRecipe;
 
 import java.util.Iterator;
 import java.util.LinkedList;

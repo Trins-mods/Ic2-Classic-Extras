@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.recipes;
+package trinsdar.ic2c_extras.util.recipelists;
 
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
