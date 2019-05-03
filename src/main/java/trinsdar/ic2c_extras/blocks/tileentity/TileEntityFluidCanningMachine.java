@@ -66,7 +66,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
         this.outputTank.setCanFill(false);
         this.inputTank.setCanDrain(false);
         this.outputTank.setCanDrain(true);
-        this.addGuiFields("tank");
+        this.addGuiFields("inputTank", "outputTank");
     }
 
     @Override
@@ -88,7 +88,8 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
     @Override
     public void onTankChanged(IFluidTank tank)
     {
-        this.getNetwork().updateTileGuiField(this, "tank");
+        this.getNetwork().updateTileGuiField(this, "inputTank");
+        this.getNetwork().updateTileGuiField(this, "outputTank");
     }
 
     @Override

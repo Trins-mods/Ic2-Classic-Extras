@@ -49,8 +49,8 @@ public class ContainerFluidCanningMachine extends ContainerTileComponent<TileEnt
         this.addPlayerInventory(player);
         this.addComponent(new MachineChargeComp(tile, machineChargeBox, machineChargePos));
         this.addComponent(new MachineProgressComp(tile, machineProgressBox, machineProgressPos));
-        this.addComponent(new FluidTankComp(new Box2D(24, 13, 16, 58), tile.inputTank, tankOverlay, new Box2D(21, 13, 16, 58)));
-        this.addComponent(new FluidTankComp(new Box2D(117, 13, 16, 58), tile.outputTank, tankOverlay, new Box2D(117, 13, 16, 58)));
+        this.addComponent(new FluidTankComp(new Box2D(13, 21, 16, 58), tile.inputTank, tankOverlay, new Box2D(21, 13, 16, 58)));
+        this.addComponent(new FluidTankComp(new Box2D(13, 117, 16, 58), tile.outputTank, tankOverlay, new Box2D(117, 13, 16, 58)));
     }
 
     @Override
