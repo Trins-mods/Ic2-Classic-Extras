@@ -33,13 +33,17 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.util.recipelists.ContainerInputRecipeList;
@@ -104,6 +108,12 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
         defaultEnergyStorage = energyPerTick * maxProgress;
         defaultSensitive = false;
         progressPerTick = 1F;
+        this.inputTank.addListener(this);
+        this.outputTank.addListener(this);
+        this.inputTank.setCanFill(true);
+        this.outputTank.setCanFill(false);
+        this.inputTank.setCanDrain(false);
+        this.outputTank.setCanDrain(true);
         addNetworkFields("soundLevel", "redstoneInverted", "redstoneSensitive");
         addGuiFields("recipeOperation", "recipeEnergy", "progress", "tanks");
         addInfos(new EnergyUsageInfo(this), new ProgressInfo(this));
@@ -200,7 +210,7 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
     }
 
     public FluidCanningRecipe getRecipe() {
-        if (inventory.get(slotInput).isEmpty()) {
+        if (inventory.get(slotInput).isEmpty() || inputTank.getFluidAmount() == 0) {
             return null;
         }
         if (lastRecipe == FluidCanningRecipeList.INVALID_RECIPE) {
@@ -233,14 +243,24 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
         if (getStackInSlot(slotOutput).isEmpty()){
             return lastRecipe;
         }
-        for (ItemStack output : lastRecipe.getOutputs().getAllOutputs()) {
-            if (StackUtil.isStackEqual(inventory.get(slotOutput), output, false, true)) {
-                if (inventory.get(slotOutput).getCount() + output.getCount() <= inventory.get(slotOutput)
-                        .getMaxStackSize()) {
+        if (lastRecipe.hasItemOutput()){
+            for (ItemStack output : lastRecipe.getOutputs().getAllOutputs()) {
+                if (StackUtil.isStackEqual(inventory.get(slotOutput), output, false, true)) {
+                    if (inventory.get(slotOutput).getCount() + output.getCount() <= inventory.get(slotOutput)
+                            .getMaxStackSize()) {
+                        return lastRecipe;
+                    }
+                }
+            }
+        }
+        if (lastRecipe.hasFluidOutput()){
+            if (outputTank.getFluid().getFluid().equals(lastRecipe.getOutputFluid())){
+                if (outputTank.getFluidAmount() + lastRecipe.getOutputFluidAmount() <= outputTank.getCapacity()){
                     return lastRecipe;
                 }
             }
         }
+
         return null;
     }
 
@@ -381,7 +401,7 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
     }
 
     public boolean checkRecipe(FluidCanningRecipe entry) {
-        if (!entry.matches(inventory.get(slotInput), inputTank.getFluid().getFluid())) {
+        if (!entry.matches(inventory.get(slotInput), inputTank.getFluid().getFluid()) && inputTank.getFluidAmount() < entry.getInputFluidAmount()) {
             return false;
         }
         return true;
@@ -574,6 +594,18 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
 
         nbt.setTag("Results", list);
         return nbt;
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing)
+    {
+        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+    {
+        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? (T)this.inputTank : super.getCapability(capability, facing);
     }
 
     @Override

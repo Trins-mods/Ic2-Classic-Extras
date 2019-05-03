@@ -45,4 +45,10 @@ public class GuiMachine {
             super(container);
         }
     }
+
+    public static class FluidCanningGui extends MachineGui{
+        public FluidCanningGui(ContainerComponent container) {
+            super(container);
+        }
+    }
 }

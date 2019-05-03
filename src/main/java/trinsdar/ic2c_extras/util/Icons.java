@@ -25,6 +25,7 @@ public class Icons
         makeSprites("extruder", "extruder", 1, 12);
         makeSprites("cutter", "cutter", 1, 12);
         makeSprites("metalbender", "metalbender", 1, 12);
+        makeSprites("fluidcanningmachine", "fluidcanningmachine", 1, 12);
         makeSprites("impellerizedroller", "impellerizedroller", 1, 12);
         makeSprites("liquescentextruder", "liquescentextruder", 1, 12);
         makeSprites("plasmacutter", "plasmacutter", 1, 12);

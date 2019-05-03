@@ -18,7 +18,7 @@ public class SlotUpgrade2 extends SlotUpgrade {
                 ((TileEntityContainerInputBase) getMachine()).setOverclockRates();
             }
             if (getMachine() instanceof TileEntityFluidCannerBase){
-
+                ((TileEntityFluidCannerBase) getMachine()).setOverclockRates();
             }
         }
     }

@@ -14,6 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityExtruder;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityImpellerizedRoller;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityLiquescentExtruder;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalBender;
@@ -65,7 +66,9 @@ public class BlockMachine extends BlockMultiID {
             return new TileEntityPlasmaCutter();
         }else if (this == Registry.metalBender){
             return new TileEntityMetalBender();
-        }else{
+        }else if (this == Registry.fluidCanningMachine){
+            return new TileEntityFluidCanningMachine();
+        }else {
             return new TileEntityBlock();
         }
     }
@@ -96,6 +99,8 @@ public class BlockMachine extends BlockMultiID {
             return Ic2Icons.getTextures("blastfurnace");
         }else if (this == Registry.metalBender){
             return Ic2Icons.getTextures("metalbender");
+        }else if (this == Registry.fluidCanningMachine){
+            return Ic2Icons.getTextures("fluidcanningmachine");
         }else{
             return Ic2Icons.getTextures("roller");
         }

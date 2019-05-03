@@ -15,9 +15,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalBender;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
@@ -225,6 +227,9 @@ public class MachineRecipes {
         macerator.addRecipe(new RecipeInputItemStack(Ic2Items.energyCrystal), new ItemStack(Registry.energiumDust, 6), "Energium Dust");
 
         TileEntityCompressor.addRecipe(new ItemStack(Registry.energiumDust), 6, Ic2Items.energyCrystal);
+
+        TileEntityFluidCanningMachine.addRecipe(new RecipeInputOreDict("ingotIron", 1), FluidRegistry.WATER, 200, Ic2Items.refinedIronIngot);
+        TileEntityFluidCanningMachine.addRecipe(new RecipeInputItemStack(Ic2Items.advancedCircuit), FluidRegistry.LAVA, 500, FluidRegistry.WATER, 800);
 
         if (!IC2.config.getFlag("SteelRecipes")){
             if(Ic2cExtrasRecipes.enableCertainRecipesRequireSteel){
