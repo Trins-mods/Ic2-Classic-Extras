@@ -86,6 +86,11 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
     public FluidCanningRecipe lastRecipe;
     public final boolean supportsUpgrades;
     public final int upgradeSlots;
+    @NetworkField(index = 13)
+    public IC2Tank inputTank = new IC2Tank(10000);
+    @NetworkField(index = 14)
+    public IC2Tank outputTank = new IC2Tank(10000);
+
     public static int slotInput;
     public static int slotOutput;
     public AudioSource audioSource;
@@ -159,9 +164,12 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
     }
 
     public void process(FluidCanningRecipe recipe) {
-        for (ItemStack stack : recipe.getOutputs().getRecipeOutput(getWorld().rand, getTileData())) {
-            outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
+        if (recipe.hasItemOutput()){
+            for (ItemStack stack : recipe.getOutputs().getRecipeOutput(getWorld().rand, getTileData())) {
+                outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
+            }
         }
+
 
         IRecipeInput input = recipe.getInput();
         ItemStack stack = inventory.get(slotInput);
@@ -170,6 +178,10 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
         } else {
             stack.shrink(input.getAmount());
         }
+        this.inputTank.drain(recipe.getInputFluid(), true);
+        if (recipe.hasFluidOutput()){
+            this.outputTank.fill(recipe.getOutputFluid(), true);
+        }
         addToInventory();
         for (int i = 0; i < upgradeSlots; i++) {
             ItemStack item = inventory.get(i + inventory.size() - upgradeSlots);
@@ -177,19 +189,6 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
                 ((IMachineUpgradeItem) item.getItem()).onProcessFinished(item, this);
             }
         }
-    }
-
-    public boolean addToInventory() {
-        if (outputs.isEmpty()) {
-            return false;
-        }
-        for (Iterator<IStackOutput> iter = outputs.iterator(); iter.hasNext();) {
-            IStackOutput output = iter.next();
-            if (output.addToInventory(this)) {
-                iter.remove();
-            }
-        }
-        return outputs.size() > 0;
     }
 
     protected FluidCanningRecipe getRecipe() {
@@ -223,19 +222,53 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
         if (lastRecipe == null) {
             return null;
         }
-        if (getStackInSlot(slotOutput).isEmpty()){
-            return lastRecipe;
-        }
-        for (ItemStack output : lastRecipe.getOutputs().getAllOutputs()) {
-            if (StackUtil.isStackEqual(inventory.get(slotOutput), output, false, true)) {
-                if (inventory.get(slotOutput).getCount() + output.getCount() <= inventory.get(slotOutput)
-                        .getMaxStackSize()) {
+        if (lastRecipe.hasItemOutput() && lastRecipe.hasFluidOutput()){
+            if ((lastRecipe.getOutputFluid().isFluidEqual(outputTank.getFluid()) && outputTank.getFluidAmount() + lastRecipe.getOutputFluid().amount <= outputTank.getCapacity()) || outputTank.getFluidAmount() == 0){
+                if (getStackInSlot(slotOutput).isEmpty()){
                     return lastRecipe;
                 }
+                for (ItemStack output : lastRecipe.getOutputs().getAllOutputs()) {
+                    if (StackUtil.isStackEqual(inventory.get(slotOutput), output, false, true)) {
+                        if (inventory.get(slotOutput).getCount() + output.getCount() <= inventory.get(slotOutput)
+                                .getMaxStackSize()) {
+                            return lastRecipe;
+                        }
+                    }
+                }
+            }
+
+        } else if (lastRecipe.hasItemOutput()){
+            if (getStackInSlot(slotOutput).isEmpty()){
+                return lastRecipe;
+            }
+            for (ItemStack output : lastRecipe.getOutputs().getAllOutputs()) {
+                if (StackUtil.isStackEqual(inventory.get(slotOutput), output, false, true)) {
+                    if (inventory.get(slotOutput).getCount() + output.getCount() <= inventory.get(slotOutput)
+                            .getMaxStackSize()) {
+                        return lastRecipe;
+                    }
+                }
+            }
+        }else if (lastRecipe.hasFluidOutput()){
+            if ((lastRecipe.getOutputFluid().isFluidEqual(outputTank.getFluid())  && outputTank.getFluidAmount() + lastRecipe.getOutputFluid().amount <= outputTank.getCapacity()) || outputTank.getFluidAmount() == 0){
+                return lastRecipe;
             }
         }
 
         return null;
+    }
+
+    public boolean addToInventory() {
+        if (outputs.isEmpty()) {
+            return false;
+        }
+        for (Iterator<IStackOutput> iter = outputs.iterator(); iter.hasNext();) {
+            IStackOutput output = iter.next();
+            if (output.addToInventory(this)) {
+                iter.remove();
+            }
+        }
+        return outputs.size() > 0;
     }
 
 
@@ -371,6 +404,14 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
     }
 
     public boolean checkRecipe(FluidCanningRecipe entry) {
+        if (entry.hasFluidInput()){
+            if (!entry.matches(inventory.get(slotInput), inputTank.getFluid()) && inputTank.getFluidAmount() < entry.getInputFluid().amount) {
+                return false;
+            }
+        }
+        if (!entry.matches(inventory.get(slotInput))) {
+            return false;
+        }
         return true;
     }
 

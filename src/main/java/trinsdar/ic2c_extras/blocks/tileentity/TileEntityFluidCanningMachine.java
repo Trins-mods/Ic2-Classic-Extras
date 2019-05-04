@@ -55,10 +55,6 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase implements ITankListener, IClickable {
-    @NetworkField(index = 13)
-    public IC2Tank inputTank = new IC2Tank(10000);
-    @NetworkField(index = 14)
-    public IC2Tank outputTank = new IC2Tank(10000);
     public static FluidCanningRecipeList fluidCanning = new FluidCanningRecipeList("fluidCanning");
 
     public TileEntityFluidCanningMachine() {
@@ -96,116 +92,6 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
         this.getNetwork().updateTileGuiField(this, "inputTank");
         this.getNetwork().updateTileGuiField(this, "outputTank");
         this.setStackInSlot(slotInput, inventory.get(slotInput));
-    }
-
-    @Override
-    public boolean checkRecipe(FluidCanningRecipe entry) {
-        if (entry.hasFluidInput()){
-            if (!entry.matches(inventory.get(slotInput), inputTank.getFluid()) && inputTank.getFluidAmount() < entry.getInputFluid().amount) {
-                return false;
-            }
-        }
-        if (!entry.matches(inventory.get(slotInput))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public void process(FluidCanningRecipe recipe) {
-        if (recipe.hasItemOutput()){
-            for (ItemStack stack : recipe.getOutputs().getRecipeOutput(getWorld().rand, getTileData())) {
-                outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
-            }
-        }
-
-
-        IRecipeInput input = recipe.getInput();
-        ItemStack stack = inventory.get(slotInput);
-        if (stack.getItem().hasContainerItem(stack)) {
-            inventory.set(slotInput, stack.getItem().getContainerItem(stack));
-        } else {
-            stack.shrink(input.getAmount());
-        }
-        this.inputTank.drain(recipe.getInputFluid(), true);
-        if (recipe.hasFluidOutput()){
-            this.outputTank.fill(recipe.getOutputFluid(), true);
-        }
-        addToInventory();
-        for (int i = 0; i < upgradeSlots; i++) {
-            ItemStack item = inventory.get(i + inventory.size() - upgradeSlots);
-            if (item.getItem() instanceof IMachineUpgradeItem) {
-                ((IMachineUpgradeItem) item.getItem()).onProcessFinished(item, this);
-            }
-        }
-    }
-
-    @Override
-    protected FluidCanningRecipe getRecipe() {
-        if (inventory.get(slotInput).isEmpty()) {
-            return null;
-        }
-        if (lastRecipe == FluidCanningRecipeList.INVALID_RECIPE) {
-            return null;
-        }
-        if (lastRecipe != null) {
-            if (!checkRecipe(lastRecipe)) {
-                lastRecipe = null;
-                applyRecipeEffect(null);
-            }
-        }
-        if (lastRecipe == null) {
-            lastRecipe = getRecipeList().getRecipe(new Predicate<FluidCanningRecipe>() {
-                @Override
-                public boolean test(FluidCanningRecipe t) {
-                    if (checkRecipe(t)) {
-                        return true;
-                    }
-                    return false;
-                }
-            });
-            if (lastRecipe == FluidCanningRecipeList.INVALID_RECIPE) {
-                return null;
-            }
-            applyRecipeEffect(lastRecipe.getOutputs());
-        }
-        if (lastRecipe == null) {
-            return null;
-        }
-        if (lastRecipe.hasItemOutput() && lastRecipe.hasFluidOutput()){
-            if ((lastRecipe.getOutputFluid().isFluidEqual(outputTank.getFluid()) && outputTank.getFluidAmount() + lastRecipe.getOutputFluid().amount <= outputTank.getCapacity()) || outputTank.getFluidAmount() == 0){
-                if (getStackInSlot(slotOutput).isEmpty()){
-                    return lastRecipe;
-                }
-                for (ItemStack output : lastRecipe.getOutputs().getAllOutputs()) {
-                    if (StackUtil.isStackEqual(inventory.get(slotOutput), output, false, true)) {
-                        if (inventory.get(slotOutput).getCount() + output.getCount() <= inventory.get(slotOutput)
-                                .getMaxStackSize()) {
-                            return lastRecipe;
-                        }
-                    }
-                }
-            }
-
-        } else if (lastRecipe.hasItemOutput()){
-            if (getStackInSlot(slotOutput).isEmpty()){
-                return lastRecipe;
-            }
-            for (ItemStack output : lastRecipe.getOutputs().getAllOutputs()) {
-                if (StackUtil.isStackEqual(inventory.get(slotOutput), output, false, true)) {
-                    if (inventory.get(slotOutput).getCount() + output.getCount() <= inventory.get(slotOutput)
-                            .getMaxStackSize()) {
-                        return lastRecipe;
-                    }
-                }
-            }
-        }else if (lastRecipe.hasFluidOutput()){
-            if ((lastRecipe.getOutputFluid().isFluidEqual(outputTank.getFluid())  && outputTank.getFluidAmount() + lastRecipe.getOutputFluid().amount <= outputTank.getCapacity()) || outputTank.getFluidAmount() == 0){
-                return lastRecipe;
-            }
-        }
-
-        return null;
     }
 
     @Override
