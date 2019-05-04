@@ -14,7 +14,9 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalBender;
+import trinsdar.ic2c_extras.util.GuiMachine.FluidCanningGui;
 import trinsdar.ic2c_extras.util.recipelists.ContainerInputRecipeList;
 import trinsdar.ic2c_extras.util.GuiMachine.CutterGui;
 import trinsdar.ic2c_extras.util.GuiMachine.ExtruderGui;
@@ -24,6 +26,7 @@ import trinsdar.ic2c_extras.util.GuiMachine.RollerGui;
 import trinsdar.ic2c_extras.util.GuiMachine.ThermalCentrifugeGui;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.Registry;
+import trinsdar.ic2c_extras.util.recipelists.FluidCanningRecipeList;
 
 import javax.annotation.Nonnull;
 
@@ -35,6 +38,7 @@ public class JeiPlugin implements IModPlugin {
     public String extruderId = "extruder";
     public String cutterId = "cutter";
     public String metalBenderId = "metalBender";
+    public String fluidCanningId = "fluidCanning";
 
     @Override
     public void onRuntimeAvailable(@Nonnull IJeiRuntime arg0) {
@@ -122,6 +126,18 @@ public class JeiPlugin implements IModPlugin {
             registry.addRecipeCatalyst(new ItemStack(Registry.metalBender), metalBenderId);
             registry.addRecipeClickArea(MetalBenderGui.class, 78, 32, 20, 23, metalBenderId);
             registry.addRecipes(TileEntityMetalBender.metalBender.getRecipeList(), metalBenderId);
+
+            //fluid canning machine
+            registry.handleRecipes(FluidCanningRecipeList.FluidCanningRecipe.class, new IRecipeWrapperFactory<FluidCanningRecipeList.FluidCanningRecipe>(){
+                @Override
+                public IRecipeWrapper getRecipeWrapper(FluidCanningRecipeList.FluidCanningRecipe var1)
+                {
+                    return new JeiFluidCanningWrapper(var1);
+                }
+            }, fluidCanningId);
+            registry.addRecipeCatalyst(new ItemStack(Registry.fluidCanningMachine), fluidCanningId);
+            registry.addRecipeClickArea(FluidCanningGui.class, 64, 35, 24, 17, fluidCanningId);
+            registry.addRecipes(TileEntityFluidCanningMachine.fluidCanning.getRecipeList(), fluidCanningId);
 
             IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
             blacklist.addIngredientToBlacklist(new ItemStack(Registry.blastFurnace));
@@ -246,6 +262,7 @@ public class JeiPlugin implements IModPlugin {
         registry.addRecipeCategories(new JeiThermalCentrifugeCategory(helper));
         registry.addRecipeCategories(new JeiOreWashingCategory(helper));
         registry.addRecipeCategories(new JeiMetalBenderCategory(helper));
+        registry.addRecipeCategories(new JeiFluidCanningCategory(helper));
         registry.addRecipeCategories(new JeiSimpleMachineCategory(helper, new ItemStack(Registry.roller), rollerId));
         registry.addRecipeCategories(new JeiSimpleMachineCategory(helper, new ItemStack(Registry.extruder), extruderId));
         registry.addRecipeCategories(new JeiSimpleMachineCategory(helper, new ItemStack(Registry.cutter), cutterId));
