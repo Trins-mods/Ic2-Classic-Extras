@@ -46,6 +46,7 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.util.recipelists.ContainerInputRecipeList;
 import trinsdar.ic2c_extras.util.recipelists.FluidCanningRecipeList;
 import trinsdar.ic2c_extras.util.recipelists.FluidCanningRecipeList.FluidCanningRecipe;

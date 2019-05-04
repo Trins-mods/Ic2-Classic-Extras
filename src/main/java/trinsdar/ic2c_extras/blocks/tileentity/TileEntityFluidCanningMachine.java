@@ -95,6 +95,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
     {
         this.getNetwork().updateTileGuiField(this, "inputTank");
         this.getNetwork().updateTileGuiField(this, "outputTank");
+        this.setStackInSlot(slotInput, inventory.get(slotInput));
     }
 
     @Override
@@ -172,7 +173,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
             return null;
         }
         if (lastRecipe.hasItemOutput() && lastRecipe.hasFluidOutput()){
-            if ((outputTank.getFluid() == lastRecipe.getOutputFluid() && outputTank.getFluidAmount() + lastRecipe.getOutputFluid().amount <= outputTank.getCapacity()) || outputTank.getFluidAmount() == 0){
+            if ((lastRecipe.getOutputFluid().isFluidEqual(outputTank.getFluid()) && outputTank.getFluidAmount() + lastRecipe.getOutputFluid().amount <= outputTank.getCapacity()) || outputTank.getFluidAmount() == 0){
                 if (getStackInSlot(slotOutput).isEmpty()){
                     return lastRecipe;
                 }
@@ -186,7 +187,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
                 }
             }
 
-        }else if (lastRecipe.hasItemOutput()){
+        } else if (lastRecipe.hasItemOutput()){
             if (getStackInSlot(slotOutput).isEmpty()){
                 return lastRecipe;
             }
@@ -199,7 +200,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
                 }
             }
         }else if (lastRecipe.hasFluidOutput()){
-            if ((outputTank.getFluid() == lastRecipe.getOutputFluid() && outputTank.getFluidAmount() + lastRecipe.getOutputFluid().amount <= outputTank.getCapacity()) || outputTank.getFluidAmount() == 0){
+            if ((lastRecipe.getOutputFluid().isFluidEqual(outputTank.getFluid())  && outputTank.getFluidAmount() + lastRecipe.getOutputFluid().amount <= outputTank.getCapacity()) || outputTank.getFluidAmount() == 0){
                 return lastRecipe;
             }
         }
@@ -267,7 +268,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
     @Override
     public LocaleComp getBlockName()
     {
-        return Ic2cExtrasLang.metalBender;
+        return Ic2cExtrasLang.fluidCanningMachine;
     }
 
     @Override
