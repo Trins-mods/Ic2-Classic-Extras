@@ -20,6 +20,7 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
+import ic2.core.util.obj.IClickable;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,12 +29,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.blocks.container.ContainerFluidCanningMachine;
 import trinsdar.ic2c_extras.blocks.container.ContainerMetalBender;
 import trinsdar.ic2c_extras.blocks.tileentity.base.TileEntityFluidCannerBase;
@@ -49,7 +54,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase implements ITankListener {
+public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase implements ITankListener, IClickable {
     @NetworkField(index = 13)
     public IC2Tank inputTank = new IC2Tank(10000);
     @NetworkField(index = 14)
@@ -361,5 +366,46 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
     public static void addRecipe(IRecipeInput input, FluidStack inputFluid, FluidStack outputFluid)
     {
         fluidCanning.addRecipe(input, inputFluid, outputFluid, outputFluid.getFluid().getName());
+    }
+
+    @Override
+    public boolean hasRightClick() {
+        return true;
+    }
+
+    @Override
+    public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
+        ItemStack playerStack = player.getHeldItem(hand);
+        if (!playerStack.isEmpty()) {
+            ItemStack result = FluidUtil.tryEmptyContainer(playerStack, this.inputTank, this.inputTank.getCapacity() - this.inputTank.getFluidAmount(), player, true).getResult();
+            if (!result.isEmpty()) {
+                playerStack.shrink(1);
+                if (!player.inventory.addItemStackToInventory(result)) {
+                    player.dropItem(result, false);
+                }
+
+                return true;
+            }
+            ItemStack result2 = FluidUtil.tryFillContainer(playerStack, this.outputTank, 1000, player, true).getResult();
+            if (!result2.isEmpty()) {
+                playerStack.shrink(1);
+                if (!player.inventory.addItemStackToInventory(result)) {
+                    player.dropItem(result, false);
+                }
+
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean hasLeftClick() {
+        return false;
+    }
+
+    @Override
+    public void onLeftClick(EntityPlayer entityPlayer, Side side) {
+
     }
 }
