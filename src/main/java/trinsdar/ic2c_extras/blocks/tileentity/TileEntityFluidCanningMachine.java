@@ -271,13 +271,45 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
+    public EnumFacing left(){
+        if (this.getFacing() == EnumFacing.NORTH){
+            return EnumFacing.EAST;
+        }
+        if (this.getFacing() == EnumFacing.WEST){
+            return EnumFacing.NORTH;
+        }
+        if (this.getFacing() == EnumFacing.SOUTH){
+            return EnumFacing.WEST;
+        }
+        if (this.getFacing() == EnumFacing.EAST){
+            return EnumFacing.SOUTH;
+        }
+        return this.getFacing();
+    }
+
+    public EnumFacing right(){
+        if (this.getFacing() == EnumFacing.NORTH){
+            return EnumFacing.WEST;
+        }
+        if (this.getFacing() == EnumFacing.WEST){
+            return EnumFacing.SOUTH;
+        }
+        if (this.getFacing() == EnumFacing.SOUTH){
+            return EnumFacing.EAST;
+        }
+        if (this.getFacing() == EnumFacing.EAST){
+            return EnumFacing.NORTH;
+        }
+        return this.getFacing();
+    }
+
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing)
     {
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
-            if (facing == EnumFacing.UP || facing == EnumFacing.EAST){
+            if (facing == EnumFacing.UP || facing == left()){
                 return (T)this.inputTank;
-            }else if (facing == EnumFacing.DOWN || facing == EnumFacing.WEST){
+            }else if (facing == EnumFacing.DOWN || facing == right()){
                 return (T)this.outputTank;
             }else {
                 return super.getCapability(capability, facing);
