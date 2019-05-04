@@ -16,6 +16,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -228,8 +229,9 @@ public class MachineRecipes {
 
         TileEntityCompressor.addRecipe(new ItemStack(Registry.energiumDust), 6, Ic2Items.energyCrystal);
 
-        TileEntityFluidCanningMachine.addRecipe(new RecipeInputOreDict("ingotIron", 1), FluidRegistry.WATER, 200, Ic2Items.refinedIronIngot);
-        TileEntityFluidCanningMachine.addRecipe(new RecipeInputItemStack(Ic2Items.advancedCircuit), FluidRegistry.LAVA, 500, FluidRegistry.WATER, 800);
+        TileEntityFluidCanningMachine.addRecipe(new RecipeInputItemStack(Ic2Items.lavaCell), Ic2Items.emptyCell, new FluidStack(FluidRegistry.LAVA, 1000));
+        TileEntityFluidCanningMachine.addRecipe(new RecipeInputOreDict("ingotIron", 1), new FluidStack(FluidRegistry.WATER, 1000), Ic2Items.refinedIronIngot, new FluidStack(FluidRegistry.LAVA, 1000));
+        TileEntityFluidCanningMachine.addRecipe(new RecipeInputItemStack(Ic2Items.advancedCircuit), new FluidStack(FluidRegistry.LAVA, 1000), new FluidStack(FluidRegistry.WATER, 1000));
 
         if (!IC2.config.getFlag("SteelRecipes")){
             if(Ic2cExtrasRecipes.enableCertainRecipesRequireSteel){
