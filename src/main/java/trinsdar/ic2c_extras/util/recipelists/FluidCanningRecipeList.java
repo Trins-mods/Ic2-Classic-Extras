@@ -7,6 +7,7 @@ import ic2.core.util.helpers.ItemWithMeta;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import trinsdar.ic2c_extras.IC2CExtras;
 
 import java.util.ArrayList;
@@ -18,8 +19,8 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 public class FluidCanningRecipeList {
-    public static final FluidCanningRecipe INVALID_RECIPE = new FluidCanningRecipe(null, null, 0,
-            new MachineOutput(null, new ArrayList<ItemStack>()), null, 0, "Invalid");
+    public static final FluidCanningRecipe INVALID_RECIPE = new FluidCanningRecipe(null, null,
+            new MachineOutput(null, new ArrayList<ItemStack>()), true, null, "Invalid");
 
     protected List<FluidCanningRecipe> recipes = new ArrayList<FluidCanningRecipe>();
     protected Map<String, FluidCanningRecipe> recipeMap = new LinkedHashMap<String, FluidCanningRecipe>();
@@ -30,7 +31,7 @@ public class FluidCanningRecipeList {
         this.category = category;
     }
 
-    public void addRecipe(IRecipeInput input, Fluid inputFluid, int inputFluidAmount, MachineOutput output, Fluid outputFluid, int outputFluidAmount, String id) {
+    public void addRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output, FluidStack outputFluid, String id) {
         id = getRecipeID(recipeMap.keySet(), id, 0);
         if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
             return;
@@ -44,7 +45,7 @@ public class FluidCanningRecipeList {
             IC2CExtras.logger.info("Recipe[" + input + "," + inputFluid + "] as input " + category);
             return;
         }
-        FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, inputFluidAmount, output, outputFluid, outputFluidAmount, id);
+        FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, output, true, outputFluid, id);
         recipes.add(recipe);
         recipeMap.put(id, recipe);
         for (ItemStack stack : input.getInputs()){
@@ -52,7 +53,29 @@ public class FluidCanningRecipeList {
         }
     }
 
-    public void addRecipe(IRecipeInput input, Fluid inputFluid, int inputFluidAmount, MachineOutput output, String id) {
+    public void addRecipe(IRecipeInput input, MachineOutput output, FluidStack outputFluid, String id) {
+        id = getRecipeID(recipeMap.keySet(), id, 0);
+        if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
+            return;
+        }
+        if (input == null){
+            IC2CExtras.logger.info("Recipe[" + id + "] has a invalid input for machine " + category);
+            return;
+        }
+        if (isListInvalid(output.getAllOutputs()) || outputFluid == null) {
+            IC2CExtras.logger.info("Recipe[" + id + "] has a invalid output for machine " + category);
+            IC2CExtras.logger.info("Recipe[" + input + "] as input " + category);
+            return;
+        }
+        FluidCanningRecipe recipe = new FluidCanningRecipe(input,  output, outputFluid, id);
+        recipes.add(recipe);
+        recipeMap.put(id, recipe);
+        for (ItemStack stack : input.getInputs()){
+            validInputs.put(new ItemWithMeta(stack), input);
+        }
+    }
+
+    public void addRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output, String id) {
         id = getRecipeID(recipeMap.keySet(), id, 0);
         if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
             return;
@@ -66,7 +89,7 @@ public class FluidCanningRecipeList {
             IC2CExtras.logger.info("Recipe[" + input + "," + inputFluid + "] as input " + category);
             return;
         }
-        FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, inputFluidAmount, output, id);
+        FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, output, id);
         recipes.add(recipe);
         recipeMap.put(id, recipe);
         for (ItemStack stack : input.getInputs()){
@@ -74,7 +97,7 @@ public class FluidCanningRecipeList {
         }
     }
 
-    public void addRecipe(IRecipeInput input, Fluid inputFluid, int inputFluidAmount, Fluid outputFluid, int outputFluidAmount, String id) {
+    public void addRecipe(IRecipeInput input, FluidStack inputFluid, FluidStack outputFluid, String id) {
         id = getRecipeID(recipeMap.keySet(), id, 0);
         if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
             return;
@@ -88,7 +111,7 @@ public class FluidCanningRecipeList {
             IC2CExtras.logger.info("Recipe[" + input + "," + inputFluid + "] as input " + category);
             return;
         }
-        FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, inputFluidAmount, outputFluid, outputFluidAmount, id);
+        FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, new MachineOutput(null, new ArrayList<ItemStack>()), false, outputFluid, id);
         recipes.add(recipe);
         recipeMap.put(id, recipe);
         for (ItemStack stack : input.getInputs()){
@@ -145,46 +168,43 @@ public class FluidCanningRecipeList {
 
     public static class FluidCanningRecipe {
         IRecipeInput input;
-        Fluid inputFluid;
-        int inputFluidAmount;
+        FluidStack inputFluid;
         MachineOutput outputs;
-        Fluid outputFluid;
-        int outputFluidAmount;
+        FluidStack outputFluid;
         String id;
         boolean itemOutput;
+        boolean fluidInput;
         boolean fluidOutput;
 
-        public FluidCanningRecipe(IRecipeInput input, Fluid inputFluid, int inputFluidAmount, MachineOutput outputs, Fluid outputFluid, int outputFluidAmount, String id) {
+        public FluidCanningRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput outputs, boolean itemOutput, FluidStack outputFluid,  String id) {
             this.input = input;
             this.inputFluid = inputFluid;
-            this.inputFluidAmount = inputFluidAmount;
             this.outputs = outputs;
             this.outputFluid = outputFluid;
-            this.outputFluidAmount = outputFluidAmount;
             this.id = id;
+            this.itemOutput = itemOutput;
+            this.fluidInput = true;
+            this.fluidOutput = true;
+        }
+
+        public FluidCanningRecipe(IRecipeInput input, MachineOutput outputs,FluidStack outputFluid,  String id) {
+            this.input = input;
+            this.outputs = outputs;
+            this.outputFluid = outputFluid;
+            this.id = id;
+            this.fluidInput = false;
             this.itemOutput = true;
             this.fluidOutput = true;
         }
 
-        public FluidCanningRecipe(IRecipeInput input, Fluid inputFluid, int inputFluidAmount, MachineOutput outputs,  String id) {
+        public FluidCanningRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput outputs,  String id) {
             this.input = input;
             this.inputFluid = inputFluid;
-            this.inputFluidAmount = inputFluidAmount;
             this.outputs = outputs;
             this.id = id;
             this.itemOutput = true;
+            this.fluidInput = true;
             this.fluidOutput = false;
-        }
-
-        public FluidCanningRecipe(IRecipeInput input, Fluid inputFluid, int inputFluidAmount, Fluid outputFluid, int outputFluidAmount, String id) {
-            this.input = input;
-            this.inputFluid = inputFluid;
-            this.inputFluidAmount = inputFluidAmount;
-            this.outputFluid = outputFluid;
-            this.outputFluidAmount = outputFluidAmount;
-            this.id = id;
-            this.itemOutput = false;
-            this.fluidOutput = true;
         }
 
         public String getRecipeID() {
@@ -195,24 +215,24 @@ public class FluidCanningRecipeList {
             return input;
         }
 
-        public Fluid getInputFluid() {
+        public FluidStack getInputFluid() {
             return inputFluid;
         }
 
-        public int getInputFluidAmount() {
-            return inputFluidAmount;
-        }
-
-        public Fluid getOutputFluid() {
+        public FluidStack getOutputFluid() {
             return outputFluid;
         }
 
-        public int getOutputFluidAmount() {
-            return outputFluidAmount;
+        public boolean matches(ItemStack stack, FluidStack fluid) {
+            return input == null ? stack.isEmpty() : (input.matches(stack) && input.getAmount() <= stack.getCount() && inputFluid.isFluidEqual(fluid));
         }
 
-        public boolean matches(ItemStack stack, Fluid fluid) {
-            return input == null ? stack.isEmpty() : (input.matches(stack) && input.getAmount() <= stack.getCount() && inputFluid.equals(fluid));
+        public boolean matches(ItemStack stack) {
+            return input == null ? stack.isEmpty() : (input.matches(stack) && input.getAmount() <= stack.getCount());
+        }
+
+        public boolean hasFluidInput() {
+            return fluidInput;
         }
 
         public boolean hasFluidOutput() {

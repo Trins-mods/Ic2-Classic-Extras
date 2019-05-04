@@ -23,9 +23,6 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalWasher;
 import trinsdar.ic2c_extras.gtintegration.MaterialGen;
-import trinsdar.ic2c_extras.items.itemblocks.ItemBlockGenerator;
-import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMachine;
-import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMetal;
 import trinsdar.ic2c_extras.items.ItemCasings;
 import trinsdar.ic2c_extras.items.ItemCrushedOre;
 import trinsdar.ic2c_extras.items.ItemMiscs;
@@ -33,6 +30,9 @@ import trinsdar.ic2c_extras.items.ItemPurifiedCrushedOre;
 import trinsdar.ic2c_extras.items.ItemSmallDust;
 import trinsdar.ic2c_extras.items.ItemTinyDust;
 import trinsdar.ic2c_extras.items.ItemToolCrafting;
+import trinsdar.ic2c_extras.items.itemblocks.ItemBlockGenerator;
+import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMachine;
+import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMetal;
 
 public class Registry
 {
