@@ -2,12 +2,16 @@ package trinsdar.ic2c_extras.blocks;
 
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -70,6 +74,21 @@ public class BlockMachine extends BlockMultiID {
             return new TileEntityFluidCanningMachine();
         }else {
             return new TileEntityBlock();
+        }
+    }
+
+    @Override
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+        ArrayList<ItemStack> drops = new ArrayList<>();
+        if (this == Registry.thermalCentrifuge || this == Registry.thermalWasher || this == Registry.impellerizedRoller || this == Registry.liquescentExtruder || this == Registry.plasmaCutter || this == Registry.metalBender){
+            drops.add(Ic2Items.advMachine);
+            return drops;
+        }else if (this == Registry.fluidCanningMachine){
+            drops.add(Ic2Items.canner);
+            return drops;
+        }else{
+            drops.add(Ic2Items.machine);
+            return drops;
         }
     }
 
