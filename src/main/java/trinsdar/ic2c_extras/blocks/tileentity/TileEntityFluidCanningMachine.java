@@ -220,39 +220,39 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
         return Ic2cExtrasResourceLocations.fluidCanningMachine;
     }
 
-    public static void addRecipe(IRecipeInput input, FluidStack inputFluid,  ItemStack output)
+    public static void addFillingRecipe(IRecipeInput input, FluidStack inputFluid,  ItemStack output)
     {
-        addRecipe(input, inputFluid,  new MachineOutput(null, output));
+        addFillingRecipe(input, inputFluid,  new MachineOutput(null, output));
     }
 
-    public static void addRecipe(IRecipeInput input, ItemStack output, FluidStack outputFluid)
+    public static void addEmptyingRecipe(IRecipeInput input, ItemStack output, FluidStack outputFluid)
     {
-        addRecipe(input,  new MachineOutput(null, output), outputFluid);
+        addEmptyingRecipe(input,  new MachineOutput(null, output), outputFluid);
     }
 
-    public static void addRecipe(IRecipeInput input, FluidStack inputFluid, ItemStack output, FluidStack outputFluid)
+    public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, ItemStack output, FluidStack outputFluid)
     {
-        addRecipe(input, inputFluid, new MachineOutput(null, output), outputFluid);
+        addEnrichingRecipe(input, inputFluid, new MachineOutput(null, output), outputFluid);
     }
 
-    public static void addRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output)
+    public static void addFillingRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output)
     {
-        fluidCanning.addRecipe(input, inputFluid,  output, output.getAllOutputs().get(0).getDisplayName());
+        fluidCanning.addFillingRecipe(input, inputFluid,  output, output.getAllOutputs().get(0).getDisplayName());
     }
 
-    public static void addRecipe(IRecipeInput input, MachineOutput output,  FluidStack outputFluid)
+    public static void addEmptyingRecipe(IRecipeInput input, MachineOutput output,  FluidStack outputFluid)
     {
-        fluidCanning.addRecipe(input, output, outputFluid, output.getAllOutputs().get(0).getDisplayName());
+        fluidCanning.addEmptyingRecipe(input, output, outputFluid, output.getAllOutputs().get(0).getDisplayName());
     }
 
-    public static void addRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output, FluidStack outputFluid)
+    public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output, FluidStack outputFluid)
     {
-        fluidCanning.addRecipe(input, inputFluid, output, outputFluid, output.getAllOutputs().get(0).getDisplayName());
+        fluidCanning.addEnrichingRecipe(input, inputFluid, output, outputFluid, output.getAllOutputs().get(0).getDisplayName());
     }
 
-    public static void addRecipe(IRecipeInput input, FluidStack inputFluid, FluidStack outputFluid)
+    public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, FluidStack outputFluid)
     {
-        fluidCanning.addRecipe(input, inputFluid, outputFluid, outputFluid.getFluid().getName());
+        fluidCanning.addEnrichingRecipe(input, inputFluid, outputFluid, outputFluid.getFluid().getName());
     }
 
     @Override

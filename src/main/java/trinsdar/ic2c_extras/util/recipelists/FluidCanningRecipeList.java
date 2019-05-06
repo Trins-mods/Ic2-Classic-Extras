@@ -31,7 +31,7 @@ public class FluidCanningRecipeList {
         this.category = category;
     }
 
-    public void addRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output, FluidStack outputFluid, String id) {
+    public void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output, FluidStack outputFluid, String id) {
         id = getRecipeID(recipeMap.keySet(), id, 0);
         if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
             return;
@@ -53,7 +53,7 @@ public class FluidCanningRecipeList {
         }
     }
 
-    public void addRecipe(IRecipeInput input, MachineOutput output, FluidStack outputFluid, String id) {
+    public void addEmptyingRecipe(IRecipeInput input, MachineOutput output, FluidStack outputFluid, String id) {
         id = getRecipeID(recipeMap.keySet(), id, 0);
         if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
             return;
@@ -75,7 +75,7 @@ public class FluidCanningRecipeList {
         }
     }
 
-    public void addRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output, String id) {
+    public void addFillingRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output, String id) {
         id = getRecipeID(recipeMap.keySet(), id, 0);
         if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
             return;
@@ -97,7 +97,7 @@ public class FluidCanningRecipeList {
         }
     }
 
-    public void addRecipe(IRecipeInput input, FluidStack inputFluid, FluidStack outputFluid, String id) {
+    public void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, FluidStack outputFluid, String id) {
         id = getRecipeID(recipeMap.keySet(), id, 0);
         if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
             return;

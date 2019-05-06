@@ -54,6 +54,8 @@ public class CraftingRecipes {
         recipes.addRecipe(new ItemStack(Registry.thermalCentrifuge, 1),
                 "CMC", "IAI", "IHI", 'C', Registry.coil,'M', Ic2Items.miningLaser, 'I', IC2.getRefinedIron(), 'A', Ic2Items.advMachine, 'H', Registry.heatConductor);
 
+        recipes.addRecipe(new ItemStack(Registry.fluidCanningMachine), " C ", "EcE", "ITI", 'C', Ic2Items.electricCircuit, 'E', Ic2Items.emptyCell, 'c', Ic2Items.canner,  'T', Ic2Items.machineTank, 'I', "ingotTin");
+
         recipes.addRecipe(new ItemStack(Registry.roller, 1),
                 "CPC", "PBP", "cPc", 'C', basicCircuit, 'B', Ic2Items.machine, 'c', Registry.coil, 'P', Blocks.PISTON);
 
