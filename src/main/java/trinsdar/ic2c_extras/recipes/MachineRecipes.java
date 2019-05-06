@@ -18,11 +18,16 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fluids.capability.IFluidTankProperties;
+import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -151,14 +156,55 @@ public class MachineRecipes {
             item.getSubItems(CreativeTabs.SEARCH, items);
             for(ItemStack stack : items)
             {
-                FluidStack fluid = FluidUtil.getFluidContained(stack);
-                if(fluid != null)
+
+                IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack.copy());
+                if(handler != null)
                 {
-                    //ItemStack empty = FluidHelper.fillContainer(stack, fluid, true, true, true);
-                    TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputItemStack(stack), fluid, stack);
+                    if (hasDrainProperty(handler)){
+                        FluidStack fluid = handler.drain(Integer.MAX_VALUE, true);
+                        if (fluid != null){
+                            ItemStack empty = handler.getContainer();
+                            if (empty !=null){
+                                TileEntityFluidCanningMachine.addEmptyingRecipe(new RecipeInputItemStack(stack), empty, fluid);
+                            }
+                        }
+                    }
+                    if (hasFillProperty(handler)) {
+                        IFluidHandlerItem fillingCapability = stack.copy().getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+                        if (fillingCapability != null) {
+                            for (Fluid fluid : FluidRegistry.getRegisteredFluids().values()) {
+                                int testFill = fillingCapability.fill(new FluidStack(fluid, Integer.MAX_VALUE), false);    //try to reduce itemstack copies
+                                if (testFill > 0) {
+                                    IFluidHandlerItem copiedCap = stack.copy().getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+                                    int fill = copiedCap.fill(new FluidStack(fluid, Integer.MAX_VALUE), true);
+                                    FluidStack filledFluid = new FluidStack(fluid, fill);
+                                    ItemStack filled = copiedCap.getContainer();
+                                    TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputItemStack(stack), filledFluid, filled);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
+    }
+
+    private static boolean hasDrainProperty(IFluidHandler fluidHandler) {
+        for (IFluidTankProperties properties : fluidHandler.getTankProperties()) {
+            if (properties.canDrain()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean hasFillProperty(IFluidHandler fluidHandler) {
+        for (IFluidTankProperties properties : fluidHandler.getTankProperties()) {
+            if (properties.canFill()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void initMachineRecipes(){
@@ -252,11 +298,6 @@ public class MachineRecipes {
         macerator.addRecipe(new RecipeInputItemStack(Ic2Items.energyCrystal), new ItemStack(Registry.energiumDust, 6), "Energium Dust");
 
         TileEntityCompressor.addRecipe(new ItemStack(Registry.energiumDust), 6, Ic2Items.energyCrystal);
-
-        TileEntityFluidCanningMachine.addEmptyingRecipe(new RecipeInputItemStack(Ic2Items.lavaCell), Ic2Items.emptyCell, new FluidStack(FluidRegistry.LAVA, 1000));
-        TileEntityFluidCanningMachine.addEmptyingRecipe(new RecipeInputItemStack(Ic2Items.waterCell), Ic2Items.emptyCell, new FluidStack(FluidRegistry.WATER, 1000));
-        TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputItemStack(Ic2Items.emptyCell), new FluidStack(FluidRegistry.WATER, 1000), Ic2Items.waterCell);
-        TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputItemStack(Ic2Items.emptyCell), new FluidStack(FluidRegistry.LAVA, 1000), Ic2Items.lavaCell);
 
         if (!IC2.config.getFlag("SteelRecipes")){
             if(Ic2cExtrasRecipes.enableCertainRecipesRequireSteel){
