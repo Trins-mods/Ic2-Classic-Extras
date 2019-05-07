@@ -50,7 +50,9 @@ public class MachineRecipes {
 
     public static void init(){
         initMachineRecipes();
-        initFluidFillingndEmptyingRecipes();
+        if (Ic2cExtrasRecipes.enableAutoFluidContainerRecipes){
+            initFluidFillingndEmptyingRecipes();
+        }
         initFurnaceRecipes();
         initReplaceMaceratorRecipes();
         postInit();
