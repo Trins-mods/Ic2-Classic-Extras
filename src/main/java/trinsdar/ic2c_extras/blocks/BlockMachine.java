@@ -27,6 +27,7 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityPlasmaCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalWasher;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityTreeTapper;
 import trinsdar.ic2c_extras.util.Registry;
 
 import java.util.ArrayList;
@@ -72,6 +73,8 @@ public class BlockMachine extends BlockMultiID {
             return new TileEntityMetalBender();
         }else if (this == Registry.fluidCanningMachine){
             return new TileEntityFluidCanningMachine();
+        }else if (this == Registry.treeTapper){
+            return new TileEntityTreeTapper();
         }else {
             return new TileEntityBlock();
         }
@@ -120,6 +123,8 @@ public class BlockMachine extends BlockMultiID {
             return Ic2Icons.getTextures("metalbender");
         }else if (this == Registry.fluidCanningMachine){
             return Ic2Icons.getTextures("fluidcanningmachine");
+        } else if (this == Registry.treeTapper){
+            return Ic2Icons.getTextures("treetapper");
         }else{
             return Ic2Icons.getTextures("roller");
         }

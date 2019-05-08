@@ -22,6 +22,7 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityPlasmaCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalWasher;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityTreeTapper;
 import trinsdar.ic2c_extras.gtintegration.MaterialGen;
 import trinsdar.ic2c_extras.items.ItemCasings;
 import trinsdar.ic2c_extras.items.ItemCrushedOre;
@@ -48,7 +49,8 @@ public class Registry
     plasmaCutter = new BlockMachine("plasmaCutter"),
     blastFurnace = new BlockMachine("blastFurnace"),
     metalBender = new BlockMachine("metalBender"),
-    fluidCanningMachine = new BlockMachine("fluidCanningMachine");
+    fluidCanningMachine = new BlockMachine("fluidCanningMachine"),
+    treeTapper = new BlockMachine("treeTapper");
     public static final BlockIc2cEGenerator
     advancedSteamTurbine = new BlockIc2cEGenerator("advancedSteamTurbine"),
     solidFuelFirebox = new BlockIc2cEGenerator("solidFuelFirebox"),
@@ -169,6 +171,7 @@ public class Registry
         IC2.getInstance().createBlock(plasmaCutter, ItemBlockMachine.class);
         IC2.getInstance().createBlock(metalBender, ItemBlockMachine.class);
         IC2.getInstance().createBlock(fluidCanningMachine, ItemBlockMachine.class);
+        IC2.getInstance().createBlock(treeTapper, ItemBlockMachine.class);
         IC2.getInstance().createBlock(blastFurnace, ItemBlockRare.class);
         IC2.getInstance().createBlock(advancedSteamTurbine, ItemBlockGenerator.class);
         IC2.getInstance().createBlock(solidFuelFirebox, ItemBlockRare.class);
@@ -272,5 +275,6 @@ public class Registry
         GameRegistry.registerTileEntity(TileEntityPlasmaCutter.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityPlasmaCutter"));
         GameRegistry.registerTileEntity(TileEntityMetalBender.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityMetalBender"));
         GameRegistry.registerTileEntity(TileEntityFluidCanningMachine.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityFluidCanningMachine"));
+        GameRegistry.registerTileEntity(TileEntityTreeTapper.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityTreeTapper"));
     }
 }
