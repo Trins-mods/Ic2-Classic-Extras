@@ -50,17 +50,7 @@ public class ContainerTreeTapper extends ContainerTileComponent<TileEntityTreeTa
 
         @Override
         public boolean isItemValid(@Nullable ItemStack stack) {
-            if (stack.isEmpty()) {
-                return false;
-            } else if (StackUtil.isStackEqual(stack, Ic2Items.overClockerUpgrade)) {
-                return true;
-            } else if (StackUtil.isStackEqual(stack, Ic2Items.padUpgradeBasicFieldUpgrade)) {
-                return true;
-            } else if (StackUtil.isStackEqual(stack, Ic2Items.padUpgradeFieldUpgrade)) {
-                return true;
-            } else {
-                return StackUtil.isStackEqual(stack, Ic2Items.padUpgradeAdvFieldUpgrade);
-            }
+            return StackUtil.isStackEqual(stack, Ic2Items.overClockerUpgrade) || StackUtil.isStackEqual(stack, Ic2Items.padUpgradeBasicFieldUpgrade) || StackUtil.isStackEqual(stack, Ic2Items.padUpgradeFieldUpgrade) || StackUtil.isStackEqual(stack, Ic2Items.padUpgradeAdvFieldUpgrade);
         }
 
         @Override
