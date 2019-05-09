@@ -11,6 +11,7 @@ tile.liquescentExtruder.name=Liquescent Extruder
 tile.plasmaCutter.name=Plasma Cutter
 tile.metalBender.name=Metal Bender
 tile.fluidCanningMachine.name=Fluid Canning Machine
+tile.treeTapper.name=Tree Tapper
 tile.blastFurnace.name=Blast Furnace
 tile.advancedSteamTurbine.name=Advanced Steam Turbine
 tile.solidFuelFirebox.name=Solid Fuel Firebox

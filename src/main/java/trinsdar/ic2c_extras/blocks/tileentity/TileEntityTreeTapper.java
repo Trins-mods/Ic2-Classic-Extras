@@ -94,22 +94,22 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
             this.delay += 20;
         }else {
             this.delay += this.nextDelay;
+            this.setActive(true);
             for (BlockPos additionalPos : getTargetBlocks(this.getPos())) {
                 IBlockState state = worldIn.getBlockState(additionalPos);
                 ItemStack stack = StackUtil.copyWithSize(Ic2Items.stickyResin, 1 + worldIn.rand.nextInt(3));
                 if (state.getBlock() == Ic2States.rubberWood.getBlock()) {
                     boolean server = IC2.platform.isSimulating();
                     if (server && attemptExtract(worldIn, additionalPos, true) && !isInventoryFull() && addItemsToInventory(stack, true)) {
-                        this.setActive(true);
                         attemptExtract(worldIn, additionalPos, false);
                         addItemsToInventory(stack, false);
                         useEnergy(20);
-                        this.setActive(false);
                     } else if (isInventoryFull()){
                         break;
                     }
                 }
             }
+            this.setActive(false);
             useEnergy(100);
         }
     }
