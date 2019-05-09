@@ -1,54 +1,32 @@
 package trinsdar.ic2c_extras.blocks.tileentity;
 
-import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.tile.IMachine;
-import ic2.api.crops.CropCard;
-import ic2.api.crops.ICropTile;
 import ic2.core.IC2;
-import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.resources.BlockRubberWood;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.gui.GuiComponentContainer;
-import ic2.core.inventory.transport.IItemTransporter;
-import ic2.core.inventory.transport.TransporterManager;
-import ic2.core.inventory.transport.wrapper.InventoryWrapper;
-import ic2.core.network.NetworkManager;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
-import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.platform.registry.Ic2States;
-import ic2.core.util.helpers.AabbUtil;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import trinsdar.ic2c_extras.blocks.container.ContainerTreeTapper;
-import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMachine;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 public class TileEntityTreeTapper extends TileEntityElecMachine implements ITickable, IHasGui, IMachine {
@@ -121,10 +99,12 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
                 ItemStack stack = StackUtil.copyWithSize(Ic2Items.stickyResin, 1 + worldIn.rand.nextInt(3));
                 if (state.getBlock() == Ic2States.rubberWood.getBlock()) {
                     boolean server = IC2.platform.isSimulating();
-                    if (server && attemptExtract(worldIn, additionalPos, true) && !isInventoryFull() && canAddItems(stack)) {
+                    if (server && attemptExtract(worldIn, additionalPos, true) && !isInventoryFull() && addItemsToInventory(stack, true)) {
+                        this.setActive(true);
                         attemptExtract(worldIn, additionalPos, false);
-                        addItemsToInventory(stack);
+                        addItemsToInventory(stack, false);
                         useEnergy(20);
+                        this.setActive(false);
                     } else if (isInventoryFull()){
                         break;
                     }
@@ -143,15 +123,6 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
         }
         if (fullSlotCount == 9){
             return true;
-        }
-        return false;
-    }
-
-    public boolean canAddItems(ItemStack stack){
-        for (int i = 0; i < 9; i++){
-            if (this.inventory.get(i).isEmpty() || this.getStackInSlot(0).getCount() + stack.getCount() <= 64){
-                return true;
-            }
         }
         return false;
     }
@@ -187,14 +158,17 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
         return targetBlocks;
     }
 
-    public void addItemsToInventory(ItemStack stack) {
+    public boolean addItemsToInventory(ItemStack stack, boolean simulate) {
         for (int i = 0; i < 9; i++){
-            if (canAddItems(stack)){
-                int count = this.getStackInSlot(i).getCount() + stack.getCount();
-                this.setStackInSlot(i, StackUtil.copyWithSize(Ic2Items.stickyResin, count));
-                break;
+            if (this.inventory.get(i).isEmpty() || this.getStackInSlot(i).getCount() + stack.getCount() <= 64){
+                if (!simulate){
+                    int count = this.getStackInSlot(i).getCount() + stack.getCount();
+                    this.setStackInSlot(i, StackUtil.copyWithSize(Ic2Items.stickyResin, count));
+                }
+                return true;
             }
         }
+        return false;
     }
 
     public void onLoaded() {

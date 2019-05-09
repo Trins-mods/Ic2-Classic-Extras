@@ -1,18 +1,18 @@
 package trinsdar.ic2c_extras.blocks.container;
 
-import ic2.core.block.machine.med.container.ContainerCropHarvester;
-import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerTileComponent;
-import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.gui.components.base.MachineChargeComp;
-import ic2.core.inventory.slots.SlotCustom;
+import ic2.core.inventory.slots.SlotBase;
 import ic2.core.inventory.slots.SlotOutput;
 import ic2.core.platform.registry.Ic2GuiComp;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityTreeTapper;
-import trinsdar.ic2c_extras.util.guicomponent.SlotUpgrade2;
+
+import javax.annotation.Nullable;
 
 public class ContainerTreeTapper extends ContainerTileComponent<TileEntityTreeTapper> {
     public ContainerTreeTapper(InventoryPlayer player, TileEntityTreeTapper tile) {
@@ -24,7 +24,7 @@ public class ContainerTreeTapper extends ContainerTileComponent<TileEntityTreeTa
             }
         }
         for(i = 0; i < 4; ++i) {
-            this.addSlotToContainer(new SlotUpgrade2(tile, i + 9, 152, 8 + 18 * i));
+            this.addSlotToContainer(new SlotUpgrade3(tile, i + 9, 152, 8 + 18 * i));
         }
         this.addPlayerInventory(player);
         this.addComponent(new MachineChargeComp(tile, Ic2GuiComp.cropHarvesterChargeBox, Ic2GuiComp.machineChargePos));
@@ -38,5 +38,35 @@ public class ContainerTreeTapper extends ContainerTileComponent<TileEntityTreeTa
     @Override
     public int guiInventorySize() {
         return this.getGuiHolder().slotCount;
+    }
+
+    public static class SlotUpgrade3 extends SlotBase {
+        TileEntityTreeTapper treeTapper;
+
+        public SlotUpgrade3(TileEntityTreeTapper tile, int index, int xPosition, int yPosition) {
+            super(tile, index, xPosition, yPosition);
+            this.treeTapper = tile;
+        }
+
+        @Override
+        public boolean isItemValid(@Nullable ItemStack stack) {
+            if (stack.isEmpty()) {
+                return false;
+            } else if (StackUtil.isStackEqual(stack, Ic2Items.overClockerUpgrade)) {
+                return true;
+            } else if (StackUtil.isStackEqual(stack, Ic2Items.padUpgradeBasicFieldUpgrade)) {
+                return true;
+            } else if (StackUtil.isStackEqual(stack, Ic2Items.padUpgradeFieldUpgrade)) {
+                return true;
+            } else {
+                return StackUtil.isStackEqual(stack, Ic2Items.padUpgradeAdvFieldUpgrade);
+            }
+        }
+
+        @Override
+        public void onSlotChanged() {
+            this.treeTapper.setOverclockerUpgrade();
+            super.onSlotChanged();
+        }
     }
 }
