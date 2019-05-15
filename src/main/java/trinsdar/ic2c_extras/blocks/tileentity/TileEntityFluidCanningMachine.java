@@ -25,6 +25,7 @@ import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -38,6 +39,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.blocks.container.ContainerFluidCanningMachine;
 import trinsdar.ic2c_extras.blocks.container.ContainerMetalBender;
@@ -263,7 +265,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
     @Override
     public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
         ItemStack playerStack = player.getHeldItem(hand);
-        if (!playerStack.isEmpty()) {
+        if (!playerStack.isEmpty() && !isBCShard(playerStack)) {
             ItemStack result = FluidUtil.tryEmptyContainer(playerStack, this.inputTank, this.inputTank.getCapacity() - this.inputTank.getFluidAmount(), player, true).getResult();
             if (!result.isEmpty()) {
                 playerStack.shrink(1);
@@ -282,6 +284,13 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
 
                 return true;
             }
+        }
+        return false;
+    }
+
+    private boolean isBCShard(ItemStack stack){
+        if (Loader.isModLoaded("buildcraftcore")){
+            return stack.isItemEqual(new ItemStack(Item.getByNameOrId("buildcraftcore:fragile_fluid_shard")));
         }
         return false;
     }
