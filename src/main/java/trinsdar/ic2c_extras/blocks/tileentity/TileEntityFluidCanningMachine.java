@@ -278,8 +278,8 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
             ItemStack result2 = FluidUtil.tryFillContainer(playerStack, this.outputTank, 1000, player, true).getResult();
             if (!result2.isEmpty()) {
                 playerStack.shrink(1);
-                if (!player.inventory.addItemStackToInventory(result)) {
-                    player.dropItem(result, false);
+                if (!player.inventory.addItemStackToInventory(result2)) {
+                    player.dropItem(result2, false);
                 }
 
                 return true;
