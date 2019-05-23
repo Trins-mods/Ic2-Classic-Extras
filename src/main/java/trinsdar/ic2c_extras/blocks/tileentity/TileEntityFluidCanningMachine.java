@@ -5,6 +5,7 @@ import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.IStackOutput;
 import ic2.api.recipe.IRecipeInput;
+import ic2.core.IC2;
 import ic2.core.RotationList;
 import ic2.core.block.base.util.output.IStackRegistry;
 import ic2.core.block.base.util.output.MultiSlotOutput;
@@ -25,6 +26,7 @@ import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -32,6 +34,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -39,6 +42,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.blocks.container.ContainerFluidCanningMachine;
@@ -265,7 +269,14 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
     @Override
     public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
         ItemStack playerStack = player.getHeldItem(hand);
-        if (!playerStack.isEmpty() && !isBCShard(playerStack)) {
+        if (isConsumable(playerStack) || isBCShard(playerStack)) {
+            if (!IC2.platform.isSimulating()) {
+                IC2.platform.messagePlayer(player, "Consumable containers temporarily disabled");
+                world.playSound(player, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            }
+            return false;
+        }
+        if (!playerStack.isEmpty()) {
             ItemStack result = FluidUtil.tryEmptyContainer(playerStack, this.inputTank, this.inputTank.getCapacity() - this.inputTank.getFluidAmount(), player, true).getResult();
             if (!result.isEmpty()) {
                 playerStack.shrink(1);
@@ -286,6 +297,10 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
             }
         }
         return false;
+    }
+
+    private boolean isConsumable(ItemStack stack) {
+        return stack.getItem().initCapabilities(stack, null) instanceof FluidHandlerItemStackSimple.Consumable;
     }
 
     private boolean isBCShard(ItemStack stack){
