@@ -83,8 +83,8 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
         handler.registerDefaultSlotAccess(AccessRule.Both, 1);
         handler.registerDefaultSlotAccess(AccessRule.Import, slotInput);
         handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput);
-        handler.registerDefaultSlotsForSide(RotationList.UP.getOppositeList(), slotOutput);
-        handler.registerDefaultSlotsForSide(RotationList.DOWN.getOppositeList(), slotInput);
+        handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutput);
+        handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), slotInput);
         handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), 1);
         handler.registerOutputFilter(CommonFilters.NotDischargeEU, 1);
         handler.registerSlotType(SlotType.Fuel, 1);
