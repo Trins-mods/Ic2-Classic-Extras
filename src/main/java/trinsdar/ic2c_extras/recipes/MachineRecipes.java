@@ -56,7 +56,6 @@ public class MachineRecipes {
         initFurnaceRecipes();
         initReplaceMaceratorRecipes();
         postInit();
-        initMetalBenderRecipes();
     }
 
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
