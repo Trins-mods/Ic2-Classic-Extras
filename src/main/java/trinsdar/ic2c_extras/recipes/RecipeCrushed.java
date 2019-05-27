@@ -46,7 +46,7 @@ public class RecipeCrushed {
         addAllRecipes(GTMaterial.Tungstate, new ItemStack[]{MaterialGen.getStack(GTMaterial.Tungstate, purifiedCrushedOre, 1), MaterialGen.getStack(GTMaterial.Tungstate, tinyDust, 1), new ItemStack(Registry.stoneDust)}, GT.getDust(GTMaterial.Tungstate, 1), MaterialGen.getStack(GTMaterial.Manganese, tinyDust, 2));
         addAllRecipes(GTMaterial.Pyrolusite, new ItemStack[]{MaterialGen.getStack(GTMaterial.Pyrolusite, purifiedCrushedOre, 1), MaterialGen.getStack(GTMaterial.Pyrolusite, tinyDust, 1), new ItemStack(Registry.stoneDust)}, GT.getDust(GTMaterial.Pyrolusite, 1), MaterialGen.getStack(GTMaterial.Manganese, tinyDust, 2));
         addAllRecipes(GTMaterial.Molybdenite, new ItemStack[]{MaterialGen.getStack(GTMaterial.Molybdenite, purifiedCrushedOre, 1), MaterialGen.getStack(GTMaterial.Molybdenite, tinyDust, 1), new ItemStack(Registry.stoneDust)}, GT.getDust(GTMaterial.Molybdenite, 1), MaterialGen.getStack(GTMaterial.Molybdenum, tinyDust, 2));
-        addAllRecipes(GTMaterial.Iridium, new ItemStack[]{MaterialGen.getStack(GTMaterial.Iridium, purifiedCrushedOre, 1), MaterialGen.getStack(GTMaterial.Iridium, tinyDust, 1), new ItemStack(Registry.stoneDust)}, GT.getDust(GTMaterial.Iridium, 1), MaterialGen.getStack(GTMaterial.Osmium, tinyDust, 2));
+        addAllRecipes(GTMaterial.Iridium, new ItemStack[]{MaterialGen.getStack(GTMaterial.Iridium, purifiedCrushedOre, 1), MaterialGen.getStack(GTMaterial.Platinum, tinyDust, 1), new ItemStack(Registry.stoneDust)}, GT.getDust(GTMaterial.Iridium, 1), MaterialGen.getStack(GTMaterial.Osmium, tinyDust, 2));
         tinyDustUtil(GTMaterial.Alumina);
         tinyDustUtil(GTMaterial.Platinum);
         tinyDustUtil(GTMaterial.Nickel);

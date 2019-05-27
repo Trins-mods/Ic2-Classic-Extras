@@ -100,7 +100,7 @@ public class MaterialItem extends Item implements IStaticTexturedItem, GTColorIt
         washDust(e, w, p, h, GTMaterial.Cryolite, MaterialGen.getStack(GTMaterial.Cryolite, purifiedCrushedOre, 1), MaterialGen.getStack(GTMaterial.Cryolite, tinyDust, 1), new ItemStack(Registry.stoneDust));
         washDust(e, w, p, h, GTMaterial.Galena, MaterialGen.getStack(GTMaterial.Galena, purifiedCrushedOre, 1), MaterialGen.getStack(GTMaterial.Galena, tinyDust, 1), new ItemStack(Registry.stoneDust));
         washDust(e, w, p, h, GTMaterial.Garnierite, MaterialGen.getStack(GTMaterial.Garnierite, purifiedCrushedOre, 1), MaterialGen.getStack(GTMaterial.Garnierite, tinyDust, 1), new ItemStack(Registry.stoneDust));
-        washDust(e, w, p, h, GTMaterial.Iridium, MaterialGen.getStack(GTMaterial.Iridium, purifiedCrushedOre, 1), MaterialGen.getStack(GTMaterial.Iridium, tinyDust, 1), new ItemStack(Registry.stoneDust));
+        washDust(e, w, p, h, GTMaterial.Iridium, MaterialGen.getStack(GTMaterial.Iridium, purifiedCrushedOre, 1), MaterialGen.getStack(GTMaterial.Platinum, tinyDust, 1), new ItemStack(Registry.stoneDust));
         washDust(e, w, p, h, GTMaterial.Limonite, MaterialGen.getStack(GTMaterial.Limonite, purifiedCrushedOre, 1), MaterialGen.getStack(GTMaterial.Limonite, tinyDust, 1), new ItemStack(Registry.stoneDust));
         washDust(e, w, p, h, GTMaterial.Malachite, MaterialGen.getStack(GTMaterial.Malachite, purifiedCrushedOre, 1), MaterialGen.getStack(GTMaterial.Malachite, tinyDust, 1), new ItemStack(Registry.stoneDust));
         washDust(e, w, p, h, GTMaterial.Magnetite, MaterialGen.getStack(GTMaterial.Magnetite, purifiedCrushedOre, 1), MaterialGen.getStack(GTMaterial.Magnetite, tinyDust, 1), new ItemStack(Registry.stoneDust));
