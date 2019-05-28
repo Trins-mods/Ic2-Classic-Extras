@@ -37,6 +37,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -269,43 +270,29 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
     @Override
     public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
         ItemStack playerStack = player.getHeldItem(hand);
-        if (isConsumable(playerStack) || isBCShard(playerStack)) {
-            if (!IC2.platform.isSimulating()) {
-                IC2.platform.messagePlayer(player, "Consumable containers temporarily disabled");
-                world.playSound(player, pos, SoundEvents.ENTITY_ITEM_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            }
-            return false;
-        }
         if (!playerStack.isEmpty()) {
-            ItemStack result = FluidUtil.tryEmptyContainer(playerStack, this.inputTank, this.inputTank.getCapacity() - this.inputTank.getFluidAmount(), player, true).getResult();
-            if (!result.isEmpty()) {
+            FluidActionResult result = FluidUtil.tryEmptyContainer(playerStack, this.inputTank, this.inputTank.getCapacity() - this.inputTank.getFluidAmount(), player, true);
+            if (result.isSuccess()){
                 playerStack.shrink(1);
-                if (!player.inventory.addItemStackToInventory(result)) {
-                    player.dropItem(result, false);
+                ItemStack resultStack = result.getResult();
+                if (!resultStack.isEmpty()) {
+                    if (!player.inventory.addItemStackToInventory(resultStack)) {
+                        player.dropItem(resultStack, false);
+                    }
                 }
-
                 return true;
             }
-            ItemStack result2 = FluidUtil.tryFillContainer(playerStack, this.outputTank, 1000, player, true).getResult();
-            if (!result2.isEmpty()) {
+            FluidActionResult result2 = FluidUtil.tryFillContainer(playerStack, this.outputTank, 1000, player, true);
+            if (result.isSuccess()){
                 playerStack.shrink(1);
-                if (!player.inventory.addItemStackToInventory(result2)) {
-                    player.dropItem(result2, false);
+                ItemStack resultStack = result2.getResult();
+                if (!resultStack.isEmpty()) {
+                    if (!player.inventory.addItemStackToInventory(resultStack)) {
+                        player.dropItem(resultStack, false);
+                    }
                 }
-
                 return true;
             }
-        }
-        return false;
-    }
-
-    private boolean isConsumable(ItemStack stack) {
-        return stack.getItem().initCapabilities(stack, null) instanceof FluidHandlerItemStackSimple.Consumable;
-    }
-
-    private boolean isBCShard(ItemStack stack){
-        if (Loader.isModLoaded("buildcraftcore")){
-            return stack.isItemEqual(new ItemStack(Item.getByNameOrId("buildcraftcore:fragile_fluid_shard")));
         }
         return false;
     }
