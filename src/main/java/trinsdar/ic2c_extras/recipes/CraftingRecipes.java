@@ -129,12 +129,13 @@ public class CraftingRecipes {
 
     public static void initReplaceRecipes(){
         if (!IC2.config.getFlag("SteelRecipes") && Ic2cExtrasRecipes.enableCertainRecipesRequireSteel){
-            recipes.overrideRecipe("shaped_item.itemironcable_1439836747", StackUtil.copyWithSize(Ic2Items.ironCable, 12), "III", 'I', "ingotSteel");
-            recipes.overrideRecipe("shaped_item.itemironcablei_1439836778", StackUtil.copyWithSize(Ic2Items.insulatedIronCable, 4), " R ", "RIR", " R ", 'R', "itemRubber", 'I', "ingotSteel");
-            recipes.overrideRecipe("shaped_item.itemironcableii_1439836809", StackUtil.copyWithSize(Ic2Items.doubleInsulatedIronCable, 4), "RRR", "RIR", "RRR", 'R', "itemRubber", 'I', "ingotSteel");
-            recipes.overrideRecipe("shaped_item.itemplasmacable_-1322861272", StackUtil.copyWithSize(Ic2Items.plasmaCable, 4), "CCC", "IPI", "CCC", 'C', Ic2Items.carbonPlate, 'I', "ingotSteel", 'P', Ic2Items.plasmaCore);
-            recipes.overrideRecipe("shaped_tile.blockadvancedmachine_925658719", Ic2Items.advMachine, "IAI", "CMC", "IAI", 'I', "ingotSteel", 'C', Ic2Items.carbonPlate, 'A', Ic2Items.advancedAlloy, 'M', Ic2Items.machine);
-            recipes.overrideRecipe("shaped_tile.blocktesla_-939869627", Ic2Items.teslaCoil, "RRR", "RMR", "ICI", 'R', "dustRedstone", 'M', Ic2Items.transformerMV, 'I', "ingotSteel", 'C', basicCircuit);
+            recipes.overrideRecipe("shaped_item.itemironcable_1314416875", StackUtil.copyWithSize(Ic2Items.ironCable, 12), "III", 'I', "ingotSteel");
+            recipes.overrideRecipe("shaped_item.itemironcablei_926773675", StackUtil.copyWithSize(Ic2Items.insulatedIronCable, 4), " R ", "RIR", " R ", 'R', "itemRubber", 'I', "ingotSteel");
+            recipes.overrideRecipe("shaped_item.itemironcableii_268464298", StackUtil.copyWithSize(Ic2Items.doubleInsulatedIronCable, 4), "RRR", "RIR", "RRR", 'R', "itemRubber", 'I', "ingotSteel");
+            recipes.overrideRecipe("shaped_item.itemplasmacable_-449044295", StackUtil.copyWithSize(Ic2Items.plasmaCable, 4), "CCC", "IPI", "CCC", 'C', Ic2Items.carbonPlate, 'I', "ingotSteel", 'P', Ic2Items.plasmaCore);
+            recipes.overrideRecipe("shaped_tile.blockadvancedmachine_1515831549", Ic2Items.advMachine, "IAI", "CMC", "IAI", 'I', "ingotSteel", 'C', Ic2Items.carbonPlate, 'A', Ic2Items.advancedAlloy, 'M', Ic2Items.machine);
+            recipes.overrideRecipe("shaped_tile.blockadvancedmachine_-1920290047", Ic2Items.advMachine, "ICI", "AMA", "ICI", 'I', "ingotSteel", 'C', Ic2Items.carbonPlate, 'A', Ic2Items.advancedAlloy, 'M', Ic2Items.machine);
+            recipes.overrideRecipe("shaped_tile.blocktesla_1114556539", Ic2Items.teslaCoil, "RRR", "RMR", "ICI", 'R', "dustRedstone", 'M', Ic2Items.transformerMV, 'I', "ingotSteel", 'C', basicCircuit);
         }
 
     }
