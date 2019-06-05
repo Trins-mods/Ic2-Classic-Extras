@@ -23,6 +23,7 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalWasher;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityTreeTapper;
+import trinsdar.ic2c_extras.gtintegration.MaterialGen;
 import trinsdar.ic2c_extras.items.ItemCasings;
 import trinsdar.ic2c_extras.items.ItemCrushedOre;
 import trinsdar.ic2c_extras.items.ItemMiscs;
@@ -252,6 +253,12 @@ public class Registry
         IC2.getInstance().createItem(gearingPress);
         IC2.getInstance().createItem(craftingHammer);
         IC2.getInstance().createItem(wireCutters);
+    }
+
+    public static void initMaterials(){
+        for (Item item : MaterialGen.itemMap.values()) {
+            IC2.getInstance().createItem(item);
+        }
     }
 
     public static void registerTiles()
