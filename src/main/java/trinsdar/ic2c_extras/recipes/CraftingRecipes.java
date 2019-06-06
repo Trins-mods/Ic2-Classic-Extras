@@ -116,9 +116,9 @@ public class CraftingRecipes {
             recipes.addRecipe(Ic2Items.battery,
                     " C ", "TRT", "TRT", 'C', Ic2Items.copperCable,'R', Items.REDSTONE, 'T', "casingTin");
             recipes.addRecipe(Ic2Items.electricCircuit,
-                    "CCC", "RcR", "CCC", 'C', Ic2Items.copperCable,'R', Items.REDSTONE, 'c', Ic2cExtrasRecipes.getRefinedIronCasing());
+                    "CCC", "RcR", "CCC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', Ic2cExtrasRecipes.getRefinedIronCasing());
             recipes.addRecipe(Ic2Items.electricCircuit,
-                    "CRC", "CcC", "CRC", 'C', Ic2Items.copperCable,'R', Items.REDSTONE, 'c', Ic2cExtrasRecipes.getRefinedIronCasing());
+                    "CRC", "CcC", "CRC", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'c', Ic2cExtrasRecipes.getRefinedIronCasing());
         }else {
             recipes.addRecipe(Ic2Items.battery,
                     " C ", "TRT", "TRT", 'C', Ic2Items.insulatedCopperCable,'R', Items.REDSTONE, 'T', "casingTin");
