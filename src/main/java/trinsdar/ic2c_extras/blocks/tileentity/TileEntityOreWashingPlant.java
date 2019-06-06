@@ -20,6 +20,7 @@ import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
+import ic2.core.item.recipe.AdvRecipeBase;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
@@ -55,6 +56,7 @@ import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.List;
 
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.oreWashingPlant;
@@ -345,7 +347,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
     public static void addRecipe(IRecipeInput input, int water, ItemStack... output)
     {
-        oreWashingPlant.addRecipe(input, new MachineOutput(createNeededWater(water), output), input.getInputs().get(0).getDisplayName());
+        oreWashingPlant.addRecipe(input, new MachineOutput(createNeededWater(water), output), AdvRecipeBase.getRecipeID(Arrays.asList(input), Arrays.asList(output), input.getInputs().get(0).getUnlocalizedName()));
     }
 
     @Override

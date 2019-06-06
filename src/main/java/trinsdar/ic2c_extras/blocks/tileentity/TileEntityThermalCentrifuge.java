@@ -17,6 +17,7 @@ import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.item.recipe.AdvRecipeBase;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
@@ -34,6 +35,7 @@ import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.thermalCentrifuge;
@@ -247,7 +249,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 
     public static void addRecipe(IRecipeInput input, int heat, List<ItemStack> outputlist)
     {
-        thermalCentrifuge.addRecipe(input, new MachineOutput(createNeededHeat(heat), outputlist), input.getInputs().get(0).getDisplayName());
+        thermalCentrifuge.addRecipe(input, new MachineOutput(createNeededHeat(heat), outputlist), AdvRecipeBase.getRecipeID(Arrays.asList(input), Arrays.asList(outputlist), input.getInputs().get(0).getUnlocalizedName()));
     }
 
 }

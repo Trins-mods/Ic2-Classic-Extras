@@ -4,6 +4,7 @@ import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.tile.MachineType;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
+import ic2.core.item.recipe.AdvRecipeBase;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -15,6 +16,8 @@ import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.util.GuiMachine.CutterGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
+
+import java.util.Arrays;
 
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.cutting;
 
@@ -102,6 +105,6 @@ public class TileEntityCutter extends TileEntityBasicElectricMachine {
     }
 
     public static void addRecipe(IRecipeInput input, ItemStack output, float exp) {
-        cutting.addRecipe(input, output, exp, output.getDisplayName());
+        cutting.addRecipe(input, output, exp, AdvRecipeBase.getRecipeID(Arrays.asList(input), Arrays.asList(output), output.getUnlocalizedName()));
     }
 }

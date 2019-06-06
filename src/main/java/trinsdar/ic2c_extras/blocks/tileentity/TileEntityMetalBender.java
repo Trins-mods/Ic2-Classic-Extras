@@ -12,6 +12,7 @@ import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.item.recipe.AdvRecipeBase;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.client.gui.GuiScreen;
@@ -124,6 +125,6 @@ public class TileEntityMetalBender extends TileEntityContainerInputBase {
 
     public static void addRecipe(IRecipeInput input, ItemStack press, MachineOutput output)
     {
-        metalBender.addRecipe(input, press, output, output.getAllOutputs().get(0).getDisplayName());
+        metalBender.addRecipe(input, press, output, AdvRecipeBase.getRecipeID(Arrays.asList(input), Arrays.asList(output), output.getAllOutputs().get(0).getUnlocalizedName()));
     }
 }
