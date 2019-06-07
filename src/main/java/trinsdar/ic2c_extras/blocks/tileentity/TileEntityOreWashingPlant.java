@@ -40,6 +40,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -50,6 +51,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.relauncher.Side;
+import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.blocks.container.ContainerOreWashingPlant;
 import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
@@ -141,6 +143,11 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     @Override
+    public boolean canWork() {
+        return super.canWork() && waterTank.getFluidAmount() >= 1000;
+    }
+
+    @Override
     protected EnumActionResult isRecipeStillValid(IMachineRecipeList.RecipeEntry entry) {
         if (waterTank.getFluidAmount() >= getRequiredWater(entry.getOutput())){
             return EnumActionResult.SUCCESS;
@@ -205,6 +212,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     public void onTankChanged(IFluidTank tank)
     {
         this.getNetwork().updateTileGuiField(this, "waterTank");
+        this.checkRecipe = true;
     }
 
     @Override
@@ -359,14 +367,15 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
         ItemStack playerStack = player.getHeldItem(hand);
         if (!playerStack.isEmpty()) {
-            ItemStack result = FluidUtil.tryEmptyContainer(playerStack, this, this.waterTank.getCapacity() - this.waterTank.getFluidAmount(), player, true).getResult();
-            if (!result.isEmpty()) {
+            FluidActionResult result = FluidUtil.tryEmptyContainer(playerStack, waterTank, this.waterTank.getCapacity() - this.waterTank.getFluidAmount(), player, true);
+            if (result.isSuccess()){
                 playerStack.shrink(1);
-                this.waterTank.fill(new FluidStack(FluidRegistry.WATER, 1000), true);
-                if (!player.inventory.addItemStackToInventory(result)) {
-                    player.dropItem(result, false);
+                ItemStack resultStack = result.getResult();
+                if (!resultStack.isEmpty()) {
+                    if (!player.inventory.addItemStackToInventory(resultStack)) {
+                        player.dropItem(resultStack, false);
+                    }
                 }
-
                 return true;
             }
         }
