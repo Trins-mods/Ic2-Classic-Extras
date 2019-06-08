@@ -89,17 +89,6 @@ public class Ic2cExtrasRecipes {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void onHarvestDropsEvent(BlockEvent.HarvestDropsEvent event) {
-        IBlockState block = event.getState();
-        if (block == Ic2States.uraniumOre){
-            if (enableUraniumOreDropReplacement){
-                event.getDrops().clear();
-                event.getDrops().add(Ic2Items.uraniumOre);
-            }
-        }
-    }
-
     @SubscribeEvent
     public void onLootTableLoad(LootTableLoadEvent event) {
         LootFunction[] funcs = new LootFunction[] { new SetMetadata(new LootCondition[0], new RandomValueRange(0, 3)) };
