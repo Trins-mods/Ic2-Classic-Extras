@@ -64,9 +64,6 @@ public class Ic2cExtrasRecipes {
         CraftingRecipes.init();
         MachineRecipes.init();
         initHarderUraniumProcessing();
-        if (Loader.isModLoaded("gtclassic")){
-            GTRecipes.init();
-        }
     }
 
 
@@ -89,17 +86,6 @@ public class Ic2cExtrasRecipes {
             CraftingRecipes.dustUtil("dustUranium235", new ItemStack(Registry.uranium235), "dustTinyUranium235", new ItemStack(Registry.uranium235TinyDust), "dustSmallUranium235", new ItemStack(Registry.uranium235SmallDust));
             CraftingRecipes.dustUtil("dustUranium238", new ItemStack(Registry.uranium238), "dustTinyUranium238", new ItemStack(Registry.uranium238TinyDust), "dustSmallUranium238", new ItemStack(Registry.uranium238SmallDust));
             CraftingRecipes.dustUtil("dustPlutonium", new ItemStack(Registry.plutonium), "dustTinyPlutonium", new ItemStack(Registry.plutoniumTinyDust), "dustSmallPlutonium", new ItemStack(Registry.plutoniumSmallDust));
-        }
-    }
-
-    @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void onHarvestDropsEvent(BlockEvent.HarvestDropsEvent event) {
-        IBlockState block = event.getState();
-        if (block == Ic2States.uraniumOre){
-            if (enableUraniumOreDropReplacement){
-                event.getDrops().clear();
-                event.getDrops().add(Ic2Items.uraniumOre);
-            }
         }
     }
 

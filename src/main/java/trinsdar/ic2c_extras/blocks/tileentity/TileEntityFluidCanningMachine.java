@@ -18,6 +18,7 @@ import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.item.recipe.AdvRecipeBase;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
@@ -244,22 +245,22 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
 
     public static void addFillingRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output)
     {
-        fluidCanning.addFillingRecipe(input, inputFluid,  output, output.getAllOutputs().get(0).getDisplayName());
+        fluidCanning.addFillingRecipe(input, inputFluid,  output, AdvRecipeBase.getRecipeID(Arrays.asList(input), Arrays.asList(output), "filling_" + output.getAllOutputs().get(0).getUnlocalizedName()));
     }
 
     public static void addEmptyingRecipe(IRecipeInput input, MachineOutput output,  FluidStack outputFluid)
     {
-        fluidCanning.addEmptyingRecipe(input, output, outputFluid, output.getAllOutputs().get(0).getDisplayName());
+        fluidCanning.addEmptyingRecipe(input, output, outputFluid, AdvRecipeBase.getRecipeID(Arrays.asList(input), Arrays.asList(output), "emptying_" + output.getAllOutputs().get(0).getUnlocalizedName()));
     }
 
     public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output, FluidStack outputFluid)
     {
-        fluidCanning.addEnrichingRecipe(input, inputFluid, output, outputFluid, output.getAllOutputs().get(0).getDisplayName());
+        fluidCanning.addEnrichingRecipe(input, inputFluid, output, outputFluid, AdvRecipeBase.getRecipeID(Arrays.asList(input), Arrays.asList(output), "enriching_" + output.getAllOutputs().get(0).getUnlocalizedName()));
     }
 
     public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, FluidStack outputFluid)
     {
-        fluidCanning.addEnrichingRecipe(input, inputFluid, outputFluid, outputFluid.getFluid().getName());
+        fluidCanning.addEnrichingRecipe(input, inputFluid, outputFluid, AdvRecipeBase.getRecipeID(Arrays.asList(input), Arrays.asList(outputFluid), "enriching_" + outputFluid.getFluid().getUnlocalizedName()));
     }
 
     @Override

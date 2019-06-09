@@ -4,7 +4,6 @@ import ic2.core.IC2;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import trinsdar.ic2c_extras.gtintegration.MaterialGen;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.recipes.MachineRecipes;
 import trinsdar.ic2c_extras.recipes.RailcraftRecipes;
@@ -20,10 +19,6 @@ public class CommonProxy
     {
         Registry.init();
         Registry.registerTiles();
-        if (Loader.isModLoaded("gtclassic")){
-            MaterialGen.init();
-            Registry.initMaterials();
-        }
     }
 
     public void init()

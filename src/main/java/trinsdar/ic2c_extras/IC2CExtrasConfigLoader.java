@@ -3,11 +3,18 @@ package trinsdar.ic2c_extras;
 import ic2.api.classic.addon.IC2Plugin;
 import ic2.api.classic.addon.PluginBase;
 import ic2.api.classic.addon.misc.IOverrideObject;
+import ic2.core.IC2;
+import ic2.core.block.resources.BlockMetal;
+import ic2.core.item.block.ItemBlockMetal;
+import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.lang.storage.Ic2BlockLang;
 import ic2.core.platform.registry.ItemAPI;
+import ic2.core.util.misc.ModulLoader;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import trinsdar.ic2c_extras.blocks.BlockUraniumOre;
 import trinsdar.ic2c_extras.util.Registry;
 
 import java.util.Map;
@@ -23,7 +30,7 @@ public class IC2CExtrasConfigLoader extends PluginBase {
     public void preInit(FMLPreInitializationEvent fmlPreInitializationEvent, Map<String, IOverrideObject> map)
     {
         Config.init();
-
+        map.put("blockMetal", new ModulLoader.BlockOverride(new BlockUraniumOre().setCreativeTab(IC2.tabIC2), ItemBlockMetal.class));
     }
 
     @Override
