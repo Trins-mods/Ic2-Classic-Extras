@@ -40,6 +40,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -179,6 +180,11 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     }
 
     @Override
+    public boolean canWork() {
+        return super.canWork() && waterTank.getFluidAmount() >= 1000;
+    }
+
+    @Override
     protected EnumActionResult canFillRecipeIntoOutputs(MachineOutput output) {
         List<ItemStack> result = output.getAllOutputs();
         for (int i = 0; i < result.size() && i < 3; i++) {
@@ -252,6 +258,7 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     public void onTankChanged(IFluidTank tank)
     {
         this.getNetwork().updateTileGuiField(this, "waterTank");
+        this.notCheckRecipe.clear();
     }
 
     @Override
@@ -347,14 +354,15 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     public boolean onRightClick(EntityPlayer player, EnumHand hand, EnumFacing enumFacing, Side side) {
         ItemStack playerStack = player.getHeldItem(hand);
         if (!playerStack.isEmpty()) {
-            ItemStack result = FluidUtil.tryEmptyContainer(playerStack, this, this.waterTank.getCapacity() - this.waterTank.getFluidAmount(), player, true).getResult();
-            if (!result.isEmpty()) {
+            FluidActionResult result = FluidUtil.tryEmptyContainer(playerStack, waterTank, this.waterTank.getCapacity() - this.waterTank.getFluidAmount(), player, true);
+            if (result.isSuccess()){
                 playerStack.shrink(1);
-                this.waterTank.fill(new FluidStack(FluidRegistry.WATER, 1000), true);
-                if (!player.inventory.addItemStackToInventory(result)) {
-                    player.dropItem(result, false);
+                ItemStack resultStack = result.getResult();
+                if (!resultStack.isEmpty()) {
+                    if (!player.inventory.addItemStackToInventory(resultStack)) {
+                        player.dropItem(resultStack, false);
+                    }
                 }
-
                 return true;
             }
         }
