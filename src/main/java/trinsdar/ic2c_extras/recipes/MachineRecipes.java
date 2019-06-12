@@ -325,6 +325,8 @@ public class MachineRecipes {
         GameRegistry.addSmelting(Registry.silverPurifiedCrushedOre, StackUtil.copyWithSize(Ic2Items.silverIngot, 1), 0.5F);
         GameRegistry.addSmelting(Registry.leadPurifiedCrushedOre, new ItemStack(Registry.leadIngot), 0.5F);
         GameRegistry.addSmelting(Registry.leadDust, new ItemStack(Registry.leadIngot), 0.5F);
+        GameRegistry.addSmelting(Registry.ironTinyDust, new ItemStack(Items.IRON_NUGGET), 0.5f);
+        GameRegistry.addSmelting(Registry.goldTinyDust, new ItemStack(Items.GOLD_NUGGET), 0.5f);
     }
 
     public static void initReplaceMaceratorRecipes(){
