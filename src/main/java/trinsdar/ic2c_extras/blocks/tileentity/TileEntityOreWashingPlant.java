@@ -212,7 +212,9 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     public void onTankChanged(IFluidTank tank)
     {
         this.getNetwork().updateTileGuiField(this, "waterTank");
-        this.checkRecipe = true;
+        if (lastRecipe != null && activeRecipe == null){
+            this.checkRecipe = true;
+        }
     }
 
     @Override
