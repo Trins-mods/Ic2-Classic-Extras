@@ -26,6 +26,7 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityTreeTapper;
 import trinsdar.ic2c_extras.items.ItemCasings;
 import trinsdar.ic2c_extras.items.ItemCrushedOre;
 import trinsdar.ic2c_extras.items.ItemMiscs;
+import trinsdar.ic2c_extras.items.ItemPlates;
 import trinsdar.ic2c_extras.items.ItemPurifiedCrushedOre;
 import trinsdar.ic2c_extras.items.ItemSmallDust;
 import trinsdar.ic2c_extras.items.ItemTinyDust;
@@ -81,6 +82,17 @@ public class Registry
     refinedIronCasing = new ItemCasings("refinedIron", 6),
     steelCasing = new ItemCasings(steel, 7),
     bronzeCasing = new ItemCasings(bronze, 8);
+
+    public static final ItemPlates
+    copperPlate = new ItemPlates(copper, 0),
+    tinPlate = new ItemPlates(tin, 1),
+    silverPlate = new ItemPlates(silver, 2),
+    leadPlate = new ItemPlates(lead, 3),
+    ironPlate = new ItemPlates(iron, 4),
+    goldPlate = new ItemPlates(gold, 5),
+    refinedIronPlate = new ItemPlates("refinedIron", 6),
+    steelPlate = new ItemPlates(steel, 7),
+    bronzePlate = new ItemPlates(bronze, 8);
 
     public static final ItemCrushedOre
     ironCrushedOre = new ItemCrushedOre(iron, 0),
@@ -140,9 +152,6 @@ public class Registry
     plutoniumEnrichedUraniumIngot = new ItemMiscs("plutoniumEnrichedUraniumIngot", 10, false),
     doubleEnrichedUraniumIngot = new ItemMiscs("doubleEnrichedUraniumIngot", 11, false),
     iridiumShard = new ItemMiscs("iridiumShard", 12, false),
-    refinedIronPlate = new ItemMiscs("refinedIronPlate", 13, false),
-    bronzePlate = new ItemMiscs("bronzePlate", 14, false),
-    steelPlate = new ItemMiscs("steelPlate", 15, false),
     diamondDust = new ItemMiscs("diamondDust", 16, false),
     energiumDust = new ItemMiscs("energiumDust", 17, false),
     blankPress = new ItemMiscs("blankPress", 0, true),
@@ -239,9 +248,15 @@ public class Registry
         IC2.getInstance().createItem(plutoniumEnrichedUraniumIngot);
         IC2.getInstance().createItem(doubleEnrichedUraniumIngot);
         IC2.getInstance().createItem(iridiumShard);
+        IC2.getInstance().createItem(copperPlate);
+        IC2.getInstance().createItem(tinPlate);
+        IC2.getInstance().createItem(silverPlate);
+        IC2.getInstance().createItem(leadPlate);
+        IC2.getInstance().createItem(ironPlate);
+        IC2.getInstance().createItem(goldPlate);
         IC2.getInstance().createItem(refinedIronPlate);
-        IC2.getInstance().createItem(bronzePlate);
         IC2.getInstance().createItem(steelPlate);
+        IC2.getInstance().createItem(bronzePlate);
         IC2.getInstance().createItem(diamondDust);
         IC2.getInstance().createItem(energiumDust);
         IC2.getInstance().createItem(blankPress);

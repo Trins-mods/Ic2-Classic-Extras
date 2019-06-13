@@ -56,11 +56,15 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("dustLead", Registry.leadDust);
         OreDictionary.registerOre("ingotLead", Registry.leadIngot);
         OreDictionary.registerOre("ingotSteel", Registry.steelIngot);
+        OreDictionary.registerOre("plateCopper", Registry.copperPlate);
+        OreDictionary.registerOre("plateTin", Registry.tinPlate);
+        OreDictionary.registerOre("plateSilver", Registry.silverPlate);
+        OreDictionary.registerOre("plateLead", Registry.leadPlate);
+        OreDictionary.registerOre("plateIron", Registry.ironPlate);
+        OreDictionary.registerOre("plateGold", Registry.goldPlate);
         OreDictionary.registerOre("plateRefinedIron", Registry.refinedIronPlate);
-        if (!Loader.isModLoaded("railcraft") && !Loader.isModLoaded("immersiveengineering") && !Loader.isModLoaded("gtclassic")){
-            OreDictionary.registerOre("plateBronze", Registry.bronzePlate);
-            OreDictionary.registerOre("plateSteel", Registry.steelPlate);
-        }
+        OreDictionary.registerOre("plateSteel", Registry.steelPlate);
+        OreDictionary.registerOre("plateBronze", Registry.bronzePlate);
         OreDictionary.registerOre("dustStone", Registry.stoneDust);
         OreDictionary.registerOre("dustDiamond", Registry.diamondDust);
         OreDictionary.registerOre("itemSlag", Registry.slag);

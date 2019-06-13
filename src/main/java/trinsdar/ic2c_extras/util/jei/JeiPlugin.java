@@ -144,13 +144,6 @@ public class JeiPlugin implements IModPlugin {
             blacklist.addIngredientToBlacklist(new ItemStack(Registry.solidFuelFirebox));
             blacklist.addIngredientToBlacklist(new ItemStack(Registry.liquidFuelFirebox));
             blacklist.addIngredientToBlacklist(new ItemStack(Registry.electricHeater));
-            if (Loader.isModLoaded("gtclassic")){
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.refinedIronPlate));
-            }
-            if (Loader.isModLoaded("railcraft") || Loader.isModLoaded("immersiveengineering") || Loader.isModLoaded("gtclassic")){
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.bronzePlate));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.steelPlate));
-            }
             if (IC2.config.getFlag("NonRadiation")){
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.oreWashingPlant));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.thermalCentrifuge));
