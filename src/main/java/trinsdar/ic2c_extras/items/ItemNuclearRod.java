@@ -5,16 +5,25 @@ import ic2.api.classic.reactor.ISteamReactor;
 import ic2.api.classic.reactor.ISteamReactorComponent;
 import ic2.api.reactor.IReactor;
 import ic2.core.item.base.ItemGrandualInt;
+import ic2.core.item.reactor.uranTypes.CharcoalUranium;
+import ic2.core.item.reactor.uranTypes.IUranium;
 import ic2.core.util.obj.IBootable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTPrimitive;
+import trinsdar.ic2c_extras.items.urantypes.Californium;
+import trinsdar.ic2c_extras.items.urantypes.MOX;
+import trinsdar.ic2c_extras.items.urantypes.Plutonium;
+import trinsdar.ic2c_extras.items.urantypes.Thorium;
+import trinsdar.ic2c_extras.items.urantypes.UOX;
 
 import java.util.List;
 
-public class ItemNuclearRod extends ItemGrandualInt
-        implements IBootable, ISteamReactorComponent, IReactorPlannerComponent {
-    public ItemNuclearRod(String name){
+public class ItemNuclearRod extends ItemGrandualInt implements IBootable, ISteamReactorComponent, IReactorPlannerComponent {
+    private int index;
+    public static IUranium[] types = new IUranium[0];
+    public ItemNuclearRod(String name, int index){
         setUnlocalizedName(name);
+        this.index = index;
     }
 
     @Override
@@ -33,8 +42,12 @@ public class ItemNuclearRod extends ItemGrandualInt
     }
 
     @Override
-    public short getID(ItemStack itemStack) {
-        return 0;
+    public short getID(ItemStack stack) {
+        return this.getUran(0).getRodID();
+    }
+
+    public IUranium getUran(int type){
+        return types[type];
     }
 
     @Override
@@ -124,6 +137,11 @@ public class ItemNuclearRod extends ItemGrandualInt
 
     @Override
     public void onLoad() {
-
+        types = new IUranium[5];
+        types[0] = new UOX();
+        types[1] = new Plutonium();
+        types[2] = new MOX();
+        types[3] = new Thorium();
+        types[4] = new Californium();
     }
 }
