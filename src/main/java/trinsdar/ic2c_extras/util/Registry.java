@@ -26,6 +26,9 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityTreeTapper;
 import trinsdar.ic2c_extras.items.ItemCasings;
 import trinsdar.ic2c_extras.items.ItemCrushedOre;
 import trinsdar.ic2c_extras.items.ItemMiscs;
+import trinsdar.ic2c_extras.items.ItemNuclearRod;
+import trinsdar.ic2c_extras.items.ItemNuclearRod.NuclearRodTypes;
+import trinsdar.ic2c_extras.items.ItemNuclearRod.NuclearRodVariants;
 import trinsdar.ic2c_extras.items.ItemPlates;
 import trinsdar.ic2c_extras.items.ItemPurifiedCrushedOre;
 import trinsdar.ic2c_extras.items.ItemSmallDust;
@@ -170,6 +173,28 @@ public class Registry
     cuttingPress = new ItemMiscs("cuttingPress", 3, true),
     lathingPress = new ItemMiscs("lathingPress", 4, true),
     gearingPress = new ItemMiscs("gearingPress", 5, true);
+
+    public static final ItemNuclearRod
+    singleUOXCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.UOX, 0),
+    doubleUOXCell = new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.UOX, 1),
+    quadUOXCell = new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.UOX, 2),
+    isotopicUOXCell = new ItemNuclearRod(NuclearRodTypes.ISOTOPE, NuclearRodVariants.UOX, 3),
+    singlePlutoniumCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.PLUTONIUM, 4),
+    doublePlutoniumCell = new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.PLUTONIUM, 5),
+    quadPlutoniumCell = new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.PLUTONIUM, 6),
+    isotopicPlutoniumCell = new ItemNuclearRod(NuclearRodTypes.ISOTOPE, NuclearRodVariants.PLUTONIUM, 7),
+    singleMOXCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.MOX, 8),
+    doubleMOXCell = new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.MOX, 9),
+    quadMOXCell = new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.MOX, 10),
+    isotopicMOXCell = new ItemNuclearRod(NuclearRodTypes.ISOTOPE, NuclearRodVariants.MOX, 11),
+    singleThoriumCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.THORIUM, 12),
+    doubleThoriumCell = new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.THORIUM, 13),
+    quadThoriumCell = new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.THORIUM, 14),
+    isotopicThoriumCell = new ItemNuclearRod(NuclearRodTypes.ISOTOPE, NuclearRodVariants.THORIUM, 15),
+    singleCaliforniumCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.CALIFORNIUM, 16),
+    doubleCaliforniumCell = new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.CALIFORNIUM, 17),
+    quadCaliforniumCell = new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.CALIFORNIUM, 18),
+    isotopicCaliforniumCell = new ItemNuclearRod(NuclearRodTypes.ISOTOPE, NuclearRodVariants.CALIFORNIUM, 19);
 
 
     public static final ItemToolCrafting
