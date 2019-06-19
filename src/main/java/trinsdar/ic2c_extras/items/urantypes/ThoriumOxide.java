@@ -10,20 +10,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.util.Registry;
 
-import java.awt.Color;
+import java.awt.*;
 
-
-public class MOX extends UranBaseType {
-    public MOX(){
-        this.addArray(new int[]{-1, -1});
-        this.addArray(new int[]{0, -1});
-        this.addArray(new int[]{1, -1});
-        this.addArray(new int[]{-1, 0});
-        this.addArray(new int[]{1, 0});
-        this.addArray(new int[]{-1, 1});
-        this.addArray(new int[]{0, 1});
-        this.addArray(new int[]{1, 1});
-    }
+public class ThoriumOxide extends UranBaseType {
 
     @SideOnly(Side.CLIENT)
     @Override
@@ -37,27 +26,27 @@ public class MOX extends UranBaseType {
 
     @Override
     public int getMaxDurability() {
-        return 5000;
+        return 20000;
     }
 
     @Override
     public float getEUPerPulse() {
-        return 1.0f;
+        return 5.0f;
     }
 
     @Override
     public int getPulsesPerTick() {
-        return 1;
+        return 2;
     }
 
     @Override
     public int getPulsesForConnection() {
-        return 1;
+        return 3;
     }
 
     @Override
     public float getHeatModifier() {
-        return 1.0f;
+        return 1.2f;
     }
 
     @Override
@@ -74,17 +63,17 @@ public class MOX extends UranBaseType {
     public ItemStack getRodType(RodType type) {
         switch(type) {
             case SingleRod:
-                return new ItemStack(Registry.singleMOXCell).copy();
+                return new ItemStack(Registry.singleThoriumOxideCell).copy();
             case DualRod:
-                return new ItemStack(Registry.doubleMOXCell).copy();
+                return new ItemStack(Registry.doubleThoriumOxideCell).copy();
             case QuadRod:
-                return new ItemStack(Registry.quadMOXCell).copy();
+                return new ItemStack(Registry.quadThoriumOxideCell).copy();
             case NearDepletedRod:
-                return new ItemStack(Registry.nearDepletedMOXCell).copy();
+                return new ItemStack(Registry.nearDepletedThoriumOxideCell).copy();
             case IsotopicRod:
-                return new ItemStack(Registry.isotopicMOXCell).copy();
+                return new ItemStack(Registry.isotopicThoriumOxideCell).copy();
             case ReEnrichedRod:
-                return new ItemStack(Registry.reEnrichedMOXCell).copy();
+                return new ItemStack(Registry.reEnrichedThoriumOxideCell).copy();
             default:
                 return ItemStack.EMPTY;
         }
@@ -99,17 +88,17 @@ public class MOX extends UranBaseType {
     public short getRodID(RodType type) {
         switch(type) {
             case SingleRod:
-                return 1102;
+                return 1104;
             case DualRod:
-                return 1107;
+                return 1109;
             case QuadRod:
-                return 1112;
+                return 1114;
             case ReEnrichedRod:
-                return 1127;
+                return 1129;
             case NearDepletedRod:
-                return 1117;
+                return 1119;
             case IsotopicRod:
-                return 1122;
+                return 1124;
             default:
                 return 0;
         }

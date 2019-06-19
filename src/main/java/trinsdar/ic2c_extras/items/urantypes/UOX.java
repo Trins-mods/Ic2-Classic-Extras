@@ -3,8 +3,12 @@ package trinsdar.ic2c_extras.items.urantypes;
 import ic2.core.item.reactor.uranTypes.UranBaseType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.util.misc.StackUtil;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.util.Registry;
 
 import java.awt.*;
@@ -17,6 +21,15 @@ import static ic2.core.item.reactor.uranTypes.IUranium.RodType.ReEnrichedRod;
 import static ic2.core.item.reactor.uranTypes.IUranium.RodType.SingleRod;
 
 public class UOX extends UranBaseType {
+    public UOX(){
+        this.loadDefaults();
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public TextureAtlasSprite getTexture(RodType type) {
+        return Ic2Icons.getTextures("ic2c_extras_nuclear_cells")[this.getRodID(type) - 1100];
+    }
     @Override
     public int getRow() {
         return 0;
@@ -54,22 +67,22 @@ public class UOX extends UranBaseType {
 
     @Override
     public ItemStack getUraniumIngot() {
-        return null;
+        return new ItemStack(Registry.oxidizedUraniumIngot);
     }
 
     @Override
     public ItemStack getRodType(RodType type) {
         switch(type) {
             case SingleRod:
-                return Ic2Items.reactorEnderPearlUraniumRodSingle.copy();
+                return new ItemStack(Registry.singleUOXCell).copy();
             case DualRod:
-                return Ic2Items.reactorEnderPearlUraniumRodDual.copy();
+                return new ItemStack(Registry.doubleUOXCell).copy();
             case QuadRod:
-                return Ic2Items.reactorEnderPearlUraniumRodQuad.copy();
+                return new ItemStack(Registry.quadUOXCell).copy();
             case NearDepletedRod:
                 return new ItemStack(Registry.nearDepletedUOXCell).copy();
             case IsotopicRod:
-                return Ic2Items.reactorEnderPearlUraniumIsotopicRod.copy();
+                return new ItemStack(Registry.isotopicUOXCell).copy();
             case ReEnrichedRod:
                 return new ItemStack(Registry.reEnrichedUOXCell).copy();
             default:
@@ -88,15 +101,15 @@ public class UOX extends UranBaseType {
             case SingleRod:
                 return 1100;
             case DualRod:
-                return 1101;
-            case QuadRod:
-                return 1102;
-            case ReEnrichedRod:
-                return 1103;
-            case NearDepletedRod:
-                return 1104;
-            case IsotopicRod:
                 return 1105;
+            case QuadRod:
+                return 1110;
+            case ReEnrichedRod:
+                return 1125;
+            case NearDepletedRod:
+                return 1115;
+            case IsotopicRod:
+                return 1120;
             default:
                 return 0;
         }
@@ -109,26 +122,26 @@ public class UOX extends UranBaseType {
 
     @Override
     public boolean isReEnrichedUran() {
-        return false;
+        return true;
     }
 
     @Override
     public Color getReEnrichedColor() {
-        return null;
+        return new Color(16777215);
     }
 
     @Override
     public ItemStack getIngridient() {
-        return null;
+        return Ic2Items.airCell;
     }
 
     @Override
     public int getIngrientPoints() {
-        return 0;
+        return 25;
     }
 
     @Override
     public int getIngridientCost() {
-        return 0;
+        return 25;
     }
 }
