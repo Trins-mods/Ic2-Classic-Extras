@@ -2,6 +2,7 @@ package trinsdar.ic2c_extras.items.urantypes;
 
 import ic2.core.item.reactor.uranTypes.UranBaseType;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.registry.Ic2Lang;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -88,11 +89,11 @@ public class ThoriumOxide extends UranBaseType {
     public short getRodID(RodType type) {
         switch(type) {
             case SingleRod:
-                return 1104;
+                return 1114;
             case DualRod:
                 return 1109;
             case QuadRod:
-                return 1114;
+                return 1104;
             case ReEnrichedRod:
                 return 1129;
             case NearDepletedRod:
@@ -106,7 +107,7 @@ public class ThoriumOxide extends UranBaseType {
 
     @Override
     public LocaleComp getName(RodType rodType) {
-        return null;
+        return Ic2Lang.nullKey;
     }
 
     @Override

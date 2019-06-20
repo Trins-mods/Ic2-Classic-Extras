@@ -17,6 +17,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTPrimitive;
+import net.minecraft.nbt.NBTTagFloat;
+import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -83,7 +85,7 @@ public class ItemNuclearRod extends ItemGrandualInt implements IBootable, ISteam
 
     @Override
     public ItemStack getReactorPart() {
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -140,14 +142,59 @@ public class ItemNuclearRod extends ItemGrandualInt implements IBootable, ISteam
         return null;
     }
 
-    @Override
-    public NBTPrimitive getReactorStat(ReactorComponentStat reactorComponentStat, ItemStack itemStack) {
-        return null;
+    private int sumUp(int x) {
+        int sum = 0;
+
+        for(int i = 1; i <= x; ++i) {
+            sum += i;
+        }
+
+        return sum;
     }
 
     @Override
-    public boolean isAdvancedStat(ReactorComponentStat reactorComponentStat, ItemStack itemStack) {
-        return false;
+    public NBTPrimitive getReactorStat(ReactorComponentStat stat, ItemStack stack) {
+        IUranium uran = this.getUran();
+        if (type == NuclearRodTypes.ISOTOPE){
+            return uran != null && stat == ReactorComponentStat.MaxDurability ? new NBTTagInt(uran.getMaxDurability()) : nulltag;
+        }else {
+            int rodAmount = (int)this.getRodAmount(type);
+            int i;
+            if (stat == ReactorComponentStat.HeatProduction) {
+                int amount = 0;
+
+                for(i = 0; i < rodAmount; ++i) {
+                    amount = (int)((float)amount + (float)(this.sumUp((1 + rodAmount / 2) * uran.getPulsesPerTick()) * 4) * uran.getHeatModifier());
+                }
+
+                return new NBTTagInt(amount);
+            } else if (stat != ReactorComponentStat.EnergyProduction) {
+                if (stat == ReactorComponentStat.MaxDurability) {
+                    return new NBTTagInt(this.getMaxCustomDamage(stack));
+                } else if (stat == ReactorComponentStat.RodAmount) {
+                    return new NBTTagInt(rodAmount);
+                } else {
+                    return (NBTPrimitive)(stat == ReactorComponentStat.PulseAmount ? new NBTTagInt((1 + rodAmount / 2) * uran.getPulsesPerTick() * rodAmount) : nulltag);
+                }
+            } else {
+                float amount = 0.0F;
+
+                for(i = 0; i < rodAmount; ++i) {
+                    int pulses = (1 + rodAmount / 2) * uran.getPulsesPerTick();
+
+                    for(int z = 0; z < pulses; ++z) {
+                        amount += uran.getEUPerPulse();
+                    }
+                }
+
+                return new NBTTagFloat(amount);
+            }
+        }
+    }
+
+    @Override
+    public boolean isAdvancedStat(ReactorComponentStat stat, ItemStack itemStack) {
+        return type != NuclearRodTypes.ISOTOPE && (stat == ReactorComponentStat.EnergyProduction || stat == ReactorComponentStat.HeatProduction);
     }
 
     @Override

@@ -3,6 +3,7 @@ package trinsdar.ic2c_extras.items.urantypes;
 import ic2.core.item.reactor.uranTypes.UranBaseType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
+import ic2.core.platform.registry.Ic2Lang;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -32,7 +33,7 @@ public class UOX extends UranBaseType {
     }
     @Override
     public int getRow() {
-        return 0;
+        return 1;
     }
 
     @Override
@@ -99,11 +100,11 @@ public class UOX extends UranBaseType {
     public short getRodID(RodType type) {
         switch(type) {
             case SingleRod:
-                return 1100;
+                return 1110;
             case DualRod:
                 return 1105;
             case QuadRod:
-                return 1110;
+                return 1100;
             case ReEnrichedRod:
                 return 1125;
             case NearDepletedRod:
@@ -117,7 +118,7 @@ public class UOX extends UranBaseType {
 
     @Override
     public LocaleComp getName(RodType rodType) {
-        return null;
+        return Ic2Lang.nullKey;
     }
 
     @Override
