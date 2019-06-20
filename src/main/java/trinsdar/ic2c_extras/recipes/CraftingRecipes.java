@@ -7,6 +7,7 @@ import ic2.core.IC2;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
+import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
@@ -132,6 +133,29 @@ public class CraftingRecipes {
             recipes.overrideRecipe("shaped_tile.blockadvancedmachine_1515831549", Ic2Items.advMachine, "IAI", "CMC", "IAI", 'I', "ingotSteel", 'C', Ic2Items.carbonPlate, 'A', Ic2Items.advancedAlloy, 'M', Ic2Items.machine);
             recipes.overrideRecipe("shaped_tile.blockadvancedmachine_-1920290047", Ic2Items.advMachine, "ICI", "AMA", "ICI", 'I', "ingotSteel", 'C', Ic2Items.carbonPlate, 'A', Ic2Items.advancedAlloy, 'M', Ic2Items.machine);
             recipes.overrideRecipe("shaped_tile.blocktesla_1114556539", Ic2Items.teslaCoil, "RRR", "RMR", "ICI", 'R', "dustRedstone", 'M', Ic2Items.transformerMV, 'I', "ingotSteel", 'C', basicCircuit);
+        }
+        if (Ic2cExtrasRecipes.enableEmptyRods){
+            ItemStack emptyFuelRod = new ItemStack(Registry.emptyFuelRod);
+            recipes.overrideShapelessRecipe("shapeless_item.reactoruraniumsimple_-1804731375", Ic2Items.reactorUraniumRodSingle, emptyFuelRod, Ic2Items.uraniumIngot);
+            ClassicRecipes.canningMachine.removeCanningRecipe(Ic2Items.emptyCell, Ic2Items.uraniumIngot);
+            ClassicRecipes.canningMachine.registerCannerItem(emptyFuelRod, new RecipeInputItemStack(Ic2Items.uraniumIngot), Ic2Items.reactorUraniumRodSingle);
+            if (!IC2.config.getFlag("HardEnrichedUran")){
+                recipes.overrideShapelessRecipe("shapeless_item.reactoruraniumredstonesimple_-1804729360", Ic2Items.reactorRedstoneUraniumRodSingle, emptyFuelRod, Ic2Items.redstoneUraniumIngot);
+                recipes.overrideShapelessRecipe("shapeless_item.reactoruraniumblazesimple_-1804728306", Ic2Items.reactorBlazeUraniumRodSingle, emptyFuelRod, Ic2Items.blazeUraniumIngot);
+                recipes.overrideShapelessRecipe("shapeless_item.reactoruraniumenderpearlsimple_-1804727252", Ic2Items.reactorEnderPearlUraniumRodSingle, emptyFuelRod, Ic2Items.enderPearlUraniumIngot);
+                recipes.overrideShapelessRecipe("shapeless_item.reactoruraniumnetherstarsimple_-1804726198", Ic2Items.reactorNetherStarUraniumRodSingle, emptyFuelRod, Ic2Items.netherStarUraniumIngot);
+                recipes.overrideShapelessRecipe("shapeless_item.reactoruraniumcharcoalsimple_-1804725144", Ic2Items.reactorCharcoalUraniumRodSingle, emptyFuelRod, Ic2Items.charcoalUraniumIngot);
+                ClassicRecipes.canningMachine.removeCanningRecipe(Ic2Items.emptyCell, Ic2Items.redstoneUraniumIngot);
+                ClassicRecipes.canningMachine.removeCanningRecipe(Ic2Items.emptyCell, Ic2Items.blazeUraniumIngot);
+                ClassicRecipes.canningMachine.removeCanningRecipe(Ic2Items.emptyCell, Ic2Items.enderPearlUraniumIngot);
+                ClassicRecipes.canningMachine.removeCanningRecipe(Ic2Items.emptyCell, Ic2Items.netherStarUraniumIngot);
+                ClassicRecipes.canningMachine.removeCanningRecipe(Ic2Items.emptyCell, Ic2Items.charcoalUraniumIngot);
+                ClassicRecipes.canningMachine.registerCannerItem(emptyFuelRod, new RecipeInputItemStack(Ic2Items.redstoneUraniumIngot), Ic2Items.reactorRedstoneUraniumRodSingle);
+                ClassicRecipes.canningMachine.registerCannerItem(emptyFuelRod, new RecipeInputItemStack(Ic2Items.blazeUraniumIngot), Ic2Items.reactorBlazeUraniumRodSingle);
+                ClassicRecipes.canningMachine.registerCannerItem(emptyFuelRod, new RecipeInputItemStack(Ic2Items.enderPearlUraniumIngot), Ic2Items.reactorEnderPearlUraniumRodSingle);
+                ClassicRecipes.canningMachine.registerCannerItem(emptyFuelRod, new RecipeInputItemStack(Ic2Items.netherStarUraniumIngot), Ic2Items.reactorNetherStarUraniumRodSingle);
+                ClassicRecipes.canningMachine.registerCannerItem(emptyFuelRod, new RecipeInputItemStack(Ic2Items.charcoalUraniumIngot), Ic2Items.reactorCharcoalUraniumRodSingle);
+            }
         }
 
     }

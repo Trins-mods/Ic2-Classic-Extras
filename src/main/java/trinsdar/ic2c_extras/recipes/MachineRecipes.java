@@ -264,6 +264,10 @@ public class MachineRecipes {
             TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustSmallPlutonium", 4), new ItemStack(Registry.plutonium));
         }
 
+        if (Ic2cExtrasRecipes.enableEmptyRods){
+            extruding.addRecipe(new RecipeInputOreDict("plateIron", 1), new ItemStack(Registry.emptyFuelRod), "emptyFuelRodExtruding");
+        }
+
         if (Ic2cExtrasRecipes.enableCasingsRequirePlates){
             rolling.addRecipe((new RecipeInputOreDict("plateCopper", 1)),  new ItemStack(Registry.copperCasing, 2), 0.7f, "copperPlateItemCasingRolling");
             rolling.addRecipe((new RecipeInputOreDict("plateTin", 1)),  new ItemStack(Registry.tinCasing, 2), 0.7f, "tinPlateItemCasingRolling");

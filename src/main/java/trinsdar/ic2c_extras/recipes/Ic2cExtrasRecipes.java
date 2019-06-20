@@ -42,6 +42,7 @@ public class Ic2cExtrasRecipes {
     public static boolean enableLootEntries;
     public static boolean enableUraniumOreDropReplacement;
     public static boolean enableAutoFluidContainerRecipes;
+    public static boolean enableEmptyRods;
     public static int
     itemQuality = 0,
     dungeonWeight = 10,
@@ -118,7 +119,7 @@ public class Ic2cExtrasRecipes {
 
     }
 
-    public static void setConfig(boolean uranium, boolean casings, boolean wires, boolean steel, boolean hammer, boolean oredict, boolean loot, boolean twoPlates, boolean uraniumDrop, boolean fluidContainer){
+    public static void setConfig(boolean uranium, boolean casings, boolean wires, boolean steel, boolean hammer, boolean oredict, boolean loot, boolean twoPlates, boolean uraniumDrop, boolean fluidContainer, boolean emptyRods){
         enableHarderUranium = uranium;
         enableCasingsRequirePlates = casings;
         enableCuttingToolWires = wires;
@@ -129,5 +130,6 @@ public class Ic2cExtrasRecipes {
         enableLootEntries = loot;
         enableUraniumOreDropReplacement = uraniumDrop;
         enableAutoFluidContainerRecipes = fluidContainer;
+        enableEmptyRods = emptyRods;
     }
 }
