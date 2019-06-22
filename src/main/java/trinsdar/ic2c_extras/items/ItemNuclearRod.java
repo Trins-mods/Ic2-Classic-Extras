@@ -147,16 +147,6 @@ public class ItemNuclearRod extends ItemReactorUraniumRod {
         return null;
     }
 
-    private int sumUp(int x) {
-        int sum = 0;
-
-        for(int i = 1; i <= x; ++i) {
-            sum += i;
-        }
-
-        return sum;
-    }
-
     @Override
     public NBTPrimitive getReactorStat(ReactorComponentStat stat, ItemStack stack) {
         IUranium uran = this.getUran();
@@ -174,7 +164,6 @@ public class ItemNuclearRod extends ItemReactorUraniumRod {
 
     @Override
     public NBTPrimitive getReactorStat(IReactor reactor, int x, int y, ItemStack stack, ReactorComponentStat stat) {
-        IUranium uran = this.getUran();
         if (type == NuclearRodTypes.ISOTOPE){
             return nulltag;
         }else {
@@ -239,22 +228,6 @@ public class ItemNuclearRod extends ItemReactorUraniumRod {
         }
     }
 
-
-    @Override
-    public int getMaxHeat(ItemStack itemStack, IReactor iReactor, int i, int i1) {
-        return 0;
-    }
-
-    @Override
-    public int getCurrentHeat(ItemStack itemStack, IReactor iReactor, int i, int i1) {
-        return 0;
-    }
-
-    @Override
-    public int alterHeat(ItemStack itemStack, IReactor iReactor, int x, int y, int heat) {
-        return heat;
-    }
-
     @Override
     public float influenceExplosion(ItemStack stack, IReactor reactor) {
         if (type != NuclearRodTypes.ISOTOPE){
@@ -287,20 +260,14 @@ public class ItemNuclearRod extends ItemReactorUraniumRod {
 
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-        if (type == NuclearRodTypes.ISOTOPE) {
-            if (this.isInCreativeTab(tab)){
+        if (this.isInCreativeTab(tab)){
+            if (type == NuclearRodTypes.ISOTOPE) {
                 items.add(this.getUran().getNewIsotopicRod());
+            }else {
+                items.add(new ItemStack(this));
             }
-
-        }else {
-            super.getSubItems(tab, items);
         }
-    }
 
-    @Override
-    public boolean applyCustomDamage(ItemStack stack, int damage, EntityLivingBase src) {
-        super.applyCustomDamage(stack, damage, src);
-        return this.getCustomDamage(stack) > this.getMaxCustomDamage(stack);
     }
 
     public static enum NuclearRodTypes {
