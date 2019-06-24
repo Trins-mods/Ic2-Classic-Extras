@@ -1,33 +1,28 @@
 package trinsdar.ic2c_extras.items;
 
 import ic2.api.classic.reactor.IReactorPlanner;
-import ic2.api.classic.reactor.IReactorPlannerComponent;
 import ic2.api.classic.reactor.ISteamReactor;
-import ic2.api.classic.reactor.ISteamReactorComponent;
 import ic2.api.reactor.IReactor;
 import ic2.core.block.machine.high.TileEntityUraniumEnricher;
-import ic2.core.item.base.ItemGrandualInt;
 import ic2.core.item.reactor.ItemReactorUraniumRod;
 import ic2.core.item.reactor.uranTypes.IUranium;
-import ic2.core.platform.registry.Ic2Items;
-import ic2.core.platform.textures.Ic2Icons;
-import ic2.core.util.obj.IBootable;
+import ic2.core.platform.lang.components.base.LangComponentHolder;
+import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTPrimitive;
-import net.minecraft.nbt.NBTTagFloat;
 import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
-import trinsdar.ic2c_extras.items.urantypes.ThoriumOxide;
+import trinsdar.ic2c_extras.items.urantypes.Thorium230;
 import trinsdar.ic2c_extras.items.urantypes.MOX;
 import trinsdar.ic2c_extras.items.urantypes.Plutonium;
-import trinsdar.ic2c_extras.items.urantypes.Thorium;
+import trinsdar.ic2c_extras.items.urantypes.Thorium232;
 import trinsdar.ic2c_extras.items.urantypes.UOX;
+import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,13 +43,24 @@ public class ItemNuclearRod extends ItemReactorUraniumRod {
 
     @Override
     public void onLoad() {
+        IC2CExtras.logger.info(this.getLangComponent().getUnlocalized());
         types = new IUranium[5];
         types[0] = new UOX();
         types[1] = new Plutonium();
         types[2] = new MOX();
-        types[3] = new Thorium();
-        types[4] = new ThoriumOxide();
-        TileEntityUraniumEnricher.RECIPE_LIST.add(types[0]);
+        types[3] = new Thorium232();
+        types[4] = new Thorium230();
+        if (variant == NuclearRodVariants.UOX &&  type == NuclearRodTypes.SINGLE){
+            TileEntityUraniumEnricher.RECIPE_LIST.add(types[0]);
+        }
+    }
+
+    @Override
+    public LocaleComp getLangComponent(ItemStack stack) {
+        if (Ic2cExtrasRecipes.enableEmptyRods){
+            return new LangComponentHolder.LocaleItemComp(this.getUnlocalizedName().replace("Cell", "Rod"));
+        }
+        return new LangComponentHolder.LocaleItemComp(this.getUnlocalizedName());
     }
 
     @Override
@@ -118,9 +124,9 @@ public class ItemNuclearRod extends ItemReactorUraniumRod {
             return types[1];
         }else if (variant == NuclearRodVariants.MOX){
             return types[2];
-        }else if (variant == NuclearRodVariants.THORIUM){
+        }else if (variant == NuclearRodVariants.THORIUM232){
             return types[3];
-        }else if (variant == NuclearRodVariants.THORIUMOXIDE){
+        }else if (variant == NuclearRodVariants.THORIUM230){
             return types[4];
         }
         return types[0];
@@ -291,8 +297,8 @@ public class ItemNuclearRod extends ItemReactorUraniumRod {
         UOX("UOX"),
         PLUTONIUM("Plutonium"),
         MOX("MOX"),
-        THORIUM("Thorium"),
-        THORIUMOXIDE("ThoriumOxide");
+        THORIUM232("Thorium232"),
+        THORIUM230("Thorium230");
 
         private String prefix;
 

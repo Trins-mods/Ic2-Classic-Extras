@@ -13,7 +13,7 @@ import trinsdar.ic2c_extras.util.Registry;
 
 import java.awt.*;
 
-public class ThoriumOxide extends UranBaseType {
+public class Thorium230 extends UranBaseType {
 
     @SideOnly(Side.CLIENT)
     @Override

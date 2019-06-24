@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.blocks.BlockUraniumOre;
+import trinsdar.ic2c_extras.items.override.ItemReactorUraniumRod2;
 import trinsdar.ic2c_extras.util.Registry;
 
 import java.util.Map;
@@ -31,6 +32,7 @@ public class IC2CExtrasConfigLoader extends PluginBase {
     {
         Config.init();
         map.put("blockMetal", new ModulLoader.BlockOverride(new BlockUraniumOre().setCreativeTab(IC2.tabIC2), ItemBlockMetal.class));
+        map.put("itemReactorRods", new ModulLoader.ItemOverride(new ItemReactorUraniumRod2().setCreativeTab(IC2.tabIC2)));
     }
 
     @Override

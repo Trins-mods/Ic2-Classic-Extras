@@ -13,8 +13,8 @@ import trinsdar.ic2c_extras.util.Registry;
 
 import java.awt.*;
 
-public class Thorium extends UranBaseType {
-    public Thorium(){
+public class Thorium232 extends UranBaseType {
+    public Thorium232(){
         this.loadDefaults();
     }
 
