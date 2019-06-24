@@ -7,6 +7,7 @@ import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.Config;
@@ -33,7 +34,7 @@ public class ItemMiscs extends ItemIC2 {
         setCreativeTab(IC2CExtras.creativeTab);
     }
     @Override
-    public LocaleComp getLangComponent() {
+    public LocaleComp getLangComponent(ItemStack stack) {
         if (Ic2cExtrasRecipes.enableEmptyRods && sprite.equals("nuclear_cells")){
             return new LangComponentHolder.LocaleItemComp(this.getUnlocalizedName().replace("Cell", "Rod"));
         }

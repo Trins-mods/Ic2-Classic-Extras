@@ -10,7 +10,7 @@ public class ItemReactorUraniumRod2 extends ItemReactorUraniumRod {
     @Override
     public LocaleComp getLangComponent(ItemStack stack) {
         if (Ic2cExtrasRecipes.enableEmptyRods){
-            return new LangComponentHolder.LocaleItemComp(super.getLangComponent(stack).getUnlocalizedFully().replace("reactor", "reactor2"));
+            return new LangComponentHolder.LocaleItemComp(super.getLangComponent(stack).getUnlocalized().replace("reactor", "reactor2"));
         }
         return super.getLangComponent(stack);
     }

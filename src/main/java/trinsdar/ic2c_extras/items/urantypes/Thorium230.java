@@ -64,17 +64,17 @@ public class Thorium230 extends UranBaseType {
     public ItemStack getRodType(RodType type) {
         switch(type) {
             case SingleRod:
-                return new ItemStack(Registry.singleThoriumOxideCell).copy();
+                return new ItemStack(Registry.singleThorium230Cell).copy();
             case DualRod:
-                return new ItemStack(Registry.doubleThoriumOxideCell).copy();
+                return new ItemStack(Registry.doubleThorium230Cell).copy();
             case QuadRod:
-                return new ItemStack(Registry.quadThoriumOxideCell).copy();
+                return new ItemStack(Registry.quadThorium230Cell).copy();
             case NearDepletedRod:
-                return new ItemStack(Registry.nearDepletedThoriumOxideCell).copy();
+                return new ItemStack(Registry.nearDepletedThorium230Cell).copy();
             case IsotopicRod:
-                return new ItemStack(Registry.isotopicThoriumOxideCell).copy();
+                return new ItemStack(Registry.isotopicThorium230Cell).copy();
             case ReEnrichedRod:
-                return new ItemStack(Registry.reEnrichedThoriumOxideCell).copy();
+                return new ItemStack(Registry.reEnrichedThorium230Cell).copy();
             default:
                 return ItemStack.EMPTY;
         }
