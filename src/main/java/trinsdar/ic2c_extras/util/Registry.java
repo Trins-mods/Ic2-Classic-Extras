@@ -126,7 +126,8 @@ public class Registry
     obsidianTinyDust = new ItemTinyDust("obsidian", 7),
     bronzeTinyDust = new ItemTinyDust(bronze, 8),
     uranium238TinyDust = new ItemTinyDust(uranium + "238", 9),
-    plutoniumTinyDust = new ItemTinyDust("plutonium", 10);
+    plutoniumTinyDust = new ItemTinyDust("plutonium", 10),
+    thoriumTinyDust = new ItemTinyDust("thorium", 11);
 
     public static final ItemSmallDust
     ironSmallDust = new ItemSmallDust(iron, 0),
@@ -158,6 +159,11 @@ public class Registry
     diamondDust = new ItemMiscs("diamondDust", 16),
     energiumDust = new ItemMiscs("energiumDust", 17),
     emptyFuelRod = new ItemMiscs("emptyFuelRod", 18),
+    thoriumDust = new ItemMiscs("thoriumDust", 19),
+    thoriumIngot = new ItemMiscs("thoriumIngot", 20),
+    plutoniumIngot = new ItemMiscs("plutoniumIngot", 21),
+    moxFuel = new ItemMiscs("moxFuel", 22),
+    oxidizedThroiumIngot = new ItemMiscs("oxidizedThroiumIngot", 23),
     nearDepletedUOXCell = new ItemMiscs("nearDepletedUOXCell", 15, "nuclear_cells"),
     nearDepletedPlutoniumCell = new ItemMiscs("nearDepletedPlutoniumCell", 16, "nuclear_cells"),
     nearDepletedMOXCell = new ItemMiscs("nearDepletedMOXCell", 17, "nuclear_cells"),
@@ -176,26 +182,26 @@ public class Registry
     gearingPress = new ItemMiscs("gearingPress", 5, "presses");
 
     public static final ItemNuclearRod
-    singleUOXCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.UOX, 10),
-    doubleUOXCell = new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.UOX, 5),
-    quadUOXCell = new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.UOX, 0),
-    isotopicUOXCell = new ItemNuclearRod(NuclearRodTypes.ISOTOPE, NuclearRodVariants.UOX, 20),
-    singlePlutoniumCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.PLUTONIUM, 11),
-    doublePlutoniumCell = new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.PLUTONIUM, 6),
-    quadPlutoniumCell = new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.PLUTONIUM, 1),
-    isotopicPlutoniumCell = new ItemNuclearRod(NuclearRodTypes.ISOTOPE, NuclearRodVariants.PLUTONIUM, 21),
-    singleMOXCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.MOX, 12),
-    doubleMOXCell = new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.MOX, 7),
-    quadMOXCell = new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.MOX, 2),
-    isotopicMOXCell = new ItemNuclearRod(NuclearRodTypes.ISOTOPE, NuclearRodVariants.MOX, 22),
-    singleThoriumCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.THORIUM, 13),
-    doubleThoriumCell = new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.THORIUM, 8),
-    quadThoriumCell = new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.THORIUM, 3),
-    isotopicThoriumCell = new ItemNuclearRod(NuclearRodTypes.ISOTOPE, NuclearRodVariants.THORIUM, 23),
-    singleThoriumOxideCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.THORIUMOXIDE, 14),
-    doubleThoriumOxideCell = new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.THORIUMOXIDE, 9),
-    quadThoriumOxideCell = new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.THORIUMOXIDE, 4),
-    isotopicThoriumOxideCell = new ItemNuclearRod(NuclearRodTypes.ISOTOPE, NuclearRodVariants.THORIUMOXIDE, 24);
+    singleUOXCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.UOX),
+    doubleUOXCell = new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.UOX),
+    quadUOXCell = new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.UOX),
+    isotopicUOXCell = new ItemNuclearRod(NuclearRodTypes.ISOTOPE, NuclearRodVariants.UOX),
+    singlePlutoniumCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.PLUTONIUM),
+    doublePlutoniumCell = new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.PLUTONIUM),
+    quadPlutoniumCell = new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.PLUTONIUM),
+    isotopicPlutoniumCell = new ItemNuclearRod(NuclearRodTypes.ISOTOPE, NuclearRodVariants.PLUTONIUM),
+    singleMOXCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.MOX),
+    doubleMOXCell = new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.MOX),
+    quadMOXCell = new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.MOX),
+    isotopicMOXCell = new ItemNuclearRod(NuclearRodTypes.ISOTOPE, NuclearRodVariants.MOX),
+    singleThoriumCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.THORIUM),
+    doubleThoriumCell = new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.THORIUM),
+    quadThoriumCell = new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.THORIUM),
+    isotopicThoriumCell = new ItemNuclearRod(NuclearRodTypes.ISOTOPE, NuclearRodVariants.THORIUM),
+    singleThoriumOxideCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.THORIUMOXIDE),
+    doubleThoriumOxideCell = new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.THORIUMOXIDE),
+    quadThoriumOxideCell = new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.THORIUMOXIDE),
+    isotopicThoriumOxideCell = new ItemNuclearRod(NuclearRodTypes.ISOTOPE, NuclearRodVariants.THORIUMOXIDE);
 
 
     public static final ItemToolCrafting
@@ -260,6 +266,7 @@ public class Registry
         IC2.getInstance().createItem(bronzeTinyDust);
         IC2.getInstance().createItem(uranium238TinyDust);
         IC2.getInstance().createItem(plutoniumTinyDust);
+        IC2.getInstance().createItem(thoriumTinyDust);
         IC2.getInstance().createItem(ironSmallDust);
         IC2.getInstance().createItem(goldSmallDust);
         IC2.getInstance().createItem(copperSmallDust);
@@ -296,6 +303,11 @@ public class Registry
         IC2.getInstance().createItem(diamondDust);
         IC2.getInstance().createItem(energiumDust);
         IC2.getInstance().createItem(emptyFuelRod);
+        IC2.getInstance().createItem(thoriumDust);
+        IC2.getInstance().createItem(thoriumIngot);
+        IC2.getInstance().createItem(plutoniumIngot);
+        IC2.getInstance().createItem(moxFuel);
+        IC2.getInstance().createItem(oxidizedThroiumIngot);
         IC2.getInstance().createItem(blankPress);
         IC2.getInstance().createItem(rollingPress);
         IC2.getInstance().createItem(extrudingPress);
