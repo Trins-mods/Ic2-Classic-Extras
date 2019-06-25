@@ -10,11 +10,14 @@ import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.lang.storage.Ic2BlockLang;
 import ic2.core.platform.registry.ItemAPI;
 import ic2.core.util.misc.ModulLoader;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.blocks.BlockUraniumOre;
+import trinsdar.ic2c_extras.items.override.ItemMisc2;
+import trinsdar.ic2c_extras.items.override.ItemReactorDepletedUranium2;
 import trinsdar.ic2c_extras.items.override.ItemReactorUraniumRod2;
 import trinsdar.ic2c_extras.util.Registry;
 
@@ -33,6 +36,8 @@ public class IC2CExtrasConfigLoader extends PluginBase {
         Config.init();
         map.put("blockMetal", new ModulLoader.BlockOverride(new BlockUraniumOre().setCreativeTab(IC2.tabIC2), ItemBlockMetal.class));
         map.put("itemReactorRods", new ModulLoader.ItemOverride(new ItemReactorUraniumRod2().setCreativeTab(IC2.tabIC2)));
+        map.put("itemDepletedRods", new ModulLoader.ItemOverride(new ItemReactorDepletedUranium2().setCreativeTab(IC2.tabIC2)));
+        map.put("itemMisc", new ModulLoader.ItemOverride(new ItemMisc2().setCreativeTab(IC2.tabIC2)));
     }
 
     @Override
@@ -75,10 +80,15 @@ public class IC2CExtrasConfigLoader extends PluginBase {
         ItemAPI.instance.putStack("ingot", "lead", new ItemStack(Registry.leadIngot));
         ItemAPI.instance.putStack("nuclear", "uranium_235", new ItemStack(Registry.uranium235));
         ItemAPI.instance.putStack("nuclear", "uranium_238", new ItemStack(Registry.uranium238));
-        ItemAPI.instance.putStack("nuclear", "plutonium", new ItemStack(Registry.plutonium));
+        ItemAPI.instance.putStack("nuclear", "plutonium", new ItemStack(Registry.plutoniumDust));
         ItemAPI.instance.putStack("nuclear", "small_uranium_235", new ItemStack(Registry.uranium235TinyDust));
         ItemAPI.instance.putStack("nuclear", "small_uranium_238", new ItemStack(Registry.uranium238TinyDust));
         ItemAPI.instance.putStack("nuclear", "small_plutonium", new ItemStack(Registry.plutoniumTinyDust));
+        ItemAPI.instance.putStack("nuclear", "mox", new ItemStack(Registry.moxFuel));
+        ItemAPI.instance.putStack("nuclear", "depleted_mox", new ItemStack(Registry.nearDepletedMOXCell));
+        ItemAPI.instance.putStack("nuclear", "depleted_dual_mox", StackUtil.copyWithSize(new ItemStack(Registry.nearDepletedMOXCell), 2));
+        ItemAPI.instance.putStack("nuclear", "depleted_quad_mox", StackUtil.copyWithSize(new ItemStack(Registry.nearDepletedMOXCell), 4));
+        ItemAPI.instance.putStack("crafting", "fuel_rod", new ItemStack(Registry.emptyFuelRod));
         ItemAPI.instance.putStack("misc_resource", "slag", new ItemStack(Registry.slag));
         ItemAPI.instance.putStack("misc_resource", "iridium_shard", new ItemStack(Registry.iridiumShard));
         ItemAPI.instance.putStack("crafting", "coil", new ItemStack(Registry.coil));

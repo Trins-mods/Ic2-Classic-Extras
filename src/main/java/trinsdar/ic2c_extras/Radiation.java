@@ -33,7 +33,7 @@ public class Radiation {
 			radiation.add(Ic2Items.uraniumIngot);
 			radiation.add(new ItemStack(Registry.uranium235));
 			radiation.add(new ItemStack(Registry.uranium238));
-			radiation.add(new ItemStack(Registry.plutonium));
+			radiation.add(new ItemStack(Registry.plutoniumDust));
 			radiation.add(new ItemStack(Registry.uranium235TinyDust));
 			radiation.add(new ItemStack(Registry.uranium238TinyDust));
 			radiation.add(new ItemStack(Registry.plutoniumTinyDust));

@@ -150,7 +150,7 @@ public class Registry
     slag = new ItemMiscs("slag", 3),
     uranium235 = new ItemMiscs("uranium235", 4),
     uranium238 = new ItemMiscs("uranium238", 5),
-    plutonium = new ItemMiscs("plutonium", 6),
+    plutoniumDust = new ItemMiscs("plutoniumDust", 6),
     coil = new ItemMiscs("coil", 7),
     heatConductor = new ItemMiscs("heatConductor", 8),
     steelIngot = new ItemMiscs("steelIngot", 9),
@@ -163,7 +163,7 @@ public class Registry
     thorium232Dust = new ItemMiscs("thorium232Dust", 19),
     thorium232Ingot = new ItemMiscs("thorium232Ingot", 20),
     thorium230Dust = new ItemMiscs("thorium230Dust", 21),
-    thorium230Ingot = new ItemMiscs("throium230Ingot", 22),
+    thorium230Ingot = new ItemMiscs("thorium230Ingot", 22),
     plutoniumIngot = new ItemMiscs("plutoniumIngot", 23),
     moxFuel = new ItemMiscs("moxFuel", 24),
 
@@ -288,7 +288,7 @@ public class Registry
         IC2.getInstance().createItem(slag);
         IC2.getInstance().createItem(uranium235);
         IC2.getInstance().createItem(uranium238);
-        IC2.getInstance().createItem(plutonium);
+        IC2.getInstance().createItem(plutoniumDust);
         IC2.getInstance().createItem(coil);
         IC2.getInstance().createItem(heatConductor);
         IC2.getInstance().createItem(steelIngot);

@@ -217,7 +217,7 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.slag));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium235));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutonium));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumDust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.coil));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.heatConductor));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.steelIngot));
@@ -239,7 +239,7 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238SmallDust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uraniumCrushedOre));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uraniumPurifiedCrushedOre));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutonium));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumDust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumTinyDust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumSmallDust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.doubleEnrichedUraniumIngot));
