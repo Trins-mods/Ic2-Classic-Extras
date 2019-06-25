@@ -10,9 +10,11 @@ public class ItemMisc2 extends ItemMisc {
     @Override
     public LocaleComp getLangComponent(ItemStack stack) {
         int meta = stack.getMetadata();
+        if (meta == 180){
+            return Ic2cExtrasRecipes.enableHarderUranium ? new LangComponentHolder.LocaleItemComp("item.itemFuelUran") : super.getLangComponent(stack);
+        }
         if(Ic2cExtrasRecipes.enableEmptyRods){
             switch (meta){
-                case 180 : return new LangComponentHolder.LocaleItemComp("item.itemFuelUran");
                 case 500 : return new LangComponentHolder.LocaleItemComp("item.itemRodUranEmpty");
                 case 501 : return new LangComponentHolder.LocaleItemComp("item.itemRodRedstoneEnrichedUranEmpty");
                 case 502 : return new LangComponentHolder.LocaleItemComp("item.itemRodBlazeEnrichedUranEmpty");
