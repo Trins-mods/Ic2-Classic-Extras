@@ -31,9 +31,11 @@ import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityExtruder;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalBender;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.util.Registry;
 
@@ -63,18 +65,18 @@ public class MachineRecipes {
         Set<String> crushedBlacklist = new HashSet();
         Set<String> crushedPurifiedBlackList = new HashSet();
         Set<String> plateBlacklist = new HashSet();
-        Set<String> ingotWhitelist = new HashSet();
+        Set<String> ingotBlacklist = new HashSet();
         Set<String> ingotGTBlacklist = new HashSet();
         Set<String> gemBlacklist = new HashSet();
         Set<String> ingotBmeMmeBlacklist = new HashSet();
         crushedBlacklist.addAll(Arrays.asList("crushedIron", "crushedGold", "crushedSilver", "crushedLead", "crushedCopper", "crushedTin", "crushedUranium"));
         crushedPurifiedBlackList.addAll(Arrays.asList("crushedPurifiedIron", "crushedPurifiedGold", "crushedPurifiedSilver", "crushedPurifiedLead", "crushedPurifiedCopper", "crushedPurifiedTin", "crushedPurifiedUranium"));
         plateBlacklist.addAll(Arrays.asList("plateIron", "plateGold", "plateSilver", "plateLead", "plateCopper", "plateTin", "plateRefinedIron", "plateSteel", "plateBronze"));
-        ingotWhitelist.addAll(Arrays.asList("ingotIron", "ingotGold", "ingotSilver", "ingotLead", "ingotCopper", "ingotTin", "ingotRefinedIron", "ingotSteel", "ingotBronze"));
+        ingotBlacklist.addAll(Arrays.asList("ingotIron", "ingotGold", "ingotSilver", "ingotLead", "ingotCopper", "ingotTin", "ingotRefinedIron", "ingotSteel", "ingotBronze"));
         gemBlacklist.addAll(Arrays.asList("ingotDiamond", "ingotEmerald", "ingotQuartz", "ingotIridium", "ingotCoal", "ingotRedstone"));
-        if (Loader.isModLoaded("gtclassic")){
-            ingotGTBlacklist.addAll(Arrays.asList("ingotGermanium", "ingotTungsten", "ingotInvar", "ingotZinc", "ingotManganese", "ingotMagnalium", "ingotBismuthBronze", "ingotElectrum", "ingotConstantan", "ingotAluminum", "ingotAluminium", "ingotGraphite", "ingotPlatinum", "ingotChrome", "ingotBrass", "ingotPlutonium", "ingotStainlessSteel", "ingotTungstensteel", "ingotTitanium", "ingotNickel", "ingotOsmium", "ingotNichrome", "ingotTantalum", "ingotBismuthr"));
-        }
+//        if (Loader.isModLoaded("gtclassic")){
+//            ingotGTBlacklist.addAll(Arrays.asList("ingotGermanium", "ingotTungsten", "ingotInvar", "ingotZinc", "ingotManganese", "ingotMagnalium", "ingotBismuthBronze", "ingotElectrum", "ingotConstantan", "ingotAluminum", "ingotAluminium", "ingotGraphite", "ingotPlatinum", "ingotChrome", "ingotBrass", "ingotPlutonium", "ingotStainlessSteel", "ingotTungstensteel", "ingotTitanium", "ingotNickel", "ingotOsmium", "ingotNichrome", "ingotTantalum", "ingotBismuthr"));
+//        }
         if (Loader.isModLoaded("basemetals")){
             plateBlacklist.addAll(Arrays.asList("plateAdamantine", "plateAntimony", "plateBismuth", "plateColdiron", "plateNickel", "platePlatinum", "plateStarsteel", "plateZinc"));
             ingotBmeMmeBlacklist.addAll(Arrays.asList("ingotAdamantine", "ingotAntimony", "ingotBismuth", "ingotColdiron", "ingotNickel", "ingotPlatinum", "ingotStarsteel", "ingotZinc"));
@@ -96,29 +98,12 @@ public class MachineRecipes {
                 NonNullList listGears;
                 NonNullList listRods;
                 if (id.startsWith("ingot")){
-                    if (ingotWhitelist.contains(id) && !gemBlacklist.contains(id)){
-                        plate = "plate" + id.substring(5);
-                        if (Ic2cExtrasRecipes.enableCasingsRequirePlates){
-                            if (OreDictionary.doesOreNameExist(plate)) {
-                                listPlates = OreDictionary.getOres(plate, false);
-                                if (!listPlates.isEmpty()) {
-                                    rolling.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack)listPlates.get(0), plate + "Rolling");
-                                    if (Ic2cExtrasRecipes.enableHammerRecipes && !Loader.isModLoaded("gtclassic")){
-                                        if (Ic2cExtrasRecipes.enableTwoPlatesPerIngot){
-                                            recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", "I", 'H', "craftingToolForgeHammer", 'I', id  );
-                                        }else {
-                                            recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", 'H', "craftingToolForgeHammer", 'I', id );
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    } else if (!ingotWhitelist.contains(id) && !gemBlacklist.contains(id) && !ingotBmeMmeBlacklist.contains(id)){
+                    if (!ingotBlacklist.contains(id) && !gemBlacklist.contains(id) && !ingotBmeMmeBlacklist.contains(id)){
                         plate = "plate" + id.substring(5);
                         if (OreDictionary.doesOreNameExist(plate)) {
                             listPlates = OreDictionary.getOres(plate, false);
                             if (!listPlates.isEmpty()) {
-                                rolling.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack)listPlates.get(0), plate + "Rolling");
+                                TileEntityRoller.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack)listPlates.get(0));
                                 if (Ic2cExtrasRecipes.enableHammerRecipes && !ingotGTBlacklist.contains(id)){
                                     if (Ic2cExtrasRecipes.enableTwoPlatesPerIngot){
                                         recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", "I", 'H', "craftingToolForgeHammer", 'I', id );
@@ -265,39 +250,48 @@ public class MachineRecipes {
         }
 
         if (Ic2cExtrasRecipes.enableEmptyRods){
-            extruding.addRecipe(new RecipeInputOreDict("plateIron", 1), new ItemStack(Registry.emptyFuelRod), "emptyFuelRodExtruding");
+            TileEntityExtruder.addRecipe(new RecipeInputOreDict("plateIron", 1), new ItemStack(Registry.emptyFuelRod));
         }
 
         if (Ic2cExtrasRecipes.enableCasingsRequirePlates){
-            rolling.addRecipe((new RecipeInputOreDict("plateCopper", 1)),  new ItemStack(Registry.copperCasing, 2), 0.7f, "copperPlateItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateTin", 1)),  new ItemStack(Registry.tinCasing, 2), 0.7f, "tinPlateItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateSilver", 1)),  new ItemStack(Registry.silverCasing, 2), 0.7f, "silverPlateItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateLead", 1)),  new ItemStack(Registry.leadCasing, 2), 0.7f, "leadPlateItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateIron", 1)),  new ItemStack(Registry.ironCasing, 2), 0.7f, "ironPlateItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateGold", 1)),  new ItemStack(Registry.goldCasing, 2), 0.7f, "goldPlateItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateRefinedIron", 1)),  new ItemStack(Registry.refinedIronCasing, 2), 0.7f, "refinedIronPlateItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateSteel", 1)),  new ItemStack(Registry.steelCasing, 2), 0.7f, "steelPlateItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("plateBronze", 1)),  new ItemStack(Registry.bronzeCasing, 2), 0.7f, "bronzePlateItemCasingRolling");
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotCopper", 1)),  new ItemStack(Registry.copperPlate, 2), 0.7f );
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(Registry.tinPlate, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotSilver", 1)),  new ItemStack(Registry.silverPlate, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotLead", 1)),  new ItemStack(Registry.leadPlate, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotIron", 1)),  new ItemStack(Registry.ironPlate, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotGold", 1)),  new ItemStack(Registry.goldPlate, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotRefinedIron", 1)),  new ItemStack(Registry.refinedIronPlate, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotSteel", 1)),  new ItemStack(Registry.steelPlate, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotBronze", 1)),  new ItemStack(Registry.bronzePlate, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("plateCopper", 1)),  new ItemStack(Registry.copperCasing, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("plateTin", 1)),  new ItemStack(Registry.tinCasing, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("plateSilver", 1)),  new ItemStack(Registry.silverCasing, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("plateLead", 1)),  new ItemStack(Registry.leadCasing, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("plateIron", 1)),  new ItemStack(Registry.ironCasing, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("plateGold", 1)),  new ItemStack(Registry.goldCasing, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("plateRefinedIron", 1)),  new ItemStack(Registry.refinedIronCasing, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("plateSteel", 1)),  new ItemStack(Registry.steelCasing, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("plateBronze", 1)),  new ItemStack(Registry.bronzeCasing, 2), 0.7f);
         }else {
-            rolling.addRecipe((new RecipeInputOreDict("ingotCopper", 1)),  new ItemStack(Registry.copperCasing, 2), 0.7f, "copperItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(Registry.tinCasing, 2), 0.7f, "tinItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("ingotSilver", 1)),  new ItemStack(Registry.silverCasing, 2), 0.7f, "silverItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("ingotLead", 1)),  new ItemStack(Registry.leadCasing, 2), 0.7f, "leadItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("ingotIron", 1)),  new ItemStack(Registry.ironCasing, 2), 0.7f, "ironItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("ingotGold", 1)),  new ItemStack(Registry.goldCasing, 2), 0.7f, "goldItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("ingotRefinedIron", 1)),  new ItemStack(Registry.refinedIronCasing, 2), 0.7f, "refinedIronItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("ingotSteel", 1)),  new ItemStack(Registry.steelCasing, 2), 0.7f, "steelItemCasingRolling");
-            rolling.addRecipe((new RecipeInputOreDict("ingotBronze", 1)),  new ItemStack(Registry.bronzeCasing, 2), 0.7f, "bronzeItemCasingRolling");
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotCopper", 1)),  new ItemStack(Registry.copperCasing, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(Registry.tinCasing, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotSilver", 1)),  new ItemStack(Registry.silverCasing, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotLead", 1)),  new ItemStack(Registry.leadCasing, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotIron", 1)),  new ItemStack(Registry.ironCasing, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotGold", 1)),  new ItemStack(Registry.goldCasing, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotRefinedIron", 1)),  new ItemStack(Registry.refinedIronCasing, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotSteel", 1)),  new ItemStack(Registry.steelCasing, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotBronze", 1)),  new ItemStack(Registry.bronzeCasing, 2), 0.7f);
         }
 
-        rolling.addRecipe((new RecipeInputOreDict(Ic2cExtrasRecipes.getRefinedIronCasing(), 1)),  StackUtil.copyWithSize(Ic2Items.miningPipe, 1), 0.7f, "miningPipeRolling");
+        TileEntityRoller.addRecipe((new RecipeInputOreDict(Ic2cExtrasRecipes.getRefinedIronCasing(), 1)),  StackUtil.copyWithSize(Ic2Items.miningPipe, 1), 0.7f);
 
-        extruding.addRecipe(new RecipeInputOreDict("ingotCopper", 1),  StackUtil.copyWithSize(Ic2Items.copperCable, 3), 0.7f, "copperCableExtruding");
-        extruding.addRecipe(new RecipeInputOreDict("ingotTin", 1),  StackUtil.copyWithSize(Ic2Items.tinCable, 4), 0.7f, "tinCableExtruding");
-        extruding.addRecipe(new RecipeInputOreDict("ingotBronze", 1),  StackUtil.copyWithSize(Ic2Items.bronzeCable, 3), 0.7f, "bronzeCableExtruding");
-        extruding.addRecipe(new RecipeInputOreDict("ingotGold", 1),  StackUtil.copyWithSize(Ic2Items.goldCable, 6), 0.7f, "goldCableExtruding");
-        extruding.addRecipe(new RecipeInputOreDict("casingTin", 1),  StackUtil.copyWithSize(Ic2Items.tinCan, 1), 0.7f, "tinCanExtruding");
-        extruding.addRecipe(new RecipeInputOreDict(Ic2cExtrasRecipes.getRefinedIronCasing(), 2),  StackUtil.copyWithSize(Ic2Items.ironFence, 3), 0.7f, "ironFenceExtruding");
+        TileEntityExtruder.addRecipe(new RecipeInputOreDict("ingotCopper", 1),  StackUtil.copyWithSize(Ic2Items.copperCable, 3), 0.7f);
+        TileEntityExtruder.addRecipe(new RecipeInputOreDict("ingotTin", 1),  StackUtil.copyWithSize(Ic2Items.tinCable, 4), 0.7f);
+        TileEntityExtruder.addRecipe(new RecipeInputOreDict("ingotBronze", 1),  StackUtil.copyWithSize(Ic2Items.bronzeCable, 3), 0.7f);
+        TileEntityExtruder.addRecipe(new RecipeInputOreDict("ingotGold", 1),  StackUtil.copyWithSize(Ic2Items.goldCable, 6), 0.7f);
+        TileEntityExtruder.addRecipe(new RecipeInputOreDict("casingTin", 1),  StackUtil.copyWithSize(Ic2Items.tinCan, 1), 0.7f);
+        TileEntityExtruder.addRecipe(new RecipeInputOreDict(Ic2cExtrasRecipes.getRefinedIronCasing(), 2),  StackUtil.copyWithSize(Ic2Items.ironFence, 3), 0.7f);
 
         macerator.addRecipe(new RecipeInputOreDict("gemDiamond"), new ItemStack(Registry.diamondDust), 0.5F, "Diamond Dust");
         macerator.addRecipe(new RecipeInputItemStack(Ic2Items.energyCrystal), new ItemStack(Registry.energiumDust, 6), "Energium Dust");
@@ -306,12 +300,12 @@ public class MachineRecipes {
 
         if (!IC2.config.getFlag("SteelRecipes")){
             if(Ic2cExtrasRecipes.enableCertainRecipesRequireSteel){
-                extruding.addRecipe(new RecipeInputOreDict("ingotSteel", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f, "HVCableExtruding");
+                TileEntityExtruder.addRecipe(new RecipeInputOreDict("ingotSteel", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f);
             }else {
-                extruding.addRecipe(new RecipeInputOreDict("ingotRefinedIron", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f, "HVCableExtruding");
+                TileEntityExtruder.addRecipe(new RecipeInputOreDict("ingotRefinedIron", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f);
             }
         }else {
-            extruding.addRecipe(new RecipeInputOreDict("ingotSteel", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f, "HVCableExtruding");
+            TileEntityExtruder.addRecipe(new RecipeInputOreDict("ingotSteel", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f);
         }
     }
 
