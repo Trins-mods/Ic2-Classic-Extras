@@ -43,16 +43,17 @@ public class ItemNuclearRod extends ItemReactorUraniumRod {
 
     @Override
     public void onLoad() {
-        IC2CExtras.logger.info(this.getLangComponent().getUnlocalized());
+
+    }
+
+    public static void init(){
         types = new IUranium[5];
         types[0] = new UOX();
         types[1] = new Plutonium();
         types[2] = new MOX();
         types[3] = new Thorium232();
         types[4] = new Thorium230();
-        if (variant == NuclearRodVariants.UOX &&  type == NuclearRodTypes.SINGLE){
-            TileEntityUraniumEnricher.RECIPE_LIST.add(types[0]);
-        }
+        TileEntityUraniumEnricher.RECIPE_LIST.add(types[0]);
     }
 
     @Override

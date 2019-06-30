@@ -321,6 +321,8 @@ public class Registry
         IC2.getInstance().createItem(craftingHammer);
         IC2.getInstance().createItem(wireCutters);
 
+        ItemNuclearRod.init();
+
         IC2.getInstance().createItem(singleUOXCell);
         IC2.getInstance().createItem(doubleUOXCell);
         IC2.getInstance().createItem(quadUOXCell);
