@@ -19,7 +19,7 @@ public class BlockUraniumOre extends BlockMetal {
         int meta = this.getMetaFromState(state);
         if (meta == 2 && Ic2cExtrasRecipes.enableUraniumOreDropReplacement){
             List<ItemStack> list = new ArrayList();
-            list.add(Ic2Items.uraniumOre);
+            list.add(Ic2Items.uraniumOre.copy());
             return list;
         }
         return super.getDrops(world, pos, state, fortune);

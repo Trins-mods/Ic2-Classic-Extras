@@ -297,6 +297,7 @@ public class MachineRecipes {
         macerator.addRecipe(new RecipeInputItemStack(Ic2Items.energyCrystal), new ItemStack(Registry.energiumDust, 6), "Energium Dust");
 
         TileEntityCompressor.addRecipe(new ItemStack(Registry.energiumDust), 6, Ic2Items.energyCrystal);
+        ClassicRecipes.earthExtractor.registerValue(5.85f, stoneDust);
 
         if (!IC2.config.getFlag("SteelRecipes")){
             if(Ic2cExtrasRecipes.enableCertainRecipesRequireSteel){
