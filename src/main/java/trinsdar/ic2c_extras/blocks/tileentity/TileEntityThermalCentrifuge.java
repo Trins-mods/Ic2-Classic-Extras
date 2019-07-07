@@ -9,6 +9,7 @@ import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityBasicElectricMachine;
 import ic2.core.block.base.util.output.SimpleStackOutput;
+import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.ArrayFilter;
 import ic2.core.inventory.filters.BasicItemFilter;
@@ -17,6 +18,7 @@ import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
+import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
 import ic2.core.item.recipe.AdvRecipeBase;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
@@ -80,7 +82,6 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     @Override
     protected void addSlots(InventoryHandler handler)
     {
-        this.filter = new MachineFilter(this);
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
         handler.registerDefaultSlotAccess(AccessRule.Import, slotInput);
@@ -93,6 +94,12 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         handler.registerSlotType(SlotType.Fuel, slotFuel);
         handler.registerSlotType(SlotType.Input, slotInput);
         handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2, slotOutput3);
+    }
+
+    @Override
+    public IHasInventory getInputInventory()
+    {
+        return new RangedInventoryWrapper(this, slotInput).setFilters(new MachineFilter(this));
     }
 
     @Override

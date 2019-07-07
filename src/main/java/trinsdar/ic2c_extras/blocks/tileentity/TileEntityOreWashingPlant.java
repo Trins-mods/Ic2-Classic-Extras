@@ -282,7 +282,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     @Override
     public IHasInventory getInputInventory()
     {
-        return new RangedInventoryWrapper(this, slotInput, slotInputTank);
+        return new RangedInventoryWrapper(this, slotInput).setFilters(new MachineFilter(this));
     }
 
     @Override

@@ -15,6 +15,7 @@ import ic2.core.inventory.filters.ArrayFilter;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.filters.IFilter;
+import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
@@ -124,7 +125,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
 
     @Override
     public IFilter[] getInputFilters(int[] slots) {
-        return new IFilter[0];
+        return new IFilter[]{new MachineFilter(this)};
     }
 
     @Override

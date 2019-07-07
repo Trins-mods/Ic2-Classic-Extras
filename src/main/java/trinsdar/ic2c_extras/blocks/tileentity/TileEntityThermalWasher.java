@@ -16,6 +16,7 @@ import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.ArrayFilter;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.CommonFilters;
+import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
@@ -84,7 +85,6 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     @Override
     protected void addSlots(InventoryHandler handler)
     {
-        //=this.filter = new MachineFilter(this);
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
         handler.registerDefaultSlotAccess(AccessRule.Import, slotInput);
@@ -246,7 +246,7 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     @Override
     public IHasInventory getInputInventory()
     {
-        return new RangedInventoryWrapper(this, slotInput, slotInputTank);
+        return new RangedInventoryWrapper(this, slotInput).setFilters(new MachineFilter(this));
     }
 
     public FluidStack getFluid()
