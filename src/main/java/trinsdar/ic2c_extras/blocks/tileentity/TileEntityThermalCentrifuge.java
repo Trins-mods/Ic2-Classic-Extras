@@ -1,6 +1,7 @@
 package trinsdar.ic2c_extras.blocks.tileentity;
 
 import ic2.api.classic.network.adv.NetworkField;
+import ic2.api.classic.recipe.RecipeModifierHelpers;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.IStackOutput;
@@ -49,9 +50,11 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     @NetworkField(index = 14)
     public int heat;
 
+    private static final int defaultEu = 20;
+
     public static final String neededHeat = "minHeat";
     public TileEntityThermalCentrifuge() {
-        super( 5, 48, 400, 128);
+        super( 5, defaultEu, 400, 128);
         this.addGuiFields("heat", "maxHeat");
     }
 
@@ -236,27 +239,38 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         return output.getMetadata().getInteger(neededHeat);
     }
 
-    protected static NBTTagCompound createNeededHeat(int amount) {
-        if (amount <= 0) {
-            return null;
-        }
-        NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setInteger(neededHeat, amount);
-        return nbt;
+    public static void addRecipe(IRecipeInput input, int hear,  ItemStack... output){
+        addRecipe(input, hear, 0, output);
     }
 
-    public static void addRecipe(IRecipeInput input, int heat, ItemStack... output)
+    public static void addRecipe(IRecipeInput input, int hear, int totalEu,  ItemStack... output){
+        addRecipe(input, hear, totalEu(totalEu), output);
+    }
+
+    public static void addRecipe(IRecipeInput input, int heat, RecipeModifierHelpers.IRecipeModifier[] modifiers, ItemStack... output)
     {
         List<ItemStack> outputlist = new ArrayList<>();
+        NBTTagCompound nbt = new NBTTagCompound();
+        for (RecipeModifierHelpers.IRecipeModifier modifier : modifiers) {
+            modifier.apply(nbt);
+        }
+        nbt.setInteger(neededHeat, heat);
+        if (heat <= 0){
+            nbt = null;
+        }
         for (ItemStack stack : output) {
             outputlist.add(stack);
         }
-        addRecipe(input, heat, outputlist);
+        addRecipe(input, new MachineOutput(nbt, outputlist));
     }
 
-    public static void addRecipe(IRecipeInput input, int heat, List<ItemStack> outputlist)
+    public static RecipeModifierHelpers.IRecipeModifier[] totalEu(int amount) {
+        return new RecipeModifierHelpers.IRecipeModifier[] { RecipeModifierHelpers.ModifierType.RECIPE_LENGTH.create((amount / defaultEu) - 400) };
+    }
+
+    public static void addRecipe(IRecipeInput input, MachineOutput output)
     {
-        thermalCentrifuge.addRecipe(input, new MachineOutput(createNeededHeat(heat), outputlist), AdvRecipeBase.getRecipeID(Arrays.asList(input), Arrays.asList(outputlist), input.getInputs().get(0).getUnlocalizedName()));
+        thermalCentrifuge.addRecipe(input, output, input.getInputs().get(0).getUnlocalizedName());
     }
 
 }
