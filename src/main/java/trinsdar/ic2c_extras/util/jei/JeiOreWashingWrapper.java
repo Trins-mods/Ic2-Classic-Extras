@@ -42,4 +42,12 @@ public class JeiOreWashingWrapper extends BlankRecipeWrapper {
         }
         components.setOutputLists(ItemStack.class, outputs);
     }
+
+    @Override
+    public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
+        FontRenderer font = minecraft.fontRenderer;
+        if (JeiPlugin.debug) {
+            font.drawString("Recipe Id: " + entry.getRecipeID(), 3, 63, Color.black.getRGB());
+        }
+    }
 }

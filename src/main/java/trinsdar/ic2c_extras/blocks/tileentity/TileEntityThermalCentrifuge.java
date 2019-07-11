@@ -240,7 +240,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     }
 
     public static void addRecipe(IRecipeInput input, int hear,  ItemStack... output){
-        addRecipe(input, hear, 0, output);
+        addRecipe(input, hear, 8000, output);
     }
 
     public static void addRecipe(IRecipeInput input, int hear, int totalEu,  ItemStack... output){

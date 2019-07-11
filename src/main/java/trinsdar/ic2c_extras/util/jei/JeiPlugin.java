@@ -39,6 +39,7 @@ public class JeiPlugin implements IModPlugin {
     public String cutterId = "cutter";
     public String metalBenderId = "metalBender";
     public String fluidCanningId = "fluidCanning";
+    public static boolean debug;
 
     @Override
     public void onRuntimeAvailable(@Nonnull IJeiRuntime arg0) {
@@ -303,5 +304,9 @@ public class JeiPlugin implements IModPlugin {
         registry.addRecipeCategories(new JeiSimpleMachineCategory(helper, new ItemStack(Registry.roller), rollerId));
         registry.addRecipeCategories(new JeiSimpleMachineCategory(helper, new ItemStack(Registry.extruder), extruderId));
         registry.addRecipeCategories(new JeiSimpleMachineCategory(helper, new ItemStack(Registry.cutter), cutterId));
+    }
+
+    public static void setConfig(boolean debuger){
+        debug = debuger;
     }
 }

@@ -2,9 +2,12 @@ package trinsdar.ic2c_extras.util.jei;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 import trinsdar.ic2c_extras.util.recipelists.ContainerInputRecipeList;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,5 +38,13 @@ public class JeiMetalBenderWrapper extends BlankRecipeWrapper {
             }
         }
         components.setOutputLists(ItemStack.class, outputs);
+    }
+
+    @Override
+    public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
+        FontRenderer font = minecraft.fontRenderer;
+        if (JeiPlugin.debug) {
+            font.drawString("Recipe Id: " + entry.getRecipeID(), 5, 60, Color.black.getRGB());
+        }
     }
 }

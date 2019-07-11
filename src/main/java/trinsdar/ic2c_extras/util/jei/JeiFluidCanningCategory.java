@@ -30,13 +30,17 @@ public class JeiFluidCanningCategory implements IRecipeCategory<JeiFluidCanningW
 
     public JeiFluidCanningCategory(IGuiHelper helper) {
         this.displayName = new ItemStack(Registry.fluidCanningMachine);
-        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guifluidcanningmachine.png");
-        this.draw = helper.createDrawable(texture, 15, 11, 124, 62);
+        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/jei/jeifluidcanningmachine.png");
+        this.draw = helper.createDrawable(texture, 15, 11, 124, getHeight());
         this.overlay = helper.createDrawable(texture, 176, 33, 16, 58);
         IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 23, 17);
         this.progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);
         IDrawableStatic chargePic = helper.createDrawable(texture, 176, 0, 13, 14);
         this.charge = helper.createAnimatedDrawable(chargePic, 500, IDrawableAnimated.StartDirection.TOP, true);
+    }
+
+    public int getHeight(){
+        return JeiPlugin.debug ? 72 : 62;
     }
 
     @SideOnly(Side.CLIENT)

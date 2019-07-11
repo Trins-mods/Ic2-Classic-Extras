@@ -194,8 +194,8 @@ public class MachineRecipes {
     }
 
     public static void initMachineRecipes(){
-        int lowHeat = 250;
-        int mediumHeat = 300;
+        int lowHeat = 400;
+        int mediumHeat = 600;
         ItemStack stoneDust = new ItemStack(Registry.stoneDust);
         //ore washing plant
         TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedIron", 1)), 1000, new ItemStack(Registry.ironPurifiedCrushedOre, 1), new ItemStack(Registry.ironTinyDust, 2), stoneDust);
