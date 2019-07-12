@@ -61,7 +61,8 @@ public class Registry
     solidFuelFirebox = new BlockIc2cEGenerator("solidFuelFirebox"),
     liquidFuelFirebox = new BlockIc2cEGenerator("liquidFuelFirebox"),
     electricHeater = new BlockIc2cEGenerator("electricHeater"),
-    thermoElectricGenerator = new BlockIc2cEGenerator("thermoElectricGenerator");
+    thermoElectricGenerator = new BlockIc2cEGenerator("thermoElectricGenerator"),
+    thermoElectricGeneratorMKII = new BlockIc2cEGenerator("thermoElectricGeneratorMkII");
     public static final BlockMetal
     steelBlock = new BlockMetal("steelBlock", 0),
     refinedIronBlock = new BlockMetal("refinedIronBlock", 1),
@@ -233,6 +234,7 @@ public class Registry
         IC2.getInstance().createBlock(blastFurnace, ItemBlockRare.class);
         IC2.getInstance().createBlock(advancedSteamTurbine, ItemBlockGenerator.class);
         IC2.getInstance().createBlock(thermoElectricGenerator, ItemBlockGenerator.class);
+        IC2.getInstance().createBlock(thermoElectricGeneratorMKII, ItemBlockGenerator.class);
         IC2.getInstance().createBlock(solidFuelFirebox, ItemBlockRare.class);
         IC2.getInstance().createBlock(liquidFuelFirebox, ItemBlockRare.class);
         IC2.getInstance().createBlock(electricHeater, ItemBlockRare.class);
@@ -380,5 +382,6 @@ public class Registry
         GameRegistry.registerTileEntity(TileEntityFluidCanningMachine.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityFluidCanningMachine"));
         GameRegistry.registerTileEntity(TileEntityTreeTapper.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityTreeTapper"));
         GameRegistry.registerTileEntity(TileEntityThermoElectricGenerator.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityThermoElectricGenerator"));
+        GameRegistry.registerTileEntity(TileEntityThermoElectricGenerator.TileEntityThermoElectricGeneratorMkII.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityThermoElectricGeneratorMkII"));
     }
 }

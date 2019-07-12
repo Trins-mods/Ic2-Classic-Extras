@@ -4,6 +4,7 @@ import ic2.api.item.ElectricItem;
 import ic2.core.block.base.tile.TileEntityGeneratorBase;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.BasicItemFilter;
+import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2GuiComp;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
@@ -14,6 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.blocks.container.ContainerThermoElectricGenerator;
 import trinsdar.ic2c_extras.items.ItemRTG;
 import trinsdar.ic2c_extras.util.Registry;
+import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
@@ -28,7 +30,7 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
 
     @Override
     public double getOfferedEnergy() {
-        return Math.min(this.storage, getProduction());
+        return getProduction() == 0 ? Math.min(this.storage, 32) : Math.min(this.storage, getProduction());
     }
 
     public int getProduction(){
@@ -98,7 +100,7 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
     private boolean isInventoryEmpty(){
         int count = 0;
         for (int i = 0; i < 6; i++){
-            if (inventory.get(i).isItemEqual(new ItemStack(Registry.plutoniumRTG))){
+            if (inventory.get(i).getItem() instanceof ItemRTG){
                 count += 1;
             }
         }
@@ -147,5 +149,38 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
     @Override
     public ContainerIC2 getGuiContainer(EntityPlayer entityPlayer) {
         return new ContainerThermoElectricGenerator(entityPlayer.inventory, this);
+    }
+
+    @Override
+    public LocaleComp getBlockName() {
+        return Ic2cExtrasLang.thermoElectricGenerator;
+    }
+
+    public static class TileEntityThermoElectricGeneratorMkII extends TileEntityThermoElectricGenerator{
+        public TileEntityThermoElectricGeneratorMkII(){
+            this.tier = 2;
+            this.maxStorage = 30000;
+            filter = new BasicItemFilter(new ItemStack(Registry.thoriumRTG));
+        }
+
+        @Override
+        public LocaleComp getBlockName() {
+            return Ic2cExtrasLang.thermoElectricGeneratorMkII;
+        }
+
+        @Override
+        public int getProduction(){
+            int count = 0;
+            for (int i = 0; i < 6; i++){
+                if (inventory.get(i).isItemEqual(new ItemStack(Registry.thoriumRTG))){
+                    count += 1;
+                }
+            }
+            if (count == 0){
+                return 0;
+            }
+            production = (int) Math.pow(2, count);
+            return production;
+        }
     }
 }

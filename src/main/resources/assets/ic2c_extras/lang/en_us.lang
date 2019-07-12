@@ -17,6 +17,8 @@ tile.advancedSteamTurbine.name=Advanced Steam Turbine
 tile.solidFuelFirebox.name=Solid Fuel Firebox
 tile.liquidFuelFirebox.name=Liquid Fuel Firebox
 tile.electricHeater.name=Electric Heater
+tile.thermoElectricGenerator.name=Thermo Electric Generator
+tile.thermoElectricGeneratorMkII.name=Thermo Electric Generator MkII
 tile.steelBlock.name=Steel Block
 tile.refinedIronBlock.name=Refined Iron Block
 tile.leadBlock.name=Lead Block
@@ -110,6 +112,8 @@ item.lathingPress.name=Lathing Press
 item.gearingPress.name=Gearing Press
 item.craftingHammer.name=Crafting Hammer
 item.wireCutters.name=Wire Cutters
+item.plutoniumRTG.name=Plutonium RTG
+item.thoriumRTG.name=Thorium RTG
 
 item.singleUOXCell.name=UOX Cell
 item.doubleUOXCell.name=Dual UOX Cell
