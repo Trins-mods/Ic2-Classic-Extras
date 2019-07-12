@@ -1,0 +1,149 @@
+package trinsdar.ic2c_extras.blocks.tileentity;
+
+import ic2.api.item.ElectricItem;
+import ic2.core.block.base.tile.TileEntityGeneratorBase;
+import ic2.core.inventory.container.ContainerIC2;
+import ic2.core.inventory.filters.BasicItemFilter;
+import ic2.core.platform.registry.Ic2GuiComp;
+import ic2.core.util.math.Box2D;
+import ic2.core.util.math.Vec2i;
+import mezz.jei.api.JEIPlugin;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import trinsdar.ic2c_extras.blocks.container.ContainerThermoElectricGenerator;
+import trinsdar.ic2c_extras.items.ItemRTG;
+import trinsdar.ic2c_extras.util.Registry;
+import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
+
+public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
+    public static BasicItemFilter filter;
+
+    public TileEntityThermoElectricGenerator() {
+        super(6);
+        filter = new BasicItemFilter(new ItemStack(Registry.plutoniumRTG));
+    }
+
+    @Override
+    public double getOfferedEnergy() {
+        return Math.min(this.storage, getProduction());
+    }
+
+    public int getProduction(){
+        int count = 0;
+        for (int i = 0; i < 6; i++){
+            if (inventory.get(i).isItemEqual(new ItemStack(Registry.plutoniumRTG))){
+                count += 1;
+            }
+        }
+        if (count == 0){
+            return 0;
+        }
+        production = (int) Math.pow(2, count);
+        return production;
+    }
+
+    @Override
+    public int getOutput() {
+        return getProduction();
+    }
+
+    @Override
+    public boolean isConverting() {
+        return this.storage + this.getProduction() <= this.maxStorage;
+    }
+
+    @Override
+    public int getMaxSendingEnergy() {
+        return this.getProduction() + 1;
+    }
+
+    @Override
+    public void update() {
+
+        int oldEnergy = this.storage;
+        boolean active = this.gainEnergy();
+        if (this.storage > 0) {
+            if (this.storage > this.maxStorage) {
+                this.storage = this.maxStorage;
+            }
+        }
+
+        if (!this.delayActiveUpdate()) {
+            this.setActive(active);
+        } else {
+            if (this.ticksSinceLastActiveUpdate % this.getDelay() == 0) {
+                this.setActive(this.activityMeter > 0);
+                this.activityMeter = 0;
+            }
+
+            if (active) {
+                ++this.activityMeter;
+            } else {
+                --this.activityMeter;
+            }
+
+            ++this.ticksSinceLastActiveUpdate;
+        }
+
+        if (oldEnergy != this.storage) {
+            this.getNetwork().updateTileGuiField(this, "storage");
+        }
+
+        this.updateComparators();
+    }
+
+    private boolean isInventoryEmpty(){
+        int count = 0;
+        for (int i = 0; i < 6; i++){
+            if (inventory.get(i).isItemEqual(new ItemStack(Registry.plutoniumRTG))){
+                count += 1;
+            }
+        }
+        return count == 0;
+    }
+
+    @Override
+    public boolean gainEnergy() {
+        if (this.isConverting() && !isInventoryEmpty()) {
+            this.storage += this.getProduction();
+            for (int i = 0; i < 6; i++){
+                ItemStack stack = this.inventory.get(i);
+                if (!stack.isEmpty() && stack.getItem() instanceof ItemRTG){
+                    ItemRTG rtg = (ItemRTG)stack.getItem();
+                    int damage = rtg.getCustomDamage(stack) - 1;
+                    rtg.setCustomDamage(stack, damage);
+                }
+            }
+            this.getNetwork().updateTileGuiField(this, "fuel");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public ResourceLocation getTexture() {
+        return Ic2cExtrasResourceLocations.thermoElectricGenerator;
+    }
+
+    @Override
+    public Box2D getEnergyBox(){
+        return Ic2GuiComp.generatorEnergyBox;
+    }
+
+    @Override
+    public Vec2i getEnergyPos() {
+        return Ic2GuiComp.machineChargePos;
+    }
+
+    @Override
+    public boolean gainFuel() {
+        return false;
+    }
+
+    @Override
+    public ContainerIC2 getGuiContainer(EntityPlayer entityPlayer) {
+        return new ContainerThermoElectricGenerator(entityPlayer.inventory, this);
+    }
+}

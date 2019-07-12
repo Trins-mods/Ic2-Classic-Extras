@@ -31,6 +31,7 @@ import trinsdar.ic2c_extras.items.ItemNuclearRod.NuclearRodTypes;
 import trinsdar.ic2c_extras.items.ItemNuclearRod.NuclearRodVariants;
 import trinsdar.ic2c_extras.items.ItemPlates;
 import trinsdar.ic2c_extras.items.ItemPurifiedCrushedOre;
+import trinsdar.ic2c_extras.items.ItemRTG;
 import trinsdar.ic2c_extras.items.ItemSmallDust;
 import trinsdar.ic2c_extras.items.ItemTinyDust;
 import trinsdar.ic2c_extras.items.ItemToolCrafting;
@@ -182,6 +183,9 @@ public class Registry
     cuttingPress = new ItemMiscs("cuttingPress", 3, "presses"),
     lathingPress = new ItemMiscs("lathingPress", 4, "presses"),
     gearingPress = new ItemMiscs("gearingPress", 5, "presses");
+
+    public static final ItemRTG plutoniumRTG = new ItemRTG("plutoniumRTG", 20000, 22);
+    public static final ItemRTG thoriumRTG = new ItemRTG("thoriumRTG", 30000, 23);
 
     public static final ItemNuclearRod
     singleUOXCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.UOX),
