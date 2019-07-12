@@ -17,6 +17,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityAdvancedSteamTurbine;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermoElectricGenerator;
 import trinsdar.ic2c_extras.util.Registry;
 
 import java.util.ArrayList;
@@ -43,7 +44,9 @@ public class BlockIc2cEGenerator extends BlockMultiID {
     {
         if (this == Registry.advancedSteamTurbine) {
             return new TileEntityAdvancedSteamTurbine();
-        }else {
+        }else if (this == Registry.thermoElectricGenerator){
+            return new TileEntityThermoElectricGenerator();
+        }else  {
             return new TileEntityBlock();
         }
     }

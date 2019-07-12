@@ -17,6 +17,7 @@ public class ContainerThermoElectricGenerator extends ContainerTileComponent<Til
             }
         }
         this.addComponent(new GeneratorChargeComp(tile, tile.getEnergyBox(), tile.getEnergyPos()));
+        this.addPlayerInventory(player);
     }
 
     @Override

@@ -22,6 +22,7 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityPlasmaCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityRoller;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalWasher;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermoElectricGenerator;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityTreeTapper;
 import trinsdar.ic2c_extras.items.ItemCasings;
 import trinsdar.ic2c_extras.items.ItemCrushedOre;
@@ -59,7 +60,8 @@ public class Registry
     advancedSteamTurbine = new BlockIc2cEGenerator("advancedSteamTurbine"),
     solidFuelFirebox = new BlockIc2cEGenerator("solidFuelFirebox"),
     liquidFuelFirebox = new BlockIc2cEGenerator("liquidFuelFirebox"),
-    electricHeater = new BlockIc2cEGenerator("electricHeater");
+    electricHeater = new BlockIc2cEGenerator("electricHeater"),
+    thermoElectricGenerator = new BlockIc2cEGenerator("thermoElectricGenerator");
     public static final BlockMetal
     steelBlock = new BlockMetal("steelBlock", 0),
     refinedIronBlock = new BlockMetal("refinedIronBlock", 1),
@@ -230,6 +232,7 @@ public class Registry
         IC2.getInstance().createBlock(treeTapper, ItemBlockMachine.class);
         IC2.getInstance().createBlock(blastFurnace, ItemBlockRare.class);
         IC2.getInstance().createBlock(advancedSteamTurbine, ItemBlockGenerator.class);
+        IC2.getInstance().createBlock(thermoElectricGenerator, ItemBlockGenerator.class);
         IC2.getInstance().createBlock(solidFuelFirebox, ItemBlockRare.class);
         IC2.getInstance().createBlock(liquidFuelFirebox, ItemBlockRare.class);
         IC2.getInstance().createBlock(electricHeater, ItemBlockRare.class);
@@ -324,6 +327,8 @@ public class Registry
         IC2.getInstance().createItem(gearingPress);
         IC2.getInstance().createItem(craftingHammer);
         IC2.getInstance().createItem(wireCutters);
+        IC2.getInstance().createItem(plutoniumRTG);
+        IC2.getInstance().createItem(thoriumRTG);
 
         ItemNuclearRod.init();
 
@@ -374,5 +379,6 @@ public class Registry
         GameRegistry.registerTileEntity(TileEntityMetalBender.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityMetalBender"));
         GameRegistry.registerTileEntity(TileEntityFluidCanningMachine.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityFluidCanningMachine"));
         GameRegistry.registerTileEntity(TileEntityTreeTapper.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityTreeTapper"));
+        GameRegistry.registerTileEntity(TileEntityThermoElectricGenerator.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityThermoElectricGenerator"));
     }
 }

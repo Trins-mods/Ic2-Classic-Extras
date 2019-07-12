@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import trinsdar.ic2c_extras.util.Registry;
 
 import java.util.List;
 
@@ -21,7 +22,11 @@ public class ItemBlockGenerator extends ItemBlockRare {
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         PlayerHandler handler = PlayerHandler.getClientPlayerHandler();
         if (handler.hasEUReader()) {
-            tooltip.add(Ic2InfoLang.electricProduction.getLocalizedFormatted(160));
+            if (this.getBlock() == Registry.thermoElectricGenerator){
+                tooltip.add(Ic2InfoLang.electricProduction.getLocalizedFormatted("1 - 32"));
+            }else {
+                tooltip.add(Ic2InfoLang.electricProduction.getLocalizedFormatted(160));
+            }
         }
 
     }

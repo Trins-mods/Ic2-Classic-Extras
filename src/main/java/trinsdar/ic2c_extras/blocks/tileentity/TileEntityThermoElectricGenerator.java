@@ -21,6 +21,8 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
 
     public TileEntityThermoElectricGenerator() {
         super(6);
+        this.tier = 1;
+        this.maxStorage = 20000;
         filter = new BasicItemFilter(new ItemStack(Registry.plutoniumRTG));
     }
 
@@ -30,13 +32,13 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
     }
 
     public int getProduction(){
-        int count = 0;
+        int count = -1;
         for (int i = 0; i < 6; i++){
             if (inventory.get(i).isItemEqual(new ItemStack(Registry.plutoniumRTG))){
                 count += 1;
             }
         }
-        if (count == 0){
+        if (count == -1){
             return 0;
         }
         production = (int) Math.pow(2, count);
@@ -111,7 +113,7 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
                 ItemStack stack = this.inventory.get(i);
                 if (!stack.isEmpty() && stack.getItem() instanceof ItemRTG){
                     ItemRTG rtg = (ItemRTG)stack.getItem();
-                    int damage = rtg.getCustomDamage(stack) - 1;
+                    int damage = rtg.getCustomDamage(stack) + 1;
                     rtg.setCustomDamage(stack, damage);
                 }
             }
