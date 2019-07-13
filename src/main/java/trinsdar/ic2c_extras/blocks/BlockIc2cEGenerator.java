@@ -65,7 +65,11 @@ public class BlockIc2cEGenerator extends BlockMultiID {
             return Ic2Icons.getTextures("liquidfuelfirebox");
         }else if (this == Registry.electricHeater){
             return Ic2Icons.getTextures("electricheater");
-        }else{
+        }else if (this == Registry.thermoElectricGenerator){
+            return Ic2Icons.getTextures("thermoelectricgenerator");
+        }else if (this == Registry.thermoElectricGeneratorMKII){
+            return Ic2Icons.getTextures("thermoelectricgeneratormkii");
+        }else {
             return Ic2Icons.getTextures("advancedsteamturbine");
         }
     }

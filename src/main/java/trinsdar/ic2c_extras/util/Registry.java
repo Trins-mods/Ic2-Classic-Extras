@@ -187,8 +187,8 @@ public class Registry
     lathingPress = new ItemMiscs("lathingPress", 4, "presses"),
     gearingPress = new ItemMiscs("gearingPress", 5, "presses");
 
-    public static final ItemRTG plutoniumRTG = new ItemRTG("plutoniumRTG", 20000, 22);
-    public static final ItemRTG thoriumRTG = new ItemRTG("thoriumRTG", 30000, 23);
+    public static final ItemRTG plutoniumRTG = new ItemRTG("plutoniumRTG", 20000, 1);
+    public static final ItemRTG thoriumRTG = new ItemRTG("thoriumRTG", 30000, 0);
 
     public static final ItemNuclearRod
     singleUOXCell = new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.UOX),

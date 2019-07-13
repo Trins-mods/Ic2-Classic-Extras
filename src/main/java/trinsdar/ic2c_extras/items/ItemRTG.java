@@ -36,7 +36,7 @@ public class ItemRTG extends ItemGrandualInt {
     @Override
     public TextureAtlasSprite getTexture(int meta)
     {
-        return Ic2Icons.getTextures("ic2c_extras_misc_items")[id];
+        return Ic2Icons.getTextures("ic2c_extras_rtg")[id];
     }
 
     @Override

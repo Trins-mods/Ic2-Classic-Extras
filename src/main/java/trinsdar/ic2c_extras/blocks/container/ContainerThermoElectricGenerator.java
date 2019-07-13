@@ -13,7 +13,7 @@ public class ContainerThermoElectricGenerator extends ContainerTileComponent<Til
         super(tile);
         for (int y = 0; y < 2; ++y) {
             for (int x = 0; x < 3; ++x) {
-                this.addSlotToContainer(new SlotCustom(tile, x + y * 3, 29 + x * 18, 27 + y * 18, tile.filter));
+                this.addSlotToContainer(new SlotCustom(tile, x + y * 3, 29 + x * 18, 27 + y * 18, tile.getFilter()));
             }
         }
         this.addComponent(new GeneratorChargeComp(tile, tile.getEnergyBox(), tile.getEnergyPos()));
