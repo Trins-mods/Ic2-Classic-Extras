@@ -76,7 +76,7 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     public static final int slotOutputTank = 6;
 
     public TileEntityThermalWasher() {
-        super(7, 48, 4000);
+        super(7, 16, 4000);
         this.waterTank.addListener(this);
         this.waterTank.setCanFill(true);
         this.addGuiFields("waterTank");
