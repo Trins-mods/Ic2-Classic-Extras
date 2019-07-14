@@ -187,6 +187,15 @@ public class CraftingRecipes {
         }
 
         if (Ic2cExtrasRecipes.enableHammerRecipes){
+            recipes.addRecipe(new ItemStack(Registry.copperPlate, 1), "H", "I", 'I', "ingotCopper", 'H', "craftingToolForgeHammer");
+            recipes.addRecipe(new ItemStack(Registry.tinPlate, 1), "H", "I", 'I', "ingotTin", 'H', "craftingToolForgeHammer");
+            recipes.addRecipe(new ItemStack(Registry.silverPlate, 1), "H", "I", 'I', "ingotSilver", 'H', "craftingToolForgeHammer");
+            recipes.addRecipe(new ItemStack(Registry.leadPlate, 1), "H", "I", 'I', "ingotLead", 'H', "craftingToolForgeHammer");
+            recipes.addRecipe(new ItemStack(Registry.ironPlate, 1), "H", "I", 'I', "ingotIron", 'H', "craftingToolForgeHammer");
+            recipes.addRecipe(new ItemStack(Registry.goldPlate, 1), "H", "I", 'I', "ingotGold", 'H', "craftingToolForgeHammer");
+            recipes.addRecipe(new ItemStack(Registry.refinedIronPlate, 1), "H", "I", 'I', "ingotRefinedIron", 'H', "craftingToolForgeHammer");
+            recipes.addRecipe(new ItemStack(Registry.steelPlate, 1), "H", "I", 'I', "ingotSteel", 'H', "craftingToolForgeHammer");
+            recipes.addRecipe(new ItemStack(Registry.bronzePlate, 1), "H", "I", 'I', "ingotBronze", 'H', "craftingToolForgeHammer");
             if (Ic2cExtrasRecipes.enableCasingsRequirePlates){
                 recipes.addShapelessRecipe(new ItemStack(Registry.copperCasing, 2), "plateCopper", "craftingToolForgeHammer");
                 recipes.addShapelessRecipe(new ItemStack(Registry.tinCasing, 2), "plateTin", "craftingToolForgeHammer");
