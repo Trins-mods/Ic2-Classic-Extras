@@ -119,7 +119,11 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
                 if (!stack.isEmpty() && stack.getItem() instanceof ItemRTG){
                     ItemRTG rtg = (ItemRTG)stack.getItem();
                     int damage = rtg.getCustomDamage(stack) + 1;
-                    rtg.setCustomDamage(stack, damage);
+                    if (damage > rtg.getMaxCustomDamage(stack)){
+                        stack.shrink(1);
+                    }else {
+                        rtg.setCustomDamage(stack, damage);
+                    }
                 }
             }
             this.getNetwork().updateTileGuiField(this, "fuel");
