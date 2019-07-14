@@ -35,7 +35,7 @@ public class CommonProxy
             RailcraftRecipes.initRailcraftRecipes();
         }
         if (!IC2.config.getFlag("NonRadiation")){
-            MachineRecipes.initMetalBenderRecipes();
+            Ic2cExtrasRecipes.postInit();
         }
     }
 }

@@ -47,6 +47,7 @@ public class Ic2cExtrasRecipes {
     public static boolean enableUraniumOreDropReplacement;
     public static boolean enableAutoFluidContainerRecipes;
     public static boolean enableEmptyRods;
+    public static boolean enableDensePlatesTakePlates;
     public static int
     itemQuality = 0,
     dungeonWeight = 10,
@@ -69,6 +70,14 @@ public class Ic2cExtrasRecipes {
         CraftingRecipes.init();
         MachineRecipes.init();
         initHarderUraniumProcessing();
+    }
+
+    public static void postInit(){
+        if (Ic2cExtrasRecipes.enableAutoFluidContainerRecipes){
+            MachineRecipes.initFluidFillingndEmptyingRecipes();
+        }
+        MachineRecipes.initMetalBenderRecipes();
+        MachineRecipes.postInit();
     }
 
 
@@ -104,6 +113,10 @@ public class Ic2cExtrasRecipes {
             rodUtil(new ItemStack(Registry.singleMOXCell), new ItemStack(Registry.doubleMOXCell), new ItemStack(Registry.quadMOXCell), new ItemStack(Registry.isotopicMOXCell), new ItemStack(Registry.reEnrichedMOXCell), new ItemStack(Registry.nearDepletedMOXCell), new ItemStack(Registry.moxFuel));
             rodUtil(new ItemStack(Registry.singleThorium232Cell), new ItemStack(Registry.doubleThorium232Cell), new ItemStack(Registry.quadThorium232Cell), new ItemStack(Registry.isotopicThorium232Cell), new ItemStack(Registry.reEnrichedThorium232Cell), new ItemStack(Registry.nearDepletedThorium232Cell), new ItemStack(Registry.thorium232Ingot));
             rodUtil(new ItemStack(Registry.singleThorium230Cell), new ItemStack(Registry.doubleThorium230Cell), new ItemStack(Registry.quadThorium230Cell), new ItemStack(Registry.isotopicThorium230Cell), new ItemStack(Registry.reEnrichedThorium230Cell), new ItemStack(Registry.nearDepletedThorium230Cell), new ItemStack(Registry.thorium230Ingot));
+            CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.thermoElectricGenerator), "DDD", "DRD", "DGD", 'D', "plateDenseIron", 'R', Ic2Items.nuclearReactor, 'G', Ic2Items.thermalGenerator);
+            CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.thermoElectricGeneratorMKII), "CIC", "CTC", "CAC", 'C', Ic2cExtrasRecipes.getRefinedIronCasing(), 'I', Ic2Items.iridiumPlate, 'T', Registry.thermoElectricGenerator, 'A', Ic2Items.advMachine);
+            CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.plutoniumRTG), "IPI", "IPI", "IPI", 'I', "plateDenseIron", 'P', "ingotPlutonium");
+            CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.thoriumRTG), "ItI", "ITI", "ItI", 'I', "plateDenseIron", 't', "ingotThorium230", 'T', "ingotThorium232");
         }
 
 
@@ -156,7 +169,7 @@ public class Ic2cExtrasRecipes {
 
     }
 
-    public static void setConfig(boolean uranium, boolean casings, boolean wires, boolean steel, boolean hammer, boolean oredict, boolean loot, boolean twoPlates, boolean uraniumDrop, boolean fluidContainer, boolean emptyRods){
+    public static void setConfig(boolean uranium, boolean casings, boolean wires, boolean steel, boolean hammer, boolean oredict, boolean loot, boolean twoPlates, boolean uraniumDrop, boolean fluidContainer, boolean emptyRods, boolean densePlates){
         enableHarderUranium = uranium;
         enableCasingsRequirePlates = casings;
         enableCuttingToolWires = wires;
@@ -168,5 +181,6 @@ public class Ic2cExtrasRecipes {
         enableUraniumOreDropReplacement = uraniumDrop;
         enableAutoFluidContainerRecipes = fluidContainer;
         enableEmptyRods = emptyRods;
+        enableDensePlatesTakePlates = densePlates;
     }
 }

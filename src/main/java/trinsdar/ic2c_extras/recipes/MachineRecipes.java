@@ -52,12 +52,8 @@ public class MachineRecipes {
 
     public static void init(){
         initMachineRecipes();
-        if (Ic2cExtrasRecipes.enableAutoFluidContainerRecipes){
-            initFluidFillingndEmptyingRecipes();
-        }
         initFurnaceRecipes();
         initReplaceMaceratorRecipes();
-        postInit();
     }
 
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
@@ -307,6 +303,14 @@ public class MachineRecipes {
             }
         }else {
             TileEntityExtruder.addRecipe(new RecipeInputOreDict("ingotSteel", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f);
+        }
+
+        if (Ic2cExtrasRecipes.enableDensePlatesTakePlates){
+            ClassicRecipes.compressor.removeRecipe(new RecipeInputOreDict("ingotCopper", 8));
+            TileEntityCompressor.addRecipe("plateCopper", 9, Ic2Items.denseCopperPlate);
+            TileEntityCompressor.addRecipe("plateIron", 9, new ItemStack(Registry.denseIronPlate));
+        }else {
+            TileEntityCompressor.addRecipe("ingotIron", 8, new ItemStack(Registry.denseIronPlate));
         }
     }
 

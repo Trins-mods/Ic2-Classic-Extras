@@ -170,6 +170,7 @@ public class Registry
     thorium230Ingot = new ItemMiscs("thorium230Ingot", 19),
     plutoniumIngot = new ItemMiscs("plutoniumIngot", 20),
     moxFuel = new ItemMiscs("moxFuel", 21),
+    denseIronPlate = new ItemMiscs("denseIronPlate", 9, "plates"),
     nearDepletedUOXCell = new ItemMiscs("nearDepletedUOXCell", 15, "nuclear_cells"),
     nearDepletedPlutoniumCell = new ItemMiscs("nearDepletedPlutoniumCell", 16, "nuclear_cells"),
     nearDepletedMOXCell = new ItemMiscs("nearDepletedMOXCell", 17, "nuclear_cells"),
@@ -321,6 +322,7 @@ public class Registry
         IC2.getInstance().createItem(thorium230Ingot);
         IC2.getInstance().createItem(plutoniumIngot);
         IC2.getInstance().createItem(moxFuel);
+        IC2.getInstance().createItem(denseIronPlate);
         IC2.getInstance().createItem(blankPress);
         IC2.getInstance().createItem(rollingPress);
         IC2.getInstance().createItem(extrudingPress);
