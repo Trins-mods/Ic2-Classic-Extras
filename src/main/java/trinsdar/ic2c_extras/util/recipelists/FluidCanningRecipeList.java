@@ -3,6 +3,7 @@ package trinsdar.ic2c_extras.util.recipelists;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.recipes.managers.RecipeManager;
+import ic2.core.util.helpers.CompareableStack;
 import ic2.core.util.helpers.ItemWithMeta;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
@@ -24,7 +25,7 @@ public class FluidCanningRecipeList {
 
     protected List<FluidCanningRecipe> recipes = new ArrayList<FluidCanningRecipe>();
     protected Map<String, FluidCanningRecipe> recipeMap = new LinkedHashMap<String, FluidCanningRecipe>();
-    protected Map<ItemWithMeta, IRecipeInput> validInputs = new LinkedHashMap<ItemWithMeta, IRecipeInput>();
+    protected Map<CompareableStack, IRecipeInput> validInputs = new LinkedHashMap<CompareableStack, IRecipeInput>();
     String category;
 
     public FluidCanningRecipeList(String category) {
@@ -49,7 +50,7 @@ public class FluidCanningRecipeList {
         recipes.add(recipe);
         recipeMap.put(id, recipe);
         for (ItemStack stack : input.getInputs()){
-            validInputs.put(new ItemWithMeta(stack), input);
+            validInputs.put(new CompareableStack(stack), input);
         }
     }
 
@@ -71,7 +72,7 @@ public class FluidCanningRecipeList {
         recipes.add(recipe);
         recipeMap.put(id, recipe);
         for (ItemStack stack : input.getInputs()){
-            validInputs.put(new ItemWithMeta(stack), input);
+            validInputs.put(new CompareableStack(stack), input);
         }
     }
 
@@ -93,7 +94,7 @@ public class FluidCanningRecipeList {
         recipes.add(recipe);
         recipeMap.put(id, recipe);
         for (ItemStack stack : input.getInputs()){
-            validInputs.put(new ItemWithMeta(stack), input);
+            validInputs.put(new CompareableStack(stack), input);
         }
     }
 
@@ -115,7 +116,7 @@ public class FluidCanningRecipeList {
         recipes.add(recipe);
         recipeMap.put(id, recipe);
         for (ItemStack stack : input.getInputs()){
-            validInputs.put(new ItemWithMeta(stack), input);
+            validInputs.put(new CompareableStack(stack), input);
         }
     }
 

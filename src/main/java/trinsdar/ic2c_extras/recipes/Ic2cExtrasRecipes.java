@@ -70,6 +70,9 @@ public class Ic2cExtrasRecipes {
         CraftingRecipes.init();
         MachineRecipes.init();
         initHarderUraniumProcessing();
+        if (Loader.isModLoaded("gtclassic")){
+            GTCRecipes.init();
+        }
     }
 
     public static void postInit(){

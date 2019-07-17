@@ -3,6 +3,7 @@ package trinsdar.ic2c_extras.util.recipelists;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.machine.recipes.managers.RecipeManager;
+import ic2.core.util.helpers.CompareableStack;
 import ic2.core.util.helpers.ItemWithMeta;
 import net.minecraft.item.ItemStack;
 import trinsdar.ic2c_extras.IC2CExtras;
@@ -21,7 +22,7 @@ public class ContainerInputRecipeList {
 
     protected List<ContainerInputRecipe> recipes = new ArrayList<ContainerInputRecipe>();
     protected Map<String, ContainerInputRecipe> recipeMap = new LinkedHashMap<String, ContainerInputRecipe>();
-    protected Map<ItemWithMeta, IRecipeInput> validInputs = new LinkedHashMap<ItemWithMeta, IRecipeInput>();
+    protected Map<CompareableStack, IRecipeInput> validInputs = new LinkedHashMap<CompareableStack, IRecipeInput>();
     String category;
 
     public ContainerInputRecipeList(String category) {
@@ -50,7 +51,7 @@ public class ContainerInputRecipeList {
         recipes.add(recipe);
         recipeMap.put(id, recipe);
         for (ItemStack stack : input.getInputs()){
-            validInputs.put(new ItemWithMeta(stack), input);
+            validInputs.put(new CompareableStack(stack), input);
         }
     }
 
