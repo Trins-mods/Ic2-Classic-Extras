@@ -2,6 +2,7 @@ package trinsdar.ic2c_extras.blocks;
 
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.SoundType;
@@ -25,14 +26,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BlockIc2cEGenerator extends BlockMultiID {
-    public BlockIc2cEGenerator(String blockName)
+    public BlockIc2cEGenerator(String name, LocaleComp comp)
     {
         super(Material.IRON);
         this.setHardness(4.0F);
         this.setResistance(20.0F);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(IC2CExtras.creativeTab);
-        this.setUnlocalizedName(blockName);
+        this.setRegistryName(name.toLowerCase());
+        this.setUnlocalizedName(comp);
     }
 
     public List<Integer> getValidMetas() {
@@ -59,12 +61,6 @@ public class BlockIc2cEGenerator extends BlockMultiID {
     {
         if (this == Registry.advancedSteamTurbine){
             return Ic2Icons.getTextures("advancedsteamturbine");
-        }else if (this == Registry.solidFuelFirebox){
-            return Ic2Icons.getTextures("solidfuelfirebox");
-        }else if (this == Registry.liquidFuelFirebox){
-            return Ic2Icons.getTextures("liquidfuelfirebox");
-        }else if (this == Registry.electricHeater){
-            return Ic2Icons.getTextures("electricheater");
         }else if (this == Registry.thermoElectricGenerator){
             return Ic2Icons.getTextures("thermoelectricgenerator");
         }else if (this == Registry.thermoElectricGeneratorMKII){

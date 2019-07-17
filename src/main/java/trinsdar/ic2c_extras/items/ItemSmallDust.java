@@ -16,7 +16,9 @@ public class ItemSmallDust extends Item implements IStaticTexturedItem
     int index;
     public ItemSmallDust(String variant, int index) {
         this.index = index;
-        setUnlocalizedName(variant + "SmallDust");
+        String name = variant + "SmallDust";
+        this.setRegistryName(name.toLowerCase());
+        setUnlocalizedName(name);
         setCreativeTab(IC2CExtras.creativeTab);
     }
 

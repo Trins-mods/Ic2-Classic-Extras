@@ -16,6 +16,7 @@ public class ItemRTG extends ItemGrandualInt {
     int id;
 
     public ItemRTG(String name, int maxDamage, int id){
+        this.setRegistryName(name.toLowerCase());
         setUnlocalizedName(name);
         this.maxDamage = maxDamage;
         this.id = id;

@@ -26,6 +26,7 @@ import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermoElectricGenerator;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityTreeTapper;
 import trinsdar.ic2c_extras.items.ItemCasings;
 import trinsdar.ic2c_extras.items.ItemCrushedOre;
+import trinsdar.ic2c_extras.items.ItemDepeletedNuclearRods;
 import trinsdar.ic2c_extras.items.ItemMiscs;
 import trinsdar.ic2c_extras.items.ItemNuclearRod;
 import trinsdar.ic2c_extras.items.ItemNuclearRod.NuclearRodTypes;
@@ -39,34 +40,31 @@ import trinsdar.ic2c_extras.items.ItemToolCrafting;
 import trinsdar.ic2c_extras.items.itemblocks.ItemBlockGenerator;
 import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMachine;
 import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMetal;
+import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
 public class Registry
 {
     public static final BlockMachine
-    oreWashingPlant = new BlockMachine("oreWashingPlant"),
-    thermalCentrifuge = new BlockMachine("thermalCentrifuge"),
-    thermalWasher = new BlockMachine("thermalWasher"),
-    roller = new BlockMachine("roller"),
-    extruder = new BlockMachine("extruder"),
-    cutter = new BlockMachine("cutter"),
-    impellerizedRoller = new BlockMachine("impellerizedRoller"),
-    liquescentExtruder = new BlockMachine("liquescentExtruder"),
-    plasmaCutter = new BlockMachine("plasmaCutter"),
-    blastFurnace = new BlockMachine("blastFurnace"),
-    metalBender = new BlockMachine("metalBender"),
-    fluidCanningMachine = new BlockMachine("fluidCanningMachine"),
-    treeTapper = new BlockMachine("treeTapper");
+    oreWashingPlant = new BlockMachine("oreWashingPlant", Ic2cExtrasLang.oreWashingPlant),
+    thermalCentrifuge = new BlockMachine("thermalCentrifuge", Ic2cExtrasLang.thermalCentrifuge),
+    thermalWasher = new BlockMachine("thermalWasher", Ic2cExtrasLang.thermalWasher),
+    roller = new BlockMachine("roller", Ic2cExtrasLang.roller),
+    extruder = new BlockMachine("extruder", Ic2cExtrasLang.extruder),
+    cutter = new BlockMachine("cutter", Ic2cExtrasLang.cutter),
+    impellerizedRoller = new BlockMachine("impellerizedRoller", Ic2cExtrasLang.impellerizedRoller),
+    liquescentExtruder = new BlockMachine("liquescentExtruder", Ic2cExtrasLang.liquescentExtruder),
+    plasmaCutter = new BlockMachine("plasmaCutter", Ic2cExtrasLang.plasmaCutter),
+    metalBender = new BlockMachine("metalBender", Ic2cExtrasLang.metalBender),
+    fluidCanningMachine = new BlockMachine("fluidCanningMachine", Ic2cExtrasLang.fluidCanningMachine),
+    treeTapper = new BlockMachine("treeTapper", Ic2cExtrasLang.treeTapper);
     public static final BlockIc2cEGenerator
-    advancedSteamTurbine = new BlockIc2cEGenerator("advancedSteamTurbine"),
-    solidFuelFirebox = new BlockIc2cEGenerator("solidFuelFirebox"),
-    liquidFuelFirebox = new BlockIc2cEGenerator("liquidFuelFirebox"),
-    electricHeater = new BlockIc2cEGenerator("electricHeater"),
-    thermoElectricGenerator = new BlockIc2cEGenerator("thermoElectricGenerator"),
-    thermoElectricGeneratorMKII = new BlockIc2cEGenerator("thermoElectricGeneratorMkII");
+    advancedSteamTurbine = new BlockIc2cEGenerator("advancedSteamTurbine", Ic2cExtrasLang.advancedSteamTurbine),
+    thermoElectricGenerator = new BlockIc2cEGenerator("thermoElectricGenerator", Ic2cExtrasLang.thermoElectricGenerator),
+    thermoElectricGeneratorMKII = new BlockIc2cEGenerator("thermoElectricGeneratorMkII", Ic2cExtrasLang.thermoElectricGeneratorMkII);
     public static final BlockMetal
-    steelBlock = new BlockMetal("steelBlock", 0),
-    refinedIronBlock = new BlockMetal("refinedIronBlock", 1),
-    leadBlock = new BlockMetal("leadBlock", 2);
+    steelBlock = new BlockMetal("steelBlock", Ic2cExtrasLang.steelBlock, 0),
+    refinedIronBlock = new BlockMetal("refinedIronBlock", Ic2cExtrasLang.refinedIronBlock, 1),
+    leadBlock = new BlockMetal("leadBlock", Ic2cExtrasLang.leadBlock, 2);
     public static final BlockStoneDust stoneDustBlock = new BlockStoneDust();
 
     static String copper = "copper";
@@ -171,16 +169,6 @@ public class Registry
     plutoniumIngot = new ItemMiscs("plutoniumIngot", 20),
     moxFuel = new ItemMiscs("moxFuel", 21),
     denseIronPlate = new ItemMiscs("denseIronPlate", 9, "plates"),
-    nearDepletedUOXCell = new ItemMiscs("nearDepletedUOXCell", 15, "nuclear_cells"),
-    nearDepletedPlutoniumCell = new ItemMiscs("nearDepletedPlutoniumCell", 16, "nuclear_cells"),
-    nearDepletedMOXCell = new ItemMiscs("nearDepletedMOXCell", 17, "nuclear_cells"),
-    nearDepletedThorium232Cell = new ItemMiscs("nearDepletedThorium232Cell", 18, "nuclear_cells"),
-    nearDepletedThorium230Cell= new ItemMiscs("nearDepletedThorium230Cell", 19, "nuclear_cells"),
-    reEnrichedUOXCell = new ItemMiscs("reEnrichedUOXCell", 25, "nuclear_cells"),
-    reEnrichedPlutoniumCell = new ItemMiscs("reEnrichedPlutoniumCell", 26, "nuclear_cells"),
-    reEnrichedMOXCell = new ItemMiscs("reEnrichedMOXCell", 27, "nuclear_cells"),
-    reEnrichedThorium232Cell = new ItemMiscs("reEnrichedThorium232Cell", 28, "nuclear_cells"),
-    reEnrichedThorium230Cell= new ItemMiscs("reEnrichedThorium230Cell", 29, "nuclear_cells"),
     blankPress = new ItemMiscs("blankPress", 0, "presses"),
     rollingPress = new ItemMiscs("rollingPress", 1, "presses"),
     extrudingPress = new ItemMiscs("extrudingPress", 2, "presses"),
@@ -188,6 +176,18 @@ public class Registry
     lathingPress = new ItemMiscs("lathingPress", 4, "presses"),
     gearingPress = new ItemMiscs("gearingPress", 5, "presses");
 
+    public static final ItemDepeletedNuclearRods
+    nearDepletedUOXCell = new ItemDepeletedNuclearRods("nearDepletedUOXCell", Ic2cExtrasLang.nearDepletedUOXCell, Ic2cExtrasLang.nearDepletedUOXRod, 15),
+    nearDepletedPlutoniumCell = new ItemDepeletedNuclearRods("nearDepletedPlutoniumCell", Ic2cExtrasLang.nearDepletedPlutoniumCell, Ic2cExtrasLang.nearDepletedPlutoniumRod, 16),
+    nearDepletedMOXCell = new ItemDepeletedNuclearRods("nearDepletedMOXCell", Ic2cExtrasLang.nearDepletedMOXCell, Ic2cExtrasLang.nearDepletedMOXRod, 17),
+    nearDepletedThorium232Cell = new ItemDepeletedNuclearRods("nearDepletedThorium232Cell", Ic2cExtrasLang.nearDepletedThorium232Cell, Ic2cExtrasLang.nearDepletedThorium232Rod, 18),
+    nearDepletedThorium230Cell= new ItemDepeletedNuclearRods("nearDepletedThorium230Cell", Ic2cExtrasLang.nearDepletedThorium230Cell, Ic2cExtrasLang.nearDepletedThorium230Rod, 19),
+    reEnrichedUOXCell = new ItemDepeletedNuclearRods("reEnrichedUOXCell", Ic2cExtrasLang.reEnrichedUOXCell, Ic2cExtrasLang.reEnrichedUOXRod, 25),
+    reEnrichedPlutoniumCell = new ItemDepeletedNuclearRods("reEnrichedPlutoniumCell", Ic2cExtrasLang.reEnrichedPlutoniumCell, Ic2cExtrasLang.reEnrichedPlutoniumRod, 26),
+    reEnrichedMOXCell = new ItemDepeletedNuclearRods("reEnrichedMOXCell", Ic2cExtrasLang.reEnrichedMOXCell, Ic2cExtrasLang.reEnrichedMOXRod, 27),
+    reEnrichedThorium232Cell = new ItemDepeletedNuclearRods("reEnrichedThorium232Cell", Ic2cExtrasLang.reEnrichedThorium232Cell, Ic2cExtrasLang.reEnrichedThorium232Rod, 28),
+    reEnrichedThorium230Cell= new ItemDepeletedNuclearRods("reEnrichedThorium230Cell", Ic2cExtrasLang.reEnrichedThorium230Cell, Ic2cExtrasLang.reEnrichedThorium230Rod, 29);
+    
     public static final ItemRTG plutoniumRTG = new ItemRTG("plutoniumRTG", 20000, 1);
     public static final ItemRTG thoriumRTG = new ItemRTG("thoriumRTG", 30000, 0);
 
@@ -232,13 +232,9 @@ public class Registry
         IC2.getInstance().createBlock(metalBender, ItemBlockMachine.class);
         IC2.getInstance().createBlock(fluidCanningMachine, ItemBlockMachine.class);
         IC2.getInstance().createBlock(treeTapper, ItemBlockMachine.class);
-        IC2.getInstance().createBlock(blastFurnace, ItemBlockRare.class);
         IC2.getInstance().createBlock(advancedSteamTurbine, ItemBlockGenerator.class);
         IC2.getInstance().createBlock(thermoElectricGenerator, ItemBlockGenerator.class);
         IC2.getInstance().createBlock(thermoElectricGeneratorMKII, ItemBlockGenerator.class);
-        IC2.getInstance().createBlock(solidFuelFirebox, ItemBlockRare.class);
-        IC2.getInstance().createBlock(liquidFuelFirebox, ItemBlockRare.class);
-        IC2.getInstance().createBlock(electricHeater, ItemBlockRare.class);
         IC2.getInstance().createBlock(steelBlock, ItemBlockMetal.class);
         IC2.getInstance().createBlock(refinedIronBlock, ItemBlockMetal.class);
         IC2.getInstance().createBlock(leadBlock, ItemBlockMetal.class);

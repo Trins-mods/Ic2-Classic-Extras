@@ -10,6 +10,7 @@ import ic2.api.recipe.IRecipeInput;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityAdvancedMachine;
 import ic2.core.block.base.util.output.SimpleStackOutput;
+import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.container.ContainerIC2;
@@ -25,6 +26,7 @@ import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.lang.storage.Ic2GuiLang;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.util.helpers.ItemWithMeta;
 import ic2.core.util.misc.FluidHelper;
 import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IClickable;
@@ -52,6 +54,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.relauncher.Side;
+import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.blocks.container.ContainerThermalWasher;
 import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
@@ -59,6 +62,7 @@ import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 import javax.annotation.Nullable;
+import java.util.Iterator;
 import java.util.List;
 
 public class TileEntityThermalWasher extends TileEntityAdvancedMachine implements ITankListener, IFluidHandler, IClickable {
@@ -180,8 +184,93 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     }
 
     @Override
-    public boolean canWork() {
-        return super.canWork() && waterTank.getFluidAmount() >= 1000;
+    public IMachineRecipeList.RecipeEntry getRecipe(int slot) {
+        if (this.notCheckRecipe.contains(slot)) {
+            return (IMachineRecipeList.RecipeEntry)this.activeRecipes.get(slot);
+        } else {
+            this.notCheckRecipe.add(slot);
+            if (((ItemStack)this.inventory.get(slot)).isEmpty() && !this.canWorkWithoutItems()) {
+                this.lastRecipes.remove(slot);
+                this.activeRecipes.remove(slot);
+                return null;
+            } else {
+                IMachineRecipeList.RecipeEntry lastRecipe = (IMachineRecipeList.RecipeEntry)this.lastRecipes.get(slot);
+                if (lastRecipe != null) {
+                    IRecipeInput recipe = lastRecipe.getInput();
+                    if (recipe instanceof INullableRecipeInput) {
+                        if (!recipe.matches((ItemStack)this.inventory.get(slot))) {
+                            this.lastRecipes.remove(slot);
+                            this.activeRecipes.remove(slot);
+                            lastRecipe = null;
+                        }
+                    } else if (!((ItemStack)this.inventory.get(slot)).isEmpty() && recipe.matches((ItemStack)this.inventory.get(slot))) {
+                        if (recipe.getAmount() > ((ItemStack)this.inventory.get(slot)).getCount()) {
+                            this.activeRecipes.remove(slot);
+                            return null;
+                        }
+
+                        EnumActionResult result = this.isRecipeStillValid(lastRecipe);
+                        if (result == EnumActionResult.FAIL) {
+                            this.lastRecipes.remove(slot);
+                            this.activeRecipes.remove(slot);
+                            lastRecipe = null;
+                        } else if (result == EnumActionResult.PASS) {
+                            this.activeRecipes.remove(slot);
+                            return null;
+                        }
+                    } else {
+                        this.lastRecipes.remove(slot);
+                        this.activeRecipes.remove(slot);
+                        lastRecipe = null;
+                    }
+                }
+
+                if (lastRecipe == null) {
+                    IC2CExtras.logger.info("last recipe == null");
+                    IMachineRecipeList.RecipeEntry out = this.getOutputFor(((ItemStack)this.inventory.get(slot)).copy());
+                    if (out == null || isRecipeStillValid(out) == EnumActionResult.PASS) {
+                        this.activeRecipes.remove(slot);
+                        return null;
+                    }
+
+                    lastRecipe = out;
+                    this.lastRecipes.put(slot, out);
+                    this.activeRecipes.put(slot, out);
+                    this.handleModifiers(out);
+                }
+
+                EnumActionResult result = this.canFillRecipeIntoOutputs(lastRecipe.getOutput());
+                if (result == EnumActionResult.SUCCESS) {
+                    this.activeRecipes.put(slot, lastRecipe);
+                    return lastRecipe;
+                } else if (result == EnumActionResult.PASS) {
+                    this.activeRecipes.remove(slot);
+                    return null;
+                } else if (this.hasEmptyOutput(slot)) {
+                    this.activeRecipes.put(slot, lastRecipe);
+                    return lastRecipe;
+                } else {
+                    Iterator var12 = lastRecipe.getOutput().getAllOutputs().iterator();
+
+                    while(var12.hasNext()) {
+                        ItemStack output = (ItemStack)var12.next();
+                        int[] var6 = this.getOutputSlots();
+                        int var7 = var6.length;
+
+                        for(int var8 = 0; var8 < var7; ++var8) {
+                            int outputSlot = var6[var8];
+                            if (StackUtil.isStackEqual((ItemStack)this.inventory.get(outputSlot), output, false, true) && ((ItemStack)this.inventory.get(outputSlot)).getCount() + output.getCount() <= ((ItemStack)this.inventory.get(outputSlot)).getMaxStackSize()) {
+                                this.activeRecipes.put(slot, lastRecipe);
+                                return lastRecipe;
+                            }
+                        }
+                    }
+
+                    this.activeRecipes.remove(slot);
+                    return null;
+                }
+            }
+        }
     }
 
     @Override
@@ -333,8 +422,10 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     @Override
     protected EnumActionResult isRecipeStillValid(IMachineRecipeList.RecipeEntry entry) {
         if (waterTank.getFluidAmount() >= getRequiredWater(entry.getOutput())){
+            IC2CExtras.logger.info("has enough water");
             return EnumActionResult.SUCCESS;
         }
+        IC2CExtras.logger.info("doesn't have enough water");
         return EnumActionResult.PASS;
     }
 

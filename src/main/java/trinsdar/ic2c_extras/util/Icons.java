@@ -29,10 +29,6 @@ public class Icons
         makeTileSprites( "liquescentextruder");
         makeTileSprites( "plasmacutter");
         makeTileSprites( "advancedsteamturbine");
-        makeTileSprites( "blastfurnace");
-        makeTileSprites( "solidfuelfirebox");
-        makeTileSprites( "liquidfuelfirebox");
-        makeTileSprites("electricheater");
         makeTileSprites("thermoelectricgenerator");
         makeTileSprites("thermoelectricgeneratormkii");
         makeSprites( "misc_items", 16, 2);

@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 
 public class ItemReactorUraniumRod2 extends ItemReactorUraniumRod {
+
     @Override
     public LocaleComp getLangComponent(ItemStack stack) {
         if (Ic2cExtrasRecipes.enableEmptyRods){

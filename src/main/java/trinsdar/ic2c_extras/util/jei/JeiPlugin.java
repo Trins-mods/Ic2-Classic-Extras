@@ -141,10 +141,6 @@ public class JeiPlugin implements IModPlugin {
             registry.addRecipes(TileEntityFluidCanningMachine.fluidCanning.getRecipeList(), fluidCanningId);
 
             IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
-            blacklist.addIngredientToBlacklist(new ItemStack(Registry.blastFurnace));
-            blacklist.addIngredientToBlacklist(new ItemStack(Registry.solidFuelFirebox));
-            blacklist.addIngredientToBlacklist(new ItemStack(Registry.liquidFuelFirebox));
-            blacklist.addIngredientToBlacklist(new ItemStack(Registry.electricHeater));
             if (IC2.config.getFlag("NonRadiation")){
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.oreWashingPlant));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.thermalCentrifuge));
@@ -154,11 +150,7 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.impellerizedRoller));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.liquescentExtruder));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.plasmaCutter));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.blastFurnace));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.advancedSteamTurbine));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.solidFuelFirebox));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.liquidFuelFirebox));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.electricHeater));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.steelBlock));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.refinedIronBlock));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.leadBlock));

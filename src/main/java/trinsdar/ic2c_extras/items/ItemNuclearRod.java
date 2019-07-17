@@ -5,6 +5,7 @@ import ic2.api.classic.reactor.ISteamReactor;
 import ic2.api.reactor.IReactor;
 import ic2.core.block.machine.high.TileEntityUraniumEnricher;
 import ic2.core.item.reactor.ItemReactorUraniumRod;
+import ic2.core.item.reactor.base.ItemUraniumRodBase;
 import ic2.core.item.reactor.uranTypes.IUranium;
 import ic2.core.platform.lang.components.base.LangComponentHolder;
 import ic2.core.platform.lang.components.base.LocaleComp;
@@ -27,7 +28,7 @@ import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import java.util.Arrays;
 import java.util.List;
 
-public class ItemNuclearRod extends ItemReactorUraniumRod {
+public class ItemNuclearRod extends ItemUraniumRodBase {
     NuclearRodTypes type;
     NuclearRodVariants variant;
 
@@ -36,14 +37,14 @@ public class ItemNuclearRod extends ItemReactorUraniumRod {
     public ItemNuclearRod(NuclearRodTypes type, NuclearRodVariants variant){
         this.type = type;
         this.variant = variant;
-        setUnlocalizedName(type.getPrefix() + variant.getPrefix() + "Cell");
-        this.setHasSubtypes(false);
+        String name = type.getPrefix() + variant.getPrefix();
+        this.setRegistryName(name.toLowerCase() + "cell");
         this.setCreativeTab(IC2CExtras.creativeTab);
-    }
-
-    @Override
-    public void onLoad() {
-
+        if (Ic2cExtrasRecipes.enableEmptyRods){
+            setUnlocalizedName(new LangComponentHolder.LocaleItemComp("item." + name + "Rod"));
+        }else {
+            setUnlocalizedName(new LangComponentHolder.LocaleItemComp("item." + name + "Cell"));
+        }
     }
 
     public static void init(){
@@ -54,14 +55,6 @@ public class ItemNuclearRod extends ItemReactorUraniumRod {
         types[3] = new Thorium232();
         types[4] = new Thorium230();
         TileEntityUraniumEnricher.RECIPE_LIST.add(types[0]);
-    }
-
-    @Override
-    public LocaleComp getLangComponent(ItemStack stack) {
-        if (Ic2cExtrasRecipes.enableEmptyRods){
-            return new LangComponentHolder.LocaleItemComp(this.getUnlocalizedName().replace("Cell", "Rod"));
-        }
-        return new LangComponentHolder.LocaleItemComp(this.getUnlocalizedName());
     }
 
     @Override
@@ -81,8 +74,13 @@ public class ItemNuclearRod extends ItemReactorUraniumRod {
     }
 
     @Override
-    public IUranium getUran(ItemStack stack) {
+    public IUranium getUranium(ItemStack stack) {
         return this.getUran();
+    }
+
+    @Override
+    public IUranium.RodType getRodType(ItemStack itemStack) {
+        return this.getRodType();
     }
 
     @Override
@@ -93,6 +91,11 @@ public class ItemNuclearRod extends ItemReactorUraniumRod {
     @Override
     public boolean hasSubParts() {
         return false;
+    }
+
+    @Override
+    public ItemStack getReactorPart() {
+        return ItemStack.EMPTY;
     }
 
     @Override
@@ -246,6 +249,11 @@ public class ItemNuclearRod extends ItemReactorUraniumRod {
     @Override
     public int getRodAmount(ItemStack stack) {
         return (int)this.getRodAmount(type);
+    }
+
+    @Override
+    public IUranium getUranium(int i) {
+        return this.getUran();
     }
 
     public float getRodAmount(NuclearRodTypes type){

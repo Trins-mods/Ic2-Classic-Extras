@@ -28,6 +28,7 @@ import java.util.List;
 public class BlockStoneDust extends BlockFalling implements ITexturedBlock {
     public BlockStoneDust() {
         super(Material.SAND);
+        this.setRegistryName("stonedustblock");
         this.setUnlocalizedName("stoneDustBlock");
         this.setSoundType(SoundType.SAND);
         this.setHardness(0.5f);

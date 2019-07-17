@@ -2,6 +2,7 @@ package trinsdar.ic2c_extras.blocks;
 
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.SoundType;
@@ -35,13 +36,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BlockMachine extends BlockMultiID {
-    public BlockMachine(String name){
+    public BlockMachine(String name, LocaleComp comp){
         super(Material.IRON);
         this.setHardness(4.0F);
         this.setResistance(20.0F);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(IC2CExtras.creativeTab);
-        this.setUnlocalizedName(name);
+        this.setRegistryName(name.toLowerCase());
+        this.setUnlocalizedName(comp);
     }
 
     @Override
@@ -117,8 +119,6 @@ public class BlockMachine extends BlockMultiID {
             return Ic2Icons.getTextures("liquescentextruder");
         }else if (this == Registry.plasmaCutter){
             return Ic2Icons.getTextures("plasmacutter");
-        }else if (this == Registry.blastFurnace){
-            return Ic2Icons.getTextures("blastfurnace");
         }else if (this == Registry.metalBender){
             return Ic2Icons.getTextures("metalbender");
         }else if (this == Registry.fluidCanningMachine){

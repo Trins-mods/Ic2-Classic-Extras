@@ -15,7 +15,9 @@ public class ItemPurifiedCrushedOre extends Item implements IStaticTexturedItem 
     int index;
     public ItemPurifiedCrushedOre(String variant, int index) {
         this.index = index;
-        setUnlocalizedName(variant + "PurifiedCrushedOre");
+        String name = variant + "PurifiedCrushedOre";
+        this.setRegistryName(name.toLowerCase());
+        setUnlocalizedName(name);
         setCreativeTab(IC2CExtras.creativeTab);
     }
 

@@ -35,8 +35,6 @@ public class IC2CExtrasConfigLoader extends PluginBase {
     {
         Config.init();
         map.put("blockMetal", new ModulLoader.BlockOverride(new BlockUraniumOre().setCreativeTab(IC2.tabIC2), ItemBlockMetal.class));
-        map.put("itemReactorRods", new ModulLoader.ItemOverride(new ItemReactorUraniumRod2().setCreativeTab(IC2.tabIC2)));
-        map.put("itemDepletedRods", new ModulLoader.ItemOverride(new ItemReactorDepletedUranium2().setCreativeTab(IC2.tabIC2)));
         map.put("itemMisc", new ModulLoader.ItemOverride(new ItemMisc2().setCreativeTab(IC2.tabIC2)));
     }
 
