@@ -40,11 +40,7 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
         String name = type.getPrefix() + variant.getPrefix();
         this.setRegistryName(IC2CExtras.MODID, name.toLowerCase() + "cell");
         this.setCreativeTab(IC2CExtras.creativeTab);
-        if (Ic2cExtrasRecipes.enableEmptyRods){
-            setUnlocalizedName(new LangComponentHolder.LocaleItemComp("item." + name + "Rod"));
-        }else {
-            setUnlocalizedName(new LangComponentHolder.LocaleItemComp("item." + name + "Cell"));
-        }
+        setUnlocalizedName(new LangComponentHolder.LocaleItemComp("item." + name + "Cell"));
     }
 
     public static void init(){
@@ -99,7 +95,10 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
 
     @Override
     public ItemStack getReactorPart() {
-        return ItemStack.EMPTY;
+        if (type == NuclearRodTypes.ISOTOPE){
+            return this.getUran().getNewIsotopicRod();
+        }
+        return getUran().getRodType(getRodType());
     }
 
     @Override

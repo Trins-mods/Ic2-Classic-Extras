@@ -34,7 +34,7 @@ public class ItemMiscs extends Item implements IStaticTexturedItem{
     public ItemMiscs(String  name, int id, String sprite) {
         this.index = id;
         this.sprite = sprite;
-        this.setRegistryName(name.toLowerCase());
+        this.setRegistryName(IC2CExtras.MODID,name.toLowerCase());
         setUnlocalizedName(name);
         setCreativeTab(IC2CExtras.creativeTab);
     }

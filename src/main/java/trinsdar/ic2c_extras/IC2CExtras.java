@@ -58,7 +58,7 @@ public class IC2CExtras
             Recipes.oreWashing = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.oreWashingPlant.toIC2Exp();
             Recipes.centrifuge = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.thermalCentrifuge.toIC2Exp();
         }
-        RodLang.overrideLang();
+
     }
 
     @Mod.EventHandler
@@ -67,6 +67,7 @@ public class IC2CExtras
         proxy.init();
         MinecraftForge.EVENT_BUS.register(new Ic2cExtrasRecipes());
         MinecraftForge.EVENT_BUS.register(new Radiation());
+        RodLang.overrideLang();
     }
 
     @Mod.EventHandler

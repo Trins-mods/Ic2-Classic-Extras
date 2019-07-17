@@ -18,15 +18,11 @@ import java.util.List;
 
 public class ItemDepeletedNuclearRods extends ItemIC2 {
     int index;
-    public ItemDepeletedNuclearRods(String name, LocaleComp comp, LocaleComp replacement, int id) {
+    public ItemDepeletedNuclearRods(String name, LocaleComp comp, int id) {
         this.index = id;
         this.setRegistryName(IC2CExtras.MODID, name);
         setCreativeTab(IC2CExtras.creativeTab);
-        if (Ic2cExtrasRecipes.enableEmptyRods){
-            setUnlocalizedName(replacement);
-        }else {
-            setUnlocalizedName(comp);
-        }
+        setUnlocalizedName(comp);
     }
 
     @SideOnly(Side.CLIENT)
