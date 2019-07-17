@@ -7,6 +7,7 @@ import ic2.api.classic.addon.misc.SideGateway;
 import ic2.api.recipe.IBasicMachineRecipeManager;
 import ic2.api.recipe.Recipes;
 import ic2.core.IC2;
+import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
@@ -19,10 +20,12 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Logger;
+import trinsdar.ic2c_extras.items.override.ItemMisc2;
 import trinsdar.ic2c_extras.proxy.CommonProxy;
 import trinsdar.ic2c_extras.util.CreativeTabIC2CExtras;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.Icons;
+import trinsdar.ic2c_extras.util.references.RodLang;
 
 import java.util.Map;
 
@@ -55,7 +58,7 @@ public class IC2CExtras
             Recipes.oreWashing = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.oreWashingPlant.toIC2Exp();
             Recipes.centrifuge = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.thermalCentrifuge.toIC2Exp();
         }
-
+        RodLang.overrideLang();
     }
 
     @Mod.EventHandler

@@ -31,25 +31,5 @@ public class Ic2cExtrasLang {
     public static LocaleComp leadBlock = new LangComponentHolder.LocaleBlockComp("tile.leadBlock");
     public static LocaleComp stoneDustBlock = new LangComponentHolder.LocaleBlockComp("tile.stoneDustBlock");
 
-    public static LocaleComp nearDepletedUOXCell = new LangComponentHolder.LocaleItemComp("item.nearDepletedUOXCell");
-    public static LocaleComp nearDepletedPlutoniumCell = new LangComponentHolder.LocaleItemComp("item.nearDepletedPlutoniumCell");
-    public static LocaleComp nearDepletedMOXCell = new LangComponentHolder.LocaleItemComp("item.nearDepletedMOXCell");
-    public static LocaleComp nearDepletedThorium232Cell = new LangComponentHolder.LocaleItemComp("item.nearDepletedThorium232Cell");
-    public static LocaleComp nearDepletedThorium230Cell = new LangComponentHolder.LocaleItemComp("item.nearDepletedThorium230Cell");
-    public static LocaleComp reEnrichedUOXCell = new LangComponentHolder.LocaleItemComp("item.reEnrichedUOXCell");
-    public static LocaleComp reEnrichedPlutoniumCell = new LangComponentHolder.LocaleItemComp("item.reEnrichedPlutoniumCell");
-    public static LocaleComp reEnrichedMOXCell = new LangComponentHolder.LocaleItemComp("item.reEnrichedMOXCell");
-    public static LocaleComp reEnrichedThorium232Cell = new LangComponentHolder.LocaleItemComp("item.reEnrichedThorium232Cell");
-    public static LocaleComp reEnrichedThorium230Cell = new LangComponentHolder.LocaleItemComp("item.reEnrichedThorium230Cell");
-
-    public static LocaleComp nearDepletedUOXRod = new LangComponentHolder.LocaleItemComp("item.nearDepletedUOXRod");
-    public static LocaleComp nearDepletedPlutoniumRod = new LangComponentHolder.LocaleItemComp("item.nearDepletedPlutoniumRod");
-    public static LocaleComp nearDepletedMOXRod = new LangComponentHolder.LocaleItemComp("item.nearDepletedMOXRod");
-    public static LocaleComp nearDepletedThorium232Rod = new LangComponentHolder.LocaleItemComp("item.nearDepletedThorium232Rod");
-    public static LocaleComp nearDepletedThorium230Rod = new LangComponentHolder.LocaleItemComp("item.nearDepletedThorium230Rod");
-    public static LocaleComp reEnrichedUOXRod = new LangComponentHolder.LocaleItemComp("item.reEnrichedUOXRod");
-    public static LocaleComp reEnrichedPlutoniumRod = new LangComponentHolder.LocaleItemComp("item.reEnrichedPlutoniumRod");
-    public static LocaleComp reEnrichedMOXRod = new LangComponentHolder.LocaleItemComp("item.reEnrichedMOXRod");
-    public static LocaleComp reEnrichedThorium232Rod = new LangComponentHolder.LocaleItemComp("item.reEnrichedThorium232Rod");
-    public static LocaleComp reEnrichedThorium230Rod = new LangComponentHolder.LocaleItemComp("item.reEnrichedThorium230Rod");
+    public static LocaleComp uraniumFuel = new LangComponentHolder.LocaleItemComp("item.itemFuelUran");
 }

@@ -21,7 +21,7 @@ public class ItemToolCrafting extends Item implements IStaticTexturedItem {
         this.itemIndex = index;
         this.enchant = enchant;
         this.setMaxDamage(maxDamage);
-        this.setRegistryName(name.toLowerCase());
+        this.setRegistryName(IC2CExtras.MODID, name.toLowerCase());
         setUnlocalizedName(name);
         setCreativeTab(IC2CExtras.creativeTab);
     }

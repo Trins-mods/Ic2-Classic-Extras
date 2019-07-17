@@ -20,7 +20,7 @@ public class ItemDepeletedNuclearRods extends ItemIC2 {
     int index;
     public ItemDepeletedNuclearRods(String name, LocaleComp comp, LocaleComp replacement, int id) {
         this.index = id;
-        this.setRegistryName(name);
+        this.setRegistryName(IC2CExtras.MODID, name);
         setCreativeTab(IC2CExtras.creativeTab);
         if (Ic2cExtrasRecipes.enableEmptyRods){
             setUnlocalizedName(replacement);

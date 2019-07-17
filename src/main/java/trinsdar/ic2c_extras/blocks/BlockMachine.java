@@ -42,7 +42,7 @@ public class BlockMachine extends BlockMultiID {
         this.setResistance(20.0F);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(IC2CExtras.creativeTab);
-        this.setRegistryName(name.toLowerCase());
+        this.setRegistryName(IC2CExtras.MODID, name.toLowerCase());
         this.setUnlocalizedName(comp);
     }
 

@@ -21,23 +21,17 @@ import java.util.List;
 
 public class BlockMetal extends Block implements ITexturedBlock {
 
-    LocaleComp name;
     int index;
-    public BlockMetal(String name, LocaleComp comp, int index){
+    public BlockMetal(String name, int index){
         super(Material.IRON);
         this.setHardness(4.0F);
         this.setResistance(10.0F);
         this.index = index;
-        this.name = comp;
         this.setSoundType(SoundType.METAL);
         this.setHarvestLevel("pickaxe", 2);
         this.setCreativeTab(IC2CExtras.creativeTab);
         this.setRegistryName(name.toLowerCase());
         this.setUnlocalizedName(name);
-    }
-
-    public LocaleComp getName() {
-        return name;
     }
 
     @Override

@@ -38,7 +38,7 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
         this.type = type;
         this.variant = variant;
         String name = type.getPrefix() + variant.getPrefix();
-        this.setRegistryName(name.toLowerCase() + "cell");
+        this.setRegistryName(IC2CExtras.MODID, name.toLowerCase() + "cell");
         this.setCreativeTab(IC2CExtras.creativeTab);
         if (Ic2cExtrasRecipes.enableEmptyRods){
             setUnlocalizedName(new LangComponentHolder.LocaleItemComp("item." + name + "Rod"));
@@ -66,6 +66,10 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
     @Override
     public TextureAtlasSprite getTexture(int meta) {
         return getUran().getTexture(getRodType());
+    }
+
+    public LocaleComp getLangComponent(ItemStack stack) {
+        return this.name;
     }
 
     @Override
