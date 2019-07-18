@@ -30,7 +30,7 @@ public class Config implements IConfigNotify {
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableLootEntries", "Enables adding tiny plutonium and iridium shards to vanilla loot tables", "LootEntries", true).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableUraniumOreDropReplacement", "Enables replacing the drop of uranium ore with the block instead of uranium ore item.", "UraniumOreDropReplacement", true).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableAutoFluidContainerRecipes", "Enables auto recipes for draining and filling fluid container items in the fluid canning machine.", "AutoFluidContainerRecipes", true).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableEmptyRod", "Enables nucear cells taking my empty fuel rod.", "EnableEmptyRods", true).setGameRestart().setServerSync());
+            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableEmptyRod", "Enables nucear cells taking my empty nuclear fuel cell.", "EnableEmptyRods", true).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableDebugMode", "Enables things like showing the recipe ids of my machine recipes in jei.", "DebugMode", false).setGameRestart().setServerSync());
             IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableDensePlatesTakePlates", "Determines whether dense plates take 9 plates(true) or 8 ingots(false).", "DensePlates", false).setGameRestart().setServerSync());
             IC2.config.addConfigNotify(config);

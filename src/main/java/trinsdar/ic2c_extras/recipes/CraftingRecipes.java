@@ -136,7 +136,7 @@ public class CraftingRecipes {
         }
         if (Ic2cExtrasRecipes.enableEmptyRods){
             ItemStack emptyFuelRod = new ItemStack(Registry.emptyFuelRod);
-            recipes.overrideShapelessRecipe("shapeless_item.reactor2uraniumsimple_-1804731375", Ic2Items.reactorUraniumRodSingle, emptyFuelRod, Ic2Items.uraniumIngot);
+            recipes.overrideShapelessRecipe("shapeless_item.reactoruraniumsimple_-1804731375", Ic2Items.reactorUraniumRodSingle, emptyFuelRod, Ic2Items.uraniumIngot);
             ClassicRecipes.canningMachine.removeCanningRecipe(Ic2Items.emptyCell, Ic2Items.uraniumIngot);
             ClassicRecipes.canningMachine.registerCannerItem(emptyFuelRod, new RecipeInputItemStack(Ic2Items.uraniumIngot), Ic2Items.reactorUraniumRodSingle);
             recipes.overrideRecipe("shaped_item.itemCellUranEmpty_-1582032965", StackUtil.copyWithSize(Ic2Items.reactorNearDepletedUraniumRod, 8), "RRR", "RIR", "RRR", 'R', emptyFuelRod, 'I', Ic2Items.uraniumIngot);
@@ -146,11 +146,11 @@ public class CraftingRecipes {
             recipes.overrideRecipe("shaped_item.itemCellNetherStarEnrichedUranEmpty_-1439481732", StackUtil.copyWithSize(Ic2Items.reactorNearDepletedNetherStarUraniumRod, 8), "RRR", "RIR", "RRR", 'R', emptyFuelRod, 'I', Ic2Items.netherStarUraniumIngot);
             recipes.overrideRecipe("shaped_item.itemCellCharcoalEnrichedUranEmpty_-551978020", StackUtil.copyWithSize(Ic2Items.reactorNearDepletedCharcoalUraniumRod, 8), "RRR", "RIR", "RRR", 'R', emptyFuelRod, 'I', Ic2Items.charcoalUraniumIngot);
             if (!IC2.config.getFlag("HardEnrichedUran")){
-                recipes.overrideShapelessRecipe("shapeless_item.reactor2uraniumredstonesimple_-1804729360", Ic2Items.reactorRedstoneUraniumRodSingle, emptyFuelRod, Ic2Items.redstoneUraniumIngot);
-                recipes.overrideShapelessRecipe("shapeless_item.reactor2uraniumblazesimple_-1804728306", Ic2Items.reactorBlazeUraniumRodSingle, emptyFuelRod, Ic2Items.blazeUraniumIngot);
-                recipes.overrideShapelessRecipe("shapeless_item.reactor2uraniumenderpearlsimple_-1804727252", Ic2Items.reactorEnderPearlUraniumRodSingle, emptyFuelRod, Ic2Items.enderPearlUraniumIngot);
-                recipes.overrideShapelessRecipe("shapeless_item.reactor2uraniumnetherstarsimple_-1804726198", Ic2Items.reactorNetherStarUraniumRodSingle, emptyFuelRod, Ic2Items.netherStarUraniumIngot);
-                recipes.overrideShapelessRecipe("shapeless_item.reactor2uraniumcharcoalsimple_-1804725144", Ic2Items.reactorCharcoalUraniumRodSingle, emptyFuelRod, Ic2Items.charcoalUraniumIngot);
+                recipes.overrideShapelessRecipe("shapeless_item.reactoruraniumredstonesimple_-1804729360", Ic2Items.reactorRedstoneUraniumRodSingle, emptyFuelRod, Ic2Items.redstoneUraniumIngot);
+                recipes.overrideShapelessRecipe("shapeless_item.reactoruraniumblazesimple_-1804728306", Ic2Items.reactorBlazeUraniumRodSingle, emptyFuelRod, Ic2Items.blazeUraniumIngot);
+                recipes.overrideShapelessRecipe("shapeless_item.reactoruraniumenderpearlsimple_-1804727252", Ic2Items.reactorEnderPearlUraniumRodSingle, emptyFuelRod, Ic2Items.enderPearlUraniumIngot);
+                recipes.overrideShapelessRecipe("shapeless_item.reactoruraniumnetherstarsimple_-1804726198", Ic2Items.reactorNetherStarUraniumRodSingle, emptyFuelRod, Ic2Items.netherStarUraniumIngot);
+                recipes.overrideShapelessRecipe("shapeless_item.reactoruraniumcharcoalsimple_-1804725144", Ic2Items.reactorCharcoalUraniumRodSingle, emptyFuelRod, Ic2Items.charcoalUraniumIngot);
                 ClassicRecipes.canningMachine.removeCanningRecipe(Ic2Items.emptyCell, Ic2Items.redstoneUraniumIngot);
                 ClassicRecipes.canningMachine.removeCanningRecipe(Ic2Items.emptyCell, Ic2Items.blazeUraniumIngot);
                 ClassicRecipes.canningMachine.removeCanningRecipe(Ic2Items.emptyCell, Ic2Items.enderPearlUraniumIngot);
