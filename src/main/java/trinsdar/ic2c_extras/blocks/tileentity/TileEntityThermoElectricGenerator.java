@@ -110,22 +110,29 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
         return count == 0;
     }
 
+    int counter = 0;
+
     @Override
     public boolean gainEnergy() {
         if (this.isConverting() && !isInventoryEmpty()) {
             this.storage += this.getProduction();
-            for (int i = 0; i < 6; i++){
-                ItemStack stack = this.inventory.get(i);
-                if (!stack.isEmpty() && stack.getItem() instanceof ItemRTG){
-                    ItemRTG rtg = (ItemRTG)stack.getItem();
-                    int damage = rtg.getCustomDamage(stack) + 1;
-                    if (damage > rtg.getMaxCustomDamage(stack)){
-                        stack.shrink(1);
-                    }else {
-                        rtg.setCustomDamage(stack, damage);
+            counter++;
+            if (counter == 20){
+                for (int i = 0; i < 6; i++){
+                    ItemStack stack = this.inventory.get(i);
+                    if (!stack.isEmpty() && stack.getItem() instanceof ItemRTG){
+                        ItemRTG rtg = (ItemRTG)stack.getItem();
+                        int damage = rtg.getCustomDamage(stack) + 1;
+                        if (damage > rtg.getMaxCustomDamage(stack)){
+                            stack.shrink(1);
+                        }else {
+                            rtg.setCustomDamage(stack, damage);
+                        }
                     }
                 }
+                counter = 0;
             }
+
             this.getNetwork().updateTileGuiField(this, "fuel");
             return true;
         } else {
