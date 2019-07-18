@@ -86,7 +86,7 @@ item.steelIngot.name=Steel Ingot
 item.oxidizedUraniumIngot.name=Oxidized Uranium Ingot
 item.doubleEnrichedUraniumIngot.name=Double Enriched Uranium Ingot
 item.iridiumShard.name=Iridium Shard
-item.emptyFuelRod.name=Empty Fuel Rod
+item.emptyFuelRod.name=Empty Nuclear Fuel Cell
 item.thorium232Ingot.name=Thorium 232 Ingot
 item.thorium232Dust.name=Thorium 232 Dust
 item.thorium230Ingot.name=Thorium 230 Ingot
@@ -150,83 +150,6 @@ item.quadThorium230Cell.name=Quad Thorium 230 Cell
 item.nearDepletedThorium230Cell.name=Near-depleted Thorium 230 Cell
 item.isotopicThorium230Cell.name=Depleted Thorium 230 Isotope Cell
 item.reEnrichedThorium230Cell.name=Re-Enriched Thorium 230 Cell
-
-item.singleUOXRod.name=UOX Fuel Rod
-item.doubleUOXRod.name=Dual UOX Fuel Rod
-item.quadUOXRod.name=Quad UOX Fuel Rod
-item.nearDepletedUOXRod.name=Near-depleted UOX Fuel Rod
-item.isotopicUOXRod.name=Depleted UOX Isotope Rod
-item.reEnrichedUOXRod.name=Re-Enriched UOX Fuel Rod
-
-item.singlePlutoniumRod.name=Plutonium Fuel Rod
-item.doublePlutoniumRod.name=Dual Plutonium Fuel Rod
-item.quadPlutoniumRod.name=Quad Plutonium Fuel Rod
-item.nearDepletedPlutoniumRod.name=Near-depleted Plutonium Fuel Rod
-item.isotopicPlutoniumRod.name=Depleted Plutonium Isotope Rod
-item.reEnrichedPlutoniumRod.name=Re-Enriched Plutonium Fuel Rod
-
-item.singleMOXRod.name=MOX Fuel Rod
-item.doubleMOXRod.name=Dual MOX Fuel Rod
-item.quadMOXRod.name=Quad MOX Fuel Rod
-item.nearDepletedMOXRod.name=Near-depleted MOX Fuel Rod
-item.isotopicMOXRod.name=Depleted MOX Isotope Rod
-item.reEnrichedMOXRod.name=Re-Enriched MOX Fuel Rod
-
-item.singleThorium232Rod.name=Thorium 232 Fuel Rod
-item.doubleThorium232Rod.name=Dual Thorium 232 Fuel Rod
-item.quadThorium232Rod.name=Quad Thorium 232 Fuel Rod
-item.nearDepletedThorium232Rod.name=Near-depleted Thorium 232 Fuel Rod
-item.isotopicThorium232Rod.name=Depleted Thorium 232 Isotope Rod
-item.reEnrichedThorium232Rod.name=Re-Enriched Thorium 232 Fuel Rod
-
-item.singleThorium230Rod.name=Thorium 230 Fuel Rod
-item.doubleThorium230Rod.name=Dual Thorium 230 Fuel Rod
-item.quadThorium230Rod.name=Quad Thorium 230 Fuel Rod
-item.nearDepletedThorium230Rod.name=Near-depleted Thorium 230 Fuel Rod
-item.isotopicThorium230Rod.name=Depleted Thorium 230 Isotope Rod
-item.reEnrichedThorium230Rod.name=Re-Enriched Thorium 230 Fuel Rod
-
-item.reactor2UraniumSimple.name=Uranium Fuel Rod
-item.reactor2UraniumDual.name=Dual Uranium Fuel Rod
-item.reactor2UraniumQuad.name=Quad Uranium Fuel Rod
-item.itemRodUranEmpty.name=Near-depleted Uranium Fuel Rod
-item.reactorIsotopeRod.name=Depleted Isotope Rod
-item.itemRodUranEnriched.name=Re-Enriched Uranium Fuel Rod
-
-item.reactor2UraniumRedstoneSimple.name=Redstone Enriched Uranium Fuel Rod
-item.reactor2UraniumRedstoneDual.name=Redstone Enriched Dual Uranium Fuel Rod
-item.reactor2UraniumRedstoneQuad.name=Redstone Enriched Quad Uranium Fuel Rod
-item.itemRodRedstoneEnrichedUranEmpty.name=Near-depleted Redstone Uranium Fuel Rod
-item.itemDepletedRedstoneEnrichedUraniumRod.name=Depleted Redstone Isotope Rod
-item.itemRodRedstoneUranEnriched.name=Re-Enriched Redstone Uranium Fuel Rod
-
-item.reactor2UraniumBlazeSimple.name=Blaze Enriched Uranium Fuel Rod
-item.reactor2UraniumBlazeDual.name=Blaze Enriched Dual Uranium Fuel Rod
-item.reactor2UraniumBlazeQuad.name=Blaze Enriched Quad Uranium Fuel Rod
-item.itemRodBlazeEnrichedUranEmpty.name=Near-depleted Blaze Uranium Fuel Rod
-item.itemDepletedBlazeEnrichedUraniumRod.name=Depleted Blaze Isotope Rod
-item.itemRodBlazeUranEnriched.name=Re-Enriched Blaze Uranium Fuel Rod
-
-item.reactor2UraniumEnderPearlSimple.name=EnderPearl Enriched Uranium Fuel Rod
-item.reactor2UraniumEnderPearlDual.name=EnderPearl Enriched Dual Uranium Fuel Rod
-item.reactor2UraniumEnderPearlQuad.name=EnderPearl Enriched Quad Uranium Fuel Rod
-item.itemRodEnderPearlEnrichedUranEmpty.name=Near-depleted EnderPearl Uranium Fuel Rod
-item.itemDepletedEnderPearlEnrichedUraniumRod.name=Depleted EnderPearl Isotope Rod
-item.itemRodEnderPearlUranEnriched.name=Re-Enriched EnderPearl Uranium Fuel Rod
-
-item.reactor2UraniumNetherStarSimple.name=NetherStar Enriched Uranium Fuel Rod
-item.reactor2UraniumNetherStarDual.name=NetherStar Enriched Dual Uranium Fuel Rod
-item.reactor2UraniumNetherStarQuad.name=NetherStar Enriched Quad Uranium Fuel Rod
-item.itemRodNetherStarEnrichedUranEmpty.name=Near-depleted NetherStar Uranium Fuel Rod
-item.itemDepletedNetherStarEnrichedUraniumRod.name=Depleted NetherStar Isotope Rod
-item.itemRodNetherStarUranEnriched.name=Re-Enriched NetherStar Uranium Fuel Rod
-
-item.reactor2UraniumCharcoalSimple.name=Charcoal Enriched Uranium Fuel Rod
-item.reactor2UraniumCharcoalDual.name=Charcoal Enriched Dual Uranium Fuel Rod
-item.reactor2UraniumCharcoalQuad.name=Charcoal Enriched Quad Uranium Fuel Rod
-item.itemRodCharcoalEnrichedUranEmpty.name=Near-depleted Charcoal Uranium Fuel Rod
-item.itemDepletedCharcoalEnrichedUraniumRod.name=Depleted Charcoal Isotope Rod
-item.itemRodCharcoalUranEnriched.name=Re-Enriched Charcoal Uranium Fuel Rod
 
 item.ic2c_extras.bauxiteCrushedOre.name=Crushed Bauxite Ore
 item.ic2c_extras.bauxitePurifiedCrushedOre.name=Purified Crushed Bauxite Ore

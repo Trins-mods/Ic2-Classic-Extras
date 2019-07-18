@@ -67,7 +67,6 @@ public class IC2CExtras
         proxy.init();
         MinecraftForge.EVENT_BUS.register(new Ic2cExtrasRecipes());
         MinecraftForge.EVENT_BUS.register(new Radiation());
-        RodLang.overrideLang();
     }
 
     @Mod.EventHandler
