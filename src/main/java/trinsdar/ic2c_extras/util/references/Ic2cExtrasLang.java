@@ -25,6 +25,8 @@ public class Ic2cExtrasLang {
     public static LocaleComp advancedSteamTurbine = new LangComponentHolder.LocaleBlockComp("tile.advancedSteamTurbine");
     public static LocaleComp thermoElectricGenerator = new LangComponentHolder.LocaleBlockComp("tile.thermoElectricGenerator");
     public static LocaleComp thermoElectricGeneratorMkII = new LangComponentHolder.LocaleBlockComp("tile.thermoElectricGeneratorMkII");
+    public static LocaleComp thermoElectricGeneratorTooltip = new LangComponentHolder.LocaleTileInfoComp("tileInfo.thermoElectricGenerator.name");
+    public static LocaleComp thermoElectricGeneratorMkIITooltip = new LangComponentHolder.LocaleTileInfoComp("tileInfo.thermoElectricGeneratorMkII.name");
 
     public static LocaleComp steelBlock = new LangComponentHolder.LocaleBlockComp("tile.steelBlock");
     public static LocaleComp refinedIronBlock = new LangComponentHolder.LocaleBlockComp("tile.refinedIronBlock");
