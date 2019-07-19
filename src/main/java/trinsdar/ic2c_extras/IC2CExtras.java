@@ -1,33 +1,24 @@
 package trinsdar.ic2c_extras;
 
-import ic2.api.classic.addon.IC2Plugin;
-import ic2.api.classic.addon.PluginBase;
-import ic2.api.classic.addon.misc.IOverrideObject;
-import ic2.api.classic.addon.misc.SideGateway;
+import ic2.api.classic.crops.ClassicCrops;
+import ic2.api.crops.CropCard;
 import ic2.api.recipe.IBasicMachineRecipeManager;
 import ic2.api.recipe.Recipes;
 import ic2.core.IC2;
-import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Logger;
-import trinsdar.ic2c_extras.items.override.ItemMisc2;
+import trinsdar.ic2c_extras.blocks.CropPlumbilia;
 import trinsdar.ic2c_extras.proxy.CommonProxy;
 import trinsdar.ic2c_extras.util.CreativeTabIC2CExtras;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
-import trinsdar.ic2c_extras.util.Icons;
-import trinsdar.ic2c_extras.util.references.RodLang;
-
-import java.util.Map;
+import trinsdar.ic2c_extras.util.Registry;
 
 @Mod(name = IC2CExtras.NAME, modid = IC2CExtras.MODID, version = IC2CExtras.VERSION, dependencies = IC2CExtras.DEPENDS)
 public class IC2CExtras
@@ -58,7 +49,10 @@ public class IC2CExtras
             Recipes.oreWashing = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.oreWashingPlant.toIC2Exp();
             Recipes.centrifuge = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.thermalCentrifuge.toIC2Exp();
         }
-
+        CropCard card = new CropPlumbilia();
+        ClassicCrops crop = ClassicCrops.instance;
+        crop.registerCrop(card);
+        crop.registerCropDisplayItem(card, new ItemStack(Registry.leadDust));
     }
 
     @Mod.EventHandler

@@ -43,6 +43,7 @@ public class Icons
         makeSprites("tiny_dust", 16, 1);
         makeSprites("tools", 6, 1);
         makeSprites("nuclear_cells", 5, 6);
+        makeSprites("crops", 1, 1);
         Ic2Icons.addCustomTexture("metalbender", 0, 9, new ResourceLocation(IC2CExtras.MODID,"animations/metalbender_front"));
     }
 
