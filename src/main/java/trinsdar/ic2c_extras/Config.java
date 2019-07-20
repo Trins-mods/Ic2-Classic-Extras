@@ -3,6 +3,7 @@ import ic2.core.IC2;
 import ic2.core.platform.config.ConfigEntry;
 import ic2.core.platform.config.IC2Config;
 import ic2.core.platform.config.components.IConfigNotify;
+import ic2.jeiIntigration.SubModul;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.jei.JeiPlugin;
 
@@ -44,6 +45,8 @@ public class Config implements IConfigNotify {
     public void onConfigReloaded(IC2Config config) {
         Radiation.setConfig(config.getFlag("ItemRadiation"));
         Ic2cExtrasRecipes.setConfig(config.getFlag("HarderUranium"), config.getFlag("CasingsNeedPlates"), config.getFlag("CablesWithPlates"), config.getFlag("CertainRecipesNeedSteel"), config.getFlag("HammerRecipes"), config.getFlag("AutoOredictRecipes"), config.getFlag("LootEntries"), config.getFlag("PlatesTwoIngots"), config.getFlag("UraniumOreDropReplacement"), config.getFlag("AutoFluidContainerRecipes"), config.getFlag("EnableEmptyRods"), config.getFlag("DensePlates"));
-        JeiPlugin.setConfig(config.getFlag("DebugMode"));
+        if (SubModul.load){
+            JeiPlugin.setConfig(config.getFlag("DebugMode"));
+        }
     }
 }
