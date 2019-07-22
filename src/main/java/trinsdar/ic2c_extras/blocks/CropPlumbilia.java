@@ -41,7 +41,7 @@ public class CropPlumbilia extends CropCardBase {
     }
 
     public String[] getAttributes() {
-        return new String[]{"Lead", "Leaves", "Metal"};
+        return new String[]{"Purple", "Leaves", "Metal"};
     }
 
     public int getGrowthDuration(ICropTile cropTile) {
