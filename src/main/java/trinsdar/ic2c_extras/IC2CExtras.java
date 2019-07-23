@@ -49,10 +49,9 @@ public class IC2CExtras
             Recipes.oreWashing = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.oreWashingPlant.toIC2Exp();
             Recipes.centrifuge = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.thermalCentrifuge.toIC2Exp();
         }
-        CropCard card = new CropPlumbilia();
         ClassicCrops crop = ClassicCrops.instance;
-        crop.registerCrop(card);
-        crop.registerCropDisplayItem(card, new ItemStack(Registry.leadDust));
+        crop.registerCrop(Registry.cropPlumbilia);
+        crop.registerCropDisplayItem(Registry.cropPlumbilia, new ItemStack(Registry.leadDust));
     }
 
     @Mod.EventHandler

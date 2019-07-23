@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.util;
 
+import ic2.api.crops.CropCard;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockRare;
 import net.minecraft.item.Item;
@@ -10,6 +11,7 @@ import trinsdar.ic2c_extras.blocks.BlockIc2cEGenerator;
 import trinsdar.ic2c_extras.blocks.BlockMachine;
 import trinsdar.ic2c_extras.blocks.BlockMetal;
 import trinsdar.ic2c_extras.blocks.BlockStoneDust;
+import trinsdar.ic2c_extras.blocks.CropPlumbilia;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityAdvancedSteamTurbine;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityCutter;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityExtruder;
@@ -67,6 +69,8 @@ public class Registry
     refinedIronBlock = new BlockMetal("refinedIronBlock",  1),
     leadBlock = new BlockMetal("leadBlock",  2);
     public static final BlockStoneDust stoneDustBlock = new BlockStoneDust();
+
+    public static CropCard cropPlumbilia = new CropPlumbilia();
 
     static String copper = "copper";
     static String tin = "tin";
