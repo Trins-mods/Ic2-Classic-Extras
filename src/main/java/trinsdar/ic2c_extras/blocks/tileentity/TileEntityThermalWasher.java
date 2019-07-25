@@ -226,7 +226,6 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
                 }
 
                 if (lastRecipe == null) {
-                    IC2CExtras.logger.info("last recipe == null");
                     IMachineRecipeList.RecipeEntry out = this.getOutputFor(((ItemStack)this.inventory.get(slot)).copy());
                     if (out == null || isRecipeStillValid(out) == EnumActionResult.PASS) {
                         this.activeRecipes.remove(slot);
@@ -422,10 +421,8 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     @Override
     protected EnumActionResult isRecipeStillValid(IMachineRecipeList.RecipeEntry entry) {
         if (waterTank.getFluidAmount() >= getRequiredWater(entry.getOutput())){
-            IC2CExtras.logger.info("has enough water");
             return EnumActionResult.SUCCESS;
         }
-        IC2CExtras.logger.info("doesn't have enough water");
         return EnumActionResult.PASS;
     }
 
