@@ -250,15 +250,15 @@ public class MachineRecipes {
         }
 
         if (Ic2cExtrasRecipes.enableCasingsRequirePlates){
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotCopper", 1)),  new ItemStack(Registry.copperPlate, 2), 0.7f );
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(Registry.tinPlate, 2), 0.7f);
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotSilver", 1)),  new ItemStack(Registry.silverPlate, 2), 0.7f);
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotLead", 1)),  new ItemStack(Registry.leadPlate, 2), 0.7f);
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotIron", 1)),  new ItemStack(Registry.ironPlate, 2), 0.7f);
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotGold", 1)),  new ItemStack(Registry.goldPlate, 2), 0.7f);
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotRefinedIron", 1)),  new ItemStack(Registry.refinedIronPlate, 2), 0.7f);
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotSteel", 1)),  new ItemStack(Registry.steelPlate, 2), 0.7f);
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotBronze", 1)),  new ItemStack(Registry.bronzePlate, 2), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotCopper", 1)),  new ItemStack(Registry.copperPlate, 1), 0.7f );
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(Registry.tinPlate, 1), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotSilver", 1)),  new ItemStack(Registry.silverPlate, 1), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotLead", 1)),  new ItemStack(Registry.leadPlate, 1), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotIron", 1)),  new ItemStack(Registry.ironPlate, 1), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotGold", 1)),  new ItemStack(Registry.goldPlate, 1), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotRefinedIron", 1)),  new ItemStack(Registry.refinedIronPlate, 1), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotSteel", 1)),  new ItemStack(Registry.steelPlate, 1), 0.7f);
+            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotBronze", 1)),  new ItemStack(Registry.bronzePlate, 1), 0.7f);
             TileEntityRoller.addRecipe((new RecipeInputOreDict("plateCopper", 1)),  new ItemStack(Registry.copperCasing, 2), 0.7f);
             TileEntityRoller.addRecipe((new RecipeInputOreDict("plateTin", 1)),  new ItemStack(Registry.tinCasing, 2), 0.7f);
             TileEntityRoller.addRecipe((new RecipeInputOreDict("plateSilver", 1)),  new ItemStack(Registry.silverCasing, 2), 0.7f);
