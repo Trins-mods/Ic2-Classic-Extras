@@ -61,21 +61,17 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
     @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite getTexture(int meta) {
-        return getUran().getTexture(getRodType());
+        return getUran(variant).getTexture(getRodType());
     }
 
+    @Override
     public LocaleComp getLangComponent(ItemStack stack) {
         return this.name;
     }
 
     @Override
-    public int getMaxCustomDamage(ItemStack stack) {
-        return this.getUran().getMaxDurability();
-    }
-
-    @Override
     public IUranium getUranium(ItemStack stack) {
-        return this.getUran();
+        return this.getUran(variant);
     }
 
     @Override
@@ -95,15 +91,12 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
 
     @Override
     public ItemStack getReactorPart() {
-        if (type == NuclearRodTypes.ISOTOPE){
-            return this.getUran().getNewIsotopicRod();
-        }
-        return getUran().getRodType(getRodType());
+        return getUran(variant).getRodType(getRodType());
     }
 
     @Override
     public short getID(ItemStack stack) {
-        return this.getUran().getRodID(getRodType());
+        return this.getUran(variant).getRodID(getRodType());
     }
 
     @Override
@@ -118,13 +111,11 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
             return IUranium.RodType.DualRod;
         }else if (type == NuclearRodTypes.QUAD){
             return IUranium.RodType.QuadRod;
-        }else if (type == NuclearRodTypes.ISOTOPE){
-            return IUranium.RodType.IsotopicRod;
         }
         return IUranium.RodType.SingleRod;
     }
 
-    public IUranium getUran(){
+    public static IUranium getUran(NuclearRodVariants variant){
         if (variant == NuclearRodVariants.UOX){
             return types[0];
         }else if (variant == NuclearRodVariants.PLUTONIUM){
@@ -140,113 +131,13 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
     }
 
     @Override
-    public ReactorType getReactorInfo(ItemStack itemStack) {
-        if (type == NuclearRodTypes.ISOTOPE){
-            return ReactorType.Reactor;
-        }
-        return ReactorType.Both;
-    }
-
-    @Override
-    public ReactorComponentType getType(ItemStack itemStack) {
-        if (type == NuclearRodTypes.ISOTOPE){
-            return ReactorComponentType.IsotopeCell;
-        }
-        return ReactorComponentType.FuelRod;
-    }
-
-    @Override
     public List<ReactorComponentStat> getExtraStats(ItemStack itemStack) {
         return null;
     }
 
     @Override
-    public NBTPrimitive getReactorStat(ReactorComponentStat stat, ItemStack stack) {
-        IUranium uran = this.getUran();
-        if (type == NuclearRodTypes.ISOTOPE){
-            return uran != null && stat == ReactorComponentStat.MaxDurability ? new NBTTagInt(uran.getMaxDurability()) : nulltag;
-        }else {
-            return super.getReactorStat(stat, stack);
-        }
-    }
-
-    @Override
-    public boolean isAdvancedStat(ReactorComponentStat stat, ItemStack itemStack) {
-        return type != NuclearRodTypes.ISOTOPE && super.isAdvancedStat(stat, itemStack);
-    }
-
-    @Override
-    public NBTPrimitive getReactorStat(IReactor reactor, int x, int y, ItemStack stack, ReactorComponentStat stat) {
-        if (type == NuclearRodTypes.ISOTOPE){
-            return nulltag;
-        }else {
-            return super.getReactorStat(reactor, x, y, stack, stat);
-        }
-    }
-
-    @Override
-    public void processTick(ISteamReactor iSteamReactor, ItemStack itemStack, int i, int i1, boolean b, boolean b1) {
-        if(type != NuclearRodTypes.ISOTOPE){
-            super.processTick(iSteamReactor, itemStack, i, i1, b, b1);
-        }
-    }
-
-    @Override
-    public void processChamber(ItemStack itemStack, IReactor iReactor, int i, int i1, boolean b) {
-        if(type != NuclearRodTypes.ISOTOPE){
-            super.processChamber(itemStack, iReactor, i, i1, b);
-        }
-    }
-
-    @Override
-    public boolean acceptUraniumPulse(ItemStack stack, IReactor reactor, ItemStack pulsingStack, int youX, int youY, int pulseX, int pulseY, boolean heatrun) {
-        if (reactor instanceof IReactorPlanner) {
-            IReactorPlanner planner = (IReactorPlanner)reactor;
-            if (planner.isCollecting()) {
-                if (type == NuclearRodTypes.ISOTOPE){
-                    planner.addReEnrichPulse();
-                }else {
-                    planner.addFuelPulse();
-                }
-            }
-        }
-        IUranium uran = this.getUran();
-        int myLevel;
-        if (reactor instanceof ISteamReactor) {
-            if (heatrun && type == NuclearRodTypes.ISOTOPE) {
-                myLevel = this.getCustomDamage(stack) - 1 - reactor.getHeat() / 3000;
-                if (myLevel <= 0) {
-                    reactor.setItemAt(youX, youY, uran.getRodType(IUranium.RodType.ReEnrichedRod));
-                } else {
-                    this.setCustomDamage(stack, myLevel);
-                }
-            }
-            return true;
-        } else {
-            if (type == NuclearRodTypes.ISOTOPE){
-                myLevel = this.getCustomDamage(stack) - 1 - reactor.getHeat() / 3000;
-                if (myLevel <= 0) {
-                    reactor.setItemAt(youX, youY, uran.getRodType(IUranium.RodType.ReEnrichedRod));
-                } else {
-                    this.setCustomDamage(stack, myLevel);
-                }
-            }else {
-                if (!heatrun) {
-                    reactor.addOutput(uran.getEUPerPulse());
-                }
-            }
-
-
-            return true;
-        }
-    }
-
-    @Override
     public float influenceExplosion(ItemStack stack, IReactor reactor) {
-        if (type != NuclearRodTypes.ISOTOPE){
-            return this.getUran().getExplosionEffectModifier() * this.getRodAmount(type);
-        }
-        return 0.0f;
+        return this.getUranium(stack).getExplosionEffectModifier() * this.getRodAmount(type);
     }
 
     @Override
@@ -256,7 +147,7 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
 
     @Override
     public IUranium getUranium(int i) {
-        return this.getUran();
+        return this.getUran(variant);
     }
 
     public float getRodAmount(NuclearRodTypes type){
@@ -276,23 +167,12 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
         return 0;
     }
 
-    @Override
-    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-        if (this.isInCreativeTab(tab)){
-            if (type == NuclearRodTypes.ISOTOPE) {
-                items.add(this.getUran().getNewIsotopicRod());
-            }else {
-                items.add(new ItemStack(this));
-            }
-        }
 
-    }
 
     public static enum NuclearRodTypes {
         SINGLE("single"),
         DOUBLE("double"),
-        QUAD("quad"),
-        ISOTOPE("isotopic");
+        QUAD("quad");
 
         private String prefix;
 
