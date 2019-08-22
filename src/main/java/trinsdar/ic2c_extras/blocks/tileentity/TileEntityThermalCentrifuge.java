@@ -160,7 +160,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 
     @Override
     public boolean canWork() {
-        return heat == maxHeat && super.canWork();
+        return heat >= maxHeat && super.canWork();
     }
 
     @Override
