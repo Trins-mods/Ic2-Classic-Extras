@@ -122,7 +122,7 @@ public class Radiation {
 					if (!player.isCreative()) {
 						if (!isFullHazmatSuit(player) && !hasFullQuantumSuit(player)) {
 							if (hasRadiationItem(player)) {
-								player.addPotionEffect(new PotionEffect(IC2Potion.radiation, 1800, 0));
+								player.addPotionEffect(new PotionEffect(IC2Potion.radiation, 1800, 0, false, false));
 							}
 						}
 					}
