@@ -146,7 +146,7 @@ public class MachineRecipes {
                         FluidStack fluid = handler.drain(Integer.MAX_VALUE, true);
                         if (fluid != null){
                             ItemStack empty = handler.getContainer();
-                            if (empty !=null){
+                            if (!empty.isEmpty()){
                                 TileEntityFluidCanningMachine.addEmptyingRecipe(new RecipeInputItemStack(stack), empty, fluid);
                             }
                         }

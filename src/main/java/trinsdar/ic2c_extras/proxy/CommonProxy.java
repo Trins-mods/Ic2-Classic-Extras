@@ -19,22 +19,24 @@ public class CommonProxy
     {
         Registry.init();
         Registry.registerTiles();
+        if (!IC2.config.getFlag("NonRadiation")){
+            Ic2cExtrasOredict.init();
+        }
     }
 
     public void init()
     {
         if (!IC2.config.getFlag("NonRadiation")){
-            Ic2cExtrasOredict.init();
             Ic2cExtrasRecipes.init();
         }
     }
 
     public void postInit()
     {
-        if (Loader.isModLoaded("railcraft")){
-            RailcraftRecipes.initRailcraftRecipes();
-        }
         if (!IC2.config.getFlag("NonRadiation")){
+            if (Loader.isModLoaded("railcraft")){
+                RailcraftRecipes.initRailcraftRecipes();
+            }
             Ic2cExtrasRecipes.postInit();
         }
     }

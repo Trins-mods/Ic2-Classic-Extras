@@ -150,7 +150,7 @@ public class Radiation {
 						}
 					}
 					if (ticker > 0){
-						if (emptySlots < 4){
+						if (emptySlots < 6){
 							ticker -= 1;
 						}else {
 							ticker = 0;

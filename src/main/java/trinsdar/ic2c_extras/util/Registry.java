@@ -183,16 +183,16 @@ public class Registry
     gearingPress = new ItemMiscs("gearingPress", 5, "presses");
 
     public static final ItemDepeletedNuclearRods
-    nearDepletedUOXCell = new ItemDepeletedNuclearRods("nearDepletedUOXCell", RodLang.nearDepletedUOXCell, 15),
-    nearDepletedPlutoniumCell = new ItemDepeletedNuclearRods("nearDepletedPlutoniumCell", RodLang.nearDepletedPlutoniumCell,  16),
-    nearDepletedMOXCell = new ItemDepeletedNuclearRods("nearDepletedMOXCell", RodLang.nearDepletedMOXCell, 17),
-    nearDepletedThorium232Cell = new ItemDepeletedNuclearRods("nearDepletedThorium232Cell", RodLang.nearDepletedThorium232Cell, 18),
-    nearDepletedThorium230Cell= new ItemDepeletedNuclearRods("nearDepletedThorium230Cell", RodLang.nearDepletedThorium230Cell, 19),
-    reEnrichedUOXCell = new ItemDepeletedNuclearRods("reEnrichedUOXCell", RodLang.reEnrichedUOXCell, 25),
-    reEnrichedPlutoniumCell = new ItemDepeletedNuclearRods("reEnrichedPlutoniumCell", RodLang.reEnrichedPlutoniumCell, 26),
-    reEnrichedMOXCell = new ItemDepeletedNuclearRods("reEnrichedMOXCell", RodLang.reEnrichedMOXCell, 27),
-    reEnrichedThorium232Cell = new ItemDepeletedNuclearRods("reEnrichedThorium232Cell", RodLang.reEnrichedThorium232Cell, 28),
-    reEnrichedThorium230Cell= new ItemDepeletedNuclearRods("reEnrichedThorium230Cell", RodLang.reEnrichedThorium230Cell, 29);
+    nearDepletedUOXCell = new ItemDepeletedNuclearRods("nearDepletedUOXCell", 15),
+    nearDepletedPlutoniumCell = new ItemDepeletedNuclearRods("nearDepletedPlutoniumCell",  16),
+    nearDepletedMOXCell = new ItemDepeletedNuclearRods("nearDepletedMOXCell", 17),
+    nearDepletedThorium232Cell = new ItemDepeletedNuclearRods("nearDepletedThorium232Cell", 18),
+    nearDepletedThorium230Cell= new ItemDepeletedNuclearRods("nearDepletedThorium230Cell", 19),
+    reEnrichedUOXCell = new ItemDepeletedNuclearRods("reEnrichedUOXCell", 25),
+    reEnrichedPlutoniumCell = new ItemDepeletedNuclearRods("reEnrichedPlutoniumCell", 26),
+    reEnrichedMOXCell = new ItemDepeletedNuclearRods("reEnrichedMOXCell", 27),
+    reEnrichedThorium232Cell = new ItemDepeletedNuclearRods("reEnrichedThorium232Cell", 28),
+    reEnrichedThorium230Cell= new ItemDepeletedNuclearRods("reEnrichedThorium230Cell", 29);
     
     public static final ItemRTG plutoniumRTG = new ItemRTG("plutoniumRTG", 129600, 1);
     public static final ItemRTG thoriumRTG = new ItemRTG("thoriumRTG", 172800, 0);

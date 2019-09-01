@@ -61,7 +61,7 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
     @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite getTexture(int meta) {
-        return getUran(variant).getTexture(getRodType());
+        return getUran(variant).getTexture(getRodType(type));
     }
 
     @Override
@@ -71,12 +71,12 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
 
     @Override
     public IUranium getUranium(ItemStack stack) {
-        return this.getUran(variant);
+        return getUran(variant);
     }
 
     @Override
     public IUranium.RodType getRodType(ItemStack itemStack) {
-        return this.getRodType();
+        return this.getRodType(type);
     }
 
     @Override
@@ -91,20 +91,20 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
 
     @Override
     public ItemStack getReactorPart() {
-        return getUran(variant).getRodType(getRodType());
+        return getUran(variant).getRodType(getRodType(type));
     }
 
     @Override
     public short getID(ItemStack stack) {
-        return this.getUran(variant).getRodID(getRodType());
+        return this.getUran(variant).getRodID(getRodType(type));
     }
 
     @Override
     public IUranium.RodType getRodType(int metadata) {
-        return this.getRodType();
+        return this.getRodType(type);
     }
 
-    public IUranium.RodType getRodType(){
+    public IUranium.RodType getRodType(NuclearRodTypes type){
         if (type == NuclearRodTypes.SINGLE){
             return IUranium.RodType.SingleRod;
         }else if (type == NuclearRodTypes.DOUBLE){
@@ -128,16 +128,6 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
             return types[4];
         }
         return types[0];
-    }
-
-    @Override
-    public List<ReactorComponentStat> getExtraStats(ItemStack itemStack) {
-        return null;
-    }
-
-    @Override
-    public float influenceExplosion(ItemStack stack, IReactor reactor) {
-        return this.getUranium(stack).getExplosionEffectModifier() * this.getRodAmount(type);
     }
 
     @Override
