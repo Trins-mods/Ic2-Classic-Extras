@@ -93,11 +93,11 @@ public class Ic2cExtrasRecipes {
             CommonFilters.uranFilter = new BasicItemFilter(new ItemStack(Registry.doubleEnrichedUraniumIngot));
             macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
             macerator.addRecipe(new RecipeInputOreDict("oreUranium"), new ItemStack(Registry.uraniumCrushedOre,2), 1.0F, "uraniumOre");
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(Ic2Items.reactorReEnrichedUraniumRod)), 1500, 24000, new ItemStack(Registry.plutoniumTinyDust, 2), new ItemStack(Registry.thorium232TinyDust, 2), new ItemStack(Registry.uranium238SmallDust, 2));
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(Registry.reEnrichedThorium232Cell))), 1500, 24000, new ItemStack(Registry.thorium230TinyDust, 1), new ItemStack(Registry.thorium232TinyDust, 1));
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedUranium", 1)), 900, 12000, new ItemStack(Registry.uranium238, 10), new ItemStack(Registry.uranium235TinyDust, 4));
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), 1000, 16000, new ItemStack(Registry.uranium238, 6), new ItemStack(Registry.uranium235TinyDust, 1), stoneDust);
-            TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), 2000, new ItemStack(Registry.uraniumPurifiedCrushedOre, 1), new ItemStack(Registry.leadTinyDust, 2), stoneDust);
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(Ic2Items.reactorReEnrichedUraniumRod)), 1500, 12000, new ItemStack(Registry.plutoniumTinyDust, 2), new ItemStack(Registry.thorium232TinyDust, 2), new ItemStack(Registry.uranium238SmallDust, 2));
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(Registry.reEnrichedThorium232Cell))), 1500, 12000, new ItemStack(Registry.thorium230TinyDust, 1), new ItemStack(Registry.thorium232TinyDust, 1));
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedUranium", 1)), 900, 6000, new ItemStack(Registry.uranium238, 10), new ItemStack(Registry.uranium235TinyDust, 4));
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), 1000, 8000, new ItemStack(Registry.uranium238, 6), new ItemStack(Registry.uranium235TinyDust, 1), stoneDust);
+            TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), 1000, new ItemStack(Registry.uraniumPurifiedCrushedOre, 1), new ItemStack(Registry.leadTinyDust, 2), stoneDust);
             CraftingRecipes.recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.uraniumDrop, 1),
                     "UUU", "TTT", "UUU", 'U', "dustUranium238",'T', "dustTinyUranium235");
             CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.moxFuel),

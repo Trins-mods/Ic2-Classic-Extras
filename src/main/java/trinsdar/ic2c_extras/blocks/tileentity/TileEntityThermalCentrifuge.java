@@ -54,7 +54,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 
     public static final String neededHeat = "minHeat";
     public TileEntityThermalCentrifuge() {
-        super( 5, defaultEu, 400, 128);
+        super( 5, defaultEu, 200, 128);
         this.addGuiFields("heat", "maxHeat");
     }
 
@@ -239,8 +239,8 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         return output.getMetadata().getInteger(neededHeat);
     }
 
-    public static void addRecipe(IRecipeInput input, int hear,  ItemStack... output){
-        addRecipe(input, hear, 8000, output);
+    public static void addRecipe(IRecipeInput input, int heat,  ItemStack... output){
+        addRecipe(input, heat, 4000, output);
     }
 
     public static void addRecipe(IRecipeInput input, int hear, int totalEu,  ItemStack... output){
@@ -265,7 +265,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     }
 
     public static RecipeModifierHelpers.IRecipeModifier[] totalEu(int amount) {
-        return new RecipeModifierHelpers.IRecipeModifier[] { RecipeModifierHelpers.ModifierType.RECIPE_LENGTH.create((amount / defaultEu) - 400) };
+        return new RecipeModifierHelpers.IRecipeModifier[] { RecipeModifierHelpers.ModifierType.RECIPE_LENGTH.create((amount / defaultEu) - 200) };
     }
 
     public static void addRecipe(IRecipeInput input, MachineOutput output)
