@@ -71,15 +71,15 @@ public class Ic2cExtrasRecipes {
         CraftingRecipes.init();
         MachineRecipes.init();
         initHarderUraniumProcessing();
+        if (Ic2cExtrasRecipes.enableAutoFluidContainerRecipes){
+            MachineRecipes.initFluidFillingndEmptyingRecipes();
+        }
 //        if (Loader.isModLoaded("gtclassic")){
 //            GTCRecipes.init();
 //        }
     }
 
     public static void postInit(){
-        if (Ic2cExtrasRecipes.enableAutoFluidContainerRecipes){
-            MachineRecipes.initFluidFillingndEmptyingRecipes();
-        }
         MachineRecipes.initMetalBenderRecipes();
         MachineRecipes.postInit();
         initInputLists();
