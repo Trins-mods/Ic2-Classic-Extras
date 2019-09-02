@@ -94,6 +94,7 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
     public static int slotInput;
     public static int slotOutput;
     public AudioSource audioSource;
+    protected boolean shouldCheckRecipe;
 
     protected LinkedList<IStackOutput> outputs = new LinkedList<IStackOutput>();
 
@@ -109,6 +110,7 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
         defaultEnergyStorage = energyPerTick * maxProgress;
         defaultSensitive = false;
         progressPerTick = 1F;
+        shouldCheckRecipe = true;
         addNetworkFields("soundLevel", "redstoneInverted", "redstoneSensitive");
         addGuiFields("recipeOperation", "recipeEnergy", "progress");
         addInfos(new EnergyUsageInfo(this), new ProgressInfo(this));
@@ -119,9 +121,12 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
         handleRedstone();
         updateNeighbors();
         boolean noRoom = addToInventory();
-        FluidCanningRecipe recipe = getRecipe();
+        if (shouldCheckRecipe) {
+            lastRecipe = getRecipe();
+            shouldCheckRecipe = false;
+        }
         boolean canWork = canWork() && !noRoom;
-        boolean operate = (canWork && recipe != null);
+        boolean operate = (canWork && lastRecipe != null);
         if (operate) {
             handleChargeSlot(maxEnergy);
         }
@@ -133,7 +138,7 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
             progress += progressPerTick;
             useEnergy(recipeEnergy);
             if (progress >= recipeOperation) {
-                process(recipe);
+                process(lastRecipe);
                 progress = 0;
                 notifyNeighbors();
             }
@@ -146,7 +151,7 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
                     getNetwork().initiateTileEntityEvent(this, 2, false);
                 }
             }
-            if (recipe == null && progress != 0) {
+            if (lastRecipe == null && progress != 0) {
                 progress = 0;
                 getNetwork().updateTileGuiField(this, "progress");
             }
@@ -167,28 +172,28 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
         if (recipe.hasItemOutput()){
             for (ItemStack stack : recipe.getOutputs().getRecipeOutput(getWorld().rand, getTileData())) {
                 outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
+                IC2CExtras.logger.info(stack.getDisplayName());
             }
         }
+        IC2CExtras.logger.info(recipe.getRecipeID());
 
 
         IRecipeInput input = recipe.getInput();
         ItemStack stack = inventory.get(slotInput);
-        if (stack.getItem().hasContainerItem(stack)) {
-            inventory.set(slotInput, stack.getItem().getContainerItem(stack));
-        } else {
-            stack.shrink(input.getAmount());
-        }
+        stack.shrink(input.getAmount());
         this.inputTank.drain(recipe.getInputFluid(), true);
+        IC2CExtras.logger.info(recipe.getInputFluid().getLocalizedName());
         if (recipe.hasFluidOutput()){
             this.outputTank.fill(recipe.getOutputFluid(), true);
         }
         addToInventory();
         for (int i = 0; i < upgradeSlots; i++) {
-            ItemStack item = inventory.get(i + inventory.size() - upgradeSlots);
+            ItemStack item = inventory.get(i + inventory.size() - upgradeSlots).copy();
             if (item.getItem() instanceof IMachineUpgradeItem) {
                 ((IMachineUpgradeItem) item.getItem()).onProcessFinished(item, this);
             }
         }
+        shouldCheckRecipe = true;
     }
 
     protected FluidCanningRecipe getRecipe() {
@@ -222,14 +227,15 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
         if (lastRecipe == null) {
             return null;
         }
+        ItemStack outputSlot = inventory.get(slotOutput).copy();
         if (lastRecipe.hasItemOutput() && lastRecipe.hasFluidOutput()){
             if ((lastRecipe.getOutputFluid().isFluidEqual(outputTank.getFluid()) && outputTank.getFluidAmount() + lastRecipe.getOutputFluid().amount <= outputTank.getCapacity()) || outputTank.getFluidAmount() == 0){
                 if (getStackInSlot(slotOutput).isEmpty()){
                     return lastRecipe;
                 }
-                for (ItemStack output : lastRecipe.getOutputs().getAllOutputs()) {
-                    if (StackUtil.isStackEqual(inventory.get(slotOutput), output, false, true)) {
-                        if (inventory.get(slotOutput).getCount() + output.getCount() <= inventory.get(slotOutput)
+                for (ItemStack output : lastRecipe.getOutputs().copy().getAllOutputs()) {
+                    if (StackUtil.isStackEqual(outputSlot, output, false, true)) {
+                        if (outputSlot.getCount() + output.getCount() <= outputSlot
                                 .getMaxStackSize()) {
                             return lastRecipe;
                         }
@@ -241,9 +247,9 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
             if (getStackInSlot(slotOutput).isEmpty()){
                 return lastRecipe;
             }
-            for (ItemStack output : lastRecipe.getOutputs().getAllOutputs()) {
-                if (StackUtil.isStackEqual(inventory.get(slotOutput), output, false, true)) {
-                    if (inventory.get(slotOutput).getCount() + output.getCount() <= inventory.get(slotOutput)
+            for (ItemStack output : lastRecipe.getOutputs().copy().getAllOutputs()) {
+                if (StackUtil.isStackEqual(outputSlot, output, false, true)) {
+                    if (outputSlot.getCount() + output.getCount() <= outputSlot
                             .getMaxStackSize()) {
                         return lastRecipe;
                     }
@@ -276,6 +282,7 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
     @Override
     public void setStackInSlot(int slot, ItemStack stack) {
         super.setStackInSlot(slot, stack);
+        shouldCheckRecipe = true;
         if (isSimulating() && lastRecipe == FluidCanningRecipeList.INVALID_RECIPE && isRecipeSlot(slot)) {
             lastRecipe = null;
         }
@@ -328,10 +335,12 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
         if (isSimulating()) {
             setOverclockRates();
         }
+        shouldCheckRecipe = true;
     }
 
     public void setOverclockRates() {
         lastRecipe = null;
+        shouldCheckRecipe = true;
         int extraProcessSpeed = 0;
         double processingSpeedMultiplier = 1.0D;
         int extraProcessTime = 0;
@@ -404,10 +413,14 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
     }
 
     public boolean checkRecipe(FluidCanningRecipe entry) {
+        IC2CExtras.logger.info(entry.getRecipeID());
         if (entry.hasFluidInput()){
-            if (!entry.matches(inventory.get(slotInput), inputTank.getFluid()) && inputTank.getFluidAmount() < entry.getInputFluid().amount) {
+            IC2CExtras.logger.info("recipe has fluid input");
+            if (!entry.matches(inventory.get(slotInput)) || !entry.getInputFluid().isFluidEqual(inputTank.getFluid())) {
+                IC2CExtras.logger.info("recipe is invalid");
                 return false;
             }
+            if (inputTank.getFluidAmount() < entry.getInputFluid().amount) return false;
         }
         if (!entry.matches(inventory.get(slotInput))) {
             return false;

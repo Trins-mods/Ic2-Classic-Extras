@@ -2,6 +2,7 @@ package trinsdar.ic2c_extras.blocks.tileentity;
 
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.network.adv.NetworkField;
+import ic2.api.classic.recipe.RecipeModifierHelpers;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.IStackOutput;
 import ic2.api.recipe.IRecipeInput;
@@ -100,7 +101,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
     {
         this.getNetwork().updateTileGuiField(this, "inputTank");
         this.getNetwork().updateTileGuiField(this, "outputTank");
-        this.setStackInSlot(slotInput, inventory.get(slotInput));
+        this.shouldCheckRecipe = true;
     }
 
     @Override
@@ -231,17 +232,31 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
 
     public static void addFillingRecipe(IRecipeInput input, FluidStack inputFluid,  ItemStack output)
     {
-        addFillingRecipe(input, inputFluid,  new MachineOutput(null, output));
+        NBTTagCompound mods = new NBTTagCompound();
+        RecipeModifierHelpers.IRecipeModifier[] modifiers = totalEu(50);
+        for (RecipeModifierHelpers.IRecipeModifier modifier : modifiers) {
+            modifier.apply(mods);
+        }
+        addFillingRecipe(input, inputFluid,  new MachineOutput(mods, output));
     }
 
     public static void addEmptyingRecipe(IRecipeInput input, ItemStack output, FluidStack outputFluid)
     {
-        addEmptyingRecipe(input,  new MachineOutput(null, output), outputFluid);
+        NBTTagCompound mods = new NBTTagCompound();
+        RecipeModifierHelpers.IRecipeModifier[] modifiers = totalEu(50);
+        for (RecipeModifierHelpers.IRecipeModifier modifier : modifiers) {
+            modifier.apply(mods);
+        }
+        addEmptyingRecipe(input,  new MachineOutput(mods, output), outputFluid);
     }
 
     public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, ItemStack output, FluidStack outputFluid)
     {
         addEnrichingRecipe(input, inputFluid, new MachineOutput(null, output), outputFluid);
+    }
+
+    public static RecipeModifierHelpers.IRecipeModifier[] totalEu(int amount) {
+        return new RecipeModifierHelpers.IRecipeModifier[] { RecipeModifierHelpers.ModifierType.RECIPE_LENGTH.create((amount) - 400) };
     }
 
     public static void addFillingRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output)

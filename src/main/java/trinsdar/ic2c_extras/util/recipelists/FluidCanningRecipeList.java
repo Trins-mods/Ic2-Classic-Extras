@@ -6,8 +6,6 @@ import ic2.core.block.machine.recipes.managers.RecipeManager;
 import ic2.core.util.helpers.CompareableStack;
 import ic2.core.util.helpers.ItemWithMeta;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import trinsdar.ic2c_extras.IC2CExtras;
 
@@ -132,7 +130,7 @@ public class FluidCanningRecipeList {
     }
 
     public boolean isValidRecipeInput(ItemStack stack) {
-        IRecipeInput input = validInputs.get(new ItemWithMeta(stack));
+        IRecipeInput input = validInputs.get(new CompareableStack(stack));
         if (input == null) {
             return false;
         }
@@ -222,10 +220,6 @@ public class FluidCanningRecipeList {
 
         public FluidStack getOutputFluid() {
             return outputFluid;
-        }
-
-        public boolean matches(ItemStack stack, FluidStack fluid) {
-            return input == null ? stack.isEmpty() : (input.matches(stack) && input.getAmount() <= stack.getCount() && inputFluid.isFluidEqual(fluid));
         }
 
         public boolean matches(ItemStack stack) {
