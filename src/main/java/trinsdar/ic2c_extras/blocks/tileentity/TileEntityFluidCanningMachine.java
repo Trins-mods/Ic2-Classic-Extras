@@ -67,6 +67,7 @@ import java.util.function.Predicate;
 
 public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase implements ITankListener, IClickable {
     public static FluidCanningRecipeList fluidCanning = new FluidCanningRecipeList("fluidCanning");
+    public MachineFilter filter = new MachineFilter(this);
 
     public TileEntityFluidCanningMachine() {
         super(3, 4, 1, 400, 32);
@@ -127,7 +128,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
 
     @Override
     public IFilter[] getInputFilters(int[] slots) {
-        return new IFilter[]{new MachineFilter(this)};
+        return new IFilter[]{filter};
     }
 
     @Override

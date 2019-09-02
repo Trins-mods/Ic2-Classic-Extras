@@ -17,6 +17,7 @@ import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.ArrayFilter;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.CommonFilters;
+import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
@@ -26,6 +27,7 @@ import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.lang.storage.Ic2GuiLang;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.util.helpers.CompareableStack;
 import ic2.core.util.helpers.ItemWithMeta;
 import ic2.core.util.misc.FluidHelper;
 import ic2.core.util.misc.StackUtil;
@@ -79,6 +81,8 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     public static final int slotInputTank = 5;
     public static final int slotOutputTank = 6;
 
+    public IFilter filter = new MachineFilter(this);
+
     public TileEntityThermalWasher() {
         super(7, 16, 4000);
         this.waterTank.addListener(this);
@@ -96,13 +100,25 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
         handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutput, slotOutput2, slotOutput3);
         handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), slotInput);
         handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), slotFuel);
+        handler.registerInputFilter(filter, slotInput);
         handler.registerOutputFilter(CommonFilters.NotDischargeEU, slotFuel);
         handler.registerSlotType(SlotType.Fuel, slotFuel);
         handler.registerSlotType(SlotType.Input, slotInput, slotInputTank);
         handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2, slotOutput3, slotOutputTank);
     }
 
+    @Override
+    public boolean isValidInput(ItemStack par1) {
+        return super.isValidInput(par1) && isRecipeInputValid(par1);
+    }
 
+    public boolean isRecipeInputValid(ItemStack stack) {
+        IRecipeInput input = Ic2cExtrasRecipes.oreWashingPlantValidInputs.get(new CompareableStack(stack));
+        if (input == null) {
+            return false;
+        }
+        return input.matches(stack);
+    }
 
     @Override
     public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input) {
@@ -334,7 +350,7 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     @Override
     public IHasInventory getInputInventory()
     {
-        return new RangedInventoryWrapper(this, slotInput).setFilters(new MachineFilter(this));
+        return new RangedInventoryWrapper(this, slotInput).setFilters(filter);
     }
 
     public FluidStack getFluid()

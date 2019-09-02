@@ -23,6 +23,7 @@ public class ContainerInputRecipeList {
     protected List<ContainerInputRecipe> recipes = new ArrayList<ContainerInputRecipe>();
     protected Map<String, ContainerInputRecipe> recipeMap = new LinkedHashMap<String, ContainerInputRecipe>();
     protected Map<CompareableStack, IRecipeInput> validInputs = new LinkedHashMap<CompareableStack, IRecipeInput>();
+    protected List<ItemStack> validContainers = new ArrayList<>();
     String category;
 
     public ContainerInputRecipeList(String category) {
@@ -67,14 +68,25 @@ public class ContainerInputRecipeList {
     }
 
     public boolean isValidRecipeInput(ItemStack stack) {
-        IRecipeInput input = validInputs.get(new ItemWithMeta(stack));
+        IRecipeInput input = validInputs.get(new CompareableStack(stack));
         if (input == null) {
             return false;
         }
-        if (input.matches(stack)) {
-            return true;
+        return input.matches(stack);
+    }
+
+    public void generateContainerList(){
+        for (ContainerInputRecipe recipe : recipes){
+            if (validContainers.contains(recipe.getPress())){
+                continue;
+            }
+            validContainers.add(recipe.getPress());
         }
-        return false;
+    }
+
+    public boolean isValidRecipeContainer(ItemStack stack) {
+        IC2CExtras.logger.info(validContainers.contains(stack));
+        return validContainers.contains(stack);
     }
 
     public ContainerInputRecipe getRecipe(Predicate<ContainerInputRecipe> checker) {

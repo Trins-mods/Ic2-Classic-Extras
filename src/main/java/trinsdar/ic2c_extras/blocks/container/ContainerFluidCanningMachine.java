@@ -38,7 +38,7 @@ public class ContainerFluidCanningMachine extends ContainerTileComponent<TileEnt
     public ContainerFluidCanningMachine(InventoryPlayer player, TileEntityFluidCanningMachine tile)
     {
         super(tile);
-        this.addSlotToContainer(new SlotCustom(tile, 0, 44, 18, null));
+        this.addSlotToContainer(new SlotCustom(tile, 0, 44, 18, tile.filter));
         this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 1, 44, 54));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 94, 36));
         for(int i = 0; i < 4; ++i)

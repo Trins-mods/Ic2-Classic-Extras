@@ -24,6 +24,7 @@ import ic2.core.item.recipe.AdvRecipeBase;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.util.helpers.CompareableStack;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,6 +34,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.blocks.container.ContainerThermalCentrifuge;
+import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.GuiMachine.ThermalCentrifugeGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
@@ -85,6 +87,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     @Override
     protected void addSlots(InventoryHandler handler)
     {
+        this.filter = new MachineFilter(this);
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
         handler.registerDefaultSlotAccess(AccessRule.Import, slotInput);
@@ -100,9 +103,22 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
     }
 
     @Override
+    public boolean isValidInput(ItemStack par1) {
+        return super.isValidInput(par1) && isRecipeInputValid(par1);
+    }
+
+    public boolean isRecipeInputValid(ItemStack stack) {
+        IRecipeInput input = Ic2cExtrasRecipes.thermalCentrifugeValidInputs.get(new CompareableStack(stack));
+        if (input == null) {
+            return false;
+        }
+        return input.matches(stack);
+    }
+
+    @Override
     public IHasInventory getInputInventory()
     {
-        return new RangedInventoryWrapper(this, slotInput).setFilters(new MachineFilter(this));
+        return new RangedInventoryWrapper(this, slotInput).setFilters(filter);
     }
 
     @Override

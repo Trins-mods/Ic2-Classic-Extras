@@ -23,6 +23,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.blocks.container.ContainerMetalBender;
 import trinsdar.ic2c_extras.blocks.tileentity.base.TileEntityContainerInputBase;
+import trinsdar.ic2c_extras.util.guicomponent.MachineFilter2;
 import trinsdar.ic2c_extras.util.recipelists.ContainerInputRecipeList;
 import trinsdar.ic2c_extras.util.GuiMachine;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
@@ -35,6 +36,8 @@ import java.util.Set;
 public class TileEntityMetalBender extends TileEntityContainerInputBase {
 
     public static final ContainerInputRecipeList metalBender = new ContainerInputRecipeList("metalBender");
+    public MachineFilter filter = new MachineFilter(this);
+    public MachineFilter2 pressFilter = new MachineFilter2(this);
 
     public TileEntityMetalBender() {
         super(4, 2, 15, 4000, 128);
@@ -67,7 +70,7 @@ public class TileEntityMetalBender extends TileEntityContainerInputBase {
 
     @Override
     public IFilter[] getInputFilters(int[] slots) {
-        return new IFilter[]{new MachineFilter(this)};
+        return new IFilter[]{filter};
     }
 
     @Override

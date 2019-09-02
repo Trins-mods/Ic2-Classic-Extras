@@ -464,6 +464,10 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
         return getRecipeList().isValidRecipeInput(par1);
     }
 
+    public boolean isValidContainer(ItemStack par1) {
+        return getRecipeList().isValidRecipeContainer(par1);
+    }
+
     @Override
     public World getMachineWorld() {
         return getWorld();

@@ -24,6 +24,7 @@ import ic2.core.item.recipe.AdvRecipeBase;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.util.helpers.CompareableStack;
 import ic2.core.util.misc.FluidHelper;
 import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IClickable;
@@ -53,6 +54,7 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.blocks.container.ContainerOreWashingPlant;
+import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
@@ -118,6 +120,19 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input)
     {
         return oreWashingPlant.getRecipeInAndOutput(input, false);
+    }
+
+    @Override
+    public boolean isValidInput(ItemStack par1) {
+        return super.isValidInput(par1) && isRecipeInputValid(par1);
+    }
+
+    public boolean isRecipeInputValid(ItemStack stack) {
+        IRecipeInput input = Ic2cExtrasRecipes.oreWashingPlantValidInputs.get(new CompareableStack(stack));
+        if (input == null) {
+            return false;
+        }
+        return input.matches(stack);
     }
 
     @Override
@@ -282,7 +297,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     @Override
     public IHasInventory getInputInventory()
     {
-        return new RangedInventoryWrapper(this, slotInput).setFilters(new MachineFilter(this));
+        return new RangedInventoryWrapper(this, slotInput).setFilters(filter);
     }
 
     @Override

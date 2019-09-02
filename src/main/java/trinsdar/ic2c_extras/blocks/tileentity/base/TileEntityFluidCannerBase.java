@@ -172,17 +172,14 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
         if (recipe.hasItemOutput()){
             for (ItemStack stack : recipe.getOutputs().getRecipeOutput(getWorld().rand, getTileData())) {
                 outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
-                IC2CExtras.logger.info(stack.getDisplayName());
             }
         }
-        IC2CExtras.logger.info(recipe.getRecipeID());
 
 
         IRecipeInput input = recipe.getInput();
         ItemStack stack = inventory.get(slotInput);
         stack.shrink(input.getAmount());
         this.inputTank.drain(recipe.getInputFluid(), true);
-        IC2CExtras.logger.info(recipe.getInputFluid().getLocalizedName());
         if (recipe.hasFluidOutput()){
             this.outputTank.fill(recipe.getOutputFluid(), true);
         }
@@ -415,17 +412,12 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
     public boolean checkRecipe(FluidCanningRecipe entry) {
         IC2CExtras.logger.info(entry.getRecipeID());
         if (entry.hasFluidInput()){
-            IC2CExtras.logger.info("recipe has fluid input");
             if (!entry.matches(inventory.get(slotInput)) || !entry.getInputFluid().isFluidEqual(inputTank.getFluid())) {
-                IC2CExtras.logger.info("recipe is invalid");
                 return false;
             }
             if (inputTank.getFluidAmount() < entry.getInputFluid().amount) return false;
         }
-        if (!entry.matches(inventory.get(slotInput))) {
-            return false;
-        }
-        return true;
+        return entry.matches(inventory.get(slotInput));
     }
 
     public abstract int[] getInputSlots();

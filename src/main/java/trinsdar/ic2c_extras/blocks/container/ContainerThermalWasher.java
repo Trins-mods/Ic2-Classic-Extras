@@ -49,7 +49,7 @@ public class ContainerThermalWasher extends ContainerTileComponent<TileEntityThe
         IFilter[] filter = new IFilter[filters.size()];
         filter = filters.toArray(filter);
         this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 0, 56, 53));
-        this.addSlotToContainer(new SlotCustom(tile, 1, 56, 17, null));
+        this.addSlotToContainer(new SlotCustom(tile, 1, 56, 17, tile.filter));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 111, 17));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 111, 35));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 111, 53));

@@ -14,6 +14,7 @@ import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2States;
+import ic2.core.util.helpers.CompareableStack;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -29,9 +30,13 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalBender;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.util.Registry;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static ic2.api.classic.recipe.ClassicRecipes.macerator;
 
@@ -61,6 +66,8 @@ public class Ic2cExtrasRecipes {
     public static IMachineRecipeList cutting = new BasicMachineRecipeList("cutting");
     public static IMachineRecipeList oreWashingPlant = new BasicMachineRecipeList("oreWashingPlant");
     public static IMachineRecipeList thermalCentrifuge = new BasicMachineRecipeList("thermalCentrifuge");
+    public static Map<CompareableStack, IRecipeInput> thermalCentrifugeValidInputs = new LinkedHashMap<CompareableStack, IRecipeInput>();
+    public static Map<CompareableStack, IRecipeInput> oreWashingPlantValidInputs = new LinkedHashMap<CompareableStack, IRecipeInput>();
 
     public static String getRefinedIronCasing() {
         return IC2.config.getFlag("SteelRecipes") ? "casingSteel" : "casingRefinedIron";
@@ -81,10 +88,25 @@ public class Ic2cExtrasRecipes {
         }
         MachineRecipes.initMetalBenderRecipes();
         MachineRecipes.postInit();
+        initInputLists();
     }
 
-
-
+    public static void initInputLists(){
+        oreWashingPlantValidInputs.clear();
+        thermalCentrifugeValidInputs.clear();
+        for (IMachineRecipeList.RecipeEntry recipe : oreWashingPlant.getRecipeMap()) {
+            IRecipeInput input = recipe.getInput();
+            for (ItemStack stack : input.getInputs()){
+                oreWashingPlantValidInputs.put(new CompareableStack(stack), input);
+            }
+        }
+        for (IMachineRecipeList.RecipeEntry recipe : thermalCentrifuge.getRecipeMap()) {
+            IRecipeInput input = recipe.getInput();
+            for (ItemStack stack : input.getInputs()){
+                thermalCentrifugeValidInputs.put(new CompareableStack(stack), input);
+            }
+        }
+    }
 
     public static void initHarderUraniumProcessing(){
         ItemStack stoneDust = new ItemStack(Registry.stoneDust);

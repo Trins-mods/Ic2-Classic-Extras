@@ -19,7 +19,7 @@ public class ContainerMetalBender extends ContainerTileComponent<TileEntityMetal
     public ContainerMetalBender(InventoryPlayer player, TileEntityMetalBender tile)
     {
         super(tile);
-        this.addSlotToContainer(new SlotCustom(tile, 0, 47, 17, null));
+        this.addSlotToContainer(new SlotCustom(tile, 0, 47, 17, tile.filter));
         this.addSlotToContainer(new SlotCustom(tile, 1, 65, 17, null));
         this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 2, 56, 53));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 116, 35));
