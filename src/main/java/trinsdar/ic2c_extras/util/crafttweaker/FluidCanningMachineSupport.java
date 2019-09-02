@@ -9,6 +9,7 @@ import crafttweaker.api.minecraft.CraftTweakerMC;
 import ic2.api.recipe.IRecipeInput;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 import trinsdar.ic2c_extras.blocks.tileentity.TileEntityFluidCanningMachine;
@@ -19,13 +20,13 @@ import java.util.Locale;
 @ZenRegister
 public class FluidCanningMachineSupport {
     @ZenMethod
-    public static void addFillingRecipe(IItemStack output, IIngredient input, ILiquidStack inputFluid) {
-        CraftTweakerPlugin.apply(new FluidCannerFillingRecipeAction(CraftTweakerPlugin.of(input), CraftTweakerMC.getLiquidStack(inputFluid), CraftTweakerMC.getItemStack(output)));
+    public static void addFillingRecipe(IItemStack output, IIngredient input, ILiquidStack inputFluid, @Optional(valueLong = 50L)int totalEu) {
+        CraftTweakerPlugin.apply(new FluidCannerFillingRecipeAction(CraftTweakerPlugin.of(input), CraftTweakerMC.getLiquidStack(inputFluid), CraftTweakerMC.getItemStack(output), totalEu));
     }
 
     @ZenMethod
-    public static void addEmptyingRecipe(IItemStack output, ILiquidStack outputFluid, IIngredient input) {
-        CraftTweakerPlugin.apply(new FluidCannerEmptyingRecipeAction(CraftTweakerPlugin.of(input), CraftTweakerMC.getItemStack(output), CraftTweakerMC.getLiquidStack(outputFluid)));
+    public static void addEmptyingRecipe(IItemStack output, ILiquidStack outputFluid, IIngredient input, @Optional(valueLong = 50L)int totalEu) {
+        CraftTweakerPlugin.apply(new FluidCannerEmptyingRecipeAction(CraftTweakerPlugin.of(input), CraftTweakerMC.getItemStack(output), CraftTweakerMC.getLiquidStack(outputFluid), totalEu));
     }
 
     @ZenMethod
@@ -43,16 +44,18 @@ public class FluidCanningMachineSupport {
         private final IRecipeInput input;
         private final FluidStack inputFluid;
         private final ItemStack output;
+        private final int totalEu;
 
-        FluidCannerFillingRecipeAction(IRecipeInput input, FluidStack inputFluid, ItemStack output) {
+        FluidCannerFillingRecipeAction(IRecipeInput input, FluidStack inputFluid, ItemStack output, int totalEu) {
             this.input = input;
             this.inputFluid = inputFluid;
             this.output = output;
+            this.totalEu = totalEu;
         }
 
         @Override
         public void apply() {
-            TileEntityFluidCanningMachine.addFillingRecipe(this.input, this.inputFluid, this.output);
+            TileEntityFluidCanningMachine.addFillingRecipe(this.input, this.inputFluid, this.output, this.totalEu);
         }
 
         @Override
@@ -66,16 +69,18 @@ public class FluidCanningMachineSupport {
         private final IRecipeInput input;
         private final FluidStack outputFluid;
         private final ItemStack output;
+        private final int totalEu;
 
-        FluidCannerEmptyingRecipeAction(IRecipeInput input, ItemStack output, FluidStack outputFluid) {
+        FluidCannerEmptyingRecipeAction(IRecipeInput input, ItemStack output, FluidStack outputFluid, int totalEu) {
             this.input = input;
             this.outputFluid = outputFluid;
             this.output = output;
+            this.totalEu = totalEu;
         }
 
         @Override
         public void apply() {
-            TileEntityFluidCanningMachine.addEmptyingRecipe(this.input, this.output, this.outputFluid);
+            TileEntityFluidCanningMachine.addEmptyingRecipe(this.input, this.output, this.outputFluid, this.totalEu);
         }
 
         @Override

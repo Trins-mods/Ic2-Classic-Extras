@@ -3,6 +3,7 @@ package trinsdar.ic2c_extras.blocks.tileentity;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.RecipeModifierHelpers;
+import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
 import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.api.classic.tile.IStackOutput;
 import ic2.api.recipe.IRecipeInput;
@@ -232,22 +233,22 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
 
     public static void addFillingRecipe(IRecipeInput input, FluidStack inputFluid,  ItemStack output)
     {
-        NBTTagCompound mods = new NBTTagCompound();
-        RecipeModifierHelpers.IRecipeModifier[] modifiers = totalEu(50);
-        for (RecipeModifierHelpers.IRecipeModifier modifier : modifiers) {
-            modifier.apply(mods);
-        }
-        addFillingRecipe(input, inputFluid,  new MachineOutput(mods, output));
+        addFillingRecipe(input, inputFluid,  output, 50);
     }
 
     public static void addEmptyingRecipe(IRecipeInput input, ItemStack output, FluidStack outputFluid)
     {
-        NBTTagCompound mods = new NBTTagCompound();
-        RecipeModifierHelpers.IRecipeModifier[] modifiers = totalEu(50);
-        for (RecipeModifierHelpers.IRecipeModifier modifier : modifiers) {
-            modifier.apply(mods);
-        }
-        addEmptyingRecipe(input,  new MachineOutput(mods, output), outputFluid);
+        addEmptyingRecipe(input,  output, outputFluid, 50);
+    }
+
+    public static void addFillingRecipe(IRecipeInput input, FluidStack inputFluid,  ItemStack output, int totalEu)
+    {
+        addFillingRecipe(input, inputFluid,  output, totalEu(totalEu));
+    }
+
+    public static void addEmptyingRecipe(IRecipeInput input, ItemStack output, FluidStack outputFluid, int totalEu)
+    {
+        addEmptyingRecipe(input,  output, outputFluid, totalEu(totalEu));
     }
 
     public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, ItemStack output, FluidStack outputFluid)
@@ -255,28 +256,36 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
         addEnrichingRecipe(input, inputFluid, new MachineOutput(null, output), outputFluid);
     }
 
-    public static RecipeModifierHelpers.IRecipeModifier[] totalEu(int amount) {
-        return new RecipeModifierHelpers.IRecipeModifier[] { RecipeModifierHelpers.ModifierType.RECIPE_LENGTH.create((amount) - 400) };
+    public static IRecipeModifier[] totalEu(int amount) {
+        return new IRecipeModifier[] { RecipeModifierHelpers.ModifierType.RECIPE_LENGTH.create((amount) - 400) };
     }
 
-    public static void addFillingRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output)
+    public static void addFillingRecipe(IRecipeInput input, FluidStack inputFluid, ItemStack output, IRecipeModifier[] modifiers)
     {
-        fluidCanning.addFillingRecipe(input, inputFluid,  output, AdvRecipeBase.getRecipeID(Arrays.asList(input), Arrays.asList(output), "filling_" + output.getAllOutputs().get(0).getUnlocalizedName()));
+        NBTTagCompound mods = new NBTTagCompound();
+        for (IRecipeModifier modifier : modifiers) {
+            modifier.apply(mods);
+        }
+        fluidCanning.addFillingRecipe(input, inputFluid,  new MachineOutput(mods, output), "filling_" + output.getUnlocalizedName());
     }
 
-    public static void addEmptyingRecipe(IRecipeInput input, MachineOutput output,  FluidStack outputFluid)
+    public static void addEmptyingRecipe(IRecipeInput input, ItemStack output,  FluidStack outputFluid, IRecipeModifier[] modifiers)
     {
-        fluidCanning.addEmptyingRecipe(input, output, outputFluid, AdvRecipeBase.getRecipeID(Arrays.asList(input), Arrays.asList(output), "emptying_" + output.getAllOutputs().get(0).getUnlocalizedName()));
+        NBTTagCompound mods = new NBTTagCompound();
+        for (IRecipeModifier modifier : modifiers) {
+            modifier.apply(mods);
+        }
+        fluidCanning.addEmptyingRecipe(input, new MachineOutput(mods, output), outputFluid, "emptying_" + output.getUnlocalizedName());
     }
 
     public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output, FluidStack outputFluid)
     {
-        fluidCanning.addEnrichingRecipe(input, inputFluid, output, outputFluid, AdvRecipeBase.getRecipeID(Arrays.asList(input), Arrays.asList(output), "enriching_" + output.getAllOutputs().get(0).getUnlocalizedName()));
+        fluidCanning.addEnrichingRecipe(input, inputFluid, output, outputFluid, "enriching_" + output.getAllOutputs().get(0).getUnlocalizedName());
     }
 
     public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, FluidStack outputFluid)
     {
-        fluidCanning.addEnrichingRecipe(input, inputFluid, outputFluid, AdvRecipeBase.getRecipeID(Arrays.asList(input), Arrays.asList(outputFluid), "enriching_" + outputFluid.getFluid().getUnlocalizedName()));
+        fluidCanning.addEnrichingRecipe(input, inputFluid, outputFluid, "enriching_" + outputFluid.getFluid().getUnlocalizedName());
     }
 
     @Override
