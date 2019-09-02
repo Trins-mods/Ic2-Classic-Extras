@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.blocks.tileentity;
+package trinsdar.ic2c_extras.tileentity;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.tile.MachineType;
@@ -117,6 +117,6 @@ public class TileEntityExtruder extends TileEntityBasicElectricMachine {
     }
 
     public static void addRecipe(IRecipeInput input, ItemStack output, float exp) {
-        extruding.addRecipe(input, output, exp, AdvRecipeBase.getRecipeID(Arrays.asList(input), Arrays.asList(output), output.getUnlocalizedName()));
+        extruding.addRecipe(input, output, exp, output.getUnlocalizedName());
     }
 }

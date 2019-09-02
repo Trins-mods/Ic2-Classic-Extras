@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.blocks.tileentity;
+package trinsdar.ic2c_extras.tileentity;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.tile.MachineType;
@@ -16,30 +16,29 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.util.GuiMachine.ExtruderGui;
+import trinsdar.ic2c_extras.util.GuiMachine.CutterGui;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
-public class TileEntityLiquescentExtruder extends TileEntityAdvancedMachine {
-    public TileEntityLiquescentExtruder() {
+public class TileEntityPlasmaCutter extends TileEntityAdvancedMachine {
+    public TileEntityPlasmaCutter() {
         super(4, 30, 4000);
     }
 
     @Override
     public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input) {
-        return Ic2cExtrasRecipes.extruding.getRecipeInAndOutput(input, false);
+        return Ic2cExtrasRecipes.cutting.getRecipeInAndOutput(input, false);
+    }
+
+    @Override
+    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
+        return CutterGui.class;
     }
 
     @Override
     public int[] getOutputSlots() {
         return new int[]{2, 3};
-    }
-
-    @Override
-    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
-    {
-        return ExtruderGui.class;
     }
 
     @Override
@@ -49,7 +48,7 @@ public class TileEntityLiquescentExtruder extends TileEntityAdvancedMachine {
 
     @Override
     public ResourceLocation getTexture() {
-        return Ic2cExtrasResourceLocations.liquescentExtruder;
+        return Ic2cExtrasResourceLocations.plasmaCutter;
     }
 
     @Override
@@ -59,12 +58,12 @@ public class TileEntityLiquescentExtruder extends TileEntityAdvancedMachine {
 
     @Override
     public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.liquescentExtruder;
+        return Ic2cExtrasLang.plasmaCutter;
     }
 
     @Override
     public IMachineRecipeList getRecipeList() {
-        return Ic2cExtrasRecipes.extruding;
+        return Ic2cExtrasRecipes.cutting;
     }
 
     @Override

@@ -3,9 +3,9 @@ package trinsdar.ic2c_extras.util.guicomponent;
 import ic2.api.classic.tile.IMachine;
 import ic2.core.IC2;
 import ic2.core.inventory.slots.SlotUpgrade;
-import trinsdar.ic2c_extras.blocks.tileentity.TileEntityTreeTapper;
-import trinsdar.ic2c_extras.blocks.tileentity.base.TileEntityContainerInputBase;
-import trinsdar.ic2c_extras.blocks.tileentity.base.TileEntityFluidCannerBase;
+import trinsdar.ic2c_extras.tileentity.TileEntityTreeTapper;
+import trinsdar.ic2c_extras.tileentity.base.TileEntityContainerInputBase;
+import trinsdar.ic2c_extras.tileentity.base.TileEntityFluidCannerBase;
 
 public class SlotUpgrade2 extends SlotUpgrade {
     public SlotUpgrade2(IMachine par1, int par2, int par3, int par4) {

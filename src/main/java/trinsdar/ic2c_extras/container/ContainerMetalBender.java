@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.blocks.container;
+package trinsdar.ic2c_extras.container;
 
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.components.base.MachineChargeComp;
@@ -12,7 +12,7 @@ import ic2.core.platform.registry.Ic2GuiComp;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalBender;
+import trinsdar.ic2c_extras.tileentity.TileEntityMetalBender;
 import trinsdar.ic2c_extras.util.guicomponent.SlotUpgrade2;
 
 public class ContainerMetalBender extends ContainerTileComponent<TileEntityMetalBender> {

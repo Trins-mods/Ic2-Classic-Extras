@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.blocks.tileentity.base;
+package trinsdar.ic2c_extras.tileentity.base;
 
 import ic2.api.classic.audio.PositionSpec;
 import ic2.api.classic.item.IMachineUpgradeItem;

@@ -12,7 +12,7 @@ import net.minecraftforge.fluids.FluidStack;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
-import trinsdar.ic2c_extras.blocks.tileentity.TileEntityFluidCanningMachine;
+import trinsdar.ic2c_extras.tileentity.TileEntityFluidCanningMachine;
 
 import java.util.Locale;
 

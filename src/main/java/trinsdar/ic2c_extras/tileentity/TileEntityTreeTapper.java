@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.blocks.tileentity;
+package trinsdar.ic2c_extras.tileentity;
 
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.tile.IMachine;
@@ -21,7 +21,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import trinsdar.ic2c_extras.blocks.container.ContainerTreeTapper;
+import trinsdar.ic2c_extras.container.ContainerTreeTapper;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 

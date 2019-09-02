@@ -1,6 +1,5 @@
-package trinsdar.ic2c_extras.blocks.tileentity;
+package trinsdar.ic2c_extras.tileentity;
 
-import ic2.api.item.ElectricItem;
 import ic2.core.block.base.tile.TileEntityGeneratorBase;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.BasicItemFilter;
@@ -8,11 +7,10 @@ import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2GuiComp;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
-import mezz.jei.api.JEIPlugin;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.blocks.container.ContainerThermoElectricGenerator;
+import trinsdar.ic2c_extras.container.ContainerThermoElectricGenerator;
 import trinsdar.ic2c_extras.items.ItemRTG;
 import trinsdar.ic2c_extras.util.Registry;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;

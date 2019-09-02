@@ -1,33 +1,19 @@
-package trinsdar.ic2c_extras.blocks.container;
+package trinsdar.ic2c_extras.container;
 
 import ic2.core.inventory.container.ContainerTileComponent;
-import ic2.core.inventory.filters.ArrayFilter;
-import ic2.core.inventory.filters.BasicItemFilter;
-import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.gui.components.base.FluidTankComp;
 import ic2.core.inventory.gui.components.base.MachineChargeComp;
 import ic2.core.inventory.gui.components.base.MachineProgressComp;
 import ic2.core.inventory.slots.SlotCustom;
 import ic2.core.inventory.slots.SlotDischarge;
 import ic2.core.inventory.slots.SlotOutput;
-import ic2.core.inventory.slots.SlotUpgrade;
-import ic2.core.platform.registry.Ic2GuiComp;
-import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.Loader;
-import trinsdar.ic2c_extras.blocks.tileentity.TileEntityFluidCanningMachine;
-import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
-import trinsdar.ic2c_extras.blocks.tileentity.base.TileEntityFluidCannerBase;
+import trinsdar.ic2c_extras.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.util.guicomponent.SlotUpgrade2;
-
-import java.util.Arrays;
 
 public class ContainerFluidCanningMachine extends ContainerTileComponent<TileEntityFluidCanningMachine> {
     public static Vec2i tankOverlay = new Vec2i(176, 133);

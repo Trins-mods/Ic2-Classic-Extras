@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.blocks.tileentity;
+package trinsdar.ic2c_extras.tileentity;
 
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
@@ -20,7 +20,6 @@ import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
-import ic2.core.item.recipe.AdvRecipeBase;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
@@ -38,9 +37,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -52,15 +49,13 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.relauncher.Side;
-import trinsdar.ic2c_extras.IC2CExtras;
-import trinsdar.ic2c_extras.blocks.container.ContainerOreWashingPlant;
+import trinsdar.ic2c_extras.container.ContainerOreWashingPlant;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.List;
 
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.oreWashingPlant;
@@ -372,7 +367,12 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
     public static void addRecipe(IRecipeInput input, int water, ItemStack... output)
     {
-        oreWashingPlant.addRecipe(input, new MachineOutput(createNeededWater(water), output), AdvRecipeBase.getRecipeID(Arrays.asList(input), Arrays.asList(output), input.getInputs().get(0).getUnlocalizedName()));
+        addRecipe(input, new MachineOutput(createNeededWater(water), output));
+    }
+
+    public static void addRecipe(IRecipeInput input, MachineOutput output)
+    {
+        oreWashingPlant.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName());
     }
 
     @Override

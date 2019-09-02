@@ -1,7 +1,6 @@
 package trinsdar.ic2c_extras.util.jei;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
-import ic2.core.platform.registry.Ic2Formatters;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
@@ -9,8 +8,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import trinsdar.ic2c_extras.blocks.tileentity.TileEntityOreWashingPlant;
-import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
+import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
 
 import java.awt.Color;
 import java.util.ArrayList;

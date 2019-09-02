@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.blocks.tileentity;
+package trinsdar.ic2c_extras.tileentity;
 
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.RecipeModifierHelpers;
@@ -20,7 +20,6 @@ import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
 import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
-import ic2.core.item.recipe.AdvRecipeBase;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Sounds;
@@ -33,14 +32,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.blocks.container.ContainerThermalCentrifuge;
+import trinsdar.ic2c_extras.container.ContainerThermalCentrifuge;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.GuiMachine.ThermalCentrifugeGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.thermalCentrifuge;
@@ -286,7 +284,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
 
     public static void addRecipe(IRecipeInput input, MachineOutput output)
     {
-        thermalCentrifuge.addRecipe(input, output, input.getInputs().get(0).getUnlocalizedName());
+        thermalCentrifuge.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName());
     }
 
 }

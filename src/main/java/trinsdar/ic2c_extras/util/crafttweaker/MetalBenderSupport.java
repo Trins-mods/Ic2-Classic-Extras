@@ -5,12 +5,11 @@ import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
-import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.recipe.IRecipeInput;
 import net.minecraft.item.ItemStack;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
-import trinsdar.ic2c_extras.blocks.tileentity.TileEntityMetalBender;
+import trinsdar.ic2c_extras.tileentity.TileEntityMetalBender;
 
 import java.util.Locale;
 

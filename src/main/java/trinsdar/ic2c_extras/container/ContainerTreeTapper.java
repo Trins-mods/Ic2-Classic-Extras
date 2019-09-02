@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.blocks.container;
+package trinsdar.ic2c_extras.container;
 
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.components.base.MachineChargeComp;
@@ -10,7 +10,7 @@ import ic2.core.util.misc.StackUtil;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.blocks.tileentity.TileEntityTreeTapper;
+import trinsdar.ic2c_extras.tileentity.TileEntityTreeTapper;
 
 import javax.annotation.Nullable;
 

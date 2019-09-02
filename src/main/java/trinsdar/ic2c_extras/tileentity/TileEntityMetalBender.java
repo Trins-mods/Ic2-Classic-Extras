@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.blocks.tileentity;
+package trinsdar.ic2c_extras.tileentity;
 
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.recipe.machine.MachineOutput;
@@ -13,7 +13,6 @@ import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
 import ic2.core.inventory.management.SlotType;
-import ic2.core.item.recipe.AdvRecipeBase;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.client.gui.GuiScreen;
@@ -21,8 +20,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.blocks.container.ContainerMetalBender;
-import trinsdar.ic2c_extras.blocks.tileentity.base.TileEntityContainerInputBase;
+import trinsdar.ic2c_extras.container.ContainerMetalBender;
+import trinsdar.ic2c_extras.tileentity.base.TileEntityContainerInputBase;
 import trinsdar.ic2c_extras.util.guicomponent.MachineFilter2;
 import trinsdar.ic2c_extras.util.recipelists.ContainerInputRecipeList;
 import trinsdar.ic2c_extras.util.GuiMachine;
@@ -129,6 +128,6 @@ public class TileEntityMetalBender extends TileEntityContainerInputBase {
 
     public static void addRecipe(IRecipeInput input, ItemStack press, MachineOutput output)
     {
-        metalBender.addRecipe(input, press, output, AdvRecipeBase.getRecipeID(Arrays.asList(input), Arrays.asList(output), output.getAllOutputs().get(0).getUnlocalizedName()));
+        metalBender.addRecipe(input, press, output, output.getAllOutputs().get(0).getUnlocalizedName());
     }
 }

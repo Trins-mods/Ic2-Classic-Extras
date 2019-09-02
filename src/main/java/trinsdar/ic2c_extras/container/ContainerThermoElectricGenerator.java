@@ -1,12 +1,11 @@
-package trinsdar.ic2c_extras.blocks.container;
+package trinsdar.ic2c_extras.container;
 
-import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.components.base.GeneratorChargeComp;
 import ic2.core.inventory.slots.SlotCustom;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.blocks.tileentity.TileEntityThermoElectricGenerator;
+import trinsdar.ic2c_extras.tileentity.TileEntityThermoElectricGenerator;
 
 public class ContainerThermoElectricGenerator extends ContainerTileComponent<TileEntityThermoElectricGenerator> {
     public ContainerThermoElectricGenerator(InventoryPlayer player, TileEntityThermoElectricGenerator tile) {
