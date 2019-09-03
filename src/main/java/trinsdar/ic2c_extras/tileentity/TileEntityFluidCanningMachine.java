@@ -247,7 +247,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
         for (IRecipeModifier modifier : modifiers) {
             modifier.apply(mods);
         }
-        fluidCanning.addFillingRecipe(input, inputFluid,  new MachineOutput(mods, output), "filling_" + output.getUnlocalizedName());
+        fluidCanning.addFillingRecipe(input, inputFluid,  new MachineOutput(mods, output), "filling_" + output.getUnlocalizedName() + "_" + inputFluid.getUnlocalizedName());
     }
 
     public static void addEmptyingRecipe(IRecipeInput input, ItemStack output,  FluidStack outputFluid, IRecipeModifier[] modifiers)
@@ -256,7 +256,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
         for (IRecipeModifier modifier : modifiers) {
             modifier.apply(mods);
         }
-        fluidCanning.addEmptyingRecipe(input, new MachineOutput(mods, output), outputFluid, "emptying_" + output.getUnlocalizedName());
+        fluidCanning.addEmptyingRecipe(input, new MachineOutput(mods, output), outputFluid, "emptying_" + output.getUnlocalizedName() + "_" + outputFluid.getUnlocalizedName());
     }
 
     public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output, FluidStack outputFluid)
