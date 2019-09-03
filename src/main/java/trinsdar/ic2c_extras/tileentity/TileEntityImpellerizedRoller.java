@@ -2,6 +2,7 @@ package trinsdar.ic2c_extras.tileentity;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.tile.MachineType;
+import ic2.api.recipe.IRecipeInput;
 import ic2.core.block.base.tile.TileEntityAdvancedMachine;
 import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.slots.SlotCustom;
@@ -10,6 +11,7 @@ import ic2.core.inventory.slots.SlotOutput;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.lang.storage.Ic2GuiLang;
 import ic2.core.platform.registry.Ic2Sounds;
+import ic2.core.util.helpers.CompareableStack;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -46,6 +48,19 @@ public class TileEntityImpellerizedRoller extends TileEntityAdvancedMachine {
     public Slot[] getInventorySlots(InventoryPlayer player) {
         Slot[] slots = new Slot[]{new SlotDischarge(this, 2147483647, 0, 56, 53), new SlotCustom(this, 1, 56, 17, new MachineFilter(this)), new SlotOutput(player.player, this, 2, 113, 35), new SlotOutput(player.player, this, 3, 131, 35)};
         return slots;
+    }
+
+    @Override
+    public boolean isValidInput(ItemStack par1) {
+        return super.isValidInput(par1) && isRecipeInputValid(par1);
+    }
+
+    public boolean isRecipeInputValid(ItemStack stack) {
+        IRecipeInput input = Ic2cExtrasRecipes.rollerValidInputs.get(new CompareableStack(stack));
+        if (input == null) {
+            return false;
+        }
+        return input.matches(stack);
     }
 
     @Override

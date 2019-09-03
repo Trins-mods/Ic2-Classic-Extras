@@ -62,6 +62,9 @@ public class Ic2cExtrasRecipes {
     public static IMachineRecipeList thermalCentrifuge = new BasicMachineRecipeList("thermalCentrifuge");
     public static Map<CompareableStack, IRecipeInput> thermalCentrifugeValidInputs = new LinkedHashMap<CompareableStack, IRecipeInput>();
     public static Map<CompareableStack, IRecipeInput> oreWashingPlantValidInputs = new LinkedHashMap<CompareableStack, IRecipeInput>();
+    public static Map<CompareableStack, IRecipeInput> rollerValidInputs = new LinkedHashMap<CompareableStack, IRecipeInput>();
+    public static Map<CompareableStack, IRecipeInput> extruderValidInputs = new LinkedHashMap<CompareableStack, IRecipeInput>();
+    public static Map<CompareableStack, IRecipeInput> cutterValidInputs = new LinkedHashMap<CompareableStack, IRecipeInput>();
 
     public static String getRefinedIronCasing() {
         return IC2.config.getFlag("SteelRecipes") ? "casingSteel" : "casingRefinedIron";
@@ -88,6 +91,9 @@ public class Ic2cExtrasRecipes {
     public static void initInputLists(){
         oreWashingPlantValidInputs.clear();
         thermalCentrifugeValidInputs.clear();
+        rollerValidInputs.clear();
+        extruderValidInputs.clear();
+        cutterValidInputs.clear();
         for (IMachineRecipeList.RecipeEntry recipe : oreWashingPlant.getRecipeMap()) {
             IRecipeInput input = recipe.getInput();
             for (ItemStack stack : input.getInputs()){
@@ -98,6 +104,24 @@ public class Ic2cExtrasRecipes {
             IRecipeInput input = recipe.getInput();
             for (ItemStack stack : input.getInputs()){
                 thermalCentrifugeValidInputs.put(new CompareableStack(stack), input);
+            }
+        }
+        for (IMachineRecipeList.RecipeEntry recipe : rolling.getRecipeMap()) {
+            IRecipeInput input = recipe.getInput();
+            for (ItemStack stack : input.getInputs()){
+                rollerValidInputs.put(new CompareableStack(stack), input);
+            }
+        }
+        for (IMachineRecipeList.RecipeEntry recipe : extruding.getRecipeMap()) {
+            IRecipeInput input = recipe.getInput();
+            for (ItemStack stack : input.getInputs()){
+                extruderValidInputs.put(new CompareableStack(stack), input);
+            }
+        }
+        for (IMachineRecipeList.RecipeEntry recipe : cutting.getRecipeMap()) {
+            IRecipeInput input = recipe.getInput();
+            for (ItemStack stack : input.getInputs()){
+                cutterValidInputs.put(new CompareableStack(stack), input);
             }
         }
     }
