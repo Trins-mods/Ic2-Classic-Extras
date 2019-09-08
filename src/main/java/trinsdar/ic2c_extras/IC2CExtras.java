@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import org.apache.logging.log4j.Logger;
 import trinsdar.ic2c_extras.blocks.CropPlumbilia;
 import trinsdar.ic2c_extras.proxy.CommonProxy;
@@ -55,7 +56,7 @@ public class IC2CExtras
     }
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent fmlInitializationEvent)
+    public void init(FMLInitializationEvent event)
     {
         proxy.init();
         MinecraftForge.EVENT_BUS.register(new Ic2cExtrasRecipes());
@@ -63,9 +64,10 @@ public class IC2CExtras
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent fmlPostInitializationEvent)
+    public void postInit(FMLPostInitializationEvent event)
     {
         proxy.postInit();
+        IC2.getInstance().saveRecipeInfo(IC2.configFolder);
     }
 
 
