@@ -66,9 +66,9 @@ public class MachineRecipes {
         plateBlacklist.addAll(Arrays.asList("plateIron", "plateGold", "plateSilver", "plateLead", "plateCopper", "plateTin", "plateRefinedIron", "plateSteel", "plateBronze"));
         ingotBlacklist.addAll(Arrays.asList("ingotIron", "ingotGold", "ingotSilver", "ingotLead", "ingotCopper", "ingotTin", "ingotRefinedIron", "ingotSteel", "ingotBronze"));
         gemBlacklist.addAll(Arrays.asList("ingotDiamond", "ingotEmerald", "ingotQuartz", "ingotIridium", "ingotCoal", "ingotRedstone"));
-//        if (Loader.isModLoaded("gtclassic")){
-//            ingotGTBlacklist.addAll(Arrays.asList("ingotGermanium", "ingotTungsten", "ingotInvar", "ingotZinc", "ingotManganese", "ingotMagnalium", "ingotBismuthBronze", "ingotElectrum", "ingotConstantan", "ingotAluminum", "ingotAluminium", "ingotGraphite", "ingotPlatinum", "ingotChrome", "ingotBrass", "ingotPlutonium", "ingotStainlessSteel", "ingotTungstensteel", "ingotTitanium", "ingotNickel", "ingotOsmium", "ingotNichrome", "ingotTantalum", "ingotBismuthr"));
-//        }
+        if (Loader.isModLoaded("gtc_expansion")){
+            ingotGTBlacklist.addAll(Arrays.asList("ingotTungsten", "ingotInvar", "ingotZinc", "ingotManganese", "ingotMagnalium", "ingotElectrum", "ingotConstantan", "ingotAluminum", "ingotAluminium", "ingotPlatinum", "ingotChrome", "ingotBrass", "ingotPlutonium", "ingotStainlessSteel", "ingotTungstensteel", "ingotTitanium", "ingotNickel", "ingotOsmium", "ingotNichrome"));
+        }
         if (Loader.isModLoaded("basemetals")){
             plateBlacklist.addAll(Arrays.asList("plateAdamantine", "plateAntimony", "plateBismuth", "plateColdiron", "plateNickel", "platePlatinum", "plateStarsteel", "plateZinc"));
             ingotBmeMmeBlacklist.addAll(Arrays.asList("ingotAdamantine", "ingotAntimony", "ingotBismuth", "ingotColdiron", "ingotNickel", "ingotPlatinum", "ingotStarsteel", "ingotZinc"));
@@ -90,13 +90,13 @@ public class MachineRecipes {
                 NonNullList listGears;
                 NonNullList listRods;
                 if (id.startsWith("ingot")){
-                    if (!ingotBlacklist.contains(id) && !gemBlacklist.contains(id) && !ingotBmeMmeBlacklist.contains(id)){
+                    if (!ingotBlacklist.contains(id) && !gemBlacklist.contains(id) && !ingotBmeMmeBlacklist.contains(id) && !ingotGTBlacklist.contains(id)){
                         plate = "plate" + id.substring(5);
                         if (OreDictionary.doesOreNameExist(plate)) {
                             listPlates = OreDictionary.getOres(plate, false);
                             if (!listPlates.isEmpty()) {
                                 TileEntityRoller.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack)listPlates.get(0));
-                                if (Ic2cExtrasRecipes.enableHammerRecipes && !ingotGTBlacklist.contains(id)){
+                                if (Ic2cExtrasRecipes.enableHammerRecipes){
                                     if (Ic2cExtrasRecipes.enableTwoPlatesPerIngot){
                                         recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", "I", 'H', "craftingToolForgeHammer", 'I', id );
                                     }else {
@@ -246,15 +246,17 @@ public class MachineRecipes {
         }
 
         if (Ic2cExtrasRecipes.enableCasingsRequirePlates){
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotCopper", 1)),  new ItemStack(Registry.copperPlate, 1), 0.7f );
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(Registry.tinPlate, 1), 0.7f);
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotSilver", 1)),  new ItemStack(Registry.silverPlate, 1), 0.7f);
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotLead", 1)),  new ItemStack(Registry.leadPlate, 1), 0.7f);
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotIron", 1)),  new ItemStack(Registry.ironPlate, 1), 0.7f);
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotGold", 1)),  new ItemStack(Registry.goldPlate, 1), 0.7f);
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotRefinedIron", 1)),  new ItemStack(Registry.refinedIronPlate, 1), 0.7f);
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotSteel", 1)),  new ItemStack(Registry.steelPlate, 1), 0.7f);
-            TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotBronze", 1)),  new ItemStack(Registry.bronzePlate, 1), 0.7f);
+            if (!Loader.isModLoaded("gtc_expansion")){
+                TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotCopper", 1)),  new ItemStack(Registry.copperPlate, 1), 0.7f );
+                TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(Registry.tinPlate, 1), 0.7f);
+                TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotSilver", 1)),  new ItemStack(Registry.silverPlate, 1), 0.7f);
+                TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotLead", 1)),  new ItemStack(Registry.leadPlate, 1), 0.7f);
+                TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotIron", 1)),  new ItemStack(Registry.ironPlate, 1), 0.7f);
+                TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotGold", 1)),  new ItemStack(Registry.goldPlate, 1), 0.7f);
+                TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotRefinedIron", 1)),  new ItemStack(Registry.refinedIronPlate, 1), 0.7f);
+                TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotSteel", 1)),  new ItemStack(Registry.steelPlate, 1), 0.7f);
+                TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotBronze", 1)),  new ItemStack(Registry.bronzePlate, 1), 0.7f);
+            }
             TileEntityRoller.addRecipe((new RecipeInputOreDict("plateCopper", 1)),  new ItemStack(Registry.copperCasing, 2), 0.7f);
             TileEntityRoller.addRecipe((new RecipeInputOreDict("plateTin", 1)),  new ItemStack(Registry.tinCasing, 2), 0.7f);
             TileEntityRoller.addRecipe((new RecipeInputOreDict("plateSilver", 1)),  new ItemStack(Registry.silverCasing, 2), 0.7f);
