@@ -195,7 +195,7 @@ public class CraftingRecipes {
         if (Ic2cExtrasRecipes.enableHammerRecipes){
 
             if (Ic2cExtrasRecipes.enableCasingsRequirePlates){
-                if (Loader.isModLoaded("gtc_expansion")){
+                if (!Loader.isModLoaded("gtc_expansion")){
                     recipes.addRecipe(new ItemStack(Registry.copperPlate, 1), "H", "I", 'I', "ingotCopper", 'H', "craftingToolForgeHammer");
                     recipes.addRecipe(new ItemStack(Registry.tinPlate, 1), "H", "I", 'I', "ingotTin", 'H', "craftingToolForgeHammer");
                     recipes.addRecipe(new ItemStack(Registry.silverPlate, 1), "H", "I", 'I', "ingotSilver", 'H', "craftingToolForgeHammer");

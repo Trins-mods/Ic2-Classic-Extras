@@ -69,6 +69,9 @@ public class MachineRecipes {
         if (Loader.isModLoaded("gtc_expansion")){
             ingotGTBlacklist.addAll(Arrays.asList("ingotTungsten", "ingotInvar", "ingotZinc", "ingotManganese", "ingotMagnalium", "ingotElectrum", "ingotConstantan", "ingotAluminum", "ingotAluminium", "ingotPlatinum", "ingotChrome", "ingotBrass", "ingotPlutonium", "ingotStainlessSteel", "ingotTungstensteel", "ingotTitanium", "ingotNickel", "ingotOsmium", "ingotNichrome"));
         }
+        if (Loader.isModLoaded("gtc_expansion") || Loader.isModLoaded("techreborn")){
+            ingotGTBlacklist.add("ingotIridiumAlloy");
+        }
         if (Loader.isModLoaded("basemetals")){
             plateBlacklist.addAll(Arrays.asList("plateAdamantine", "plateAntimony", "plateBismuth", "plateColdiron", "plateNickel", "platePlatinum", "plateStarsteel", "plateZinc"));
             ingotBmeMmeBlacklist.addAll(Arrays.asList("ingotAdamantine", "ingotAntimony", "ingotBismuth", "ingotColdiron", "ingotNickel", "ingotPlatinum", "ingotStarsteel", "ingotZinc"));
