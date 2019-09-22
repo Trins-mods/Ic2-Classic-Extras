@@ -74,6 +74,7 @@ public class Ic2cExtrasRecipes {
     public static void init(){
         CraftingRecipes.init();
         MachineRecipes.init();
+        ModRecipes.init();
         initHarderUraniumProcessing();
         if (Ic2cExtrasRecipes.enableAutoFluidContainerRecipes){
             MachineRecipes.initFluidFillingndEmptyingRecipes();
