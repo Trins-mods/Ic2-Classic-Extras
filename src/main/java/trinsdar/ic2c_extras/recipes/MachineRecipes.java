@@ -67,7 +67,7 @@ public class MachineRecipes {
         ingotBlacklist.addAll(Arrays.asList("ingotIron", "ingotGold", "ingotSilver", "ingotLead", "ingotCopper", "ingotTin", "ingotRefinedIron", "ingotSteel", "ingotBronze"));
         gemBlacklist.addAll(Arrays.asList("ingotDiamond", "ingotEmerald", "ingotQuartz", "ingotIridium", "ingotCoal", "ingotRedstone"));
         if (Loader.isModLoaded("gtc_expansion")){
-            ingotGTBlacklist.addAll(Arrays.asList("ingotTungsten", "ingotInvar", "ingotZinc", "ingotManganese", "ingotMagnalium", "ingotElectrum", "ingotConstantan", "ingotAluminum", "ingotAluminium", "ingotPlatinum", "ingotChrome", "ingotBrass", "ingotPlutonium", "ingotStainlessSteel", "ingotTungstensteel", "ingotTitanium", "ingotNickel", "ingotOsmium", "ingotNichrome"));
+            ingotGTBlacklist.addAll(Arrays.asList("ingotTungsten", "ingotInvar", "ingotZinc", "ingotManganese", "ingotMagnalium", "ingotElectrum", "ingotConstantan", "ingotAluminum", "ingotAluminium", "ingotPlatinum", "ingotChrome", "ingotBrass", "ingotPlutonium", "ingotStainlessSteel", "ingotTungstensteel", "ingotTitanium", "ingotNickel", "ingotOsmium", "ingotNichrome", "ingotSilicon"));
         }
         if (Loader.isModLoaded("gtc_expansion") || Loader.isModLoaded("techreborn")){
             ingotGTBlacklist.add("ingotIridiumAlloy");
