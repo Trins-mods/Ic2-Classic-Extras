@@ -192,9 +192,11 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
     {
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
             if (facing == EnumFacing.UP || facing == left()){
-                return (T)this.inputTank;
+                return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.inputTank);
             }else if (facing == EnumFacing.DOWN || facing == right()){
-                return (T)this.outputTank;
+                if (this.outputTank.getFluidAmount() > 0){
+                    return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.outputTank);
+                }
             }else {
                 return super.getCapability(capability, facing);
             }

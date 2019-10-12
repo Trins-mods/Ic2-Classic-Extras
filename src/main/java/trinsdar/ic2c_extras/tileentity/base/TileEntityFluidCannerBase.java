@@ -210,10 +210,7 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
             lastRecipe = getRecipeList().getRecipe(new Predicate<FluidCanningRecipe>() {
                 @Override
                 public boolean test(FluidCanningRecipe t) {
-                    if (checkRecipe(t)) {
-                        return true;
-                    }
-                    return false;
+                    return checkRecipe(t);
                 }
             });
             if (lastRecipe == FluidCanningRecipeList.INVALID_RECIPE) {
