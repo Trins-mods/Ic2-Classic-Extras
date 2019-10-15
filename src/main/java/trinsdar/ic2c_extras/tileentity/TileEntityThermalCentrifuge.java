@@ -210,12 +210,19 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
                 maxHeat = newMaxHeat;
                 getNetwork().updateTileGuiField(this, "maxHeat");
             }
+            boolean maxHeatCheck = false;
             if (this.heat < getMaxHeat()) {
                 ++this.heat;
+                maxHeatCheck = true;
                 this.getNetwork().updateTileGuiField(this, "heat");
+            }
+            if (this.heat == getMaxHeat() && maxHeatCheck){
+                checkRecipe = true;
+                maxHeatCheck = false;
             }
             if (this.heat > getMaxHeat()){
                 this.heat = (int)getMaxHeat();
+                this.checkRecipe = true;
                 this.getNetwork().updateTileGuiField(this, "heat");
             }
 

@@ -24,6 +24,7 @@ import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraft.world.storage.loot.functions.SetMetadata;
 import net.minecraftforge.event.LootTableLoadEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import trinsdar.ic2c_extras.items.ItemNuclearRod;
 import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
@@ -79,9 +80,9 @@ public class Ic2cExtrasRecipes {
         if (Ic2cExtrasRecipes.enableAutoFluidContainerRecipes){
             MachineRecipes.initFluidFillingndEmptyingRecipes();
         }
-//        if (Loader.isModLoaded("gtclassic")){
-//            GTCRecipes.init();
-//        }
+        if (Loader.isModLoaded("gtclassic")){
+            GTCRecipes.init();
+        }
     }
 
     public static void postInit(){

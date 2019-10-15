@@ -53,31 +53,19 @@ public class MachineRecipes {
     }
 
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
+    public static Set<String> ingotBlacklist = new HashSet<>();
     public static void postInit() {
-        Set<String> crushedBlacklist = new HashSet();
-        Set<String> crushedPurifiedBlackList = new HashSet();
-        Set<String> plateBlacklist = new HashSet();
-        Set<String> ingotBlacklist = new HashSet();
-        Set<String> ingotGTBlacklist = new HashSet();
         Set<String> gemBlacklist = new HashSet();
         Set<String> ingotBmeMmeBlacklist = new HashSet();
-        crushedBlacklist.addAll(Arrays.asList("crushedIron", "crushedGold", "crushedSilver", "crushedLead", "crushedCopper", "crushedTin", "crushedUranium"));
-        crushedPurifiedBlackList.addAll(Arrays.asList("crushedPurifiedIron", "crushedPurifiedGold", "crushedPurifiedSilver", "crushedPurifiedLead", "crushedPurifiedCopper", "crushedPurifiedTin", "crushedPurifiedUranium"));
-        plateBlacklist.addAll(Arrays.asList("plateIron", "plateGold", "plateSilver", "plateLead", "plateCopper", "plateTin", "plateRefinedIron", "plateSteel", "plateBronze"));
         ingotBlacklist.addAll(Arrays.asList("ingotIron", "ingotGold", "ingotSilver", "ingotLead", "ingotCopper", "ingotTin", "ingotRefinedIron", "ingotSteel", "ingotBronze"));
         gemBlacklist.addAll(Arrays.asList("ingotDiamond", "ingotEmerald", "ingotQuartz", "ingotIridium", "ingotCoal", "ingotRedstone"));
-        if (Loader.isModLoaded("gtc_expansion")){
-            ingotGTBlacklist.addAll(Arrays.asList("ingotTungsten", "ingotInvar", "ingotZinc", "ingotManganese", "ingotMagnalium", "ingotElectrum", "ingotConstantan", "ingotAluminum", "ingotAluminium", "ingotPlatinum", "ingotChrome", "ingotBrass", "ingotPlutonium", "ingotStainlessSteel", "ingotTungstensteel", "ingotTitanium", "ingotNickel", "ingotOsmium", "ingotNichrome", "ingotSilicon"));
-        }
         if (Loader.isModLoaded("gtc_expansion") || Loader.isModLoaded("techreborn")){
-            ingotGTBlacklist.add("ingotIridiumAlloy");
+            ingotBlacklist.add("ingotIridiumAlloy");
         }
         if (Loader.isModLoaded("basemetals")){
-            plateBlacklist.addAll(Arrays.asList("plateAdamantine", "plateAntimony", "plateBismuth", "plateColdiron", "plateNickel", "platePlatinum", "plateStarsteel", "plateZinc"));
             ingotBmeMmeBlacklist.addAll(Arrays.asList("ingotAdamantine", "ingotAntimony", "ingotBismuth", "ingotColdiron", "ingotNickel", "ingotPlatinum", "ingotStarsteel", "ingotZinc"));
         }
         if (Loader.isModLoaded("modernmetals")){
-            plateBlacklist.addAll(Arrays.asList("plateAluminum", "plateAluminium", "plateAluminumbrass", "plateAluminiumbrass", "plateBeryllium", "plateBoron", "plateCadmium", "plateChrome", "plateChromium", "plateGalvanizedsteel", "plateIridium", "plateMagnesium", "plateManganese", "plateNichrome", "plateOsmium", "platePlutonium", "plateRutile", "plateStainlesssteel", "plateTantalum", "plateTitanium", "plateThorium", "plateTungsten", "plateUranium", "plateZirconium"));
             ingotBmeMmeBlacklist.addAll(Arrays.asList("ingotAluminum", "ingotAluminium", "ingotAluminumbrass", "ingotAluminiumbrass", "ingotBeryllium", "ingotBoron", "ingotCadmium", "ingotChrome", "ingotChromium", "ingotGalvanizedsteel", "ingotIridium", "ingotMagnesium", "ingotManganese", "ingotNichrome", "ingotOsmium", "ingotPlutonium", "ingotRutile", "ingotStainlesssteel", "ingotTantalum", "ingotTitanium", "ingotThorium", "ingotTungsten", "ingotUranium", "ingotZirconium"));
         }
         String[] var2 = OreDictionary.getOreNames();
@@ -93,7 +81,7 @@ public class MachineRecipes {
                 NonNullList listGears;
                 NonNullList listRods;
                 if (id.startsWith("ingot")){
-                    if (!ingotBlacklist.contains(id) && !gemBlacklist.contains(id) && !ingotBmeMmeBlacklist.contains(id) && !ingotGTBlacklist.contains(id)){
+                    if (!ingotBlacklist.contains(id) && !gemBlacklist.contains(id) && !ingotBmeMmeBlacklist.contains(id)){
                         plate = "plate" + id.substring(5);
                         if (OreDictionary.doesOreNameExist(plate)) {
                             listPlates = OreDictionary.getOres(plate, false);

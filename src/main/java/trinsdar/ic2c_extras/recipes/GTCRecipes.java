@@ -10,13 +10,8 @@ import trinsdar.ic2c_extras.util.Registry;
 
 public class GTCRecipes {
     public static void init(){
-        CraftingRecipes.recipes.addShapelessRecipe(GTMaterialGen.getDust(GTMaterial.Thorium, 1), "dustThorium232");
-        CraftingRecipes.recipes.addShapelessRecipe(new ItemStack(Registry.thorium232Dust, 1), "dustThorium");
-        if (Ic2cExtrasRecipes.enableEmptyRods){
-            GTTileCentrifuge.removeRecipe("item.itemCellEmpty_1");
-            GTTileCentrifuge.addRecipe(Ic2Items.reactorNearDepletedUraniumRod, 0, GTTileCentrifuge.totalEu(2500), new ItemStack(Registry.emptyFuelRod), GTMaterialGen.getDust(GTMaterial.Thorium, 1));
-            //CraftingRecipes.recipes.overrideShapelessRecipe("shapeless_item.gtclassic.singlethorium_rod_-1442102634", new ItemStack(GTItems.rodThorium1), Registry.emptyFuelRod, GTMaterialGen.getIngot(GTMaterial.Thorium, 1));
-            //CraftingRecipes.recipes.overrideShapelessRecipe("shapeless_item.gtclassic.singleplutonium_rod_-710027402", new ItemStack(GTItems.rodPlutonium1), Registry.emptyFuelRod, GTMaterialGen.getIngot(GTMaterial.Plutonium, 1));
-        }
+        CraftingRecipes.recipes.addRecipe(new ItemStack(GTItems.heatStorageHelium1), " T ", "THT", " T ", 'T', "casingTin", 'H', GTMaterialGen.getTube(GTMaterial.Helium, 1));
+        CraftingRecipes.recipes.addRecipe(new ItemStack(GTItems.heatStorageHelium3), "TTT", "HHH", "TTT", 'T', "casingTin", 'H', GTMaterialGen.get(GTItems.heatStorageHelium1));
+        CraftingRecipes.recipes.addRecipe(new ItemStack(GTItems.heatStorageHelium6), "THT", "TCT", "THT", 'T', "casingTin", 'H', GTMaterialGen.get(GTItems.heatStorageHelium3), 'C', Ic2Items.denseCopperPlate);
     }
 }
