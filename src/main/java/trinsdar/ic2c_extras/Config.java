@@ -9,6 +9,23 @@ import trinsdar.ic2c_extras.util.jei.JeiPlugin;
 
 public class Config implements IConfigNotify {
     private static Config config = new Config();
+    private static final String CATEGORY_CONFIG = "config";
+    public static boolean disableNonRadiation = false;
+    public static boolean itemRadiation = true;
+    public static boolean harderUranium = true;
+    public static boolean casingsRequirePlates = true;
+    public static boolean craftingCablesWithPlates = false;
+    public static boolean craftingHammerRecipes = true;
+    public static boolean twoIngotPlates = false;
+    public static boolean autoOredictRecipes = true;
+    public static boolean cauldronWashing = true;
+    public static boolean lootEntries = true;
+    public static boolean uramiumOreDrop = true;
+    public static boolean autoFluidContainerRecipes = true;
+    public static boolean emptyNuclearRod = true;
+    public static boolean debugMode = false;
+    public static boolean densePlatesTakePlates = false;
+
 
     public Config(){}
 
