@@ -1,7 +1,6 @@
 package trinsdar.ic2c_extras;
 
 import ic2.api.classic.crops.ClassicCrops;
-import ic2.api.crops.CropCard;
 import ic2.api.recipe.IBasicMachineRecipeManager;
 import ic2.api.recipe.Recipes;
 import ic2.core.IC2;
@@ -13,12 +12,10 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import org.apache.logging.log4j.Logger;
-import trinsdar.ic2c_extras.blocks.CropPlumbilia;
 import trinsdar.ic2c_extras.proxy.CommonProxy;
-import trinsdar.ic2c_extras.util.CreativeTabIC2CExtras;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
+import trinsdar.ic2c_extras.util.CreativeTabIC2CExtras;
 import trinsdar.ic2c_extras.util.Registry;
 
 @Mod(name = IC2CExtras.NAME, modid = IC2CExtras.MODID, version = IC2CExtras.VERSION, dependencies = IC2CExtras.DEPENDS)
