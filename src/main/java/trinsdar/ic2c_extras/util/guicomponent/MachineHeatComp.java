@@ -57,7 +57,7 @@ public class MachineHeatComp extends GuiComponent {
     public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
         if (this.isMouseOver(mouseX, mouseY) && PlayerHandler.getClientPlayerHandler().hasEUReader()) {
             tooltips.add(Ic2cExtrasLang.heat
-                    .getLocalizedFormatted(new Object[] { this.block.getHeat(), this.block.maxHeat }));
+                    .getLocalizedFormatted(this.block.getHeat(), this.block.maxHeat));
         }
 
     }

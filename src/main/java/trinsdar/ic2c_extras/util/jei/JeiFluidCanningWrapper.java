@@ -5,8 +5,8 @@ import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
+import trinsdar.ic2c_extras.Config;
 import trinsdar.ic2c_extras.util.recipelists.FluidCanningRecipeList;
 
 import java.awt.*;
@@ -51,7 +51,7 @@ public class JeiFluidCanningWrapper extends BlankRecipeWrapper {
     @Override
     public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
         FontRenderer font = minecraft.fontRenderer;
-        if (JeiPlugin.debug) {
+        if (Config.debugMode) {
             font.drawString("Recipe Id: " + entry.getRecipeID(), 5, 62, Color.black.getRGB());
         }
     }

@@ -1,6 +1,5 @@
 package trinsdar.ic2c_extras.util.jei;
 
-import ic2.core.platform.registry.Ic2Resources;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
@@ -15,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import trinsdar.ic2c_extras.Config;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.util.Registry;
 
@@ -40,7 +40,7 @@ public class JeiFluidCanningCategory implements IRecipeCategory<JeiFluidCanningW
     }
 
     public int getHeight(){
-        return JeiPlugin.debug ? 72 : 62;
+        return Config.debugMode ? 72 : 62;
     }
 
     @SideOnly(Side.CLIENT)

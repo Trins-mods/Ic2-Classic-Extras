@@ -13,18 +13,19 @@ import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import net.minecraft.item.ItemStack;
+import trinsdar.ic2c_extras.Config;
+import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.tileentity.TileEntityMetalBender;
-import trinsdar.ic2c_extras.util.GuiMachine.FluidCanningGui;
-import trinsdar.ic2c_extras.util.recipelists.ContainerInputRecipeList;
 import trinsdar.ic2c_extras.util.GuiMachine.CutterGui;
 import trinsdar.ic2c_extras.util.GuiMachine.ExtruderGui;
+import trinsdar.ic2c_extras.util.GuiMachine.FluidCanningGui;
 import trinsdar.ic2c_extras.util.GuiMachine.MetalBenderGui;
 import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
 import trinsdar.ic2c_extras.util.GuiMachine.RollerGui;
 import trinsdar.ic2c_extras.util.GuiMachine.ThermalCentrifugeGui;
-import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.Registry;
+import trinsdar.ic2c_extras.util.recipelists.ContainerInputRecipeList;
 import trinsdar.ic2c_extras.util.recipelists.FluidCanningRecipeList;
 
 import javax.annotation.Nonnull;
@@ -38,7 +39,6 @@ public class JeiPlugin implements IModPlugin {
     public String cutterId = "cutter";
     public String metalBenderId = "metalBender";
     public String fluidCanningId = "fluidCanning";
-    public static boolean debug;
 
     @Override
     public void onRuntimeAvailable(@Nonnull IJeiRuntime arg0) {
@@ -285,7 +285,7 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.craftingHammer));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.wireCutters));
 
-            }else if (!Ic2cExtrasRecipes.enableHarderUranium){
+            }else if (!Config.harderUranium){
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium235));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium235TinyDust));
@@ -358,9 +358,5 @@ public class JeiPlugin implements IModPlugin {
         registry.addRecipeCategories(new JeiSimpleMachineCategory(helper, new ItemStack(Registry.roller), rollerId));
         registry.addRecipeCategories(new JeiSimpleMachineCategory(helper, new ItemStack(Registry.extruder), extruderId));
         registry.addRecipeCategories(new JeiSimpleMachineCategory(helper, new ItemStack(Registry.cutter), cutterId));
-    }
-
-    public static void setConfig(boolean debuger){
-        debug = debuger;
     }
 }

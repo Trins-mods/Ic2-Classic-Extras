@@ -1,15 +1,10 @@
 package trinsdar.ic2c_extras;
-import ic2.core.IC2;
-import ic2.core.platform.config.ConfigEntry;
-import ic2.core.platform.config.IC2Config;
-import ic2.core.platform.config.components.IConfigNotify;
-import ic2.jeiIntigration.SubModul;
-import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
-import trinsdar.ic2c_extras.util.jei.JeiPlugin;
+import net.minecraftforge.common.config.Configuration;
+import org.apache.logging.log4j.Level;
+import trinsdar.ic2c_extras.proxy.CommonProxy;
 
-public class Config implements IConfigNotify {
-    private static Config config = new Config();
-    private static final String CATEGORY_CONFIG = "config";
+public class Config {
+    private static final String CATEGORY_GENERAL = "general";
     public static boolean disableNonRadiation = false;
     public static boolean itemRadiation = true;
     public static boolean harderUranium = true;
@@ -17,6 +12,7 @@ public class Config implements IConfigNotify {
     public static boolean craftingCablesWithPlates = false;
     public static boolean craftingHammerRecipes = true;
     public static boolean twoIngotPlates = false;
+    public static boolean cablesTakeSteel = false;
     public static boolean autoOredictRecipes = true;
     public static boolean cauldronWashing = true;
     public static boolean lootEntries = true;
@@ -29,41 +25,37 @@ public class Config implements IConfigNotify {
 
     public Config(){}
 
-    public static void init(){
-        IC2Config.ConfigType bool = IC2Config.ConfigType.Boolean;
-        IC2Config.ConfigType intg = IC2Config.ConfigType.Integer;
-        IC2Config.ConfigType flo = IC2Config.ConfigType.Float;
-        IC2Config.ConfigType txt = IC2Config.ConfigType.String;
-        if (IC2.config.isLoaded()){
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "disableNonRadiation", "Disables everything in the mod except for radiation. If true the only other config option that does anything is the Radiation config. Note: This will disable everything but the items and blocks and tiles themselves and hide them from jei.", "NonRadiation", false).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableItemRadiation", "Enables certain items giving radiation", "ItemRadiation", true).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableHarderUranium", "Enables harder uranium processing. Note: this is different then enableHarderEnrichedUran in that it deals with processing the ore and such", "HarderUranium", true).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCasingsRequirePlates", "Enables casings requiring plates to craft. Note the only plate that i add is refined iron plates so if you enable this you will need another mod that adds plates.", "CasingsNeedPlates", true).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCrafingCablesWithPlates", "Enables additional recipe of crafting cables with wire cutter and plates", "CablesWithPlates", false).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCrafingHammerRecipes", "Enables crafting plates and casings with the hammer", "HammerRecipes", true).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableManualPlatesTwoIngots", "Enables manual crafting of plates taking 2 ingots", "PlatesTwoIngots", false).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCertainRecipesNeedSteel", "Enables the requirement of steel for hv cables, plasma cables, advanced machine blocks, and tesla coils. Does nothing if enableSteelRecipes is true.", "CertainRecipesNeedSteel", false).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableAutoOredictRecipes", "Enables adding recipes for plates and casings to roller and crafting table.", "AutoOredictRecipes", true).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableCauldronCrushedOre", "Enables the ability to wash crushed ore with a cauldron when gtclassic is loaded.", "CauldronCrushedOre", true).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableLootEntries", "Enables adding tiny plutonium and iridium shards to vanilla loot tables", "LootEntries", true).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableUraniumOreDropReplacement", "Enables replacing the drop of uranium ore with the block instead of uranium ore item.", "UraniumOreDropReplacement", true).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableAutoFluidContainerRecipes", "Enables auto recipes for draining and filling fluid container items in the fluid canning machine.", "AutoFluidContainerRecipes", true).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableEmptyRod", "Enables nucear cells taking my empty nuclear fuel cell.", "EnableEmptyRods", true).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableDebugMode", "Enables things like showing the recipe ids of my machine recipes in jei.", "DebugMode", false).setGameRestart().setServerSync());
-            IC2.config.addCustomConfig(new ConfigEntry(bool, "IC2CExtras", "enableDensePlatesTakePlates", "Determines whether dense plates take 9 plates(true) or 8 ingots(false).", "DensePlates", false).setGameRestart().setServerSync());
-            IC2.config.addConfigNotify(config);
-        }else {
-            throw new RuntimeException("The Ic2Classic config is not loaded");
+    public static void readConfig() {
+        Configuration cfg = CommonProxy.config;
+        try {
+            cfg.load();
+            initGeneralConfig(cfg);
+        } catch (Exception e1) {
+            IC2CExtras.logger.log(Level.ERROR, "Problem loading config file!", e1);
+        } finally {
+            if (cfg.hasChanged()) {
+                cfg.save();
+            }
         }
     }
 
-
-    @Override
-    public void onConfigReloaded(IC2Config config) {
-        Radiation.setConfig(config.getFlag("ItemRadiation"));
-        Ic2cExtrasRecipes.setConfig(config.getFlag("HarderUranium"), config.getFlag("CasingsNeedPlates"), config.getFlag("CablesWithPlates"), config.getFlag("CertainRecipesNeedSteel"), config.getFlag("HammerRecipes"), config.getFlag("AutoOredictRecipes"), config.getFlag("LootEntries"), config.getFlag("PlatesTwoIngots"), config.getFlag("UraniumOreDropReplacement"), config.getFlag("AutoFluidContainerRecipes"), config.getFlag("EnableEmptyRods"), config.getFlag("DensePlates"));
-        if (SubModul.load){
-            JeiPlugin.setConfig(config.getFlag("DebugMode"));
-        }
+    public static void initGeneralConfig(Configuration cfg){
+        cfg.addCustomCategoryComment(CATEGORY_GENERAL, "General");
+        disableNonRadiation = cfg.getBoolean("disableNonRadiation", CATEGORY_GENERAL, disableNonRadiation, "Disables everything in the mod except for radiation. If true the only other config option that does anything is the Radiation config. Note: This will disable everything but the items and blocks and tiles themselves and hide them from jei.");
+        itemRadiation = cfg.getBoolean("itemRadiation", CATEGORY_GENERAL, itemRadiation, "Enables certain items giving radiation");
+        harderUranium = cfg.getBoolean("harderUranium", CATEGORY_GENERAL, harderUranium, "Enables harder uranium processing");
+        casingsRequirePlates = cfg.getBoolean("casingsRequirePlates", CATEGORY_GENERAL, casingsRequirePlates, "Enables casings requiring plates to craft.");
+        craftingCablesWithPlates = cfg.getBoolean("craftingCablesWithPlates", CATEGORY_GENERAL, craftingCablesWithPlates, "Enables additional recipe of crafting cables with wire cutter and plates");
+        craftingHammerRecipes = cfg.getBoolean("craftingHammerRecipes", CATEGORY_GENERAL, craftingHammerRecipes, "Enables crafting plates and casings with the hammer");
+        twoIngotPlates = cfg.getBoolean("twoIngotPlates", CATEGORY_GENERAL, twoIngotPlates, "Enables manual crafting of plates taking 2 ingots");
+        cablesTakeSteel = cfg.getBoolean("cablesTakeSteel", CATEGORY_GENERAL, cablesTakeSteel, "Enables the requirement of steel for hv cables, plasma cables. Does nothing if enableSteelRecipes is true.");
+        autoOredictRecipes = cfg.getBoolean("autoOredictRecipes", CATEGORY_GENERAL, autoOredictRecipes, "Enables the ability to wash crushed ore with a cauldron when my other mod gtc expansion is loaded.");
+        cauldronWashing = cfg.getBoolean("cauldronWashing", CATEGORY_GENERAL, cauldronWashing, "Enables adding tiny plutonium and iridium shards to vanilla loot tables");
+        lootEntries = cfg.getBoolean("lootEntries", CATEGORY_GENERAL, lootEntries, "Enables adding recipes for plates and casings to roller and crafting table.");
+        uramiumOreDrop = cfg.getBoolean("uramiumOreDrop", CATEGORY_GENERAL, uramiumOreDrop, "Enables replacing the drop of uranium ore with the block instead of uranium ore item.");
+        autoFluidContainerRecipes = cfg.getBoolean("autoFluidContainerRecipes", CATEGORY_GENERAL, autoFluidContainerRecipes, "Enables auto recipes for draining and filling fluid container items in the fluid canning machine.");
+        emptyNuclearRod = cfg.getBoolean("emptyNuclearRod", CATEGORY_GENERAL, emptyNuclearRod, "Enables nucear cells taking my empty nuclear fuel cell.");
+        debugMode = cfg.getBoolean("debugMode", CATEGORY_GENERAL, debugMode, "Enables things like showing the recipe ids of my machine recipes in jei.");
+        densePlatesTakePlates = cfg.getBoolean("densePlatesTakePlates", CATEGORY_GENERAL, densePlatesTakePlates, "Determines whether dense plates take 9 plates(true) or 8 ingots(false).");
     }
 }

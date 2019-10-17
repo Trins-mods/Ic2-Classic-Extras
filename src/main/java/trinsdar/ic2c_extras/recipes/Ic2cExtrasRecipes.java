@@ -26,6 +26,7 @@ import net.minecraft.world.storage.loot.functions.SetMetadata;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import trinsdar.ic2c_extras.Config;
 import trinsdar.ic2c_extras.items.ItemNuclearRod;
 import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
@@ -37,18 +38,6 @@ import java.util.Map;
 import static ic2.api.classic.recipe.ClassicRecipes.macerator;
 
 public class Ic2cExtrasRecipes {
-    public static boolean enableHarderUranium;
-    public static boolean enableCasingsRequirePlates;
-    public static boolean enableCuttingToolWires;
-    public static boolean enableCertainRecipesRequireSteel;
-    public static boolean enableHammerRecipes;
-    public static boolean enableTwoPlatesPerIngot;
-    public static boolean enableAutoOredictRecipes;
-    public static boolean enableLootEntries;
-    public static boolean enableUraniumOreDropReplacement;
-    public static boolean enableAutoFluidContainerRecipes;
-    public static boolean enableEmptyRods;
-    public static boolean enableDensePlatesTakePlates;
     public static int
     itemQuality = 0,
     dungeonWeight = 10,
@@ -77,7 +66,7 @@ public class Ic2cExtrasRecipes {
         MachineRecipes.init();
         ModRecipes.init();
         initHarderUraniumProcessing();
-        if (Ic2cExtrasRecipes.enableAutoFluidContainerRecipes){
+        if (Config.autoFluidContainerRecipes){
             MachineRecipes.initFluidFillingndEmptyingRecipes();
         }
         if (Loader.isModLoaded("gtclassic")){
@@ -131,7 +120,7 @@ public class Ic2cExtrasRecipes {
 
     public static void initHarderUraniumProcessing(){
         ItemStack stoneDust = new ItemStack(Registry.stoneDust);
-        if (enableHarderUranium){
+        if (Config.harderUranium){
             TileEntityUraniumEnricher.URANIUM_INGOT_REFERENCE = new ItemStack(Registry.doubleEnrichedUraniumIngot);
             CommonFilters.uranFilter = new BasicItemFilter(new ItemStack(Registry.doubleEnrichedUraniumIngot));
             macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
@@ -169,7 +158,7 @@ public class Ic2cExtrasRecipes {
     }
 
     public static ItemStack getEmptyRod(){
-        return enableEmptyRods ? new ItemStack(Registry.emptyFuelRod) : Ic2Items.emptyCell;
+        return Config.emptyNuclearRod ? new ItemStack(Registry.emptyFuelRod) : Ic2Items.emptyCell;
     }
 
     public static void rodUtil(ItemStack single, ItemStack dual, ItemStack quad, ItemStack isotope, ItemStack reEnriched, ItemStack nearDepleted, ItemStack ingredient){
@@ -193,7 +182,7 @@ public class Ic2cExtrasRecipes {
         String entryNamePlutonium = "ic2c_extras:tinyplutonium";
         Item shard = Registry.iridiumShard;
         Item plutonium = Registry.plutoniumTinyDust;
-        if (enableLootEntries){
+        if (Config.lootEntries){
             if(event.getName().equals(LootTableList.CHESTS_SIMPLE_DUNGEON)){
                 event.getTable().getPool("main").addEntry(new LootEntryItem(shard, dungeonWeight, itemQuality, funcs, new LootCondition[0], entryNameIridium));
                 event.getTable().getPool("main").addEntry(new LootEntryItem(plutonium, tinyPlutonioumWeight, itemQuality, funcs, new LootCondition[0], entryNamePlutonium));
@@ -213,20 +202,5 @@ public class Ic2cExtrasRecipes {
         }
 
 
-    }
-
-    public static void setConfig(boolean uranium, boolean casings, boolean wires, boolean steel, boolean hammer, boolean oredict, boolean loot, boolean twoPlates, boolean uraniumDrop, boolean fluidContainer, boolean emptyRods, boolean densePlates){
-        enableHarderUranium = uranium;
-        enableCasingsRequirePlates = casings;
-        enableCuttingToolWires = wires;
-        enableCertainRecipesRequireSteel = steel;
-        enableHammerRecipes = hammer;
-        enableTwoPlatesPerIngot = twoPlates;
-        enableAutoOredictRecipes = oredict;
-        enableLootEntries = loot;
-        enableUraniumOreDropReplacement = uraniumDrop;
-        enableAutoFluidContainerRecipes = fluidContainer;
-        enableEmptyRods = emptyRods;
-        enableDensePlatesTakePlates = densePlates;
     }
 }
