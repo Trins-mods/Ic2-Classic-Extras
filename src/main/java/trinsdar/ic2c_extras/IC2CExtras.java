@@ -7,11 +7,15 @@ import ic2.core.IC2;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.Logger;
 import trinsdar.ic2c_extras.proxy.CommonProxy;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
@@ -34,6 +38,10 @@ public class IC2CExtras
     public static IC2CExtras instance;
 
     public static Logger logger;
+
+    public IC2CExtras(){
+        MinecraftForge.EVENT_BUS.register(this);
+    }
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
@@ -65,6 +73,15 @@ public class IC2CExtras
     {
         proxy.postInit();
         IC2.getInstance().saveRecipeInfo(IC2.configFolder);
+    }
+
+    @SubscribeEvent
+    public void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
+    {
+        if (event.getModID().equals(MODID))
+        {
+            ConfigManager.sync(MODID, Config.Type.INSTANCE);
+        }
     }
 
 

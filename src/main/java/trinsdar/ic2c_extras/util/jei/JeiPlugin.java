@@ -13,7 +13,7 @@ import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import net.minecraft.item.ItemStack;
-import trinsdar.ic2c_extras.Config;
+import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.tileentity.TileEntityMetalBender;
@@ -285,7 +285,7 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.craftingHammer));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.wireCutters));
 
-            }else if (!Config.harderUranium){
+            }else if (!Ic2cExtrasConfig.harderUranium){
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium235));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium235TinyDust));

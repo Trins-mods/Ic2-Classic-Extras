@@ -87,7 +87,7 @@ dependencies {
         exclude group: 'com.google.code.gson'
     }
 
-    runtime "com.mod-buildcraft:buildcraft-main:7.99.24.1"
+    deobfCompile("com.mod-buildcraft:buildcraft-main:7.99.24.1")
 
     //baubles
     compile 'baubles:Baubles:1.12:1.5.2'

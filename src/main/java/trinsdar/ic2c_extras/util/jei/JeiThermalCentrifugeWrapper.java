@@ -8,7 +8,7 @@ import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
-import trinsdar.ic2c_extras.Config;
+import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
@@ -50,7 +50,7 @@ public class JeiThermalCentrifugeWrapper extends BlankRecipeWrapper {
         font.drawString("Seconds: " + getEntryTicks(entry.getOutput()) / 20.0F, 5, 70, Color.black.getRGB());
         font.drawString("Cost: " + getEntryTicks(entry.getOutput()) * 20
                 + " EU", 5, 80, Color.black.getRGB());
-        if (Config.debugMode) {
+        if (Ic2cExtrasConfig.debugMode) {
             font.drawString("Recipe Id: " + entry.getRecipeID(), 5, 90, Color.black.getRGB());
         }
     }

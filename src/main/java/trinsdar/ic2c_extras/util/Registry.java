@@ -10,6 +10,7 @@ import trinsdar.ic2c_extras.blocks.BlockMachine;
 import trinsdar.ic2c_extras.blocks.BlockMetal;
 import trinsdar.ic2c_extras.blocks.BlockStoneDust;
 import trinsdar.ic2c_extras.blocks.CropPlumbilia;
+import trinsdar.ic2c_extras.items.ItemToolCutter;
 import trinsdar.ic2c_extras.tileentity.TileEntityAdvancedSteamTurbine;
 import trinsdar.ic2c_extras.tileentity.TileEntityCutter;
 import trinsdar.ic2c_extras.tileentity.TileEntityExtruder;
@@ -218,9 +219,9 @@ public class Registry
     isotopicThorium232Cell = new ItemIsotopicRod(NuclearRodVariants.THORIUM232),
     isotopicThorium230Cell = new ItemIsotopicRod(NuclearRodVariants.THORIUM230);
 
-    public static final ItemToolCrafting
-    craftingHammer = new ItemToolCrafting(80, "craftingHammer", 0, true),
-    wireCutters = new ItemToolCrafting(60, "wireCutters", 1, true);
+
+    public static final ItemToolCrafting craftingHammer = new ItemToolCrafting(256, "craftingHammer", 0, true);
+    public static final ItemToolCutter wireCutters = new ItemToolCutter(256, "wireCutters", 1, true);
 
 
     public static void init(){

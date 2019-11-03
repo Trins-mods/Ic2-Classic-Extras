@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import trinsdar.ic2c_extras.Config;
+import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.util.Registry;
 
@@ -39,7 +39,7 @@ public class JeiThermalCentrifugeCategory implements IRecipeCategory<JeiThermalC
     }
 
     public int getHeight(){
-        return Config.debugMode ? 100 : 90;
+        return Ic2cExtrasConfig.debugMode ? 100 : 90;
     }
 
     @SideOnly(Side.CLIENT)

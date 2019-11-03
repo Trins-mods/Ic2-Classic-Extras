@@ -19,7 +19,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import trinsdar.ic2c_extras.Config;
+import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.util.Registry;
 
 public class CraftingRecipes {
@@ -126,13 +126,13 @@ public class CraftingRecipes {
     }
 
     public static void initReplaceRecipes(){
-        if (!IC2.config.getFlag("SteelRecipes") && Config.cablesTakeSteel){
+        if (!IC2.config.getFlag("SteelRecipes") && Ic2cExtrasConfig.cablesTakeSteel){
             recipes.overrideRecipe("shaped_item.itemironcable_1314416875", StackUtil.copyWithSize(Ic2Items.ironCable, 12), "III", 'I', "ingotSteel");
             recipes.overrideRecipe("shaped_item.itemironcablei_926773675", StackUtil.copyWithSize(Ic2Items.insulatedIronCable, 4), " R ", "RIR", " R ", 'R', "itemRubber", 'I', "ingotSteel");
             recipes.overrideRecipe("shaped_item.itemironcableii_268464298", StackUtil.copyWithSize(Ic2Items.doubleInsulatedIronCable, 4), "RRR", "RIR", "RRR", 'R', "itemRubber", 'I', "ingotSteel");
             recipes.overrideRecipe("shaped_item.itemplasmacable_-449044295", StackUtil.copyWithSize(Ic2Items.plasmaCable, 4), "CCC", "IPI", "CCC", 'C', Ic2Items.carbonPlate, 'I', "ingotSteel", 'P', Ic2Items.plasmaCore);
         }
-        if (Config.emptyNuclearRod){
+        if (Ic2cExtrasConfig.emptyNuclearRod){
             ItemStack emptyFuelRod = new ItemStack(Registry.emptyFuelRod);
             recipes.overrideShapelessRecipe("shapeless_item.reactoruraniumsimple_-1804731375", Ic2Items.reactorUraniumRodSingle, emptyFuelRod, Ic2Items.uraniumIngot);
             ClassicRecipes.canningMachine.removeCanningRecipe(Ic2Items.emptyCell, Ic2Items.uraniumIngot);
@@ -173,13 +173,13 @@ public class CraftingRecipes {
 
         recipes.addShapelessRecipe(new ItemStack(Registry.stoneDust, 4), Registry.stoneDustBlock);
 
-        if (Config.craftingCablesWithPlates){
+        if (Ic2cExtrasConfig.craftingCablesWithPlates){
             recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.copperCable, 3), "plateCopper", Registry.wireCutters);
             recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.goldCable, 6), "plateGold", Registry.wireCutters);
             recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.tinCable, 4), "plateTin", Registry.wireCutters);
             recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.bronzeCable, 3), "plateBronze", Registry.wireCutters);
             if (!IC2.config.getFlag("SteelRecipes")){
-                if (Config.cablesTakeSteel){
+                if (Ic2cExtrasConfig.cablesTakeSteel){
                     recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, 6), "plateSteel", Registry.wireCutters);
                 }else{
                     recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, 6), "plateRefinedIron", Registry.wireCutters);
@@ -190,9 +190,9 @@ public class CraftingRecipes {
             }
         }
 
-        if (Config.craftingHammerRecipes){
+        if (Ic2cExtrasConfig.craftingHammerRecipes){
 
-            if (Config.casingsRequirePlates){
+            if (Ic2cExtrasConfig.casingsRequirePlates){
                 if (!Loader.isModLoaded("gtc_expansion")){
                     recipes.addRecipe(new ItemStack(Registry.copperPlate, 1), "H", "I", 'I', "ingotCopper", 'H', "craftingToolForgeHammer");
                     recipes.addRecipe(new ItemStack(Registry.tinPlate, 1), "H", "I", 'I', "ingotTin", 'H', "craftingToolForgeHammer");

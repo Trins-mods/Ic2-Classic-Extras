@@ -115,7 +115,7 @@ public class Radiation {
 		EntityPlayer player = event.player;
 		initRadiation();
 
-		if (Config.itemRadiation){
+		if (Ic2cExtrasConfig.itemRadiation){
 			if(IC2.platform.isSimulating()){
 				if (event.phase == TickEvent.Phase.END) {
 					if (!player.isCreative()) {

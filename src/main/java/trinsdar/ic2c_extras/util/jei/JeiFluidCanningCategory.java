@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import trinsdar.ic2c_extras.Config;
+import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.util.Registry;
 
@@ -40,7 +40,7 @@ public class JeiFluidCanningCategory implements IRecipeCategory<JeiFluidCanningW
     }
 
     public int getHeight(){
-        return Config.debugMode ? 72 : 62;
+        return Ic2cExtrasConfig.debugMode ? 72 : 62;
     }
 
     @SideOnly(Side.CLIENT)

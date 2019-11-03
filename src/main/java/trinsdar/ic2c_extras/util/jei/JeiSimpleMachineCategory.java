@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import trinsdar.ic2c_extras.Config;
+import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.IC2CExtras;
 
 public class JeiSimpleMachineCategory implements IRecipeCategory<JeiSimpleMachineWrapper> {
@@ -37,7 +37,7 @@ public class JeiSimpleMachineCategory implements IRecipeCategory<JeiSimpleMachin
     }
 
     public int getHeight(){
-        return Config.debugMode ? 70 : 60;
+        return Ic2cExtrasConfig.debugMode ? 70 : 60;
     }
 
     @SideOnly(Side.CLIENT)

@@ -8,7 +8,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import trinsdar.ic2c_extras.Config;
+import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
 
 import java.awt.*;
@@ -45,7 +45,7 @@ public class JeiOreWashingWrapper extends BlankRecipeWrapper {
     @Override
     public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
         FontRenderer font = minecraft.fontRenderer;
-        if (Config.debugMode) {
+        if (Ic2cExtrasConfig.debugMode) {
             font.drawString("Recipe Id: " + entry.getRecipeID(), 3, 63, Color.black.getRGB());
         }
     }

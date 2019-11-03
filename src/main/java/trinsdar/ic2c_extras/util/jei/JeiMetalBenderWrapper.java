@@ -5,7 +5,7 @@ import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.item.ItemStack;
-import trinsdar.ic2c_extras.Config;
+import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.util.recipelists.ContainerInputRecipeList;
 
 import java.awt.*;
@@ -44,7 +44,7 @@ public class JeiMetalBenderWrapper extends BlankRecipeWrapper {
     @Override
     public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
         FontRenderer font = minecraft.fontRenderer;
-        if (Config.debugMode) {
+        if (Ic2cExtrasConfig.debugMode) {
             font.drawString("Recipe Id: " + entry.getRecipeID(), 5, 60, Color.black.getRGB());
         }
     }

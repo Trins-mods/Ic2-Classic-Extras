@@ -27,7 +27,7 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
-import trinsdar.ic2c_extras.Config;
+import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.tileentity.TileEntityExtruder;
 import trinsdar.ic2c_extras.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.tileentity.TileEntityMetalBender;
@@ -72,7 +72,7 @@ public class MachineRecipes {
         String[] var2 = OreDictionary.getOreNames();
         int var3 = var2.length;
 
-        if (Config.autoOredictRecipes){
+        if (Ic2cExtrasConfig.autoOredictRecipes){
             for(int var4 = 0; var4 < var3; ++var4) {
                 String id = var2[var4];
                 String plate;
@@ -88,8 +88,8 @@ public class MachineRecipes {
                             listPlates = OreDictionary.getOres(plate, false);
                             if (!listPlates.isEmpty()) {
                                 TileEntityRoller.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack)listPlates.get(0));
-                                if (Config.craftingHammerRecipes){
-                                    if (Config.twoIngotPlates){
+                                if (Ic2cExtrasConfig.craftingHammerRecipes){
+                                    if (Ic2cExtrasConfig.twoIngotPlates){
                                         recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", "I", 'H', "craftingToolForgeHammer", 'I', id );
                                     }else {
                                         recipes.addRecipe((ItemStack)listPlates.get(0), "H", "I", 'H', "craftingToolForgeHammer", 'I', id );
@@ -224,7 +224,7 @@ public class MachineRecipes {
         TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustTinyLead", 9), new ItemStack(Registry.leadDust));
         TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustTinyObsidian", 9), Ic2Items.obsidianDust);
         TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustTinyBronze", 9), Ic2Items.bronzeDust);
-        if (Config.harderUranium){
+        if (Ic2cExtrasConfig.harderUranium){
             TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustTinyUranium235", 9), new ItemStack(Registry.uranium235));
             TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustTinyUranium238", 9), new ItemStack(Registry.uranium238));
             TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustTinyPlutonium", 9), new ItemStack(Registry.plutoniumDust));
@@ -233,11 +233,11 @@ public class MachineRecipes {
             TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustSmallPlutonium", 4), new ItemStack(Registry.plutoniumDust));
         }
 
-        if (Config.emptyNuclearRod){
+        if (Ic2cExtrasConfig.emptyNuclearRod){
             TileEntityExtruder.addRecipe(new RecipeInputOreDict("plateIron", 1), new ItemStack(Registry.emptyFuelRod));
         }
 
-        if (Config.casingsRequirePlates){
+        if (Ic2cExtrasConfig.casingsRequirePlates){
             if (!Loader.isModLoaded("gtc_expansion")){
                 TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotCopper", 1)),  new ItemStack(Registry.copperPlate, 1), 0.7f );
                 TileEntityRoller.addRecipe((new RecipeInputOreDict("ingotTin", 1)),  new ItemStack(Registry.tinPlate, 1), 0.7f);
@@ -286,7 +286,7 @@ public class MachineRecipes {
         ClassicRecipes.earthExtractor.registerValue(5.85f, stoneDust);
 
         if (!IC2.config.getFlag("SteelRecipes")){
-            if(Config.cablesTakeSteel){
+            if(Ic2cExtrasConfig.cablesTakeSteel){
                 TileEntityExtruder.addRecipe(new RecipeInputOreDict("ingotSteel", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f);
             }else {
                 TileEntityExtruder.addRecipe(new RecipeInputOreDict("ingotRefinedIron", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f);
@@ -295,7 +295,7 @@ public class MachineRecipes {
             TileEntityExtruder.addRecipe(new RecipeInputOreDict("ingotSteel", 1),  StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f);
         }
 
-        if (Config.densePlatesTakePlates){
+        if (Ic2cExtrasConfig.densePlatesTakePlates){
             ClassicRecipes.compressor.removeRecipe(new RecipeInputOreDict("ingotCopper", 8));
             TileEntityCompressor.addRecipe("plateCopper", 9, Ic2Items.denseCopperPlate);
             TileEntityCompressor.addRecipe("plateIron", 9, new ItemStack(Registry.denseIronPlate));
