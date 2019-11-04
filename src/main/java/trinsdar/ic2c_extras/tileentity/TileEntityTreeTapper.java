@@ -3,11 +3,18 @@ package trinsdar.ic2c_extras.tileentity;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.tile.IMachine;
 import ic2.core.IC2;
+import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.resources.BlockRubberWood;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
+import ic2.core.inventory.filters.ArrayFilter;
+import ic2.core.inventory.filters.BasicItemFilter;
+import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.gui.GuiComponentContainer;
+import ic2.core.inventory.management.AccessRule;
+import ic2.core.inventory.management.InventoryHandler;
+import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2States;
@@ -15,6 +22,7 @@ import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
@@ -36,6 +44,15 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
     public TileEntityTreeTapper() {
         super(13, 128);
         this.maxEnergy = 50000;
+    }
+
+    @Override
+    protected void addSlots(InventoryHandler handler)
+    {
+        handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
+        handler.registerDefaultSlotAccess(AccessRule.Export, 0, 1, 2, 3, 4, 5, 6, 7, 8);
+        handler.registerDefaultSlotsForSide(RotationList.UP.invert(), 0, 1, 2, 3, 4, 5, 6, 7, 8);
+        handler.registerSlotType(SlotType.Output, 0, 1, 2, 3, 4, 5, 6, 7, 8);
     }
 
     @Override
