@@ -14,6 +14,10 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("crushedSilver", Registry.silverCrushedOre);
         OreDictionary.registerOre("crushedLead", Registry.leadCrushedOre);
         OreDictionary.registerOre("crushedUranium", Registry.uraniumCrushedOre);
+        OreDictionary.registerOre("crushedAluminum", Registry.aluminumCrushedOre);
+        OreDictionary.registerOre("crushedAluminium", Registry.aluminumCrushedOre);
+        OreDictionary.registerOre("crushedNickel", Registry.nickelCrushedOre);
+        OreDictionary.registerOre("crushedPlatinum", Registry.platinumCrushedOre);
 
         OreDictionary.registerOre("crushedPurifiedIron", Registry.ironPurifiedCrushedOre);
         OreDictionary.registerOre("crushedPurifiedGold", Registry.goldPurifiedCrushedOre);
@@ -22,6 +26,10 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("crushedPurifiedSilver", Registry.silverPurifiedCrushedOre);
         OreDictionary.registerOre("crushedPurifiedLead", Registry.leadPurifiedCrushedOre);
         OreDictionary.registerOre("crushedPurifiedUranium", Registry.uraniumPurifiedCrushedOre);
+        OreDictionary.registerOre("crushedPurifiedAluminum", Registry.aluminumPurifiedCrushedOre);
+        OreDictionary.registerOre("crushedPurifiedAluminium", Registry.aluminumPurifiedCrushedOre);
+        OreDictionary.registerOre("crushedPurifiedNickel", Registry.nickelPurifiedCrushedOre);
+        OreDictionary.registerOre("crushedPurifiedPlatinum", Registry.platinumPurifiedCrushedOre);
 
         OreDictionary.registerOre("dustTinyIron", Registry.ironTinyDust);
         OreDictionary.registerOre("dustTinyGold", Registry.goldTinyDust);
@@ -31,6 +39,10 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("dustTinyLead", Registry.leadTinyDust);
         OreDictionary.registerOre("dustTinyObsidian", Registry.obsidianTinyDust);
         OreDictionary.registerOre("dustTinyBronze", Registry.bronzeTinyDust);
+        OreDictionary.registerOre("dustTinyAluminum", Registry.aluminumTinyDust);
+        OreDictionary.registerOre("dustTinyAluminium", Registry.aluminumTinyDust);
+        OreDictionary.registerOre("dustTinyNickel", Registry.nickelTinyDust);
+        OreDictionary.registerOre("dustTinyPlatinum", Registry.platinumTinyDust);
 
         OreDictionary.registerOre("dustSmallIron", Registry.ironSmallDust);
         OreDictionary.registerOre("dustSmallGold", Registry.goldSmallDust);

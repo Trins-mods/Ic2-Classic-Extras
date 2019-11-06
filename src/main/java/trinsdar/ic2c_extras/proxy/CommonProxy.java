@@ -21,7 +21,7 @@ public class CommonProxy
 
     public void preInit(FMLPreInitializationEvent event)
     {
-        Registry.init();
+        Registry.register();
         initItemApi();
         Registry.registerTiles();
         if (!IC2.config.getFlag("NonRadiation")){

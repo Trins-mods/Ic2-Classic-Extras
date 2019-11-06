@@ -51,6 +51,7 @@ public class MachineRecipes {
         initMachineRecipes();
         initFurnaceRecipes();
         initReplaceMaceratorRecipes();
+        initModCrushedOres();
     }
 
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
@@ -175,6 +176,85 @@ public class MachineRecipes {
             }
         }
         return false;
+    }
+
+    public static void initModCrushedOres(){
+        NonNullList listDusts;
+        NonNullList listIngots;
+        if ((OreDictionary.doesOreNameExist("dustAluminum") || OreDictionary.doesOreNameExist("dustAluminium")) && ((OreDictionary.doesOreNameExist("ingotAluminum") || OreDictionary.doesOreNameExist("ingotAluminium")))) {
+            if (OreDictionary.doesOreNameExist("dustAluminum") && OreDictionary.doesOreNameExist("ingotAluminum")){
+                listDusts = OreDictionary.getOres("dustAluminum", false);
+                listIngots = OreDictionary.getOres("ingotAluminum", false);
+                if (!listDusts.isEmpty()) {
+                    CraftingRecipes.dustUtil("dustAluminum", (ItemStack)listDusts.get(0), "dustTinyAluminum", new ItemStack(Registry.aluminumTinyDust));
+                    maceratorUtil("oreAluminum", 1, new ItemStack(Registry.aluminumCrushedOre, 2));
+                    TileEntityMacerator.addRecipe("crushedAluminum", 1, (ItemStack) listDusts.get(0));
+                    TileEntityMacerator.addRecipe("crushedPurifiedAluminum", 1, (ItemStack) listDusts.get(0));
+                    if (!listIngots.isEmpty()){
+                        GameRegistry.addSmelting(Registry.aluminumCrushedOre, (ItemStack) listIngots.get(0), 0.5F);
+                        GameRegistry.addSmelting(Registry.aluminumPurifiedCrushedOre, (ItemStack) listIngots.get(0), 0.5F);
+                    }
+                    TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict("crushedAluminum"), 1000, new ItemStack(Registry.aluminumPurifiedCrushedOre), new ItemStack(Registry.aluminumTinyDust), new ItemStack(Registry.stoneDust));
+                    TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedAluminum"), 600, (ItemStack)listDusts.get(0), new ItemStack(Registry.ironTinyDust, 2), new ItemStack(Registry.stoneDust));
+                    TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedAluminum"), 400, (ItemStack)listDusts.get(0), new ItemStack(Registry.ironTinyDust, 2));
+                }
+            } else {
+                listDusts = OreDictionary.getOres("dustAluminium", false);
+                listIngots = OreDictionary.getOres("ingotAluminum", false);
+                if (!listDusts.isEmpty()) {
+                    CraftingRecipes.dustUtil("dustAluminium", (ItemStack)listDusts.get(0), "dustTinyAluminium", new ItemStack(Registry.aluminumTinyDust));
+                    maceratorUtil("oreAluminium", 1, new ItemStack(Registry.aluminumCrushedOre, 2));
+                    TileEntityMacerator.addRecipe("crushedAluminium", 1, (ItemStack) listDusts.get(0));
+                    TileEntityMacerator.addRecipe("crushedPurifiedAluminium", 1, (ItemStack) listDusts.get(0));
+                    if (!listIngots.isEmpty()){
+                        GameRegistry.addSmelting(Registry.aluminumCrushedOre, (ItemStack) listIngots.get(0), 0.5F);
+                        GameRegistry.addSmelting(Registry.aluminumPurifiedCrushedOre, (ItemStack) listIngots.get(0), 0.5F);
+                    }
+                    TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict("crushedAluminium"), 1000, new ItemStack(Registry.aluminumPurifiedCrushedOre), new ItemStack(Registry.aluminumTinyDust), new ItemStack(Registry.stoneDust));
+                    TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedAluminium"), 600, (ItemStack)listDusts.get(0), new ItemStack(Registry.ironTinyDust, 2), new ItemStack(Registry.stoneDust));
+                    TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedAluminium"), 400, (ItemStack)listDusts.get(0), new ItemStack(Registry.ironTinyDust, 2));
+                }
+            }
+        }
+        if (OreDictionary.doesOreNameExist("dustNickel") && OreDictionary.doesOreNameExist("ingotNickel")) {
+            listDusts = OreDictionary.getOres("dustNickel", false);
+            listIngots = OreDictionary.getOres("ingotNickel", false);
+            if (!listDusts.isEmpty()) {
+                CraftingRecipes.dustUtil("dustNickel", (ItemStack)listDusts.get(0), "dustTinyNickel", new ItemStack(Registry.nickelTinyDust));
+                maceratorUtil("oreNickel", 1, new ItemStack(Registry.nickelCrushedOre, 2));
+                TileEntityMacerator.addRecipe("crushedNickel", 1, (ItemStack) listDusts.get(0));
+                TileEntityMacerator.addRecipe("crushedPurifiedNickel", 1, (ItemStack) listDusts.get(0));
+                if (!listIngots.isEmpty()){
+                    GameRegistry.addSmelting(Registry.nickelCrushedOre, (ItemStack) listIngots.get(0), 0.5F);
+                    GameRegistry.addSmelting(Registry.nickelPurifiedCrushedOre, (ItemStack) listIngots.get(0), 0.5F);
+                }
+                TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict("crushedNickel"), 1000, new ItemStack(Registry.nickelPurifiedCrushedOre), new ItemStack(Registry.nickelTinyDust), new ItemStack(Registry.stoneDust));
+                TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedNickel"), 600, (ItemStack)listDusts.get(0), new ItemStack(Registry.platinumTinyDust, 2), new ItemStack(Registry.stoneDust));
+                TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedNickel"), 400, (ItemStack)listDusts.get(0), new ItemStack(Registry.platinumTinyDust, 2));
+            }
+        }
+        if (OreDictionary.doesOreNameExist("dustPlatinum") && OreDictionary.doesOreNameExist("ingotPlatinum") && !Loader.isModLoaded("gtc_expansion")) {
+            listDusts = OreDictionary.getOres("dustPlatinum", false);
+            listIngots = OreDictionary.getOres("ingotPlatinum", false);
+            if (!listDusts.isEmpty()) {
+                CraftingRecipes.dustUtil("dustPlatinum", (ItemStack)listDusts.get(0), "dustTinyPlatinum", new ItemStack(Registry.platinumTinyDust));
+                maceratorUtil("orePlatinum", 1, new ItemStack(Registry.platinumCrushedOre, 2));
+                TileEntityMacerator.addRecipe("crushedPlatinum", 1, (ItemStack) listDusts.get(0));
+                TileEntityMacerator.addRecipe("crushedPurifiedPlatinum", 1, (ItemStack) listDusts.get(0));
+                if (!listIngots.isEmpty()){
+                    GameRegistry.addSmelting(Registry.platinumCrushedOre, (ItemStack) listIngots.get(0), 0.5F);
+                    GameRegistry.addSmelting(Registry.platinumPurifiedCrushedOre, (ItemStack) listIngots.get(0), 0.5F);
+                }
+                TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict("crushedPlatinum"), 1000, new ItemStack(Registry.platinumPurifiedCrushedOre), new ItemStack(Registry.platinumTinyDust), new ItemStack(Registry.stoneDust));
+                TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPlatinum"), 600, (ItemStack)listDusts.get(0), new ItemStack(Registry.nickelTinyDust, 2), new ItemStack(Registry.stoneDust));
+                TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedPlatinum"), 400, (ItemStack)listDusts.get(0), new ItemStack(Registry.nickelTinyDust, 2));
+            }
+        }
+    }
+
+    public static void maceratorUtil(String input, int amount, ItemStack output) {
+        TileEntityMacerator.oreBlacklist.add(input);
+        TileEntityMacerator.addRecipe(input, amount, output);
     }
 
     public static void initMachineRecipes(){

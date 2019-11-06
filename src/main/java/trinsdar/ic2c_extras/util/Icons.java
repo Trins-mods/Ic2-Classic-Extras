@@ -44,6 +44,9 @@ public class Icons
         makeSprites("tools", 6, 1);
         makeSprites("nuclear_cells", 5, 6);
         makeSprites("crops", 1, 1);
+        makeSprites("aluminum", 3, 1);
+        makeSprites("nickel", 3, 1);
+        makeSprites("platinum", 3, 1);
         Ic2Icons.addCustomTexture("metalbender", 0, 9, new ResourceLocation(IC2CExtras.MODID,"animations/metalbender_front"));
     }
 
