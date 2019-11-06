@@ -174,19 +174,29 @@ public class CraftingRecipes {
         recipes.addShapelessRecipe(new ItemStack(Registry.stoneDust, 4), Registry.stoneDustBlock);
 
         if (Ic2cExtrasConfig.craftingCablesWithPlates){
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.copperCable, 3), "plateCopper", Registry.wireCutters);
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.goldCable, 6), "plateGold", Registry.wireCutters);
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.tinCable, 4), "plateTin", Registry.wireCutters);
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.bronzeCable, 3), "plateBronze", Registry.wireCutters);
+            boolean e = Ic2cExtrasConfig.plateCablesMakeLessThenExtruder;
+            int copperBronzeAmount = e ? 2 : 3;
+            int goldHVAmount = e ? 4 : 6;
+            int tinAmount = e ? 3 : 4;
+            if (Ic2cExtrasConfig.plateCablesOverrideRegularCables){
+                Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.itemcable_-895690168");
+                Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.itemgoldcable_-121137345");
+                Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.itemironcable_1314416875");
+                Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.itemtincable_1475909484");
+                Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.itembronzecable_1006731162");
+            }
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.copperCable, copperBronzeAmount), "plateCopper", Registry.wireCutters);
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.goldCable, goldHVAmount), "plateGold", Registry.wireCutters);
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.tinCable, tinAmount), "plateTin", Registry.wireCutters);
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.bronzeCable, copperBronzeAmount), "plateBronze", Registry.wireCutters);
             if (!IC2.config.getFlag("SteelRecipes")){
                 if (Ic2cExtrasConfig.cablesTakeSteel){
-                    recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, 6), "plateSteel", Registry.wireCutters);
+                    recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, goldHVAmount), "plateSteel", Registry.wireCutters);
                 }else{
-                    recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, 6), "plateRefinedIron", Registry.wireCutters);
+                    recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, goldHVAmount), "plateRefinedIron", Registry.wireCutters);
                 }
-
             }else{
-                recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, 6), "plateSteel", Registry.wireCutters);
+                recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, goldHVAmount), "plateSteel", Registry.wireCutters);
             }
         }
 

@@ -9,6 +9,7 @@ import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.CommonFilters;
+import ic2.core.item.recipe.AdvRecipeBase;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
@@ -17,6 +18,7 @@ import ic2.core.util.helpers.CompareableStack;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootEntryItem;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraft.world.storage.loot.RandomValueRange;
@@ -26,14 +28,19 @@ import net.minecraft.world.storage.loot.functions.SetMetadata;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.registries.ForgeRegistry;
+import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.items.ItemNuclearRod;
 import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.util.Registry;
 
+import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 import static ic2.api.classic.recipe.ClassicRecipes.macerator;
 
@@ -200,7 +207,30 @@ public class Ic2cExtrasRecipes {
                 event.getTable().getPool("main").addEntry(new LootEntryItem(plutonium, tinyPlutonioumWeight, itemQuality, funcs, new LootCondition[0], entryNamePlutonium));
             }
         }
+    }
 
-
+    @SuppressWarnings("unchecked")
+    public static void removeRecipe(String modid, String recipeId) {
+        ((ForgeRegistry<?>) ForgeRegistries.RECIPES).remove(new ResourceLocation(modid, recipeId));
+        Field duplicatesf = null;
+        try {
+            duplicatesf = AdvRecipeBase.class.getDeclaredField("duplicates");
+        } catch (NoSuchFieldException e) {
+            IC2CExtras.logger.info("Trying to access Advanced recipes has failed : (");
+        } catch (SecurityException e) {
+            IC2CExtras.logger.info("AdvRecipeBase security deployed");
+        }
+        if (duplicatesf != null) {
+            duplicatesf.setAccessible(true);
+        }
+        try {
+            if (duplicatesf != null) {
+                ((Set<ResourceLocation>) duplicatesf.get(duplicatesf)).remove(new ResourceLocation(modid, recipeId));
+            }
+        } catch (IllegalArgumentException e) {
+            IC2CExtras.logger.info("Accessed AdvRecipeBase class but field getter failed");
+        } catch (IllegalAccessException e) {
+            IC2CExtras.logger.info("Accessed AdvRecipeBase class but access denied");
+        }
     }
 }

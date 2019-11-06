@@ -26,6 +26,12 @@ public class Ic2cExtrasConfig {
     @Comment("Enables additional recipe of crafting cables with wire cutter and plates")
     public static boolean craftingCablesWithPlates = false;
     @Config.RequiresMcRestart
+    @Comment("Enables overriding the ic2c cable cafting recipe with the plate cable crafting recipe when true. requires craftingCablesWithPlates to be true.")
+    public static boolean plateCablesOverrideRegularCables = false;
+    @Config.RequiresMcRestart
+    @Comment("Enables plate cable crafting recips making the same amount as one ingot does in the ic2c cable recipes instead of the amount one ingot does in the extruder.")
+    public static boolean plateCablesMakeLessThenExtruder = false;
+    @Config.RequiresMcRestart
     @Comment("Enables crafting plates and casings with the hammer")
     public static boolean craftingHammerRecipes = true;
     @Config.RequiresMcRestart
