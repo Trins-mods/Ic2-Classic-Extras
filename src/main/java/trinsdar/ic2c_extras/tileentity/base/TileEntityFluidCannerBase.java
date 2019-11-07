@@ -407,7 +407,6 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
     }
 
     public boolean checkRecipe(FluidCanningRecipe entry) {
-        IC2CExtras.logger.info(entry.getRecipeID());
         if (entry.hasFluidInput()){
             if (!entry.matches(inventory.get(slotInput)) || !entry.getInputFluid().isFluidEqual(inputTank.getFluid())) {
                 return false;
