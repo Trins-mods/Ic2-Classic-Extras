@@ -291,8 +291,8 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
                 }
                 return true;
             }
-            FluidActionResult result2 = FluidUtil.tryFillContainer(playerStack, this.outputTank, 1000, player, true);
-            if (result.isSuccess()){
+            FluidActionResult result2 = FluidUtil.tryFillContainer(playerStack, this.outputTank, this.outputTank.getCapacity(), player, true);
+            if (result2.isSuccess()){
                 playerStack.shrink(1);
                 ItemStack resultStack = result2.getResult();
                 if (!resultStack.isEmpty()) {
