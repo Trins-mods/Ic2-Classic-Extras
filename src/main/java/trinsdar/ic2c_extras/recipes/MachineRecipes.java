@@ -181,7 +181,7 @@ public class MachineRecipes {
     public static void initModCrushedOres(){
         NonNullList listDusts;
         NonNullList listIngots;
-        if ((OreDictionary.doesOreNameExist("dustAluminum") || OreDictionary.doesOreNameExist("dustAluminium")) && ((OreDictionary.doesOreNameExist("ingotAluminum") || OreDictionary.doesOreNameExist("ingotAluminium")))) {
+        if ((OreDictionary.doesOreNameExist("dustAluminum") || OreDictionary.doesOreNameExist("dustAluminium")) && ((OreDictionary.doesOreNameExist("ingotAluminum") || OreDictionary.doesOreNameExist("ingotAluminium"))) && !Loader.isModLoaded("modernmetals")) {
             if (OreDictionary.doesOreNameExist("dustAluminum") && OreDictionary.doesOreNameExist("ingotAluminum")){
                 listDusts = OreDictionary.getOres("dustAluminum", false);
                 listIngots = OreDictionary.getOres("ingotAluminum", false);
@@ -216,7 +216,7 @@ public class MachineRecipes {
                 }
             }
         }
-        if (OreDictionary.doesOreNameExist("dustNickel") && OreDictionary.doesOreNameExist("ingotNickel")) {
+        if (OreDictionary.doesOreNameExist("dustNickel") && OreDictionary.doesOreNameExist("ingotNickel") && !Loader.isModLoaded("basemetals")) {
             listDusts = OreDictionary.getOres("dustNickel", false);
             listIngots = OreDictionary.getOres("ingotNickel", false);
             if (!listDusts.isEmpty()) {
@@ -233,7 +233,7 @@ public class MachineRecipes {
                 TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedNickel"), 400, (ItemStack)listDusts.get(0), new ItemStack(Registry.platinumTinyDust, 2));
             }
         }
-        if (OreDictionary.doesOreNameExist("dustPlatinum") && OreDictionary.doesOreNameExist("ingotPlatinum") && !Loader.isModLoaded("gtc_expansion")) {
+        if (OreDictionary.doesOreNameExist("dustPlatinum") && OreDictionary.doesOreNameExist("ingotPlatinum") && !Loader.isModLoaded("gtc_expansion") && !Loader.isModLoaded("basemetals")) {
             listDusts = OreDictionary.getOres("dustPlatinum", false);
             listIngots = OreDictionary.getOres("ingotPlatinum", false);
             if (!listDusts.isEmpty()) {

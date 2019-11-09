@@ -87,9 +87,9 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
     public final boolean supportsUpgrades;
     public final int upgradeSlots;
     @NetworkField(index = 13)
-    public IC2Tank inputTank = new IC2Tank(10000);
+    public IC2Tank inputTank = new IC2Tank(16000);
     @NetworkField(index = 14)
-    public IC2Tank outputTank = new IC2Tank(10000);
+    public IC2Tank outputTank = new IC2Tank(16000);
 
     public static int slotInput;
     public static int slotOutput;
