@@ -134,8 +134,8 @@ public class Ic2cExtrasRecipes {
             macerator.addRecipe(new RecipeInputOreDict("oreUranium"), new ItemStack(Registry.uraniumCrushedOre,2), 1.0F, "uraniumOre");
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(Ic2Items.reactorReEnrichedUraniumRod)), 1500, 12000, new ItemStack(Registry.plutoniumTinyDust, 2), new ItemStack(Registry.thorium232TinyDust, 2), new ItemStack(Registry.uranium238SmallDust, 2));
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(Registry.reEnrichedThorium232Cell))), 1500, 12000, new ItemStack(Registry.thorium230TinyDust, 1), new ItemStack(Registry.thorium232TinyDust, 1));
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedUranium", 1)), 900, 6000, new ItemStack(Registry.uranium238, 10), new ItemStack(Registry.uranium235TinyDust, 4));
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), 1000, 8000, new ItemStack(Registry.uranium238, 6), new ItemStack(Registry.uranium235TinyDust, 1), stoneDust);
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedUranium", 1)), 900, 6000, new ItemStack(Registry.uranium238, 7), new ItemStack(Registry.uranium235TinyDust, 3));
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), 1000, 8000, new ItemStack(Registry.uranium238, 4), new ItemStack(Registry.uranium235TinyDust, 1), stoneDust);
             TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), 1000, new ItemStack(Registry.uraniumPurifiedCrushedOre, 1), new ItemStack(Registry.leadTinyDust, 2), stoneDust);
             CraftingRecipes.recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.uraniumDrop, 1),
                     "UUU", "TTT", "UUU", 'U', "dustUranium238",'T', "dustTinyUranium235");
@@ -150,6 +150,8 @@ public class Ic2cExtrasRecipes {
             TileEntityCompressor.addRecipe("dustPlutonium", 1, new ItemStack(Registry.plutoniumIngot));
             TileEntityCompressor.addRecipe("dustThorium232", 1, new ItemStack(Registry.thorium232Ingot));
             TileEntityCompressor.addRecipe("dustThorium230", 1, new ItemStack(Registry.thorium230Ingot));
+            TileEntityCompressor.addRecipe("crushedUranium", 1, Ic2Items.uraniumDrop);
+            TileEntityCompressor.addRecipe("crushedPurifiedUranium", 1, Ic2Items.uraniumDrop);
             rodUtil(new ItemStack(Registry.singleUOXCell), new ItemStack(Registry.doubleUOXCell), new ItemStack(Registry.quadUOXCell), ItemNuclearRod.getUran(ItemNuclearRod.NuclearRodVariants.UOX).getNewIsotopicRod(), new ItemStack(Registry.reEnrichedUOXCell), new ItemStack(Registry.nearDepletedUOXCell), new ItemStack(Registry.oxidizedUraniumIngot));
             rodUtil(new ItemStack(Registry.singlePlutoniumCell), new ItemStack(Registry.doublePlutoniumCell), new ItemStack(Registry.quadPlutoniumCell), ItemNuclearRod.getUran(ItemNuclearRod.NuclearRodVariants.PLUTONIUM).getNewIsotopicRod(), new ItemStack(Registry.reEnrichedPlutoniumCell), new ItemStack(Registry.nearDepletedPlutoniumCell), new ItemStack(Registry.plutoniumIngot));
             rodUtil(new ItemStack(Registry.singleMOXCell), new ItemStack(Registry.doubleMOXCell), new ItemStack(Registry.quadMOXCell), ItemNuclearRod.getUran(ItemNuclearRod.NuclearRodVariants.MOX).getNewIsotopicRod(), new ItemStack(Registry.reEnrichedMOXCell), new ItemStack(Registry.nearDepletedMOXCell), new ItemStack(Registry.moxFuel));
