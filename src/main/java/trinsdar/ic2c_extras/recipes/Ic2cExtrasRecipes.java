@@ -82,8 +82,8 @@ public class Ic2cExtrasRecipes {
     }
 
     public static void postInit(){
-        MachineRecipes.initMetalBenderRecipes();
         MachineRecipes.postInit();
+        MachineRecipes.initMetalBenderRecipes();
         initInputLists();
     }
 
