@@ -150,7 +150,6 @@ public class Ic2cExtrasRecipes {
             TileEntityCompressor.addRecipe("dustPlutonium", 1, new ItemStack(Registry.plutoniumIngot));
             TileEntityCompressor.addRecipe("dustThorium232", 1, new ItemStack(Registry.thorium232Ingot));
             TileEntityCompressor.addRecipe("dustThorium230", 1, new ItemStack(Registry.thorium230Ingot));
-            TileEntityCompressor.addRecipe("crushedUranium", 1, Ic2Items.uraniumDrop);
             TileEntityCompressor.addRecipe("crushedPurifiedUranium", 1, Ic2Items.uraniumDrop);
             rodUtil(new ItemStack(Registry.singleUOXCell), new ItemStack(Registry.doubleUOXCell), new ItemStack(Registry.quadUOXCell), ItemNuclearRod.getUran(ItemNuclearRod.NuclearRodVariants.UOX).getNewIsotopicRod(), new ItemStack(Registry.reEnrichedUOXCell), new ItemStack(Registry.nearDepletedUOXCell), new ItemStack(Registry.oxidizedUraniumIngot));
             rodUtil(new ItemStack(Registry.singlePlutoniumCell), new ItemStack(Registry.doublePlutoniumCell), new ItemStack(Registry.quadPlutoniumCell), ItemNuclearRod.getUran(ItemNuclearRod.NuclearRodVariants.PLUTONIUM).getNewIsotopicRod(), new ItemStack(Registry.reEnrichedPlutoniumCell), new ItemStack(Registry.nearDepletedPlutoniumCell), new ItemStack(Registry.plutoniumIngot));
