@@ -1,11 +1,5 @@
 package trinsdar.ic2c_extras;
 
-import static ic2.core.item.armor.standart.ItemHazmatArmor.isFullHazmatSuit;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
 import ic2.core.IC2;
 import ic2.core.entity.IC2Potion;
 import ic2.core.item.armor.electric.ItemArmorQuantumSuit;
@@ -21,6 +15,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import trinsdar.ic2c_extras.util.Registry;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import static ic2.core.item.armor.standart.ItemHazmatArmor.isFullHazmatSuit;
 
 public class Radiation {
 	public static List<ItemStack> radiation = null;

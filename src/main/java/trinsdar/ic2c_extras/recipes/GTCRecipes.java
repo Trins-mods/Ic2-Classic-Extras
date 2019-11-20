@@ -1,12 +1,10 @@
 package trinsdar.ic2c_extras.recipes;
 
-import gtclassic.GTItems;
-import gtclassic.material.GTMaterial;
-import gtclassic.material.GTMaterialGen;
-import gtclassic.tile.GTTileCentrifuge;
+import gtclassic.api.material.GTMaterial;
+import gtclassic.api.material.GTMaterialGen;
+import gtclassic.common.GTItems;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.item.ItemStack;
-import trinsdar.ic2c_extras.util.Registry;
 
 public class GTCRecipes {
     public static void init(){
