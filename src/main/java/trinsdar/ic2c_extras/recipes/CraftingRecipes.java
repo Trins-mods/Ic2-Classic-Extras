@@ -94,10 +94,10 @@ public class CraftingRecipes {
         recipes.addRecipe(new ItemStack(Registry.gearingPress), "C", "P", 'C', "craftingToolWireCutter", 'P', Registry.blankPress);
 
         recipes.addRecipe(new ItemStack(Registry.craftingHammer, 1),
-                "III", "III", " S ", 'I', IC2.getRefinedIron(),'S', "stickWood");
+                "III", "III", " S ", 'I', "ingotRefinedIron",'S', "stickWood");
 
         recipes.addRecipe(new ItemStack(Registry.wireCutters, 1),
-                "I I", " I ", "S S", 'I', IC2.getRefinedIron(),'S', "stickWood");
+                "I I", " I ", "S S", 'I', "ingotRefinedIron",'S', "stickWood");
 
         recipes.addRecipe(Ic2Items.fuelCan,
                 " TT", "T T", "TTT", 'T', "casingTin");
