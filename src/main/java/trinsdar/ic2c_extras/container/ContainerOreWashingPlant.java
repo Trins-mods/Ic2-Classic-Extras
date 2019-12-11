@@ -52,7 +52,7 @@ public class ContainerOreWashingPlant extends ContainerTileComponent<TileEntityO
         this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 111, 35));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 111, 53));
         this.addSlotToContainer(new SlotCustom(tile, 5, 8, 12, new ArrayFilter(filter)));
-        this.addSlotToContainer(new SlotCustom(tile, 6, 8, 57, null));
+        this.addSlotToContainer(new SlotOutput(player.player, tile, 6, 8, 57));
 
         for(int i = 0; i < 4; ++i)
         {
