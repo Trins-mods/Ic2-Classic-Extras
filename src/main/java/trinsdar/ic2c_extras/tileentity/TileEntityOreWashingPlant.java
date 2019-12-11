@@ -44,10 +44,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.FluidTankProperties;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
-import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.container.ContainerOreWashingPlant;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
@@ -55,16 +52,20 @@ import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.oreWashingPlant;
 
-public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine implements ITankListener, IFluidHandler, IClickable
+public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine implements ITankListener, IClickable
 {
 
     @NetworkField(index = 13)
-    public IC2Tank waterTank = new IC2Tank(FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 0), 10000);
+    private IC2Tank waterTank = new IC2Tank(16000){
+        @Override
+        public boolean canFillFluidType(FluidStack fluid) {
+            return super.canFillFluidType(fluid) && fluid.getFluid() == FluidRegistry.WATER;
+        }
+    };
 
 
     public static final String waterAmount = "amount";
@@ -296,48 +297,6 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     @Override
-    public IFluidTankProperties[] getTankProperties() {
-        return new IFluidTankProperties[]{new FluidTankProperties(new FluidStack(FluidRegistry.WATER, this.water), 10000)};
-    }
-
-    @Override
-    public int fill(FluidStack resource, boolean doFill) {
-        if (resource != null && resource.getFluid() == FluidRegistry.WATER) {
-            int toAdd = Math.min(resource.amount, maxWater - this.water);
-            if (doFill) {
-                this.water += toAdd;
-                this.getNetwork().updateTileGuiField(this, "water");
-            }
-
-            return toAdd;
-        } else {
-            return 0;
-        }
-    }
-
-    @Nullable
-    @Override
-    public FluidStack drain(FluidStack resource, boolean doDrain) {
-        return resource != null && resource.getFluid() == FluidRegistry.WATER ? this.drain(resource.amount, doDrain) : null;
-    }
-
-    @Nullable
-    @Override
-    public FluidStack drain(int maxDrain, boolean doDrain) {
-        int amount = Math.min(maxDrain, this.water);
-        if (amount <= 0) {
-            return null;
-        } else {
-            if (doDrain) {
-                this.water -= amount;
-                this.getNetwork().updateTileGuiField(this, "water");
-            }
-
-            return new FluidStack(FluidRegistry.WATER, amount);
-        }
-    }
-
-    @Override
     public boolean hasCapability(Capability<?> capability, EnumFacing facing)
     {
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
@@ -346,7 +305,10 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing)
     {
-        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? (T)this.waterTank : super.getCapability(capability, facing);
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
+            return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.waterTank);
+        }
+        return super.getCapability(capability, facing);
     }
 
     public static int getRequiredWater(MachineOutput output) {

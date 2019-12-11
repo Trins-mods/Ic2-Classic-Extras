@@ -62,7 +62,7 @@ public class ContainerOreWashingPlant extends ContainerTileComponent<TileEntityO
         this.addPlayerInventory(player);
         this.addComponent(new MachineChargeComp(tile, Ic2GuiComp.machineChargeBox, Ic2GuiComp.machineChargePos));
         this.addComponent(new MachineProgressComp(tile, Ic2GuiComp.machineProgressBox, Ic2GuiComp.machineProgressPos));
-        this.addComponent(new FluidTankComp(new Box2D(13, 32, 16, 58), tile.waterTank, new Vec2i(176, 133), new Box2D(32, 13, 16, 58)));
+        this.addComponent(new FluidTankComp(new Box2D(13, 32, 16, 58), tile.getWaterTank(), new Vec2i(176, 133), new Box2D(32, 13, 16, 58)));
     }
     public static ItemStack getTube() {
         FluidStack fluid = new FluidStack(FluidRegistry.WATER, 1000);

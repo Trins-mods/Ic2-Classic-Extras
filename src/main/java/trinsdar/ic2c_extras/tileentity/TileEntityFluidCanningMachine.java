@@ -56,8 +56,8 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
         this.inputTank.addListener(this);
         this.outputTank.addListener(this);
         this.inputTank.setCanFill(true);
-        this.outputTank.setCanFill(true);
-        this.inputTank.setCanDrain(true);
+        this.outputTank.setCanFill(false);
+        this.inputTank.setCanDrain(false);
         this.outputTank.setCanDrain(true);
         this.addGuiFields("inputTank", "outputTank");
     }

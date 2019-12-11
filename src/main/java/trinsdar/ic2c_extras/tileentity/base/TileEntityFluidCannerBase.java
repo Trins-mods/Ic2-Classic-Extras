@@ -27,27 +27,17 @@ import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IOutputMachine;
-import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidTank;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import trinsdar.ic2c_extras.IC2CExtras;
-import trinsdar.ic2c_extras.util.recipelists.ContainerInputRecipeList;
 import trinsdar.ic2c_extras.util.recipelists.FluidCanningRecipeList;
 import trinsdar.ic2c_extras.util.recipelists.FluidCanningRecipeList.FluidCanningRecipe;
 
@@ -179,9 +169,9 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
         IRecipeInput input = recipe.getInput();
         ItemStack stack = inventory.get(slotInput);
         stack.shrink(input.getAmount());
-        this.inputTank.drain(recipe.getInputFluid(), true);
+        this.inputTank.drainInternal(recipe.getInputFluid(), true);
         if (recipe.hasFluidOutput()){
-            this.outputTank.fill(recipe.getOutputFluid(), true);
+            this.outputTank.fillInternal(recipe.getOutputFluid(), true);
         }
         addToInventory();
         for (int i = 0; i < upgradeSlots; i++) {
