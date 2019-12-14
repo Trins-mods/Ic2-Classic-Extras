@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.tileentity;
 
+import gtclassic.api.interfaces.IGTDebuggableTile;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.tile.IMachine;
 import ic2.core.IC2;
@@ -8,9 +9,6 @@ import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.resources.BlockRubberWood;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerIC2;
-import ic2.core.inventory.filters.ArrayFilter;
-import ic2.core.inventory.filters.BasicItemFilter;
-import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
@@ -22,22 +20,24 @@ import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Optional;
 import trinsdar.ic2c_extras.container.ContainerTreeTapper;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
-public class TileEntityTreeTapper extends TileEntityElecMachine implements ITickable, IHasGui, IMachine {
+@Optional.Interface(iface = "gtclassic.api.interfaces.IGTDebuggableTile", modid = "gtclassic", striprefs = true)
+public class TileEntityTreeTapper extends TileEntityElecMachine implements ITickable, IHasGui, IMachine, IGTDebuggableTile {
     public int nextDelay = 10;
     public int delay = 0;
     public int radius = 1;
@@ -298,5 +298,13 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
     @Override
     public BlockPos getMachinePos() {
         return getPos();
+    }
+
+    @Optional.Method(modid = "gtclassic")
+    @Override
+    public void getData(Map<String, Boolean> map) {
+        map.put("Radius: " + radius + " Blocks", true);
+        map.put("Tick Delay between runs: " + nextDelay + " Ticks", true);
+        map.put("Ticks till next run: " + delay, true);
     }
 }

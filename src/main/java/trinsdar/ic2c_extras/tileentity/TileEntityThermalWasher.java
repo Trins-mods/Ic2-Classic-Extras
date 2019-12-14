@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.tileentity;
 
+import gtclassic.api.interfaces.IGTDebuggableTile;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.INullableRecipeInput;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
@@ -53,18 +54,21 @@ import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.container.ContainerThermalWasher;
-import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
+import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
-public class TileEntityThermalWasher extends TileEntityAdvancedMachine implements ITankListener, IFluidHandler, IClickable {
+@Optional.Interface(iface = "gtclassic.api.interfaces.IGTDebuggableTile", modid = "gtclassic", striprefs = true)
+public class TileEntityThermalWasher extends TileEntityAdvancedMachine implements ITankListener, IFluidHandler, IClickable, IGTDebuggableTile {
     @NetworkField(index = 13)
     public IC2Tank waterTank = new IC2Tank(FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 0), 20000);
     public int water = 0;
@@ -478,5 +482,13 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     @Override
     public void onLeftClick(EntityPlayer entityPlayer, Side side) {
 
+    }
+
+    @Optional.Method(modid = "gtclassic")
+    @Override
+    public void getData(Map<String, Boolean> map) {
+        FluidStack fluid = this.waterTank.getFluid();
+        int amount = fluid != null ? fluid.amount : 0;
+        map.put("Contains " + amount + " mb of Water", false);
     }
 }

@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.tileentity;
 
+import gtclassic.api.interfaces.IGTDebuggableTile;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.RecipeModifierHelpers;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
@@ -32,6 +33,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Optional;
 import trinsdar.ic2c_extras.container.ContainerThermalCentrifuge;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.GuiMachine.ThermalCentrifugeGui;
@@ -40,10 +42,12 @@ import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.thermalCentrifuge;
 
-public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
+@Optional.Interface(iface = "gtclassic.api.interfaces.IGTDebuggableTile", modid = "gtclassic", striprefs = true)
+public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine implements IGTDebuggableTile
 {
     @NetworkField(index = 13)
     public int maxHeat = 500;
@@ -294,4 +298,10 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine
         thermalCentrifuge.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName());
     }
 
+    @Optional.Method(modid = "gtclassic")
+    @Override
+    public void getData(Map<String, Boolean> map) {
+        map.put("Heat: " + heat, true);
+        map.put("Max Heat: " + maxHeat, true);
+    }
 }

@@ -10,6 +10,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -72,7 +73,9 @@ public class IC2CExtras
     public void postInit(FMLPostInitializationEvent event)
     {
         proxy.postInit();
-        IC2.getInstance().saveRecipeInfo(IC2.configFolder);
+        if (!Loader.isModLoaded("gtc_expansion")){
+            IC2.getInstance().saveRecipeInfo(IC2.configFolder);
+        }
     }
 
     @SubscribeEvent

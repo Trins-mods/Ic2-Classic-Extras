@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.tileentity;
 
+import gtclassic.api.interfaces.IGTDebuggableTile;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.recipe.RecipeModifierHelpers;
 import ic2.api.classic.recipe.RecipeModifierHelpers.IRecipeModifier;
@@ -33,6 +34,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.container.ContainerFluidCanningMachine;
 import trinsdar.ic2c_extras.tileentity.base.TileEntityFluidCannerBase;
@@ -43,9 +45,11 @@ import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 
-public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase implements ITankListener, IClickable {
+@Optional.Interface(iface = "gtclassic.api.interfaces.IGTDebuggableTile", modid = "gtclassic", striprefs = true)
+public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase implements ITankListener, IClickable, IGTDebuggableTile {
     public static FluidCanningRecipeList fluidCanning = new FluidCanningRecipeList("fluidCanning");
     public MachineFilter filter = new MachineFilter(this);
 
@@ -314,5 +318,14 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
     @Override
     public void onLeftClick(EntityPlayer entityPlayer, Side side) {
 
+    }
+
+    @Optional.Method(modid = "gtclassic")
+    @Override
+    public void getData(Map<String, Boolean> map) {
+        FluidStack fluid = this.inputTank.getFluid();
+        map.put("Input Tank: " + (fluid != null ? fluid.amount + "mb of " + fluid.getLocalizedName() : "Empty"), false);
+        fluid = this.outputTank.getFluid();
+        map.put("Output Tank: " + (fluid != null ? fluid.amount + "mb of " + fluid.getLocalizedName() : "Empty"), false);
     }
 }

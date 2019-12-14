@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.tileentity;
 
+import gtclassic.api.interfaces.IGTDebuggableTile;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.classic.recipe.machine.MachineOutput;
@@ -45,6 +46,7 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.container.ContainerOreWashingPlant;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
@@ -53,10 +55,12 @@ import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 import java.util.List;
+import java.util.Map;
 
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.oreWashingPlant;
 
-public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine implements ITankListener, IClickable
+@Optional.Interface(iface = "gtclassic.api.interfaces.IGTDebuggableTile", modid = "gtclassic", striprefs = true)
+public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine implements ITankListener, IClickable, IGTDebuggableTile
 {
 
     @NetworkField(index = 13)
@@ -369,5 +373,13 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     @Override
     public void onLeftClick(EntityPlayer entityPlayer, Side side) {
 
+    }
+
+    @Optional.Method(modid = "gtclassic")
+    @Override
+    public void getData(Map<String, Boolean> map) {
+        FluidStack fluid = this.waterTank.getFluid();
+        int amount = fluid != null ? fluid.amount : 0;
+        map.put("Contains " + amount + " mb of Water", false);
     }
 }
