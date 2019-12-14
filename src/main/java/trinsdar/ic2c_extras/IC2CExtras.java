@@ -29,7 +29,7 @@ public class IC2CExtras
     public static final String MODID = "ic2c_extras";
     public static final String NAME = "IC2CExtras";
     public static final String VERSION = "@VERSION@";
-    public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod;after:gtclassic@[1.0.7,)";
+    public static final String DEPENDS = "required-after:ic2;required-after:ic2-classic-spmod;after:gtclassic@[1.0.9,)";
     public static final CreativeTabs creativeTab = new CreativeTabIC2CExtras(MODID);
 
     @SidedProxy(clientSide = "trinsdar.ic2c_extras.proxy.ClientProxy", serverSide = "trinsdar.ic2c_extras.proxy.ServerProxy")
