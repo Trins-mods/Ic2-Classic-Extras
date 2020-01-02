@@ -65,6 +65,7 @@ public class IC2CExtras
     public void init(FMLInitializationEvent event)
     {
         proxy.init();
+        Radiation.initRadiation();
         MinecraftForge.EVENT_BUS.register(new Ic2cExtrasRecipes());
         MinecraftForge.EVENT_BUS.register(new Radiation());
     }
