@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.util.crafttweaker;
+package trinsdar.ic2c_extras.crafttweaker;
 
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.minecraft.CraftTweakerMC;

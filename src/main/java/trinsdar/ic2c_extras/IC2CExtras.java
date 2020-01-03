@@ -18,6 +18,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.Logger;
+import trinsdar.ic2c_extras.events.Bear989Event;
+import trinsdar.ic2c_extras.events.RadiationEvent;
 import trinsdar.ic2c_extras.proxy.CommonProxy;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.CreativeTabIC2CExtras;
@@ -65,9 +67,13 @@ public class IC2CExtras
     public void init(FMLInitializationEvent event)
     {
         proxy.init();
-        Radiation.initRadiation();
+        RadiationEvent.initRadiation();
         MinecraftForge.EVENT_BUS.register(new Ic2cExtrasRecipes());
-        MinecraftForge.EVENT_BUS.register(new Radiation());
+        MinecraftForge.EVENT_BUS.register(new Bear989Event());
+        if (Ic2cExtrasConfig.itemRadiation){
+            MinecraftForge.EVENT_BUS.register(new RadiationEvent());
+        }
+
     }
 
     @Mod.EventHandler

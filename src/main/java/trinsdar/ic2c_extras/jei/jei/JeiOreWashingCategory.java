@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.util.jei;
+package trinsdar.ic2c_extras.jei.jei;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -18,7 +18,7 @@ import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.util.Registry;
 
-public class JeiFluidCanningCategory implements IRecipeCategory<JeiFluidCanningWrapper> {
+public class JeiOreWashingCategory implements IRecipeCategory<JeiOreWashingWrapper> {
     ItemStack displayName;
     IDrawable draw;
     IDrawable overlay;
@@ -26,27 +26,27 @@ public class JeiFluidCanningCategory implements IRecipeCategory<JeiFluidCanningW
     IDrawable arrow;
     IDrawable progress;
     IDrawable charge;
-    String id;
 
-    public JeiFluidCanningCategory(IGuiHelper helper) {
-        this.displayName = new ItemStack(Registry.fluidCanningMachine);
-        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/jei/jeifluidcanningmachine.png");
-        this.draw = helper.createDrawable(texture, 15, 11, 124, getHeight());
+    public JeiOreWashingCategory(IGuiHelper helper) {
+
+        displayName = new ItemStack(Registry.oreWashingPlant);
+        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/jei/jeiorewashingplant.png");
+        this.draw = helper.createDrawable(texture, 28, 10, 102, getHeight());
         this.overlay = helper.createDrawable(texture, 176, 33, 16, 58);
-        IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 23, 17);
+        IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 20, 19);
         this.progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);
         IDrawableStatic chargePic = helper.createDrawable(texture, 176, 0, 13, 14);
         this.charge = helper.createAnimatedDrawable(chargePic, 500, IDrawableAnimated.StartDirection.TOP, true);
     }
 
     public int getHeight(){
-        return Ic2cExtrasConfig.debugMode ? 72 : 62;
+        return Ic2cExtrasConfig.debugMode ? 73 : 63;
     }
 
     @SideOnly(Side.CLIENT)
     public void drawExtras(Minecraft arg0) {
-        this.progress.draw(arg0, 49, 24);
-        this.charge.draw(arg0, 29, 26);
+        this.progress.draw(arg0, 53, 23);
+        this.charge.draw(arg0, 28, 26);
     }
 
     @Override
@@ -66,18 +66,19 @@ public class JeiFluidCanningCategory implements IRecipeCategory<JeiFluidCanningW
 
     @Override
     public String getUid() {
-        return "fluidCanning";
+        return "oreWashing";
     }
 
     @Override
-    public void setRecipe(IRecipeLayout layout, JeiFluidCanningWrapper arg1, IIngredients ingridient) {
+    public void setRecipe(IRecipeLayout layout, JeiOreWashingWrapper arg1, IIngredients ingridient) {
         IGuiItemStackGroup guiItemStacks = layout.getItemStacks();
-        IGuiFluidStackGroup group = layout.getFluidStacks();
-        guiItemStacks.init(0, true, 28, 6);
-        group.init(1, true, 6, 2, 16, 58, 10000, true, this.overlay);
-        guiItemStacks.init(2, false, 78, 24);
-        group.init(3, false, 102, 2, 16, 58, 10000, true, this.overlay);
-        group.set(ingridient);
+        IGuiFluidStackGroup guiFluidStacks = layout.getFluidStacks();
+        guiItemStacks.init(0, true, 27, 6); //input
+        guiFluidStacks.init(1, true, 4, 3, 16, 58, 10000, true, this.overlay);
+        guiItemStacks.init(2, false, 82, 6); //outputs
+        guiItemStacks.init(3, false, 82, 24);
+        guiItemStacks.init(4, false, 82, 42);
+        guiFluidStacks.set(ingridient);
         guiItemStacks.set(ingridient);
 
     }

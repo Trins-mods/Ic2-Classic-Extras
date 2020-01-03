@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.util.jei;
+package trinsdar.ic2c_extras.jei.jei;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.core.IC2;

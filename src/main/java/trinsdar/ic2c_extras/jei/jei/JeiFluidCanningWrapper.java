@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.util.jei;
+package trinsdar.ic2c_extras.jei.jei;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
