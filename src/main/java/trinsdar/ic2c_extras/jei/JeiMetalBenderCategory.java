@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.jei.jei;
+package trinsdar.ic2c_extras.jei;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -17,36 +17,34 @@ import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.util.Registry;
 
-public class JeiThermalCentrifugeCategory implements IRecipeCategory<JeiThermalCentrifugeWrapper> {
+public class JeiMetalBenderCategory implements IRecipeCategory<JeiMetalBenderWrapper> {
     ItemStack displayName;
     IDrawable draw;
     IDrawable slot;
     IDrawable arrow;
     IDrawable progress;
     IDrawable charge;
-    IDrawable heat;
+    String id;
 
-    public JeiThermalCentrifugeCategory(IGuiHelper helper) {
-        displayName = new ItemStack(Registry.thermalCentrifuge);
-        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/jei/jeithermalcentrifuge.png");
-        this.draw = helper.createDrawable(texture, 5, 14, 124, getHeight());
-        IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 45, 17);
+    public JeiMetalBenderCategory(IGuiHelper helper) {
+        this.displayName = new ItemStack(Registry.metalBender);
+        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/jei/jeimetalbender.png");
+        this.id = id;
+        this.draw = helper.createDrawable(texture, 41, 15, 99, getHeight());
+        IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 23, 16);
         this.progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);
-        IDrawableStatic heatPic = helper.createDrawable(texture, 176, 31, 24, 17);
-        this.heat = helper.createAnimatedDrawable(heatPic, 300, IDrawableAnimated.StartDirection.LEFT, false);
         IDrawableStatic chargePic = helper.createDrawable(texture, 176, 0, 13, 14);
         this.charge = helper.createAnimatedDrawable(chargePic, 500, IDrawableAnimated.StartDirection.TOP, true);
     }
 
     public int getHeight(){
-        return Ic2cExtrasConfig.debugMode ? 100 : 90;
+        return Ic2cExtrasConfig.debugMode ? 70 : 60;
     }
 
     @SideOnly(Side.CLIENT)
     public void drawExtras(Minecraft arg0) {
-        this.progress.draw(arg0, 42, 20);
-        this.heat.draw(arg0, 52, 38);
-        this.charge.draw(arg0, 6, 22);
+        this.progress.draw(arg0, 38, 19);
+        this.charge.draw(arg0, 15, 21);
     }
 
     @Override
@@ -66,16 +64,15 @@ public class JeiThermalCentrifugeCategory implements IRecipeCategory<JeiThermalC
 
     @Override
     public String getUid() {
-        return "thermalCentrifuge";
+        return "metalBender";
     }
 
     @Override
-    public void setRecipe(IRecipeLayout layout, JeiThermalCentrifugeWrapper arg1, IIngredients ingridient) {
+    public void setRecipe(IRecipeLayout layout, JeiMetalBenderWrapper arg1, IIngredients ingridient) {
         IGuiItemStackGroup guiItemStacks = layout.getItemStacks();
-        guiItemStacks.init(0, true, 5, 2); //input
-        guiItemStacks.init(1, false, 105, 2); //outputs
-        guiItemStacks.init(2, false, 105, 20);
-        guiItemStacks.init(3, false, 105, 38);
+        guiItemStacks.init(0, true, 5, 1);
+        guiItemStacks.init(1, true, 23, 1);
+        guiItemStacks.init(2, false, 74, 19);
         guiItemStacks.set(ingridient);
 
     }

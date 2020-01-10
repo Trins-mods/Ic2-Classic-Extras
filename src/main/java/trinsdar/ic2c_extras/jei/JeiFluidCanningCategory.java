@@ -1,9 +1,10 @@
-package trinsdar.ic2c_extras.jei.jei;
+package trinsdar.ic2c_extras.jei;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IDrawableStatic;
+import mezz.jei.api.gui.IGuiFluidStackGroup;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
@@ -17,34 +18,35 @@ import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.util.Registry;
 
-public class JeiMetalBenderCategory implements IRecipeCategory<JeiMetalBenderWrapper> {
+public class JeiFluidCanningCategory implements IRecipeCategory<JeiFluidCanningWrapper> {
     ItemStack displayName;
     IDrawable draw;
+    IDrawable overlay;
     IDrawable slot;
     IDrawable arrow;
     IDrawable progress;
     IDrawable charge;
     String id;
 
-    public JeiMetalBenderCategory(IGuiHelper helper) {
-        this.displayName = new ItemStack(Registry.metalBender);
-        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/jei/jeimetalbender.png");
-        this.id = id;
-        this.draw = helper.createDrawable(texture, 41, 15, 99, getHeight());
-        IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 23, 16);
+    public JeiFluidCanningCategory(IGuiHelper helper) {
+        this.displayName = new ItemStack(Registry.fluidCanningMachine);
+        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/jei/jeifluidcanningmachine.png");
+        this.draw = helper.createDrawable(texture, 15, 11, 124, getHeight());
+        this.overlay = helper.createDrawable(texture, 176, 33, 16, 58);
+        IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 23, 17);
         this.progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);
         IDrawableStatic chargePic = helper.createDrawable(texture, 176, 0, 13, 14);
         this.charge = helper.createAnimatedDrawable(chargePic, 500, IDrawableAnimated.StartDirection.TOP, true);
     }
 
     public int getHeight(){
-        return Ic2cExtrasConfig.debugMode ? 70 : 60;
+        return Ic2cExtrasConfig.debugMode ? 72 : 62;
     }
 
     @SideOnly(Side.CLIENT)
     public void drawExtras(Minecraft arg0) {
-        this.progress.draw(arg0, 38, 19);
-        this.charge.draw(arg0, 15, 21);
+        this.progress.draw(arg0, 49, 24);
+        this.charge.draw(arg0, 29, 26);
     }
 
     @Override
@@ -64,15 +66,18 @@ public class JeiMetalBenderCategory implements IRecipeCategory<JeiMetalBenderWra
 
     @Override
     public String getUid() {
-        return "metalBender";
+        return "fluidCanning";
     }
 
     @Override
-    public void setRecipe(IRecipeLayout layout, JeiMetalBenderWrapper arg1, IIngredients ingridient) {
+    public void setRecipe(IRecipeLayout layout, JeiFluidCanningWrapper arg1, IIngredients ingridient) {
         IGuiItemStackGroup guiItemStacks = layout.getItemStacks();
-        guiItemStacks.init(0, true, 5, 1);
-        guiItemStacks.init(1, true, 23, 1);
-        guiItemStacks.init(2, false, 74, 19);
+        IGuiFluidStackGroup group = layout.getFluidStacks();
+        guiItemStacks.init(0, true, 28, 6);
+        group.init(1, true, 6, 2, 16, 58, 10000, true, this.overlay);
+        guiItemStacks.init(2, false, 78, 24);
+        group.init(3, false, 102, 2, 16, 58, 10000, true, this.overlay);
+        group.set(ingridient);
         guiItemStacks.set(ingridient);
 
     }

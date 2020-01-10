@@ -1,10 +1,9 @@
-package trinsdar.ic2c_extras.jei.jei;
+package trinsdar.ic2c_extras.jei;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IDrawableStatic;
-import mezz.jei.api.gui.IGuiFluidStackGroup;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
@@ -18,35 +17,36 @@ import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.util.Registry;
 
-public class JeiFluidCanningCategory implements IRecipeCategory<JeiFluidCanningWrapper> {
+public class JeiThermalCentrifugeCategory implements IRecipeCategory<JeiThermalCentrifugeWrapper> {
     ItemStack displayName;
     IDrawable draw;
-    IDrawable overlay;
     IDrawable slot;
     IDrawable arrow;
     IDrawable progress;
     IDrawable charge;
-    String id;
+    IDrawable heat;
 
-    public JeiFluidCanningCategory(IGuiHelper helper) {
-        this.displayName = new ItemStack(Registry.fluidCanningMachine);
-        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/jei/jeifluidcanningmachine.png");
-        this.draw = helper.createDrawable(texture, 15, 11, 124, getHeight());
-        this.overlay = helper.createDrawable(texture, 176, 33, 16, 58);
-        IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 23, 17);
+    public JeiThermalCentrifugeCategory(IGuiHelper helper) {
+        displayName = new ItemStack(Registry.thermalCentrifuge);
+        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/jei/jeithermalcentrifuge.png");
+        this.draw = helper.createDrawable(texture, 5, 14, 124, getHeight());
+        IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 45, 17);
         this.progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);
+        IDrawableStatic heatPic = helper.createDrawable(texture, 176, 31, 24, 17);
+        this.heat = helper.createAnimatedDrawable(heatPic, 300, IDrawableAnimated.StartDirection.LEFT, false);
         IDrawableStatic chargePic = helper.createDrawable(texture, 176, 0, 13, 14);
         this.charge = helper.createAnimatedDrawable(chargePic, 500, IDrawableAnimated.StartDirection.TOP, true);
     }
 
     public int getHeight(){
-        return Ic2cExtrasConfig.debugMode ? 72 : 62;
+        return Ic2cExtrasConfig.debugMode ? 100 : 90;
     }
 
     @SideOnly(Side.CLIENT)
     public void drawExtras(Minecraft arg0) {
-        this.progress.draw(arg0, 49, 24);
-        this.charge.draw(arg0, 29, 26);
+        this.progress.draw(arg0, 42, 20);
+        this.heat.draw(arg0, 52, 38);
+        this.charge.draw(arg0, 6, 22);
     }
 
     @Override
@@ -66,18 +66,16 @@ public class JeiFluidCanningCategory implements IRecipeCategory<JeiFluidCanningW
 
     @Override
     public String getUid() {
-        return "fluidCanning";
+        return "thermalCentrifuge";
     }
 
     @Override
-    public void setRecipe(IRecipeLayout layout, JeiFluidCanningWrapper arg1, IIngredients ingridient) {
+    public void setRecipe(IRecipeLayout layout, JeiThermalCentrifugeWrapper arg1, IIngredients ingridient) {
         IGuiItemStackGroup guiItemStacks = layout.getItemStacks();
-        IGuiFluidStackGroup group = layout.getFluidStacks();
-        guiItemStacks.init(0, true, 28, 6);
-        group.init(1, true, 6, 2, 16, 58, 10000, true, this.overlay);
-        guiItemStacks.init(2, false, 78, 24);
-        group.init(3, false, 102, 2, 16, 58, 10000, true, this.overlay);
-        group.set(ingridient);
+        guiItemStacks.init(0, true, 5, 2); //input
+        guiItemStacks.init(1, false, 105, 2); //outputs
+        guiItemStacks.init(2, false, 105, 20);
+        guiItemStacks.init(3, false, 105, 38);
         guiItemStacks.set(ingridient);
 
     }

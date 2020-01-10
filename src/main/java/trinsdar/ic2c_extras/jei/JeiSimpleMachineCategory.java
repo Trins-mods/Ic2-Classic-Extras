@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.jei.jei;
+package trinsdar.ic2c_extras.jei;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
