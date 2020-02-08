@@ -2,7 +2,7 @@
 tile.oreWashingPlant.name=洗矿机
 tile.thermalCentrifuge.name=热能离心机
 tile.thermalWasher.name=热能洗矿机
-tile.metalPress.name=metalPress
+tile.metalPress.name=金属冲压机
 tile.roller.name=碾轧机
 tile.extruder.name=挤压机
 tile.cutter.name=切割机
