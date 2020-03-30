@@ -129,7 +129,9 @@ public class CraftingRecipes {
 
     public static void initReplaceRecipes(){
         if (!IC2.config.getFlag("SteelRecipes") && Ic2cExtrasConfig.cablesTakeSteel){
-            recipes.overrideRecipe("shaped_item.itemironcable_1314416875", StackUtil.copyWithSize(Ic2Items.ironCable, 12), "III", 'I', "ingotSteel");
+            if (!Ic2cExtrasConfig.plateCablesOverrideRegularCables){
+                recipes.overrideRecipe("shaped_item.itemironcable_1314416875", StackUtil.copyWithSize(Ic2Items.ironCable, 12), "III", 'I', "ingotSteel");
+            }
             recipes.overrideRecipe("shaped_item.itemironcablei_926773675", StackUtil.copyWithSize(Ic2Items.insulatedIronCable, 4), " R ", "RIR", " R ", 'R', "itemRubber", 'I', "ingotSteel");
             recipes.overrideRecipe("shaped_item.itemironcableii_268464298", StackUtil.copyWithSize(Ic2Items.doubleInsulatedIronCable, 4), "RRR", "RIR", "RRR", 'R', "itemRubber", 'I', "ingotSteel");
             recipes.overrideRecipe("shaped_item.itemplasmacable_-449044295", StackUtil.copyWithSize(Ic2Items.plasmaCable, 4), "CCC", "IPI", "CCC", 'C', Ic2Items.carbonPlate, 'I', "ingotSteel", 'P', Ic2Items.plasmaCore);
@@ -184,6 +186,7 @@ public class CraftingRecipes {
                 Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.itemcable_-895690168");
                 Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.itemgoldcable_-121137345");
                 Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.itemironcable_1314416875");
+                Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.itemironcable_-1596711841");
                 Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.itemtincable_1475909484");
                 Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.itembronzecable_1006731162");
             }
