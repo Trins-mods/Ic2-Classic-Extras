@@ -1,9 +1,6 @@
 package trinsdar.ic2c_extras;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.Comment;
-import net.minecraftforge.common.config.Configuration;
-import org.apache.logging.log4j.Level;
-import trinsdar.ic2c_extras.proxy.CommonProxy;
 
 @Config(modid = IC2CExtras.MODID, name = "ic2/ic2c_extras")
 public class Ic2cExtrasConfig {
@@ -64,4 +61,7 @@ public class Ic2cExtrasConfig {
     @Config.RequiresMcRestart
     @Comment("Determines whether dense plates take 9 plates(true) or 8 ingots(false).")
     public static boolean densePlatesTakePlates = false;
+    @Config.RequiresMcRestart
+    @Comment("Whether or not gtcx compat is enabled.")
+    public static boolean compatGTCX = true;
 }

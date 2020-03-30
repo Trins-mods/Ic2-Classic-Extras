@@ -58,20 +58,22 @@ public class CraftingRecipes {
 
         recipes.addRecipe(new ItemStack(Registry.fluidCanningMachine), " C ", "EcE", "ITI", 'C', Ic2Items.electricCircuit, 'E', Ic2Items.emptyCell, 'c', Ic2Items.canner,  'T', Ic2Items.machineTank, 'I', "ingotTin");
 
-        recipes.addRecipe(new ItemStack(Registry.roller, 1),
-                "CPC", "PBP", "cPc", 'C', basicCircuit, 'B', Ic2Items.machine, 'c', Registry.coil, 'P', Blocks.PISTON);
+        if (!Loader.isModLoaded("gtc_expansion") || !Ic2cExtrasConfig.compatGTCX){
+            recipes.addRecipe(new ItemStack(Registry.roller, 1),
+                    "CPC", "PBP", "cPc", 'C', basicCircuit, 'B', Ic2Items.machine, 'c', Registry.coil, 'P', Blocks.PISTON);
 
-        recipes.addRecipe(new ItemStack(Registry.extruder, 1),
-                "iCi", "cMc", "iCi", 'C', basicCircuit, 'i', casing, 'M', Ic2Items.machine, 'c', Registry.coil);
+            recipes.addRecipe(new ItemStack(Registry.extruder, 1),
+                    "iCi", "cMc", "iCi", 'C', basicCircuit, 'i', casing, 'M', Ic2Items.machine, 'c', Registry.coil);
+
+            recipes.addRecipe(new ItemStack(Registry.impellerizedRoller, 1),
+                    "CCC", "CRC", "CBC", 'R', Registry.roller,'B', Ic2Items.advMachine, 'C', Blocks.STICKY_PISTON);
+
+            recipes.addRecipe(new ItemStack(Registry.liquescentExtruder, 1),
+                    "CCC", "CEC", "CBC", 'E', Registry.extruder,'B', Ic2Items.advMachine, 'C', casing);
+        }
 
         //recipes.addRecipe(new ItemStack(Registry.cutter, 1),
         //        " C ", "TBT", "ctc", 'C', basicCircuit,'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', Registry.coil, 't', Ic2Items.cutter);
-
-        recipes.addRecipe(new ItemStack(Registry.impellerizedRoller, 1),
-                "CCC", "CRC", "CBC", 'R', Registry.roller,'B', Ic2Items.advMachine, 'C', Blocks.STICKY_PISTON);
-
-        recipes.addRecipe(new ItemStack(Registry.liquescentExtruder, 1),
-                "CCC", "CEC", "CBC", 'E', Registry.extruder,'B', Ic2Items.advMachine, 'C', casing);
 
         //recipes.addRecipe(new ItemStack(Registry.plasmaCutter, 1),
         //        "CCC", "CcC", "CBC", 'c', Registry.cutter,'B', Ic2Items.advMachine, 'C', Ic2Items.cutter);
