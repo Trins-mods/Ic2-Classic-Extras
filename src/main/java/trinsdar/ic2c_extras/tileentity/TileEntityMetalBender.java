@@ -56,6 +56,7 @@ public class TileEntityMetalBender extends TileEntityContainerInputBase {
         handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), slotInput);
         handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), 2);
         handler.registerInputFilter(filter, slotInput);
+        handler.registerInputFilter(pressFilter, slotInputContainer);
         handler.registerOutputFilter(CommonFilters.NotDischargeEU, 2);
         handler.registerSlotType(SlotType.Fuel, 2);
         handler.registerSlotType(SlotType.Input, slotInput);
@@ -65,7 +66,7 @@ public class TileEntityMetalBender extends TileEntityContainerInputBase {
 
     @Override
     public int[] getInputSlots() {
-        return new int[]{slotInput, slotInputContainer};
+        return new int[]{slotInput};
     }
 
     @Override

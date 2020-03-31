@@ -47,6 +47,8 @@ import java.util.LinkedList;
 import java.util.function.Predicate;
 
 public abstract class TileEntityContainerInputBase extends TileEntityElecMachine implements IOutputMachine, IProgressMachine, ISpeedMachine, IEnergyUser, ITickable, IHasGui, INetworkTileEntityEventListener {
+    public static final String MOVE_CONTAINER_TAG = "move_container";
+
     @NetworkField(index = 7)
     public int progress = 0;
 
@@ -82,6 +84,7 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
     public boolean redstoneSensitive;
     public boolean defaultSensitive;
     public ContainerInputRecipe lastRecipe;
+    public boolean shouldCheckRecipe;
     public final boolean supportsUpgrades;
     public final int upgradeSlots;
     public static int slotInput;
@@ -104,6 +107,7 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
         defaultEnergyStorage = energyPerTick * maxProgress;
         defaultSensitive = false;
         progressPerTick = 1F;
+        shouldCheckRecipe = true;
         addNetworkFields("soundLevel", "redstoneInverted", "redstoneSensitive");
         addGuiFields("recipeOperation", "recipeEnergy", "progress", "speed");
         addInfos(new EnergyUsageInfo(this), new ProgressInfo(this), new SpeedInfo(this));
@@ -114,13 +118,16 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
         handleRedstone();
         updateNeighbors();
         boolean noRoom = addToInventory();
-        ContainerInputRecipe recipe = getRecipe();
+        if (shouldCheckRecipe) {
+            lastRecipe = getRecipe();
+            shouldCheckRecipe = false;
+        }
         boolean canWork = canWork() && !noRoom;
-        boolean operate = (canWork && recipe != null);
+        boolean operate = (canWork && lastRecipe != null);
         if (operate) {
             handleChargeSlot(maxEnergy);
         }
-        if ((isRedstonePowered() || recipe != null) && this.energy > 0) {
+        if ((isRedstonePowered() || lastRecipe != null) && this.energy > 0) {
             if (this.speed < 10000) {
                 ++this.speed;
                 this.getNetwork().updateTileGuiField(this, "speed");
@@ -139,7 +146,7 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
             progress += (float) speed / 30 * progressPerTick;
             useEnergy(recipeEnergy);
             if (progress >= recipeOperation) {
-                process(recipe);
+                process(lastRecipe);
                 progress = 0;
                 notifyNeighbors();
             }
@@ -152,7 +159,7 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
                     getNetwork().initiateTileEntityEvent(this, 2, false);
                 }
             }
-            if (recipe == null && progress != 0) {
+            if (lastRecipe == null && progress != 0) {
                 progress = 0;
                 getNetwork().updateTileGuiField(this, "progress");
             }
@@ -180,7 +187,7 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
     }
 
     public void process(ContainerInputRecipe recipe) {
-        for (ItemStack stack : recipe.getOutputs().getRecipeOutput(getWorld().rand, getTileData())) {
+        for (ItemStack stack : recipe.getOutputs().copy().getRecipeOutput(getWorld().rand, getTileData())) {
             outputs.add(new MultiSlotOutput(stack, getOutputSlots()));
         }
 
@@ -202,6 +209,7 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
                 ((IMachineUpgradeItem) item.getItem()).onProcessFinished(item, this);
             }
         }
+        shouldCheckRecipe = true;
     }
 
     public boolean addToInventory() {
@@ -265,6 +273,7 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
     @Override
     public void setStackInSlot(int slot, ItemStack stack) {
         super.setStackInSlot(slot, stack);
+        shouldCheckRecipe = true;
         if (isSimulating() && lastRecipe == ContainerInputRecipeList.INVALID_RECIPE && isRecipeSlot(slot)) {
             lastRecipe = null;
         }
@@ -317,10 +326,12 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
         if (isSimulating()) {
             setOverclockRates();
         }
+        shouldCheckRecipe = true;
     }
 
     public void setOverclockRates() {
         lastRecipe = null;
+        shouldCheckRecipe = true;
         int extraProcessSpeed = 0;
         double processingSpeedMultiplier = 1.0D;
         int extraProcessTime = 0;
@@ -501,8 +512,7 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
     @Override
     public IHasInventory getInputInventory() {
         int[] input = getInputSlots();
-        RangedInventoryWrapper result = new RangedInventoryWrapper(this, input).addFilters(getInputFilters(input));
-        return result;
+        return (new RangedInventoryWrapper(this, input).addFilters(getInputFilters(input)));
     }
 
     @Override
