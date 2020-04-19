@@ -16,6 +16,7 @@ import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.ArrayFilter;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.CommonFilters;
+import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
@@ -46,7 +47,9 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.container.ContainerOreWashingPlant;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
@@ -54,6 +57,8 @@ import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -62,6 +67,7 @@ import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.oreWashingPlant;
 @Optional.Interface(iface = "gtclassic.api.interfaces.IGTDebuggableTile", modid = "gtclassic", striprefs = true)
 public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine implements ITankListener, IClickable, IGTDebuggableTile
 {
+    public static List<IFilter> filters = new ArrayList<>();
 
     @NetworkField(index = 13)
     private IC2Tank waterTank = new IC2Tank(16000){
@@ -70,14 +76,9 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
             return super.canFillFluidType(fluid) && fluid.getFluid() == FluidRegistry.WATER;
         }
     };
-
-
     public static final String waterAmount = "amount";
     public int water = 0;
     public int maxWater = 10000;
-
-
-
     public static final int slotInput = 0;
     public static final int slotFuel = 1;
     public static final int slotOutput = 2;
@@ -381,5 +382,35 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         FluidStack fluid = this.waterTank.getFluid();
         int amount = fluid != null ? fluid.amount : 0;
         map.put("Contains " + amount + " mb of Water", false);
+    }
+
+    public static ItemStack getTube() {
+        FluidStack fluid = new FluidStack(FluidRegistry.WATER, 1000);
+        ItemStack stack = getModMetaItem("gtclassic", "test_tube", 0, 1);
+        IFluidHandlerItem handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+        handler.fill(fluid, true);
+        return stack;
+    }
+
+    public static ItemStack getCapsule(ItemStack stack) {
+        FluidStack fluid = new FluidStack(FluidRegistry.WATER, 1000);
+        IFluidHandlerItem handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+        handler.fill(fluid, true);
+        return stack;
+    }
+
+    public static ItemStack getModMetaItem(String modname, String itemid, int meta, int count) {
+        String pair = modname + ":" + itemid;
+        return GameRegistry.makeItemStack(pair, meta, count, null);
+    }
+
+    public static void initFilterList(){
+        filters.addAll(Arrays.asList(new BasicItemFilter(Items.WATER_BUCKET), new BasicItemFilter(Ic2Items.waterCell)));
+        if (Loader.isModLoaded("gtclassic")){
+            filters.add(new BasicItemFilter(getTube()));
+        }
+        if (Loader.isModLoaded("forestry")){
+            filters.addAll(Arrays.asList(new BasicItemFilter(getCapsule(getModMetaItem("forestry","can", 1, 1))), new BasicItemFilter(getCapsule(getModMetaItem("forestry","capsule", 1, 1))), new BasicItemFilter(getCapsule(getModMetaItem("forestry", "refractory", 1, 1)))));
+        }
     }
 }
