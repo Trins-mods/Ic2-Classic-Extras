@@ -8,16 +8,13 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.recipes.RailcraftRecipes;
-import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.util.Ic2cExtrasOredict;
 import trinsdar.ic2c_extras.util.Registry;
 
 
-public class CommonProxy
-{
+public class CommonProxy {
 
-    public void preInit(FMLPreInitializationEvent event)
-    {
+    public void preInit(FMLPreInitializationEvent event) {
         Registry.register();
         initItemApi();
         Registry.registerTiles();
@@ -80,16 +77,13 @@ public class CommonProxy
         ItemAPI.instance.putStack("crafting", "heat_conductor", new ItemStack(Registry.heatConductor));
     }
 
-    public void init()
-    {
+    public void init() {
         if (!IC2.config.getFlag("NonRadiation")){
             Ic2cExtrasRecipes.init();
         }
-        TileEntityOreWashingPlant.initFilterList();
     }
 
-    public void postInit()
-    {
+    public void postInit() {
         if (!IC2.config.getFlag("NonRadiation")){
             if (Loader.isModLoaded("railcraft")){
                 RailcraftRecipes.initRailcraftRecipes();

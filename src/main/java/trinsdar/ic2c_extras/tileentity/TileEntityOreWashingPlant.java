@@ -16,7 +16,6 @@ import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.ArrayFilter;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.CommonFilters;
-import ic2.core.inventory.filters.IFilter;
 import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.management.AccessRule;
 import ic2.core.inventory.management.InventoryHandler;
@@ -47,9 +46,7 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Optional;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.container.ContainerOreWashingPlant;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
@@ -57,18 +54,13 @@ import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.oreWashingPlant;
 
 @Optional.Interface(iface = "gtclassic.api.interfaces.IGTDebuggableTile", modid = "gtclassic", striprefs = true)
-public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine implements ITankListener, IClickable, IGTDebuggableTile
-{
-    public static List<IFilter> filters = new ArrayList<>();
-
+public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine implements ITankListener, IClickable, IGTDebuggableTile {
     @NetworkField(index = 13)
     private IC2Tank waterTank = new IC2Tank(16000){
         @Override
@@ -101,8 +93,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
 
     @Override
-    protected void addSlots(InventoryHandler handler)
-    {
+    protected void addSlots(InventoryHandler handler) {
         this.filter = new MachineFilter(this);
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
@@ -118,8 +109,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         handler.registerSlotType(SlotType.Output, slotOutput, slotOutput2, slotOutput3, slotOutputTank);
     }
 
-    public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input)
-    {
+    public IMachineRecipeList.RecipeEntry getOutputFor(ItemStack input) {
         return oreWashingPlant.getRecipeInAndOutput(input, false);
     }
 
@@ -149,10 +139,8 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     @Override
-    public void update()
-    {
-        if (!this.inventory.get(slotInputTank).isEmpty())
-        {
+    public void update() {
+        if (!this.inventory.get(slotInputTank).isEmpty()) {
             this.handleTank();
         }
         super.update();
@@ -185,17 +173,13 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         return EnumActionResult.SUCCESS;
     }
 
-    public void handleTank()
-    {
+    public void handleTank() {
         IFluidHandlerItem containerFluidHandler = FluidUtil.getFluidHandler(this.inventory.get(slotInputTank));
 
-        if (FluidHelper.hasFluid(containerFluidHandler, FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 1), false))
-        {
-            if (this.waterTank.getFluidAmount() + FluidUtil.getFluidContained(this.inventory.get(slotInputTank)).amount <= this.waterTank.getCapacity())
-            {
+        if (FluidHelper.hasFluid(containerFluidHandler, FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 1), false)) {
+            if (this.waterTank.getFluidAmount() + FluidUtil.getFluidContained(this.inventory.get(slotInputTank)).amount <= this.waterTank.getCapacity()) {
                 RangedInventoryWrapper output = new RangedInventoryWrapper(this, slotOutputTank);
-                if (FluidHelper.drainContainers(this.waterTank, this, slotInputTank, output))
-                {
+                if (FluidHelper.drainContainers(this.waterTank, this, slotInputTank, output)) {
                     this.getNetwork().updateTileGuiField(this, "tank");
                     this.setStackInSlot(slotOutputTank, output.getStackInSlot(0));
                 }
@@ -225,8 +209,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     @Override
-    public void onTankChanged(IFluidTank tank)
-    {
+    public void onTankChanged(IFluidTank tank) {
         this.getNetwork().updateTileGuiField(this, "waterTank");
         if (lastRecipe != null && activeRecipe == null){
             this.checkRecipe = true;
@@ -234,23 +217,20 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbt)
-    {
+    public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         this.waterTank.readFromNBT(nbt.getCompoundTag("Tank"));
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
-    {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         this.waterTank.writeToNBT(this.getTag(nbt, "Tank"));
         return nbt;
     }
 
     @Override
-    public ContainerIC2 getGuiContainer(EntityPlayer player)
-    {
+    public ContainerIC2 getGuiContainer(EntityPlayer player) {
         return new ContainerOreWashingPlant(player.inventory, this);
     }
 
@@ -290,8 +270,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     @Override
-    public IHasInventory getOutputInventory()
-    {
+    public IHasInventory getOutputInventory() {
         return new RangedInventoryWrapper(this, slotOutput, slotOutput2, slotOutput3, slotOutputTank);
     }
 
@@ -302,14 +281,12 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing)
-    {
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing)
-    {
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
             return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.waterTank);
         }
@@ -332,13 +309,11 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         return nbt;
     }
 
-    public static void addRecipe(IRecipeInput input, int water, ItemStack... output)
-    {
+    public static void addRecipe(IRecipeInput input, int water, ItemStack... output) {
         addRecipe(input, new MachineOutput(createNeededWater(water), output));
     }
 
-    public static void addRecipe(IRecipeInput input, MachineOutput output)
-    {
+    public static void addRecipe(IRecipeInput input, MachineOutput output) {
         oreWashingPlant.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName());
     }
 
@@ -382,35 +357,5 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         FluidStack fluid = this.waterTank.getFluid();
         int amount = fluid != null ? fluid.amount : 0;
         map.put("Contains " + amount + " mb of Water", false);
-    }
-
-    public static ItemStack getTube() {
-        FluidStack fluid = new FluidStack(FluidRegistry.WATER, 1000);
-        ItemStack stack = getModMetaItem("gtclassic", "test_tube", 0, 1);
-        IFluidHandlerItem handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
-        handler.fill(fluid, true);
-        return stack;
-    }
-
-    public static ItemStack getCapsule(ItemStack stack) {
-        FluidStack fluid = new FluidStack(FluidRegistry.WATER, 1000);
-        IFluidHandlerItem handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
-        handler.fill(fluid, true);
-        return stack;
-    }
-
-    public static ItemStack getModMetaItem(String modname, String itemid, int meta, int count) {
-        String pair = modname + ":" + itemid;
-        return GameRegistry.makeItemStack(pair, meta, count, null);
-    }
-
-    public static void initFilterList(){
-        filters.addAll(Arrays.asList(new BasicItemFilter(Items.WATER_BUCKET), new BasicItemFilter(Ic2Items.waterCell)));
-        if (Loader.isModLoaded("gtclassic")){
-            filters.add(new BasicItemFilter(getTube()));
-        }
-        if (Loader.isModLoaded("forestry")){
-            filters.addAll(Arrays.asList(new BasicItemFilter(getCapsule(getModMetaItem("forestry","can", 1, 1))), new BasicItemFilter(getCapsule(getModMetaItem("forestry","capsule", 1, 1))), new BasicItemFilter(getCapsule(getModMetaItem("forestry", "refractory", 1, 1)))));
-        }
     }
 }
