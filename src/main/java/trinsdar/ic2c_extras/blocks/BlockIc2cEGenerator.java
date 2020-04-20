@@ -26,8 +26,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BlockIc2cEGenerator extends BlockMultiID {
-    public BlockIc2cEGenerator(String name, LocaleComp comp)
-    {
+    public BlockIc2cEGenerator(String name, LocaleComp comp) {
         super(Material.IRON);
         this.setHardness(4.0F);
         this.setResistance(20.0F);
@@ -42,30 +41,28 @@ public class BlockIc2cEGenerator extends BlockMultiID {
     }
 
     @Override
-    public TileEntityBlock createNewTileEntity(World worldIn, int meta)
-    {
+    public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
         if (this == Registry.advancedSteamTurbine) {
             return new TileEntityAdvancedSteamTurbine();
-        }else if (this == Registry.thermoElectricGenerator){
+        } else if (this == Registry.thermoElectricGenerator) {
             return new TileEntityThermoElectricGenerator();
-        }else if (this == Registry.thermoElectricGeneratorMKII){
+        } else if (this == Registry.thermoElectricGeneratorMKII) {
             return new TileEntityThermoElectricGenerator.TileEntityThermoElectricGeneratorMkII();
-        } else{
+        } else {
             return new TileEntityBlock();
         }
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public TextureAtlasSprite[] getIconSheet(int meta)
-    {
-        if (this == Registry.advancedSteamTurbine){
+    public TextureAtlasSprite[] getIconSheet(int meta) {
+        if (this == Registry.advancedSteamTurbine) {
             return Ic2Icons.getTextures("advancedsteamturbine");
-        }else if (this == Registry.thermoElectricGenerator){
+        } else if (this == Registry.thermoElectricGenerator) {
             return Ic2Icons.getTextures("thermoelectricgenerator");
-        }else if (this == Registry.thermoElectricGeneratorMKII){
+        } else if (this == Registry.thermoElectricGeneratorMKII) {
             return Ic2Icons.getTextures("thermoelectricgeneratormkii");
-        }else {
+        } else {
             return Ic2Icons.getTextures("advancedsteamturbine");
         }
     }
@@ -73,27 +70,25 @@ public class BlockIc2cEGenerator extends BlockMultiID {
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         ArrayList<ItemStack> drops = new ArrayList<>();
-        if (this == Registry.advancedSteamTurbine){
+        if (this == Registry.advancedSteamTurbine) {
             drops.add(Ic2Items.basicTurbine);
             return drops;
-        }else{
+        } else {
             drops.add(Ic2Items.machine);
             return drops;
         }
     }
+
     @Override
-    public int getMaxSheetSize(int meta)
-    {
+    public int getMaxSheetSize(int meta) {
         return 1;
     }
 
     @Override
-    public List<IBlockState> getValidStateList()
-    {
+    public List<IBlockState> getValidStateList() {
         IBlockState def = getDefaultState();
         List<IBlockState> states = new ArrayList<IBlockState>();
-        for(EnumFacing side : EnumFacing.VALUES)
-        {
+        for (EnumFacing side : EnumFacing.VALUES) {
             states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, false));
             states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, true));
         }
@@ -101,8 +96,7 @@ public class BlockIc2cEGenerator extends BlockMultiID {
     }
 
     @Override
-    public List<IBlockState> getValidStates()
-    {
+    public List<IBlockState> getValidStates() {
         return getBlockState().getValidStates();
     }
 }

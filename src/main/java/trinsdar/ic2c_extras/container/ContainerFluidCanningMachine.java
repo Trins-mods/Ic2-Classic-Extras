@@ -21,14 +21,13 @@ public class ContainerFluidCanningMachine extends ContainerTileComponent<TileEnt
     public static Vec2i machineChargePos = new Vec2i(176, 0);
     public static Box2D machineProgressBox = new Box2D(64, 35, 24, 17);
     public static Vec2i machineProgressPos = new Vec2i(176, 14);
-    public ContainerFluidCanningMachine(InventoryPlayer player, TileEntityFluidCanningMachine tile)
-    {
+
+    public ContainerFluidCanningMachine(InventoryPlayer player, TileEntityFluidCanningMachine tile) {
         super(tile);
         this.addSlotToContainer(new SlotCustom(tile, 0, 44, 18, tile.filter));
         this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 1, 44, 54));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 2, 94, 36));
-        for(int i = 0; i < 4; ++i)
-        {
+        for (int i = 0; i < 4; ++i) {
             this.addSlotToContainer(new SlotUpgrade2(tile, 3 + i, 152, 8 + i * 18));
         }
 
@@ -40,20 +39,17 @@ public class ContainerFluidCanningMachine extends ContainerTileComponent<TileEnt
     }
 
     @Override
-    public ResourceLocation getTexture()
-    {
+    public ResourceLocation getTexture() {
         return this.getGuiHolder().getGuiTexture();
     }
 
     @Override
-    public int guiInventorySize()
-    {
+    public int guiInventorySize() {
         return this.getGuiHolder().slotCount;
     }
 
     @Override
-    public boolean canInteractWith(EntityPlayer entityPlayer)
-    {
+    public boolean canInteractWith(EntityPlayer entityPlayer) {
         return this.getGuiHolder().canInteractWith(entityPlayer);
     }
 }

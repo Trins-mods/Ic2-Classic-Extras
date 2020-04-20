@@ -15,7 +15,7 @@ import java.awt.Color;
 
 
 public class MOX extends UranBaseType {
-    public MOX(){
+    public MOX() {
         this.addArray(new int[]{-1, -1});
         this.addArray(new int[]{0, -1});
         this.addArray(new int[]{1, -1});
@@ -31,6 +31,7 @@ public class MOX extends UranBaseType {
     public TextureAtlasSprite getTexture(RodType type) {
         return Ic2Icons.getTextures("ic2c_extras_nuclear_cells")[this.getRodID(type) - 1100];
     }
+
     @Override
     public int getRow() {
         return 0;
@@ -73,7 +74,7 @@ public class MOX extends UranBaseType {
 
     @Override
     public ItemStack getRodType(RodType type) {
-        switch(type) {
+        switch (type) {
             case SingleRod:
                 return new ItemStack(Registry.singleMOXCell).copy();
             case DualRod:
@@ -98,7 +99,7 @@ public class MOX extends UranBaseType {
 
     @Override
     public short getRodID(RodType type) {
-        switch(type) {
+        switch (type) {
             case SingleRod:
                 return 1112;
             case DualRod:

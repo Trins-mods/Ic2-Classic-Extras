@@ -22,7 +22,7 @@ import static ic2.core.item.reactor.uranTypes.IUranium.RodType.ReEnrichedRod;
 import static ic2.core.item.reactor.uranTypes.IUranium.RodType.SingleRod;
 
 public class UOX extends UranBaseType {
-    public UOX(){
+    public UOX() {
         this.loadDefaults();
     }
 
@@ -31,6 +31,7 @@ public class UOX extends UranBaseType {
     public TextureAtlasSprite getTexture(RodType type) {
         return Ic2Icons.getTextures("ic2c_extras_nuclear_cells")[this.getRodID(type) - 1100];
     }
+
     @Override
     public int getRow() {
         return 1;
@@ -73,7 +74,7 @@ public class UOX extends UranBaseType {
 
     @Override
     public ItemStack getRodType(RodType type) {
-        switch(type) {
+        switch (type) {
             case SingleRod:
                 return new ItemStack(Registry.singleUOXCell).copy();
             case DualRod:
@@ -98,7 +99,7 @@ public class UOX extends UranBaseType {
 
     @Override
     public short getRodID(RodType type) {
-        switch(type) {
+        switch (type) {
             case SingleRod:
                 return 1110;
             case DualRod:

@@ -26,8 +26,7 @@ import trinsdar.ic2c_extras.util.CreativeTabIC2CExtras;
 import trinsdar.ic2c_extras.util.Registry;
 
 @Mod(name = IC2CExtras.NAME, modid = IC2CExtras.MODID, version = IC2CExtras.VERSION, dependencies = IC2CExtras.DEPENDS)
-public class IC2CExtras
-{
+public class IC2CExtras {
     public static final String MODID = "ic2c_extras";
     public static final String NAME = "IC2CExtras";
     public static final String VERSION = "@VERSION@";
@@ -42,21 +41,20 @@ public class IC2CExtras
 
     public static Logger logger;
 
-    public IC2CExtras(){
+    public IC2CExtras() {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event)
-    {
+    public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
         proxy.preInit(event);
-        if (!IC2.config.getFlag("NonRadiation")){
-            Recipes.metalformerExtruding = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.extruding.toIC2Exp();
+        if (!IC2.config.getFlag("NonRadiation")) {
+            Recipes.metalformerExtruding = (IBasicMachineRecipeManager) Ic2cExtrasRecipes.extruding.toIC2Exp();
             Recipes.metalformerCutting = (IBasicMachineRecipeManager) Ic2cExtrasRecipes.cutting.toIC2Exp();
-            Recipes.metalformerRolling = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.rolling.toIC2Exp();
-            Recipes.oreWashing = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.oreWashingPlant.toIC2Exp();
-            Recipes.centrifuge = (IBasicMachineRecipeManager)Ic2cExtrasRecipes.thermalCentrifuge.toIC2Exp();
+            Recipes.metalformerRolling = (IBasicMachineRecipeManager) Ic2cExtrasRecipes.rolling.toIC2Exp();
+            Recipes.oreWashing = (IBasicMachineRecipeManager) Ic2cExtrasRecipes.oreWashingPlant.toIC2Exp();
+            Recipes.centrifuge = (IBasicMachineRecipeManager) Ic2cExtrasRecipes.thermalCentrifuge.toIC2Exp();
         }
         ClassicCrops crop = ClassicCrops.instance;
         crop.registerCrop(Registry.cropPlumbilia);
@@ -64,32 +62,28 @@ public class IC2CExtras
     }
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event)
-    {
+    public void init(FMLInitializationEvent event) {
         proxy.init();
         RadiationEvent.initRadiation();
         MinecraftForge.EVENT_BUS.register(new Ic2cExtrasRecipes());
         MinecraftForge.EVENT_BUS.register(new Bear989Event());
-        if (Ic2cExtrasConfig.itemRadiation){
+        if (Ic2cExtrasConfig.itemRadiation) {
             MinecraftForge.EVENT_BUS.register(new RadiationEvent());
         }
 
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event)
-    {
+    public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit();
-        if (!Loader.isModLoaded("gtc_expansion")){
+        if (!Loader.isModLoaded("gtc_expansion")) {
             IC2.getInstance().saveRecipeInfo(IC2.configFolder);
         }
     }
 
     @SubscribeEvent
-    public void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event)
-    {
-        if (event.getModID().equals(MODID))
-        {
+    public void onConfigChangedEvent(ConfigChangedEvent.OnConfigChangedEvent event) {
+        if (event.getModID().equals(MODID)) {
             ConfigManager.sync(MODID, Config.Type.INSTANCE);
         }
     }

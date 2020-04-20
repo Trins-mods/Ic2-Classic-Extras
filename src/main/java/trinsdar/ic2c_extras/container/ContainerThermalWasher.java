@@ -17,11 +17,10 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalWasher;
 
-public class ContainerThermalWasher extends ContainerTileComponent<TileEntityThermalWasher>
-{
+public class ContainerThermalWasher extends ContainerTileComponent<TileEntityThermalWasher> {
     public static Vec2i speedTextPos = new Vec2i(80, 53);
-    public ContainerThermalWasher(InventoryPlayer player, TileEntityThermalWasher tile)
-    {
+
+    public ContainerThermalWasher(InventoryPlayer player, TileEntityThermalWasher tile) {
         super(tile);
         this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 0, 56, 53));
         this.addSlotToContainer(new SlotCustom(tile, 1, 56, 17, tile.filter));
@@ -31,8 +30,7 @@ public class ContainerThermalWasher extends ContainerTileComponent<TileEntityThe
         this.addSlotToContainer(new SlotCustom(tile, 5, 8, 12, new ContainerOreWashingPlant.FluidItemFilter()));
         this.addSlotToContainer(new SlotCustom(tile, 6, 8, 57, null));
 
-        for(int i = 0; i < 2; ++i)
-        {
+        for (int i = 0; i < 2; ++i) {
             this.addSlotToContainer(new SlotUpgrade(tile, 7 + i, 152, 8 + i * 18));
         }
 
@@ -44,20 +42,17 @@ public class ContainerThermalWasher extends ContainerTileComponent<TileEntityThe
     }
 
     @Override
-    public ResourceLocation getTexture()
-    {
+    public ResourceLocation getTexture() {
         return this.getGuiHolder().getTexture();
     }
 
     @Override
-    public int guiInventorySize()
-    {
+    public int guiInventorySize() {
         return this.getGuiHolder().slotCount;
     }
 
     @Override
-    public boolean canInteractWith(EntityPlayer entityPlayer)
-    {
+    public boolean canInteractWith(EntityPlayer entityPlayer) {
         return this.getGuiHolder().canInteractWith(entityPlayer);
     }
 }

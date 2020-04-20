@@ -39,7 +39,7 @@ public class JeiOreWashingCategory implements IRecipeCategory<JeiOreWashingWrapp
         this.charge = helper.createAnimatedDrawable(chargePic, 500, IDrawableAnimated.StartDirection.TOP, true);
     }
 
-    public int getHeight(){
+    public int getHeight() {
         return Ic2cExtrasConfig.debugMode ? 73 : 63;
     }
 

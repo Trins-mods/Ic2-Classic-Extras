@@ -18,12 +18,12 @@ public class CommonProxy {
         Registry.register();
         initItemApi();
         Registry.registerTiles();
-        if (!IC2.config.getFlag("NonRadiation")){
+        if (!IC2.config.getFlag("NonRadiation")) {
             Ic2cExtrasOredict.init();
         }
     }
 
-    public void initItemApi(){
+    public void initItemApi() {
         ItemAPI.instance.putState("te", "ore_washing_plant", Registry.oreWashingPlant.getDefaultState(), new ItemStack(Registry.oreWashingPlant));
         ItemAPI.instance.putState("te", "centrifuge", Registry.thermalCentrifuge.getDefaultState(), new ItemStack(Registry.thermalCentrifuge));
         ItemAPI.instance.putStack("crushed", "copper", new ItemStack(Registry.copperCrushedOre));
@@ -78,14 +78,14 @@ public class CommonProxy {
     }
 
     public void init() {
-        if (!IC2.config.getFlag("NonRadiation")){
+        if (!IC2.config.getFlag("NonRadiation")) {
             Ic2cExtrasRecipes.init();
         }
     }
 
     public void postInit() {
-        if (!IC2.config.getFlag("NonRadiation")){
-            if (Loader.isModLoaded("railcraft")){
+        if (!IC2.config.getFlag("NonRadiation")) {
+            if (Loader.isModLoaded("railcraft")) {
                 RailcraftRecipes.initRailcraftRecipes();
             }
             Ic2cExtrasRecipes.postInit();

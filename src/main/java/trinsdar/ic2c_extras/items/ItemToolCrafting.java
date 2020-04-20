@@ -30,20 +30,18 @@ public class ItemToolCrafting extends Item implements IStaticTexturedItem, ICust
     }
 
     @Override
-    public boolean hasContainerItem(ItemStack itemStack)
-    {
+    public boolean hasContainerItem(ItemStack itemStack) {
         return true;
     }
 
     @Override
-    public ItemStack getContainerItem(ItemStack itemStack){
+    public ItemStack getContainerItem(ItemStack itemStack) {
         ItemStack copy = itemStack.copy();
         return copy.attemptDamageItem(1, itemRand, null) ? ItemStack.EMPTY : copy;
     }
 
     @Override
-    public boolean isEnchantable(ItemStack stack)
-    {
+    public boolean isEnchantable(ItemStack stack) {
         return this.enchant;
     }
 

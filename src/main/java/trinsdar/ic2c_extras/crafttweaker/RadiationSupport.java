@@ -17,21 +17,21 @@ import java.util.Locale;
 public class RadiationSupport {
 
     @ZenMethod
-    public static void addEntry(IItemStack stack){
+    public static void addEntry(IItemStack stack) {
         CraftTweakerPlugin.apply(new RadiationAction(CraftTweakerMC.getItemStack(stack)));
     }
 
-    private static final class RadiationAction implements IAction{
+    private static final class RadiationAction implements IAction {
         final ItemStack stack;
 
-        private RadiationAction(ItemStack stack){
+        private RadiationAction(ItemStack stack) {
             this.stack = stack;
         }
 
         @Override
         public void apply() {
-            for (ItemStack entry : RadiationEvent.radiation){
-                if (entry.isItemEqual(stack)){
+            for (ItemStack entry : RadiationEvent.radiation) {
+                if (entry.isItemEqual(stack)) {
                     CraftTweakerAPI.logError(CraftTweakerAPI.getScriptFileAndLine() + " > "
                             + "Entry Already exists!");
                     return;

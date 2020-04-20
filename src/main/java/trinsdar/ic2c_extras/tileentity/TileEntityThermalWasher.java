@@ -92,8 +92,7 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     }
 
     @Override
-    protected void addSlots(InventoryHandler handler)
-    {
+    protected void addSlots(InventoryHandler handler) {
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
         handler.registerDefaultSlotAccess(AccessRule.Import, slotInput);
@@ -127,8 +126,7 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     }
 
     @Override
-    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
-    {
+    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
         return OreWashingPlantGui.class;
     }
 
@@ -173,28 +171,23 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     }
 
     @Override
-    public ResourceLocation getProcessSoundFile()
-    {
+    public ResourceLocation getProcessSoundFile() {
         return Ic2cExtrasResourceLocations.oreWashingPlantOp;
     }
 
     @Override
-    public ResourceLocation getInterruptSoundFile()
-    {
+    public ResourceLocation getInterruptSoundFile() {
         return Ic2Sounds.interruptingSound;
     }
 
     @Override
-    public ContainerIC2 getGuiContainer(EntityPlayer player)
-    {
+    public ContainerIC2 getGuiContainer(EntityPlayer player) {
         return new ContainerThermalWasher(player.inventory, this);
     }
 
     @Override
-    public void update()
-    {
-        if (!this.inventory.get(slotInputTank).isEmpty())
-        {
+    public void update() {
+        if (!this.inventory.get(slotInputTank).isEmpty()) {
             this.handleTank();
         }
         super.update();
@@ -203,25 +196,25 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     @Override
     public IMachineRecipeList.RecipeEntry getRecipe(int slot) {
         if (this.notCheckRecipe.contains(slot)) {
-            return (IMachineRecipeList.RecipeEntry)this.activeRecipes.get(slot);
+            return (IMachineRecipeList.RecipeEntry) this.activeRecipes.get(slot);
         } else {
             this.notCheckRecipe.add(slot);
-            if (((ItemStack)this.inventory.get(slot)).isEmpty() && !this.canWorkWithoutItems()) {
+            if (((ItemStack) this.inventory.get(slot)).isEmpty() && !this.canWorkWithoutItems()) {
                 this.lastRecipes.remove(slot);
                 this.activeRecipes.remove(slot);
                 return null;
             } else {
-                IMachineRecipeList.RecipeEntry lastRecipe = (IMachineRecipeList.RecipeEntry)this.lastRecipes.get(slot);
+                IMachineRecipeList.RecipeEntry lastRecipe = (IMachineRecipeList.RecipeEntry) this.lastRecipes.get(slot);
                 if (lastRecipe != null) {
                     IRecipeInput recipe = lastRecipe.getInput();
                     if (recipe instanceof INullableRecipeInput) {
-                        if (!recipe.matches((ItemStack)this.inventory.get(slot))) {
+                        if (!recipe.matches((ItemStack) this.inventory.get(slot))) {
                             this.lastRecipes.remove(slot);
                             this.activeRecipes.remove(slot);
                             lastRecipe = null;
                         }
-                    } else if (!((ItemStack)this.inventory.get(slot)).isEmpty() && recipe.matches((ItemStack)this.inventory.get(slot))) {
-                        if (recipe.getAmount() > ((ItemStack)this.inventory.get(slot)).getCount()) {
+                    } else if (!((ItemStack) this.inventory.get(slot)).isEmpty() && recipe.matches((ItemStack) this.inventory.get(slot))) {
+                        if (recipe.getAmount() > ((ItemStack) this.inventory.get(slot)).getCount()) {
                             this.activeRecipes.remove(slot);
                             return null;
                         }
@@ -243,7 +236,7 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
                 }
 
                 if (lastRecipe == null) {
-                    IMachineRecipeList.RecipeEntry out = this.getOutputFor(((ItemStack)this.inventory.get(slot)).copy());
+                    IMachineRecipeList.RecipeEntry out = this.getOutputFor(((ItemStack) this.inventory.get(slot)).copy());
                     if (out == null || isRecipeStillValid(out) == EnumActionResult.PASS) {
                         this.activeRecipes.remove(slot);
                         return null;
@@ -268,14 +261,14 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
                 } else {
                     Iterator var12 = lastRecipe.getOutput().getAllOutputs().iterator();
 
-                    while(var12.hasNext()) {
-                        ItemStack output = (ItemStack)var12.next();
+                    while (var12.hasNext()) {
+                        ItemStack output = (ItemStack) var12.next();
                         int[] var6 = this.getOutputSlots();
                         int var7 = var6.length;
 
-                        for(int var8 = 0; var8 < var7; ++var8) {
+                        for (int var8 = 0; var8 < var7; ++var8) {
                             int outputSlot = var6[var8];
-                            if (StackUtil.isStackEqual((ItemStack)this.inventory.get(outputSlot), output, false, true) && ((ItemStack)this.inventory.get(outputSlot)).getCount() + output.getCount() <= ((ItemStack)this.inventory.get(outputSlot)).getMaxStackSize()) {
+                            if (StackUtil.isStackEqual((ItemStack) this.inventory.get(outputSlot), output, false, true) && ((ItemStack) this.inventory.get(outputSlot)).getCount() + output.getCount() <= ((ItemStack) this.inventory.get(outputSlot)).getMaxStackSize()) {
                                 this.activeRecipes.put(slot, lastRecipe);
                                 return lastRecipe;
                             }
@@ -303,17 +296,13 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
         return EnumActionResult.SUCCESS;
     }
 
-    public void handleTank()
-    {
+    public void handleTank() {
         IFluidHandlerItem containerFluidHandler = FluidUtil.getFluidHandler(this.inventory.get(slotInputTank));
 
-        if (FluidHelper.hasFluid(containerFluidHandler, FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 1), false))
-        {
-            if (this.waterTank.getFluidAmount() + FluidUtil.getFluidContained(this.inventory.get(slotInputTank)).amount <= this.waterTank.getCapacity())
-            {
+        if (FluidHelper.hasFluid(containerFluidHandler, FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 1), false)) {
+            if (this.waterTank.getFluidAmount() + FluidUtil.getFluidContained(this.inventory.get(slotInputTank)).amount <= this.waterTank.getCapacity()) {
                 RangedInventoryWrapper output = new RangedInventoryWrapper(this, slotOutputTank);
-                if (FluidHelper.drainContainers(this.waterTank, this, slotInputTank, output))
-                {
+                if (FluidHelper.drainContainers(this.waterTank, this, slotInputTank, output)) {
                     this.getNetwork().updateTileGuiField(this, "tank");
                     this.setStackInSlot(slotOutputTank, output.getStackInSlot(0));
                 }
@@ -343,25 +332,21 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     }
 
     @Override
-    public IHasInventory getOutputInventory()
-    {
+    public IHasInventory getOutputInventory() {
         return new RangedInventoryWrapper(this, slotOutput, slotOutput2, slotOutput3, slotOutputTank);
     }
 
     @Override
-    public IHasInventory getInputInventory()
-    {
+    public IHasInventory getInputInventory() {
         return new RangedInventoryWrapper(this, slotInput).setFilters(filter);
     }
 
-    public FluidStack getFluid()
-    {
+    public FluidStack getFluid() {
         return this.waterTank.getFluid();
     }
 
     @Override
-    public void onTankChanged(IFluidTank tank)
-    {
+    public void onTankChanged(IFluidTank tank) {
         this.getNetwork().updateTileGuiField(this, "waterTank");
         this.notCheckRecipe.clear();
     }
@@ -409,35 +394,31 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbt)
-    {
+    public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         this.waterTank.readFromNBT(nbt.getCompoundTag("Tank"));
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
-    {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         this.waterTank.writeToNBT(this.getTag(nbt, "Tank"));
         return nbt;
     }
 
     @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing)
-    {
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
     @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing)
-    {
-        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? (T)this.waterTank : super.getCapability(capability, facing);
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? (T) this.waterTank : super.getCapability(capability, facing);
     }
 
     @Override
     protected EnumActionResult isRecipeStillValid(IMachineRecipeList.RecipeEntry entry) {
-        if (waterTank.getFluidAmount() >= getRequiredWater(entry.getOutput())){
+        if (waterTank.getFluidAmount() >= getRequiredWater(entry.getOutput())) {
             return EnumActionResult.SUCCESS;
         }
         return EnumActionResult.PASS;
@@ -460,7 +441,7 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
         ItemStack playerStack = player.getHeldItem(hand);
         if (!playerStack.isEmpty()) {
             FluidActionResult result = FluidUtil.tryEmptyContainer(playerStack, waterTank, this.waterTank.getCapacity() - this.waterTank.getFluidAmount(), player, true);
-            if (result.isSuccess()){
+            if (result.isSuccess()) {
                 playerStack.shrink(1);
                 ItemStack resultStack = result.getResult();
                 if (!resultStack.isEmpty()) {

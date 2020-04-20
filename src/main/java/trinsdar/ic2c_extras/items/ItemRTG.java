@@ -15,7 +15,7 @@ public class ItemRTG extends ItemGrandualInt {
     int maxDamage;
     int id;
 
-    public ItemRTG(String name, int maxDamage, int id){
+    public ItemRTG(String name, int maxDamage, int id) {
         this.setRegistryName(IC2CExtras.MODID, name.toLowerCase());
         setUnlocalizedName(name);
         this.maxDamage = maxDamage;
@@ -35,8 +35,7 @@ public class ItemRTG extends ItemGrandualInt {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public TextureAtlasSprite getTexture(int meta)
-    {
+    public TextureAtlasSprite getTexture(int meta) {
         return Ic2Icons.getTextures("ic2c_extras_rtg")[id];
     }
 

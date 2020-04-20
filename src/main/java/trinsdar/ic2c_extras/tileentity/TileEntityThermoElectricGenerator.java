@@ -34,14 +34,14 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
         return getProduction() == 0 ? Math.min(this.storage, 32) : Math.min(this.storage, getProduction());
     }
 
-    public int getProduction(){
+    public int getProduction() {
         int count = -1;
-        for (int i = 0; i < 6; i++){
-            if (inventory.get(i).isItemEqual(new ItemStack(Registry.plutoniumRTG))){
+        for (int i = 0; i < 6; i++) {
+            if (inventory.get(i).isItemEqual(new ItemStack(Registry.plutoniumRTG))) {
                 count += 1;
             }
         }
-        if (count == -1){
+        if (count == -1) {
             return 0;
         }
         production = (int) Math.pow(2, count);
@@ -98,10 +98,10 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
         this.updateComparators();
     }
 
-    private boolean isInventoryEmpty(){
+    private boolean isInventoryEmpty() {
         int count = 0;
-        for (int i = 0; i < 6; i++){
-            if (inventory.get(i).getItem() instanceof ItemRTG){
+        for (int i = 0; i < 6; i++) {
+            if (inventory.get(i).getItem() instanceof ItemRTG) {
                 count += 1;
             }
         }
@@ -115,15 +115,15 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
         if (this.isConverting() && !isInventoryEmpty()) {
             this.storage += this.getProduction();
             counter++;
-            if (counter == 20){
-                for (int i = 0; i < 6; i++){
+            if (counter == 20) {
+                for (int i = 0; i < 6; i++) {
                     ItemStack stack = this.inventory.get(i);
-                    if (!stack.isEmpty() && stack.getItem() instanceof ItemRTG){
-                        ItemRTG rtg = (ItemRTG)stack.getItem();
+                    if (!stack.isEmpty() && stack.getItem() instanceof ItemRTG) {
+                        ItemRTG rtg = (ItemRTG) stack.getItem();
                         int damage = rtg.getCustomDamage(stack) + 1;
-                        if (damage > rtg.getMaxCustomDamage(stack)){
+                        if (damage > rtg.getMaxCustomDamage(stack)) {
                             stack.shrink(1);
-                        }else {
+                        } else {
                             rtg.setCustomDamage(stack, damage);
                         }
                     }
@@ -144,7 +144,7 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
     }
 
     @Override
-    public Box2D getEnergyBox(){
+    public Box2D getEnergyBox() {
         return Ic2GuiComp.generatorEnergyBox;
     }
 
@@ -168,9 +168,10 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
         return Ic2cExtrasLang.thermoElectricGenerator;
     }
 
-    public static class TileEntityThermoElectricGeneratorMkII extends TileEntityThermoElectricGenerator{
+    public static class TileEntityThermoElectricGeneratorMkII extends TileEntityThermoElectricGenerator {
         public static BasicItemFilter filter2 = new BasicItemFilter(new ItemStack(Registry.thoriumRTG));
-        public TileEntityThermoElectricGeneratorMkII(){
+
+        public TileEntityThermoElectricGeneratorMkII() {
             this.tier = 2;
             this.maxStorage = 30000;
         }
@@ -186,14 +187,14 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
         }
 
         @Override
-        public int getProduction(){
+        public int getProduction() {
             int count = 0;
-            for (int i = 0; i < 6; i++){
-                if (inventory.get(i).isItemEqual(new ItemStack(Registry.thoriumRTG))){
+            for (int i = 0; i < 6; i++) {
+                if (inventory.get(i).isItemEqual(new ItemStack(Registry.thoriumRTG))) {
                     count += 1;
                 }
             }
-            if (count == 0){
+            if (count == 0) {
                 return 0;
             }
             production = (int) Math.pow(2, count);

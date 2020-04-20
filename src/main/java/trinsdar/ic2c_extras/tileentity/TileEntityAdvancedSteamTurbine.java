@@ -6,9 +6,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fluids.FluidStack;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
-public class TileEntityAdvancedSteamTurbine extends TileEntityBasicSteamTurbine{
+public class TileEntityAdvancedSteamTurbine extends TileEntityBasicSteamTurbine {
 
-    public TileEntityAdvancedSteamTurbine(){
+    public TileEntityAdvancedSteamTurbine() {
         super();
     }
 
@@ -32,16 +32,16 @@ public class TileEntityAdvancedSteamTurbine extends TileEntityBasicSteamTurbine{
             if (drained == null) {
                 this.addChange(-0.002F);
             } else {
-                this.addChange(this.limit((float)drained.amount - value, -0.005F, 0.005F));
+                this.addChange(this.limit((float) drained.amount - value, -0.005F, 0.005F));
             }
 
 
             float producing = 128.0F * this.speed;
             if (drained != null) {
-                producing += (float)drained.amount / 8.0F;
+                producing += (float) drained.amount / 8.0F;
             }
             if (producing >= 1.0F) {
-                this.addEnergy((int)producing);
+                this.addEnergy((int) producing);
             }
 
             this.updateComparators();
@@ -54,7 +54,7 @@ public class TileEntityAdvancedSteamTurbine extends TileEntityBasicSteamTurbine{
 
     @Override
     public double getOfferedEnergy() {
-        return (double)Math.min(160, this.energy);
+        return (double) Math.min(160, this.energy);
     }
 
     @Override

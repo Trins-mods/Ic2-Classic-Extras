@@ -22,18 +22,18 @@ public class ItemBlockGenerator extends ItemBlockRare {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         PlayerHandler handler = PlayerHandler.getClientPlayerHandler();
-        if (this.getBlock() == Registry.thermoElectricGenerator){
+        if (this.getBlock() == Registry.thermoElectricGenerator) {
             tooltip.add(Ic2cExtrasLang.thermoElectricGeneratorTooltip.getLocalized());
         }
-        if (this.getBlock() == Registry.thermoElectricGeneratorMKII){
+        if (this.getBlock() == Registry.thermoElectricGeneratorMKII) {
             tooltip.add(Ic2cExtrasLang.thermoElectricGeneratorMkIITooltip.getLocalized());
         }
         if (handler.hasEUReader()) {
-            if (this.getBlock() == Registry.thermoElectricGenerator){
+            if (this.getBlock() == Registry.thermoElectricGenerator) {
                 tooltip.add(Ic2InfoLang.electricProduction.getLocalizedFormatted("1 - 32"));
-            }else if (this.getBlock() == Registry.thermoElectricGeneratorMKII){
+            } else if (this.getBlock() == Registry.thermoElectricGeneratorMKII) {
                 tooltip.add(Ic2InfoLang.electricProduction.getLocalizedFormatted("2 - 64"));
-            }else {
+            } else {
                 tooltip.add(Ic2InfoLang.electricProduction.getLocalizedFormatted(160));
             }
         }

@@ -36,7 +36,7 @@ public class JeiSimpleMachineCategory implements IRecipeCategory<JeiSimpleMachin
         this.charge = helper.createAnimatedDrawable(chargePic, 500, IDrawableAnimated.StartDirection.TOP, true);
     }
 
-    public int getHeight(){
+    public int getHeight() {
         return Ic2cExtrasConfig.debugMode ? 70 : 60;
     }
 

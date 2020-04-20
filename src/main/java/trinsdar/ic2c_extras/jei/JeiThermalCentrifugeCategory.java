@@ -38,7 +38,7 @@ public class JeiThermalCentrifugeCategory implements IRecipeCategory<JeiThermalC
         this.charge = helper.createAnimatedDrawable(chargePic, 500, IDrawableAnimated.StartDirection.TOP, true);
     }
 
-    public int getHeight(){
+    public int getHeight() {
         return Ic2cExtrasConfig.debugMode ? 100 : 90;
     }
 

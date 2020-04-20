@@ -41,14 +41,14 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
     public int nextDelay = 10;
     public int delay = 0;
     public int radius = 1;
+
     public TileEntityTreeTapper() {
         super(13, 128);
         this.maxEnergy = 50000;
     }
 
     @Override
-    protected void addSlots(InventoryHandler handler)
-    {
+    protected void addSlots(InventoryHandler handler) {
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Export, 0, 1, 2, 3, 4, 5, 6, 7, 8);
         handler.registerDefaultSlotsForSide(RotationList.UP.invert(), 0, 1, 2, 3, 4, 5, 6, 7, 8);
@@ -62,7 +62,7 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
 
     @Override
     public ContainerIC2 getGuiContainer(EntityPlayer player) {
-        return new ContainerTreeTapper(player.inventory,this);
+        return new ContainerTreeTapper(player.inventory, this);
     }
 
     @Override
@@ -107,9 +107,9 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
             --this.delay;
         } else if (!this.hasEnergy(100)) {
             this.delay += 20;
-        } else if (isInventoryFull()){
+        } else if (isInventoryFull()) {
             this.delay += 20;
-        }else {
+        } else {
             this.delay += this.nextDelay;
             this.setActive(true);
             for (BlockPos additionalPos : getTargetBlocks(this.getPos())) {
@@ -119,7 +119,7 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
                     attemptExtract(worldIn, additionalPos, false);
                     addItemsToInventory(stack, false);
                     useEnergy(20);
-                } else if (isInventoryFull()){
+                } else if (isInventoryFull()) {
                     break;
                 }
             }
@@ -128,14 +128,14 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
         }
     }
 
-    public boolean isInventoryFull(){
+    public boolean isInventoryFull() {
         int fullSlotCount = 0;
-        for (int i = 0; i < 9; i++){
-            if (this.inventory.get(i).getCount() == 64){
+        for (int i = 0; i < 9; i++) {
+            if (this.inventory.get(i).getCount() == 64) {
                 fullSlotCount += 1;
             }
         }
-        if (fullSlotCount == 9){
+        if (fullSlotCount == 9) {
             return true;
         }
         return false;
@@ -147,7 +147,7 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
             boolean server = IC2.platform.isSimulating();
             if (state.getValue(BlockRubberWood.collectable)) {
                 if (server) {
-                    if (!simulate){
+                    if (!simulate) {
                         world.setBlockState(pos, state.withProperty(BlockRubberWood.collectable, false));
                         world.scheduleUpdate(pos, state.getBlock(), 100);
                         (IC2.network.get(server)).announceBlockUpdate(world, pos);
@@ -161,12 +161,12 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
 
     public Set<BlockPos> getTargetBlocks(BlockPos pos) {
         Set<BlockPos> targetBlocks = new LinkedHashSet<BlockPos>();
-        for (int y = 0; y < 8; y++){
+        for (int y = 0; y < 8; y++) {
             for (int x = -radius; x < radius + 1; x++) {
                 for (int z = -radius; z < radius + 1; z++) {
                     BlockPos newPos = pos.add(x, y, z);
                     IBlockState state = this.getWorld().getBlockState(newPos);
-                    if (state.getBlock() == Ic2States.rubberWood.getBlock()){
+                    if (state.getBlock() == Ic2States.rubberWood.getBlock()) {
                         targetBlocks.add(newPos);
                     }
                 }
@@ -176,9 +176,9 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
     }
 
     public boolean addItemsToInventory(ItemStack stack, boolean simulate) {
-        for (int i = 0; i < 9; i++){
-            if (this.inventory.get(i).isEmpty() || this.getStackInSlot(i).getCount() + stack.getCount() <= 67){
-                if (!simulate){
+        for (int i = 0; i < 9; i++) {
+            if (this.inventory.get(i).isEmpty() || this.getStackInSlot(i).getCount() + stack.getCount() <= 67) {
+                if (!simulate) {
                     int count = this.getStackInSlot(i).getCount() + stack.getCount();
                     this.setStackInSlot(i, StackUtil.copyWithSize(Ic2Items.stickyResin, count));
                 }
@@ -200,7 +200,7 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
         int overclocker = 0;
         int newRange = 1;
 
-        for(int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 4; ++i) {
             ItemStack stack = inventory.get(i + inventory.size() - 4);
             if (StackUtil.isStackEqual(stack, Ic2Items.overClockerUpgrade)) {
                 overclocker += stack.getCount();

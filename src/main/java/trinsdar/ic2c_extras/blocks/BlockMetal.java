@@ -22,7 +22,8 @@ import java.util.List;
 public class BlockMetal extends Block implements ITexturedBlock {
 
     int index;
-    public BlockMetal(String name, int index){
+
+    public BlockMetal(String name, int index) {
         super(Material.IRON);
         this.setHardness(4.0F);
         this.setResistance(10.0F);

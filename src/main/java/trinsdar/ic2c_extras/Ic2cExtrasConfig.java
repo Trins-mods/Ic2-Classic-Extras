@@ -1,4 +1,5 @@
 package trinsdar.ic2c_extras;
+
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.Comment;
 

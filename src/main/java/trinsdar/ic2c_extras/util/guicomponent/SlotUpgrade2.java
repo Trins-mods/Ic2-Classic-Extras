@@ -18,10 +18,10 @@ public class SlotUpgrade2 extends SlotUpgrade {
             if (getMachine() instanceof TileEntityContainerInputBase) {
                 ((TileEntityContainerInputBase) getMachine()).setOverclockRates();
             }
-            if (getMachine() instanceof TileEntityFluidCannerBase){
+            if (getMachine() instanceof TileEntityFluidCannerBase) {
                 ((TileEntityFluidCannerBase) getMachine()).setOverclockRates();
             }
-            if (getMachine() instanceof TileEntityTreeTapper){
+            if (getMachine() instanceof TileEntityTreeTapper) {
                 ((TileEntityTreeTapper) getMachine()).setOverclockerUpgrade();
             }
         }

@@ -46,11 +46,10 @@ public class TileEntityMetalBender extends TileEntityContainerInputBase {
     }
 
     @Override
-    protected void addSlots(InventoryHandler handler)
-    {
+    protected void addSlots(InventoryHandler handler) {
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Both, 2);
-        handler.registerDefaultSlotAccess(AccessRule.Import, slotInput);
+        handler.registerDefaultSlotAccess(AccessRule.Import, slotInput, slotInputContainer);
         handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput);
         handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutput);
         handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), slotInput);
@@ -95,21 +94,18 @@ public class TileEntityMetalBender extends TileEntityContainerInputBase {
     }
 
     @Override
-    public ContainerIC2 getGuiContainer(EntityPlayer player)
-    {
+    public ContainerIC2 getGuiContainer(EntityPlayer player) {
         return new ContainerMetalBender(player.inventory, this);
     }
 
     @Override
-    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
-    {
+    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
         return GuiMachine.MetalBenderGui.class;
     }
 
 
     @Override
-    public LocaleComp getBlockName()
-    {
+    public LocaleComp getBlockName() {
         return Ic2cExtrasLang.metalBender;
     }
 
@@ -118,18 +114,15 @@ public class TileEntityMetalBender extends TileEntityContainerInputBase {
         return 1.0D;
     }
 
-    public ResourceLocation getGuiTexture()
-    {
+    public ResourceLocation getGuiTexture() {
         return Ic2cExtrasResourceLocations.metalBender;
     }
 
-    public static void addRecipe(IRecipeInput input, ItemStack press, ItemStack output)
-    {
+    public static void addRecipe(IRecipeInput input, ItemStack press, ItemStack output) {
         addRecipe(input, press, new MachineOutput(null, output));
     }
 
-    public static void addRecipe(IRecipeInput input, ItemStack press, MachineOutput output)
-    {
+    public static void addRecipe(IRecipeInput input, ItemStack press, MachineOutput output) {
         metalBender.addRecipe(input, press, output, output.getAllOutputs().get(0).getUnlocalizedName());
     }
 }

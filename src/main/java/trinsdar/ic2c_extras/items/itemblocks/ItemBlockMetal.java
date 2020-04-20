@@ -17,16 +17,16 @@ public class ItemBlockMetal extends ItemBlockRare {
     @Override
     public LocaleComp getLangComponent(ItemStack stack) {
         Block block = this.getBlock();
-        if (block == Registry.steelBlock){
+        if (block == Registry.steelBlock) {
             return Ic2cExtrasLang.steelBlock;
         }
-        if (block == Registry.refinedIronBlock){
+        if (block == Registry.refinedIronBlock) {
             return Ic2cExtrasLang.refinedIronBlock;
         }
-        if (block == Registry.leadBlock){
+        if (block == Registry.leadBlock) {
             return Ic2cExtrasLang.leadBlock;
         }
-        if (block == Registry.stoneDustBlock){
+        if (block == Registry.stoneDustBlock) {
             return Ic2cExtrasLang.stoneDustBlock;
         }
         return super.getLangComponent(stack);

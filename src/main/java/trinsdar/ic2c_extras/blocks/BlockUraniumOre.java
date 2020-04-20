@@ -15,7 +15,7 @@ public class BlockUraniumOre extends BlockMetal {
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         int meta = this.getMetaFromState(state);
-        if (meta == 2 && Ic2cExtrasConfig.uramiumOreDrop){
+        if (meta == 2 && Ic2cExtrasConfig.uramiumOreDrop) {
             List<ItemStack> list = new ArrayList();
             list.add(Ic2Items.uraniumOre.copy());
             return list;

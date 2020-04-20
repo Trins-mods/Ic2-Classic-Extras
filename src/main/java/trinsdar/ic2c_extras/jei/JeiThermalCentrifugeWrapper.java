@@ -25,17 +25,14 @@ public class JeiThermalCentrifugeWrapper extends BlankRecipeWrapper {
     }
 
     @Override
-    public void getIngredients(IIngredients components)
-    {
+    public void getIngredients(IIngredients components) {
         components.setInputLists(ItemStack.class, Arrays.asList(this.entry.getInput().getInputs()));
         List<List<ItemStack>> outputs = new ArrayList<List<ItemStack>>();
         int count = 0;
-        for(ItemStack stack : entry.getOutput().copy().getAllOutputs())
-        {
+        for (ItemStack stack : entry.getOutput().copy().getAllOutputs()) {
             outputs.add(Arrays.asList(stack));
             count++;
-            if(count >= 3)
-            {
+            if (count >= 3) {
                 break;
             }
         }

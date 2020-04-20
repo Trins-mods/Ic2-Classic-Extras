@@ -40,13 +40,13 @@ public class GuiMachine {
         }
     }
 
-    public static class BlockCuttingGui extends MachineGui{
+    public static class BlockCuttingGui extends MachineGui {
         public BlockCuttingGui(ContainerComponent container) {
             super(container);
         }
     }
 
-    public static class FluidCanningGui extends MachineGui{
+    public static class FluidCanningGui extends MachineGui {
         public FluidCanningGui(ContainerComponent container) {
             super(container);
         }

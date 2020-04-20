@@ -8,18 +8,24 @@ import net.minecraftforge.oredict.OreDictionary;
 import java.util.List;
 
 public class StackHelper {
-    /** Checks if a stack can merge with default stack size **/
+    /**
+     * Checks if a stack can merge with default stack size
+     **/
     public static boolean canMerge(ItemStack stack, ItemStack toCompare) {
         return canMerge(stack, toCompare, stack.getMaxStackSize());
     }
 
-    /** Checks if a stack can merge **/
+    /**
+     * Checks if a stack can merge
+     **/
     public static boolean canMerge(ItemStack stack, ItemStack toCompare, int maxCount) {
         return (isEqual(stack, toCompare) && (toCompare.getCount() + stack.getCount() <= maxCount))
                 || toCompare.isEmpty();
     }
 
-    /** Just an easy place for me to call this over and over **/
+    /**
+     * Just an easy place for me to call this over and over
+     **/
     public static boolean isEqual(ItemStack stack, ItemStack toCompare) {
         return StackUtil.isStackEqual(stack, toCompare, false, false);
     }
@@ -39,7 +45,9 @@ public class StackHelper {
         return false;
     }
 
-    /** Checks if a machine slot can accept a stack **/
+    /**
+     * Checks if a machine slot can accept a stack
+     **/
     public static boolean canOutputStack(TileEntityMachine tile, ItemStack stack, int slot) {
         if (tile.inventory.get(slot).isEmpty()) {
             return true;
@@ -49,12 +57,16 @@ public class StackHelper {
         return hasRoom && isEqual(tile.getStackInSlot(slot), stack);
     }
 
-    /** Checks if a machine slot is empty **/
+    /**
+     * Checks if a machine slot is empty
+     **/
     public static boolean isSlotEmpty(TileEntityMachine tile, int slot) {
         return tile.inventory.get(slot).isEmpty();
     }
 
-    /** Checks if a machine slot is full **/
+    /**
+     * Checks if a machine slot is full
+     **/
     public static boolean isSlotFull(TileEntityMachine tile, int slot) {
         if (tile.inventory.get(slot).isEmpty()) {
             return false;
@@ -62,7 +74,9 @@ public class StackHelper {
         return tile.inventory.get(slot).getCount() == tile.inventory.get(slot).getMaxStackSize();
     }
 
-    /** Gets the stacksize of a slot **/
+    /**
+     * Gets the stacksize of a slot
+     **/
     public int getSlotStackCount(TileEntityMachine tile, int slot) {
         if (tile.inventory.get(slot).isEmpty()) {
             return 0;
@@ -70,7 +84,9 @@ public class StackHelper {
         return tile.getStackInSlot(slot).getCount();
     }
 
-    /** Created by Muramasa - Merges B into A, ignoring maxStackSize **/
+    /**
+     * Created by Muramasa - Merges B into A, ignoring maxStackSize
+     **/
     public static List<ItemStack> mergeItems(List<ItemStack> a, List<ItemStack> b) {
         int position, size = b.size();
         for (int i = 0; i < size; i++) {
@@ -85,7 +101,9 @@ public class StackHelper {
         return a;
     }
 
-    /** Returns the index of an item in a list, or -1 if not found **/
+    /**
+     * Returns the index of an item in a list, or -1 if not found
+     **/
     public static int contains(List<ItemStack> list, ItemStack item) {
         int size = list.size();
         for (int i = 0; i < size; i++) {
@@ -96,7 +114,9 @@ public class StackHelper {
         return -1;
     }
 
-    /** Checks if an itemstack has an oredict entry **/
+    /**
+     * Checks if an itemstack has an oredict entry
+     **/
     public static boolean matchOreDict(ItemStack stack, String entry) {
         if (!stack.isEmpty() && (OreDictionary.getOreIDs(stack).length > 0)) {
             for (int i = 0; i < OreDictionary.getOreIDs(stack).length; i++) {

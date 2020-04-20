@@ -21,20 +21,17 @@ public class JeiMetalBenderWrapper extends BlankRecipeWrapper {
     }
 
     @Override
-    public void getIngredients(IIngredients components)
-    {
+    public void getIngredients(IIngredients components) {
         List<List<ItemStack>> lists = new ArrayList();
         lists.add(entry.getInput().getInputs());
         lists.add(Arrays.asList(entry.getPress()));
         components.setInputLists(ItemStack.class, lists);
         List<List<ItemStack>> outputs = new ArrayList<List<ItemStack>>();
         int count = 0;
-        for(ItemStack stack : entry.getOutputs().copy().getAllOutputs())
-        {
+        for (ItemStack stack : entry.getOutputs().copy().getAllOutputs()) {
             outputs.add(Arrays.asList(stack));
             count++;
-            if(count >= 1)
-            {
+            if (count >= 1) {
                 break;
             }
         }

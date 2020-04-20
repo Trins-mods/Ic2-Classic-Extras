@@ -39,7 +39,7 @@ public class JeiFluidCanningCategory implements IRecipeCategory<JeiFluidCanningW
         this.charge = helper.createAnimatedDrawable(chargePic, 500, IDrawableAnimated.StartDirection.TOP, true);
     }
 
-    public int getHeight(){
+    public int getHeight() {
         return Ic2cExtrasConfig.debugMode ? 72 : 62;
     }
 

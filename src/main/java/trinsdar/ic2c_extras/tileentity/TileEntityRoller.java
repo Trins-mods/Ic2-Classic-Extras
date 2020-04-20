@@ -22,7 +22,7 @@ import java.util.Arrays;
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.rolling;
 
 public class TileEntityRoller extends TileEntityBasicElectricMachine {
-    public TileEntityRoller(){
+    public TileEntityRoller() {
         super(3, 5, 400, 32);
     }
 
@@ -32,8 +32,7 @@ public class TileEntityRoller extends TileEntityBasicElectricMachine {
     }
 
     @Override
-    public LocaleComp getBlockName()
-    {
+    public LocaleComp getBlockName() {
         return Ic2cExtrasLang.roller;
     }
 
@@ -48,8 +47,7 @@ public class TileEntityRoller extends TileEntityBasicElectricMachine {
     }
 
     @Override
-    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
-    {
+    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
         return RollerGui.class;
     }
 

@@ -6,7 +6,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 
 public class Ic2cExtrasOredict {
-    public static void init(){
+    public static void init() {
         OreDictionary.registerOre("crushedIron", Registry.ironCrushedOre);
         OreDictionary.registerOre("crushedGold", Registry.goldCrushedOre);
         OreDictionary.registerOre("crushedCopper", Registry.copperCrushedOre);

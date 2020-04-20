@@ -14,7 +14,7 @@ import trinsdar.ic2c_extras.util.Registry;
 import java.awt.*;
 
 public class Plutonium extends UranBaseType {
-    public Plutonium(){
+    public Plutonium() {
         this.loadDefaults();
     }
 
@@ -23,6 +23,7 @@ public class Plutonium extends UranBaseType {
     public TextureAtlasSprite getTexture(RodType type) {
         return Ic2Icons.getTextures("ic2c_extras_nuclear_cells")[this.getRodID(type) - 1100];
     }
+
     @Override
     public int getRow() {
         return 0;
@@ -65,7 +66,7 @@ public class Plutonium extends UranBaseType {
 
     @Override
     public ItemStack getRodType(RodType type) {
-        switch(type) {
+        switch (type) {
             case SingleRod:
                 return new ItemStack(Registry.singlePlutoniumCell).copy();
             case DualRod:
@@ -90,7 +91,7 @@ public class Plutonium extends UranBaseType {
 
     @Override
     public short getRodID(RodType type) {
-        switch(type) {
+        switch (type) {
             case SingleRod:
                 return 1111;
             case DualRod:

@@ -15,6 +15,7 @@ import java.util.List;
 public class ItemCasings extends Item implements IStaticTexturedItem {
 
     int index;
+
     public ItemCasings(String variant, int index) {
         this.index = index;
         String name = variant + "Casing";
@@ -25,8 +26,7 @@ public class ItemCasings extends Item implements IStaticTexturedItem {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public TextureAtlasSprite getTexture(int meta)
-    {
+    public TextureAtlasSprite getTexture(int meta) {
         return Ic2Icons.getTextures("ic2c_extras_item_casings")[index];
     }
 

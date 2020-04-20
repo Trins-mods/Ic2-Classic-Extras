@@ -22,7 +22,8 @@ import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 public class TileEntityBlockCuttingMachine extends TileEntityBasicElectricMachine {
     public static IMachineRecipeList blockCutting = new BasicMachineRecipeList("blockCutting");
     public static final String hardness = "hardness";
-    public TileEntityBlockCuttingMachine(){
+
+    public TileEntityBlockCuttingMachine() {
         super(4, 5, 400, 32);
     }
 
@@ -32,8 +33,7 @@ public class TileEntityBlockCuttingMachine extends TileEntityBasicElectricMachin
     }
 
     @Override
-    public LocaleComp getBlockName()
-    {
+    public LocaleComp getBlockName() {
         return Ic2cExtrasLang.blockCuttingMachine;
     }
 

@@ -67,8 +67,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
     }
 
     @Override
-    protected void addSlots(InventoryHandler handler)
-    {
+    protected void addSlots(InventoryHandler handler) {
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Both, 1);
         handler.registerDefaultSlotAccess(AccessRule.Import, slotInput);
@@ -83,8 +82,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
     }
 
     @Override
-    public void onTankChanged(IFluidTank tank)
-    {
+    public void onTankChanged(IFluidTank tank) {
         this.getNetwork().updateTileGuiField(this, "inputTank");
         this.getNetwork().updateTileGuiField(this, "outputTank");
         this.shouldCheckRecipe = true;
@@ -124,6 +122,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
     public int[] getOutputSlots() {
         return new int[]{slotOutput};
     }
+
     @Override
     public FluidCanningRecipeList getRecipeList() {
         return fluidCanning;
@@ -135,73 +134,68 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
     }
 
     @Override
-    public ContainerIC2 getGuiContainer(EntityPlayer player)
-    {
+    public ContainerIC2 getGuiContainer(EntityPlayer player) {
         return new ContainerFluidCanningMachine(player.inventory, this);
     }
 
     @Override
-    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
-    {
+    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
         return GuiMachine.FluidCanningGui.class;
     }
 
 
     @Override
-    public LocaleComp getBlockName()
-    {
+    public LocaleComp getBlockName() {
         return Ic2cExtrasLang.fluidCanningMachine;
     }
 
     @Override
-    public boolean hasCapability(Capability<?> capability, EnumFacing facing)
-    {
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
-    public EnumFacing left(){
-        if (this.getFacing() == EnumFacing.NORTH){
+    public EnumFacing left() {
+        if (this.getFacing() == EnumFacing.NORTH) {
             return EnumFacing.EAST;
         }
-        if (this.getFacing() == EnumFacing.WEST){
+        if (this.getFacing() == EnumFacing.WEST) {
             return EnumFacing.NORTH;
         }
-        if (this.getFacing() == EnumFacing.SOUTH){
+        if (this.getFacing() == EnumFacing.SOUTH) {
             return EnumFacing.WEST;
         }
-        if (this.getFacing() == EnumFacing.EAST){
+        if (this.getFacing() == EnumFacing.EAST) {
             return EnumFacing.SOUTH;
         }
         return this.getFacing();
     }
 
-    public EnumFacing right(){
-        if (this.getFacing() == EnumFacing.NORTH){
+    public EnumFacing right() {
+        if (this.getFacing() == EnumFacing.NORTH) {
             return EnumFacing.WEST;
         }
-        if (this.getFacing() == EnumFacing.WEST){
+        if (this.getFacing() == EnumFacing.WEST) {
             return EnumFacing.SOUTH;
         }
-        if (this.getFacing() == EnumFacing.SOUTH){
+        if (this.getFacing() == EnumFacing.SOUTH) {
             return EnumFacing.EAST;
         }
-        if (this.getFacing() == EnumFacing.EAST){
+        if (this.getFacing() == EnumFacing.EAST) {
             return EnumFacing.NORTH;
         }
         return this.getFacing();
     }
 
     @Override
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing)
-    {
-        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
-            if (facing == EnumFacing.UP || facing == left()){
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            if (facing == EnumFacing.UP || facing == left()) {
                 return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.inputTank);
-            }else if (facing == EnumFacing.DOWN || facing == right()){
-                if (this.outputTank.getFluidAmount() > 0){
+            } else if (facing == EnumFacing.DOWN || facing == right()) {
+                if (this.outputTank.getFluidAmount() > 0) {
                     return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.outputTank);
                 }
-            }else {
+            } else {
                 return super.getCapability(capability, facing);
             }
         }
@@ -213,51 +207,43 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
         return 1.0D;
     }
 
-    public ResourceLocation getGuiTexture()
-    {
+    public ResourceLocation getGuiTexture() {
         return Ic2cExtrasResourceLocations.fluidCanningMachine;
     }
 
-    public static void addFillingRecipe(IRecipeInput input, FluidStack inputFluid,  ItemStack output)
-    {
-        addFillingRecipe(input, inputFluid,  output, 50);
+    public static void addFillingRecipe(IRecipeInput input, FluidStack inputFluid, ItemStack output) {
+        addFillingRecipe(input, inputFluid, output, 50);
     }
 
-    public static void addEmptyingRecipe(IRecipeInput input, ItemStack output, FluidStack outputFluid)
-    {
-        addEmptyingRecipe(input,  output, outputFluid, 50);
+    public static void addEmptyingRecipe(IRecipeInput input, ItemStack output, FluidStack outputFluid) {
+        addEmptyingRecipe(input, output, outputFluid, 50);
     }
 
-    public static void addFillingRecipe(IRecipeInput input, FluidStack inputFluid,  ItemStack output, int totalEu)
-    {
-        addFillingRecipe(input, inputFluid,  output, totalEu(totalEu));
+    public static void addFillingRecipe(IRecipeInput input, FluidStack inputFluid, ItemStack output, int totalEu) {
+        addFillingRecipe(input, inputFluid, output, totalEu(totalEu));
     }
 
-    public static void addEmptyingRecipe(IRecipeInput input, ItemStack output, FluidStack outputFluid, int totalEu)
-    {
-        addEmptyingRecipe(input,  output, outputFluid, totalEu(totalEu));
+    public static void addEmptyingRecipe(IRecipeInput input, ItemStack output, FluidStack outputFluid, int totalEu) {
+        addEmptyingRecipe(input, output, outputFluid, totalEu(totalEu));
     }
 
-    public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, ItemStack output, FluidStack outputFluid)
-    {
+    public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, ItemStack output, FluidStack outputFluid) {
         addEnrichingRecipe(input, inputFluid, new MachineOutput(null, output), outputFluid);
     }
 
     public static IRecipeModifier[] totalEu(int amount) {
-        return new IRecipeModifier[] { RecipeModifierHelpers.ModifierType.RECIPE_LENGTH.create((amount) - 400) };
+        return new IRecipeModifier[]{RecipeModifierHelpers.ModifierType.RECIPE_LENGTH.create((amount) - 400)};
     }
 
-    public static void addFillingRecipe(IRecipeInput input, FluidStack inputFluid, ItemStack output, IRecipeModifier[] modifiers)
-    {
+    public static void addFillingRecipe(IRecipeInput input, FluidStack inputFluid, ItemStack output, IRecipeModifier[] modifiers) {
         NBTTagCompound mods = new NBTTagCompound();
         for (IRecipeModifier modifier : modifiers) {
             modifier.apply(mods);
         }
-        fluidCanning.addFillingRecipe(input, inputFluid,  new MachineOutput(mods, output), "filling_" + output.getUnlocalizedName() + "_" + inputFluid.getUnlocalizedName());
+        fluidCanning.addFillingRecipe(input, inputFluid, new MachineOutput(mods, output), "filling_" + output.getUnlocalizedName() + "_" + inputFluid.getUnlocalizedName());
     }
 
-    public static void addEmptyingRecipe(IRecipeInput input, ItemStack output,  FluidStack outputFluid, IRecipeModifier[] modifiers)
-    {
+    public static void addEmptyingRecipe(IRecipeInput input, ItemStack output, FluidStack outputFluid, IRecipeModifier[] modifiers) {
         NBTTagCompound mods = new NBTTagCompound();
         for (IRecipeModifier modifier : modifiers) {
             modifier.apply(mods);
@@ -265,13 +251,11 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
         fluidCanning.addEmptyingRecipe(input, new MachineOutput(mods, output), outputFluid, "emptying_" + output.getUnlocalizedName() + "_" + outputFluid.getUnlocalizedName());
     }
 
-    public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output, FluidStack outputFluid)
-    {
+    public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output, FluidStack outputFluid) {
         fluidCanning.addEnrichingRecipe(input, inputFluid, output, outputFluid, "enriching_" + output.getAllOutputs().get(0).getUnlocalizedName());
     }
 
-    public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, FluidStack outputFluid)
-    {
+    public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, FluidStack outputFluid) {
         fluidCanning.addEnrichingRecipe(input, inputFluid, outputFluid, "enriching_" + outputFluid.getFluid().getUnlocalizedName());
     }
 
@@ -285,7 +269,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
         ItemStack playerStack = player.getHeldItem(hand);
         if (!playerStack.isEmpty()) {
             FluidActionResult result = FluidUtil.tryEmptyContainer(playerStack, this.inputTank, this.inputTank.getCapacity() - this.inputTank.getFluidAmount(), player, true);
-            if (result.isSuccess()){
+            if (result.isSuccess()) {
                 playerStack.shrink(1);
                 ItemStack resultStack = result.getResult();
                 if (!resultStack.isEmpty()) {
@@ -296,7 +280,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
                 return true;
             }
             FluidActionResult result2 = FluidUtil.tryFillContainer(playerStack, this.outputTank, this.outputTank.getCapacity(), player, true);
-            if (result2.isSuccess()){
+            if (result2.isSuccess()) {
                 playerStack.shrink(1);
                 ItemStack resultStack = result2.getResult();
                 if (!resultStack.isEmpty()) {

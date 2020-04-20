@@ -22,27 +22,24 @@ public class JeiFluidCanningWrapper extends BlankRecipeWrapper {
     }
 
     @Override
-    public void getIngredients(IIngredients components)
-    {
+    public void getIngredients(IIngredients components) {
         components.setInputLists(ItemStack.class, Arrays.asList(this.entry.getInput().getInputs()));
-        if (entry.hasFluidInput()){
+        if (entry.hasFluidInput()) {
             components.setInputs(FluidStack.class, Arrays.asList(this.entry.getInputFluid()));
         }
         List<List<ItemStack>> outputs = new ArrayList<List<ItemStack>>();
-        if (entry.hasItemOutput()){
+        if (entry.hasItemOutput()) {
             int count = 0;
-            for(ItemStack stack : entry.getOutputs().copy().getAllOutputs())
-            {
+            for (ItemStack stack : entry.getOutputs().copy().getAllOutputs()) {
                 outputs.add(Arrays.asList(stack));
                 count++;
-                if(count >= 1)
-                {
+                if (count >= 1) {
                     break;
                 }
             }
             components.setOutputLists(ItemStack.class, outputs);
         }
-        if (entry.hasFluidOutput()){
+        if (entry.hasFluidOutput()) {
             components.setOutput(FluidStack.class, entry.getOutputFluid());
         }
 

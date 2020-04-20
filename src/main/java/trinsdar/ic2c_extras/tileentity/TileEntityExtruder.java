@@ -22,7 +22,7 @@ import java.util.Arrays;
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.extruding;
 
 public class TileEntityExtruder extends TileEntityBasicElectricMachine {
-    public TileEntityExtruder(){
+    public TileEntityExtruder() {
         super(3, 5, 400, 32);
     }
 
@@ -32,8 +32,7 @@ public class TileEntityExtruder extends TileEntityBasicElectricMachine {
     }
 
     @Override
-    public LocaleComp getBlockName()
-    {
+    public LocaleComp getBlockName() {
         return Ic2cExtrasLang.extruder;
     }
 
@@ -48,8 +47,7 @@ public class TileEntityExtruder extends TileEntityBasicElectricMachine {
     }
 
     @Override
-    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
-    {
+    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
         return ExtruderGui.class;
     }
 

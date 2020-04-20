@@ -11,10 +11,11 @@ import trinsdar.ic2c_extras.IC2CExtras;
 import java.util.Arrays;
 import java.util.List;
 
-public class ItemMiscs extends Item implements IStaticTexturedItem{
+public class ItemMiscs extends Item implements IStaticTexturedItem {
     int index;
     String sprite;
-    public ItemMiscs(String  name, int id) {
+
+    public ItemMiscs(String name, int id) {
         this.index = id;
         this.sprite = "misc_items";
         this.setRegistryName(IC2CExtras.MODID, name.toLowerCase());
@@ -22,18 +23,17 @@ public class ItemMiscs extends Item implements IStaticTexturedItem{
         setCreativeTab(IC2CExtras.creativeTab);
     }
 
-    public ItemMiscs(String  name, int id, String sprite) {
+    public ItemMiscs(String name, int id, String sprite) {
         this.index = id;
         this.sprite = sprite;
-        this.setRegistryName(IC2CExtras.MODID,name.toLowerCase());
+        this.setRegistryName(IC2CExtras.MODID, name.toLowerCase());
         setUnlocalizedName(name);
         setCreativeTab(IC2CExtras.creativeTab);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public TextureAtlasSprite getTexture(int meta)
-    {
+    public TextureAtlasSprite getTexture(int meta) {
         return Ic2Icons.getTextures("ic2c_extras_" + sprite)[index];
     }
 

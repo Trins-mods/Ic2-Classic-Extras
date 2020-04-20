@@ -21,6 +21,7 @@ import java.util.List;
 
 public class ItemDepeletedNuclearRods extends Item implements IStaticTexturedItem, IReactorProduct {
     int index;
+
     public ItemDepeletedNuclearRods(String name, int id) {
         this.index = id;
         this.setRegistryName(IC2CExtras.MODID, name);
@@ -30,8 +31,7 @@ public class ItemDepeletedNuclearRods extends Item implements IStaticTexturedIte
 
     @SideOnly(Side.CLIENT)
     @Override
-    public TextureAtlasSprite getTexture(int meta)
-    {
+    public TextureAtlasSprite getTexture(int meta) {
         return Ic2Icons.getTextures("ic2c_extras_nuclear_cells")[index];
     }
 

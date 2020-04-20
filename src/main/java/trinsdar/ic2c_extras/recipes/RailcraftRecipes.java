@@ -10,17 +10,17 @@ import net.minecraft.item.crafting.Ingredient;
 import trinsdar.ic2c_extras.util.Registry;
 
 public class RailcraftRecipes {
-    private static void removeRockCrusherRecipes(ItemStack output){
+    private static void removeRockCrusherRecipes(ItemStack output) {
         Crafters.rockCrusher().getRecipes().removeIf(r -> output.isItemEqual(r.getOutputs().get(0).getOutput()));
     }
 
-    private static void addRockCrusherRecipe(Ingredient input, Item output){
+    private static void addRockCrusherRecipe(Ingredient input, Item output) {
         Crafters.rockCrusher().makeRecipe(input).name("ic2:crushedOre")
                 .addOutput(new ItemStack(output, 2))
                 .register();
     }
 
-    public static void initRailcraftRecipes(){
+    public static void initRailcraftRecipes() {
         removeRockCrusherRecipes(Ic2Items.ironDust);
         removeRockCrusherRecipes(Ic2Items.goldDust);
         removeRockCrusherRecipes(Ic2Items.copperDust);

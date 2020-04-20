@@ -16,8 +16,7 @@ import trinsdar.ic2c_extras.tileentity.TileEntityMetalBender;
 import trinsdar.ic2c_extras.util.guicomponent.SlotUpgrade2;
 
 public class ContainerMetalBender extends ContainerTileComponent<TileEntityMetalBender> {
-    public ContainerMetalBender(InventoryPlayer player, TileEntityMetalBender tile)
-    {
+    public ContainerMetalBender(InventoryPlayer player, TileEntityMetalBender tile) {
         super(tile);
         this.addSlotToContainer(new SlotCustom(tile, 0, 47, 17, tile.filter));
         this.addSlotToContainer(new SlotCustom(tile, 1, 65, 17, tile.pressFilter));
@@ -25,8 +24,7 @@ public class ContainerMetalBender extends ContainerTileComponent<TileEntityMetal
         this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 116, 35));
 
 
-        for(int i = 0; i < 2; ++i)
-        {
+        for (int i = 0; i < 2; ++i) {
             this.addSlotToContainer(new SlotUpgrade2(tile, 4 + i, 152, 8 + i * 18));
         }
 
@@ -37,20 +35,17 @@ public class ContainerMetalBender extends ContainerTileComponent<TileEntityMetal
     }
 
     @Override
-    public ResourceLocation getTexture()
-    {
+    public ResourceLocation getTexture() {
         return this.getGuiHolder().getGuiTexture();
     }
 
     @Override
-    public int guiInventorySize()
-    {
+    public int guiInventorySize() {
         return this.getGuiHolder().slotCount;
     }
 
     @Override
-    public boolean canInteractWith(EntityPlayer entityPlayer)
-    {
+    public boolean canInteractWith(EntityPlayer entityPlayer) {
         return this.getGuiHolder().canInteractWith(entityPlayer);
     }
 }

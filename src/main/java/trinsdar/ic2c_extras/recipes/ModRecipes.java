@@ -13,11 +13,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import trinsdar.ic2c_extras.tileentity.TileEntityFluidCanningMachine;
 
 public class ModRecipes {
-    public static void init(){
+    public static void init() {
         String dynamics = "thermaldynamics";
         String foundation = "thermalfoundation";
-        if (Loader.isModLoaded(foundation)){
-            if (Loader.isModLoaded(dynamics)){
+        if (Loader.isModLoaded(foundation)) {
+            if (Loader.isModLoaded(dynamics)) {
                 TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputItemStack(getModMetaItem(dynamics, "duct_0", 6, 1)), getModFluid("redstone", 200), getModMetaItem(dynamics, "duct_0", 2, 1), 75);
                 TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputItemStack(getModMetaItem(dynamics, "duct_0", 7, 1)), getModFluid("redstone", 200), getModMetaItem(dynamics, "duct_0", 3, 1), 75);
                 TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputItemStack(getModMetaItem(dynamics, "duct_0", 8, 1)), getModFluid("redstone", 200), getModMetaItem(dynamics, "duct_0", 4, 1), 75);
@@ -29,7 +29,7 @@ public class ModRecipes {
                 TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputItemStack(getModMetaItem(dynamics, "duct_64", 3, 1)), getModFluid("aerotheum", 125), getModMetaItem(dynamics, "duct_64", 0, 1), 75);
                 TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputItemStack(getModMetaItem(dynamics, "duct_64", 0, 1)), getModFluid("ender"), getModMetaItem(dynamics, "duct_64", 2, 1), 500);
             }
-            if (Loader.isModLoaded("openblocks")){
+            if (Loader.isModLoaded("openblocks")) {
                 TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputItemStack(new ItemStack(Items.SNOWBALL, 2)), getModFluid("xpjuice", 200), getModMetaItem(foundation, "material", 2049, 1), 1000);
                 TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputOreDict("dustSulfur", 2), getModFluid("xpjuice", 200), new ItemStack(Items.BLAZE_POWDER, 1), 1000);
                 TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputOreDict("dustObsidian", 2), getModFluid("xpjuice", 200), getModMetaItem(foundation, "material", 2053, 1), 1000);
@@ -39,7 +39,7 @@ public class ModRecipes {
             TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputOreDict("dustSulfur", 2), getModFluid("experience", 200), new ItemStack(Items.BLAZE_POWDER, 1), 1000);
             TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputOreDict("dustObsidian", 2), getModFluid("experience", 200), getModMetaItem(foundation, "material", 2053, 1), 1000);
             TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputOreDict("dustSaltpeter", 2), getModFluid("experience", 200), getModMetaItem(foundation, "material", 2051, 1), 1000);
-            if (Loader.isModLoaded("immersiveengineering")){
+            if (Loader.isModLoaded("immersiveengineering")) {
                 TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputItemStack(getModMetaItem(foundation, "material", 816, 1)), getModFluid("plantoil", 160), getModMetaItem(foundation, "material", 817, 1));
                 TileEntityFluidCanningMachine.addFillingRecipe(new RecipeInputItemStack(getModMetaItem(foundation, "material", 818, 1)), getModFluid("plantoil", 160), getModMetaItem(foundation, "material", 819, 1));
             }
@@ -58,11 +58,11 @@ public class ModRecipes {
         }
     }
 
-    public static FluidStack getModFluid(String name){
+    public static FluidStack getModFluid(String name) {
         return getModFluid(name, 1000);
     }
 
-    public static FluidStack getModFluid(String name, int amount){
+    public static FluidStack getModFluid(String name, int amount) {
         return FluidRegistry.getFluidStack(name, amount);
     }
 

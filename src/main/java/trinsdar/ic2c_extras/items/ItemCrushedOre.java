@@ -27,11 +27,11 @@ import trinsdar.ic2c_extras.util.Registry;
 import java.util.Arrays;
 import java.util.List;
 
-public class ItemCrushedOre extends Item implements IStaticTexturedItem
-{
+public class ItemCrushedOre extends Item implements IStaticTexturedItem {
     public static final PropertyInteger LEVEL = PropertyInteger.create("level", 0, 3);
 
     int index;
+
     public ItemCrushedOre(String variant, int index) {
         this.index = index;
         String name = variant + "CrushedOre";
@@ -42,15 +42,14 @@ public class ItemCrushedOre extends Item implements IStaticTexturedItem
 
     @SideOnly(Side.CLIENT)
     @Override
-    public TextureAtlasSprite getTexture(int meta)
-    {
+    public TextureAtlasSprite getTexture(int meta) {
         return Ic2Icons.getTextures("ic2c_extras_crushed_ore")[index];
     }
 
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         ItemStack stoneDust = new ItemStack(Registry.stoneDust);
-        if (Loader.isModLoaded("gtclassic") && IC2.config.getFlag("CauldronCrushedOre")){
+        if (Loader.isModLoaded("gtclassic") && IC2.config.getFlag("CauldronCrushedOre")) {
             washCrushedOre(player, worldIn, pos, hand, Registry.copperCrushedOre, new ItemStack(Registry.copperPurifiedCrushedOre, 1), new ItemStack(Registry.copperTinyDust, 2), stoneDust);
             washCrushedOre(player, worldIn, pos, hand, Registry.tinCrushedOre, new ItemStack(Registry.tinPurifiedCrushedOre, 1), new ItemStack(Registry.tinTinyDust, 2), stoneDust);
             washCrushedOre(player, worldIn, pos, hand, Registry.ironCrushedOre, new ItemStack(Registry.ironPurifiedCrushedOre, 1), new ItemStack(Registry.ironTinyDust, 2), stoneDust);
@@ -65,11 +64,11 @@ public class ItemCrushedOre extends Item implements IStaticTexturedItem
         IBlockState state = world.getBlockState(pos);
         if (this == input) {
             if (state.getBlock() == Blocks.CAULDRON && state.getValue(LEVEL).intValue() > 0) {
-                if (!player.capabilities.isCreativeMode){
+                if (!player.capabilities.isCreativeMode) {
                     player.getHeldItem(hand).shrink(1);
                 }
                 Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
-                for (ItemStack stack: outputs) {
+                for (ItemStack stack : outputs) {
                     ItemHandlerHelper.giveItemToPlayer(player, stack);
                 }
                 world.playSound((EntityPlayer) null, pos, SoundEvents.ITEM_BUCKET_EMPTY, SoundCategory.BLOCKS, 1.0F,

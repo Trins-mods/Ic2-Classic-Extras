@@ -21,10 +21,8 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
 
-public class ContainerOreWashingPlant extends ContainerTileComponent<TileEntityOreWashingPlant>
-{
-    public ContainerOreWashingPlant(InventoryPlayer player, TileEntityOreWashingPlant tile)
-    {
+public class ContainerOreWashingPlant extends ContainerTileComponent<TileEntityOreWashingPlant> {
+    public ContainerOreWashingPlant(InventoryPlayer player, TileEntityOreWashingPlant tile) {
         super(tile);
         this.addSlotToContainer(new SlotCustom(tile, 0, 56, 17, tile.filter));
         this.addSlotToContainer(new SlotDischarge(tile, 2147483647, 1, 56, 53));
@@ -34,8 +32,7 @@ public class ContainerOreWashingPlant extends ContainerTileComponent<TileEntityO
         this.addSlotToContainer(new SlotCustom(tile, 5, 8, 12, new FluidItemFilter()));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 6, 8, 57));
 
-        for(int i = 0; i < 4; ++i)
-        {
+        for (int i = 0; i < 4; ++i) {
             this.addSlotToContainer(new SlotUpgrade(tile, 7 + i, 152, 8 + i * 18));
         }
 
@@ -46,20 +43,17 @@ public class ContainerOreWashingPlant extends ContainerTileComponent<TileEntityO
     }
 
     @Override
-    public ResourceLocation getTexture()
-    {
+    public ResourceLocation getTexture() {
         return this.getGuiHolder().getGuiTexture();
     }
 
     @Override
-    public int guiInventorySize()
-    {
+    public int guiInventorySize() {
         return this.getGuiHolder().slotCount;
     }
 
     @Override
-    public boolean canInteractWith(EntityPlayer entityPlayer)
-    {
+    public boolean canInteractWith(EntityPlayer entityPlayer) {
         return this.getGuiHolder().canInteractWith(entityPlayer);
     }
 
@@ -68,8 +62,8 @@ public class ContainerOreWashingPlant extends ContainerTileComponent<TileEntityO
         @Override
         public boolean matches(ItemStack stack) {
             IFluidHandler handler = FluidUtil.getFluidHandler(stack);
-            if (!stack.isEmpty() && handler != null){
-                if (handler.getTankProperties()[0].getContents() == null){
+            if (!stack.isEmpty() && handler != null) {
+                if (handler.getTankProperties()[0].getContents() == null) {
                     return true;
                 }
                 return handler.getTankProperties()[0].getContents().getFluid().equals(FluidRegistry.WATER);

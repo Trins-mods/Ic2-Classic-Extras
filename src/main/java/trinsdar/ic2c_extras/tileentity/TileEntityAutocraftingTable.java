@@ -36,9 +36,9 @@ public class TileEntityAutocraftingTable extends TileEntityElecMachine implement
     public static final ResourceLocation GUI_LOCATION = new ResourceLocation(IC2CExtras.MODID, "textures/gui/autocrafter.png");
     public ItemStack target;
     public NonNullList<ItemStack> craftingList = NonNullList.<ItemStack>withSize(9, ItemStack.EMPTY);
-    protected static final int[] slotInputs = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    protected static final int[] slotContainer = { 10, 11, 12, 13, 14, 15, 16, 17, 18 };
-    protected static final int[] slotOutputs = { 19 };
+    protected static final int[] slotInputs = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    protected static final int[] slotContainer = {10, 11, 12, 13, 14, 15, 16, 17, 18};
+    protected static final int[] slotOutputs = {19};
 
     public TileEntityAutocraftingTable() {
         super(29, 32);

@@ -34,7 +34,8 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
 
     private int index;
     public static IUranium[] types = new IUranium[0];
-    public ItemNuclearRod(NuclearRodTypes type, NuclearRodVariants variant){
+
+    public ItemNuclearRod(NuclearRodTypes type, NuclearRodVariants variant) {
         this.type = type;
         this.variant = variant;
         String name = type.getPrefix() + variant.getPrefix();
@@ -43,7 +44,7 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
         setUnlocalizedName(new LangComponentHolder.LocaleItemComp("item." + name + "Cell"));
     }
 
-    public static void init(){
+    public static void init() {
         types = new IUranium[5];
         types[0] = new UOX();
         types[1] = new Plutonium();
@@ -104,27 +105,27 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
         return this.getRodType(type);
     }
 
-    public IUranium.RodType getRodType(NuclearRodTypes type){
-        if (type == NuclearRodTypes.SINGLE){
+    public IUranium.RodType getRodType(NuclearRodTypes type) {
+        if (type == NuclearRodTypes.SINGLE) {
             return IUranium.RodType.SingleRod;
-        }else if (type == NuclearRodTypes.DOUBLE){
+        } else if (type == NuclearRodTypes.DOUBLE) {
             return IUranium.RodType.DualRod;
-        }else if (type == NuclearRodTypes.QUAD){
+        } else if (type == NuclearRodTypes.QUAD) {
             return IUranium.RodType.QuadRod;
         }
         return IUranium.RodType.SingleRod;
     }
 
-    public static IUranium getUran(NuclearRodVariants variant){
-        if (variant == NuclearRodVariants.UOX){
+    public static IUranium getUran(NuclearRodVariants variant) {
+        if (variant == NuclearRodVariants.UOX) {
             return types[0];
-        }else if (variant == NuclearRodVariants.PLUTONIUM){
+        } else if (variant == NuclearRodVariants.PLUTONIUM) {
             return types[1];
-        }else if (variant == NuclearRodVariants.MOX){
+        } else if (variant == NuclearRodVariants.MOX) {
             return types[2];
-        }else if (variant == NuclearRodVariants.THORIUM232){
+        } else if (variant == NuclearRodVariants.THORIUM232) {
             return types[3];
-        }else if (variant == NuclearRodVariants.THORIUM230){
+        } else if (variant == NuclearRodVariants.THORIUM230) {
             return types[4];
         }
         return types[0];
@@ -132,7 +133,7 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
 
     @Override
     public int getRodAmount(ItemStack stack) {
-        return (int)this.getRodAmount(type);
+        return (int) this.getRodAmount(type);
     }
 
     @Override
@@ -140,12 +141,12 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
         return this.getUran(variant);
     }
 
-    public float getRodAmount(NuclearRodTypes type){
-        if (type == NuclearRodTypes.SINGLE){
+    public float getRodAmount(NuclearRodTypes type) {
+        if (type == NuclearRodTypes.SINGLE) {
             return 1;
-        } else if (type == NuclearRodTypes.DOUBLE){
+        } else if (type == NuclearRodTypes.DOUBLE) {
             return 2;
-        }else if (type == NuclearRodTypes.QUAD){
+        } else if (type == NuclearRodTypes.QUAD) {
             return 4;
         }
         return 1;
@@ -156,7 +157,6 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
     public int getTextureEntry(int i) {
         return 0;
     }
-
 
 
     public static enum NuclearRodTypes {

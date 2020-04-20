@@ -20,12 +20,12 @@ import java.util.Locale;
 @ZenRegister
 public class FluidCanningMachineSupport {
     @ZenMethod
-    public static void addFillingRecipe(IItemStack output, IIngredient input, ILiquidStack inputFluid, @Optional(valueLong = 50L)int totalEu) {
+    public static void addFillingRecipe(IItemStack output, IIngredient input, ILiquidStack inputFluid, @Optional(valueLong = 50L) int totalEu) {
         CraftTweakerPlugin.apply(new FluidCannerFillingRecipeAction(CraftTweakerPlugin.of(input), CraftTweakerMC.getLiquidStack(inputFluid), CraftTweakerMC.getItemStack(output), totalEu));
     }
 
     @ZenMethod
-    public static void addEmptyingRecipe(IItemStack output, ILiquidStack outputFluid, IIngredient input, @Optional(valueLong = 50L)int totalEu) {
+    public static void addEmptyingRecipe(IItemStack output, ILiquidStack outputFluid, IIngredient input, @Optional(valueLong = 50L) int totalEu) {
         CraftTweakerPlugin.apply(new FluidCannerEmptyingRecipeAction(CraftTweakerPlugin.of(input), CraftTweakerMC.getItemStack(output), CraftTweakerMC.getLiquidStack(outputFluid), totalEu));
     }
 

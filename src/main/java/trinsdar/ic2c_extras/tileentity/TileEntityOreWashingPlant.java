@@ -62,7 +62,7 @@ import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.oreWashingPlant;
 @Optional.Interface(iface = "gtclassic.api.interfaces.IGTDebuggableTile", modid = "gtclassic", striprefs = true)
 public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine implements ITankListener, IClickable, IGTDebuggableTile {
     @NetworkField(index = 13)
-    private IC2Tank waterTank = new IC2Tank(16000){
+    private IC2Tank waterTank = new IC2Tank(16000) {
         @Override
         public boolean canFillFluidType(FluidStack fluid) {
             return super.canFillFluidType(fluid) && fluid.getFluid() == FluidRegistry.WATER;
@@ -79,15 +79,14 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     public static final int slotInputTank = 5;
     public static final int slotOutputTank = 6;
 
-    public TileEntityOreWashingPlant()
-    {
+    public TileEntityOreWashingPlant() {
         super(7, 8, 400, 32);
         this.waterTank.addListener(this);
         this.waterTank.setCanFill(true);
         this.addGuiFields("waterTank");
     }
 
-    public IC2Tank getWaterTank(){
+    public IC2Tank getWaterTank() {
         return this.waterTank;
     }
 
@@ -127,14 +126,12 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     @Override
-    public ResourceLocation getStartSoundFile()
-    {
+    public ResourceLocation getStartSoundFile() {
         return Ic2cExtrasResourceLocations.oreWashingPlantOp;
     }
 
     @Override
-    public ResourceLocation getInterruptSoundFile()
-    {
+    public ResourceLocation getInterruptSoundFile() {
         return Ic2Sounds.interruptingSound;
     }
 
@@ -153,7 +150,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
     @Override
     protected EnumActionResult isRecipeStillValid(IMachineRecipeList.RecipeEntry entry) {
-        if (waterTank.getFluidAmount() >= getRequiredWater(entry.getOutput())){
+        if (waterTank.getFluidAmount() >= getRequiredWater(entry.getOutput())) {
             return EnumActionResult.SUCCESS;
         }
         return EnumActionResult.PASS;
@@ -198,20 +195,18 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
 
-    public FluidStack getFluid()
-    {
+    public FluidStack getFluid() {
         return this.waterTank.getFluid();
     }
 
-    public int getPixel()
-    {
+    public int getPixel() {
         return (int) ((double) this.waterTank.getFluidAmount() / (double) this.waterTank.getCapacity() * 58.0D);
     }
 
     @Override
     public void onTankChanged(IFluidTank tank) {
         this.getNetwork().updateTileGuiField(this, "waterTank");
-        if (lastRecipe != null && activeRecipe == null){
+        if (lastRecipe != null && activeRecipe == null) {
             this.checkRecipe = true;
         }
     }
@@ -235,26 +230,22 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     @Override
-    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
-    {
+    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
         return OreWashingPlantGui.class;
     }
 
 
     @Override
-    public LocaleComp getBlockName()
-    {
+    public LocaleComp getBlockName() {
         return Ic2cExtrasLang.oreWashingPlant;
     }
 
-    public ResourceLocation getGuiTexture()
-    {
+    public ResourceLocation getGuiTexture() {
         return Ic2cExtrasResourceLocations.oreWashingPlant;
     }
 
     @Override
-    public MachineType getType()
-    {
+    public MachineType getType() {
         return null;
     }
 
@@ -264,8 +255,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     @Override
-    public IMachineRecipeList getRecipeList()
-    {
+    public IMachineRecipeList getRecipeList() {
         return oreWashingPlant;
     }
 
@@ -275,8 +265,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     @Override
-    public IHasInventory getInputInventory()
-    {
+    public IHasInventory getInputInventory() {
         return new RangedInventoryWrapper(this, slotInput).setFilters(filter);
     }
 
@@ -287,7 +276,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
             return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.waterTank);
         }
         return super.getCapability(capability, facing);
@@ -327,7 +316,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         ItemStack playerStack = player.getHeldItem(hand);
         if (!playerStack.isEmpty()) {
             FluidActionResult result = FluidUtil.tryEmptyContainer(playerStack, waterTank, this.waterTank.getCapacity() - this.waterTank.getFluidAmount(), player, true);
-            if (result.isSuccess()){
+            if (result.isSuccess()) {
                 playerStack.shrink(1);
                 ItemStack resultStack = result.getResult();
                 if (!resultStack.isEmpty()) {

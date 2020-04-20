@@ -17,7 +17,8 @@ import java.util.List;
 
 public class ItemIsotopicRod extends ItemDepletedUraniumRodBase {
     ItemNuclearRod.NuclearRodVariants variant;
-    public ItemIsotopicRod(ItemNuclearRod.NuclearRodVariants variant){
+
+    public ItemIsotopicRod(ItemNuclearRod.NuclearRodVariants variant) {
         this.variant = variant;
         String name = "isotopic" + variant.getPrefix();
         this.setRegistryName(IC2CExtras.MODID, name.toLowerCase() + "cell");
@@ -48,7 +49,7 @@ public class ItemIsotopicRod extends ItemDepletedUraniumRodBase {
 
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-        if (this.isInCreativeTab(tab)){
+        if (this.isInCreativeTab(tab)) {
             items.add(this.getUranium(new ItemStack(this)).getNewIsotopicRod());
         }
     }

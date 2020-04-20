@@ -21,11 +21,10 @@ public class ContainerThermalCentrifuge extends ContainerTileComponent<TileEntit
     public static Vec2i machineChargePos = new Vec2i(176, 0);
     public static Box2D machineProgressBox = new Box2D(48, 35, 45, 17);
     public static Vec2i machineProgressPos = new Vec2i(176, 14);
-    public static Box2D machineHeatBox = new Box2D(56,52,24,17);
+    public static Box2D machineHeatBox = new Box2D(56, 52, 24, 17);
     public static Vec2i machineHeatPos = new Vec2i(176, 31);
 
-    public ContainerThermalCentrifuge(InventoryPlayer player, TileEntityThermalCentrifuge tile)
-    {
+    public ContainerThermalCentrifuge(InventoryPlayer player, TileEntityThermalCentrifuge tile) {
         super(tile);
 
         this.addSlotToContainer(new SlotCustom(tile, 0, 11, 17, tile.filter));
@@ -34,8 +33,7 @@ public class ContainerThermalCentrifuge extends ContainerTileComponent<TileEntit
         this.addSlotToContainer(new SlotOutput(player.player, tile, 3, 111, 35));
         this.addSlotToContainer(new SlotOutput(player.player, tile, 4, 111, 53));
 
-        for(int i = 0; i < 4; ++i)
-        {
+        for (int i = 0; i < 4; ++i) {
             this.addSlotToContainer(new SlotUpgrade(tile, 5 + i, 152, 8 + i * 18));
         }
 
@@ -46,20 +44,17 @@ public class ContainerThermalCentrifuge extends ContainerTileComponent<TileEntit
     }
 
     @Override
-    public ResourceLocation getTexture()
-    {
+    public ResourceLocation getTexture() {
         return this.getGuiHolder().getGuiTexture();
     }
 
     @Override
-    public int guiInventorySize()
-    {
+    public int guiInventorySize() {
         return this.getGuiHolder().slotCount;
     }
 
     @Override
-    public boolean canInteractWith(EntityPlayer entityPlayer)
-    {
+    public boolean canInteractWith(EntityPlayer entityPlayer) {
         return this.getGuiHolder().canInteractWith(entityPlayer);
     }
 }

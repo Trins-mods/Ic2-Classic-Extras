@@ -13,6 +13,7 @@ import java.util.List;
 
 public class ItemPurifiedCrushedOre extends Item implements IStaticTexturedItem {
     int index;
+
     public ItemPurifiedCrushedOre(String variant, int index) {
         this.index = index;
         String name = variant + "PurifiedCrushedOre";
@@ -23,8 +24,7 @@ public class ItemPurifiedCrushedOre extends Item implements IStaticTexturedItem 
 
     @SideOnly(Side.CLIENT)
     @Override
-    public TextureAtlasSprite getTexture(int meta)
-    {
+    public TextureAtlasSprite getTexture(int meta) {
         return Ic2Icons.getTextures("ic2c_extras_purified_crushed_ore")[index];
     }
 

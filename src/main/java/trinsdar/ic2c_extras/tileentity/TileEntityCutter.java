@@ -22,7 +22,7 @@ import java.util.Arrays;
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.cutting;
 
 public class TileEntityCutter extends TileEntityBasicElectricMachine {
-    public TileEntityCutter(){
+    public TileEntityCutter() {
         super(3, 5, 400, 32);
     }
 
@@ -30,8 +30,7 @@ public class TileEntityCutter extends TileEntityBasicElectricMachine {
         return null;
     }
 
-    public LocaleComp getBlockName()
-    {
+    public LocaleComp getBlockName() {
         return Ic2cExtrasLang.cutter;
     }
 

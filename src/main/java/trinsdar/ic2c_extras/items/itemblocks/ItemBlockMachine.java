@@ -21,16 +21,16 @@ public class ItemBlockMachine extends ItemBlockRare {
 
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-            PlayerHandler handler = PlayerHandler.getClientPlayerHandler();
-            if (handler.hasEUReader()) {
-                tooltip.add(Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(getMaxInput()));
-            }
+        PlayerHandler handler = PlayerHandler.getClientPlayerHandler();
+        if (handler.hasEUReader()) {
+            tooltip.add(Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(getMaxInput()));
+        }
     }
 
-    public int getMaxInput(){
-        if (this.getBlock() == Registry.thermalCentrifuge || this.getBlock() == Registry.impellerizedRoller || this.getBlock() == Registry.liquescentExtruder || this.getBlock() == Registry.plasmaCutter || this.getBlock() == Registry.thermalWasher || this.getBlock() == Registry.metalBender || this.getBlock() == Registry.treeTapper){
+    public int getMaxInput() {
+        if (this.getBlock() == Registry.thermalCentrifuge || this.getBlock() == Registry.impellerizedRoller || this.getBlock() == Registry.liquescentExtruder || this.getBlock() == Registry.plasmaCutter || this.getBlock() == Registry.thermalWasher || this.getBlock() == Registry.metalBender || this.getBlock() == Registry.treeTapper) {
             return 128;
-        }else {
+        } else {
             return 32;
         }
     }

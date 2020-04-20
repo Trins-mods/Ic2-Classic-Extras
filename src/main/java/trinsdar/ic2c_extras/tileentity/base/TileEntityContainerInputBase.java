@@ -194,7 +194,7 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
         IRecipeInput input = recipe.getInput();
         ItemStack container = inventory.get(slotInputContainer);
         ItemStack stack = inventory.get(slotInput);
-        if (container.getItem().hasContainerItem(container)){
+        if (container.getItem().hasContainerItem(container)) {
             inventory.set(slotInputContainer, container.getItem().getContainerItem(container));
         }
         if (stack.getItem().hasContainerItem(stack)) {
@@ -216,7 +216,7 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
         if (outputs.isEmpty()) {
             return false;
         }
-        for (Iterator<IStackOutput> iter = outputs.iterator(); iter.hasNext();) {
+        for (Iterator<IStackOutput> iter = outputs.iterator(); iter.hasNext(); ) {
             IStackOutput output = iter.next();
             if (output.addToInventory(this)) {
                 iter.remove();
@@ -256,7 +256,7 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
         if (lastRecipe == null) {
             return null;
         }
-        if (getStackInSlot(slotOutput).isEmpty()){
+        if (getStackInSlot(slotOutput).isEmpty()) {
             return lastRecipe;
         }
         for (ItemStack output : lastRecipe.getOutputs().getAllOutputs()) {
@@ -574,7 +574,7 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
         this.outputs.clear();
         NBTTagList list = nbt.getTagList("Results", 10);
 
-        for(int i = 0; i < list.tagCount(); ++i) {
+        for (int i = 0; i < list.tagCount(); ++i) {
             IStackOutput output = IStackRegistry.INSTANCE.readNBT(list.getCompoundTagAt(i));
             if (output != null) {
                 this.outputs.add(output);
@@ -591,8 +591,8 @@ public abstract class TileEntityContainerInputBase extends TileEntityElecMachine
         NBTTagList list = new NBTTagList();
         Iterator var3 = this.outputs.iterator();
 
-        while(var3.hasNext()) {
-            IStackOutput item = (IStackOutput)var3.next();
+        while (var3.hasNext()) {
+            IStackOutput item = (IStackOutput) var3.next();
             list.appendTag(IStackRegistry.INSTANCE.saveNBT(item));
         }
 

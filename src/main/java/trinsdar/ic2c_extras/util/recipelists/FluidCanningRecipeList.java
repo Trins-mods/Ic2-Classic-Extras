@@ -35,7 +35,7 @@ public class FluidCanningRecipeList {
         if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
             return;
         }
-        if (input == null || inputFluid == null){
+        if (input == null || inputFluid == null) {
             IC2CExtras.logger.info("Recipe[" + id + "] has a invalid input for machine " + category);
             return;
         }
@@ -47,7 +47,7 @@ public class FluidCanningRecipeList {
         FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, output, true, outputFluid, id);
         recipes.add(recipe);
         recipeMap.put(id, recipe);
-        for (ItemStack stack : input.getInputs()){
+        for (ItemStack stack : input.getInputs()) {
             validInputs.put(new CompareableStack(stack), input);
         }
     }
@@ -57,7 +57,7 @@ public class FluidCanningRecipeList {
         if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
             return;
         }
-        if (input == null){
+        if (input == null) {
             IC2CExtras.logger.info("Recipe[" + id + "] has a invalid input for machine " + category);
             return;
         }
@@ -66,10 +66,10 @@ public class FluidCanningRecipeList {
             IC2CExtras.logger.info("Recipe[" + input + "] as input " + category);
             return;
         }
-        FluidCanningRecipe recipe = new FluidCanningRecipe(input,  output, outputFluid, id);
+        FluidCanningRecipe recipe = new FluidCanningRecipe(input, output, outputFluid, id);
         recipes.add(recipe);
         recipeMap.put(id, recipe);
-        for (ItemStack stack : input.getInputs()){
+        for (ItemStack stack : input.getInputs()) {
             validInputs.put(new CompareableStack(stack), input);
         }
     }
@@ -79,7 +79,7 @@ public class FluidCanningRecipeList {
         if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
             return;
         }
-        if (input == null || inputFluid == null){
+        if (input == null || inputFluid == null) {
             IC2CExtras.logger.info("Recipe[" + id + "] has a invalid input for machine " + category);
             return;
         }
@@ -91,7 +91,7 @@ public class FluidCanningRecipeList {
         FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, output, id);
         recipes.add(recipe);
         recipeMap.put(id, recipe);
-        for (ItemStack stack : input.getInputs()){
+        for (ItemStack stack : input.getInputs()) {
             validInputs.put(new CompareableStack(stack), input);
         }
     }
@@ -101,7 +101,7 @@ public class FluidCanningRecipeList {
         if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
             return;
         }
-        if (input == null || inputFluid == null){
+        if (input == null || inputFluid == null) {
             IC2CExtras.logger.info("Recipe[" + id + "] has a invalid input for machine " + category);
             return;
         }
@@ -113,7 +113,7 @@ public class FluidCanningRecipeList {
         FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, new MachineOutput(null, new ArrayList<ItemStack>()), false, outputFluid, id);
         recipes.add(recipe);
         recipeMap.put(id, recipe);
-        for (ItemStack stack : input.getInputs()){
+        for (ItemStack stack : input.getInputs()) {
             validInputs.put(new CompareableStack(stack), input);
         }
     }
@@ -175,7 +175,7 @@ public class FluidCanningRecipeList {
         boolean fluidInput;
         boolean fluidOutput;
 
-        public FluidCanningRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput outputs, boolean itemOutput, FluidStack outputFluid,  String id) {
+        public FluidCanningRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput outputs, boolean itemOutput, FluidStack outputFluid, String id) {
             this.input = input;
             this.inputFluid = inputFluid;
             this.outputs = outputs;
@@ -186,7 +186,7 @@ public class FluidCanningRecipeList {
             this.fluidOutput = true;
         }
 
-        public FluidCanningRecipe(IRecipeInput input, MachineOutput outputs,FluidStack outputFluid,  String id) {
+        public FluidCanningRecipe(IRecipeInput input, MachineOutput outputs, FluidStack outputFluid, String id) {
             this.input = input;
             this.outputs = outputs;
             this.outputFluid = outputFluid;
@@ -196,7 +196,7 @@ public class FluidCanningRecipeList {
             this.fluidOutput = true;
         }
 
-        public FluidCanningRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput outputs,  String id) {
+        public FluidCanningRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput outputs, String id) {
             this.input = input;
             this.inputFluid = inputFluid;
             this.outputs = outputs;

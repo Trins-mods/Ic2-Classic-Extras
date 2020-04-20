@@ -36,7 +36,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BlockMachine extends BlockMultiID {
-    public BlockMachine(String name, LocaleComp comp){
+    public BlockMachine(String name, LocaleComp comp) {
         super(Material.IRON);
         this.setHardness(4.0F);
         this.setResistance(20.0F);
@@ -52,32 +52,32 @@ public class BlockMachine extends BlockMultiID {
     }
 
     @Override
-    public TileEntityBlock createNewTileEntity(World worldIn, int meta){
-        if (this == Registry.oreWashingPlant){
+    public TileEntityBlock createNewTileEntity(World worldIn, int meta) {
+        if (this == Registry.oreWashingPlant) {
             return new TileEntityOreWashingPlant();
-        }else if (this == Registry.thermalCentrifuge){
+        } else if (this == Registry.thermalCentrifuge) {
             return new TileEntityThermalCentrifuge();
-        }else if (this == Registry.thermalWasher){
+        } else if (this == Registry.thermalWasher) {
             return new TileEntityThermalWasher();
-        }else if (this == Registry.roller){
+        } else if (this == Registry.roller) {
             return new TileEntityRoller();
-        }else if (this == Registry.extruder){
+        } else if (this == Registry.extruder) {
             return new TileEntityExtruder();
-        }else if (this == Registry.cutter){
+        } else if (this == Registry.cutter) {
             return new TileEntityCutter();
-        }else if (this == Registry.impellerizedRoller){
+        } else if (this == Registry.impellerizedRoller) {
             return new TileEntityImpellerizedRoller();
-        }else if (this == Registry.liquescentExtruder){
+        } else if (this == Registry.liquescentExtruder) {
             return new TileEntityLiquescentExtruder();
-        }else if (this == Registry.plasmaCutter){
+        } else if (this == Registry.plasmaCutter) {
             return new TileEntityPlasmaCutter();
-        }else if (this == Registry.metalBender){
+        } else if (this == Registry.metalBender) {
             return new TileEntityMetalBender();
-        }else if (this == Registry.fluidCanningMachine){
+        } else if (this == Registry.fluidCanningMachine) {
             return new TileEntityFluidCanningMachine();
-        }else if (this == Registry.treeTapper){
+        } else if (this == Registry.treeTapper) {
             return new TileEntityTreeTapper();
-        }else {
+        } else {
             return new TileEntityBlock();
         }
     }
@@ -85,13 +85,13 @@ public class BlockMachine extends BlockMultiID {
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
         ArrayList<ItemStack> drops = new ArrayList<>();
-        if (this == Registry.thermalCentrifuge || this == Registry.thermalWasher || this == Registry.impellerizedRoller || this == Registry.liquescentExtruder || this == Registry.plasmaCutter || this == Registry.metalBender){
+        if (this == Registry.thermalCentrifuge || this == Registry.thermalWasher || this == Registry.impellerizedRoller || this == Registry.liquescentExtruder || this == Registry.plasmaCutter || this == Registry.metalBender) {
             drops.add(Ic2Items.advMachine);
             return drops;
-        }else if (this == Registry.fluidCanningMachine){
+        } else if (this == Registry.fluidCanningMachine) {
             drops.add(Ic2Items.canner);
             return drops;
-        }else{
+        } else {
             drops.add(Ic2Items.machine);
             return drops;
         }
@@ -99,50 +99,46 @@ public class BlockMachine extends BlockMultiID {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public TextureAtlasSprite[] getIconSheet(int meta)
-    {
-        if (this == Registry.oreWashingPlant){
+    public TextureAtlasSprite[] getIconSheet(int meta) {
+        if (this == Registry.oreWashingPlant) {
             return Ic2Icons.getTextures("orewashingplant");
-        }else if (this == Registry.thermalCentrifuge){
+        } else if (this == Registry.thermalCentrifuge) {
             return Ic2Icons.getTextures("thermalcentrifuge");
-        }else if (this == Registry.thermalWasher){
+        } else if (this == Registry.thermalWasher) {
             return Ic2Icons.getTextures("thermalwasher");
-        }else if (this == Registry.roller){
+        } else if (this == Registry.roller) {
             return Ic2Icons.getTextures("roller");
-        }else if (this == Registry.extruder){
+        } else if (this == Registry.extruder) {
             return Ic2Icons.getTextures("extruder");
-        }else if (this == Registry.cutter){
+        } else if (this == Registry.cutter) {
             return Ic2Icons.getTextures("cutter");
-        }else if (this == Registry.impellerizedRoller){
+        } else if (this == Registry.impellerizedRoller) {
             return Ic2Icons.getTextures("impellerizedroller");
-        }else if (this == Registry.liquescentExtruder){
+        } else if (this == Registry.liquescentExtruder) {
             return Ic2Icons.getTextures("liquescentextruder");
-        }else if (this == Registry.plasmaCutter){
+        } else if (this == Registry.plasmaCutter) {
             return Ic2Icons.getTextures("plasmacutter");
-        }else if (this == Registry.metalBender){
+        } else if (this == Registry.metalBender) {
             return Ic2Icons.getTextures("metalbender");
-        }else if (this == Registry.fluidCanningMachine){
+        } else if (this == Registry.fluidCanningMachine) {
             return Ic2Icons.getTextures("fluidcanningmachine");
-        } else if (this == Registry.treeTapper){
+        } else if (this == Registry.treeTapper) {
             return Ic2Icons.getTextures("treetapper");
-        }else{
+        } else {
             return Ic2Icons.getTextures("roller");
         }
     }
 
     @Override
-    public int getMaxSheetSize(int meta)
-    {
+    public int getMaxSheetSize(int meta) {
         return 1;
     }
 
     @Override
-    public List<IBlockState> getValidStateList()
-    {
+    public List<IBlockState> getValidStateList() {
         IBlockState def = getDefaultState();
         List<IBlockState> states = new ArrayList<IBlockState>();
-        for(EnumFacing side : EnumFacing.VALUES)
-        {
+        for (EnumFacing side : EnumFacing.VALUES) {
             states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, false));
             states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, true));
         }
@@ -150,8 +146,7 @@ public class BlockMachine extends BlockMultiID {
     }
 
     @Override
-    public List<IBlockState> getValidStates()
-    {
+    public List<IBlockState> getValidStates() {
         return getBlockState().getValidStates();
     }
 }

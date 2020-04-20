@@ -26,7 +26,7 @@ public class ItemToolCutter extends ItemToolCrafting implements ICutterItem {
     public void cutInsulationFrom(ItemStack stack, World world, BlockPos pos, EntityPlayer player) {
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof IInsulationModifieableConductor) {
-            IInsulationModifieableConductor cable = (IInsulationModifieableConductor)tile;
+            IInsulationModifieableConductor cable = (IInsulationModifieableConductor) tile;
             if (cable.tryRemoveInsulation()) {
                 if (IC2.platform.isSimulating()) {
                     StackUtil.dropAsEntity(world, pos, Ic2Items.rubber.copy());

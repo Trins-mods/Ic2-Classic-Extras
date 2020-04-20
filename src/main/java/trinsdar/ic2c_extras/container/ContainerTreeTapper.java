@@ -18,12 +18,12 @@ public class ContainerTreeTapper extends ContainerTileComponent<TileEntityTreeTa
     public ContainerTreeTapper(InventoryPlayer player, TileEntityTreeTapper tile) {
         super(tile);
         int i;
-        for ( i = 0; i < 3; i++){
-            for (int j = 0; j < 3; j++){
-                this.addSlotToContainer(new SlotOutput(player.player, tile,  i + j * 3, 63 + 18 * i, 14 + j * 18));
+        for (i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                this.addSlotToContainer(new SlotOutput(player.player, tile, i + j * 3, 63 + 18 * i, 14 + j * 18));
             }
         }
-        for(i = 0; i < 4; ++i) {
+        for (i = 0; i < 4; ++i) {
             this.addSlotToContainer(new SlotUpgrade3(tile, i + 9, 152, 8 + 18 * i));
         }
         this.addPlayerInventory(player);

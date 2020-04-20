@@ -11,9 +11,9 @@ import trinsdar.ic2c_extras.IC2CExtras;
 import java.util.Arrays;
 import java.util.List;
 
-public class ItemSmallDust extends Item implements IStaticTexturedItem
-{
+public class ItemSmallDust extends Item implements IStaticTexturedItem {
     int index;
+
     public ItemSmallDust(String variant, int index) {
         this.index = index;
         String name = variant + "SmallDust";
@@ -24,8 +24,7 @@ public class ItemSmallDust extends Item implements IStaticTexturedItem
 
     @SideOnly(Side.CLIENT)
     @Override
-    public TextureAtlasSprite getTexture(int meta)
-    {
+    public TextureAtlasSprite getTexture(int meta) {
         return Ic2Icons.getTextures("ic2c_extras_small_dust")[index];
     }
 

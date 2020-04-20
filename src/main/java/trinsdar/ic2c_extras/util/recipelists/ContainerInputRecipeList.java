@@ -35,26 +35,26 @@ public class ContainerInputRecipeList {
         if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
             return;
         }
-        if (input == null){
+        if (input == null) {
             IC2CExtras.logger.info("Recipe[" + id + "] has a invalid input for machine " + category);
             return;
         }
-        if (press == null || press == ItemStack.EMPTY){
+        if (press == null || press == ItemStack.EMPTY) {
             IC2CExtras.logger.info("Recipe[" + id + "] has a invalid press input for machine " + category);
             return;
         }
         if (isListInvalid(output.getAllOutputs())) {
             IC2CExtras.logger.info("Recipe[" + id + "] has a invalid output for machine " + category);
-            IC2CExtras.logger.info("Recipe[" + input +"," + press + "] as input " + category);
+            IC2CExtras.logger.info("Recipe[" + input + "," + press + "] as input " + category);
             return;
         }
         ContainerInputRecipe recipe = new ContainerInputRecipe(input, press, output, id);
-        if (!validContainers.containsKey(press.getUnlocalizedName())){
+        if (!validContainers.containsKey(press.getUnlocalizedName())) {
             validContainers.put(press.getUnlocalizedName(), press);
         }
         recipes.add(recipe);
         recipeMap.put(id, recipe);
-        for (ItemStack stack : input.getInputs()){
+        for (ItemStack stack : input.getInputs()) {
             validInputs.put(new CompareableStack(stack), input);
         }
     }
@@ -128,7 +128,7 @@ public class ContainerInputRecipeList {
             return input;
         }
 
-        public ItemStack getPress(){
+        public ItemStack getPress() {
             return press;
         }
 

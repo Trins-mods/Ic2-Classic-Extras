@@ -47,8 +47,7 @@ import java.util.Map;
 import static trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes.thermalCentrifuge;
 
 @Optional.Interface(iface = "gtclassic.api.interfaces.IGTDebuggableTile", modid = "gtclassic", striprefs = true)
-public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine implements IGTDebuggableTile
-{
+public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine implements IGTDebuggableTile {
     @NetworkField(index = 13)
     public int maxHeat = 500;
     @NetworkField(index = 14)
@@ -57,13 +56,14 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
     private static final int defaultEu = 20;
 
     public static final String neededHeat = "minHeat";
+
     public TileEntityThermalCentrifuge() {
-        super( 5, defaultEu, 200, 128);
+        super(5, defaultEu, 200, 128);
         this.addGuiFields("heat", "maxHeat");
     }
 
     public float getHeat() {
-        return (float)this.heat;
+        return (float) this.heat;
     }
 
     public float getMaxHeat() {
@@ -87,8 +87,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
     public static final int slotOutput3 = 4;
 
     @Override
-    protected void addSlots(InventoryHandler handler)
-    {
+    protected void addSlots(InventoryHandler handler) {
         this.filter = new MachineFilter(this);
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Both, slotFuel);
@@ -118,20 +117,17 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
     }
 
     @Override
-    public IHasInventory getInputInventory()
-    {
+    public IHasInventory getInputInventory() {
         return new RangedInventoryWrapper(this, slotInput).setFilters(filter);
     }
 
     @Override
-    public ResourceLocation getStartSoundFile()
-    {
+    public ResourceLocation getStartSoundFile() {
         return Ic2Sounds.extractorOp;
     }
 
     @Override
-    public ResourceLocation getInterruptSoundFile()
-    {
+    public ResourceLocation getInterruptSoundFile() {
         return Ic2Sounds.interruptingSound;
     }
 
@@ -157,8 +153,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
     }
 
     @Override
-    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player)
-    {
+    public Class<? extends GuiScreen> getGuiClass(EntityPlayer player) {
         return ThermalCentrifugeGui.class;
     }
 
@@ -208,9 +203,8 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
     public void update() {
         super.update();
         if ((lastRecipe != null && !this.inventory.get(slotInput).isEmpty()) && this.energy > 0) {
-            int newMaxHeat = (int)getMaxHeat();
-            if(newMaxHeat != maxHeat)
-            {
+            int newMaxHeat = (int) getMaxHeat();
+            if (newMaxHeat != maxHeat) {
                 maxHeat = newMaxHeat;
                 getNetwork().updateTileGuiField(this, "maxHeat");
             }
@@ -220,12 +214,12 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
                 maxHeatCheck = true;
                 this.getNetwork().updateTileGuiField(this, "heat");
             }
-            if (this.heat == getMaxHeat() && maxHeatCheck){
+            if (this.heat == getMaxHeat() && maxHeatCheck) {
                 checkRecipe = true;
                 maxHeatCheck = false;
             }
-            if (this.heat > getMaxHeat()){
-                this.heat = (int)getMaxHeat();
+            if (this.heat > getMaxHeat()) {
+                this.heat = (int) getMaxHeat();
                 this.checkRecipe = true;
                 this.getNetwork().updateTileGuiField(this, "heat");
             }
@@ -233,8 +227,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
             this.useEnergy(1);
         } else if (this.heat > 0) {
             int newMaxHeat = 500;
-            if(newMaxHeat != maxHeat)
-            {
+            if (newMaxHeat != maxHeat) {
                 maxHeat = newMaxHeat;
                 getNetwork().updateTileGuiField(this, "maxHeat");
             }
@@ -264,23 +257,22 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
         return output.getMetadata().getInteger(neededHeat);
     }
 
-    public static void addRecipe(IRecipeInput input, int heat,  ItemStack... output){
+    public static void addRecipe(IRecipeInput input, int heat, ItemStack... output) {
         addRecipe(input, heat, 4000, output);
     }
 
-    public static void addRecipe(IRecipeInput input, int hear, int totalEu,  ItemStack... output){
+    public static void addRecipe(IRecipeInput input, int hear, int totalEu, ItemStack... output) {
         addRecipe(input, hear, totalEu(totalEu), output);
     }
 
-    public static void addRecipe(IRecipeInput input, int heat, RecipeModifierHelpers.IRecipeModifier[] modifiers, ItemStack... output)
-    {
+    public static void addRecipe(IRecipeInput input, int heat, RecipeModifierHelpers.IRecipeModifier[] modifiers, ItemStack... output) {
         List<ItemStack> outputlist = new ArrayList<>();
         NBTTagCompound nbt = new NBTTagCompound();
         for (RecipeModifierHelpers.IRecipeModifier modifier : modifiers) {
             modifier.apply(nbt);
         }
         nbt.setInteger(neededHeat, heat);
-        if (heat <= 0){
+        if (heat <= 0) {
             nbt = null;
         }
         for (ItemStack stack : output) {
@@ -290,11 +282,10 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
     }
 
     public static RecipeModifierHelpers.IRecipeModifier[] totalEu(int amount) {
-        return new RecipeModifierHelpers.IRecipeModifier[] { RecipeModifierHelpers.ModifierType.RECIPE_LENGTH.create((amount / defaultEu) - 200) };
+        return new RecipeModifierHelpers.IRecipeModifier[]{RecipeModifierHelpers.ModifierType.RECIPE_LENGTH.create((amount / defaultEu) - 200)};
     }
 
-    public static void addRecipe(IRecipeInput input, MachineOutput output)
-    {
+    public static void addRecipe(IRecipeInput input, MachineOutput output) {
         thermalCentrifuge.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName());
     }
 

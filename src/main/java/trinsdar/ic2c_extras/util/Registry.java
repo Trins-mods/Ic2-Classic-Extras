@@ -70,8 +70,8 @@ public class Registry {
     public static final BlockIc2cEGenerator thermoElectricGenerator = registerBlock(new BlockIc2cEGenerator("thermoElectricGenerator", Ic2cExtrasLang.thermoElectricGenerator));
     public static final BlockIc2cEGenerator thermoElectricGeneratorMKII = registerBlock(new BlockIc2cEGenerator("thermoElectricGeneratorMkII", Ic2cExtrasLang.thermoElectricGeneratorMkII));
     public static final BlockMetal steelBlock = registerBlock(new BlockMetal("steelBlock", 0));
-    public static final BlockMetal refinedIronBlock = registerBlock(new BlockMetal("refinedIronBlock",  1));
-    public static final BlockMetal leadBlock = registerBlock(new BlockMetal("leadBlock",  2));
+    public static final BlockMetal refinedIronBlock = registerBlock(new BlockMetal("refinedIronBlock", 1));
+    public static final BlockMetal leadBlock = registerBlock(new BlockMetal("leadBlock", 2));
     public static final BlockStoneDust stoneDustBlock = registerBlock(new BlockStoneDust());
 
     public static CropCard cropPlumbilia = new CropPlumbilia();
@@ -188,16 +188,16 @@ public class Registry {
     public static final ItemMiscs platinumTinyDust = createItem(new ItemMiscs("platinumTinyDust", 2, "platinum"));
 
     public static final ItemDepeletedNuclearRods nearDepletedUOXCell = createItem(new ItemDepeletedNuclearRods("nearDepletedUOXCell", 15));
-    public static final ItemDepeletedNuclearRods nearDepletedPlutoniumCell = createItem(new ItemDepeletedNuclearRods("nearDepletedPlutoniumCell",  16));
+    public static final ItemDepeletedNuclearRods nearDepletedPlutoniumCell = createItem(new ItemDepeletedNuclearRods("nearDepletedPlutoniumCell", 16));
     public static final ItemDepeletedNuclearRods nearDepletedMOXCell = createItem(new ItemDepeletedNuclearRods("nearDepletedMOXCell", 17));
     public static final ItemDepeletedNuclearRods nearDepletedThorium232Cell = createItem(new ItemDepeletedNuclearRods("nearDepletedThorium232Cell", 18));
-    public static final ItemDepeletedNuclearRods nearDepletedThorium230Cell= createItem(new ItemDepeletedNuclearRods("nearDepletedThorium230Cell", 19));
+    public static final ItemDepeletedNuclearRods nearDepletedThorium230Cell = createItem(new ItemDepeletedNuclearRods("nearDepletedThorium230Cell", 19));
     public static final ItemDepeletedNuclearRods reEnrichedUOXCell = createItem(new ItemDepeletedNuclearRods("reEnrichedUOXCell", 25));
     public static final ItemDepeletedNuclearRods reEnrichedPlutoniumCell = createItem(new ItemDepeletedNuclearRods("reEnrichedPlutoniumCell", 26));
     public static final ItemDepeletedNuclearRods reEnrichedMOXCell = createItem(new ItemDepeletedNuclearRods("reEnrichedMOXCell", 27));
     public static final ItemDepeletedNuclearRods reEnrichedThorium232Cell = createItem(new ItemDepeletedNuclearRods("reEnrichedThorium232Cell", 28));
-    public static final ItemDepeletedNuclearRods reEnrichedThorium230Cell= createItem(new ItemDepeletedNuclearRods("reEnrichedThorium230Cell", 29));
-    
+    public static final ItemDepeletedNuclearRods reEnrichedThorium230Cell = createItem(new ItemDepeletedNuclearRods("reEnrichedThorium230Cell", 29));
+
     public static final ItemRTG plutoniumRTG = createItem(new ItemRTG("plutoniumRTG", 129600, 1));
     public static final ItemRTG thoriumRTG = createItem(new ItemRTG("thoriumRTG", 172800, 0));
 
@@ -234,7 +234,7 @@ public class Registry {
     }
 
     public static void register() {
-        for(Block block : toRegisterBlock){
+        for (Block block : toRegisterBlock) {
             createBlock(block);
         }
         ItemNuclearRod.init();
@@ -260,8 +260,7 @@ public class Registry {
         }
     }
 
-    public static void registerTiles()
-    {
+    public static void registerTiles() {
         GameRegistry.registerTileEntity(TileEntityOreWashingPlant.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityOreWashingPlant"));
         GameRegistry.registerTileEntity(TileEntityAdvancedSteamTurbine.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityAdvancedSteamTurbine"));
         GameRegistry.registerTileEntity(TileEntityThermalCentrifuge.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityThermalCentrifuge"));

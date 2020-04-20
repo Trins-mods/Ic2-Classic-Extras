@@ -20,6 +20,7 @@ public class Thorium230 extends UranBaseType {
     public TextureAtlasSprite getTexture(RodType type) {
         return Ic2Icons.getTextures("ic2c_extras_nuclear_cells")[this.getRodID(type) - 1100];
     }
+
     @Override
     public int getRow() {
         return 0;
@@ -62,7 +63,7 @@ public class Thorium230 extends UranBaseType {
 
     @Override
     public ItemStack getRodType(RodType type) {
-        switch(type) {
+        switch (type) {
             case SingleRod:
                 return new ItemStack(Registry.singleThorium230Cell).copy();
             case DualRod:
@@ -87,7 +88,7 @@ public class Thorium230 extends UranBaseType {
 
     @Override
     public short getRodID(RodType type) {
-        switch(type) {
+        switch (type) {
             case SingleRod:
                 return 1114;
             case DualRod:

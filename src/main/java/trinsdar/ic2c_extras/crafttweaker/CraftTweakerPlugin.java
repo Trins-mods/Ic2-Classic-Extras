@@ -27,9 +27,9 @@ public class CraftTweakerPlugin {
 
     static IRecipeInput of(IIngredient ingredient) {
         if (ingredient instanceof IItemStack) {
-            return CraftTweakerPlugin.of((IItemStack)ingredient);
+            return CraftTweakerPlugin.of((IItemStack) ingredient);
         } else if (ingredient instanceof IOreDictEntry) {
-            return new RecipeInputOreDict(((IOreDictEntry)ingredient).getName(), ingredient.getAmount());
+            return new RecipeInputOreDict(((IOreDictEntry) ingredient).getName(), ingredient.getAmount());
         } else {
             // Fallback to the universal solution if we can't take any shortcut
             return new CraftTweakerIngredientInput(ingredient);
