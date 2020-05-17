@@ -49,17 +49,17 @@ public class TileEntityMetalBender extends TileEntityContainerInputBase {
     protected void addSlots(InventoryHandler handler) {
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Both, 2);
-        handler.registerDefaultSlotAccess(AccessRule.Import, slotInput, slotInputContainer);
-        handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput);
-        handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutput);
-        handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), slotInput);
+        handler.registerDefaultSlotAccess(AccessRule.Import, 0, 1);
+        handler.registerDefaultSlotAccess(AccessRule.Export, 3);
+        handler.registerDefaultSlotsForSide(RotationList.UP.invert(), 3);
+        handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), 0, 1);
         handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), 2);
-        handler.registerInputFilter(filter, slotInput);
-        handler.registerInputFilter(pressFilter, slotInputContainer);
+        handler.registerInputFilter(filter, 0);
+        handler.registerInputFilter(pressFilter, 1);
         handler.registerOutputFilter(CommonFilters.NotDischargeEU, 2);
         handler.registerSlotType(SlotType.Fuel, 2);
-        handler.registerSlotType(SlotType.Input, slotInput);
-        handler.registerSlotType(SlotType.Output, slotOutput);
+        handler.registerSlotType(SlotType.Input, 0, 1);
+        handler.registerSlotType(SlotType.Output, 3);
     }
 
 

@@ -70,15 +70,15 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
     protected void addSlots(InventoryHandler handler) {
         handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
         handler.registerDefaultSlotAccess(AccessRule.Both, 1);
-        handler.registerDefaultSlotAccess(AccessRule.Import, slotInput);
-        handler.registerDefaultSlotAccess(AccessRule.Export, slotOutput);
-        handler.registerDefaultSlotsForSide(RotationList.UP.invert(), slotOutput);
-        handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), slotInput);
+        handler.registerDefaultSlotAccess(AccessRule.Import, 0);
+        handler.registerDefaultSlotAccess(AccessRule.Export, 2);
+        handler.registerDefaultSlotsForSide(RotationList.UP.invert(), 2);
+        handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), 0);
         handler.registerInputFilter(new ArrayFilter(CommonFilters.DischargeEU, new BasicItemFilter(Items.REDSTONE), new BasicItemFilter(Ic2Items.suBattery)), 1);
         handler.registerOutputFilter(CommonFilters.NotDischargeEU, 1);
         handler.registerSlotType(SlotType.Fuel, 1);
-        handler.registerSlotType(SlotType.Input, slotInput);
-        handler.registerSlotType(SlotType.Output, slotOutput);
+        handler.registerSlotType(SlotType.Input, 0);
+        handler.registerSlotType(SlotType.Output, 2);
     }
 
     @Override
