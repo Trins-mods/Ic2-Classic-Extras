@@ -35,9 +35,10 @@ public class CraftingRecipes {
             new RecipeInputOreDict("crushedTin"),
             new RecipeInputOreDict("crushedPurifiedTin"));
 
-    private static String basicCircuit = "circuitBasic";
-
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
+
+    static final String MACHINE_BASIC = "machineBlockBasic";
+    static final String MACHINE_ADV = "machineBlockAdvanced";
 
     public static void init() {
         initShapedRecipes();
@@ -50,38 +51,39 @@ public class CraftingRecipes {
         FluidStack water = new FluidStack(FluidRegistry.WATER, 1000);
         recipes.addRecipe(new ItemStack(Registry.advancedSteamTurbine, 1),
                 " S ", "STS", " S ", 'S', Ic2Items.basicTurbine, 'T', Ic2Items.transformerMV);
+        String basicCircuit = "circuitBasic";
         recipes.addRecipe(new ItemStack(Registry.oreWashingPlant, 1),
-                "III", "BCB", "McM", 'I', IC2.getRefinedIron(), 'B', Items.BUCKET, 'C', Ic2Items.machine, 'M', Ic2Items.carbonMesh, 'c', basicCircuit);
+                "III", "BCB", "McM", 'I', IC2.getRefinedIron(), 'B', Items.BUCKET, 'C', MACHINE_BASIC, 'M', Ic2Items.carbonMesh, 'c', basicCircuit);
         recipes.addRecipe(new ItemStack(Registry.thermalWasher, 1),
-                "BBB", "BOB", "BAB", 'B', Items.BUCKET, 'O', Registry.oreWashingPlant, 'A', Ic2Items.advMachine);
+                "BBB", "BOB", "BAB", 'B', Items.BUCKET, 'O', Registry.oreWashingPlant, 'A', MACHINE_ADV);
         recipes.addRecipe(new ItemStack(Registry.thermalCentrifuge, 1),
-                "CMC", "IAI", "IHI", 'C', Registry.coil, 'M', Ic2Items.miningLaser, 'I', IC2.getRefinedIron(), 'A', Ic2Items.advMachine, 'H', Registry.heatConductor);
+                "CMC", "IAI", "IHI", 'C', Registry.coil, 'M', Ic2Items.miningLaser, 'I', IC2.getRefinedIron(), 'A', MACHINE_ADV, 'H', Registry.heatConductor);
 
         recipes.addRecipe(new ItemStack(Registry.fluidCanningMachine), " C ", "EcE", "ITI", 'C', Ic2Items.electricCircuit, 'E', Ic2Items.emptyCell, 'c', Ic2Items.canner, 'T', Ic2Items.machineTank, 'I', "ingotTin");
 
         if (!Loader.isModLoaded("gtc_expansion") || !Ic2cExtrasConfig.compatGTCX) {
             recipes.addRecipe(new ItemStack(Registry.roller, 1),
-                    "CPC", "PBP", "cPc", 'C', basicCircuit, 'B', Ic2Items.machine, 'c', Registry.coil, 'P', Blocks.PISTON);
+                    "CPC", "PBP", "cPc", 'C', basicCircuit, 'B', MACHINE_BASIC, 'c', Registry.coil, 'P', Blocks.PISTON);
 
             recipes.addRecipe(new ItemStack(Registry.extruder, 1),
-                    "iCi", "cMc", "iCi", 'C', basicCircuit, 'i', casing, 'M', Ic2Items.machine, 'c', Registry.coil);
+                    "iCi", "cMc", "iCi", 'C', basicCircuit, 'i', casing, 'M', MACHINE_BASIC, 'c', Registry.coil);
 
             recipes.addRecipe(new ItemStack(Registry.impellerizedRoller, 1),
-                    "CCC", "CRC", "CBC", 'R', Registry.roller, 'B', Ic2Items.advMachine, 'C', Blocks.STICKY_PISTON);
+                    "CCC", "CRC", "CBC", 'R', Registry.roller, 'B', MACHINE_ADV, 'C', Blocks.STICKY_PISTON);
 
             recipes.addRecipe(new ItemStack(Registry.liquescentExtruder, 1),
-                    "CCC", "CEC", "CBC", 'E', Registry.extruder, 'B', Ic2Items.advMachine, 'C', casing);
+                    "CCC", "CEC", "CBC", 'E', Registry.extruder, 'B', MACHINE_ADV, 'C', casing);
         }
 
         //recipes.addRecipe(new ItemStack(Registry.cutter, 1),
-        //        " C ", "TBT", "ctc", 'C', basicCircuit,'T', Ic2Items.toolBox, 'B', Ic2Items.machine, 'c', Registry.coil, 't', Ic2Items.cutter);
+        //        " C ", "TBT", "ctc", 'C', basicCircuit,'T', Ic2Items.toolBox, 'B', MACHINE_BASIC, 'c', Registry.coil, 't', Ic2Items.cutter);
 
         //recipes.addRecipe(new ItemStack(Registry.plasmaCutter, 1),
-        //        "CCC", "CcC", "CBC", 'c', Registry.cutter,'B', Ic2Items.advMachine, 'C', Ic2Items.cutter);
+        //        "CCC", "CcC", "CBC", 'c', Registry.cutter,'B', MACHINE_ADV, 'C', Ic2Items.cutter);
 
-        recipes.addRecipe(new ItemStack(Registry.metalBender), " c ", "RAE", "rcr", 'c', "circuitAdvanced", 'R', Registry.impellerizedRoller, 'A', Ic2Items.advMachine, 'E', Registry.liquescentExtruder, 'r', Ic2cExtrasRecipes.getRefinedIronCasing());
+        recipes.addRecipe(new ItemStack(Registry.metalBender), " c ", "RAE", "rcr", 'c', "circuitAdvanced", 'R', Registry.impellerizedRoller, 'A', MACHINE_ADV, 'E', Registry.liquescentExtruder, 'r', Ic2cExtrasRecipes.getRefinedIronCasing());
 
-        recipes.addRecipe(new ItemStack(Registry.treeTapper), "CTC", "HcH", "MAM", 'C', "circuitBasic", 'T', Ic2Items.electricTreeTap, 'H', new ItemStack(Blocks.HOPPER, 2), 'c', "chestWood", 'M', StackUtil.copyWithSize(Ic2Items.miningPipe, 8), 'A', Ic2Items.advMachine);
+        recipes.addRecipe(new ItemStack(Registry.treeTapper), "CTC", "HcH", "MAM", 'C', "circuitBasic", 'T', Ic2Items.electricTreeTap, 'H', new ItemStack(Blocks.HOPPER, 2), 'c', "chestWood", 'M', StackUtil.copyWithSize(Ic2Items.miningPipe, 8), 'A', MACHINE_ADV);
 
         recipes.addRecipe(new ItemStack(Registry.coil, 1),
                 "CCC", "CIC", "CCC", 'I', IC2.getRefinedIron(), 'C', Ic2Items.copperCable);

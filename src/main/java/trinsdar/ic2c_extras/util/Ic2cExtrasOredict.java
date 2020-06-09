@@ -1,9 +1,9 @@
 package trinsdar.ic2c_extras.util;
 
+import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.oredict.OreDictionary;
-import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 
 public class Ic2cExtrasOredict {
     public static void init() {
@@ -103,5 +103,9 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("blockSteel", Registry.steelBlock);
         OreDictionary.registerOre("blockRefinedIron", Registry.refinedIronBlock);
         OreDictionary.registerOre("blockLead", Registry.leadBlock);
+        if (!Loader.isModLoaded("gtc_expansion")){
+            OreDictionary.registerOre("machineBlockBasic", Ic2Items.machine);
+            OreDictionary.registerOre("machineBlockAdvanced", Ic2Items.advMachine);
+        }
     }
 }
