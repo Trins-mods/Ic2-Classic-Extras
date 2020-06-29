@@ -33,6 +33,7 @@ import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMachine;
 import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMetal;
 import trinsdar.ic2c_extras.tileentity.TileEntityAdvancedSteamTurbine;
 import trinsdar.ic2c_extras.tileentity.TileEntityCutter;
+import trinsdar.ic2c_extras.tileentity.TileEntityElectricDisenchanter;
 import trinsdar.ic2c_extras.tileentity.TileEntityExtruder;
 import trinsdar.ic2c_extras.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.tileentity.TileEntityImpellerizedRoller;
@@ -66,6 +67,7 @@ public class Registry {
     public static final BlockMachine metalBender = registerBlock(new BlockMachine("metalBender", Ic2cExtrasLang.metalBender));
     public static final BlockMachine fluidCanningMachine = registerBlock(new BlockMachine("fluidCanningMachine", Ic2cExtrasLang.fluidCanningMachine));
     public static final BlockMachine treeTapper = registerBlock(new BlockMachine("treeTapper", Ic2cExtrasLang.treeTapper));
+    public static final BlockMachine electricDisenchanter = registerBlock(new BlockMachine("electricdisenchanter", Ic2cExtrasLang.electricDisenchanter));
     public static final BlockIc2cEGenerator advancedSteamTurbine = registerBlock(new BlockIc2cEGenerator("advancedSteamTurbine", Ic2cExtrasLang.advancedSteamTurbine));
     public static final BlockIc2cEGenerator thermoElectricGenerator = registerBlock(new BlockIc2cEGenerator("thermoElectricGenerator", Ic2cExtrasLang.thermoElectricGenerator));
     public static final BlockIc2cEGenerator thermoElectricGeneratorMKII = registerBlock(new BlockIc2cEGenerator("thermoElectricGeneratorMkII", Ic2cExtrasLang.thermoElectricGeneratorMkII));
@@ -274,6 +276,7 @@ public class Registry {
         GameRegistry.registerTileEntity(TileEntityMetalBender.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityMetalBender"));
         GameRegistry.registerTileEntity(TileEntityFluidCanningMachine.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityFluidCanningMachine"));
         GameRegistry.registerTileEntity(TileEntityTreeTapper.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityTreeTapper"));
+        GameRegistry.registerTileEntity(TileEntityElectricDisenchanter.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityElectricDisenchanter"));
         GameRegistry.registerTileEntity(TileEntityThermoElectricGenerator.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityThermoElectricGenerator"));
         GameRegistry.registerTileEntity(TileEntityThermoElectricGenerator.TileEntityThermoElectricGeneratorMkII.class, new ResourceLocation(IC2CExtras.MODID, "tileEntityThermoElectricGeneratorMkII"));
     }

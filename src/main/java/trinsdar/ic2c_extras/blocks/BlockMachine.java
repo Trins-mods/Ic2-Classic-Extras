@@ -18,6 +18,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.tileentity.TileEntityCutter;
+import trinsdar.ic2c_extras.tileentity.TileEntityElectricDisenchanter;
 import trinsdar.ic2c_extras.tileentity.TileEntityExtruder;
 import trinsdar.ic2c_extras.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.tileentity.TileEntityImpellerizedRoller;
@@ -77,8 +78,10 @@ public class BlockMachine extends BlockMultiID {
             return new TileEntityFluidCanningMachine();
         } else if (this == Registry.treeTapper) {
             return new TileEntityTreeTapper();
+        } else if (this == Registry.electricDisenchanter){
+            return new TileEntityElectricDisenchanter();
         } else {
-            return new TileEntityBlock();
+            return null;
         }
     }
 
