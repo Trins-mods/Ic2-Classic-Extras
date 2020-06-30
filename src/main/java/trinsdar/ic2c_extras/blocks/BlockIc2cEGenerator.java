@@ -4,7 +4,6 @@ import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
-import ic2.core.platform.textures.Ic2Icons;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,6 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.tileentity.TileEntityAdvancedSteamTurbine;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermoElectricGenerator;
+import trinsdar.ic2c_extras.util.Icons;
 import trinsdar.ic2c_extras.util.Registry;
 
 import java.util.ArrayList;
@@ -56,15 +56,7 @@ public class BlockIc2cEGenerator extends BlockMultiID {
     @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite[] getIconSheet(int meta) {
-        if (this == Registry.advancedSteamTurbine) {
-            return Ic2Icons.getTextures("advancedsteamturbine");
-        } else if (this == Registry.thermoElectricGenerator) {
-            return Ic2Icons.getTextures("thermoelectricgenerator");
-        } else if (this == Registry.thermoElectricGeneratorMKII) {
-            return Ic2Icons.getTextures("thermoelectricgeneratormkii");
-        } else {
-            return Ic2Icons.getTextures("advancedsteamturbine");
-        }
+        return Icons.getTextureData(this);
     }
 
     @Override

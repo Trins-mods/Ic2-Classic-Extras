@@ -36,9 +36,11 @@ public class TileEntityElectricDisenchanter extends TileEntityElecMachine implem
         if (!this.getStackInSlot(SLOT_BOOK).isEmpty() && !this.getStackInSlot(SLOT_TOOL).isEmpty() && this.getStackInSlot(SLOT_OUTPUT).isEmpty()){
             ItemStack tool = this.getStackInSlot(SLOT_TOOL);
             NBTTagCompound nbt = StackUtil.getOrCreateNbtData(tool);
-            NBTTagList enchantList = nbt.getTagList("ench", 10);
-            if (!enchantList.hasNoTags()){
-                canProgress = true;
+            if (nbt.hasKey("ench")){
+                NBTTagList enchantList = nbt.getTagList("ench", 10);
+                if (!enchantList.hasNoTags()){
+                    canProgress = true;
+                }
             }
         }
     }
@@ -86,11 +88,11 @@ public class TileEntityElectricDisenchanter extends TileEntityElecMachine implem
     @Override
     public void update() {
         if (canProgress){
-            if (this.getStoredEU() > 1){
+            if (this.getStoredEU() > 500){
                 if (progress < maxProgress){
                     progress++;
                     this.getNetwork().updateTileGuiField(this, "progress");
-                    this.useEnergy(1);
+                    this.useEnergy(500);
                 } else {
                     progress = 0;
                     this.getNetwork().updateTileGuiField(this, "progress");
@@ -108,7 +110,7 @@ public class TileEntityElectricDisenchanter extends TileEntityElecMachine implem
                     if (enchantList.hasNoTags()){
                         nbt.removeTag("ench");
                         if (nbt.hasKey("RepairCost")){
-                            nbt.setInteger("RepairCost", 2);
+                            nbt.setInteger("RepairCost", 0);
                         }
                     }
                     this.getStackInSlot(SLOT_BOOK).shrink(1);

@@ -5,12 +5,14 @@ import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.obj.ILayeredBlockModel;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -30,13 +32,14 @@ import trinsdar.ic2c_extras.tileentity.TileEntityRoller;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalWasher;
 import trinsdar.ic2c_extras.tileentity.TileEntityTreeTapper;
+import trinsdar.ic2c_extras.util.Icons;
 import trinsdar.ic2c_extras.util.Registry;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class BlockMachine extends BlockMultiID {
+public class BlockMachine extends BlockMultiID implements ILayeredBlockModel {
     public BlockMachine(String name, LocaleComp comp) {
         super(Material.IRON);
         this.setHardness(4.0F);
@@ -103,33 +106,7 @@ public class BlockMachine extends BlockMultiID {
     @Override
     @SideOnly(Side.CLIENT)
     public TextureAtlasSprite[] getIconSheet(int meta) {
-        if (this == Registry.oreWashingPlant) {
-            return Ic2Icons.getTextures("orewashingplant");
-        } else if (this == Registry.thermalCentrifuge) {
-            return Ic2Icons.getTextures("thermalcentrifuge");
-        } else if (this == Registry.thermalWasher) {
-            return Ic2Icons.getTextures("thermalwasher");
-        } else if (this == Registry.roller) {
-            return Ic2Icons.getTextures("roller");
-        } else if (this == Registry.extruder) {
-            return Ic2Icons.getTextures("extruder");
-        } else if (this == Registry.cutter) {
-            return Ic2Icons.getTextures("cutter");
-        } else if (this == Registry.impellerizedRoller) {
-            return Ic2Icons.getTextures("impellerizedroller");
-        } else if (this == Registry.liquescentExtruder) {
-            return Ic2Icons.getTextures("liquescentextruder");
-        } else if (this == Registry.plasmaCutter) {
-            return Ic2Icons.getTextures("plasmacutter");
-        } else if (this == Registry.metalBender) {
-            return Ic2Icons.getTextures("metalbender");
-        } else if (this == Registry.fluidCanningMachine) {
-            return Ic2Icons.getTextures("fluidcanningmachine");
-        } else if (this == Registry.treeTapper) {
-            return Ic2Icons.getTextures("treetapper");
-        } else {
-            return Ic2Icons.getTextures("roller");
-        }
+        return Icons.getTextureData(this);
     }
 
     @Override
@@ -151,5 +128,28 @@ public class BlockMachine extends BlockMultiID {
     @Override
     public List<IBlockState> getValidStates() {
         return getBlockState().getValidStates();
+    }
+
+    @Override
+    public boolean isLayered(IBlockState iBlockState) {
+        return this == Registry.electricDisenchanter;
+    }
+
+    @Override
+    public int getLayers(IBlockState iBlockState) {
+        return this == Registry.electricDisenchanter ? 2 : 1;
+    }
+
+    @Override
+    public AxisAlignedBB getRenderBox(IBlockState iBlockState, int i) {
+        return FULL_BLOCK_AABB;
+    }
+
+    @Override
+    public TextureAtlasSprite getLayerTexture(IBlockState iBlockState, EnumFacing enumFacing, int i) {
+        if (this == Registry.electricDisenchanter && enumFacing.getAxis() != EnumFacing.Axis.Y){
+            return iBlockState.getValue(active) ? Ic2Icons.getTextures("electric_disenchanter_side_active_overlay")[0] : Ic2Icons.getTextures("electric_disenchanter_side_overlay")[0];
+        }
+        return this.getTextureFromState(iBlockState, enumFacing);
     }
 }

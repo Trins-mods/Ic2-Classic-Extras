@@ -85,6 +85,8 @@ public class CraftingRecipes {
 
         recipes.addRecipe(new ItemStack(Registry.treeTapper), "CTC", "HcH", "MAM", 'C', "circuitBasic", 'T', Ic2Items.electricTreeTap, 'H', new ItemStack(Blocks.HOPPER, 2), 'c', "chestWood", 'M', StackUtil.copyWithSize(Ic2Items.miningPipe, 8), 'A', MACHINE_ADV);
 
+        recipes.addRecipe(new ItemStack(Registry.electricDisenchanter), "EeE", "ebe", "BBB", 'E', Items.EMERALD, 'e', Items.ENCHANTED_BOOK, 'b', Ic2Items.electricEnchanter, 'B', Blocks.BOOKSHELF);
+
         recipes.addRecipe(new ItemStack(Registry.coil, 1),
                 "CCC", "CIC", "CCC", 'I', IC2.getRefinedIron(), 'C', Ic2Items.copperCable);
 
