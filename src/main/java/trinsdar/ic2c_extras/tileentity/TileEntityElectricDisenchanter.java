@@ -90,6 +90,9 @@ public class TileEntityElectricDisenchanter extends TileEntityElecMachine implem
         if (canProgress){
             if (this.getStoredEU() > 500){
                 if (progress < maxProgress){
+                    if (!this.isActive){
+                        this.setActive(true);
+                    }
                     progress++;
                     this.getNetwork().updateTileGuiField(this, "progress");
                     this.useEnergy(500);
@@ -115,10 +118,11 @@ public class TileEntityElectricDisenchanter extends TileEntityElecMachine implem
                     }
                     this.getStackInSlot(SLOT_BOOK).shrink(1);
                     this.setStackInSlot(SLOT_OUTPUT, output);
-                    /*
-                    * <minecraft:diamond_sword>.withTag({ench: [{lvl: 1 as short, id: 21 as short}, {lvl: 5 as short, id: 16 as short}], RepairCost: 3})
-                    * */
                 }
+            }
+        } else {
+            if (this.isActive){
+                this.setActive(false);
             }
         }
     }

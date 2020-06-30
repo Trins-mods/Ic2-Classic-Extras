@@ -147,7 +147,7 @@ public class BlockMachine extends BlockMultiID implements ILayeredBlockModel {
 
     @Override
     public TextureAtlasSprite getLayerTexture(IBlockState iBlockState, EnumFacing enumFacing, int i) {
-        if (this == Registry.electricDisenchanter && enumFacing.getAxis() != EnumFacing.Axis.Y){
+        if (this == Registry.electricDisenchanter && enumFacing.getAxis() != EnumFacing.Axis.Y && i == 1){
             return iBlockState.getValue(active) ? Ic2Icons.getTextures("electric_disenchanter_side_active_overlay")[0] : Ic2Icons.getTextures("electric_disenchanter_side_overlay")[0];
         }
         return this.getTextureFromState(iBlockState, enumFacing);
