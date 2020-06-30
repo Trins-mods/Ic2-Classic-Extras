@@ -1,7 +1,6 @@
 package trinsdar.ic2c_extras.items.itemblocks;
 
 import ic2.core.item.block.ItemBlockRare;
-import ic2.core.platform.lang.storage.Ic2BlockLang;
 import ic2.core.platform.lang.storage.Ic2InfoLang;
 import ic2.core.platform.player.PlayerHandler;
 import net.minecraft.block.Block;
@@ -30,6 +29,8 @@ public class ItemBlockMachine extends ItemBlockRare {
     public int getMaxInput() {
         if (this.getBlock() == Registry.thermalCentrifuge || this.getBlock() == Registry.impellerizedRoller || this.getBlock() == Registry.liquescentExtruder || this.getBlock() == Registry.plasmaCutter || this.getBlock() == Registry.thermalWasher || this.getBlock() == Registry.metalBender || this.getBlock() == Registry.treeTapper) {
             return 128;
+        } else if (this.getBlock() == Registry.electricDisenchanter){
+            return 512;
         } else {
             return 32;
         }

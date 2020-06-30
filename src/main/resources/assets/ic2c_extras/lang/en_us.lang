@@ -19,6 +19,7 @@ tile.liquidFuelFirebox.name=Liquid Fuel Firebox
 tile.electricHeater.name=Electric Heater
 tile.thermoElectricGenerator.name=Thermo Electric Generator
 tile.thermoElectricGeneratorMkII.name=Thermo Electric Generator MkII
+tile.electricDisenchanter.name=Electric Disenchanter
 tile.steelBlock.name=Steel Block
 tile.refinedIronBlock.name=Refined Iron Block
 tile.leadBlock.name=Lead Block

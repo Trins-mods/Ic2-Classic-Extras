@@ -5,9 +5,13 @@ import ic2.core.block.base.tile.TileEntityBlock;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.textures.Ic2Icons;
+import ic2.core.platform.textures.models.BaseModel;
+import ic2.core.platform.textures.obj.ICustomModeledBlock;
 import ic2.core.platform.textures.obj.ILayeredBlockModel;
+import ic2.core.util.helpers.BlockStateContainerIC2;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
@@ -32,14 +36,15 @@ import trinsdar.ic2c_extras.tileentity.TileEntityRoller;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalWasher;
 import trinsdar.ic2c_extras.tileentity.TileEntityTreeTapper;
+import trinsdar.ic2c_extras.util.Ic2cExtrasLayeredModel;
 import trinsdar.ic2c_extras.util.Icons;
 import trinsdar.ic2c_extras.util.Registry;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class BlockMachine extends BlockMultiID implements ILayeredBlockModel {
+public class BlockMachine extends BlockMultiID implements ILayeredBlockModel, ICustomModeledBlock {
     public BlockMachine(String name, LocaleComp comp) {
         super(Material.IRON);
         this.setHardness(4.0F);
@@ -52,7 +57,7 @@ public class BlockMachine extends BlockMultiID implements ILayeredBlockModel {
 
     @Override
     public List<Integer> getValidMetas() {
-        return Arrays.asList(0);
+        return Collections.singletonList(0);
     }
 
     @Override
@@ -93,14 +98,14 @@ public class BlockMachine extends BlockMultiID implements ILayeredBlockModel {
         ArrayList<ItemStack> drops = new ArrayList<>();
         if (this == Registry.thermalCentrifuge || this == Registry.thermalWasher || this == Registry.impellerizedRoller || this == Registry.liquescentExtruder || this == Registry.plasmaCutter || this == Registry.metalBender) {
             drops.add(Ic2Items.advMachine);
-            return drops;
         } else if (this == Registry.fluidCanningMachine) {
             drops.add(Ic2Items.canner);
-            return drops;
+        } else if (this == Registry.electricDisenchanter){
+            drops.add(Ic2Items.electricEnchanter);
         } else {
             drops.add(Ic2Items.machine);
-            return drops;
         }
+        return drops;
     }
 
     @Override
@@ -115,12 +120,37 @@ public class BlockMachine extends BlockMultiID implements ILayeredBlockModel {
     }
 
     @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainerIC2(this, allFacings, active);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return 0;
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        return this.getDefaultState();
+    }
+
+    @Override
+    public IBlockState getDefaultBlockState() {
+        IBlockState state = this.getDefaultState().withProperty(active, false);
+        if (this.hasFacing()) {
+            state = state.withProperty(allFacings, EnumFacing.NORTH);
+        }
+
+        return state;
+    }
+
+    @Override
     public List<IBlockState> getValidStateList() {
         IBlockState def = getDefaultState();
         List<IBlockState> states = new ArrayList<IBlockState>();
         for (EnumFacing side : EnumFacing.VALUES) {
-            states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, false));
-            states.add(def.withProperty(getMetadataProperty(), 0).withProperty(allFacings, side).withProperty(active, true));
+            states.add(def.withProperty(allFacings, side).withProperty(active, false));
+            states.add(def.withProperty(allFacings, side).withProperty(active, true));
         }
         return states;
     }
@@ -146,10 +176,21 @@ public class BlockMachine extends BlockMultiID implements ILayeredBlockModel {
     }
 
     @Override
-    public TextureAtlasSprite getLayerTexture(IBlockState iBlockState, EnumFacing enumFacing, int i) {
+    public TextureAtlasSprite getLayerTexture(IBlockState state, EnumFacing enumFacing, int i) {
         if (this == Registry.electricDisenchanter && enumFacing.getAxis() != EnumFacing.Axis.Y && i == 1){
-            return iBlockState.getValue(active) ? Ic2Icons.getTextures("electric_disenchanter_side_active_overlay")[0] : Ic2Icons.getTextures("electric_disenchanter_side_overlay")[0];
+            String active = state.getValue(BlockMultiID.active) ? "_active" : "";
+            return Ic2Icons.getTextures("electric_disenchanter_side" + active + "_overlay")[0];
         }
-        return this.getTextureFromState(iBlockState, enumFacing);
+        return this.getTextureFromState(state, enumFacing);
+    }
+
+    @Override
+    public List<IBlockState> getValidModelStates() {
+        return this.getValidStateList();
+    }
+
+    @Override
+    public BaseModel getModelFromState(IBlockState iBlockState) {
+        return new Ic2cExtrasLayeredModel(this, iBlockState);
     }
 }
