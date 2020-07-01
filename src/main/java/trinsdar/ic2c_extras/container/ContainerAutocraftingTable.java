@@ -1,7 +1,5 @@
 package trinsdar.ic2c_extras.container;
 
-import gtclassic.api.helpers.GTHelperMath;
-import gtclassic.api.helpers.GTHelperStack;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;
@@ -67,9 +65,9 @@ public class ContainerAutocraftingTable extends ContainerTileComponent<TileEntit
     @Override
     public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
         // GTMod.logger.info("Slot: " + slotId);
-        if (GTHelperMath.within(slotId, 18, 26)) {
+        if (within(slotId, 18, 26)) {
             ItemStack stack = player.inventory.getItemStack();
-            this.block.inventory.set(slotId, doWeirdStackCraftingStuff(stack, slotId));
+            this.block.inventory.set(slotId, doWeirdStackCraftingStuff(stack, player, slotId));
             checkForMatchingRecipes();
             return ItemStack.EMPTY;
         }
@@ -77,15 +75,36 @@ public class ContainerAutocraftingTable extends ContainerTileComponent<TileEntit
     }
 
     // this increases a stack size if its valid to handle stack crafting
-    public ItemStack doWeirdStackCraftingStuff(ItemStack stack, int slotId) {
+    public ItemStack doWeirdStackCraftingStuff(ItemStack stack, EntityPlayer player, int slotId) {
         if (stack.isEmpty()) {
             return ItemStack.EMPTY;
         }
         ItemStack slotStack = this.block.getStackInSlot(slotId);
-        if (GTHelperStack.isEqual(stack, slotStack) && slotStack.getCount() < slotStack.getMaxStackSize()) {
-            return StackUtil.copyWithSize(slotStack, slotStack.getCount() + 1);
+        if (isEqual(stack, slotStack) && slotStack.getCount() < slotStack.getMaxStackSize()) {
+            if (player.isSneaking()){
+                return StackUtil.copyWithSize(slotStack, clip(slotStack.getCount() + stack.getCount(), 1, 64));
+            } else {
+                return StackUtil.copyWithSize(slotStack, slotStack.getCount() + 1);
+            }
+
         }
         return StackUtil.copyWithSize(stack, 1);
+    }
+
+    public static boolean isEqual(ItemStack stack, ItemStack toCompare) {
+        return StackUtil.isStackEqual(stack, toCompare, false, false);
+    }
+
+    public static int clip(int value, int min, int max) {
+        if (value < min) {
+            return min;
+        } else {
+            return Math.min(value, max);
+        }
+    }
+
+    public static boolean within(int value, int low, int high) {
+        return value >= low && value <= high;
     }
 
     public void checkForMatchingRecipes() {
@@ -104,7 +123,7 @@ public class ContainerAutocraftingTable extends ContainerTileComponent<TileEntit
                     tempList.add((fakeMatrix.getStackInSlot(j).copy()));
                 }
                 this.block.setStackInSlot(27, craftingOutput);
-                GTHelperStack.mergeItems(this.block.currentRecipe, tempList);
+                mergeItems(this.block.currentRecipe, tempList);
                 return;
                 // else then set the output slot to air
             } else {
@@ -112,6 +131,35 @@ public class ContainerAutocraftingTable extends ContainerTileComponent<TileEntit
                 this.block.currentRecipe.clear();
             }
         }
+    }
+
+    public static List<ItemStack> mergeItems(List<ItemStack> a, List<ItemStack> b) {
+        int size = b.size();
+
+        for(int i = 0; i < size; ++i) {
+            if (!b.get(i).isEmpty()) {
+                int position = contains(a, b.get(i));
+                if (position == -1) {
+                    a.add(b.get(i));
+                } else {
+                    a.get(position).grow(b.get(i).getCount());
+                }
+            }
+        }
+
+        return a;
+    }
+
+    public static int contains(List<ItemStack> list, ItemStack item) {
+        int size = list.size();
+
+        for(int i = 0; i < size; ++i) {
+            if (StackUtil.isStackEqual(list.get(i), item)) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     @Override
