@@ -27,7 +27,7 @@ public class JeiSimpleMachineCategory implements IRecipeCategory<JeiSimpleMachin
 
     public JeiSimpleMachineCategory(IGuiHelper helper, ItemStack displayName, String id) {
         this.displayName = displayName;
-        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/jei/jei" + id + ".png");
+        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/gui/jei/jei" + id + ".png");
         this.id = id;
         this.draw = helper.createDrawable(texture, 50, 15, 90, getHeight());
         IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 23, 16);

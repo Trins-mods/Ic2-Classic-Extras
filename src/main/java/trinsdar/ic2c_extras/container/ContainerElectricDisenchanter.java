@@ -20,7 +20,7 @@ import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.tileentity.TileEntityElectricDisenchanter;
 
 public class ContainerElectricDisenchanter extends ContainerTileComponent<TileEntityElectricDisenchanter> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/guielectricdisenchanter.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(IC2CExtras.MODID, "textures/gui/electricdisenchanter.png");
     public ContainerElectricDisenchanter(InventoryPlayer player, TileEntityElectricDisenchanter tile) {
         super(tile);
         this.addSlotToContainer(new SlotCustom(tile,0, 48, 36, new BasicItemFilter(new ItemStack(Items.BOOK))));

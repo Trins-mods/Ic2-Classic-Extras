@@ -142,7 +142,7 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
 
     @Override
     public ResourceLocation getTexture() {
-        return Ic2cExtrasResourceLocations.thermalWasher;
+        return Ic2cExtrasResourceLocations.THERMAL_WASHER;
     }
 
     @Override
@@ -152,7 +152,7 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
 
     @Override
     public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.thermalWasher;
+        return Ic2cExtrasLang.THERMAL_WASHER;
     }
 
     @Override

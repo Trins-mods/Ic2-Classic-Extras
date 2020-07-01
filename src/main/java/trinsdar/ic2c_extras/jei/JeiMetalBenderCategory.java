@@ -28,7 +28,7 @@ public class JeiMetalBenderCategory implements IRecipeCategory<JeiMetalBenderWra
 
     public JeiMetalBenderCategory(IGuiHelper helper) {
         this.displayName = new ItemStack(Registry.metalBender);
-        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/jei/jeimetalbender.png");
+        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/gui/jei/jeimetalbender.png");
         this.id = id;
         this.draw = helper.createDrawable(texture, 41, 15, 99, getHeight());
         IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 23, 16);

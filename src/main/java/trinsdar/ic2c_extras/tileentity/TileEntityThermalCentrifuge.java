@@ -77,7 +77,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
 
     @Override
     public ResourceLocation getGuiTexture() {
-        return Ic2cExtrasResourceLocations.thermalCentrifuge;
+        return Ic2cExtrasResourceLocations.THERMAL_CENTRIFUGE;
     }
 
     public static final int slotInput = 0;
@@ -160,7 +160,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
 
     @Override
     public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.thermalCentrifuge;
+        return Ic2cExtrasLang.THERMAL_CENTRIFUGE;
     }
 
     @Override

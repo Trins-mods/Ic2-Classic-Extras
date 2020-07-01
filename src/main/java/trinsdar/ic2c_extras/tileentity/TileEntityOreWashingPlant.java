@@ -237,11 +237,11 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
 
     @Override
     public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.oreWashingPlant;
+        return Ic2cExtrasLang.ORE_WASHING_PLANT;
     }
 
     public ResourceLocation getGuiTexture() {
-        return Ic2cExtrasResourceLocations.oreWashingPlant;
+        return Ic2cExtrasResourceLocations.ORE_WASHING_PLANT;
     }
 
     @Override

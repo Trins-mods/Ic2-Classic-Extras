@@ -59,7 +59,7 @@ public class TileEntityAdvancedSteamTurbine extends TileEntityBasicSteamTurbine 
 
     @Override
     public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.advancedSteamTurbine;
+        return Ic2cExtrasLang.ADVANCED_STEAM_TURBINE;
     }
 
     @Override

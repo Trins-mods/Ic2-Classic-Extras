@@ -28,7 +28,7 @@ public class JeiThermalCentrifugeCategory implements IRecipeCategory<JeiThermalC
 
     public JeiThermalCentrifugeCategory(IGuiHelper helper) {
         displayName = new ItemStack(Registry.thermalCentrifuge);
-        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/jei/jeithermalcentrifuge.png");
+        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/gui/jei/jeithermalcentrifuge.png");
         this.draw = helper.createDrawable(texture, 5, 14, 124, getHeight());
         IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 45, 17);
         this.progress = helper.createAnimatedDrawable(progressPic, 150, IDrawableAnimated.StartDirection.LEFT, false);

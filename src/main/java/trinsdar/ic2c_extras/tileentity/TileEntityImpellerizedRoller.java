@@ -64,7 +64,7 @@ public class TileEntityImpellerizedRoller extends TileEntityAdvancedMachine {
 
     @Override
     public ResourceLocation getTexture() {
-        return Ic2cExtrasResourceLocations.impellerizedRoller;
+        return Ic2cExtrasResourceLocations.IMPELLERIZED_ROLLER;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class TileEntityImpellerizedRoller extends TileEntityAdvancedMachine {
 
     @Override
     public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.impellerizedRoller;
+        return Ic2cExtrasLang.IMPELLERIZED_ROLLER;
     }
 
     @Override

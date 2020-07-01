@@ -63,7 +63,7 @@ public class TileEntityPlasmaCutter extends TileEntityAdvancedMachine {
 
     @Override
     public ResourceLocation getTexture() {
-        return Ic2cExtrasResourceLocations.plasmaCutter;
+        return Ic2cExtrasResourceLocations.PLASMA_CUTTER;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class TileEntityPlasmaCutter extends TileEntityAdvancedMachine {
 
     @Override
     public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.plasmaCutter;
+        return Ic2cExtrasLang.PLASMA_CUTTER;
     }
 
     @Override

@@ -30,7 +30,7 @@ public class JeiOreWashingCategory implements IRecipeCategory<JeiOreWashingWrapp
     public JeiOreWashingCategory(IGuiHelper helper) {
 
         displayName = new ItemStack(Registry.oreWashingPlant);
-        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/guisprites/jei/jeiorewashingplant.png");
+        ResourceLocation texture = new ResourceLocation(IC2CExtras.MODID, "textures/gui/jei/jeiorewashingplant.png");
         this.draw = helper.createDrawable(texture, 28, 10, 102, getHeight());
         this.overlay = helper.createDrawable(texture, 176, 33, 16, 58);
         IDrawableStatic progressPic = helper.createDrawable(texture, 176, 14, 20, 19);

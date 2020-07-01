@@ -63,7 +63,7 @@ public class TileEntityLiquescentExtruder extends TileEntityAdvancedMachine {
 
     @Override
     public ResourceLocation getTexture() {
-        return Ic2cExtrasResourceLocations.liquescentExtruder;
+        return Ic2cExtrasResourceLocations.LIQUESCENT_EXTRUDER;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class TileEntityLiquescentExtruder extends TileEntityAdvancedMachine {
 
     @Override
     public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.liquescentExtruder;
+        return Ic2cExtrasLang.LIQUESCENT_EXTRUDER;
     }
 
     @Override

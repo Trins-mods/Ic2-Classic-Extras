@@ -71,12 +71,12 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
     }
 
     public ResourceLocation getTexture() {
-        return Ic2cExtrasResourceLocations.treeTapper;
+        return Ic2cExtrasResourceLocations.TREE_TAPPER;
     }
 
     @Override
     public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.treeTapper;
+        return Ic2cExtrasLang.TREE_TAPPER;
     }
 
     @Override

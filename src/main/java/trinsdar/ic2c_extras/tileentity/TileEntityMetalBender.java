@@ -106,7 +106,7 @@ public class TileEntityMetalBender extends TileEntityContainerInputBase {
 
     @Override
     public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.metalBender;
+        return Ic2cExtrasLang.METAL_BENDER;
     }
 
     @Override
@@ -115,7 +115,7 @@ public class TileEntityMetalBender extends TileEntityContainerInputBase {
     }
 
     public ResourceLocation getGuiTexture() {
-        return Ic2cExtrasResourceLocations.metalBender;
+        return Ic2cExtrasResourceLocations.METAL_BENDER;
     }
 
     public static void addRecipe(IRecipeInput input, ItemStack press, ItemStack output) {

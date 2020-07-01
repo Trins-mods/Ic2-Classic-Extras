@@ -140,7 +140,7 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
 
     @Override
     public ResourceLocation getTexture() {
-        return Ic2cExtrasResourceLocations.thermoElectricGenerator;
+        return Ic2cExtrasResourceLocations.THERMO_ELECTRIC_GENERATOR;
     }
 
     @Override
@@ -165,7 +165,7 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
 
     @Override
     public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.thermoElectricGenerator;
+        return Ic2cExtrasLang.THERMO_ELECTRIC_GENERATOR;
     }
 
     public static class TileEntityThermoElectricGeneratorMkII extends TileEntityThermoElectricGenerator {
@@ -183,7 +183,7 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
 
         @Override
         public LocaleComp getBlockName() {
-            return Ic2cExtrasLang.thermoElectricGeneratorMkII;
+            return Ic2cExtrasLang.THERMO_ELECTRIC_GENERATOR_MK_II;
         }
 
         @Override

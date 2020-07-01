@@ -146,7 +146,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
 
     @Override
     public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.fluidCanningMachine;
+        return Ic2cExtrasLang.FLUID_CANNING_MACHINE;
     }
 
     @Override
@@ -208,7 +208,7 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
     }
 
     public ResourceLocation getGuiTexture() {
-        return Ic2cExtrasResourceLocations.fluidCanningMachine;
+        return Ic2cExtrasResourceLocations.FLUID_CANNING_MACHINE;
     }
 
     public static void addFillingRecipe(IRecipeInput input, FluidStack inputFluid, ItemStack output) {

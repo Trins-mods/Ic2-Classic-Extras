@@ -57,7 +57,7 @@ public class TileEntityElectricDisenchanter extends TileEntityElecMachine implem
 
     @Override
     public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.electricDisenchanter;
+        return Ic2cExtrasLang.ELECTRIC_DISENCHANTER;
     }
 
     @Override

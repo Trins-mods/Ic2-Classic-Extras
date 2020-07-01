@@ -34,7 +34,7 @@ public class TileEntityBlockCuttingMachine extends TileEntityBasicElectricMachin
 
     @Override
     public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.blockCuttingMachine;
+        return Ic2cExtrasLang.BLOCK_CUTTING_MACHINE;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class TileEntityBlockCuttingMachine extends TileEntityBasicElectricMachin
 
     @Override
     public ResourceLocation getGuiTexture() {
-        return Ic2cExtrasResourceLocations.blockCuttingMachine;
+        return Ic2cExtrasResourceLocations.BLOCK_CUTTING_MACHINE;
     }
 
 

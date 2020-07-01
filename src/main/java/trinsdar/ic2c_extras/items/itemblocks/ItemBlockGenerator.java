@@ -23,10 +23,10 @@ public class ItemBlockGenerator extends ItemBlockRare {
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         PlayerHandler handler = PlayerHandler.getClientPlayerHandler();
         if (this.getBlock() == Registry.thermoElectricGenerator) {
-            tooltip.add(Ic2cExtrasLang.thermoElectricGeneratorTooltip.getLocalized());
+            tooltip.add(Ic2cExtrasLang.THERMO_ELECTRIC_GENERATOR_TOOLTIP.getLocalized());
         }
         if (this.getBlock() == Registry.thermoElectricGeneratorMKII) {
-            tooltip.add(Ic2cExtrasLang.thermoElectricGeneratorMkIITooltip.getLocalized());
+            tooltip.add(Ic2cExtrasLang.THERMO_ELECTRIC_GENERATOR_MK_II_TOOLTIP.getLocalized());
         }
         if (handler.hasEUReader()) {
             if (this.getBlock() == Registry.thermoElectricGenerator) {
