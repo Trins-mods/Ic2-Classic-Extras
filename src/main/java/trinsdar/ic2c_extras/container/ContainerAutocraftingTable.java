@@ -6,6 +6,7 @@ import ic2.core.inventory.slots.SlotBase;
 import ic2.core.inventory.slots.SlotGhoest;
 import ic2.core.inventory.slots.SlotOutput;
 import ic2.core.util.misc.StackUtil;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ClickType;
@@ -26,10 +27,12 @@ public class ContainerAutocraftingTable extends ContainerTileComponent<TileEntit
 
     private InventoryCrafting fakeMatrix = new InventoryCrafting(this, 3, 3);
     TileEntityAutocraftingTable block;
+    EntityPlayer player;
 
     public ContainerAutocraftingTable(InventoryPlayer player, TileEntityAutocraftingTable tile) {
         super(tile);
         this.block = tile;
+        this.player = player.player;
         // inventory - 0-8
         for (int k = 0; k < 3; ++k) {
             for (int l = 0; l < 3; ++l) {
@@ -67,7 +70,7 @@ public class ContainerAutocraftingTable extends ContainerTileComponent<TileEntit
         // GTMod.logger.info("Slot: " + slotId);
         if (within(slotId, 18, 26)) {
             ItemStack stack = player.inventory.getItemStack();
-            this.block.inventory.set(slotId, doWeirdStackCraftingStuff(stack, player, slotId));
+            this.block.inventory.set(slotId, doWeirdStackCraftingStuff(stack, slotId));
             checkForMatchingRecipes();
             return ItemStack.EMPTY;
         }
@@ -75,13 +78,13 @@ public class ContainerAutocraftingTable extends ContainerTileComponent<TileEntit
     }
 
     // this increases a stack size if its valid to handle stack crafting
-    public ItemStack doWeirdStackCraftingStuff(ItemStack stack, EntityPlayer player, int slotId) {
+    public ItemStack doWeirdStackCraftingStuff(ItemStack stack, int slotId) {
         if (stack.isEmpty()) {
             return ItemStack.EMPTY;
         }
         ItemStack slotStack = this.block.getStackInSlot(slotId);
         if (isEqual(stack, slotStack) && slotStack.getCount() < slotStack.getMaxStackSize()) {
-            if (player.isSneaking()){
+            if (GuiScreen.isShiftKeyDown()){
                 return StackUtil.copyWithSize(slotStack, clip(slotStack.getCount() + stack.getCount(), 1, 64));
             } else {
                 return StackUtil.copyWithSize(slotStack, slotStack.getCount() + 1);
