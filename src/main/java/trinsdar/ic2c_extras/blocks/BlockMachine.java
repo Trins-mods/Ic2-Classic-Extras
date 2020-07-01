@@ -23,6 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
+import trinsdar.ic2c_extras.tileentity.TileEntityAutocraftingTable;
 import trinsdar.ic2c_extras.tileentity.TileEntityCutter;
 import trinsdar.ic2c_extras.tileentity.TileEntityElectricDisenchanter;
 import trinsdar.ic2c_extras.tileentity.TileEntityExtruder;
@@ -88,6 +89,8 @@ public class BlockMachine extends BlockMultiID implements ILayeredBlockModel, IC
             return new TileEntityTreeTapper();
         } else if (this == Registry.electricDisenchanter){
             return new TileEntityElectricDisenchanter();
+        } else if (this == Registry.autocraftingTable){
+            return new TileEntityAutocraftingTable();
         } else {
             return null;
         }

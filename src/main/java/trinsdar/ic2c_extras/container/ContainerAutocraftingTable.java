@@ -1,63 +1,59 @@
 package trinsdar.ic2c_extras.container;
 
+import gtclassic.api.helpers.GTHelperMath;
+import gtclassic.api.helpers.GTHelperStack;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;
+import ic2.core.inventory.slots.SlotGhoest;
 import ic2.core.inventory.slots.SlotOutput;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ClickType;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryCraftResult;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.inventory.Slot;
-import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.tileentity.TileEntityAutocraftingTable;
-import trinsdar.ic2c_extras.util.StackHelper;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContainerAutocraftingTable extends ContainerTileComponent<TileEntityAutocraftingTable> {
 
-    private InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
-    private InventoryCraftResult craftResult = new InventoryCraftResult();
-    private final World world;
-    private final EntityPlayer player;
+    private InventoryCrafting fakeMatrix = new InventoryCrafting(this, 3, 3);
     TileEntityAutocraftingTable block;
 
     public ContainerAutocraftingTable(InventoryPlayer player, TileEntityAutocraftingTable tile) {
         super(tile);
         this.block = tile;
-        this.world = player.player.getEntityWorld();
-        this.player = player.player;
-        // crafting result slot - 0
-        this.addSlotToContainer(new SlotCrafting(this.player, craftMatrix, craftResult, 0, 143, 5));// slot 0
-        // inventory - 1-9
+        // inventory - 0-8
         for (int k = 0; k < 3; ++k) {
             for (int l = 0; l < 3; ++l) {
-                this.addSlotToContainer(new SlotBase(tile, (k + l * 3) + 1, 8 + l * 18, 5 + k * 18));
+                this.addSlotToContainer(new SlotBase(tile, (k + l * 3), 8 + k * 18, 5 + l * 18));
             }
         }
-        // container output slots
+        // container output - 9-17
         for (int l = 0; l < 9; ++l) {
-            this.addSlotToContainer(new SlotOutput(player.player, tile, l + 10, 8 + l * 18, 60));
+            this.addSlotToContainer(new SlotOutput(player.player, tile, l + 9, 8 + l * 18, 60));
         }
-        // output slot
-        this.addSlotToContainer(new SlotOutput(player.player, tile, 19, 143, 41));
-        // crafting slots
+        // crafting slots 18-26
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
-                this.addSlotToContainer(new Slot(craftMatrix, 0 + (j + i * 3), 64 + j * 17, 6 + i * 17));
+                this.addSlotToContainer(new SlotGhoest(tile, 18 + (j + i * 3), 64 + j * 17, 6 + i * 17));
             }
         }
+        // crafting result display - 27
+        this.addSlotToContainer(new SlotGhoest(tile, 27, 143, 5));
+        // crafting result output - 28
+        this.addSlotToContainer(new SlotOutput(player.player, tile, 28, 143, 41));
+        // player inventory
         this.addPlayerInventory(player, 0, 0);
-        readTileCraftingList();
     }
 
     @Override
@@ -67,33 +63,17 @@ public class ContainerAutocraftingTable extends ContainerTileComponent<TileEntit
         gui.dissableInvName();
     }
 
-    @Override
-    public void onCraftMatrixChanged(IInventory inventoryIn) {
-        this.slotChangedCraftingGrid(this.world, this.player, this.craftMatrix, this.craftResult);
-    }
-
     @Nullable
     @Override
     public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
         // GTMod.logger.info("Slot: " + slotId);
-        if (clickTypeIn == ClickType.QUICK_MOVE && !(slotId > 9 && slotId < 20)) {
-            return ItemStack.EMPTY;
-        }
-        if (slotId == 0) {
-            return ItemStack.EMPTY;
-        }
-        if (within(slotId, 20, 28)) {
+        if (GTHelperMath.within(slotId, 18, 26)) {
             ItemStack stack = player.inventory.getItemStack();
-            // I need to offset the slot by -20 here because normal stack methods freak out
-            this.craftMatrix.setInventorySlotContents(slotId - 20, doWeirdStackCraftingStuff(stack, slotId));
-            writeTileCraftingList();
+            this.block.inventory.set(slotId, doWeirdStackCraftingStuff(stack, slotId));
+            checkForMatchingRecipes();
             return ItemStack.EMPTY;
         }
         return super.slotClick(slotId, dragType, clickTypeIn, player);
-    }
-
-    public static boolean within(int value, int low, int high) {
-        return (value >= low) && (value <= high);
     }
 
     // this increases a stack size if its valid to handle stack crafting
@@ -101,36 +81,36 @@ public class ContainerAutocraftingTable extends ContainerTileComponent<TileEntit
         if (stack.isEmpty()) {
             return ItemStack.EMPTY;
         }
-        ItemStack slotStack = this.craftMatrix.getStackInSlot(slotId - 20);
-        if (StackHelper.isEqual(stack, slotStack) && slotStack.getCount() < slotStack.getMaxStackSize()) {
+        ItemStack slotStack = this.block.getStackInSlot(slotId);
+        if (GTHelperStack.isEqual(stack, slotStack) && slotStack.getCount() < slotStack.getMaxStackSize()) {
             return StackUtil.copyWithSize(slotStack, slotStack.getCount() + 1);
         }
         return StackUtil.copyWithSize(stack, 1);
     }
 
-    @Override
-    public void onContainerClosed(EntityPlayer playerIn) {
-        super.onContainerClosed(playerIn);
-        writeTileCraftingList();
-    }
-
-    public void writeTileCraftingList() {
-        this.block.craftingList.clear();
-        // this is where the crafting slots are saved in the tile
-        for (int i = 0; i < this.craftMatrix.getSizeInventory(); ++i) {
-            ItemStack mSlot = this.craftMatrix.getStackInSlot(i);
-            this.block.craftingList.set(i, mSlot);
-        }
-        // this is weird the key is set for the itemstack output in the tile
-        this.block.target = this.craftResult.getStackInSlot(0);
-        //GTMod.logger.info("Target Set To: " + this.block.target.getDisplayName() + " x "
-        //		+ this.block.target.getCount());
-    }
-
-    public void readTileCraftingList() {
-        for (int i = 0; i < this.craftMatrix.getSizeInventory(); ++i) {
-            ItemStack mSlot = this.block.craftingList.get(i);
-            this.craftMatrix.setInventorySlotContents(i, mSlot);
+    public void checkForMatchingRecipes() {
+        for (IRecipe recipe : ForgeRegistries.RECIPES) {
+            ItemStack craftingOutput = recipe.getRecipeOutput().copy();
+            // iterates the tiles ghost slots to the fake crafting inventory for matching
+            for (int i = 18; i < 27; ++i) {
+                this.fakeMatrix.setInventorySlotContents(i - 18, this.block.inventory.get(i).copy());
+            }
+            // if recipe matches set the output ghost slot to the recipe output
+            if (recipe.matches(fakeMatrix, this.block.getWorld())) {
+                this.block.currentRecipe.clear();
+                List<ItemStack> tempList = new ArrayList<>();
+                // condense stacks and remove empty stacks in raw resource demands
+                for (int j = 0; j < fakeMatrix.getSizeInventory(); ++j) {
+                    tempList.add((fakeMatrix.getStackInSlot(j).copy()));
+                }
+                this.block.setStackInSlot(27, craftingOutput);
+                GTHelperStack.mergeItems(this.block.currentRecipe, tempList);
+                return;
+                // else then set the output slot to air
+            } else {
+                this.block.setStackInSlot(27, ItemStack.EMPTY);
+                this.block.currentRecipe.clear();
+            }
         }
     }
 

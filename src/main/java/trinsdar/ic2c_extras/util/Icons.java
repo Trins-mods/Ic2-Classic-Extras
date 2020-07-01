@@ -34,7 +34,7 @@ public class Icons {
         IconInfo common = s(36);
         IconInfo common2 = s(44);
         setTexture(Registry.thermalCentrifuge, bottom, s(19), side, s("ore_washer_front"), side, side, bottom, s(115), side, s("thermal_centrifuge_front_active"), side, side);
-        setTexture(Registry.thermalWasher, bottom, s(19), side, s("ore_washer_front"), s("bmach_mv", 142), s("bmach_mv", 142), bottom, s(115), side, s("ore_washer_front_active"), s("bmach_mv",44), s("bmach_mv",44));
+        setTexture(Registry.thermalWasher, bottom, s(19), side, s("ore_washer_front"), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s(115), side, s("ore_washer_front_active"), s("bmach_mv",44), s("bmach_mv",44));
         setTexture(Registry.oreWashingPlant, bottom, s(19), side, s("ore_washer_front"), common, common, bottom, s(115), side, s("ore_washer_front_active"), s(43), s(43));
         setTexture(Registry.roller, bottom, s(20), side, s("roller_front"), common, common, bottom, s("roller_top_active"), side, s("roller_front_active"), common2, common2);
         setTexture(Registry.extruder, bottom, s(20), side, s(155), common, common, bottom, s("roller_top_active"), side, s("extruder_front_active"), common2, common2);
@@ -45,9 +45,9 @@ public class Icons {
         common = s("tree_tapper_side");
         common2 = s("tree_tapper_side_active");
         setTexture(Registry.treeTapper, bottom, s("bmach_mv", 27), common, common, common, common, bottom, s("bmach_mv", 123), common2, common2, common2, common2);
-        setTexture(Registry.impellerizedRoller, bottom, s(20), side, s("roller_front"), s("bmach_mv", 142), s("bmach_mv", 142), bottom, s("roller_top_active"), side, s("roller_front_active"), s("impellerized_roller_side_active"), s("impellerized_roller_side_active"));
-        setTexture(Registry.liquescentExtruder, bottom, s(20), side, s(155), s("bmach_mv", 142), s("bmach_mv", 142), bottom, s("roller_top_active"), side, s("extruder_front_active"), s("impellerized_roller_side_active"), s("impellerized_roller_side_active"));
-        setTexture(Registry.plasmaCutter, bottom, s(20), side, s("cutter_front"), s("bmach_mv", 142), s("bmach_mv", 142), bottom, s("roller_top_active"), side, s("cutter_front_active"), s("impellerized_roller_side_active"), s("impellerized_roller_side_active"));
+        setTexture(Registry.impellerizedRoller, bottom, s(20), side, s("roller_front"), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s("roller_top_active"), side, s("roller_front_active"), s("impellerized_roller_side_active"), s("impellerized_roller_side_active"));
+        setTexture(Registry.liquescentExtruder, bottom, s(20), side, s(155), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s("roller_top_active"), side, s("extruder_front_active"), s("impellerized_roller_side_active"), s("impellerized_roller_side_active"));
+        setTexture(Registry.plasmaCutter, bottom, s(20), side, s("cutter_front"), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s("roller_top_active"), side, s("cutter_front_active"), s("impellerized_roller_side_active"), s("impellerized_roller_side_active"));
         common = s("advanced_steam_turbine_side");
         setTexture(Registry.advancedSteamTurbine, s(1), top, common, s("bgen", 58), common, common, s(1), top, common, s("bgen", 160), common, common);
         common = s("bgen", 22);
@@ -57,6 +57,7 @@ public class Icons {
         common = s("bmach_hv", 36);
         common2 = s("bmach_hv", 132);
         setTexture(Registry.electricDisenchanter, s("bmach_mv", 0), s("electric_disenchanter_top"), common, common, common, common, s("bmach_mv", 0), s("electric_disenchanter_top"), common2, common2, common2, common2);
+        setTexture(Registry.autocraftingTable, s("autocrafting_table_side"), s("autocrafting_table_side"), s("autocrafting_table_back"), s("autocrafting_table_front"), s("autocrafting_table_side"), s("autocrafting_table_side"));
         blockTextureList.add("electric_disenchanter_side_overlay");
         blockTextureList.add("electric_disenchanter_side_active_overlay");
         makeSprites("misc_items", 16, 2);
