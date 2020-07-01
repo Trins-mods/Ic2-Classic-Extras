@@ -6,6 +6,7 @@ import ic2.core.platform.player.PlayerHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -21,8 +22,14 @@ public class ItemBlockMachine extends ItemBlockRare {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         PlayerHandler handler = PlayerHandler.getClientPlayerHandler();
+        if (this.getBlock() == Registry.autocraftingTable){
+            tooltip.add(TextFormatting.RED + "Work in Progress");
+        }
         if (handler.hasEUReader()) {
             tooltip.add(Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(getMaxInput()));
+            if (this.getBlock() == Registry.autocraftingTable){
+                tooltip.add("Energy Usage: 50 EU Per Craft");
+            }
         }
     }
 

@@ -88,6 +88,8 @@ public class CraftingRecipes {
 
         recipes.addRecipe(new ItemStack(Registry.electricDisenchanter), "EeE", "ebe", "BBB", 'E', Items.EMERALD, 'e', new ItemStack(Items.ENCHANTED_BOOK, 1, OreDictionary.WILDCARD_VALUE), 'b', Ic2Items.electricEnchanter, 'B', Blocks.BOOKSHELF);
 
+        recipes.addRecipe(new ItemStack(Registry.autocraftingTable), " B ", "CcC", " A ", 'B', Ic2Items.battery, 'C', "circuitAdvanced", 'c', "workbench", 'A', "machineBlockAdvanced");
+
         recipes.addRecipe(new ItemStack(Registry.coil, 1),
                 "CCC", "CIC", "CCC", 'I', IC2.getRefinedIron(), 'C', Ic2Items.copperCable);
 
