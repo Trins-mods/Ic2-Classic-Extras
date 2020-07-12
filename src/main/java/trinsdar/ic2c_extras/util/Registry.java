@@ -9,6 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import trinsdar.ic2c_extras.IC2CExtras;
+import trinsdar.ic2c_extras.blocks.BlockDisenchanter;
 import trinsdar.ic2c_extras.blocks.BlockIc2cEGenerator;
 import trinsdar.ic2c_extras.blocks.BlockMachine;
 import trinsdar.ic2c_extras.blocks.BlockMetal;
@@ -69,7 +70,7 @@ public class Registry {
     public static final BlockMachine metalBender = registerBlock(new BlockMachine("metalBender", Ic2cExtrasLang.METAL_BENDER));
     public static final BlockMachine fluidCanningMachine = registerBlock(new BlockMachine("fluidCanningMachine", Ic2cExtrasLang.FLUID_CANNING_MACHINE));
     public static final BlockMachine treeTapper = registerBlock(new BlockMachine("treeTapper", Ic2cExtrasLang.TREE_TAPPER));
-    public static final BlockMachine electricDisenchanter = registerBlock(new BlockMachine("electricdisenchanter", Ic2cExtrasLang.ELECTRIC_DISENCHANTER));
+    public static final BlockMachine electricDisenchanter = registerBlock(new BlockDisenchanter());
     public static final BlockMachine autocraftingTable = registerBlock(new BlockMachine("autocraftingtable", Ic2cExtrasLang.AUTOCRAFTING_TABLE));
     public static final BlockIc2cEGenerator advancedSteamTurbine = registerBlock(new BlockIc2cEGenerator("advancedSteamTurbine", Ic2cExtrasLang.ADVANCED_STEAM_TURBINE));
     public static final BlockIc2cEGenerator thermoElectricGenerator = registerBlock(new BlockIc2cEGenerator("thermoElectricGenerator", Ic2cExtrasLang.THERMO_ELECTRIC_GENERATOR));
