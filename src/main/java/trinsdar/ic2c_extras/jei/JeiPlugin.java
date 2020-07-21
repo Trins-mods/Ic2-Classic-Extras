@@ -72,56 +72,61 @@ public class JeiPlugin implements IModPlugin {
             registry.addRecipeClickArea(OreWashingPlantGui.class, 78, 32, 20, 23, oreWashingId);
             registry.addRecipes(Ic2cExtrasRecipes.oreWashingPlant.getRecipeMap(), oreWashingId);
 
-            //roller
-            registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>() {
-                @Override
-                public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1) {
-                    return new JeiSimpleMachineWrapper(var1);
-                }
-            }, rollerId);
-            registry.addRecipeCatalyst(new ItemStack(Registry.roller), rollerId);
-            registry.addRecipeCatalyst(new ItemStack(Registry.impellerizedRoller), rollerId);
-            registry.addRecipeCatalyst(new ItemStack(Registry.metalBender), rollerId);
-            registry.addRecipeClickArea(RollerGui.class, 78, 32, 20, 23, rollerId);
-            registry.addRecipes(Ic2cExtrasRecipes.rolling.getRecipeMap(), rollerId);
 
-            //extruder
-            registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>() {
-                @Override
-                public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1) {
-                    return new JeiSimpleMachineWrapper(var1);
-                }
-            }, extruderId);
-            registry.addRecipeCatalyst(new ItemStack(Registry.extruder), extruderId);
-            registry.addRecipeCatalyst(new ItemStack(Registry.liquescentExtruder), extruderId);
-            registry.addRecipeCatalyst(new ItemStack(Registry.metalBender), extruderId);
-            registry.addRecipeClickArea(ExtruderGui.class, 78, 32, 20, 23, extruderId);
-            registry.addRecipes(Ic2cExtrasRecipes.extruding.getRecipeMap(), extruderId);
+            if (!Loader.isModLoaded("gtc_expansion") || !Ic2cExtrasConfig.compatGTCX){
+                //roller
+                registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>() {
+                    @Override
+                    public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1) {
+                        return new JeiSimpleMachineWrapper(var1);
+                    }
+                }, rollerId);
+                registry.addRecipeCatalyst(new ItemStack(Registry.roller), rollerId);
+                registry.addRecipeCatalyst(new ItemStack(Registry.impellerizedRoller), rollerId);
+                registry.addRecipeCatalyst(new ItemStack(Registry.metalBender), rollerId);
+                registry.addRecipeClickArea(RollerGui.class, 78, 32, 20, 23, rollerId);
+                registry.addRecipes(Ic2cExtrasRecipes.rolling.getRecipeMap(), rollerId);
 
-            //cutter
-            registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>() {
-                @Override
-                public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1) {
-                    return new JeiSimpleMachineWrapper(var1);
-                }
-            }, cutterId);
-            registry.addRecipeCatalyst(new ItemStack(Registry.cutter), cutterId);
-            registry.addRecipeCatalyst(new ItemStack(Registry.plasmaCutter), cutterId);
-            registry.addRecipeCatalyst(new ItemStack(Registry.metalBender), cutterId);
-            registry.addRecipeClickArea(CutterGui.class, 78, 32, 20, 23, cutterId);
-            registry.addRecipes(Ic2cExtrasRecipes.cutting.getRecipeMap(), cutterId);
+                //extruder
+                registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>() {
+                    @Override
+                    public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1) {
+                        return new JeiSimpleMachineWrapper(var1);
+                    }
+                }, extruderId);
+                registry.addRecipeCatalyst(new ItemStack(Registry.extruder), extruderId);
+                registry.addRecipeCatalyst(new ItemStack(Registry.liquescentExtruder), extruderId);
+                registry.addRecipeCatalyst(new ItemStack(Registry.metalBender), extruderId);
+                registry.addRecipeClickArea(ExtruderGui.class, 78, 32, 20, 23, extruderId);
+                registry.addRecipes(Ic2cExtrasRecipes.extruding.getRecipeMap(), extruderId);
 
-            //metal bender
-            registry.handleRecipes(ContainerInputRecipeList.ContainerInputRecipe.class, new IRecipeWrapperFactory<ContainerInputRecipeList.ContainerInputRecipe>() {
-                @Override
-                public IRecipeWrapper getRecipeWrapper(ContainerInputRecipeList.ContainerInputRecipe var1) {
-                    return new JeiMetalBenderWrapper(var1);
-                }
-            }, metalBenderId);
-            registry.addRecipeCatalyst(new ItemStack(Registry.metalBender), metalBenderId);
-            registry.addRecipeClickArea(MetalBenderGui.class, 78, 32, 20, 23, metalBenderId);
-            registry.addRecipes(TileEntityMetalBender.metalBender.getRecipeList(), metalBenderId);
+                //cutter
+                registry.handleRecipes(IMachineRecipeList.RecipeEntry.class, new IRecipeWrapperFactory<IMachineRecipeList.RecipeEntry>() {
+                    @Override
+                    public IRecipeWrapper getRecipeWrapper(IMachineRecipeList.RecipeEntry var1) {
+                        return new JeiSimpleMachineWrapper(var1);
+                    }
+                }, cutterId);
+                registry.addRecipeCatalyst(new ItemStack(Registry.cutter), cutterId);
+                registry.addRecipeCatalyst(new ItemStack(Registry.plasmaCutter), cutterId);
+                registry.addRecipeCatalyst(new ItemStack(Registry.metalBender), cutterId);
+                registry.addRecipeClickArea(CutterGui.class, 78, 32, 20, 23, cutterId);
+                registry.addRecipes(Ic2cExtrasRecipes.cutting.getRecipeMap(), cutterId);
 
+                //metal bender
+                registry.handleRecipes(ContainerInputRecipeList.ContainerInputRecipe.class, new IRecipeWrapperFactory<ContainerInputRecipeList.ContainerInputRecipe>() {
+                    @Override
+                    public IRecipeWrapper getRecipeWrapper(ContainerInputRecipeList.ContainerInputRecipe var1) {
+                        return new JeiMetalBenderWrapper(var1);
+                    }
+                }, metalBenderId);
+                registry.addRecipeCatalyst(new ItemStack(Registry.metalBender), metalBenderId);
+                registry.addRecipeClickArea(MetalBenderGui.class, 78, 32, 20, 23, metalBenderId);
+                registry.addRecipes(TileEntityMetalBender.metalBender.getRecipeList(), metalBenderId);
+            }
+            if (!Loader.isModLoaded("gtclassic")){
+                registry.addRecipeCatalyst(new ItemStack(Registry.autocraftingTable), "minecraft.crafting");
+            }
             //fluid canning machine
             registry.handleRecipes(FluidCanningRecipeList.FluidCanningRecipe.class, new IRecipeWrapperFactory<FluidCanningRecipeList.FluidCanningRecipe>() {
                 @Override
@@ -339,11 +344,15 @@ public class JeiPlugin implements IModPlugin {
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.isotopicThorium230Cell));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.reEnrichedThorium230Cell));
                 }
+                if (Loader.isModLoaded("gtclassic")){
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.autocraftingTable));
+                }
                 if (Loader.isModLoaded("gtc_expansion") && Ic2cExtrasConfig.compatGTCX) {
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.roller));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.extruder));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.impellerizedRoller));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.liquescentExtruder));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.metalBender));
                 }
             }
         }
@@ -354,10 +363,12 @@ public class JeiPlugin implements IModPlugin {
         IGuiHelper helper = registry.getJeiHelpers().getGuiHelper();
         registry.addRecipeCategories(new JeiThermalCentrifugeCategory(helper));
         registry.addRecipeCategories(new JeiOreWashingCategory(helper));
-        registry.addRecipeCategories(new JeiMetalBenderCategory(helper));
         registry.addRecipeCategories(new JeiFluidCanningCategory(helper));
-        registry.addRecipeCategories(new JeiSimpleMachineCategory(helper, new ItemStack(Registry.roller), rollerId));
-        registry.addRecipeCategories(new JeiSimpleMachineCategory(helper, new ItemStack(Registry.extruder), extruderId));
-        registry.addRecipeCategories(new JeiSimpleMachineCategory(helper, new ItemStack(Registry.cutter), cutterId));
+        if (!Loader.isModLoaded("gtc_expansion") || !Ic2cExtrasConfig.compatGTCX){
+            registry.addRecipeCategories(new JeiMetalBenderCategory(helper));
+            registry.addRecipeCategories(new JeiSimpleMachineCategory(helper, new ItemStack(Registry.roller), rollerId));
+            registry.addRecipeCategories(new JeiSimpleMachineCategory(helper, new ItemStack(Registry.extruder), extruderId));
+            registry.addRecipeCategories(new JeiSimpleMachineCategory(helper, new ItemStack(Registry.cutter), cutterId));
+        }
     }
 }

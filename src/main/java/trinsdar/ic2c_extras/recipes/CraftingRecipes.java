@@ -74,21 +74,23 @@ public class CraftingRecipes {
 
             recipes.addRecipe(new ItemStack(Registry.liquescentExtruder, 1),
                     "CCC", "CEC", "CBC", 'E', Registry.extruder, 'B', MACHINE_ADV, 'C', casing);
-        }
 
+            recipes.addRecipe(new ItemStack(Registry.metalBender), " c ", "RAE", "rcr", 'c', "circuitAdvanced", 'R', Registry.impellerizedRoller, 'A', MACHINE_ADV, 'E', Registry.liquescentExtruder, 'r', Ic2cExtrasRecipes.getRefinedIronCasing());
+        }
+        if (!Loader.isModLoaded("gtclassic")){
+            recipes.addRecipe(new ItemStack(Registry.autocraftingTable), " B ", "CcC", " A ", 'B', Ic2Items.battery, 'C', "circuitAdvanced", 'c', "workbench", 'A', "machineBlockAdvanced");
+        }
         //recipes.addRecipe(new ItemStack(Registry.cutter, 1),
         //        " C ", "TBT", "ctc", 'C', basicCircuit,'T', Ic2Items.toolBox, 'B', MACHINE_BASIC, 'c', Registry.coil, 't', Ic2Items.cutter);
 
         //recipes.addRecipe(new ItemStack(Registry.plasmaCutter, 1),
         //        "CCC", "CcC", "CBC", 'c', Registry.cutter,'B', MACHINE_ADV, 'C', Ic2Items.cutter);
 
-        recipes.addRecipe(new ItemStack(Registry.metalBender), " c ", "RAE", "rcr", 'c', "circuitAdvanced", 'R', Registry.impellerizedRoller, 'A', MACHINE_ADV, 'E', Registry.liquescentExtruder, 'r', Ic2cExtrasRecipes.getRefinedIronCasing());
+
 
         recipes.addRecipe(new ItemStack(Registry.treeTapper), "CTC", "HcH", "MAM", 'C', "circuitBasic", 'T', Ic2Items.electricTreeTap, 'H', new ItemStack(Blocks.HOPPER, 2), 'c', "chestWood", 'M', StackUtil.copyWithSize(Ic2Items.miningPipe, 8), 'A', MACHINE_ADV);
 
         recipes.addRecipe(new ItemStack(Registry.electricDisenchanter), "EeE", "ebe", "BBB", 'E', Items.EMERALD, 'e', new ItemStack(Items.ENCHANTED_BOOK, 1, OreDictionary.WILDCARD_VALUE), 'b', Ic2Items.electricEnchanter, 'B', Blocks.BOOKSHELF);
-
-        recipes.addRecipe(new ItemStack(Registry.autocraftingTable), " B ", "CcC", " A ", 'B', Ic2Items.battery, 'C', "circuitAdvanced", 'c', "workbench", 'A', "machineBlockAdvanced");
 
         recipes.addRecipe(new ItemStack(Registry.coil, 1),
                 "CCC", "CIC", "CCC", 'I', IC2.getRefinedIron(), 'C', Ic2Items.copperCable);
