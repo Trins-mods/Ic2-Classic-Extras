@@ -43,6 +43,7 @@ public class TileEntityMetalBender extends TileEntityContainerInputBase {
         slotInput = 0;
         slotInputContainer = 1;
         slotOutput = 3;
+        this.setFuelSlot(2);
     }
 
     @Override

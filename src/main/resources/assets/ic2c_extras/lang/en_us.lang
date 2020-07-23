@@ -166,8 +166,8 @@ item.nickelTinyDust.name=Tiny Piles of Nickel Dust
 itemGroup.ic2c_extras=Ic2 Classic Extras
 
 tileInfo.heatAmount.name=Heat: %1$s / %2$s
-tileInfo.thermoElectricGenerator.name=Only accepts plutonium rtgs.
-tileInfo.thermoElectricGeneratorMkII.name=Only accepts thorium rtgs.
+tileInfo.thermoElectricGeneratorMkII.name=Only accepts plutonium rtgs.
+tileInfo.thermoElectricGenerator.name=Only accepts thorium rtgs.
 jeiInfo.heat.name=%s Heat
 
 ic2.crop.Plumbilia.name=Plumbilia

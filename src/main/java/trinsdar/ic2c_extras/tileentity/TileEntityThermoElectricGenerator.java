@@ -17,7 +17,7 @@ import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
-    public static BasicItemFilter filter = new BasicItemFilter(new ItemStack(Registry.plutoniumRTG));
+    public static BasicItemFilter filter = new BasicItemFilter(new ItemStack(Registry.thoriumRTG));
 
     public TileEntityThermoElectricGenerator() {
         super(6);
@@ -169,7 +169,7 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
     }
 
     public static class TileEntityThermoElectricGeneratorMkII extends TileEntityThermoElectricGenerator {
-        public static BasicItemFilter filter2 = new BasicItemFilter(new ItemStack(Registry.thoriumRTG));
+        public static BasicItemFilter filter2 = new BasicItemFilter(new ItemStack(Registry.plutoniumRTG));
 
         public TileEntityThermoElectricGeneratorMkII() {
             this.tier = 2;
