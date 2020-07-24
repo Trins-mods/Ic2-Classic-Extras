@@ -37,7 +37,7 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
     public int getProduction() {
         int count = -1;
         for (int i = 0; i < 6; i++) {
-            if (inventory.get(i).isItemEqual(new ItemStack(Registry.plutoniumRTG))) {
+            if (inventory.get(i).isItemEqual(new ItemStack(Registry.thoriumRTG))) {
                 count += 1;
             }
         }
@@ -190,7 +190,7 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
         public int getProduction() {
             int count = 0;
             for (int i = 0; i < 6; i++) {
-                if (inventory.get(i).isItemEqual(new ItemStack(Registry.thoriumRTG))) {
+                if (inventory.get(i).isItemEqual(new ItemStack(Registry.plutoniumRTG))) {
                     count += 1;
                 }
             }
