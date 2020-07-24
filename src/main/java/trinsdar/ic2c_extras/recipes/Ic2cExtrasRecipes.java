@@ -171,12 +171,13 @@ public class Ic2cExtrasRecipes {
 
     public static void rodUtil(ItemStack single, ItemStack dual, ItemStack quad, ItemStack isotope, ItemStack reEnriched, ItemStack nearDepleted, ItemStack ingredient) {
         ItemStack emptyRod = getEmptyRod();
+        IRecipeInput copper = Loader.isModLoaded("gtc_expansion") ? new RecipeInputOreDict("plateCopper") : new RecipeInputItemStack(Ic2Items.denseCopperPlate);
         IRecipeInput coal = new RecipeInputCombined(1, new RecipeInputOreDict("dustCoal"), new RecipeInputOreDict("dustCharcoal"));
         CraftingRecipes.recipes.addShapelessRecipe(single, coal, reEnriched);
         CraftingRecipes.recipes.addRecipe(StackUtil.copyWithSize(nearDepleted, 8), "RRR", "RIR", "RRR", 'R', emptyRod, 'I', ingredient);
-        CraftingRecipes.recipes.addRecipe(dual, "RPR", 'R', single, 'P', Ic2Items.denseCopperPlate);
-        CraftingRecipes.recipes.addRecipe(quad, " R ", "PPP", " R ", 'R', dual, 'P', Ic2Items.denseCopperPlate);
-        CraftingRecipes.recipes.addRecipe(quad, "RPR", "PPP", "RPR", 'R', single, 'P', Ic2Items.denseCopperPlate);
+        CraftingRecipes.recipes.addRecipe(dual, "RPR", 'R', single, 'P', copper);
+        CraftingRecipes.recipes.addRecipe(quad, " R ", "PPP", " R ", 'R', dual, 'P', copper);
+        CraftingRecipes.recipes.addRecipe(quad, "RPR", "PPP", "RPR", 'R', single, 'P', copper);
         CraftingRecipes.recipes.addShapelessRecipe(isotope, nearDepleted, coal);
         if (!IC2.config.getFlag("HardEnrichedUran")) {
             CraftingRecipes.recipes.addShapelessRecipe(single, emptyRod, ingredient);

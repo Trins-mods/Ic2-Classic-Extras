@@ -1,6 +1,5 @@
 package trinsdar.ic2c_extras.util;
 
-import gtclassic.common.GTConfig;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.Sprites;
 import ic2.core.platform.textures.Sprites.SpriteData;
@@ -12,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
+import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -88,7 +88,7 @@ public class Icons {
 
     public static void collectBasicTileSprites() {
         for(String string : blockTextureList) {
-            if (GTConfig.general.debugMode){
+            if (Ic2cExtrasConfig.debugMode){
                 IC2CExtras.logger.info("Attempting to get sprite data for: " + string);
             }
             Ic2Icons.addSprite(new Sprites.SpriteData(string, "ic2c_extras:textures/sprites/tiles/" + string + ".png", new Sprites.SpriteInfo(1, 1)));
