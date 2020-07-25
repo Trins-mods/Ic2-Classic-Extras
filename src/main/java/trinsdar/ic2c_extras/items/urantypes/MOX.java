@@ -69,7 +69,7 @@ public class MOX extends UranBaseType {
 
     @Override
     public ItemStack getUraniumIngot() {
-        return null;
+        return new ItemStack(Registry.moxFuel);
     }
 
     @Override

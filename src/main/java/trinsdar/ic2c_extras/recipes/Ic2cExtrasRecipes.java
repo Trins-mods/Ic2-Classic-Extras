@@ -152,18 +152,16 @@ public class Ic2cExtrasRecipes {
             TileEntityCompressor.addRecipe("dustThorium232", 1, new ItemStack(Registry.thorium232Ingot));
             TileEntityCompressor.addRecipe("dustThorium230", 1, new ItemStack(Registry.thorium230Ingot));
             TileEntityCompressor.addRecipe("crushedPurifiedUranium", 1, Ic2Items.uraniumDrop);
-            rodUtil(new ItemStack(Registry.singleUOXCell), new ItemStack(Registry.doubleUOXCell), new ItemStack(Registry.quadUOXCell), ItemNuclearRod.getUran(ItemNuclearRod.NuclearRodVariants.UOX).getNewIsotopicRod(), new ItemStack(Registry.reEnrichedUOXCell), new ItemStack(Registry.nearDepletedUOXCell), new ItemStack(Registry.oxidizedUraniumIngot));
-            rodUtil(new ItemStack(Registry.singlePlutoniumCell), new ItemStack(Registry.doublePlutoniumCell), new ItemStack(Registry.quadPlutoniumCell), ItemNuclearRod.getUran(ItemNuclearRod.NuclearRodVariants.PLUTONIUM).getNewIsotopicRod(), new ItemStack(Registry.reEnrichedPlutoniumCell), new ItemStack(Registry.nearDepletedPlutoniumCell), new ItemStack(Registry.plutoniumIngot));
-            rodUtil(new ItemStack(Registry.singleMOXCell), new ItemStack(Registry.doubleMOXCell), new ItemStack(Registry.quadMOXCell), ItemNuclearRod.getUran(ItemNuclearRod.NuclearRodVariants.MOX).getNewIsotopicRod(), new ItemStack(Registry.reEnrichedMOXCell), new ItemStack(Registry.nearDepletedMOXCell), new ItemStack(Registry.moxFuel));
-            rodUtil(new ItemStack(Registry.singleThorium232Cell), new ItemStack(Registry.doubleThorium232Cell), new ItemStack(Registry.quadThorium232Cell), ItemNuclearRod.getUran(ItemNuclearRod.NuclearRodVariants.THORIUM232).getNewIsotopicRod(), new ItemStack(Registry.reEnrichedThorium232Cell), new ItemStack(Registry.nearDepletedThorium232Cell), new ItemStack(Registry.thorium232Ingot));
-            rodUtil(new ItemStack(Registry.singleThorium230Cell), new ItemStack(Registry.doubleThorium230Cell), new ItemStack(Registry.quadThorium230Cell), ItemNuclearRod.getUran(ItemNuclearRod.NuclearRodVariants.THORIUM230).getNewIsotopicRod(), new ItemStack(Registry.reEnrichedThorium230Cell), new ItemStack(Registry.nearDepletedThorium230Cell), new ItemStack(Registry.thorium230Ingot));
+            IUranium[] types = ItemNuclearRod.types;
+            for(IUranium uran : types)
+                rodUtil(uran.getRodType(IUranium.RodType.SingleRod), uran.getRodType(IUranium.RodType.DualRod), uran.getRodType(IUranium.RodType.QuadRod), uran.getNewIsotopicRod(), uran.getRodType(IUranium.RodType.ReEnrichedRod), uran.getRodType(IUranium.RodType.NearDepletedRod), uran.getUraniumIngot());
+            }
+
+
             CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.thermoElectricGenerator), "DDD", "DRD", "DGD", 'D', "plateDenseIron", 'R', Ic2Items.nuclearReactor, 'G', Ic2Items.thermalGenerator);
             CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.thermoElectricGeneratorMKII), "CIC", "CTC", "CAC", 'C', Ic2cExtrasRecipes.getRefinedIronCasing(), 'I', Ic2Items.iridiumPlate, 'T', Registry.thermoElectricGenerator, 'A', Ic2Items.advMachine);
             CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.plutoniumRTG), "IPI", "IPI", "IPI", 'I', "plateDenseIron", 'P', "ingotPlutonium");
             CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.thoriumRTG), "ItI", "ITI", "ItI", 'I', "plateDenseIron", 't', "ingotThorium230", 'T', "ingotThorium232");
-        }
-
-
     }
 
     public static ItemStack getEmptyRod() {

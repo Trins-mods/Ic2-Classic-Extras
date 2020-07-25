@@ -61,7 +61,7 @@ public class Plutonium extends UranBaseType {
 
     @Override
     public ItemStack getUraniumIngot() {
-        return null;
+        return new ItemStack(Registry.plutoniumIngot);
     }
 
     @Override

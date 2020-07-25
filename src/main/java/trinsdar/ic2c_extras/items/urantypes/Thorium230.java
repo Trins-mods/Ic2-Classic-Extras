@@ -58,7 +58,7 @@ public class Thorium230 extends UranBaseType {
 
     @Override
     public ItemStack getUraniumIngot() {
-        return null;
+        return new ItemStack(Registry.thorium230Ingot);
     }
 
     @Override

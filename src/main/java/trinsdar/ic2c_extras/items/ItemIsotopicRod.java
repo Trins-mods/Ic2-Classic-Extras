@@ -26,6 +26,13 @@ public class ItemIsotopicRod extends ItemDepletedUraniumRodBase {
         setUnlocalizedName(new LangComponentHolder.LocaleItemComp("item." + name + "Cell"));
     }
 
+    @Override
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+        if (this.isInCreativeTab(tab)) {
+            items.add(getUranium(new ItemStack(this)).getNewIsotopicRod());
+        }
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite getTexture(int meta) {
@@ -45,13 +52,6 @@ public class ItemIsotopicRod extends ItemDepletedUraniumRodBase {
     @Override
     public ItemStack[] getSubParts() {
         return new ItemStack[0];
-    }
-
-    @Override
-    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-        if (this.isInCreativeTab(tab)) {
-            items.add(this.getUranium(new ItemStack(this)).getNewIsotopicRod());
-        }
     }
 
     @Override

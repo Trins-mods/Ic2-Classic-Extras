@@ -27,6 +27,7 @@ public class RailcraftRecipes {
         removeRockCrusherRecipes(Ic2Items.tinDust);
         removeRockCrusherRecipes(Ic2Items.silverDust);
         removeRockCrusherRecipes(Ic2Items.uraniumDrop);
+        removeRockCrusherRecipes(new ItemStack(Registry.uranium235));
         addRockCrusherRecipe(Ingredients.from(Blocks.IRON_ORE), Registry.ironCrushedOre);
         addRockCrusherRecipe(Ingredients.from(Blocks.GOLD_ORE), Registry.goldCrushedOre);
         addRockCrusherRecipe(Ingredients.from("oreCopper"), Registry.copperCrushedOre);
