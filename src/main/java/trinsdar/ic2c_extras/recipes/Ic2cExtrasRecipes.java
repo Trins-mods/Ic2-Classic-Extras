@@ -9,6 +9,7 @@ import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.CommonFilters;
+import ic2.core.item.reactor.uranTypes.IUranium;
 import ic2.core.item.recipe.AdvRecipeBase;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
@@ -132,10 +133,10 @@ public class Ic2cExtrasRecipes {
             CommonFilters.uranFilter = new BasicItemFilter(new ItemStack(Registry.doubleEnrichedUraniumIngot));
             macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
             macerator.addRecipe(new RecipeInputOreDict("oreUranium"), new ItemStack(Registry.uraniumCrushedOre, 2), 1.0F, "uraniumOre");
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(Ic2Items.reactorReEnrichedUraniumRod)), 1500, 12000, new ItemStack(Registry.plutoniumTinyDust, 2), new ItemStack(Registry.thorium232TinyDust, 2), new ItemStack(Registry.uranium238SmallDust, 2));
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(Registry.reEnrichedThorium232Cell))), 1500, 12000, new ItemStack(Registry.thorium230TinyDust, 1), new ItemStack(Registry.thorium232TinyDust, 1));
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedUranium", 1)), 900, 6000, new ItemStack(Registry.uranium238, 7), new ItemStack(Registry.uranium235TinyDust, 3));
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), 1000, 8000, new ItemStack(Registry.uranium238, 4), new ItemStack(Registry.uranium235TinyDust, 1), stoneDust);
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(Ic2Items.reactorReEnrichedUraniumRod)), 1500, 36000, new ItemStack(Registry.plutoniumTinyDust, 2), new ItemStack(Registry.thorium232TinyDust, 2), new ItemStack(Registry.uranium238SmallDust, 2));
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(Registry.reEnrichedThorium232Cell))), 1500, 36000, new ItemStack(Registry.thorium230TinyDust, 1), new ItemStack(Registry.thorium232TinyDust, 1));
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedUranium", 1)), 900, 18000, new ItemStack(Registry.uranium238, 7), new ItemStack(Registry.uranium235TinyDust, 3));
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), 1000, 24000, new ItemStack(Registry.uranium238, 4), new ItemStack(Registry.uranium235TinyDust, 1), stoneDust);
             TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedUranium", 1)), 1000, new ItemStack(Registry.uraniumPurifiedCrushedOre, 1), new ItemStack(Registry.leadTinyDust, 2), stoneDust);
             CraftingRecipes.recipes.addRecipe(StackUtil.copyWithSize(Ic2Items.uraniumDrop, 1),
                     "UUU", "TTT", "UUU", 'U', "dustUranium238", 'T', "dustTinyUranium235");
@@ -172,7 +173,7 @@ public class Ic2cExtrasRecipes {
     public static void rodUtil(ItemStack single, ItemStack dual, ItemStack quad, ItemStack isotope, ItemStack reEnriched, ItemStack nearDepleted, ItemStack ingredient) {
         ItemStack emptyRod = getEmptyRod();
         IRecipeInput copper = Loader.isModLoaded("gtc_expansion") ? new RecipeInputOreDict("plateCopper") : new RecipeInputItemStack(Ic2Items.denseCopperPlate);
-        IRecipeInput coal = new RecipeInputCombined(1, new RecipeInputOreDict("dustCoal"), new RecipeInputOreDict("dustCharcoal"));
+        IRecipeInput coal = Loader.isModLoaded("gtclassic") ? new RecipeInputCombined(1, new RecipeInputOreDict("dustCoal"), new RecipeInputOreDict("dustCharcoal"), new RecipeInputOreDict("dustCarbon")) : new RecipeInputCombined(1, new RecipeInputOreDict("dustCoal"), new RecipeInputOreDict("dustCharcoal"));
         CraftingRecipes.recipes.addShapelessRecipe(single, coal, reEnriched);
         CraftingRecipes.recipes.addRecipe(StackUtil.copyWithSize(nearDepleted, 8), "RRR", "RIR", "RRR", 'R', emptyRod, 'I', ingredient);
         CraftingRecipes.recipes.addRecipe(dual, "RPR", 'R', single, 'P', copper);

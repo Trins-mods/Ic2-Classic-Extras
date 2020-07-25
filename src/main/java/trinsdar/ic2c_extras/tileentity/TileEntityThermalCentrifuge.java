@@ -53,7 +53,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
     @NetworkField(index = 14)
     public int heat;
 
-    private static final int defaultEu = 20;
+    private static final int defaultEu = 48;
 
     public static final String neededHeat = "minHeat";
 
@@ -258,7 +258,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
     }
 
     public static void addRecipe(IRecipeInput input, int heat, ItemStack... output) {
-        addRecipe(input, heat, 4000, output);
+        addRecipe(input, heat, 12000, output);
     }
 
     public static void addRecipe(IRecipeInput input, int hear, int totalEu, ItemStack... output) {
