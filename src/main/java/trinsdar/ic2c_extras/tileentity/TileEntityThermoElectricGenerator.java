@@ -1,14 +1,20 @@
 package trinsdar.ic2c_extras.tileentity;
 
+import ic2.api.energy.tile.IEnergyAcceptor;
+import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityGeneratorBase;
 import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.inventory.filters.BasicItemFilter;
+import ic2.core.inventory.management.AccessRule;
+import ic2.core.inventory.management.InventoryHandler;
+import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2GuiComp;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import trinsdar.ic2c_extras.container.ContainerThermoElectricGenerator;
 import trinsdar.ic2c_extras.items.ItemRTG;
@@ -23,6 +29,14 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
         super(6);
         this.tier = 1;
         this.maxStorage = 20000;
+    }
+
+    @Override
+    protected void addSlots(InventoryHandler handler) {
+        handler.registerDefaultSideAccess(AccessRule.Both, RotationList.UP.invert());
+        handler.registerDefaultSlotAccess(AccessRule.Import, 0, 1, 2, 3, 4, 5);
+        handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), 0, 1, 2, 3 ,4 ,5);
+        handler.registerSlotType(SlotType.Input, 0, 1, 2, 3, 4, 5);
     }
 
     public BasicItemFilter getFilter() {
@@ -61,6 +75,11 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
     @Override
     public int getMaxSendingEnergy() {
         return this.getProduction() + 1;
+    }
+
+    @Override
+    public boolean emitsEnergyTo(IEnergyAcceptor receiver, EnumFacing side) {
+        return true;
     }
 
     @Override
