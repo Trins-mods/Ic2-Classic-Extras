@@ -14,8 +14,10 @@ import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.container.ContainerThermoElectricGenerator;
 import trinsdar.ic2c_extras.items.ItemRTG;
 import trinsdar.ic2c_extras.util.Registry;
@@ -39,13 +41,32 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
         handler.registerSlotType(SlotType.Input, 0, 1, 2, 3, 4, 5);
     }
 
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+        this.production = nbt.getInteger("Production");
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        super.writeToNBT(nbt);
+        nbt.setInteger("Production", production);
+        return nbt;
+    }
+
     public BasicItemFilter getFilter() {
         return filter;
     }
 
     @Override
     public double getOfferedEnergy() {
-        return getProduction() == 0 ? Math.min(this.storage, 32) : Math.min(this.storage, getProduction());
+        return production == 0 ? Math.min(this.storage, 32) : Math.min(this.storage, production);
+    }
+
+    @Override
+    public void drawEnergy(double amount) {
+        IC2CExtras.logger.info("Draw amount:"  + amount);
+        super.drawEnergy(amount);
     }
 
     public int getProduction() {
@@ -58,23 +79,22 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
         if (count == -1) {
             return 0;
         }
-        production = (int) Math.pow(2, count);
-        return production;
+        return (int) Math.pow(2, count);
     }
 
     @Override
-    public int getOutput() {
-        return getProduction();
+    public double getWrenchDropRate() {
+        return 1.0D;
     }
 
     @Override
     public boolean isConverting() {
-        return this.storage + this.getProduction() <= this.maxStorage;
+        return this.storage + this.production <= this.maxStorage;
     }
 
     @Override
     public int getMaxSendingEnergy() {
-        return this.getProduction() + 1;
+        return this.production + 1;
     }
 
     @Override
@@ -84,8 +104,9 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
 
     @Override
     public void update() {
-
+        super.update();
         int oldEnergy = this.storage;
+        this.production = this.getProduction();
         boolean active = this.gainEnergy();
         if (this.storage > 0) {
             if (this.storage > this.maxStorage) {
@@ -131,8 +152,8 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
 
     @Override
     public boolean gainEnergy() {
-        if (this.isConverting() && !isInventoryEmpty()) {
-            this.storage += this.getProduction();
+        if (this.isConverting() && production > 0) {
+            this.storage += this.production;
             counter++;
             if (counter == 20) {
                 for (int i = 0; i < 6; i++) {
@@ -216,8 +237,7 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
             if (count == 0) {
                 return 0;
             }
-            production = (int) Math.pow(2, count);
-            return production;
+            return (int) Math.pow(2, count);
         }
     }
 }
