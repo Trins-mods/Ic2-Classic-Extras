@@ -17,7 +17,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.container.ContainerThermoElectricGenerator;
 import trinsdar.ic2c_extras.items.ItemRTG;
 import trinsdar.ic2c_extras.util.Registry;
@@ -65,7 +64,6 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
 
     @Override
     public void drawEnergy(double amount) {
-        IC2CExtras.logger.info("Draw amount:"  + amount);
         super.drawEnergy(amount);
     }
 
