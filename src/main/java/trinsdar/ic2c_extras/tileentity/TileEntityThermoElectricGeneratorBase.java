@@ -23,10 +23,9 @@ import trinsdar.ic2c_extras.util.Registry;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
-public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
-    public static BasicItemFilter filter = new BasicItemFilter(new ItemStack(Registry.thoriumRTG));
+public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGeneratorBase {
 
-    public TileEntityThermoElectricGenerator() {
+    public TileEntityThermoElectricGeneratorBase() {
         super(6);
         this.tier = 1;
         this.maxStorage = 20000;
@@ -53,9 +52,7 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
         return nbt;
     }
 
-    public BasicItemFilter getFilter() {
-        return filter;
-    }
+    public abstract BasicItemFilter getFilter();
 
     @Override
     public double getOfferedEnergy() {
@@ -63,22 +60,16 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
     }
 
     @Override
+    public int getOutput() {
+        return this.production;
+    }
+
+    @Override
     public void drawEnergy(double amount) {
         super.drawEnergy(amount);
     }
 
-    public int getProduction() {
-        int count = -1;
-        for (int i = 0; i < 6; i++) {
-            if (inventory.get(i).isItemEqual(new ItemStack(Registry.thoriumRTG))) {
-                count += 1;
-            }
-        }
-        if (count == -1) {
-            return 0;
-        }
-        return (int) Math.pow(2, count);
-    }
+    public abstract int getProduction();
 
     @Override
     public double getWrenchDropRate() {
@@ -136,16 +127,6 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
         this.updateComparators();
     }
 
-    private boolean isInventoryEmpty() {
-        int count = 0;
-        for (int i = 0; i < 6; i++) {
-            if (inventory.get(i).getItem() instanceof ItemRTG) {
-                count += 1;
-            }
-        }
-        return count == 0;
-    }
-
     int counter = 0;
 
     @Override
@@ -201,12 +182,39 @@ public class TileEntityThermoElectricGenerator extends TileEntityGeneratorBase {
         return new ContainerThermoElectricGenerator(entityPlayer.inventory, this);
     }
 
-    @Override
-    public LocaleComp getBlockName() {
-        return Ic2cExtrasLang.THERMO_ELECTRIC_GENERATOR;
+    public static class TileEntityThermoElectricGeneratorMkI extends TileEntityThermoElectricGeneratorBase {
+        public static BasicItemFilter filter = new BasicItemFilter(new ItemStack(Registry.thoriumRTG));
+        public TileEntityThermoElectricGeneratorMkI() {
+            this.tier = 1;
+            this.maxStorage = 20000;
+        }
+
+        @Override
+        public BasicItemFilter getFilter() {
+            return filter;
+        }
+
+        @Override
+        public LocaleComp getBlockName() {
+            return Ic2cExtrasLang.THERMO_ELECTRIC_GENERATOR;
+        }
+
+        @Override
+        public int getProduction() {
+            int count = -1;
+            for (int i = 0; i < 6; i++) {
+                if (inventory.get(i).isItemEqual(new ItemStack(Registry.thoriumRTG))) {
+                    count += 1;
+                }
+            }
+            if (count == -1) {
+                return 0;
+            }
+            return (int) Math.pow(2, count);
+        }
     }
 
-    public static class TileEntityThermoElectricGeneratorMkII extends TileEntityThermoElectricGenerator {
+    public static class TileEntityThermoElectricGeneratorMkII extends TileEntityThermoElectricGeneratorBase {
         public static BasicItemFilter filter2 = new BasicItemFilter(new ItemStack(Registry.plutoniumRTG));
 
         public TileEntityThermoElectricGeneratorMkII() {

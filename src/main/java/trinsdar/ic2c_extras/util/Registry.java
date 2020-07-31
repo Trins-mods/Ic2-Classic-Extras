@@ -47,7 +47,7 @@ import trinsdar.ic2c_extras.tileentity.TileEntityPlasmaCutter;
 import trinsdar.ic2c_extras.tileentity.TileEntityRoller;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalWasher;
-import trinsdar.ic2c_extras.tileentity.TileEntityThermoElectricGenerator;
+import trinsdar.ic2c_extras.tileentity.TileEntityThermoElectricGeneratorBase;
 import trinsdar.ic2c_extras.tileentity.TileEntityTreeTapper;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
@@ -281,8 +281,8 @@ public class Registry {
         registerTile(TileEntityFluidCanningMachine.class, "FluidCanningMachine");
         registerTile(TileEntityTreeTapper.class, "TreeTapper");
         registerTile(TileEntityElectricDisenchanter.class, "ElectricDisenchanter");
-        registerTile(TileEntityThermoElectricGenerator.class, "ThermoElectricGenerator");
-        registerTile(TileEntityThermoElectricGenerator.TileEntityThermoElectricGeneratorMkII.class, "ThermoElectricGeneratorMkII");
+        registerTile(TileEntityThermoElectricGeneratorBase.TileEntityThermoElectricGeneratorMkI.class, "ThermoElectricGeneratorMkI");
+        registerTile(TileEntityThermoElectricGeneratorBase.TileEntityThermoElectricGeneratorMkII.class, "ThermoElectricGeneratorMkII");
         registerTile(TileEntityAutocraftingTable.class, "AutocraftingTable");
     }
 

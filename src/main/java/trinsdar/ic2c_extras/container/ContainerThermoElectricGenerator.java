@@ -5,10 +5,10 @@ import ic2.core.inventory.gui.components.base.GeneratorChargeComp;
 import ic2.core.inventory.slots.SlotCustom;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.tileentity.TileEntityThermoElectricGenerator;
+import trinsdar.ic2c_extras.tileentity.TileEntityThermoElectricGeneratorBase;
 
-public class ContainerThermoElectricGenerator extends ContainerTileComponent<TileEntityThermoElectricGenerator> {
-    public ContainerThermoElectricGenerator(InventoryPlayer player, TileEntityThermoElectricGenerator tile) {
+public class ContainerThermoElectricGenerator extends ContainerTileComponent<TileEntityThermoElectricGeneratorBase> {
+    public ContainerThermoElectricGenerator(InventoryPlayer player, TileEntityThermoElectricGeneratorBase tile) {
         super(tile);
         for (int y = 0; y < 2; ++y) {
             for (int x = 0; x < 3; ++x) {
