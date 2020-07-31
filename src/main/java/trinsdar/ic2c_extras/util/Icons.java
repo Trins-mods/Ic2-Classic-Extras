@@ -37,7 +37,7 @@ public class Icons {
         setTexture(Registry.thermalWasher, bottom, s(19), side, s("ore_washer_front"), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s(115), side, s("ore_washer_front_active"), s("bmach_mv",44), s("bmach_mv",44));
         setTexture(Registry.oreWashingPlant, bottom, s(19), side, s("ore_washer_front"), common, common, bottom, s(115), side, s("ore_washer_front_active"), s(43), s(43));
         setTexture(Registry.roller, bottom, s(20), side, s("roller_front"), common, common, bottom, s("roller_top_active"), side, s("roller_front_active"), common2, common2);
-        setTexture(Registry.extruder, bottom, s(20), side, s(155), common, common, bottom, s("roller_top_active"), side, s("extruder_front_active"), common2, common2);
+        setTexture(Registry.extruder, bottom, s(20), side, s(155), common, common, bottom, s("roller_top_active"), side, s("extruder_front_active_a"), common2, common2);
         setTexture(Registry.cutter, bottom, s(20), side, s("cutter_front"), common, common, bottom, s("roller_top_active"), side, s("cutter_front_active"), common2, common2);
         setTexture(Registry.metalBender, bottom, s(20), side, s("metal_bender_front"), common, common, bottom, s("roller_top_active"), side, s("metal_bender_front_active"), common2, common2);
         common = s("bmach_lv_2", 53);
@@ -46,7 +46,7 @@ public class Icons {
         common2 = s("tree_tapper_side_active");
         setTexture(Registry.treeTapper, bottom, s("bmach_mv", 27), common, common, common, common, bottom, s("bmach_mv", 123), common2, common2, common2, common2);
         setTexture(Registry.impellerizedRoller, bottom, s(20), side, s("roller_front"), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s("roller_top_active"), side, s("roller_front_active"), s("impellerized_roller_side_active"), s("impellerized_roller_side_active"));
-        setTexture(Registry.liquescentExtruder, bottom, s(20), side, s(155), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s("roller_top_active"), side, s("extruder_front_active"), s("impellerized_roller_side_active"), s("impellerized_roller_side_active"));
+        setTexture(Registry.liquescentExtruder, bottom, s(20), side, s(155), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s("roller_top_active"), side, s("extruder_front_active_a"), s("impellerized_roller_side_active"), s("impellerized_roller_side_active"));
         setTexture(Registry.plasmaCutter, bottom, s(20), side, s("cutter_front"), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s("roller_top_active"), side, s("cutter_front_active"), s("impellerized_roller_side_active"), s("impellerized_roller_side_active"));
         common = s("advanced_steam_turbine_side");
         setTexture(Registry.advancedSteamTurbine, s(1), top, common, s("bgen", 58), common, common, s(1), top, common, s("bgen", 160), common, common);
