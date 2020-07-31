@@ -34,12 +34,12 @@ public class MOX extends UranBaseType {
 
     @Override
     public float getEUPerPulse() {
-        return 3.0f;
+        return 1.0f;
     }
 
     @Override
     public int getPulsesPerTick() {
-        return 2;
+        return 1;
     }
 
     @Override

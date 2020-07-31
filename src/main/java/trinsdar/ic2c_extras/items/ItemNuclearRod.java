@@ -118,10 +118,7 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
 
     public float getEuModifier(IReactor reactor){
         float percent = (float)reactor.getHeat() / (float)reactor.getMaxHeat();
-        if (percent < 0.01F){
-            return 1;
-        }
-        return percent * 100;
+        return 4.0F * percent + 1.0F;
     }
 
     public IUranium.RodType getRodType(NuclearRodTypes type) {
