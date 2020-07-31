@@ -4,26 +4,20 @@ import ic2.api.classic.reactor.IReactorPlanner;
 import ic2.api.classic.reactor.ISteamReactor;
 import ic2.api.reactor.IReactor;
 import ic2.core.block.machine.high.TileEntityUraniumEnricher;
-import ic2.core.item.reactor.ItemReactorUraniumRod;
 import ic2.core.item.reactor.base.ItemUraniumRodBase;
 import ic2.core.item.reactor.uranTypes.IUranium;
 import ic2.core.platform.lang.components.base.LangComponentHolder;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTPrimitive;
-import net.minecraft.nbt.NBTTagInt;
-import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
-import trinsdar.ic2c_extras.items.urantypes.Thorium230;
 import trinsdar.ic2c_extras.items.urantypes.MOX;
 import trinsdar.ic2c_extras.items.urantypes.Plutonium;
+import trinsdar.ic2c_extras.items.urantypes.Thorium230;
 import trinsdar.ic2c_extras.items.urantypes.Thorium232;
 import trinsdar.ic2c_extras.items.urantypes.UOX;
-import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -103,6 +97,31 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
     @Override
     public IUranium.RodType getRodType(int metadata) {
         return this.getRodType(type);
+    }
+
+    @Override
+    public boolean acceptUraniumPulse(ItemStack stack, IReactor reactor, ItemStack pulsingStack, int youX, int youY, int pulseX, int pulseY, boolean heatrun) {
+        if (variant == NuclearRodVariants.MOX && !(reactor instanceof ISteamReactor)){
+            if (reactor instanceof IReactorPlanner) {
+                IReactorPlanner planner = (IReactorPlanner)reactor;
+                if (planner.isCollecting()) {
+                    planner.addFuelPulse();
+                }
+            }
+            if (!heatrun) {
+                reactor.addOutput(this.getUranium(stack).getEUPerPulse() * getEuModifier(reactor));
+            }
+            return true;
+        }
+        return super.acceptUraniumPulse(stack, reactor, pulsingStack, youX, youY, pulseX, pulseY, heatrun);
+    }
+
+    public float getEuModifier(IReactor reactor){
+        float percent = (float)reactor.getHeat() / (float)reactor.getMaxHeat();
+        if (percent < 0.01F){
+            return 1;
+        }
+        return percent * 100;
     }
 
     public IUranium.RodType getRodType(NuclearRodTypes type) {

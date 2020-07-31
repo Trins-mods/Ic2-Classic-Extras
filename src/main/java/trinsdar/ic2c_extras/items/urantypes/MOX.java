@@ -15,16 +15,6 @@ import java.awt.Color;
 
 
 public class MOX extends UranBaseType {
-    public MOX() {
-        this.addArray(new int[]{-1, -1});
-        this.addArray(new int[]{0, -1});
-        this.addArray(new int[]{1, -1});
-        this.addArray(new int[]{-1, 0});
-        this.addArray(new int[]{1, 0});
-        this.addArray(new int[]{-1, 1});
-        this.addArray(new int[]{0, 1});
-        this.addArray(new int[]{1, 1});
-    }
 
     @SideOnly(Side.CLIENT)
     @Override
@@ -44,12 +34,12 @@ public class MOX extends UranBaseType {
 
     @Override
     public float getEUPerPulse() {
-        return 1.0f;
+        return 3.0f;
     }
 
     @Override
     public int getPulsesPerTick() {
-        return 1;
+        return 2;
     }
 
     @Override

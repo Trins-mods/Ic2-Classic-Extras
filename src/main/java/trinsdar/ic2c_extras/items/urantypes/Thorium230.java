@@ -14,6 +14,16 @@ import trinsdar.ic2c_extras.util.Registry;
 import java.awt.*;
 
 public class Thorium230 extends UranBaseType {
+    public Thorium230(){
+        this.addArray(new int[]{-1, -1});
+        this.addArray(new int[]{0, -1});
+        this.addArray(new int[]{1, -1});
+        this.addArray(new int[]{-1, 0});
+        this.addArray(new int[]{1, 0});
+        this.addArray(new int[]{-1, 1});
+        this.addArray(new int[]{0, 1});
+        this.addArray(new int[]{1, 1});
+    }
 
     @SideOnly(Side.CLIENT)
     @Override
@@ -33,7 +43,7 @@ public class Thorium230 extends UranBaseType {
 
     @Override
     public float getEUPerPulse() {
-        return 5.0f;
+        return 1.0f;
     }
 
     @Override
@@ -43,7 +53,7 @@ public class Thorium230 extends UranBaseType {
 
     @Override
     public int getPulsesForConnection() {
-        return 3;
+        return 1;
     }
 
     @Override
