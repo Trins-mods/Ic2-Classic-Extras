@@ -15,6 +15,9 @@ import java.awt.Color;
 
 
 public class MOX extends UranBaseType {
+    public MOX(){
+        this.loadDefaults();
+    }
 
     @SideOnly(Side.CLIENT)
     @Override
