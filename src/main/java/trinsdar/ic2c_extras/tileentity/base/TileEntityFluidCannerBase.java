@@ -27,6 +27,7 @@ import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
 import ic2.core.platform.registry.Ic2Sounds;
 import ic2.core.util.misc.StackUtil;
 import ic2.core.util.obj.IOutputMachine;
+import ic2.core.util.obj.ITickListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -45,7 +46,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.function.Predicate;
 
-public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine implements IOutputMachine, IProgressMachine, IEnergyUser, ITickable, IHasGui, INetworkTileEntityEventListener {
+public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine implements IOutputMachine, IProgressMachine, IEnergyUser, ITickListener, IHasGui, INetworkTileEntityEventListener {
     @NetworkField(index = 7)
     public int progress = 0;
 
@@ -107,7 +108,7 @@ public abstract class TileEntityFluidCannerBase extends TileEntityElecMachine im
     }
 
     @Override
-    public void update() {
+    public void onTick() {
         handleRedstone();
         updateNeighbors();
         boolean noRoom = addToInventory();

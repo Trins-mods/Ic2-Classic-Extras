@@ -17,12 +17,12 @@ import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2States;
 import ic2.core.util.misc.StackUtil;
+import ic2.core.util.obj.ITickListener;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -37,7 +37,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Optional.Interface(iface = "gtclassic.api.interfaces.IGTDebuggableTile", modid = "gtclassic", striprefs = true)
-public class TileEntityTreeTapper extends TileEntityElecMachine implements ITickable, IHasGui, IMachine, IGTDebuggableTile {
+public class TileEntityTreeTapper extends TileEntityElecMachine implements ITickListener, IHasGui, IMachine, IGTDebuggableTile {
     public int nextDelay = 10;
     public int delay = 0;
     public int radius = 1;
@@ -100,7 +100,7 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
     }
 
     @Override
-    public void update() {
+    public void onTick() {
         World worldIn = this.getWorld();
         this.updateNeighbors();
         if (this.delay > 0) {

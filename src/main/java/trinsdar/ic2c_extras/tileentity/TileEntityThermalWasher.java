@@ -186,11 +186,11 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     }
 
     @Override
-    public void update() {
+    public void onTick() {
         if (!this.inventory.get(slotInputTank).isEmpty()) {
             this.handleTank();
         }
-        super.update();
+        super.onTick();
     }
 
     @Override

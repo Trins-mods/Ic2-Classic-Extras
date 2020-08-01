@@ -92,7 +92,7 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
     }
 
     @Override
-    public void update() {
+    public void onTick() {
         int oldEnergy = this.storage;
         int newProduction = this.getProduction();
         if (this.production != newProduction){

@@ -15,17 +15,17 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
+import ic2.core.util.obj.ITickListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.ITickable;
 import trinsdar.ic2c_extras.container.ContainerElectricDisenchanter;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 
-public class TileEntityElectricDisenchanter extends TileEntityElecMachine implements IHasGui, ITickable, IProgressMachine {
+public class TileEntityElectricDisenchanter extends TileEntityElecMachine implements IHasGui, ITickListener, IProgressMachine {
     private static final int SLOT_BOOK = 0;
     private static final int SLOT_TOOL = 1;
     private static final int SLOT_OUTPUT = 2;
@@ -117,7 +117,7 @@ public class TileEntityElectricDisenchanter extends TileEntityElecMachine implem
     }
 
     @Override
-    public void update() {
+    public void onTick() {
         this.handleChargeSlot(maxEnergy);
         if (canProgress && this.getStoredEU() >= 500){
             setActive(true);

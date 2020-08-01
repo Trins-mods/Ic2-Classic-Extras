@@ -15,6 +15,7 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.inventory.transport.IItemTransporter;
 import ic2.core.inventory.transport.TransporterManager;
 import ic2.core.util.misc.StackUtil;
+import ic2.core.util.obj.ITickListener;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +24,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
@@ -34,7 +34,7 @@ import trinsdar.ic2c_extras.container.ContainerAutocraftingTable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TileEntityAutocraftingTable extends TileEntityElecMachine implements ITickable, IHasGui {
+public class TileEntityAutocraftingTable extends TileEntityElecMachine implements ITickListener, IHasGui {
 
     public static final ResourceLocation GUI_LOCATION = new ResourceLocation(IC2CExtras.MODID, "textures/gui/autocraftingtable.png");
     protected static final int[] slotInputs = {1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -119,7 +119,7 @@ public class TileEntityAutocraftingTable extends TileEntityElecMachine implement
     }
 
     @Override
-    public void update() {
+    public void onTick() {
         if (world.getTotalWorldTime() % 20 == 0) {
             tryImportItems(this.getFacing().getOpposite());
             ItemStack mStack = this.getStackInSlot(27);

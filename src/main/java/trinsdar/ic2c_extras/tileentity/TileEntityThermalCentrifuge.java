@@ -200,8 +200,8 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
     }
 
     @Override
-    public void update() {
-        super.update();
+    public void onTick() {
+        super.onTick();
         if ((lastRecipe != null && !this.inventory.get(slotInput).isEmpty()) && this.energy > 0) {
             int newMaxHeat = (int) getMaxHeat();
             if (newMaxHeat != maxHeat) {

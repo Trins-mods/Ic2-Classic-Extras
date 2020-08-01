@@ -18,7 +18,7 @@ public class TileEntityAdvancedSteamTurbine extends TileEntityBasicSteamTurbine 
     }
 
     @Override
-    public void update() {
+    public void onTick() {
         this.setActive(this.speed > 0.0F);
         if (this.energy >= 4000) {
             this.addChange(-0.005F);
