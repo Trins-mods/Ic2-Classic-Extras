@@ -1,8 +1,6 @@
 package trinsdar.ic2c_extras.tileentity;
 
 import gtclassic.api.interfaces.IGTDebuggableTile;
-import ic2.api.energy.event.EnergyTileLoadEvent;
-import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityGeneratorBase;
@@ -20,7 +18,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Optional;
 import trinsdar.ic2c_extras.container.ContainerThermoElectricGenerator;
 import trinsdar.ic2c_extras.items.ItemRTG;
@@ -81,7 +78,7 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
 
     @Override
     public int getMaxSendingEnergy() {
-        return this.production + 1;
+        return 32 * tier;
     }
 
     @Override
@@ -99,9 +96,7 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
         int oldEnergy = this.storage;
         int newProduction = this.getProduction();
         if (this.production != newProduction){
-            MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
             this.production = newProduction;
-            MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
         }
         boolean active = this.gainEnergy();
         if (this.storage > 0) {
