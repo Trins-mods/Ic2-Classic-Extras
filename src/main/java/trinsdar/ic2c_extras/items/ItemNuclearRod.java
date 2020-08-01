@@ -18,6 +18,7 @@ import trinsdar.ic2c_extras.items.urantypes.Plutonium;
 import trinsdar.ic2c_extras.items.urantypes.Thorium230;
 import trinsdar.ic2c_extras.items.urantypes.Thorium232;
 import trinsdar.ic2c_extras.items.urantypes.UOX;
+import trinsdar.ic2c_extras.items.urantypes.Uranium235;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,12 +40,13 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
     }
 
     public static void init() {
-        types = new IUranium[5];
+        types = new IUranium[6];
         types[0] = new UOX();
         types[1] = new Plutonium();
         types[2] = new MOX();
         types[3] = new Thorium232();
         types[4] = new Thorium230();
+        types[5] = new Uranium235();
         TileEntityUraniumEnricher.RECIPE_LIST.add(types[0]);
     }
 
@@ -143,6 +145,8 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
             return types[3];
         } else if (variant == NuclearRodVariants.THORIUM230) {
             return types[4];
+        } else if (variant == NuclearRodVariants.URANIUM235){
+            return types[5];
         }
         return types[0];
     }
@@ -154,7 +158,7 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
 
     @Override
     public IUranium getUranium(int i) {
-        return this.getUran(variant);
+        return getUran(variant);
     }
 
     public float getRodAmount(NuclearRodTypes type) {
@@ -196,7 +200,8 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
         PLUTONIUM("Plutonium"),
         MOX("MOX"),
         THORIUM232("Thorium232"),
-        THORIUM230("Thorium230");
+        THORIUM230("Thorium230"),
+        URANIUM235("Uranium235");
 
         private String prefix;
 

@@ -193,7 +193,6 @@ public class MachineRecipes {
                         GameRegistry.addSmelting(Registry.aluminumPurifiedCrushedOre, (ItemStack) listIngots.get(0), 0.5F);
                     }
                     TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict("crushedAluminum"), 1000, new ItemStack(Registry.aluminumPurifiedCrushedOre), new ItemStack(Registry.aluminumTinyDust), new ItemStack(Registry.stoneDust));
-                    TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedAluminum"), 600, (ItemStack) listDusts.get(0), new ItemStack(Registry.ironTinyDust, 2), new ItemStack(Registry.stoneDust));
                     TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedAluminum"), 400, (ItemStack) listDusts.get(0), new ItemStack(Registry.ironTinyDust, 2));
                 }
             } else {
@@ -209,7 +208,6 @@ public class MachineRecipes {
                         GameRegistry.addSmelting(Registry.aluminumPurifiedCrushedOre, (ItemStack) listIngots.get(0), 0.5F);
                     }
                     TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict("crushedAluminium"), 1000, new ItemStack(Registry.aluminumPurifiedCrushedOre), new ItemStack(Registry.aluminumTinyDust), new ItemStack(Registry.stoneDust));
-                    TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedAluminium"), 600, (ItemStack) listDusts.get(0), new ItemStack(Registry.ironTinyDust, 2), new ItemStack(Registry.stoneDust));
                     TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedAluminium"), 400, (ItemStack) listDusts.get(0), new ItemStack(Registry.ironTinyDust, 2));
                 }
             }
@@ -227,7 +225,6 @@ public class MachineRecipes {
                     GameRegistry.addSmelting(Registry.nickelPurifiedCrushedOre, (ItemStack) listIngots.get(0), 0.5F);
                 }
                 TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict("crushedNickel"), 1000, new ItemStack(Registry.nickelPurifiedCrushedOre), new ItemStack(Registry.nickelTinyDust), new ItemStack(Registry.stoneDust));
-                TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedNickel"), 600, (ItemStack) listDusts.get(0), new ItemStack(Registry.platinumTinyDust, 2), new ItemStack(Registry.stoneDust));
                 TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedNickel"), 400, (ItemStack) listDusts.get(0), new ItemStack(Registry.platinumTinyDust, 2));
             }
         }
@@ -244,7 +241,6 @@ public class MachineRecipes {
                     GameRegistry.addSmelting(Registry.platinumPurifiedCrushedOre, (ItemStack) listIngots.get(0), 0.5F);
                 }
                 TileEntityOreWashingPlant.addRecipe(new RecipeInputOreDict("crushedPlatinum"), 1000, new ItemStack(Registry.platinumPurifiedCrushedOre), new ItemStack(Registry.platinumTinyDust), new ItemStack(Registry.stoneDust));
-                TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPlatinum"), 600, (ItemStack) listDusts.get(0), new ItemStack(Registry.nickelTinyDust, 2), new ItemStack(Registry.stoneDust));
                 TileEntityThermalCentrifuge.addRecipe(new RecipeInputOreDict("crushedPurifiedPlatinum"), 400, (ItemStack) listDusts.get(0), new ItemStack(Registry.nickelTinyDust, 2));
             }
         }
@@ -275,12 +271,6 @@ public class MachineRecipes {
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedTin", 1)), lowHeat, Ic2Items.tinDust, new ItemStack(Registry.ironTinyDust, 1));
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedSilver", 1)), lowHeat, Ic2Items.silverDust, new ItemStack(Registry.leadTinyDust, 1));
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedLead", 1)), lowHeat, new ItemStack(Registry.leadDust, 1), new ItemStack(Registry.copperTinyDust, 1));
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedIron", 1)), mediumHeat, Ic2Items.ironDust, new ItemStack(Registry.goldTinyDust, 1), stoneDust);
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedGold", 1)), mediumHeat, Ic2Items.goldDust, new ItemStack(Registry.silverTinyDust, 1), stoneDust);
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedCopper", 1)), mediumHeat, Ic2Items.copperDust, new ItemStack(Registry.tinTinyDust, 1), stoneDust);
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedTin", 1)), mediumHeat, Ic2Items.tinDust, new ItemStack(Registry.ironTinyDust, 1), stoneDust);
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedSilver", 1)), mediumHeat, Ic2Items.silverDust, stoneDust);
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedLead", 1)), mediumHeat, new ItemStack(Registry.leadDust, 1), stoneDust);
         TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedIron", 1)), Ic2Items.ironDust);
         TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedGold", 1)), Ic2Items.goldDust);
         TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedCopper", 1)), Ic2Items.copperDust);

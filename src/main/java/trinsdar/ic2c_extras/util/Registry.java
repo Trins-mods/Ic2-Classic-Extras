@@ -192,17 +192,21 @@ public class Registry {
     public static final ItemMiscs nickelTinyDust = createItem(new ItemMiscs("nickelTinyDust", 2, "nickel"));
     public static final ItemMiscs aluminumTinyDust = createItem(new ItemMiscs("aluminumTinyDust", 2, "aluminum"));
     public static final ItemMiscs platinumTinyDust = createItem(new ItemMiscs("platinumTinyDust", 2, "platinum"));
+    public static final ItemMiscs refinedUraniumOre = createItem(new ItemMiscs("refinedUraniumOre", 22));
+    public static final ItemMiscs uraniumDust = createItem(new ItemMiscs("uraniumDust", 23));
 
-    public static final ItemDepeletedNuclearRods nearDepletedUOXCell = createItem(new ItemDepeletedNuclearRods("nearDepletedUOXCell", 15));
-    public static final ItemDepeletedNuclearRods nearDepletedPlutoniumCell = createItem(new ItemDepeletedNuclearRods("nearDepletedPlutoniumCell", 16));
-    public static final ItemDepeletedNuclearRods nearDepletedMOXCell = createItem(new ItemDepeletedNuclearRods("nearDepletedMOXCell", 17));
-    public static final ItemDepeletedNuclearRods nearDepletedThorium232Cell = createItem(new ItemDepeletedNuclearRods("nearDepletedThorium232Cell", 18));
-    public static final ItemDepeletedNuclearRods nearDepletedThorium230Cell = createItem(new ItemDepeletedNuclearRods("nearDepletedThorium230Cell", 19));
-    public static final ItemDepeletedNuclearRods reEnrichedUOXCell = createItem(new ItemDepeletedNuclearRods("reEnrichedUOXCell", 25));
-    public static final ItemDepeletedNuclearRods reEnrichedPlutoniumCell = createItem(new ItemDepeletedNuclearRods("reEnrichedPlutoniumCell", 26));
-    public static final ItemDepeletedNuclearRods reEnrichedMOXCell = createItem(new ItemDepeletedNuclearRods("reEnrichedMOXCell", 27));
-    public static final ItemDepeletedNuclearRods reEnrichedThorium232Cell = createItem(new ItemDepeletedNuclearRods("reEnrichedThorium232Cell", 28));
-    public static final ItemDepeletedNuclearRods reEnrichedThorium230Cell = createItem(new ItemDepeletedNuclearRods("reEnrichedThorium230Cell", 29));
+    public static final ItemDepeletedNuclearRods nearDepletedUOXCell = createItem(new ItemDepeletedNuclearRods("nearDepletedUOXCell", 18));
+    public static final ItemDepeletedNuclearRods nearDepletedPlutoniumCell = createItem(new ItemDepeletedNuclearRods("nearDepletedPlutoniumCell", 19));
+    public static final ItemDepeletedNuclearRods nearDepletedMOXCell = createItem(new ItemDepeletedNuclearRods("nearDepletedMOXCell", 20));
+    public static final ItemDepeletedNuclearRods nearDepletedThorium232Cell = createItem(new ItemDepeletedNuclearRods("nearDepletedThorium232Cell", 21));
+    public static final ItemDepeletedNuclearRods nearDepletedThorium230Cell = createItem(new ItemDepeletedNuclearRods("nearDepletedThorium230Cell", 22));
+    public static final ItemDepeletedNuclearRods nearDepletedUranium235Cell = createItem(new ItemDepeletedNuclearRods("nearDepletedUranium235Cell", 23));
+    public static final ItemDepeletedNuclearRods reEnrichedUOXCell = createItem(new ItemDepeletedNuclearRods("reEnrichedUOXCell", 30));
+    public static final ItemDepeletedNuclearRods reEnrichedPlutoniumCell = createItem(new ItemDepeletedNuclearRods("reEnrichedPlutoniumCell", 31));
+    public static final ItemDepeletedNuclearRods reEnrichedMOXCell = createItem(new ItemDepeletedNuclearRods("reEnrichedMOXCell", 32));
+    public static final ItemDepeletedNuclearRods reEnrichedThorium232Cell = createItem(new ItemDepeletedNuclearRods("reEnrichedThorium232Cell", 33));
+    public static final ItemDepeletedNuclearRods reEnrichedThorium230Cell = createItem(new ItemDepeletedNuclearRods("reEnrichedThorium230Cell", 34));
+    public static final ItemDepeletedNuclearRods reEnrichedUranium235Cell = createItem(new ItemDepeletedNuclearRods("reEnrichedUranium235Cell", 35));
 
     public static final ItemRTG plutoniumRTG = createItem(new ItemRTG("plutoniumRTG", 129600, 1));
     public static final ItemRTG thoriumRTG = createItem(new ItemRTG("thoriumRTG", 172800, 0));
@@ -222,12 +226,16 @@ public class Registry {
     public static final ItemNuclearRod singleThorium230Cell = createItem(new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.THORIUM230));
     public static final ItemNuclearRod doubleThorium230Cell = createItem(new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.THORIUM230));
     public static final ItemNuclearRod quadThorium230Cell = createItem(new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.THORIUM230));
+    public static final ItemNuclearRod singleUranium235Cell = createItem(new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.URANIUM235));
+    public static final ItemNuclearRod doubleUranium235Cell = createItem(new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.URANIUM235));
+    public static final ItemNuclearRod quadUranium235Cell = createItem(new ItemNuclearRod(NuclearRodTypes.QUAD, NuclearRodVariants.URANIUM235));
 
     public static final ItemIsotopicRod isotopicUOXCell = createItem(new ItemIsotopicRod(NuclearRodVariants.UOX));
     public static final ItemIsotopicRod isotopicPlutoniumCell = createItem(new ItemIsotopicRod(NuclearRodVariants.PLUTONIUM));
     public static final ItemIsotopicRod isotopicMOXCell = createItem(new ItemIsotopicRod(NuclearRodVariants.MOX));
     public static final ItemIsotopicRod isotopicThorium232Cell = createItem(new ItemIsotopicRod(NuclearRodVariants.THORIUM232));
     public static final ItemIsotopicRod isotopicThorium230Cell = createItem(new ItemIsotopicRod(NuclearRodVariants.THORIUM230));
+    public static final ItemIsotopicRod isotopicUranium235Cell = createItem(new ItemIsotopicRod(NuclearRodVariants.URANIUM235));
 
 
     public static final ItemToolCrafting craftingHammer = createItem(new ItemToolCrafting(256, "craftingHammer", 0, true));

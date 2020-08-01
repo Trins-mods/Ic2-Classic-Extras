@@ -93,17 +93,17 @@ public class Plutonium extends UranBaseType {
     public short getRodID(RodType type) {
         switch (type) {
             case SingleRod:
-                return 1111;
+                return 1113;
             case DualRod:
-                return 1106;
+                return 1107;
             case QuadRod:
                 return 1101;
             case ReEnrichedRod:
-                return 1126;
+                return 1131;
             case NearDepletedRod:
-                return 1116;
+                return 1119;
             case IsotopicRod:
-                return 1121;
+                return 1125;
             default:
                 return 0;
         }

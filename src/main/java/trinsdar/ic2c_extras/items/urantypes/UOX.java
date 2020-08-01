@@ -101,17 +101,17 @@ public class UOX extends UranBaseType {
     public short getRodID(RodType type) {
         switch (type) {
             case SingleRod:
-                return 1110;
+                return 1112;
             case DualRod:
-                return 1105;
+                return 1106;
             case QuadRod:
                 return 1100;
             case ReEnrichedRod:
-                return 1125;
+                return 1130;
             case NearDepletedRod:
-                return 1115;
+                return 1118;
             case IsotopicRod:
-                return 1120;
+                return 1124;
             default:
                 return 0;
         }

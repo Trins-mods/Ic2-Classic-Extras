@@ -2,6 +2,7 @@ package trinsdar.ic2c_extras.items.urantypes;
 
 import ic2.core.item.reactor.uranTypes.UranBaseType;
 import ic2.core.platform.lang.components.base.LocaleComp;
+import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Lang;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.util.misc.StackUtil;
@@ -13,9 +14,10 @@ import trinsdar.ic2c_extras.util.Registry;
 
 import java.awt.Color;
 
+import static ic2.core.item.reactor.uranTypes.IUranium.RodType.IsotopicRod;
 
-public class MOX extends UranBaseType {
-    public MOX(){
+public class Uranium235 extends UranBaseType {
+    public Uranium235() {
         this.loadDefaults();
     }
 
@@ -27,7 +29,7 @@ public class MOX extends UranBaseType {
 
     @Override
     public int getRow() {
-        return 0;
+        return 1;
     }
 
     @Override
@@ -42,7 +44,7 @@ public class MOX extends UranBaseType {
 
     @Override
     public int getPulsesPerTick() {
-        return 1;
+        return 4;
     }
 
     @Override
@@ -52,34 +54,34 @@ public class MOX extends UranBaseType {
 
     @Override
     public float getHeatModifier() {
-        return 1.0f;
+        return 2f;
     }
 
     @Override
     public float getExplosionEffectModifier() {
-        return 2.0f;
+        return 4.0f;
     }
 
     @Override
     public ItemStack getUraniumIngot() {
-        return new ItemStack(Registry.moxFuel);
+        return new ItemStack(Registry.uranium235);
     }
 
     @Override
     public ItemStack getRodType(RodType type) {
         switch (type) {
             case SingleRod:
-                return new ItemStack(Registry.singleMOXCell).copy();
+                return new ItemStack(Registry.singleUranium235Cell).copy();
             case DualRod:
-                return new ItemStack(Registry.doubleMOXCell).copy();
+                return new ItemStack(Registry.doubleUranium235Cell).copy();
             case QuadRod:
-                return new ItemStack(Registry.quadMOXCell).copy();
+                return new ItemStack(Registry.quadUranium235Cell).copy();
             case NearDepletedRod:
-                return new ItemStack(Registry.nearDepletedMOXCell).copy();
+                return new ItemStack(Registry.nearDepletedUranium235Cell).copy();
             case IsotopicRod:
-                return new ItemStack(Registry.isotopicMOXCell).copy();
+                return new ItemStack(Registry.isotopicUranium235Cell).copy();
             case ReEnrichedRod:
-                return new ItemStack(Registry.reEnrichedMOXCell).copy();
+                return new ItemStack(Registry.reEnrichedUranium235Cell).copy();
             default:
                 return ItemStack.EMPTY;
         }
@@ -87,24 +89,24 @@ public class MOX extends UranBaseType {
 
     @Override
     public ItemStack getNewIsotopicRod() {
-        return StackUtil.copyWithDamage(this.getRodType(RodType.IsotopicRod), this.getMaxDurability() - 1);
+        return StackUtil.copyWithDamage(this.getRodType(IsotopicRod), this.getMaxDurability() - 1);
     }
 
     @Override
     public short getRodID(RodType type) {
         switch (type) {
             case SingleRod:
-                return 1114;
+                return 1117;
             case DualRod:
-                return 1108;
+                return 1111;
             case QuadRod:
-                return 1102;
+                return 1105;
             case ReEnrichedRod:
-                return 1132;
+                return 1135;
             case NearDepletedRod:
-                return 1120;
+                return 1123;
             case IsotopicRod:
-                return 1126;
+                return 1129;
             default:
                 return 0;
         }

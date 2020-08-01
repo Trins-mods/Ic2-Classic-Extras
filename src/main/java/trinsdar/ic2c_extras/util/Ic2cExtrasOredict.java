@@ -30,6 +30,7 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("crushedPurifiedAluminium", Registry.aluminumPurifiedCrushedOre);
         OreDictionary.registerOre("crushedPurifiedNickel", Registry.nickelPurifiedCrushedOre);
         OreDictionary.registerOre("crushedPurifiedPlatinum", Registry.platinumPurifiedCrushedOre);
+        OreDictionary.registerOre("crushedCentrifugedUranium", Registry.refinedUraniumOre);
 
         OreDictionary.registerOre("dustTinyIron", Registry.ironTinyDust);
         OreDictionary.registerOre("dustTinyGold", Registry.goldTinyDust);
@@ -66,6 +67,7 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("dustPlutonium", Registry.plutoniumDust);
         OreDictionary.registerOre("dustThorium232", Registry.thorium232Dust);
         OreDictionary.registerOre("dustThorium230", Registry.thorium230Dust);
+        OreDictionary.registerOre("dustUranium", Registry.uraniumDust);
         OreDictionary.registerOre("ingotPlutonium", Registry.plutoniumIngot);
         OreDictionary.registerOre("ingotThorium232", Registry.thorium232Ingot);
         OreDictionary.registerOre("ingotThorium230", Registry.thorium230Ingot);

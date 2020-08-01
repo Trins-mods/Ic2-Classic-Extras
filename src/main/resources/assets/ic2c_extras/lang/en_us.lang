@@ -94,6 +94,7 @@ item.thorium232Dust.name=Thorium 232 Dust
 item.thorium230Ingot.name=Thorium 230 Ingot
 item.thorium230Dust.name=Thorium 230 Dust
 item.plutoniumIngot.name=Plutonium Ingot
+item.uraniumDust.name=Uranium Dust
 item.moxFuel.name=MOX Fuel
 item.copperPlate.name=Copper Plate
 item.tinPlate.name=Tin Plate
@@ -152,6 +153,13 @@ item.quadThorium230Cell.name=Quad Thorium 230 Cell
 item.nearDepletedThorium230Cell.name=Near-depleted Thorium 230 Cell
 item.isotopicThorium230Cell.name=Depleted Thorium 230 Isotope Cell
 item.reEnrichedThorium230Cell.name=Re-Enriched Thorium 230 Cell
+
+item.singleUranium235Cell.name=Uranium 235 Cell
+item.doubleUranium235Cell.name=Dual Uranium 235 Cell
+item.quadUranium235Cell.name=Quad Uranium 235 Cell
+item.nearDepletedUranium235Cell.name=Near-depleted Uranium 235 Cell
+item.isotopicUranium235Cell.name=Depleted Uranium 235 Isotope Cell
+item.reEnrichedUranium235Cell.name=Re-Enriched Uranium 235 Cell
 
 item.nickelCrushedOre.name=Crushed Nickel Ore
 item.nickelPurifiedCrushedOre.name=Purified Crushed Nickel Ore
