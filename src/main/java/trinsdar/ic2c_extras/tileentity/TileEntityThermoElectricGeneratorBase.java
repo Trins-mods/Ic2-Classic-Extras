@@ -1,5 +1,8 @@
 package trinsdar.ic2c_extras.tileentity;
 
+import gtclassic.api.interfaces.IGTDebuggableTile;
+import ic2.api.energy.event.EnergyTileLoadEvent;
+import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityGeneratorBase;
@@ -17,13 +20,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Optional;
 import trinsdar.ic2c_extras.container.ContainerThermoElectricGenerator;
 import trinsdar.ic2c_extras.items.ItemRTG;
 import trinsdar.ic2c_extras.util.Registry;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
-public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGeneratorBase {
+import java.util.Map;
+
+@Optional.Interface(modid = "gtclassic", iface = "gtclassic.api.interfaces.IGTDebuggableTile", striprefs = true)
+public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGeneratorBase implements IGTDebuggableTile {
 
     public TileEntityThermoElectricGeneratorBase() {
         super(6);
@@ -55,18 +63,8 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
     public abstract BasicItemFilter getFilter();
 
     @Override
-    public double getOfferedEnergy() {
-        return production == 0 ? Math.min(this.storage, 32) : Math.min(this.storage, production);
-    }
-
-    @Override
     public int getOutput() {
         return this.production;
-    }
-
-    @Override
-    public void drawEnergy(double amount) {
-        super.drawEnergy(amount);
     }
 
     public abstract int getProduction();
@@ -92,10 +90,19 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
     }
 
     @Override
+    public void onLoaded() {
+        super.onLoaded();
+    }
+
+    @Override
     public void update() {
-        super.update();
         int oldEnergy = this.storage;
-        this.production = this.getProduction();
+        int newProduction = this.getProduction();
+        if (this.production != newProduction){
+            MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
+            this.production = newProduction;
+            MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+        }
         boolean active = this.gainEnergy();
         if (this.storage > 0) {
             if (this.storage > this.maxStorage) {
@@ -182,6 +189,11 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
         return new ContainerThermoElectricGenerator(entityPlayer.inventory, this);
     }
 
+    @Override
+    public void getData(Map<String, Boolean> map) {
+        map.put("Production: " + production, true);
+    }
+
     public static class TileEntityThermoElectricGeneratorMkI extends TileEntityThermoElectricGeneratorBase {
         public static BasicItemFilter filter = new BasicItemFilter(new ItemStack(Registry.thoriumRTG));
         public TileEntityThermoElectricGeneratorMkI() {
@@ -211,6 +223,11 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
                 return 0;
             }
             return (int) Math.pow(2, count);
+        }
+
+        @Override
+        public double getOfferedEnergy() {
+            return Math.min(this.storage, 32);
         }
     }
 
@@ -244,6 +261,11 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
                 return 0;
             }
             return (int) Math.pow(2, count);
+        }
+
+        @Override
+        public double getOfferedEnergy() {
+            return Math.min(this.storage, 128);
         }
     }
 }
