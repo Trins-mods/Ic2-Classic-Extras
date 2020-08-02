@@ -30,6 +30,8 @@ import java.util.Map;
 @Optional.Interface(modid = "gtclassic", iface = "gtclassic.api.interfaces.IGTDebuggableTile", striprefs = true)
 public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGeneratorBase implements IGTDebuggableTile {
 
+    protected boolean checkProduction = true;
+
     public TileEntityThermoElectricGeneratorBase() {
         super(6);
         this.tier = 1;
@@ -55,6 +57,12 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
         super.writeToNBT(nbt);
         nbt.setInteger("Production", production);
         return nbt;
+    }
+
+    @Override
+    public void setStackInSlot(int slot, ItemStack stack) {
+        super.setStackInSlot(slot, stack);
+        checkProduction = true;
     }
 
     public abstract BasicItemFilter getFilter();
@@ -94,33 +102,21 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
     @Override
     public void onTick() {
         int oldEnergy = this.storage;
-        int newProduction = this.getProduction();
-        if (this.production != newProduction){
-            this.production = newProduction;
+        if (checkProduction){
+            int newProduction = this.getProduction();
+            if (this.production != newProduction){
+                this.production = newProduction;
+            }
+            checkProduction = false;
         }
+
         boolean active = this.gainEnergy();
         if (this.storage > 0) {
             if (this.storage > this.maxStorage) {
                 this.storage = this.maxStorage;
             }
         }
-
-        if (!this.delayActiveUpdate()) {
-            this.setActive(active);
-        } else {
-            if (this.ticksSinceLastActiveUpdate % this.getDelay() == 0) {
-                this.setActive(this.activityMeter > 0);
-                this.activityMeter = 0;
-            }
-
-            if (active) {
-                ++this.activityMeter;
-            } else {
-                --this.activityMeter;
-            }
-
-            ++this.ticksSinceLastActiveUpdate;
-        }
+        this.setActive(active);
 
         if (oldEnergy != this.storage) {
             this.getNetwork().updateTileGuiField(this, "storage");
