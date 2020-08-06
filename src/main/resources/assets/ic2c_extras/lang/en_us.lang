@@ -108,6 +108,7 @@ item.steelPlate.name=Steel Plate
 item.diamondDust.name=Diamond Dust
 item.energiumDust.name=Energium Dust
 item.denseIronPlate.name=Dense Iron Plate
+item.denseLeadPlate.name=Dense Lead Plate
 item.blankPress.name=Blank Press
 item.rollingPress.name=Rolling Press
 item.extrudingPress.name=Extruding Press

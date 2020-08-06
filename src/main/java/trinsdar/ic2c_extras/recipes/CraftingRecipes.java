@@ -126,6 +126,8 @@ public class CraftingRecipes {
 
         recipes.addRecipe(new ItemStack(Registry.energiumDust, 9), "RRR", "RDR", "RRR", 'R', new RecipeInputOreDict("dustRedstone", 2), 'D', "dustDiamond");
 
+        recipes.addRecipe(Ic2Items.reactorChamber.copy(), " L ", "LML", " L ", 'L', "plateDenseLead", 'M', "machineBlockBasic");
+
         if (Loader.isModLoaded("gtclassic")) {
             recipes.addRecipe(Ic2Items.battery,
                     " C ", "TRT", "TRT", 'C', Ic2Items.copperCable, 'R', Items.REDSTONE, 'T', "casingTin");

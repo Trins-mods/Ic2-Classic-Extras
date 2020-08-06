@@ -243,6 +243,7 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumIngot));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.moxFuel));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.denseIronPlate));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.denseLeadPlate));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.blankPress));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.rollingPress));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.extrudingPress));

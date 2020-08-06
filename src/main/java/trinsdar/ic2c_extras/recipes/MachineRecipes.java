@@ -367,8 +367,10 @@ public class MachineRecipes {
             ClassicRecipes.compressor.removeRecipe(new RecipeInputOreDict("ingotCopper", 8));
             TileEntityCompressor.addRecipe("plateCopper", 9, Ic2Items.denseCopperPlate);
             TileEntityCompressor.addRecipe("plateIron", 9, new ItemStack(Registry.denseIronPlate));
+            TileEntityCompressor.addRecipe("plateLead", 9, new ItemStack(Registry.denseLeadPlate));
         } else {
             TileEntityCompressor.addRecipe("ingotIron", 8, new ItemStack(Registry.denseIronPlate));
+            TileEntityCompressor.addRecipe("ingotLead", 8, new ItemStack(Registry.denseLeadPlate));
         }
     }
 
