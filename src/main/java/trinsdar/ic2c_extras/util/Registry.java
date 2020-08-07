@@ -194,6 +194,7 @@ public class Registry {
     public static final ItemMiscs platinumTinyDust = createItem(new ItemMiscs("platinumTinyDust", 2, "platinum"));
     public static final ItemMiscs refinedUraniumOre = createItem(new ItemMiscs("refinedUraniumOre", 22));
     public static final ItemMiscs uraniumDust = createItem(new ItemMiscs("uraniumDust", 23));
+    public static final ItemMiscs uranium235Ingot = createItem(new ItemMiscs("uranium235Ingot", 24));
     public static final ItemMiscs denseLeadPlate = createItem(new ItemMiscs("denseLeadPlate", 10, "plates"));
 
     public static final ItemDepeletedNuclearRods nearDepletedUOXCell = createItem(new ItemDepeletedNuclearRods("nearDepletedUOXCell", 18));

@@ -2,7 +2,6 @@ package trinsdar.ic2c_extras.items.urantypes;
 
 import ic2.core.item.reactor.uranTypes.UranBaseType;
 import ic2.core.platform.lang.components.base.LocaleComp;
-import ic2.core.platform.registry.Ic2Items;
 import ic2.core.platform.registry.Ic2Lang;
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.util.misc.StackUtil;
@@ -64,7 +63,7 @@ public class Uranium235 extends UranBaseType {
 
     @Override
     public ItemStack getUraniumIngot() {
-        return new ItemStack(Registry.uranium235);
+        return new ItemStack(Registry.uranium235Ingot);
     }
 
     @Override
