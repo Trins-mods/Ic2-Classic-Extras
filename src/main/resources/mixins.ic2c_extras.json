@@ -1,0 +1,14 @@
+{
+  "package": "trinsdar.ic2c_extras.mixins",
+  "required": true,
+  "refmap": "mixins.ic2c_extras.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.6",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinTileEntityNuclearReactorElectric"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

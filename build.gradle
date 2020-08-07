@@ -2,17 +2,15 @@ buildscript {
     repositories {
         jcenter()
         maven { url = "http://files.minecraftforge.net/maven" }
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
+        maven { url "http://repo.spongepowered.org/maven" }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-        classpath "com.wynprice.cursemaven:CurseMaven:2.1.0"
+        classpath "org.spongepowered:mixingradle:0.6-SNAPSHOT"
     }
 }
-apply plugin: "com.wynprice.cursemaven"
 apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: "org.spongepowered.mixin"
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
@@ -40,6 +38,7 @@ minecraft {
 }
 
 repositories{
+    maven { url "https://dist.creeper.host/Sponge/maven" }
     maven { // JEI
         name 'DVS1 Maven FS'
         url 'http://dvs1.progwml6.com/files/maven/'
@@ -57,12 +56,25 @@ repositories{
         url = "http://maven.blamejared.com"
     }
     maven {
+        url = "https://www.cursemaven.com"
+    }
+    maven {
         name = "buildcraft"
         url = "http://www.mod-buildcraft.com/maven/"
     }
 }
 
 dependencies {
+    implementation 'org.jetbrains:annotations:19.0.0'
+    compile("org.spongepowered:mixin:0.7.11-SNAPSHOT"){
+        exclude module: "asm-commons"
+        exclude module: "asm-tree"
+        exclude module: "launchwrapper"
+        exclude module: "guava"
+        exclude module: "log4j-core"
+        exclude module: "gson"
+        exclude module: "commons-io"
+    }
     deobfProvided "mezz.jei:jei_${forgemc_version}:${jei_version}:api"
     runtime "mezz.jei:jei_${forgemc_version}:${jei_version}"
     deobfProvided "com.mcmoddev:OreSpawn:${mc_version}-${orespawn_version}"

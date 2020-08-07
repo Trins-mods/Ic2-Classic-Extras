@@ -8,6 +8,9 @@ import ic2.core.platform.lang.components.base.LocaleComp;
 
 public class Ic2cExtrasLang {
     public static final LocaleComp HEAT = new LocaleTileInfoComp("tileInfo.heatAmount.name");
+    public static final LocaleComp REACTOR_HEAT = new LocaleTileInfoComp("tileInfo.reactorHeatAmount.name");
+    public static final LocaleComp REACTOR_EU = new LocaleTileInfoComp("tileInfo.reactorEUPerTick.name");
+    public static final LocaleComp REACTOR_THERMOMETER = new LocaleTileInfoComp("tileInfo.reactorNeedThermometer.name");
     public static final LocaleComp JEI_HEAT = new LocaleJEIInfoComp("jeiInfo.heat.name");
 
     public static final LocaleComp THERMAL_CENTRIFUGE = new LocaleBlockComp("tile.thermalCentrifuge");
