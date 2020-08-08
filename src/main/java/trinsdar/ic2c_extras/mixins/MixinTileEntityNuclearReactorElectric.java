@@ -7,6 +7,7 @@ import ic2.core.inventory.container.ContainerIC2;
 import net.minecraft.entity.player.EntityPlayer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import trinsdar.ic2c_extras.container.ContainerNuclearReactorElectricNew;
 
 @Mixin(TileEntityNuclearReactorElectric.class)
 public abstract class MixinTileEntityNuclearReactorElectric extends TileEntityNuclearReactorBase {
@@ -20,7 +21,7 @@ public abstract class MixinTileEntityNuclearReactorElectric extends TileEntityNu
 
     @Override
     public ContainerIC2 getGuiContainer(EntityPlayer player) {
-        return super.getGuiContainer(player);
+        return new ContainerNuclearReactorElectricNew(player.inventory, this);
     }
 
     @Override

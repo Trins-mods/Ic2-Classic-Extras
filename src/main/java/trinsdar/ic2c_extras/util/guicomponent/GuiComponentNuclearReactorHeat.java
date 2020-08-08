@@ -1,6 +1,6 @@
 package trinsdar.ic2c_extras.util.guicomponent;
 
-import ic2.core.block.generator.tile.TileEntityNuclearReactorElectric;
+import ic2.core.block.base.tile.TileEntityNuclearReactorBase;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
 import ic2.core.platform.player.PlayerHandler;
@@ -13,8 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GuiComponentNuclearReactorHeat extends GuiComponent {
-    TileEntityNuclearReactorElectric reactor;
-    public GuiComponentNuclearReactorHeat(TileEntityNuclearReactorElectric tile) {
+    TileEntityNuclearReactorBase reactor;
+    public GuiComponentNuclearReactorHeat(TileEntityNuclearReactorBase tile) {
         super(new Box2D(7, 136, 100, 13));
         this.reactor = tile;
     }
@@ -53,8 +53,9 @@ public class GuiComponentNuclearReactorHeat extends GuiComponent {
     public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
         if (this.isMouseOver(mouseX, mouseY)) {
             if (PlayerHandler.getClientPlayerHandler().hasThermometer()){
-                tooltips.add(Ic2cExtrasLang.HEAT
-                        .getLocalizedFormatted(this.reactor.getHeat(), this.reactor.getMaxHeat()));
+                float heat = ((float)this.reactor.getHeat() / (float)this.reactor.getMaxHeat()) * 100f;
+                tooltips.add(Ic2cExtrasLang.REACTOR_HEAT
+                        .getLocalizedFormatted(heat + " %"));
             } else {
                 tooltips.add(Ic2cExtrasLang.REACTOR_THERMOMETER.getLocalized());
             }

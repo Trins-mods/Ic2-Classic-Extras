@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.container;
 
+import ic2.core.block.base.tile.TileEntityNuclearReactorBase;
 import ic2.core.block.generator.tile.TileEntityNuclearReactorElectric;
 import ic2.core.inventory.container.ContainerComponent;
 import ic2.core.inventory.gui.GuiIC2;
@@ -15,9 +16,9 @@ import trinsdar.ic2c_extras.util.guicomponent.GuiComponentNuclearReactorEuPerTic
 import trinsdar.ic2c_extras.util.guicomponent.GuiComponentNuclearReactorHeat;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
-public class ContainerNuclearReactorElectricNew extends ContainerComponent<TileEntityNuclearReactorElectric> {
+public class ContainerNuclearReactorElectricNew extends ContainerComponent<TileEntityNuclearReactorBase> {
     public int size;
-    public ContainerNuclearReactorElectricNew(InventoryPlayer player, TileEntityNuclearReactorElectric tile) {
+    public ContainerNuclearReactorElectricNew(InventoryPlayer player, TileEntityNuclearReactorBase tile) {
         super(tile);
         this.size = tile.getReactorSize();
         int x = 0;
@@ -36,13 +37,15 @@ public class ContainerNuclearReactorElectricNew extends ContainerComponent<TileE
             }
         }
         this.addPlayerInventory(player, 19, 77);
-        this.addComponent(new GuiComponentNuclearReactorEuPerTick(tile));
+        if (tile instanceof TileEntityNuclearReactorElectric){
+            this.addComponent(new GuiComponentNuclearReactorEuPerTick((TileEntityNuclearReactorElectric) tile));
+        }
         this.addComponent(new GuiComponentNuclearReactorHeat(tile));
     }
 
     @SideOnly(Side.CLIENT)
     public void onGuiLoaded(GuiIC2 gui) {
-        gui.setMaxGuiY(243);
+        gui.setMaxGuiXY(212, 243);
         gui.dissableInvName();
     }
 
