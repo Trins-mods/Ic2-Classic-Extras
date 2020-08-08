@@ -9,13 +9,14 @@ import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.IFluidTank;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import trinsdar.ic2c_extras.container.ContainerNuclearReactorNew;
 
 @Mixin(TileEntityNuclearSteamReactor.class)
@@ -37,11 +38,12 @@ public abstract class MixinTileEntityNuclearSteamReactor extends TileEntityNucle
         }
     };
 
-    IFluidHandler fluidHandler2;
+    @Shadow
+    IFluidHandler fluidHandler;
 
-    public MixinTileEntityNuclearSteamReactor(){
-        super();
-        fluidHandler2 = new FluidHandlerSteamReactor(water2, steam2);
+    @Inject(method = "<init>", at = @At("RETURN"))
+    public void onConstruction(CallbackInfo info){
+        fluidHandler = new FluidHandlerSteamReactor(water2, steam2);
         this.addGuiFields("heat", "maxHeat", "steam2", "water2");
         water2.addListener(this);
         steam2.addListener(this);
@@ -79,10 +81,6 @@ public abstract class MixinTileEntityNuclearSteamReactor extends TileEntityNucle
         super.readFromNBT(nbt);
         this.water2.readFromNBT(nbt.getCompoundTag("WaterTank"));
         this.steam2.readFromNBT(nbt.getCompoundTag("SteamTank"));
-    }
-
-    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.fluidHandler2) : super.getCapability(capability, facing);
     }
 
     public void updateReactorSize() {

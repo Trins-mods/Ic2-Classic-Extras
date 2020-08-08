@@ -24,6 +24,6 @@ public class GuiComponentSteamReactorString extends GuiComponent {
 
     @Override
     public void drawFrontground(GuiIC2 gui, int mouseX, int mouseY) {
-        gui.drawString(Ic2cExtrasLang.REACTOR_STEAM.getLocalizedFormatted(reactor.getReactorEUEnergyOutput()), this.getPosition().getX() + 3, this.getPosition().getY() + 3, Color.cyan.hashCode());
+        gui.drawString(Ic2cExtrasLang.REACTOR_STEAM.getLocalizedFormatted((int)reactor.getReactorEUEnergyOutput()), this.getPosition().getX() + 3, this.getPosition().getY() + 3, Color.cyan.hashCode());
     }
 }
