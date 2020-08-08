@@ -125,3 +125,20 @@ processResources {
         exclude 'mcmod.info'
     }
 }
+
+mixin {
+    add sourceSets.main, "mixins.ic2c_extras.refmap.json"
+}
+
+
+jar {
+    classifier "thin"
+    manifest.attributes(
+            "FMLCorePlugin": "trinsdar.ic2c_extras.Ic2cExtrasLoadingPlugin",
+            "FMLCorePluginContainsFMLMod": "true"
+    )
+}
+
+artifacts {
+    archives jar
+}
