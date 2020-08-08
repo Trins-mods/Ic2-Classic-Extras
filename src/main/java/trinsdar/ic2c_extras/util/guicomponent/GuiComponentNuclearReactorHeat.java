@@ -53,7 +53,8 @@ public class GuiComponentNuclearReactorHeat extends GuiComponent {
     public void onToolTipCollecting(GuiIC2 gui, int mouseX, int mouseY, List<String> tooltips) {
         if (this.isMouseOver(mouseX, mouseY)) {
             if (PlayerHandler.getClientPlayerHandler().hasThermometer()){
-                float heat = ((float)this.reactor.getHeat() / (float)this.reactor.getMaxHeat()) * 100f;
+                float percent = ((float)this.reactor.getHeat() / (float)this.reactor.getMaxHeat()) * 100f;
+                float heat = (Math.round(percent * 100) / 100.0f);
                 tooltips.add(Ic2cExtrasLang.REACTOR_HEAT
                         .getLocalizedFormatted(heat + " %"));
             } else {
