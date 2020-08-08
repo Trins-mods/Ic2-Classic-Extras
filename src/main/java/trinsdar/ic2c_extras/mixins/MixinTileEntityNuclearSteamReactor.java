@@ -8,6 +8,7 @@ import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import org.spongepowered.asm.mixin.Mixin;
@@ -38,6 +39,14 @@ public abstract class MixinTileEntityNuclearSteamReactor extends TileEntityNucle
         this.addGuiFields("heat", "maxHeat", "steam", "water");
         water.addListener(this);
         steam.addListener(this);
+    }
+
+    public FluidTank getWaterTank() {
+        return this.water;
+    }
+
+    public FluidTank getSteamTank() {
+        return this.steam;
     }
 
     @Override
