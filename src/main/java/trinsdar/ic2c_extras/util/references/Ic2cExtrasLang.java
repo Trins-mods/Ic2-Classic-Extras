@@ -10,6 +10,7 @@ public class Ic2cExtrasLang {
     public static final LocaleComp HEAT = new LocaleTileInfoComp("tileInfo.heatAmount.name");
     public static final LocaleComp REACTOR_HEAT = new LocaleTileInfoComp("tileInfo.reactorHeatAmount.name");
     public static final LocaleComp REACTOR_EU = new LocaleTileInfoComp("tileInfo.reactorEUPerTick.name");
+    public static final LocaleComp REACTOR_STEAM = new LocaleTileInfoComp("tileInfo.reactorSteamPerTick.name");
     public static final LocaleComp REACTOR_THERMOMETER = new LocaleTileInfoComp("tileInfo.reactorNeedThermometer.name");
     public static final LocaleComp JEI_HEAT = new LocaleJEIInfoComp("jeiInfo.heat.name");
 

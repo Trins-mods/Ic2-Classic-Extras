@@ -179,6 +179,7 @@ itemGroup.ic2c_extras=Ic2 Classic Extras
 tileInfo.heatAmount.name=Heat: %1$s / %2$s
 tileInfo.reactorHeatAmount.name=Core Temperature: %1$s
 tileInfo.reactorEUPerTick.name=Output: %1$s EU/t
+tileInfo.reactorSteamPerTick.name=Output: %1$s Steam/t
 tileInfo.reactorNeedThermometer.name=Thermometer needed in hotbar or helmet to see heat percentage.
 tileInfo.thermoElectricGeneratorMkII.name=Only accepts plutonium rtgs.
 tileInfo.thermoElectricGenerator.name=Only accepts thorium rtgs.

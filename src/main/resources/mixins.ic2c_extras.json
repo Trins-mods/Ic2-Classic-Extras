@@ -6,7 +6,8 @@
   "minVersion": "0.6",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "MixinTileEntityNuclearReactorElectric"
+    "MixinTileEntityNuclearReactorElectric",
+    "MixinTileEntityNuclearSteamReactor"
   ],
   "injectors": {
     "defaultRequire": 1
