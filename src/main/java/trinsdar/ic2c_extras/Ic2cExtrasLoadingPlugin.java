@@ -12,7 +12,6 @@ import java.io.File;
 import java.util.Map;
 
 @IFMLLoadingPlugin.MCVersion(ForgeVersion.mcVersion)
-@IFMLLoadingPlugin.SortingIndex(10337)
 public class Ic2cExtrasLoadingPlugin implements IFMLLoadingPlugin {
     public Ic2cExtrasLoadingPlugin(){
         try {
