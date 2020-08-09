@@ -71,7 +71,7 @@ repositories{
 
 dependencies {
     implementation 'org.jetbrains:annotations:19.0.0'
-    implementation("org.spongepowered:mixin:0.8-SNAPSHOT"){
+    compile("org.spongepowered:mixin:0.8-SNAPSHOT"){
         exclude module: "asm-commons"
         exclude module: "asm-tree"
         exclude module: "launchwrapper"
@@ -149,7 +149,6 @@ jar {
             "FMLCorePluginContainsFMLMod": "true",
             "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
             "TweakOrder": 0,
-            "ForceLoadAsMod": true,
             "MixinConfigs": "mixins.ic2c_extras.json"
     )
 }

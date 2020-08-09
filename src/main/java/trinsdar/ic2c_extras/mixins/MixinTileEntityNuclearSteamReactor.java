@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.mixins;
 
+import ic2.api.classic.network.adv.NetworkField;
 import ic2.core.block.base.tile.TileEntityNuclearReactorBase;
 import ic2.core.block.generator.tile.TileEntityNuclearSteamReactor;
 import ic2.core.fluid.FluidHandlerSteamReactor;
@@ -24,9 +25,11 @@ public abstract class MixinTileEntityNuclearSteamReactor extends TileEntityNucle
     IFluidHandler fluidHandler;
 
     @Shadow
+    @NetworkField(index = 5)
     private FluidTank water;
 
     @Shadow
+    @NetworkField(index = 6)
     private FluidTank steam;
 
     @Inject(method = "<init>", at = @At("RETURN"))
