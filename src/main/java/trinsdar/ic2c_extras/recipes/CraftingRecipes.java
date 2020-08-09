@@ -46,6 +46,7 @@ public class CraftingRecipes {
         initShapelessRecipes();
         initReplaceRecipes();
         initCompressRecipes();
+        removeIc2Recipes();
     }
 
     public static void initShapedRecipes() {
@@ -137,6 +138,16 @@ public class CraftingRecipes {
         }
 
 
+    }
+
+    public static void removeIc2Recipes(){
+        if (Ic2cExtrasConfig.removeLossyWrenchMechanic){
+            Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.precisionwrench_-1943783685");
+            Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.precisionwrench_-1322002202");
+            if (Loader.isModLoaded("gravisuit")){
+                Ic2cExtrasRecipes.overrideRecipe("gravisuit", "shaped_item.gravitool_40257720", GameRegistry.makeItemStack("gravisuit:gravitool", 0, 1, null), "CHC", "AEA", "WcT", 'C', Ic2Items.carbonPlate, 'H', Ic2Items.electricHoe, 'A', Ic2Items.advancedAlloy, 'E', Ic2Items.energyCrystal, 'W', Ic2Items.electricWrench, 'c', "circuitBasic", 'T', Ic2Items.electricTreeTap);
+            }
+        }
     }
 
     public static void initReplaceRecipes() {

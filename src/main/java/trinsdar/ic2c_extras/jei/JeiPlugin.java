@@ -1,7 +1,7 @@
 package trinsdar.ic2c_extras.jei;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
-import ic2.core.IC2;
+import ic2.core.platform.registry.Ic2Items;
 import ic2.jeiIntigration.SubModul;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiRuntime;
@@ -139,7 +139,10 @@ public class JeiPlugin implements IModPlugin {
             registry.addRecipes(TileEntityFluidCanningMachine.fluidCanning.getRecipeList(), fluidCanningId);
 
             IIngredientBlacklist blacklist = registry.getJeiHelpers().getIngredientBlacklist();
-            if (IC2.config.getFlag("NonRadiation")) {
+            if (Ic2cExtrasConfig.removeLossyWrenchMechanic){
+                blacklist.addIngredientToBlacklist(Ic2Items.precisionWrench);
+            }
+            if (Ic2cExtrasConfig.disableNonRadiation) {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.oreWashingPlant));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.thermalCentrifuge));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.roller));

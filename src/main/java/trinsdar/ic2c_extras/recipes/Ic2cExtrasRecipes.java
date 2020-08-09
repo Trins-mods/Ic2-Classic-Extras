@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.recipes;
 
+import gtclassic.GTMod;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.recipe.IRecipeInput;
@@ -10,6 +11,7 @@ import ic2.core.block.machine.recipes.managers.BasicMachineRecipeList;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.CommonFilters;
 import ic2.core.item.reactor.uranTypes.IUranium;
+import ic2.core.item.recipe.AdvRecipe;
 import ic2.core.item.recipe.AdvRecipeBase;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
@@ -28,6 +30,7 @@ import net.minecraft.world.storage.loot.functions.LootFunction;
 import net.minecraft.world.storage.loot.functions.SetMetadata;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistry;
@@ -237,5 +240,34 @@ public class Ic2cExtrasRecipes {
         } catch (IllegalAccessException e) {
             IC2CExtras.logger.info("Accessed AdvRecipeBase class but access denied");
         }
+    }
+
+    public static void overrideRecipe(String modid, String recipeId, ItemStack output, Object... input) {
+        Loader loader = Loader.instance();
+        ModContainer old = loader.activeModContainer();
+        loader.setActiveModContainer(loader.getIndexedModList().get(modid));
+        ((ForgeRegistry<?>) ForgeRegistries.RECIPES).remove(new ResourceLocation(modid, recipeId));
+        Field duplicatesf = null;
+        try {
+            duplicatesf = AdvRecipeBase.class.getDeclaredField("duplicates");
+        } catch (NoSuchFieldException e) {
+            GTMod.logger.info("Trying to access Advanced recipes has failed : (");
+        } catch (SecurityException e) {
+            GTMod.logger.info("AdvRecipeBase security deployed");
+        }
+        if (duplicatesf != null) {
+            duplicatesf.setAccessible(true);
+        }
+        try {
+            if (duplicatesf != null) {
+                ((Set<ResourceLocation>) duplicatesf.get(duplicatesf)).remove(new ResourceLocation(modid, recipeId));
+            }
+        } catch (IllegalArgumentException e) {
+            GTMod.logger.info("Accessed AdvRecipeBase class but field getter failed");
+        } catch (IllegalAccessException e) {
+            GTMod.logger.info("Accessed AdvRecipeBase class but access denied");
+        }
+        AdvRecipe.overrideAndGet(recipeId, output, input);
+        loader.setActiveModContainer(old);
     }
 }
