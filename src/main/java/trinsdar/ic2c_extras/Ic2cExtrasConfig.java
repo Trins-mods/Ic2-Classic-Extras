@@ -63,6 +63,9 @@ public class Ic2cExtrasConfig {
     @Comment("Determines whether dense plates take 9 plates(true) or 8 ingots(false).")
     public static boolean densePlatesTakePlates = false;
     @Config.RequiresMcRestart
+    @Comment("Removes the mechanic of wrenches still having a chance to not give you your machine back")
+    public static boolean removeLossyWrenchMechanic = true;
+    @Config.RequiresMcRestart
     @Comment("Whether or not gtcx compat is enabled.")
     public static boolean compatGTCX = true;
 }

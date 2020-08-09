@@ -5,15 +5,12 @@ import ic2.api.classic.addon.PluginBase;
 import ic2.api.classic.addon.misc.IOverrideObject;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockMetal;
-import ic2.core.platform.registry.ItemAPI;
 import ic2.core.util.misc.ModulLoader;
-import ic2.core.util.misc.StackUtil;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.blocks.BlockUraniumOre;
 import trinsdar.ic2c_extras.items.override.ItemMisc2;
-import trinsdar.ic2c_extras.util.Registry;
+import trinsdar.ic2c_extras.items.override.ItemToolWrenchLossless;
 
 import java.util.Map;
 
@@ -28,5 +25,6 @@ public class IC2CExtrasPlugin extends PluginBase {
     public void preInit(FMLPreInitializationEvent fmlPreInitializationEvent, Map<String, IOverrideObject> map) {
         map.put("blockMetal", new ModulLoader.BlockOverride(new BlockUraniumOre().setCreativeTab(IC2.tabIC2), ItemBlockMetal.class));
         map.put("itemMisc", new ModulLoader.ItemOverride(new ItemMisc2().setCreativeTab(IC2.tabIC2)));
+        map.put("itemToolWrench", new ModulLoader.ItemOverride(new ItemToolWrenchLossless().setCreativeTab(IC2.tabIC2)));
     }
 }
