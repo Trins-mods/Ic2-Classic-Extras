@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import trinsdar.ic2c_extras.container.ContainerNuclearReactorNew;
 
-@Mixin(TileEntityNuclearReactorElectric.class)
+@Mixin(value = TileEntityNuclearReactorElectric.class, remap = false)
 public abstract class MixinTileEntityNuclearReactorElectric extends TileEntityNuclearReactorBase {
     @Inject(method = "<init>", at = @At("RETURN"))
     public void onConstruction(CallbackInfo info){

@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import trinsdar.ic2c_extras.container.ContainerNuclearReactorNew;
 
-@Mixin(TileEntityNuclearSteamReactor.class)
+@Mixin(value = TileEntityNuclearSteamReactor.class, remap = false)
 public abstract class MixinTileEntityNuclearSteamReactor extends TileEntityNuclearReactorBase implements ITankListener {
     @NetworkField(index = 3)
     private IC2Tank water2 = new IC2Tank(2000){

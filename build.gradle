@@ -3,14 +3,19 @@ buildscript {
         jcenter()
         maven { url = "http://files.minecraftforge.net/maven" }
         maven { url "http://repo.spongepowered.org/maven" }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
         classpath "org.spongepowered:mixingradle:0.6-SNAPSHOT"
+        classpath "com.github.jengelman.gradle.plugins:shadow:2.0.4"
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: "org.spongepowered.mixin"
+apply plugin: "com.github.johnrengelman.shadow"
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
@@ -66,7 +71,7 @@ repositories{
 
 dependencies {
     implementation 'org.jetbrains:annotations:19.0.0'
-    compile("org.spongepowered:mixin:0.7.11-SNAPSHOT"){
+    implementation("org.spongepowered:mixin:0.8-SNAPSHOT"){
         exclude module: "asm-commons"
         exclude module: "asm-tree"
         exclude module: "launchwrapper"
@@ -102,6 +107,7 @@ dependencies {
     deobfCompile("com.mod-buildcraft:buildcraft-main:7.99.24.1")
 
     //baubles
+    deobfCompile "curse.maven:gtclassic:3009895"
     compile "curse.maven:baubles:2518667"
     compile "curse.maven:railcraft:2687757"
     compile "curse.maven:ic2-classic:2979877"
@@ -130,15 +136,33 @@ mixin {
     add sourceSets.main, "mixins.ic2c_extras.refmap.json"
 }
 
+reobf {
+    shadowJar {
+        mappingType = "SEARGE"
+    }
+}
 
 jar {
-    classifier ""
+    classifier "thin"
     manifest.attributes(
             "FMLCorePlugin": "trinsdar.ic2c_extras.Ic2cExtrasLoadingPlugin",
-            "FMLCorePluginContainsFMLMod": "true"
+            "FMLCorePluginContainsFMLMod": "true",
+            "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
+            "TweakOrder": 0,
+            "ForceLoadAsMod": true,
+            "MixinConfigs": "mixins.ic2c_extras.json"
     )
+}
+
+shadowJar {
+    classifier ""
+    exclude "LICENSE.txt", "dummyThing"
+    dependencies {
+        include dependency('org.spongepowered:mixin')
+    }
 }
 
 artifacts {
     archives jar
+    archives shadowJar
 }
