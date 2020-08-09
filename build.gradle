@@ -132,7 +132,7 @@ mixin {
 
 
 jar {
-    classifier "thin"
+    classifier ""
     manifest.attributes(
             "FMLCorePlugin": "trinsdar.ic2c_extras.Ic2cExtrasLoadingPlugin",
             "FMLCorePluginContainsFMLMod": "true"
