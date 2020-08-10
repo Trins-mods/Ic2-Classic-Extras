@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras;
+package trinsdar.ic2c_extras.asm;
 
 import net.minecraft.launchwrapper.LaunchClassLoader;
 import net.minecraftforge.common.ForgeVersion;
@@ -12,7 +12,7 @@ import java.io.File;
 import java.util.Map;
 
 @IFMLLoadingPlugin.MCVersion(ForgeVersion.mcVersion)
-@IFMLLoadingPlugin.TransformerExclusions("trinsdar.ic2c_extras")
+@IFMLLoadingPlugin.TransformerExclusions("trinsdar.ic2c_extras.asm")
 @IFMLLoadingPlugin.SortingIndex(1001)
 public class Ic2cExtrasLoadingPlugin implements IFMLLoadingPlugin {
     public Ic2cExtrasLoadingPlugin(){

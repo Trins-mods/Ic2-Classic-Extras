@@ -1,5 +1,5 @@
 {
-  "package": "trinsdar.ic2c_extras.mixins",
+  "package": "trinsdar.ic2c_extras.asm.mixins",
   "required": true,
   "refmap": "mixins.ic2c_extras.refmap.json",
   "target": "@env(DEFAULT)",

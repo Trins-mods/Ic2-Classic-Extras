@@ -36,6 +36,7 @@ minecraft {
     version = "${forgemc_version}-${forge_version}"
     runDir = "run"
     mappings = "${mappings_version}"
+    coreMod = "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin"
 
     replace "@VERSION@", project.version
     replaceIn "IC2CExtras.java"
@@ -145,7 +146,7 @@ reobf {
 jar {
     classifier "thin"
     manifest.attributes(
-            "FMLCorePlugin": "trinsdar.ic2c_extras.Ic2cExtrasLoadingPlugin",
+            "FMLCorePlugin": "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin",
             "FMLCorePluginContainsFMLMod": "true",
             "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
             'ForceLoadAsMod': true,

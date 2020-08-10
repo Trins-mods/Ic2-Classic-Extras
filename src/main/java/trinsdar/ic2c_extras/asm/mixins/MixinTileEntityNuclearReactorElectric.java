@@ -1,4 +1,4 @@
-package trinsdar.ic2c_extras.mixins;
+package trinsdar.ic2c_extras.asm.mixins;
 
 import ic2.core.block.base.tile.TileEntityNuclearReactorBase;
 import ic2.core.block.generator.tile.TileEntityNuclearReactorElectric;
