@@ -130,10 +130,14 @@ public class CraftingRecipes {
         if (Ic2cExtrasConfig.requiredLeadUses){
             recipes.overrideRecipe("shaped_tile.blockreactorchamber_1490756150", Ic2Items.reactorChamber.copy(), " L ", "LML", " L ", 'L', "plateDenseLead", 'M', "machineBlockBasic");
             recipes.overrideRecipe("shaped_tile.blocknuclearreactor_1318009097", Ic2Items.nuclearReactor.copy(), "LCL", "RRR", "LGL", 'L', "plateDenseLead", 'C', "circuitAdvanced", 'R', Ic2Items.reactorChamber, 'G', Ic2Items.generator);
-            recipes.overrideShapelessRecipe("shapeless_item.itemreactorplating_1093967048", Ic2Items.reactorPlating, "ingotLead", Ic2Items.advancedAlloy);
+            if (!Loader.isModLoaded("gtc_expansion") || !Ic2cExtrasConfig.compatGTCX) {
+                recipes.overrideShapelessRecipe("shapeless_item.itemreactorplating_1093967048", Ic2Items.reactorPlating, "ingotLead", Ic2Items.advancedAlloy);
+            }
         } else {
             recipes.addRecipe(Ic2Items.reactorChamber.copy(), " L ", "LML", " L ", 'L', "plateDenseLead", 'M', "machineBlockBasic");
-            recipes.addShapelessRecipe(Ic2Items.reactorPlating, "ingotLead", Ic2Items.advancedAlloy);
+            if (!Loader.isModLoaded("gtc_expansion") || !Ic2cExtrasConfig.compatGTCX) {
+                recipes.addShapelessRecipe(Ic2Items.reactorPlating, "ingotLead", Ic2Items.advancedAlloy);
+            }
         }
 
         recipes.addRecipe(new ItemStack(Registry.containmentBox), "LLL", "LCL", "LLL", 'L', "casingLead", 'C', "chest");
