@@ -127,7 +127,16 @@ public class CraftingRecipes {
 
         recipes.addRecipe(new ItemStack(Registry.energiumDust, 9), "RRR", "RDR", "RRR", 'R', new RecipeInputOreDict("dustRedstone", 2), 'D', "dustDiamond");
 
-        recipes.addRecipe(Ic2Items.reactorChamber.copy(), " L ", "LML", " L ", 'L', "plateDenseLead", 'M', "machineBlockBasic");
+        if (Ic2cExtrasConfig.requiredLeadUses){
+            recipes.overrideRecipe("shaped_tile.blockreactorchamber_1490756150", Ic2Items.reactorChamber.copy(), " L ", "LML", " L ", 'L', "plateDenseLead", 'M', "machineBlockBasic");
+            recipes.overrideRecipe("shaped_tile.blocknuclearreactor_1318009097", Ic2Items.nuclearReactor.copy(), "LCL", "RRR", "LGL", 'L', "plateDenseLead", 'C', "circuitAdvanced", 'R', Ic2Items.reactorChamber, 'G', Ic2Items.generator);
+            recipes.overrideShapelessRecipe("shapeless_item.itemreactorplating_1093967048", Ic2Items.reactorPlating, "ingotLead", Ic2Items.advancedAlloy);
+        } else {
+            recipes.addRecipe(Ic2Items.reactorChamber.copy(), " L ", "LML", " L ", 'L', "plateDenseLead", 'M', "machineBlockBasic");
+            recipes.addShapelessRecipe(Ic2Items.reactorPlating, "ingotLead", Ic2Items.advancedAlloy);
+        }
+
+        recipes.addRecipe(new ItemStack(Registry.containmentBox), "LLL", "LCL", "LLL", 'L', "casingLead", 'C', "chest");
 
         if (Loader.isModLoaded("gtclassic")) {
             recipes.addRecipe(Ic2Items.battery,
@@ -213,18 +222,18 @@ public class CraftingRecipes {
                 Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.itemtincable_1475909484");
                 Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.itembronzecable_1006731162");
             }
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.copperCable, copperBronzeAmount), "plateCopper", Registry.wireCutters);
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.goldCable, goldHVAmount), "plateGold", Registry.wireCutters);
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.tinCable, tinAmount), "plateTin", Registry.wireCutters);
-            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.bronzeCable, copperBronzeAmount), "plateBronze", Registry.wireCutters);
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.copperCable, copperBronzeAmount), "plateCopper", "craftingToolWireCutter");
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.goldCable, goldHVAmount), "plateGold", "craftingToolWireCutter");
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.tinCable, tinAmount), "plateTin", "craftingToolWireCutter");
+            recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.bronzeCable, copperBronzeAmount), "plateBronze", "craftingToolWireCutter");
             if (!IC2.config.getFlag("SteelRecipes")) {
                 if (Ic2cExtrasConfig.cablesTakeSteel) {
-                    recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, goldHVAmount), "plateSteel", Registry.wireCutters);
+                    recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, goldHVAmount), "plateSteel", "craftingToolWireCutter");
                 } else {
-                    recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, goldHVAmount), "plateRefinedIron", Registry.wireCutters);
+                    recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, goldHVAmount), "plateRefinedIron", "craftingToolWireCutter");
                 }
             } else {
-                recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, goldHVAmount), "plateSteel", Registry.wireCutters);
+                recipes.addShapelessRecipe(StackUtil.copyWithSize(Ic2Items.ironCable, goldHVAmount), "plateSteel", "craftingToolWireCutter");
             }
         }
 

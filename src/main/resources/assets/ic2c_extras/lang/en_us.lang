@@ -121,6 +121,7 @@ item.craftingHammer.name=Crafting Hammer
 item.wireCutters.name=Wire Cutters
 item.plutoniumRTG.name=Plutonium RTG
 item.thoriumRTG.name=Thorium RTG
+item.containmentbox.name=Containment Box
 
 item.singleUOXCell.name=UOX Cell
 item.doubleUOXCell.name=Dual UOX Cell

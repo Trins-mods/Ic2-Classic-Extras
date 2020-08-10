@@ -12,12 +12,14 @@ import java.io.File;
 import java.util.Map;
 
 @IFMLLoadingPlugin.MCVersion(ForgeVersion.mcVersion)
+@IFMLLoadingPlugin.TransformerExclusions("trinsdar.ic2c_extras")
+@IFMLLoadingPlugin.SortingIndex(1001)
 public class Ic2cExtrasLoadingPlugin implements IFMLLoadingPlugin {
     public Ic2cExtrasLoadingPlugin(){
         try {
             File mods = new File("./mods");
             for (File file : mods.listFiles()){
-                if (file.getName().startsWith("IC2Classic 1.12")){
+                if (file.getName().startsWith("IC2Classic 1.12") || file.getName().startsWith("IC2Classic+1.12")){
                     loadModJar(file);
                     break;
                 }

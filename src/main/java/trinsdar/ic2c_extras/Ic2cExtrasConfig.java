@@ -66,6 +66,9 @@ public class Ic2cExtrasConfig {
     @Comment("Removes the mechanic of wrenches still having a chance to not give you your machine back")
     public static boolean removeLossyWrenchMechanic = true;
     @Config.RequiresMcRestart
+    @Comment("Enables some recipes like reactor chambers requiring lead")
+    public static boolean requiredLeadUses = false;
+    @Config.RequiresMcRestart
     @Comment("Whether or not gtcx compat is enabled.")
     public static boolean compatGTCX = true;
 }

@@ -3,6 +3,7 @@ package trinsdar.ic2c_extras.events;
 import ic2.core.IC2;
 import ic2.core.entity.IC2Potion;
 import ic2.core.item.armor.electric.ItemArmorQuantumSuit;
+import ic2.core.item.reactor.uranTypes.IUranium;
 import ic2.core.platform.registry.Ic2Items;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,6 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import trinsdar.ic2c_extras.items.ItemNuclearRod;
 import trinsdar.ic2c_extras.util.Registry;
 
 import java.util.ArrayList;
@@ -27,8 +29,11 @@ public class RadiationEvent {
         radiation.add(Ic2Items.uraniumDrop);
         radiation.add(Ic2Items.uraniumIngot);
         radiation.add(new ItemStack(Registry.uranium235));
+        radiation.add(new ItemStack(Registry.uranium235Ingot));
         radiation.add(new ItemStack(Registry.uranium238));
         radiation.add(new ItemStack(Registry.plutoniumDust));
+        radiation.add(new ItemStack(Registry.plutoniumIngot));
+        radiation.add(new ItemStack(Registry.plutoniumRTG));
         radiation.add(new ItemStack(Registry.uranium235TinyDust));
         radiation.add(new ItemStack(Registry.uranium238TinyDust));
         radiation.add(new ItemStack(Registry.plutoniumTinyDust));
@@ -75,6 +80,13 @@ public class RadiationEvent {
         radiation.add(Ic2Items.reactorReEnrichedEnderPearlUraniumRod);
         radiation.add(Ic2Items.reactorReEnrichedNetherStarUraniumRod);
         radiation.add(Ic2Items.reactorReEnrichedCharcoalUraniumRod);
+        for (ItemNuclearRod.NuclearRodVariants variants : ItemNuclearRod.NuclearRodVariants.values()){
+            if (variants != ItemNuclearRod.NuclearRodVariants.THORIUM232 && variants != ItemNuclearRod.NuclearRodVariants.THORIUM230){
+                for (IUranium.RodType type : IUranium.RodType.values()){
+                    radiation.add(ItemNuclearRod.getUran(variants).getRodType(type));
+                }
+            }
+        }
     }
 
     public static Item getItem(String name) {

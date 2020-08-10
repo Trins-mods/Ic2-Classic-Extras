@@ -16,6 +16,7 @@ import trinsdar.ic2c_extras.blocks.BlockMetal;
 import trinsdar.ic2c_extras.blocks.BlockStoneDust;
 import trinsdar.ic2c_extras.blocks.CropPlumbilia;
 import trinsdar.ic2c_extras.items.ItemCasings;
+import trinsdar.ic2c_extras.items.ItemContainmentBox;
 import trinsdar.ic2c_extras.items.ItemCrushedOre;
 import trinsdar.ic2c_extras.items.ItemDepeletedNuclearRods;
 import trinsdar.ic2c_extras.items.ItemIsotopicRod;
@@ -212,6 +213,8 @@ public class Registry {
 
     public static final ItemRTG plutoniumRTG = createItem(new ItemRTG("plutoniumRTG", 129600, 1));
     public static final ItemRTG thoriumRTG = createItem(new ItemRTG("thoriumRTG", 172800, 0));
+
+    public static final ItemContainmentBox containmentBox = createItem(new ItemContainmentBox());
 
     public static final ItemNuclearRod singleUOXCell = createItem(new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.UOX));
     public static final ItemNuclearRod doubleUOXCell = createItem(new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.UOX));
