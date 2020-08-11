@@ -1,6 +1,6 @@
 package trinsdar.ic2c_extras.util.guicomponent;
 
-import ic2.core.block.base.tile.TileEntityNuclearReactorBase;
+import ic2.api.reactor.IReactor;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
 import ic2.core.platform.player.PlayerHandler;
@@ -13,9 +13,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GuiComponentNuclearReactorHeat extends GuiComponent {
-    TileEntityNuclearReactorBase reactor;
-    public GuiComponentNuclearReactorHeat(TileEntityNuclearReactorBase tile) {
-        super(new Box2D(7, 136, 100, 13));
+    IReactor reactor;
+    public GuiComponentNuclearReactorHeat(IReactor tile, Box2D box) {
+        super(box);
         this.reactor = tile;
     }
 

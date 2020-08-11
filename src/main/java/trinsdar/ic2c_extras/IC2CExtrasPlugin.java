@@ -8,7 +8,11 @@ import ic2.core.item.block.ItemBlockMetal;
 import ic2.core.util.misc.ModulLoader;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import trinsdar.ic2c_extras.blocks.BlockEnergyStorage;
+import trinsdar.ic2c_extras.blocks.BlockPersonalStorage;
 import trinsdar.ic2c_extras.blocks.BlockUraniumOre;
+import trinsdar.ic2c_extras.items.override.ItemBlockEnergyStorage;
+import trinsdar.ic2c_extras.items.override.ItemBlockPersonalStorage;
 import trinsdar.ic2c_extras.items.override.ItemElectricToolWrenchLossless;
 import trinsdar.ic2c_extras.items.override.ItemMisc2;
 import trinsdar.ic2c_extras.items.override.ItemToolWrenchLossless;
@@ -25,6 +29,8 @@ public class IC2CExtrasPlugin extends PluginBase {
     @Override
     public void preInit(FMLPreInitializationEvent fmlPreInitializationEvent, Map<String, IOverrideObject> map) {
         map.put("blockMetal", new ModulLoader.BlockOverride(new BlockUraniumOre().setCreativeTab(IC2.tabIC2), ItemBlockMetal.class));
+        map.put("blockElectric", new ModulLoader.BlockOverride(new BlockEnergyStorage().setCreativeTab(IC2.tabIC2), ItemBlockEnergyStorage.class));
+        map.put("blockPersonal", new ModulLoader.BlockOverride(new BlockPersonalStorage().setCreativeTab(IC2.tabIC2), ItemBlockPersonalStorage.class));
         map.put("itemMisc", new ModulLoader.ItemOverride(new ItemMisc2().setCreativeTab(IC2.tabIC2)));
         map.put("itemToolWrench", new ModulLoader.ItemOverride(new ItemToolWrenchLossless().setCreativeTab(IC2.tabIC2)));
         map.put("itemToolWrenchElectric", new ModulLoader.ItemOverride(new ItemElectricToolWrenchLossless().setCreativeTab(IC2.tabIC2)));

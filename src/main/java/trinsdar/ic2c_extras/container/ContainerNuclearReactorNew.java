@@ -42,9 +42,9 @@ public class ContainerNuclearReactorNew extends ContainerComponent<TileEntityNuc
                 x = 0;
             }
         }
-        this.addPlayerInventory(player, 19, 77);
+        this.addPlayerInventory(player, 18, 77);
         if (tile instanceof TileEntityNuclearReactorElectric){
-            this.addComponent(new GuiComponentNuclearReactorEuPerTick((TileEntityNuclearReactorElectric) tile));
+            this.addComponent(new GuiComponentNuclearReactorEuPerTick(tile, new Box2D(108, 136, 97, 13)));
         }
         if (tile instanceof TileEntityNuclearSteamReactor){
             TileEntityNuclearSteamReactor steamReactor = (TileEntityNuclearSteamReactor) tile;
@@ -52,7 +52,7 @@ public class ContainerNuclearReactorNew extends ContainerComponent<TileEntityNuc
             this.addComponent(new FluidTankComp(new Box2D(25, 6, 16, 58), steamReactor.getWaterTank(), new Vec2i(212, 18), new Box2D(6, 25, 16, 58)));
             this.addComponent(new FluidTankComp(new Box2D(25, 190, 16, 58), steamReactor.getSteamTank(), new Vec2i(212, 18), new Box2D(190, 25, 16, 58)));
         }
-        this.addComponent(new GuiComponentNuclearReactorHeat(tile));
+        this.addComponent(new GuiComponentNuclearReactorHeat(tile, new Box2D(7, 136, 100, 13)));
     }
 
     @SideOnly(Side.CLIENT)

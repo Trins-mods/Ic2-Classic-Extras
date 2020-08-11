@@ -30,12 +30,12 @@ public class RadiationEvent {
         radiation.add(Ic2Items.uraniumIngot);
         radiation.add(new ItemStack(Registry.uranium235));
         radiation.add(new ItemStack(Registry.uranium235Ingot));
-        radiation.add(new ItemStack(Registry.uranium238));
         radiation.add(new ItemStack(Registry.plutoniumDust));
         radiation.add(new ItemStack(Registry.plutoniumIngot));
         radiation.add(new ItemStack(Registry.plutoniumRTG));
         radiation.add(new ItemStack(Registry.uranium235TinyDust));
-        radiation.add(new ItemStack(Registry.uranium238TinyDust));
+        radiation.add(new ItemStack(Registry.uranium235SmallDust));
+        radiation.add(new ItemStack(Registry.plutoniumSmallDust));
         radiation.add(new ItemStack(Registry.plutoniumTinyDust));
         radiation.add(new ItemStack(Registry.doubleEnrichedUraniumIngot));
         radiation.add(new ItemStack(Registry.oxidizedUraniumIngot));
@@ -81,7 +81,7 @@ public class RadiationEvent {
         radiation.add(Ic2Items.reactorReEnrichedNetherStarUraniumRod);
         radiation.add(Ic2Items.reactorReEnrichedCharcoalUraniumRod);
         for (ItemNuclearRod.NuclearRodVariants variants : ItemNuclearRod.NuclearRodVariants.values()){
-            if (variants != ItemNuclearRod.NuclearRodVariants.THORIUM232 && variants != ItemNuclearRod.NuclearRodVariants.THORIUM230){
+            if (variants != ItemNuclearRod.NuclearRodVariants.THORIUM232){
                 for (IUranium.RodType type : IUranium.RodType.values()){
                     radiation.add(ItemNuclearRod.getUran(variants).getRodType(type));
                 }

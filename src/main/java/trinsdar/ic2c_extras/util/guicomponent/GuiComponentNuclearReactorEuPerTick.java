@@ -1,6 +1,6 @@
 package trinsdar.ic2c_extras.util.guicomponent;
 
-import ic2.core.block.generator.tile.TileEntityNuclearReactorElectric;
+import ic2.api.reactor.IReactor;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.gui.components.GuiComponent;
 import ic2.core.util.math.Box2D;
@@ -11,9 +11,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class GuiComponentNuclearReactorEuPerTick extends GuiComponent {
-    TileEntityNuclearReactorElectric reactor;
-    public GuiComponentNuclearReactorEuPerTick(TileEntityNuclearReactorElectric tile) {
-        super(new Box2D(108, 136, 97, 13));
+    IReactor reactor;
+    public GuiComponentNuclearReactorEuPerTick(IReactor tile, Box2D box) {
+        super(box);
         this.reactor = tile;
     }
 

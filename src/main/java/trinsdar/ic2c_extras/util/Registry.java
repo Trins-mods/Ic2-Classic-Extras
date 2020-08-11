@@ -212,7 +212,7 @@ public class Registry {
     public static final ItemDepeletedNuclearRods reEnrichedUranium235Cell = createItem(new ItemDepeletedNuclearRods("reEnrichedUranium235Cell", 35));
 
     public static final ItemRTG plutoniumRTG = createItem(new ItemRTG("plutoniumRTG", 129600, 1));
-    public static final ItemRTG thoriumRTG = createItem(new ItemRTG("thoriumRTG", 172800, 0));
+    public static final ItemRTG thoriumRTG = createItem(new ItemRTG("thoriumRTG", 345600, 0));
 
     public static final ItemContainmentBox containmentBox = createItem(new ItemContainmentBox());
 
