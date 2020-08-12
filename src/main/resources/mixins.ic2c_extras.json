@@ -6,9 +6,11 @@
   "minVersion": "0.6",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "MixinItemArmorNuclearJetpack",
+    "MixinNuclearJetpackInventory",
+    "MixinItemArmorQuantumNuclearJetPlate",
     "MixinTileEntityNuclearReactorElectric",
-    "MixinTileEntityNuclearSteamReactor",
-    "MixinNuclearJetpackInventory"
+    "MixinTileEntityNuclearSteamReactor"
   ],
   "injectors": {
     "defaultRequire": 1
