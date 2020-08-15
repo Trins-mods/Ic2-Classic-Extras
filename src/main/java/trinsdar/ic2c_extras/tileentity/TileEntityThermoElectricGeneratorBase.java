@@ -140,6 +140,7 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
                         int damage = rtg.getCustomDamage(stack) + 1;
                         if (damage > rtg.getMaxCustomDamage(stack)) {
                             stack.shrink(1);
+                            this.checkProduction = true;
                         } else {
                             rtg.setCustomDamage(stack, damage);
                         }
