@@ -147,7 +147,7 @@ jar {
     classifier "thin"
     manifest.attributes(
             "FMLCorePlugin": "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin",
-            "FMLCorePluginContainsFMLMod": "true",
+            "FMLCorePluginContainsFMLMod": true,
             "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
             'ForceLoadAsMod': true,
             "TweakOrder": 0,
