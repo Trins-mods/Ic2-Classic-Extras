@@ -299,6 +299,12 @@ public class MachineRecipes {
             TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustSmallUranium235", 4), new ItemStack(Registry.uranium235));
             TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustSmallUranium238", 4), new ItemStack(Registry.uranium238));
             TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustSmallPlutonium", 4), new ItemStack(Registry.plutoniumDust));
+            if (!Loader.isModLoaded("gtclassic")){
+                TileEntityMacerator.addRecipe("crushedUranium", 1, new ItemStack(Registry.uraniumDust));
+                TileEntityMacerator.addRecipe("crushedPurifiedUranium", 1, new ItemStack(Registry.uraniumDust));
+                TileEntityMacerator.addRecipe("crushedCentrifugedUranium", 1, new ItemStack(Registry.uraniumDust));
+                TileEntityCompressor.addRecipe("dustUranium", 1, Ic2Items.uraniumIngot.copy());
+            }
         }
 
         if (Ic2cExtrasConfig.emptyNuclearRod) {
