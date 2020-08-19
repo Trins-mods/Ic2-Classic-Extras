@@ -58,7 +58,7 @@ public class Thorium230 extends UranBaseType {
 
     @Override
     public float getHeatModifier() {
-        return 1.2f;
+        return 0.7f;
     }
 
     @Override

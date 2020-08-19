@@ -212,7 +212,7 @@ public class MachineRecipes {
                 }
             }
         }
-        if (OreDictionary.doesOreNameExist("dustNickel") && OreDictionary.doesOreNameExist("ingotNickel") && !Loader.isModLoaded("basemetals")) {
+        if (OreDictionary.doesOreNameExist("dustNickel") && OreDictionary.doesOreNameExist("ingotNickel") && !Loader.isModLoaded("basemetals") && !Loader.isModLoaded("gtc_expansion")) {
             listDusts = OreDictionary.getOres("dustNickel", false);
             listIngots = OreDictionary.getOres("ingotNickel", false);
             if (!listDusts.isEmpty()) {
@@ -271,18 +271,20 @@ public class MachineRecipes {
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedTin", 1)), lowHeat, Ic2Items.tinDust, new ItemStack(Registry.ironTinyDust, 1));
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedSilver", 1)), lowHeat, Ic2Items.silverDust, new ItemStack(Registry.leadTinyDust, 1));
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedLead", 1)), lowHeat, new ItemStack(Registry.leadDust, 1), new ItemStack(Registry.copperTinyDust, 1));
-        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedIron", 1)), Ic2Items.ironDust);
-        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedGold", 1)), Ic2Items.goldDust);
-        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedCopper", 1)), Ic2Items.copperDust);
-        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedTin", 1)), Ic2Items.tinDust);
-        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedSilver", 1)), Ic2Items.silverDust);
-        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedLead", 1)), new ItemStack(Registry.leadDust, 1));
-        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedIron", 1)), Ic2Items.ironDust);
-        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedGold", 1)), Ic2Items.goldDust);
-        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedCopper", 1)), Ic2Items.copperDust);
-        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedTin", 1)), Ic2Items.tinDust);
-        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedSilver", 1)), Ic2Items.silverDust);
-        TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedLead", 1)), new ItemStack(Registry.leadDust, 1));
+        if (!Loader.isModLoaded("gtc_expansion")){
+            TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedIron", 1)), Ic2Items.ironDust);
+            TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedGold", 1)), Ic2Items.goldDust);
+            TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedCopper", 1)), Ic2Items.copperDust);
+            TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedTin", 1)), Ic2Items.tinDust);
+            TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedSilver", 1)), Ic2Items.silverDust);
+            TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedPurifiedLead", 1)), new ItemStack(Registry.leadDust, 1));
+            TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedIron", 1)), Ic2Items.ironDust);
+            TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedGold", 1)), Ic2Items.goldDust);
+            TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedCopper", 1)), Ic2Items.copperDust);
+            TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedTin", 1)), Ic2Items.tinDust);
+            TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedSilver", 1)), Ic2Items.silverDust);
+            TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedLead", 1)), new ItemStack(Registry.leadDust, 1));
+        }
 
         TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustTinyIron", 9), Ic2Items.ironDust);
         TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustTinyGold", 9), Ic2Items.goldDust);
