@@ -20,7 +20,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Optional;
 import trinsdar.ic2c_extras.container.ContainerThermoElectricGenerator;
-import trinsdar.ic2c_extras.items.ItemRTG;
 import trinsdar.ic2c_extras.util.Registry;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
@@ -63,6 +62,11 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
     public void setStackInSlot(int slot, ItemStack stack) {
         super.setStackInSlot(slot, stack);
         checkProduction = true;
+    }
+
+    @Override
+    public int getMaxStackSize(int slot) {
+        return 1;
     }
 
     public abstract BasicItemFilter getFilter();
@@ -131,24 +135,6 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
     public boolean gainEnergy() {
         if (this.isConverting() && production > 0) {
             this.storage += this.production;
-            counter++;
-            if (counter == 20) {
-                for (int i = 0; i < 6; i++) {
-                    ItemStack stack = this.inventory.get(i);
-                    if (!stack.isEmpty() && stack.getItem() instanceof ItemRTG) {
-                        ItemRTG rtg = (ItemRTG) stack.getItem();
-                        int damage = rtg.getCustomDamage(stack) + 1;
-                        if (damage > rtg.getMaxCustomDamage(stack)) {
-                            stack.shrink(1);
-                            this.checkProduction = true;
-                        } else {
-                            rtg.setCustomDamage(stack, damage);
-                        }
-                    }
-                }
-                counter = 0;
-            }
-
             this.getNetwork().updateTileGuiField(this, "fuel");
             return true;
         } else {
