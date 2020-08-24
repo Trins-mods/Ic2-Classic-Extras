@@ -43,7 +43,7 @@ public class Thorium230 extends UranBaseType {
 
     @Override
     public float getEUPerPulse() {
-        return 1.0f;
+        return 0.5f;
     }
 
     @Override
