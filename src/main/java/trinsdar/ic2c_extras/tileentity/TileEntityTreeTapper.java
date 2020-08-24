@@ -203,7 +203,7 @@ public class TileEntityTreeTapper extends TileEntityElecMachine implements ITick
         for (int i = 0; i < 4; ++i) {
             ItemStack stack = inventory.get(i + inventory.size() - 4);
             if (StackUtil.isStackEqual(stack, Ic2Items.overClockerUpgrade)) {
-                overclocker += stack.getCount();
+                overclocker += 1;
             } else if (StackUtil.isStackEqual(stack, Ic2Items.padUpgradeBasicFieldUpgrade)) {
                 ++newRange;
             } else if (StackUtil.isStackEqual(stack, Ic2Items.padUpgradeFieldUpgrade)) {
