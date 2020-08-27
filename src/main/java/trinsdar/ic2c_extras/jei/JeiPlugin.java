@@ -233,7 +233,7 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.coil));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.heatConductor));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.steelIngot));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.oxidizedUraniumIngot));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238Ingot));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.doubleEnrichedUraniumIngot));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.iridiumShard));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.diamondDust));
@@ -253,21 +253,21 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.cuttingPress));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.lathingPress));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.gearingPress));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.nearDepletedUOXCell));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.nearDepletedUranium238Cell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.nearDepletedPlutoniumCell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.nearDepletedMOXCell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.nearDepletedThorium232Cell));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.nearDepletedThorium230Cell));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.reEnrichedUOXCell));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.nearDepletedUranium233Cell));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.reEnrichedUranium238Cell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.reEnrichedPlutoniumCell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.reEnrichedMOXCell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.reEnrichedThorium232Cell));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.reEnrichedThorium230Cell));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.reEnrichedUranium233Cell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumRTG));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.thoriumRTG));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.singleUOXCell));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.doubleUOXCell));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.quadUOXCell));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.singleUranium238Cell));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.doubleUranium238Cell));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.quadUranium238Cell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.singlePlutoniumCell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.doublePlutoniumCell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.quadPlutoniumCell));
@@ -277,14 +277,14 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.singleThorium232Cell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.doubleThorium232Cell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.quadThorium232Cell));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.singleThorium230Cell));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.doubleThorium230Cell));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.quadThorium230Cell));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.isotopicUOXCell));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.singleUranium233Cell));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.doubleUranium233Cell));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.quadUranium233Cell));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.isotopicUranium238Cell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.isotopicPlutoniumCell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.isotopicMOXCell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.isotopicThorium232Cell));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.isotopicThorium230Cell));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.isotopicUranium233Cell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.craftingHammer));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.wireCutters));
 
@@ -303,7 +303,7 @@ public class JeiPlugin implements IModPlugin {
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumTinyDust));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumSmallDust));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.doubleEnrichedUraniumIngot));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.oxidizedUraniumIngot));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238Ingot));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium232TinyDust));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium232Dust));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium232Ingot));
@@ -313,12 +313,12 @@ public class JeiPlugin implements IModPlugin {
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.moxFuel));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.emptyFuelRod));
 
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.singleUOXCell));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.doubleUOXCell));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.quadUOXCell));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.nearDepletedUOXCell));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.isotopicUOXCell));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.reEnrichedUOXCell));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.singleUranium238Cell));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.doubleUranium238Cell));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.quadUranium238Cell));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.nearDepletedUranium238Cell));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.isotopicUranium238Cell));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.reEnrichedUranium238Cell));
 
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.singlePlutoniumCell));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.doublePlutoniumCell));
@@ -341,12 +341,12 @@ public class JeiPlugin implements IModPlugin {
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.isotopicThorium232Cell));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.reEnrichedThorium232Cell));
 
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.singleThorium230Cell));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.doubleThorium230Cell));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.quadThorium230Cell));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.nearDepletedThorium230Cell));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.isotopicThorium230Cell));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.reEnrichedThorium230Cell));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.singleUranium233Cell));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.doubleUranium233Cell));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.quadUranium233Cell));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.nearDepletedUranium233Cell));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.isotopicUranium233Cell));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.reEnrichedUranium233Cell));
                 }
                 if (Loader.isModLoaded("gtclassic")){
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.autocraftingTable));

@@ -3,7 +3,6 @@ package trinsdar.ic2c_extras.items;
 import ic2.api.classic.reactor.IReactorPlanner;
 import ic2.api.classic.reactor.ISteamReactor;
 import ic2.api.reactor.IReactor;
-import ic2.core.block.machine.high.TileEntityUraniumEnricher;
 import ic2.core.item.reactor.base.ItemUraniumRodBase;
 import ic2.core.item.reactor.uranTypes.IUranium;
 import ic2.core.platform.lang.components.base.LangComponentHolder;
@@ -17,8 +16,9 @@ import trinsdar.ic2c_extras.items.urantypes.MOX;
 import trinsdar.ic2c_extras.items.urantypes.Plutonium;
 import trinsdar.ic2c_extras.items.urantypes.Thorium230;
 import trinsdar.ic2c_extras.items.urantypes.Thorium232;
-import trinsdar.ic2c_extras.items.urantypes.UOX;
+import trinsdar.ic2c_extras.items.urantypes.Uranium233;
 import trinsdar.ic2c_extras.items.urantypes.Uranium235;
+import trinsdar.ic2c_extras.items.urantypes.Uranium238;
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,14 +40,14 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
     }
 
     public static void init() {
-        types = new IUranium[6];
-        types[0] = new UOX();
+        types = new IUranium[7];
+        types[0] = new Uranium238();
         types[1] = new Plutonium();
         types[2] = new MOX();
         types[3] = new Thorium232();
-        types[4] = new Thorium230();
+        types[4] = new Uranium233();
         types[5] = new Uranium235();
-        TileEntityUraniumEnricher.RECIPE_LIST.add(types[0]);
+        types[6] = new Thorium230();
     }
 
     @Override
@@ -135,7 +135,7 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
     }
 
     public static IUranium getUran(NuclearRodVariants variant) {
-        if (variant == NuclearRodVariants.UOX) {
+        if (variant == NuclearRodVariants.URANIUM238) {
             return types[0];
         } else if (variant == NuclearRodVariants.PLUTONIUM) {
             return types[1];
@@ -147,6 +147,8 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
             return types[4];
         } else if (variant == NuclearRodVariants.URANIUM235){
             return types[5];
+        } else if (variant == NuclearRodVariants.URANIUM233){
+            return types[6];
         }
         return types[0];
     }
@@ -196,12 +198,13 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
     }
 
     public static enum NuclearRodVariants {
-        UOX("UOX"),
+        URANIUM238("Uranium238"),
         PLUTONIUM("Plutonium"),
         MOX("MOX"),
         THORIUM232("Thorium232"),
         THORIUM230("Thorium230"),
-        URANIUM235("Uranium235");
+        URANIUM235("Uranium235"),
+        URANIUM233("Uranium233");
 
         private String prefix;
 

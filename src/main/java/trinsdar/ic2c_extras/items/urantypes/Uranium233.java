@@ -3,18 +3,18 @@ package trinsdar.ic2c_extras.items.urantypes;
 import ic2.core.item.reactor.uranTypes.UranBaseType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Lang;
+import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import trinsdar.ic2c_extras.items.ItemNuclearRod;
 import trinsdar.ic2c_extras.util.Registry;
 
-import java.awt.Color;
+import java.awt.*;
 
-public class Thorium230 extends UranBaseType {
-    public Thorium230(){
+public class Uranium233 extends UranBaseType {
+    public Uranium233(){
         this.addArray(new int[]{-1, -1});
         this.addArray(new int[]{0, -1});
         this.addArray(new int[]{1, -1});
@@ -28,7 +28,7 @@ public class Thorium230 extends UranBaseType {
     @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite getTexture(RodType type) {
-        return ItemNuclearRod.types[3].getTexture(type);
+        return Ic2Icons.getTextures("ic2c_extras_nuclear_cells")[(this.getRodID(type)) - 1100];
     }
 
     @Override
@@ -38,7 +38,7 @@ public class Thorium230 extends UranBaseType {
 
     @Override
     public int getMaxDurability() {
-        return 20000;
+        return 12000;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class Thorium230 extends UranBaseType {
 
     @Override
     public float getHeatModifier() {
-        return 0.7f;
+        return 0.8f;
     }
 
     @Override
@@ -68,24 +68,24 @@ public class Thorium230 extends UranBaseType {
 
     @Override
     public ItemStack getUraniumIngot() {
-        return new ItemStack(Registry.thorium230Ingot);
+        return new ItemStack(Registry.uranium233Ingot);
     }
 
     @Override
     public ItemStack getRodType(RodType type) {
         switch (type) {
             case SingleRod:
-                return new ItemStack(Registry.singleThorium230Cell).copy();
+                return new ItemStack(Registry.singleUranium233Cell).copy();
             case DualRod:
-                return new ItemStack(Registry.doubleThorium230Cell).copy();
+                return new ItemStack(Registry.doubleUranium233Cell).copy();
             case QuadRod:
-                return new ItemStack(Registry.quadThorium230Cell).copy();
+                return new ItemStack(Registry.quadUranium233Cell).copy();
             case NearDepletedRod:
-                return new ItemStack(Registry.nearDepletedThorium230Cell).copy();
+                return new ItemStack(Registry.nearDepletedUranium233Cell).copy();
             case IsotopicRod:
-                return new ItemStack(Registry.isotopicThorium230Cell).copy();
+                return new ItemStack(Registry.isotopicUranium233Cell).copy();
             case ReEnrichedRod:
-                return new ItemStack(Registry.reEnrichedThorium230Cell).copy();
+                return new ItemStack(Registry.reEnrichedUranium233Cell).copy();
             default:
                 return ItemStack.EMPTY;
         }
@@ -100,17 +100,17 @@ public class Thorium230 extends UranBaseType {
     public short getRodID(RodType type) {
         switch (type) {
             case SingleRod:
-                return 1146;
+                return 1116;
             case DualRod:
-                return 1140;
+                return 1110;
             case QuadRod:
-                return 1154;
+                return 1104;
             case ReEnrichedRod:
-                return 1164;
+                return 1134;
             case NearDepletedRod:
-                return 1152;
+                return 1122;
             case IsotopicRod:
-                return 1158;
+                return 1128;
             default:
                 return 0;
         }

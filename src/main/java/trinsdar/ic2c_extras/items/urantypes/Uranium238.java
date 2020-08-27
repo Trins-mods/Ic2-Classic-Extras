@@ -12,17 +12,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.util.Registry;
 
-import java.awt.*;
+import java.awt.Color;
+import java.util.Collections;
+import java.util.List;
 
-import static ic2.core.item.reactor.uranTypes.IUranium.RodType.DualRod;
 import static ic2.core.item.reactor.uranTypes.IUranium.RodType.IsotopicRod;
-import static ic2.core.item.reactor.uranTypes.IUranium.RodType.NearDepletedRod;
-import static ic2.core.item.reactor.uranTypes.IUranium.RodType.QuadRod;
-import static ic2.core.item.reactor.uranTypes.IUranium.RodType.ReEnrichedRod;
-import static ic2.core.item.reactor.uranTypes.IUranium.RodType.SingleRod;
 
-public class UOX extends UranBaseType {
-    public UOX() {
+public class Uranium238 extends UranBaseType {
+    public Uranium238() {
         this.loadDefaults();
     }
 
@@ -30,6 +27,11 @@ public class UOX extends UranBaseType {
     @Override
     public TextureAtlasSprite getTexture(RodType type) {
         return Ic2Icons.getTextures("ic2c_extras_nuclear_cells")[this.getRodID(type) - 1100];
+    }
+
+    @Override
+    public List<int[]> getPulseArea(int pulse) {
+        return Collections.emptyList();
     }
 
     @Override
@@ -44,12 +46,12 @@ public class UOX extends UranBaseType {
 
     @Override
     public float getEUPerPulse() {
-        return 1.0f;
+        return 0.7f;
     }
 
     @Override
     public int getPulsesPerTick() {
-        return 2;
+        return 1;
     }
 
     @Override
@@ -69,24 +71,24 @@ public class UOX extends UranBaseType {
 
     @Override
     public ItemStack getUraniumIngot() {
-        return new ItemStack(Registry.oxidizedUraniumIngot);
+        return new ItemStack(Registry.uranium238Ingot);
     }
 
     @Override
     public ItemStack getRodType(RodType type) {
         switch (type) {
             case SingleRod:
-                return new ItemStack(Registry.singleUOXCell).copy();
+                return new ItemStack(Registry.singleUranium238Cell).copy();
             case DualRod:
-                return new ItemStack(Registry.doubleUOXCell).copy();
+                return new ItemStack(Registry.doubleUranium238Cell).copy();
             case QuadRod:
-                return new ItemStack(Registry.quadUOXCell).copy();
+                return new ItemStack(Registry.quadUranium238Cell).copy();
             case NearDepletedRod:
-                return new ItemStack(Registry.nearDepletedUOXCell).copy();
+                return new ItemStack(Registry.nearDepletedUranium238Cell).copy();
             case IsotopicRod:
-                return new ItemStack(Registry.isotopicUOXCell).copy();
+                return new ItemStack(Registry.isotopicUranium238Cell).copy();
             case ReEnrichedRod:
-                return new ItemStack(Registry.reEnrichedUOXCell).copy();
+                return new ItemStack(Registry.reEnrichedUranium238Cell).copy();
             default:
                 return ItemStack.EMPTY;
         }
