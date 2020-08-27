@@ -51,12 +51,12 @@ public class Thorium232 extends UranBaseType {
 
     @Override
     public float getHeatModifier() {
-        return 1.0f;
+        return 0.25f;
     }
 
     @Override
     public float getExplosionEffectModifier() {
-        return 2.0f;
+        return 0.5f;
     }
 
     @Override
