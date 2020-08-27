@@ -159,6 +159,7 @@ public class Ic2cExtrasRecipes {
             TileEntityCompressor.addRecipe("dustThorium230", 1, new ItemStack(Registry.thorium230Ingot));
             TileEntityCompressor.addRecipe("dustUranium235", 1, new ItemStack(Registry.uranium235Ingot));
             TileEntityCompressor.addRecipe("dustUranium233", 1, new ItemStack(Registry.uranium233Ingot));
+            TileEntityCompressor.addRecipe("dustUranium238", 1, new ItemStack(Registry.uranium238Ingot));
             TileEntityCompressor.addRecipe("crushedPurifiedUranium", 1, Ic2Items.uraniumDrop);
             IUranium[] types = ItemNuclearRod.types;
             for(IUranium uran : types) {
