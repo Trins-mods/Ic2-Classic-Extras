@@ -63,7 +63,7 @@ public class Thorium230 extends UranBaseType {
 
     @Override
     public float getExplosionEffectModifier() {
-        return 2.0f;
+        return 1.0f;
     }
 
     @Override
