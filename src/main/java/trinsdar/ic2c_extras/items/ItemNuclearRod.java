@@ -45,9 +45,9 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
         types[1] = new Plutonium();
         types[2] = new MOX();
         types[3] = new Thorium232();
-        types[4] = new Uranium233();
+        types[6] = new Uranium233();
         types[5] = new Uranium235();
-        types[6] = new Thorium230();
+        types[4] = new Thorium230();
     }
 
     @Override
