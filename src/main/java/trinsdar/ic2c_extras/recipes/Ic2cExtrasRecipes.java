@@ -90,6 +90,9 @@ public class Ic2cExtrasRecipes {
         MachineRecipes.postInit();
         MachineRecipes.initMetalBenderRecipes();
         initInputLists();
+        if (Loader.isModLoaded("gtclassic")) {
+            GTCRecipes.init();
+        }
     }
 
     public static void initInputLists() {
@@ -153,10 +156,10 @@ public class Ic2cExtrasRecipes {
             CraftingRecipes.dustUtil("dustUranium235", new ItemStack(Registry.uranium235), "dustTinyUranium235", new ItemStack(Registry.uranium235TinyDust), "dustSmallUranium235", new ItemStack(Registry.uranium235SmallDust));
             CraftingRecipes.dustUtil("dustUranium238", new ItemStack(Registry.uranium238), "dustTinyUranium238", new ItemStack(Registry.uranium238TinyDust), "dustSmallUranium238", new ItemStack(Registry.uranium238SmallDust));
             CraftingRecipes.dustUtil("dustPlutonium", new ItemStack(Registry.plutoniumDust), "dustTinyPlutonium", new ItemStack(Registry.plutoniumTinyDust), "dustSmallPlutonium", new ItemStack(Registry.plutoniumSmallDust));
-            CraftingRecipes.dustUtil("dustThorium232", new ItemStack(Registry.thoriumDust), "dustTinyThorium232", new ItemStack(Registry.thoriumTinyDust));
+            CraftingRecipes.dustUtil("dustThorium", new ItemStack(Registry.thoriumDust), "dustTinyThorium", new ItemStack(Registry.thoriumTinyDust));
             CraftingRecipes.dustUtil("dustThorium230", new ItemStack(Registry.thorium230Dust), "dustTinyThorium230", new ItemStack(Registry.thorium230TinyDust));
             TileEntityCompressor.addRecipe("dustPlutonium", 1, new ItemStack(Registry.plutoniumIngot));
-            TileEntityCompressor.addRecipe("dustThorium232", 1, new ItemStack(Registry.thoriumIngot));
+            TileEntityCompressor.addRecipe("dustThorium", 1, new ItemStack(Registry.thoriumIngot));
             TileEntityCompressor.addRecipe("dustThorium230", 1, new ItemStack(Registry.thorium230Ingot));
             TileEntityCompressor.addRecipe("dustUranium235", 1, new ItemStack(Registry.uranium235Ingot));
             TileEntityCompressor.addRecipe("dustUranium233", 1, new ItemStack(Registry.uranium233Ingot));
