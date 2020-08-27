@@ -91,7 +91,7 @@ public class Ic2cExtrasRecipes {
         MachineRecipes.initMetalBenderRecipes();
         initInputLists();
         if (Loader.isModLoaded("gtclassic")) {
-            GTCRecipes.init();
+            GTCRecipes.postInit();
         }
     }
 
