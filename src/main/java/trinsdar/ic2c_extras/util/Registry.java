@@ -139,7 +139,7 @@ public class Registry {
     public static final ItemTinyDust bronzeTinyDust = createItem(new ItemTinyDust(bronze, 8));
     public static final ItemTinyDust uranium238TinyDust = createItem(new ItemTinyDust(uranium + "238", 9));
     public static final ItemTinyDust plutoniumTinyDust = createItem(new ItemTinyDust("plutonium", 10));
-    public static final ItemTinyDust thorium232TinyDust = createItem(new ItemTinyDust("thorium232", 11));
+    public static final ItemTinyDust thoriumTinyDust = createItem(new ItemTinyDust("thorium232", 11));
     public static final ItemTinyDust thorium230TinyDust = createItem(new ItemTinyDust("thorium230", 11));
     public static final ItemTinyDust uranium233TinyDust = createItem(new ItemTinyDust(uranium + "233", 12));
 
@@ -171,8 +171,8 @@ public class Registry {
     public static final ItemMiscs diamondDust = createItem(new ItemMiscs("diamondDust", 13));
     public static final ItemMiscs energiumDust = createItem(new ItemMiscs("energiumDust", 14));
     public static final ItemMiscs emptyFuelRod = createItem(new ItemMiscs("emptyFuelRod", 15));
-    public static final ItemMiscs thorium232Dust = createItem(new ItemMiscs("thorium232Dust", 16));
-    public static final ItemMiscs thorium232Ingot = createItem(new ItemMiscs("thorium232Ingot", 17));
+    public static final ItemMiscs thoriumDust = createItem(new ItemMiscs("thorium232Dust", 16));
+    public static final ItemMiscs thoriumIngot = createItem(new ItemMiscs("thorium232Ingot", 17));
     public static final ItemMiscs thorium230Dust = createItem(new ItemMiscs("thorium230Dust", 16));
     public static final ItemMiscs thorium230Ingot = createItem(new ItemMiscs("thorium230Ingot", 17));
     public static final ItemMiscs uranium233Dust = createItem(new ItemMiscs("uranium233Dust", 18));

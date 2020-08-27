@@ -208,7 +208,7 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.bronzeTinyDust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238TinyDust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumTinyDust));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium232TinyDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.thoriumTinyDust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium230TinyDust));
 
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.ironSmallDust));
@@ -239,8 +239,8 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.diamondDust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.energiumDust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.emptyFuelRod));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium232Dust));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium232Ingot));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.thoriumDust));
+                blacklist.addIngredientToBlacklist(new ItemStack(Registry.thoriumIngot));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium230Dust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium230Ingot));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumIngot));
@@ -304,9 +304,9 @@ public class JeiPlugin implements IModPlugin {
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumSmallDust));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.doubleEnrichedUraniumIngot));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238Ingot));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium232TinyDust));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium232Dust));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium232Ingot));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.thoriumTinyDust));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.thoriumDust));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.thoriumIngot));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium230TinyDust));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium230Dust));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium230Ingot));

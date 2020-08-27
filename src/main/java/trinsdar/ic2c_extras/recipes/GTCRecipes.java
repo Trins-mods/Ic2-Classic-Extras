@@ -18,6 +18,10 @@ public class GTCRecipes {
         TileEntityMacerator.addRecipe("crushedPurifiedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
         TileEntityMacerator.addRecipe("crushedCentrifugedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
         GTTileCentrifuge.addRecipe("crushedCentrifugedUranium", 1, 0, GTTileCentrifuge.totalEu(6000), GTMaterialGen.getDust(GTMaterial.Uranium, 1), new ItemStack(Registry.uranium238, 2), new ItemStack(Registry.uranium235TinyDust));
-        GTTileCentrifuge.RECIPE_LIST.removeRecipe("");
+        GTTileCentrifuge.RECIPE_LIST.startMassChange();
+        GTTileCentrifuge.RECIPE_LIST.removeRecipe("item.thorium232Dust");
+        GTTileCentrifuge.RECIPE_LIST.removeRecipe("item.gtclassic.dustTungsten");
+        GTTileCentrifuge.RECIPE_LIST.finishMassChange();
+        GTTileCentrifuge.addRecipe("dustUranium", 22, 0, GTTileCentrifuge.totalEu(250000), GTMaterialGen.get(Registry.uranium238, 16), GTMaterialGen.get(Registry.uranium235, 2), GTMaterialGen.get(Registry.thoriumDust, 4));
     }
 }
