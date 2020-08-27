@@ -147,12 +147,12 @@ item.nearDepletedMOXCell.name=Near-depleted MOX Cell
 item.isotopicMOXCell.name=Depleted MOX Isotope Cell
 item.reEnrichedMOXCell.name=Re-Enriched MOX Cell
 
-item.singleThorium232Cell.name=Thorium 232 Cell
-item.doubleThorium232Cell.name=Dual Thorium 232 Cell
-item.quadThorium232Cell.name=Quad Thorium 232 Cell
-item.nearDepletedThorium232Cell.name=Near-depleted Thorium 232 Cell
-item.isotopicThorium232Cell.name=Depleted Thorium 232 Isotope Cell
-item.reEnrichedThorium232Cell.name=Re-Enriched Thorium 232 Cell
+item.singleThorium232Cell.name=Thorium Cell
+item.doubleThorium232Cell.name=Dual Thorium Cell
+item.quadThorium232Cell.name=Quad Thorium Cell
+item.nearDepletedThorium232Cell.name=Near-depleted Thorium Cell
+item.isotopicThorium232Cell.name=Depleted Thorium Isotope Cell
+item.reEnrichedThorium232Cell.name=Re-Enriched Thorium Cell
 
 item.singleThorium230Cell.name=Thorium 230 Cell
 item.doubleThorium230Cell.name=Dual Thorium 230 Cell
