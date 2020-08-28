@@ -6,6 +6,7 @@ import ic2.api.classic.addon.misc.IOverrideObject;
 import ic2.core.IC2;
 import ic2.core.item.block.ItemBlockMetal;
 import ic2.core.util.misc.ModulLoader;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.blocks.BlockEnergyStorage;
@@ -33,6 +34,9 @@ public class IC2CExtrasPlugin extends PluginBase {
         map.put("blockPersonal", new ModulLoader.BlockOverride(new BlockPersonalStorage().setCreativeTab(IC2.tabIC2), ItemBlockPersonalStorage.class));
         map.put("itemMisc", new ModulLoader.ItemOverride(new ItemMisc2().setCreativeTab(IC2.tabIC2)));
         map.put("itemToolWrench", new ModulLoader.ItemOverride(new ItemToolWrenchLossless().setCreativeTab(IC2.tabIC2)));
-        map.put("itemToolWrenchElectric", new ModulLoader.ItemOverride(new ItemElectricToolWrenchLossless().setCreativeTab(IC2.tabIC2)));
+        if (!Loader.isModLoaded("gtc_expansion")){
+            map.put("itemToolWrenchElectric", new ModulLoader.ItemOverride(new ItemElectricToolWrenchLossless().setCreativeTab(IC2.tabIC2)));
+        }
+
     }
 }
