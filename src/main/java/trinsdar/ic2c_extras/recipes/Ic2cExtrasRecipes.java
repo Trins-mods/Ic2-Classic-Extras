@@ -92,9 +92,6 @@ public class Ic2cExtrasRecipes {
         MachineRecipes.postInit();
         MachineRecipes.initMetalBenderRecipes();
         initInputLists();
-        if (Loader.isModLoaded("gtclassic")) {
-            GTCRecipes.postInit();
-        }
     }
 
     public static void initInputLists() {
@@ -142,8 +139,8 @@ public class Ic2cExtrasRecipes {
             CommonFilters.uranFilter = new BasicItemFilter(new ItemStack(Registry.doubleEnrichedUraniumIngot));
             macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
             macerator.addRecipe(new RecipeInputOreDict("oreUranium"), new ItemStack(Registry.uraniumCrushedOre, 2), 1.0F, "uraniumOre");
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(Ic2Items.reactorReEnrichedUraniumRod)), 1500, 36000, new ItemStack(Registry.plutoniumTinyDust, 2), new ItemStack(Registry.thoriumTinyDust, 2), new ItemStack(Registry.uranium238SmallDust, 2));
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(Registry.reEnrichedUranium238Cell))), 1500, 36000, new ItemStack(Registry.plutoniumTinyDust, 3));
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(Ic2Items.reactorReEnrichedUraniumRod)), 1500, 36000, new ItemStack(Registry.plutoniumTinyDust, 1), new ItemStack(Registry.thoriumTinyDust, 2), new ItemStack(Registry.uranium238SmallDust, 2));
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(Registry.reEnrichedUranium238Cell))), 1500, 36000, new ItemStack(Registry.plutoniumTinyDust, 2));
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(Registry.reEnrichedThorium232Cell))), 1500, 36000, new ItemStack(Registry.uranium233TinyDust, 2));
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedUranium", 1)), 900, 18000, new ItemStack(Registry.refinedUraniumOre, 1), new ItemStack(Registry.thoriumTinyDust, 1));
             if (!Loader.isModLoaded("gtclassic")){
@@ -158,11 +155,11 @@ public class Ic2cExtrasRecipes {
             CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.doubleEnrichedUraniumIngot), " U ", "UIU", " U ", 'U', Registry.uranium238, 'I', Ic2Items.uraniumIngot);
             CraftingRecipes.dustUtil("dustUranium235", new ItemStack(Registry.uranium235), "dustTinyUranium235", new ItemStack(Registry.uranium235TinyDust), "dustSmallUranium235", new ItemStack(Registry.uranium235SmallDust));
             CraftingRecipes.dustUtil("dustUranium238", new ItemStack(Registry.uranium238), "dustTinyUranium238", new ItemStack(Registry.uranium238TinyDust), "dustSmallUranium238", new ItemStack(Registry.uranium238SmallDust));
-            CraftingRecipes.dustUtil("dustPlutonium", new ItemStack(Registry.plutoniumDust), "dustTinyPlutonium", new ItemStack(Registry.plutoniumTinyDust), "dustSmallPlutonium", new ItemStack(Registry.plutoniumSmallDust));
-            CraftingRecipes.dustUtil("dustThorium", new ItemStack(Registry.thoriumDust), "dustTinyThorium", new ItemStack(Registry.thoriumTinyDust));
             CraftingRecipes.dustUtil("dustThorium230", new ItemStack(Registry.thorium230Dust), "dustTinyThorium230", new ItemStack(Registry.thorium230TinyDust));
 
             if (!Loader.isModLoaded("gtclassic")){
+                CraftingRecipes.dustUtil("dustPlutonium", new ItemStack(Registry.plutoniumDust), "dustTinyPlutonium", new ItemStack(Registry.plutoniumTinyDust), "dustSmallPlutonium", new ItemStack(Registry.plutoniumSmallDust));
+                CraftingRecipes.dustUtil("dustThorium", new ItemStack(Registry.thoriumDust), "dustTinyThorium", new ItemStack(Registry.thoriumTinyDust));
                 TileEntityCompressor.addRecipe("dustPlutonium", 1, new ItemStack(Registry.plutoniumIngot));
                 TileEntityCompressor.addRecipe("dustThorium", 1, new ItemStack(Registry.thoriumIngot));
             }
@@ -177,6 +174,16 @@ public class Ic2cExtrasRecipes {
                     continue;
                 }
                 rodUtil(uran.getRodType(IUranium.RodType.SingleRod), uran.getRodType(IUranium.RodType.DualRod), uran.getRodType(IUranium.RodType.QuadRod), uran.getNewIsotopicRod(), uran.getRodType(IUranium.RodType.ReEnrichedRod), uran.getRodType(IUranium.RodType.NearDepletedRod), uran.getUraniumIngot());
+            }
+            ItemStack emptyFuelRod = getEmptyRod();
+            CraftingRecipes.recipes.overrideRecipe("shaped_item.itemCellUranEmpty_-1582032965", StackUtil.copyWithSize(Ic2Items.reactorNearDepletedUraniumRod, 4), " R ", "RIR", " R ", 'R', emptyFuelRod, 'I', Ic2Items.uraniumIngot);
+            CraftingRecipes.recipes.overrideRecipe("shaped_item.itemCellRedstoneEnrichedUranEmpty_192974428", StackUtil.copyWithSize(Ic2Items.reactorNearDepletedRedstoneUraniumRod, 4), " R ", "RIR", " R ", 'R', emptyFuelRod, 'I', Ic2Items.redstoneUraniumIngot);
+            CraftingRecipes.recipes.overrideRecipe("shaped_item.itemCellBlazeEnrichedUranEmpty_1080478140", StackUtil.copyWithSize(Ic2Items.reactorNearDepletedBlazeUraniumRod, 4), " R ", "RIR", " R ", 'R', emptyFuelRod, 'I', Ic2Items.blazeUraniumIngot);
+            CraftingRecipes.recipes.overrideRecipe("shaped_item.itemCellEnderPearlEnrichedUranEmpty_1967981852", StackUtil.copyWithSize(Ic2Items.reactorNearDepletedEnderPearlUraniumRod, 4), " R ", "RIR", " R ", 'R', emptyFuelRod, 'I', Ic2Items.enderPearlUraniumIngot);
+            CraftingRecipes.recipes.overrideRecipe("shaped_item.itemCellNetherStarEnrichedUranEmpty_-1439481732", StackUtil.copyWithSize(Ic2Items.reactorNearDepletedNetherStarUraniumRod, 4), " R ", "RIR", " R ", 'R', emptyFuelRod, 'I', Ic2Items.netherStarUraniumIngot);
+            CraftingRecipes.recipes.overrideRecipe("shaped_item.itemCellCharcoalEnrichedUranEmpty_-551978020", StackUtil.copyWithSize(Ic2Items.reactorNearDepletedCharcoalUraniumRod, 4), " R ", "RIR", " R ", 'R', emptyFuelRod, 'I', Ic2Items.charcoalUraniumIngot);
+            if (Loader.isModLoaded("gtclassic")){
+                GTCRecipes.initUranOverride();
             }
         }
 
@@ -197,7 +204,7 @@ public class Ic2cExtrasRecipes {
         IRecipeInput copper = Loader.isModLoaded("gtc_expansion") ? new RecipeInputOreDict("plateCopper") : new RecipeInputItemStack(Ic2Items.denseCopperPlate);
         IRecipeInput coal = Loader.isModLoaded("gtclassic") ? new RecipeInputCombined(1, new RecipeInputOreDict("dustCoal"), new RecipeInputOreDict("dustCharcoal"), new RecipeInputOreDict("dustCarbon")) : new RecipeInputCombined(1, new RecipeInputOreDict("dustCoal"), new RecipeInputOreDict("dustCharcoal"));
         CraftingRecipes.recipes.addShapelessRecipe(single, coal, reEnriched);
-        CraftingRecipes.recipes.addRecipe(StackUtil.copyWithSize(nearDepleted, 8), "RRR", "RIR", "RRR", 'R', emptyRod, 'I', ingredient);
+        CraftingRecipes.recipes.addRecipe(StackUtil.copyWithSize(nearDepleted, 4), " R ", "RIR", " R ", 'R', emptyRod, 'I', ingredient);
         CraftingRecipes.recipes.addRecipe(dual, "RPR", 'R', single, 'P', copper);
         CraftingRecipes.recipes.addRecipe(quad, " R ", "PPP", " R ", 'R', dual, 'P', copper);
         CraftingRecipes.recipes.addRecipe(quad, "RPR", "PPP", "RPR", 'R', single, 'P', copper);

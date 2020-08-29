@@ -70,7 +70,7 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("dustThorium230", Registry.thorium230Dust);
         OreDictionary.registerOre("dustUranium", Registry.uraniumDust);
         OreDictionary.registerOre("ingotPlutonium", Registry.plutoniumIngot);
-        OreDictionary.registerOre("ingotThorium232", Registry.thoriumIngot);
+        OreDictionary.registerOre("ingotThorium", Registry.thoriumIngot);
         OreDictionary.registerOre("ingotThorium230", Registry.thorium230Ingot);
         OreDictionary.registerOre("ingotUranium233", Registry.uranium233Ingot);
         OreDictionary.registerOre("ingotUranium235", Registry.uranium235Ingot);

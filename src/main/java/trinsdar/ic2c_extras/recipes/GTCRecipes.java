@@ -21,10 +21,13 @@ public class GTCRecipes {
         TileEntityMacerator.addRecipe("crushedCentrifugedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
         GTTileCentrifuge.addRecipe("crushedCentrifugedUranium", 1, 0, GTTileCentrifuge.totalEu(6000), GTMaterialGen.getDust(GTMaterial.Uranium, 1), new ItemStack(Registry.uranium238, 2), new ItemStack(Registry.uranium235TinyDust));
         TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(GTItems.reEnrichedRodThorium))), 1500, 36000, new ItemStack(Registry.uranium233TinyDust, 2));
-        GTTileCentrifuge.addRecipe("dustUranium", 22, 0, GTTileCentrifuge.totalEu(250000), GTMaterialGen.get(Registry.uranium238, 16), GTMaterialGen.get(Registry.uranium235, 2), GTMaterialGen.get(Registry.thoriumDust, 4));
+        GTTileCentrifuge.addRecipe("dustUranium", 22, 0, GTTileCentrifuge.totalEu(250000), GTMaterialGen.get(Registry.uranium238, 16), GTMaterialGen.get(Registry.uranium235, 2), GTMaterialGen.getDust(GTMaterial.Thorium, 4));
     }
 
-    public static void postInit(){
-
+    public static void initUranOverride(){
+        CraftingRecipes.dustUtil("dustPlutonium", GTMaterialGen.getDust(GTMaterial.Plutonium, 1), "dustTinyPlutonium", new ItemStack(Registry.plutoniumTinyDust), "dustSmallPlutonium", new ItemStack(Registry.plutoniumSmallDust));
+        CraftingRecipes.dustUtil("dustThorium", GTMaterialGen.getDust(GTMaterial.Thorium, 1), "dustTinyThorium", new ItemStack(Registry.thoriumTinyDust));
+        Ic2cExtrasRecipes.overrideRecipe("gtclassic", "shaped_item.gtclassic.near_depleted_rod_thorium_-1778115925", GTMaterialGen.get(GTItems.nearDepletedRodThorium, 4), " R ", "RIR", " R ", 'R', Ic2cExtrasRecipes.getEmptyRod(), 'I', "ingotThorium");
+        Ic2cExtrasRecipes.overrideRecipe("gtclassic", "shaped_item.gtclassic.near_depleted_rod_plutonium_71443403", GTMaterialGen.get(GTItems.nearDepletedRodPlutonium, 4), " R ", "RIR", " R ", 'R', Ic2cExtrasRecipes.getEmptyRod(), 'I', "ingotPlutonium");
     }
 }

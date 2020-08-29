@@ -1,6 +1,7 @@
 package trinsdar.ic2c_extras.jei;
 
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
+import ic2.core.item.reactor.uranTypes.IUranium;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.jeiIntigration.SubModul;
 import mezz.jei.api.IGuiHelper;
@@ -15,6 +16,7 @@ import mezz.jei.api.recipe.IRecipeWrapperFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Loader;
 import trinsdar.ic2c_extras.Ic2cExtrasConfig;
+import trinsdar.ic2c_extras.items.ItemNuclearRod;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.tileentity.TileEntityMetalBender;
@@ -350,6 +352,16 @@ public class JeiPlugin implements IModPlugin {
                 }
                 if (Loader.isModLoaded("gtclassic")){
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.autocraftingTable));
+                    IUranium[] types = {ItemNuclearRod.types[1], ItemNuclearRod.types[3]};
+                    for(IUranium uran : types) {
+                        for (IUranium.RodType rodType : IUranium.RodType.values()){
+                            blacklist.addIngredientToBlacklist(uran.getRodType(rodType));
+                        }
+                    }
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.thoriumDust));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.thoriumIngot));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumDust));
+                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumIngot));
                 }
                 if (Loader.isModLoaded("gtc_expansion") && Ic2cExtrasConfig.compatGTCX) {
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.roller));

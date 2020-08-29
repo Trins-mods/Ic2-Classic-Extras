@@ -202,14 +202,14 @@ public class Registry {
     public static final ItemMiscs uranium235Ingot = createItem(new ItemMiscs("uranium235Ingot", 24));
     public static final ItemMiscs denseLeadPlate = createItem(new ItemMiscs("denseLeadPlate", 10, "plates"));
 
-    public static final ItemDepeletedNuclearRods nearDepletedUranium238Cell = createItem(new ItemDepeletedNuclearRods("nearDepletedUOXCell", 18));
+    public static final ItemDepeletedNuclearRods nearDepletedUranium238Cell = createItem(new ItemDepeletedNuclearRods("nearDepletedUranium238Cell", 18));
     public static final ItemDepeletedNuclearRods nearDepletedPlutoniumCell = createItem(new ItemDepeletedNuclearRods("nearDepletedPlutoniumCell", 19));
     public static final ItemDepeletedNuclearRods nearDepletedMOXCell = createItem(new ItemDepeletedNuclearRods("nearDepletedMOXCell", 20));
     public static final ItemDepeletedNuclearRods nearDepletedThorium232Cell = createItem(new ItemDepeletedNuclearRods("nearDepletedThorium232Cell", 21));
     public static final ItemDepeletedNuclearRods nearDepletedUranium233Cell = createItem(new ItemDepeletedNuclearRods("nearDepletedUranium233Cell", 22));
     public static final ItemDepeletedNuclearRods nearDepletedThorium230Cell = createItem(new ItemDepeletedNuclearRods("nearDepletedThorium230Cell", 21));
     public static final ItemDepeletedNuclearRods nearDepletedUranium235Cell = createItem(new ItemDepeletedNuclearRods("nearDepletedUranium235Cell", 23));
-    public static final ItemDepeletedNuclearRods reEnrichedUranium238Cell = createItem(new ItemDepeletedNuclearRods("reEnrichedUOXCell", 30));
+    public static final ItemDepeletedNuclearRods reEnrichedUranium238Cell = createItem(new ItemDepeletedNuclearRods("reEnrichedUranium238Cell", 30));
     public static final ItemDepeletedNuclearRods reEnrichedPlutoniumCell = createItem(new ItemDepeletedNuclearRods("reEnrichedPlutoniumCell", 31));
     public static final ItemDepeletedNuclearRods reEnrichedMOXCell = createItem(new ItemDepeletedNuclearRods("reEnrichedMOXCell", 32));
     public static final ItemDepeletedNuclearRods reEnrichedThorium232Cell = createItem(new ItemDepeletedNuclearRods("reEnrichedThorium232Cell", 33));
