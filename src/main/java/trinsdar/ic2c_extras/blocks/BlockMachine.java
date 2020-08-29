@@ -28,6 +28,7 @@ import trinsdar.ic2c_extras.tileentity.TileEntityLiquescentExtruder;
 import trinsdar.ic2c_extras.tileentity.TileEntityMetalBender;
 import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.tileentity.TileEntityPlasmaCutter;
+import trinsdar.ic2c_extras.tileentity.TileEntityReinforcedStoneCable;
 import trinsdar.ic2c_extras.tileentity.TileEntityRoller;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalWasher;
@@ -48,6 +49,11 @@ public class BlockMachine extends BlockMultiID{
         this.setCreativeTab(IC2CExtras.creativeTab);
         this.setRegistryName(IC2CExtras.MODID, name.toLowerCase());
         this.setUnlocalizedName(comp);
+        if (name.equals("reinforcedencasedcable")){
+            this.setHardness(80.0F);
+            this.setResistance(150.0F);
+            this.setHarvestLevel("pickaxe", 2);
+        }
     }
 
     @Override
@@ -85,6 +91,8 @@ public class BlockMachine extends BlockMultiID{
             return new TileEntityElectricDisenchanter();
         } else if (this == Registry.autocraftingTable){
             return new TileEntityAutocraftingTable();
+        } else if (this == Registry.reinforcedEncasedCable){
+            return new TileEntityReinforcedStoneCable();
         } else {
             return null;
         }
@@ -99,6 +107,8 @@ public class BlockMachine extends BlockMultiID{
             drops.add(Ic2Items.canner);
         } else if (this == Registry.electricDisenchanter){
             drops.add(Ic2Items.electricEnchanter);
+        } else if (this == Registry.reinforcedEncasedCable){
+            drops.add(new ItemStack(this));
         } else {
             drops.add(Ic2Items.machine);
         }

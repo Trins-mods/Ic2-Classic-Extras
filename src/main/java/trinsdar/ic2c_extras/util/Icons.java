@@ -58,6 +58,7 @@ public class Icons {
         common2 = s("bmach_hv", 132);
         setTexture(Registry.electricDisenchanter, s("bmach_mv", 0), s("electric_disenchanter_top"), common, common, common, common, s("bmach_mv", 0), s("electric_disenchanter_top"), common2, common2, common2, common2);
         setTexture(Registry.autocraftingTable, s("autocrafting_table_side"), s("autocrafting_table_side"), s("autocrafting_table_back"), s("autocrafting_table_front"), s("autocrafting_table_side"), s("autocrafting_table_side"));
+        setTexture(Registry.reinforcedEncasedCable, s("b0", 12), s("b0", 12), s("reinforced_encased_cable"), s("reinforced_encased_cable"), s("b0", 12), s("b0", 12));
         blockTextureList.add("electric_disenchanter_side_overlay");
         blockTextureList.add("electric_disenchanter_side_active_overlay");
         makeSprites("misc_items", 16, 2);

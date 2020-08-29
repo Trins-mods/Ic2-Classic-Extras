@@ -29,6 +29,7 @@ public class Ic2cExtrasLang {
     public static final LocaleComp LIQUESCENT_EXTRUDER = new LocaleBlockComp("tile.liquescentExtruder");
     public static final LocaleComp PLASMA_CUTTER = new LocaleBlockComp("tile.plasmaCutter");
     public static final LocaleComp AUTOCRAFTING_TABLE = new LocaleBlockComp("tile.autocraftingTable");
+    public static final LocaleComp REINFORCED_ENCASED_CABLE = new LocaleBlockComp("tile.reinforcedEncasedCable");
     public static final LocaleComp ADVANCED_STEAM_TURBINE = new LocaleBlockComp("tile.advancedSteamTurbine");
     public static final LocaleComp THERMO_ELECTRIC_GENERATOR = new LocaleBlockComp("tile.thermoElectricGenerator");
     public static final LocaleComp THERMO_ELECTRIC_GENERATOR_MK_II = new LocaleBlockComp("tile.thermoElectricGeneratorMkII");

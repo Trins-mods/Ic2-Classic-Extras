@@ -26,9 +26,14 @@ public class ItemBlockMachine extends ItemBlockRare {
             tooltip.add(TextFormatting.RED + "Work in Progress");
         }
         if (handler.hasEUReader()) {
-            tooltip.add(Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(getMaxInput()));
-            if (this.getBlock() == Registry.autocraftingTable){
-                tooltip.add("Energy Usage: 50 EU Per Craft");
+            if (this.getBlock() != Registry.reinforcedEncasedCable){
+                tooltip.add(Ic2InfoLang.euReaderSinkInfo.getLocalizedFormatted(getMaxInput()));
+                if (this.getBlock() == Registry.autocraftingTable){
+                    tooltip.add("Energy Usage: 50 EU Per Craft");
+                }
+            } else {
+                tooltip.add((Ic2InfoLang.euReaderCableLimit.getLocalizedFormatted(2048)));
+                tooltip.add(Ic2InfoLang.euReaderCableLoss.getLocalizedFormatted(0.8D));
             }
         }
     }
