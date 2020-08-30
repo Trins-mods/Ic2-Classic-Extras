@@ -196,5 +196,6 @@ tileInfo.reactorNeedThermometer.name=Thermometer needed in hotbar or helmet to s
 tileInfo.thermoElectricGeneratorMkII.name=Only accepts plutonium rtgs.
 tileInfo.thermoElectricGenerator.name=Only accepts thorium rtgs.
 jeiInfo.heat.name=%s Heat
+itemInfo.reactorPlated.name=Has Reactor Plating
 
 ic2.crop.Plumbilia.name=Plumbilia

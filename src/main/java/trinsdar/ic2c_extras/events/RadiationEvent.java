@@ -11,10 +11,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import trinsdar.ic2c_extras.items.ItemNuclearRod;
+import trinsdar.ic2c_extras.util.IReactorPlated;
 import trinsdar.ic2c_extras.util.Registry;
 
 import java.util.ArrayList;
@@ -38,7 +40,9 @@ public class RadiationEvent {
         radiation.add(new ItemStack(Registry.plutoniumSmallDust));
         radiation.add(new ItemStack(Registry.plutoniumTinyDust));
         radiation.add(new ItemStack(Registry.doubleEnrichedUraniumIngot));
-        radiation.add(new ItemStack(Registry.uranium238Ingot));
+        radiation.add(new ItemStack(Registry.uranium233Ingot));
+        radiation.add(new ItemStack(Registry.uranium233Dust));
+        radiation.add(new ItemStack(Registry.uranium233TinyDust));
         radiation.add(new ItemStack(Registry.thorium230Dust));
         radiation.add(new ItemStack(Registry.thorium230TinyDust));
         radiation.add(new ItemStack(Registry.thorium230Ingot));
@@ -92,8 +96,8 @@ public class RadiationEvent {
         }
     }
 
-    public static Item getItem(String name) {
-        ResourceLocation loc = new ResourceLocation(name);
+    public static Item getItem(String modid, String name) {
+        ResourceLocation loc = new ResourceLocation(modid, name);
         return Item.getByNameOrId(loc.toString());
     }
 
@@ -111,13 +115,39 @@ public class RadiationEvent {
         return true;
     }
 
+    public boolean hasFullNuclearcraftSuit(EntityPlayer player){
+        String modid = "nuclearcraft";
+        if (!Loader.isModLoaded(modid)){
+            return false;
+        }
+        for (int i = 0; i < 4; i++) {
+            ItemStack stack = player.inventory.armorInventory.get(i);
+            Item item = stack.getItem();
+            if (stack.isEmpty() || (item != getItem(modid, "helm_hazmat") && item != getItem(modid, "chest_hazmat") && item != getItem(modid, "legs_hazmat") && item != getItem(modid, "boots_hazmat"))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean hasFullPlatedSuit(EntityPlayer player) {
+        for (int i = 0; i < 4; i++) {
+            ItemStack stack = player.inventory.armorInventory.get(i);
+            Item item = stack.getItem();
+            if (!(item instanceof IReactorPlated) || !((IReactorPlated)item).hasReactorPlate(stack)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     @SubscribeEvent
     public void onPlayerTick(PlayerTickEvent event) {
         EntityPlayer player = event.player;
 
         if (IC2.platform.isSimulating() && event.phase == TickEvent.Phase.END) {
             if (!player.isCreative()) {
-                if (!isFullHazmatSuit(player) && !hasFullQuantumSuit(player)) {
+                if (!isFullHazmatSuit(player) && !hasFullQuantumSuit(player) && !hasFullPlatedSuit(player) && !hasFullNuclearcraftSuit(player)) {
                     if (hasRadiationItem(player)) {
                         player.addPotionEffect(new PotionEffect(IC2Potion.radiation, 1800, 0, false, false));
                     }

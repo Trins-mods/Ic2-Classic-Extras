@@ -42,4 +42,6 @@ public class Ic2cExtrasLang {
     public static final LocaleComp STONE_DUST_BLOCK = new LocaleBlockComp("tile.stoneDustBlock");
 
     public static final LocaleComp URANIUM_FUEL = new LangComponentHolder.LocaleItemComp("item.itemFuelUran");
+
+    public static final LocaleComp REACTOR_PLATED = new LangComponentHolder.LocaleItemInfoComp("itemInfo.reactorPlated.name");
 }

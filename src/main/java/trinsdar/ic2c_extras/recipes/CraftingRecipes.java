@@ -9,6 +9,7 @@ import ic2.core.block.machine.low.TileEntityMacerator;
 import ic2.core.item.recipe.entry.RecipeInputCombined;
 import ic2.core.item.recipe.entry.RecipeInputItemStack;
 import ic2.core.item.recipe.entry.RecipeInputOreDict;
+import ic2.core.item.recipe.upgrades.FlagModifier;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.Block;
@@ -128,6 +129,11 @@ public class CraftingRecipes {
                 " T ", "T T", " T ", 'T', "casingTin");
 
         recipes.addRecipe(new ItemStack(Registry.energiumDust, 9), "RRR", "RDR", "RRR", 'R', new RecipeInputOreDict("dustRedstone", 2), 'D', "dustDiamond");
+
+        recipes.addShapelessRecipe(Ic2Items.nanoHelmet.copy(), (new FlagModifier(Ic2Items.nanoHelmet.copy(), "ReactorPlating", true)).setUsesInput(), Ic2Items.nanoHelmet.copy(), Ic2Items.reactorPlating.copy());
+        recipes.addShapelessRecipe(Ic2Items.nanoChest.copy(), (new FlagModifier(Ic2Items.nanoChest.copy(), "ReactorPlating", true)).setUsesInput(), Ic2Items.nanoChest.copy(), Ic2Items.reactorPlating.copy());
+        recipes.addShapelessRecipe(Ic2Items.nanoLeggings.copy(), (new FlagModifier(Ic2Items.nanoLeggings.copy(), "ReactorPlating", true)).setUsesInput(), Ic2Items.nanoLeggings.copy(), Ic2Items.reactorPlating.copy());
+        recipes.addShapelessRecipe(Ic2Items.nanoBoots.copy(), (new FlagModifier(Ic2Items.nanoBoots.copy(), "ReactorPlating", true)).setUsesInput(), Ic2Items.nanoBoots.copy(), Ic2Items.reactorPlating.copy());
 
         if (Ic2cExtrasConfig.requiredLeadUses){
             recipes.overrideRecipe("shaped_tile.blockreactorchamber_1490756150", Ic2Items.reactorChamber.copy(), " L ", "LML", " L ", 'L', "plateDenseLead", 'M', "machineBlockBasic");
