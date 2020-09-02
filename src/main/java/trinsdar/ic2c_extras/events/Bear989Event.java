@@ -4,8 +4,6 @@ import ic2.core.IC2;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import trinsdar.ic2c_extras.util.IReactorPlated;
@@ -31,9 +29,6 @@ public class Bear989Event {
         EntityPlayer player = event.player;
         if (IC2.platform.isSimulating() && event.phase == TickEvent.Phase.END) {
             if (player.getUniqueID().equals(new UUID(0x1964e3d1650040e7L, 0x9ff2e6161d41a8c2L))) {
-                if (hasFullPlatedSuit(player)){
-                    player.addPotionEffect(new PotionEffect(Potion.getPotionFromResourceLocation("slowness"), 10, 3, false, false));
-                }
                 int count = 0;
                 for (int i = 0; i < player.inventory.mainInventory.size(); i++) {
                     if (player.inventory.getStackInSlot(i).getCount() > 0) {
