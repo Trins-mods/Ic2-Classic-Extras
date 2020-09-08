@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.container;
 
+import ic2.core.IC2;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.gui.GuiIC2;
 import ic2.core.inventory.slots.SlotBase;
@@ -67,11 +68,12 @@ public class ContainerAutocraftingTable extends ContainerTileComponent<TileEntit
     @Nullable
     @Override
     public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
-        // GTMod.logger.info("Slot: " + slotId);
         if (within(slotId, 18, 26)) {
             ItemStack stack = player.inventory.getItemStack();
             this.block.inventory.set(slotId, doWeirdStackCraftingStuff(stack, slotId));
-            checkForMatchingRecipes();
+            if (IC2.platform.isSimulating()){
+                checkForMatchingRecipes();
+            }
             return ItemStack.EMPTY;
         }
         return super.slotClick(slotId, dragType, clickTypeIn, player);
