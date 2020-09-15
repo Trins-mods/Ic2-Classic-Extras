@@ -20,7 +20,10 @@ public class GTCRecipes {
         TileEntityMacerator.addRecipe("crushedPurifiedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
         TileEntityMacerator.addRecipe("crushedCentrifugedUranium", 1, GTMaterialGen.getDust(GTMaterial.Uranium, 1));
         GTTileCentrifuge.addRecipe("crushedCentrifugedUranium", 1, 0, GTTileCentrifuge.totalEu(6000), GTMaterialGen.getDust(GTMaterial.Uranium, 1), new ItemStack(Registry.uranium238, 2), new ItemStack(Registry.uranium235TinyDust));
-        TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(GTItems.reEnrichedRodThorium))), 1500, 36000, new ItemStack(Registry.uranium233TinyDust, 2));
+        try {
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(GTMaterialGen.getModItem("gtclassic", "re_enriched_rod_thorium"))), 1500, 36000, new ItemStack(Registry.uranium233TinyDust, 2));
+        } catch (Exception ignored){
+        }
         GTTileCentrifuge.RECIPE_LIST.removeRecipe("item.reactorUraniumSimple");
         GTTileCentrifuge.addRecipe("dustUranium", 22, 0, GTTileCentrifuge.totalEu(250000), GTMaterialGen.get(Registry.uranium238, 16), GTMaterialGen.get(Registry.uranium235, 2), GTMaterialGen.getDust(GTMaterial.Thorium, 4));
     }
@@ -28,7 +31,10 @@ public class GTCRecipes {
     public static void initUranOverride(){
         CraftingRecipes.dustUtil("dustPlutonium", GTMaterialGen.getDust(GTMaterial.Plutonium, 1), "dustTinyPlutonium", new ItemStack(Registry.plutoniumTinyDust), "dustSmallPlutonium", new ItemStack(Registry.plutoniumSmallDust));
         CraftingRecipes.dustUtil("dustThorium", GTMaterialGen.getDust(GTMaterial.Thorium, 1), "dustTinyThorium", new ItemStack(Registry.thoriumTinyDust));
-        Ic2cExtrasRecipes.overrideRecipe("gtclassic", "shaped_item.gtclassic.near_depleted_rod_thorium_-1778115925", GTMaterialGen.get(GTItems.nearDepletedRodThorium, 4), " R ", "RIR", " R ", 'R', Ic2cExtrasRecipes.getEmptyRod(), 'I', "ingotThorium");
-        Ic2cExtrasRecipes.overrideRecipe("gtclassic", "shaped_item.gtclassic.near_depleted_rod_plutonium_71443403", GTMaterialGen.get(GTItems.nearDepletedRodPlutonium, 4), " R ", "RIR", " R ", 'R', Ic2cExtrasRecipes.getEmptyRod(), 'I', "ingotPlutonium");
+        try{
+            Ic2cExtrasRecipes.overrideRecipe("gtclassic", "shaped_item.gtclassic.near_depleted_rod_thorium_-1778115925", GTMaterialGen.getModItem("gtclassic", "near_depleted_rod_thorium", 4), " R ", "RIR", " R ", 'R', Ic2cExtrasRecipes.getEmptyRod(), 'I', "ingotThorium");
+            Ic2cExtrasRecipes.overrideRecipe("gtclassic", "shaped_item.gtclassic.near_depleted_rod_plutonium_71443403", GTMaterialGen.getModItem("gtclassic", "near_depleted_rod_plutonium", 4), " R ", "RIR", " R ", 'R', Ic2cExtrasRecipes.getEmptyRod(), 'I', "ingotPlutonium");
+        } catch (Exception ignored){
+        }
     }
 }

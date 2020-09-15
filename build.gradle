@@ -163,7 +163,20 @@ shadowJar {
     }
 }
 
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+    manifest.attributes(
+            "FMLCorePlugin": "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin",
+            "FMLCorePluginContainsFMLMod": true,
+            "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
+            "TweakOrder": 0,
+            "MixinConfigs": "mixins.ic2c_extras.json"
+    )
+}
+
 artifacts {
     archives jar
     archives shadowJar
+    archives deobfJar
 }
