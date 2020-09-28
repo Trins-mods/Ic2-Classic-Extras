@@ -8,6 +8,7 @@ import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.entity.explosion.ExplosionIC2;
 import ic2.core.platform.registry.Ic2States;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,6 +38,11 @@ public class TileEntityReinforcedStoneCable extends TileEntityMachine implements
     }
 
     @Override
+    public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+        return this.getFacing() != facing;
+    }
+
+    @Override
     public void setFacing(EnumFacing face) {
         if (this.addedToEnergyNet) {
             MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
@@ -50,13 +56,15 @@ public class TileEntityReinforcedStoneCable extends TileEntityMachine implements
 
     @Override
     public void setFacingWithoutNotify(EnumFacing face) {
-        if (this.addedToEnergyNet) {
+        if (this.addedToEnergyNet && this.world != null) {
             MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
         }
 
         this.addedToEnergyNet = false;
         super.setFacingWithoutNotify(face);
-        MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+        if (this.world != null){
+            MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+        }
         this.addedToEnergyNet = true;
     }
 

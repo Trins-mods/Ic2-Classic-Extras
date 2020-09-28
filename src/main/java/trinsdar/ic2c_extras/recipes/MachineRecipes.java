@@ -3,6 +3,7 @@ package trinsdar.ic2c_extras.recipes;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.crafting.ICraftingRecipeList;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
+import ic2.api.classic.recipe.machine.MachineOutput;
 import ic2.core.IC2;
 import ic2.core.block.machine.low.TileEntityCompressor;
 import ic2.core.block.machine.low.TileEntityMacerator;
@@ -254,6 +255,8 @@ public class MachineRecipes {
     public static void initMachineRecipes() {
         int lowHeat = 400;
         int mediumHeat = 600;
+        int iron = Ic2cExtrasConfig.densePlatesTakePlates ? 54 : 48;
+        ClassicRecipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(Registry.thoriumRTG)), new MachineOutput(null, StackUtil.copyWithSize(Ic2Items.ironDust, iron), new ItemStack(Registry.thoriumDust, 3)), "recycling-thorium-rtg");
         ItemStack stoneDust = new ItemStack(Registry.stoneDust);
         //ore washing plant
         TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedIron", 1)), 1000, new ItemStack(Registry.ironPurifiedCrushedOre, 1), new ItemStack(Registry.ironTinyDust, 2), stoneDust);

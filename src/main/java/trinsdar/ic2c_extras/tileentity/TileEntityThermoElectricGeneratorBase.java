@@ -14,6 +14,7 @@ import ic2.core.platform.registry.Ic2GuiComp;
 import ic2.core.util.math.Box2D;
 import ic2.core.util.math.Vec2i;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -173,7 +174,7 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
     }
 
     public static class TileEntityThermoElectricGeneratorMkI extends TileEntityThermoElectricGeneratorBase {
-        public static BasicItemFilter filter = new BasicItemFilter(new ItemStack(Registry.thoriumRTG));
+        public static BasicItemFilter filter = new BasicItemFilter(new ItemStack(Registry.plutoniumRTG));
         public TileEntityThermoElectricGeneratorMkI() {
             this.tier = 1;
             this.maxStorage = 20000;
@@ -193,7 +194,7 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
         public int getProduction() {
             int count = -1;
             for (int i = 0; i < 6; i++) {
-                if (inventory.get(i).isItemEqual(new ItemStack(Registry.thoriumRTG))) {
+                if (inventory.get(i).isItemEqual(new ItemStack(Registry.plutoniumRTG))) {
                     count += 1;
                 }
             }
@@ -210,7 +211,7 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
     }
 
     public static class TileEntityThermoElectricGeneratorMkII extends TileEntityThermoElectricGeneratorBase {
-        public static BasicItemFilter filter2 = new BasicItemFilter(new ItemStack(Registry.plutoniumRTG));
+        public static BasicItemFilter filter2 = new BasicItemFilter(new ItemStack(Blocks.BEDROCK));
 
         public TileEntityThermoElectricGeneratorMkII() {
             this.tier = 2;
@@ -231,7 +232,7 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
         public int getProduction() {
             int count = 0;
             for (int i = 0; i < 6; i++) {
-                if (inventory.get(i).isItemEqual(new ItemStack(Registry.plutoniumRTG))) {
+                if (inventory.get(i).isItemEqual(new ItemStack(Blocks.BEDROCK))) {
                     count += 1;
                 }
             }

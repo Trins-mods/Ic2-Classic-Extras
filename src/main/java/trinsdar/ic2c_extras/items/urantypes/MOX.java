@@ -22,7 +22,7 @@ public class MOX extends UranBaseType {
     @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite getTexture(RodType type) {
-        return Ic2Icons.getTextures("ic2c_extras_nuclear_cells")[this.getRodID(type) - 1100];
+        return Ic2Icons.getTextures("ic2c_extras_nuclear_cells")[this.getTextureID(type)];
     }
 
     @Override
@@ -94,17 +94,36 @@ public class MOX extends UranBaseType {
     public short getRodID(RodType type) {
         switch (type) {
             case SingleRod:
-                return 1114;
+                return 1112;
             case DualRod:
-                return 1108;
+                return 1113;
             case QuadRod:
-                return 1102;
+                return 1114;
             case ReEnrichedRod:
-                return 1132;
+                return 1115;
             case NearDepletedRod:
-                return 1120;
+                return 1116;
             case IsotopicRod:
-                return 1126;
+                return 1117;
+            default:
+                return 0;
+        }
+    }
+
+    public short getTextureID(RodType type) {
+        switch (type) {
+            case SingleRod:
+                return 14;
+            case DualRod:
+                return 8;
+            case QuadRod:
+                return 2;
+            case ReEnrichedRod:
+                return 32;
+            case NearDepletedRod:
+                return 20;
+            case IsotopicRod:
+                return 26;
             default:
                 return 0;
         }

@@ -15,20 +15,20 @@ import java.awt.*;
 
 public class Uranium233 extends UranBaseType {
     public Uranium233(){
-        this.addArray(new int[]{-1, -1});
-        this.addArray(new int[]{0, -1});
-        this.addArray(new int[]{1, -1});
-        this.addArray(new int[]{-1, 0});
-        this.addArray(new int[]{1, 0});
-        this.addArray(new int[]{-1, 1});
-        this.addArray(new int[]{0, 1});
-        this.addArray(new int[]{1, 1});
+        this.addArray(-1, -1);
+        this.addArray(0, -1);
+        this.addArray(1, -1);
+        this.addArray(-1, 0);
+        this.addArray(1, 0);
+        this.addArray(-1, 1);
+        this.addArray(0, 1);
+        this.addArray(1, 1);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite getTexture(RodType type) {
-        return Ic2Icons.getTextures("ic2c_extras_nuclear_cells")[(this.getRodID(type)) - 1100];
+        return Ic2Icons.getTextures("ic2c_extras_nuclear_cells")[this.getTextureID(type)];
     }
 
     @Override
@@ -100,17 +100,36 @@ public class Uranium233 extends UranBaseType {
     public short getRodID(RodType type) {
         switch (type) {
             case SingleRod:
-                return 1116;
+                return 1124;
             case DualRod:
-                return 1110;
+                return 1125;
             case QuadRod:
-                return 1104;
+                return 1126;
             case ReEnrichedRod:
-                return 1134;
+                return 1127;
             case NearDepletedRod:
-                return 1122;
-            case IsotopicRod:
                 return 1128;
+            case IsotopicRod:
+                return 1129;
+            default:
+                return 0;
+        }
+    }
+
+    public short getTextureID(RodType type) {
+        switch (type) {
+            case SingleRod:
+                return 16;
+            case DualRod:
+                return 10;
+            case QuadRod:
+                return 4;
+            case ReEnrichedRod:
+                return 34;
+            case NearDepletedRod:
+                return 22;
+            case IsotopicRod:
+                return 28;
             default:
                 return 0;
         }

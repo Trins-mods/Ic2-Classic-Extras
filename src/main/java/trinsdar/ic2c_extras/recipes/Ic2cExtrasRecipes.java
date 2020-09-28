@@ -1,6 +1,5 @@
 package trinsdar.ic2c_extras.recipes;
 
-import gtclassic.GTMod;
 import ic2.api.classic.recipe.ClassicRecipes;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
 import ic2.api.recipe.IRecipeInput;
@@ -39,7 +38,7 @@ import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.items.ItemNuclearRod;
 import trinsdar.ic2c_extras.items.urantypes.Plutonium;
-import trinsdar.ic2c_extras.items.urantypes.Thorium232;
+import trinsdar.ic2c_extras.items.urantypes.Thorium;
 import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
 import trinsdar.ic2c_extras.tileentity.TileEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.util.Registry;
@@ -170,7 +169,7 @@ public class Ic2cExtrasRecipes {
             TileEntityCompressor.addRecipe("crushedPurifiedUranium", 1, Ic2Items.uraniumDrop);
             IUranium[] types = ItemNuclearRod.types;
             for(IUranium uran : types) {
-                if ((uran instanceof Thorium232 || uran instanceof Plutonium) && Loader.isModLoaded("gtclassic")){
+                if ((uran instanceof Thorium || uran instanceof Plutonium) && Loader.isModLoaded("gtclassic")){
                     continue;
                 }
                 rodUtil(uran.getRodType(IUranium.RodType.SingleRod), uran.getRodType(IUranium.RodType.DualRod), uran.getRodType(IUranium.RodType.QuadRod), uran.getNewIsotopicRod(), uran.getRodType(IUranium.RodType.ReEnrichedRod), uran.getRodType(IUranium.RodType.NearDepletedRod), uran.getUraniumIngot());
@@ -189,9 +188,8 @@ public class Ic2cExtrasRecipes {
 
 
         CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.thermoElectricGenerator), "DDD", "DRD", "DGD", 'D', "plateDenseIron", 'R', Ic2Items.nuclearReactor, 'G', Ic2Items.thermalGenerator);
-        CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.thermoElectricGeneratorMKII), "CIC", "CTC", "CAC", 'C', Ic2cExtrasRecipes.getRefinedIronCasing(), 'I', Ic2Items.iridiumPlate, 'T', Registry.thermoElectricGenerator, 'A', Ic2Items.advMachine);
+        CraftingRecipes.recipes.addShapelessRecipe(new ItemStack(Registry.thermoElectricGenerator), Registry.thermoElectricGeneratorMKII);
         CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.plutoniumRTG), "IPI", "IPI", "IPI", 'I', "plateDenseIron", 'P', "ingotPlutonium");
-        CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.thoriumRTG), "ITI", "ITI", "ITI", 'I', "plateDenseIron", 'T', "ingotThorium");
         TileEntityExtractor.addRecipe(new ItemStack(Registry.thorium230Dust), new ItemStack(Registry.thoriumDust, 2));
     }
 
@@ -276,9 +274,9 @@ public class Ic2cExtrasRecipes {
         try {
             duplicatesf = AdvRecipeBase.class.getDeclaredField("duplicates");
         } catch (NoSuchFieldException e) {
-            GTMod.logger.info("Trying to access Advanced recipes has failed : (");
+            IC2CExtras.logger.info("Trying to access Advanced recipes has failed : (");
         } catch (SecurityException e) {
-            GTMod.logger.info("AdvRecipeBase security deployed");
+            IC2CExtras.logger.info("AdvRecipeBase security deployed");
         }
         if (duplicatesf != null) {
             duplicatesf.setAccessible(true);
@@ -288,9 +286,9 @@ public class Ic2cExtrasRecipes {
                 ((Set<ResourceLocation>) duplicatesf.get(duplicatesf)).remove(new ResourceLocation(modid, recipeId));
             }
         } catch (IllegalArgumentException e) {
-            GTMod.logger.info("Accessed AdvRecipeBase class but field getter failed");
+            IC2CExtras.logger.info("Accessed AdvRecipeBase class but field getter failed");
         } catch (IllegalAccessException e) {
-            GTMod.logger.info("Accessed AdvRecipeBase class but access denied");
+            IC2CExtras.logger.info("Accessed AdvRecipeBase class but access denied");
         }
         AdvRecipe.overrideAndGet(recipeId, output, input);
         loader.setActiveModContainer(old);

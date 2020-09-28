@@ -164,8 +164,7 @@ item.nickelTinyDust.name=小撮镍粉
 itemGroup.ic2c_extras=工业2经典版拓展
 
 tileInfo.heatAmount.name=热量: %1$s / %2$s
-tileInfo.thermoElectricGeneratorMkII.name=仅支持钚RTG.
-tileInfo.thermoElectricGenerator.name=仅支持钍RTG.
+tileInfo.thermoElectricGenerator.name=仅支持钚RTG.
 jeiInfo.heat.name=%s 热量
 
 ic2.crop.Plumbilia.name=铅种子

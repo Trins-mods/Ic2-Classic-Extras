@@ -21,7 +21,7 @@ public class Plutonium extends UranBaseType {
     @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite getTexture(RodType type) {
-        return Ic2Icons.getTextures("ic2c_extras_nuclear_cells")[this.getRodID(type) - 1100];
+        return Ic2Icons.getTextures("ic2c_extras_nuclear_cells")[this.getTextureID(type)];
     }
 
     @Override
@@ -93,17 +93,36 @@ public class Plutonium extends UranBaseType {
     public short getRodID(RodType type) {
         switch (type) {
             case SingleRod:
-                return 1113;
+                return 1106;
             case DualRod:
                 return 1107;
             case QuadRod:
-                return 1101;
+                return 1108;
             case ReEnrichedRod:
-                return 1131;
+                return 1109;
             case NearDepletedRod:
-                return 1119;
+                return 1110;
             case IsotopicRod:
-                return 1125;
+                return 1111;
+            default:
+                return 0;
+        }
+    }
+
+    public short getTextureID(RodType type) {
+        switch (type) {
+            case SingleRod:
+                return 13;
+            case DualRod:
+                return 7;
+            case QuadRod:
+                return 1;
+            case ReEnrichedRod:
+                return 31;
+            case NearDepletedRod:
+                return 19;
+            case IsotopicRod:
+                return 25;
             default:
                 return 0;
         }

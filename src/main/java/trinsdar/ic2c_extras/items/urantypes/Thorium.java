@@ -13,15 +13,15 @@ import trinsdar.ic2c_extras.util.Registry;
 
 import java.awt.*;
 
-public class Thorium232 extends UranBaseType {
-    public Thorium232() {
+public class Thorium extends UranBaseType {
+    public Thorium() {
         this.loadDefaults();
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public TextureAtlasSprite getTexture(RodType type) {
-        return Ic2Icons.getTextures("ic2c_extras_nuclear_cells")[this.getRodID(type) - 1100];
+        return Ic2Icons.getTextures("ic2c_extras_nuclear_cells")[this.getTextureID(type)];
     }
 
     @Override
@@ -93,17 +93,36 @@ public class Thorium232 extends UranBaseType {
     public short getRodID(RodType type) {
         switch (type) {
             case SingleRod:
-                return 1115;
+                return 1118;
             case DualRod:
-                return 1109;
+                return 1119;
             case QuadRod:
-                return 1103;
+                return 1120;
             case ReEnrichedRod:
-                return 1133;
-            case NearDepletedRod:
                 return 1121;
+            case NearDepletedRod:
+                return 1122;
             case IsotopicRod:
-                return 1127;
+                return 1123;
+            default:
+                return 0;
+        }
+    }
+
+    public short getTextureID(RodType type) {
+        switch (type) {
+            case SingleRod:
+                return 15;
+            case DualRod:
+                return 9;
+            case QuadRod:
+                return 3;
+            case ReEnrichedRod:
+                return 33;
+            case NearDepletedRod:
+                return 21;
+            case IsotopicRod:
+                return 27;
             default:
                 return 0;
         }

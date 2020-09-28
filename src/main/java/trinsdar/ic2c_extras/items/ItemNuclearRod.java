@@ -15,7 +15,7 @@ import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.items.urantypes.MOX;
 import trinsdar.ic2c_extras.items.urantypes.Plutonium;
 import trinsdar.ic2c_extras.items.urantypes.Thorium230;
-import trinsdar.ic2c_extras.items.urantypes.Thorium232;
+import trinsdar.ic2c_extras.items.urantypes.Thorium;
 import trinsdar.ic2c_extras.items.urantypes.Uranium233;
 import trinsdar.ic2c_extras.items.urantypes.Uranium235;
 import trinsdar.ic2c_extras.items.urantypes.Uranium238;
@@ -44,7 +44,7 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
         types[0] = new Uranium238();
         types[1] = new Plutonium();
         types[2] = new MOX();
-        types[3] = new Thorium232();
+        types[3] = new Thorium();
         types[6] = new Uranium233();
         types[5] = new Uranium235();
         types[4] = new Thorium230();

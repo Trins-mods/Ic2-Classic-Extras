@@ -100,17 +100,17 @@ public class Thorium230 extends UranBaseType {
     public short getRodID(RodType type) {
         switch (type) {
             case SingleRod:
-                return 1146;
+                return 1148;
             case DualRod:
-                return 1140;
+                return 1149;
             case QuadRod:
-                return 1154;
+                return 1150;
             case ReEnrichedRod:
-                return 1164;
+                return 1151;
             case NearDepletedRod:
                 return 1152;
             case IsotopicRod:
-                return 1158;
+                return 1153;
             default:
                 return 0;
         }

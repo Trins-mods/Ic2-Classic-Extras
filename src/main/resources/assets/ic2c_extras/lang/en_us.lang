@@ -193,8 +193,8 @@ tileInfo.reactorHeatAmount.name=Core Temperature: %1$s
 tileInfo.reactorEUPerTick.name=Output: %1$s EU/t
 tileInfo.reactorSteamPerTick.name=Output: %1$s Steam/t
 tileInfo.reactorNeedThermometer.name=Thermometer needed in hotbar or helmet to see heat percentage.
-tileInfo.thermoElectricGeneratorMkII.name=Only accepts plutonium rtgs.
-tileInfo.thermoElectricGenerator.name=Only accepts thorium rtgs.
+tileInfo.thermoElectricGenerator.name=Only accepts plutonium rtgs.
+tileInfo.thermoElectricGeneratorMkII.name=Being removed next version, craft into the regular.
 jeiInfo.heat.name=%s Heat
 itemInfo.reactorPlated.name=Has Reactor Plating
 
