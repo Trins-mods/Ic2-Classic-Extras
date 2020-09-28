@@ -1,6 +1,5 @@
 package trinsdar.ic2c_extras.tileentity;
 
-import gtclassic.api.helpers.GTHelperStack;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityElecMachine;
 import ic2.core.block.machine.low.logic.crafter.CraftingRecipe;
@@ -30,6 +29,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.container.ContainerAutocraftingTable;
+import trinsdar.ic2c_extras.util.StackHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +61,24 @@ public class TileEntityAutocraftingTable extends TileEntityElecMachine implement
         handler.registerSlotType(SlotType.Input, slotInputs);
         handler.registerSlotType(SlotType.Output, slotOutputs);
         handler.registerSlotType(SlotType.Output, slotContainer);
+    }
+
+    @Override
+    public List<ItemStack> getDrops() {
+        List<ItemStack> list = new ArrayList(this.inventory.size());
+
+        for(int i = 0; i < this.inventory.size(); ++i) {
+            ItemStack stack = this.inventory.get(i);
+            if (!stack.isEmpty() && !within(i, 18, 27)) {
+                list.add(stack);
+            }
+        }
+
+        return list;
+    }
+
+    public boolean within(int value, int low, int high) {
+        return value >= low && value <= high;
     }
 
     @Override
@@ -124,27 +142,28 @@ public class TileEntityAutocraftingTable extends TileEntityElecMachine implement
             tryImportItems(this.getFacing().getOpposite());
             ItemStack mStack = this.getStackInSlot(27);
             if (!this.currentRecipe.isEmpty() && !mStack.isEmpty()
-                    && GTHelperStack.canMerge(mStack, this.inventory.get(28)) && this.energy >= 50) {
+                    && StackHelper.canMerge(mStack, this.inventory.get(28)) && this.energy >= 50) {
                 // see if the tile inventory has what the currentRecipe needs
-                GTHelperStack.tryCondenseInventory(this, 0, 9);
+                StackHelper.tryCondenseInventory(this, 0, 9);
                 int recipeMatches = 0;
                 for (int i = 0; i < 9; ++i) {
-                    if (GTHelperStack.containsWithSizeFuzzy(this.currentRecipe, this.getStackInSlot(i)) != -1) {
+                    if (StackHelper.containsWithSizeFuzzy(this.currentRecipe, this.getStackInSlot(i)) != -1) {
                         recipeMatches++;
                     }
                 }
                 // enough matches found
                 if (recipeMatches >= this.currentRecipe.size()) {
                     int tooMatch = recipeMatches;
-                    for (int i = 0; i < 9; ++i) {
-                        int currentIndex = GTHelperStack.containsWithSizeFuzzy(this.currentRecipe, this.getStackInSlot(i));
-                        if (currentIndex != -1 && tooMatch > 0) {
+                    for (int i = 0; i < 9 && tooMatch > 0; ++i) {
+                        int currentIndex = StackHelper.containsWithSizeFuzzy(this.currentRecipe, this.getStackInSlot(i));
+                        if (currentIndex != -1) {
                             ItemStack matchedSlot = this.getStackInSlot(i);
                             tryToDamageItems(matchedSlot);
                             // checking if the damage didnt void the item
                             if (!matchedSlot.isEmpty()) {
-                                tryToShiftContainerItems(matchedSlot);
-                                matchedSlot.shrink(this.currentRecipe.get(currentIndex).getCount());
+                                if (tryToShiftContainerItems(matchedSlot)){
+                                    matchedSlot.shrink(this.currentRecipe.get(currentIndex).getCount());
+                                }
                                 tooMatch--;
                             }
                         }
@@ -152,7 +171,7 @@ public class TileEntityAutocraftingTable extends TileEntityElecMachine implement
                     // if all matching stacks have been subtracted
                     if (tooMatch == 0) {
                         int oldCount = this.getStackInSlot(28).getCount();
-                        this.setStackInSlot(28, GTHelperStack.copyWithSize(mStack.copy(), oldCount
+                        this.setStackInSlot(28, StackUtil.copyWithSize(mStack.copy(), oldCount
                                 + mStack.getCount()));
                         this.useEnergy(50);
                     }
@@ -164,23 +183,25 @@ public class TileEntityAutocraftingTable extends TileEntityElecMachine implement
 
     public void tryToDamageItems(ItemStack stack) {
         if (stack.isItemStackDamageable()) {
-            if (this.isRendering()) {
-                stack.attemptDamageItem(1, this.world.rand, null);
+            if (stack.attemptDamageItem(1, this.world.rand, null)){
+                stack.shrink(1);
             }
         }
     }
 
-    public void tryToShiftContainerItems(ItemStack container) {
+    public boolean tryToShiftContainerItems(ItemStack container) {
         if (container.getItem().hasContainerItem(container)) {
             ItemStack cItem = container.getItem().getContainerItem(container);
             for (int i = 9; i < 18; ++i) {
-                if (GTHelperStack.canMerge(cItem, this.getStackInSlot(i))) {
+                if (StackHelper.canMerge(cItem, this.getStackInSlot(i))) {
                     int oldCount = this.getStackInSlot(i).getCount();
-                    this.setStackInSlot(i, GTHelperStack.copyWithSize(cItem, oldCount + cItem.getCount()));
-                    return;
+                    this.setStackInSlot(i, StackUtil.copyWithSize(cItem, oldCount + cItem.getCount()));
+                    return true;
                 }
             }
+            return false;
         }
+        return true;
     }
 
     @SuppressWarnings("static-access")

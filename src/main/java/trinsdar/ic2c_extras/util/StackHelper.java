@@ -3,6 +3,7 @@ package trinsdar.ic2c_extras.util;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.util.misc.StackUtil;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.List;
@@ -126,5 +127,45 @@ public class StackHelper {
             }
         }
         return false;
+    }
+
+    public static boolean isEqualOrSharesOreDict(ItemStack stack, ItemStack toCompare) {
+        return isEqual(stack, toCompare) || sharesOreDict(stack, toCompare);
+    }
+
+    public static int containsWithSizeFuzzy(List<ItemStack> list, ItemStack item) {
+        int size = list.size();
+
+        for(int i = 0; i < size; ++i) {
+            if (isEqualOrSharesOreDict(list.get(i), item) && item.getCount() >= list.get(i).getCount()) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public static void tryCondenseInventory(TileEntityMachine tile, int startSlot, int endSlot) {
+        for(int i = startSlot; i < endSlot; ++i) {
+            for(int j = startSlot; j < endSlot; ++j) {
+                if (i != j) {
+                    ItemStack stack1 = tile.inventory.get(i);
+                    ItemStack stack2 = tile.inventory.get(j);
+                    if (!stack1.isEmpty() && !stack2.isEmpty() && isEqual(stack1, stack2) && stack1.getCount() < stack1.getMaxStackSize()) {
+                        int max = stack1.getMaxStackSize() - stack1.getCount();
+                        int available = stack2.getCount();
+                        int size = MathHelper.clamp(available, 1, max);
+                        stack1.grow(size);
+                        stack2.shrink(size);
+                    }
+
+                    if (stack2.isEmpty() && !stack1.isEmpty() && j < i) {
+                        tile.inventory.set(j, stack1.copy());
+                        tile.inventory.set(i, ItemStack.EMPTY);
+                    }
+                }
+            }
+        }
+
     }
 }
