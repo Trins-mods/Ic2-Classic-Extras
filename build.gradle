@@ -108,7 +108,7 @@ dependencies {
     deobfCompile("com.mod-buildcraft:buildcraft-main:7.99.24.1")
 
     //baubles
-    deobfCompile "curse.maven:gtclassic:3009895"
+    compileOnly "curse.maven:gtclassic:3059975"
     compile "curse.maven:baubles:2518667"
     compile "curse.maven:railcraft:2687757"
     compile "curse.maven:ic2-classic:2979877"
@@ -149,7 +149,7 @@ jar {
             "FMLCorePlugin": "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin",
             "FMLCorePluginContainsFMLMod": true,
             "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
-            'ForceLoadAsMod': true,
+            //'ForceLoadAsMod': true,
             "TweakOrder": 0,
             "MixinConfigs": "mixins.ic2c_extras.json"
     )
