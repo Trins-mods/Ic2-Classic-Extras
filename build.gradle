@@ -149,7 +149,7 @@ jar {
             "FMLCorePlugin": "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin",
             "FMLCorePluginContainsFMLMod": true,
             "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
-            //'ForceLoadAsMod': true,
+            'ForceLoadAsMod': true,
             "TweakOrder": 0,
             "MixinConfigs": "mixins.ic2c_extras.json"
     )
