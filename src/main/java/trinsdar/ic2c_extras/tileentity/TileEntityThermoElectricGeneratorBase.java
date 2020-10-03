@@ -173,9 +173,9 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
         map.put("Production: " + production, true);
     }
 
-    public static class TileEntityThermoElectricGeneratorMkI extends TileEntityThermoElectricGeneratorBase {
+    public static class TileEntityThermoElectricGenerator extends TileEntityThermoElectricGeneratorBase {
         public static BasicItemFilter filter = new BasicItemFilter(new ItemStack(Registry.plutoniumRTG));
-        public TileEntityThermoElectricGeneratorMkI() {
+        public TileEntityThermoElectricGenerator() {
             this.tier = 1;
             this.maxStorage = 20000;
         }
@@ -210,41 +210,4 @@ public abstract class TileEntityThermoElectricGeneratorBase extends TileEntityGe
         }
     }
 
-    public static class TileEntityThermoElectricGeneratorMkII extends TileEntityThermoElectricGeneratorBase {
-        public static BasicItemFilter filter2 = new BasicItemFilter(new ItemStack(Blocks.BEDROCK));
-
-        public TileEntityThermoElectricGeneratorMkII() {
-            this.tier = 2;
-            this.maxStorage = 30000;
-        }
-
-        @Override
-        public BasicItemFilter getFilter() {
-            return filter2;
-        }
-
-        @Override
-        public LocaleComp getBlockName() {
-            return Ic2cExtrasLang.THERMO_ELECTRIC_GENERATOR_MK_II;
-        }
-
-        @Override
-        public int getProduction() {
-            int count = 0;
-            for (int i = 0; i < 6; i++) {
-                if (inventory.get(i).isItemEqual(new ItemStack(Blocks.BEDROCK))) {
-                    count += 1;
-                }
-            }
-            if (count == 0) {
-                return 0;
-            }
-            return (int) Math.pow(2, count);
-        }
-
-        @Override
-        public double getOfferedEnergy() {
-            return Math.min(this.storage, 128);
-        }
-    }
 }

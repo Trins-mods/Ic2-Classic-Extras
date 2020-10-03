@@ -52,8 +52,6 @@ public class Icons {
         setTexture(Registry.advancedSteamTurbine, s(1), top, common, s("bgen", 58), common, common, s(1), top, common, s("bgen", 160), common, common);
         common = s("bgen", 22);
         setTexture(Registry.thermoElectricGenerator, s(1), top, common, s("bgen", 39), common, common, s(1), top, common, s("bgen", 141), common, common);
-        common = s("thermo_electric_generator_mkII_side");
-        setTexture(Registry.thermoElectricGeneratorMKII, s(1), top, common, s("bgen", 39), common, common, s(1), top, common, s("bgen", 141), common, common);
         common = s("bmach_hv", 36);
         common2 = s("bmach_hv", 132);
         setTexture(Registry.electricDisenchanter, s("bmach_mv", 0), s("electric_disenchanter_top"), common, common, common, common, s("bmach_mv", 0), s("electric_disenchanter_top"), common2, common2, common2, common2);

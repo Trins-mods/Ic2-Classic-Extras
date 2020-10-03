@@ -255,8 +255,6 @@ public class MachineRecipes {
     public static void initMachineRecipes() {
         int lowHeat = 400;
         int mediumHeat = 600;
-        int iron = Ic2cExtrasConfig.densePlatesTakePlates ? 54 : 48;
-        ClassicRecipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(Registry.thoriumRTG)), new MachineOutput(null, StackUtil.copyWithSize(Ic2Items.ironDust, iron), new ItemStack(Registry.thoriumDust, 3)), "recycling-thorium-rtg");
         ItemStack stoneDust = new ItemStack(Registry.stoneDust);
         //ore washing plant
         TileEntityOreWashingPlant.addRecipe((new RecipeInputOreDict("crushedIron", 1)), 1000, new ItemStack(Registry.ironPurifiedCrushedOre, 1), new ItemStack(Registry.ironTinyDust, 2), stoneDust);

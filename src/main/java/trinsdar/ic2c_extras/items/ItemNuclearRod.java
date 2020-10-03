@@ -14,7 +14,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.items.urantypes.MOX;
 import trinsdar.ic2c_extras.items.urantypes.Plutonium;
-import trinsdar.ic2c_extras.items.urantypes.Thorium230;
 import trinsdar.ic2c_extras.items.urantypes.Thorium;
 import trinsdar.ic2c_extras.items.urantypes.Uranium233;
 import trinsdar.ic2c_extras.items.urantypes.Uranium235;
@@ -40,14 +39,13 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
     }
 
     public static void init() {
-        types = new IUranium[7];
+        types = new IUranium[6];
         types[0] = new Uranium238();
         types[1] = new Plutonium();
         types[2] = new MOX();
         types[3] = new Thorium();
-        types[6] = new Uranium233();
-        types[5] = new Uranium235();
-        types[4] = new Thorium230();
+        types[4] = new Uranium235();
+        types[5] = new Uranium233();
     }
 
     @Override
@@ -93,7 +91,7 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
 
     @Override
     public short getID(ItemStack stack) {
-        return this.getUran(variant).getRodID(getRodType(type));
+        return getUran(variant).getRodID(getRodType(type));
     }
 
     @Override
@@ -143,12 +141,10 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
             return types[2];
         } else if (variant == NuclearRodVariants.THORIUM232) {
             return types[3];
-        } else if (variant == NuclearRodVariants.THORIUM230) {
-            return types[4];
         } else if (variant == NuclearRodVariants.URANIUM235){
-            return types[5];
+            return types[4];
         } else if (variant == NuclearRodVariants.URANIUM233){
-            return types[6];
+            return types[5];
         }
         return types[0];
     }
@@ -202,7 +198,6 @@ public class ItemNuclearRod extends ItemUraniumRodBase {
         PLUTONIUM("Plutonium"),
         MOX("MOX"),
         THORIUM232("Thorium232"),
-        THORIUM230("Thorium230"),
         URANIUM235("Uranium235"),
         URANIUM233("Uranium233");
 

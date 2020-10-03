@@ -54,11 +54,11 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("dustSmallObsidian", Registry.obsidianSmallDust);
         OreDictionary.registerOre("dustSmallBronze", Registry.bronzeSmallDust);
 
+        OreDictionary.registerOre("dustTinyUranium233", Registry.uranium233TinyDust);
         OreDictionary.registerOre("dustTinyUranium235", Registry.uranium235TinyDust);
         OreDictionary.registerOre("dustTinyUranium238", Registry.uranium238TinyDust);
         OreDictionary.registerOre("dustTinyPlutonium", Registry.plutoniumTinyDust);
         OreDictionary.registerOre("dustTinyThorium", Registry.thoriumTinyDust);
-        OreDictionary.registerOre("dustTinyThorium230", Registry.thorium230TinyDust);
         OreDictionary.registerOre("dustSmallUranium235", Registry.uranium235SmallDust);
         OreDictionary.registerOre("dustSmallUranium238", Registry.uranium238SmallDust);
         OreDictionary.registerOre("dustSmallPlutonium", Registry.plutoniumSmallDust);
@@ -67,11 +67,9 @@ public class Ic2cExtrasOredict {
         OreDictionary.registerOre("dustUranium238", Registry.uranium238);
         OreDictionary.registerOre("dustPlutonium", Registry.plutoniumDust);
         OreDictionary.registerOre("dustThorium", Registry.thoriumDust);
-        OreDictionary.registerOre("dustThorium230", Registry.thorium230Dust);
         OreDictionary.registerOre("dustUranium", Registry.uraniumDust);
         OreDictionary.registerOre("ingotPlutonium", Registry.plutoniumIngot);
         OreDictionary.registerOre("ingotThorium", Registry.thoriumIngot);
-        OreDictionary.registerOre("ingotThorium230", Registry.thorium230Ingot);
         OreDictionary.registerOre("ingotUranium233", Registry.uranium233Ingot);
         OreDictionary.registerOre("ingotUranium235", Registry.uranium235Ingot);
 

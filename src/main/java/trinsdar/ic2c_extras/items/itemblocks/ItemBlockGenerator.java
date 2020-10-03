@@ -25,14 +25,9 @@ public class ItemBlockGenerator extends ItemBlockRare {
         if (this.getBlock() == Registry.thermoElectricGenerator) {
             tooltip.add(Ic2cExtrasLang.THERMO_ELECTRIC_GENERATOR_TOOLTIP.getLocalized());
         }
-        if (this.getBlock() == Registry.thermoElectricGeneratorMKII) {
-            tooltip.add(Ic2cExtrasLang.THERMO_ELECTRIC_GENERATOR_MK_II_TOOLTIP.getLocalized());
-        }
         if (handler.hasEUReader()) {
             if (this.getBlock() == Registry.thermoElectricGenerator) {
                 tooltip.add(Ic2InfoLang.electricProduction.getLocalizedFormatted("1 - 32"));
-            } else if (this.getBlock() == Registry.thermoElectricGeneratorMKII) {
-                tooltip.add(Ic2InfoLang.electricProduction.getLocalizedFormatted("2 - 64"));
             } else {
                 tooltip.add(Ic2InfoLang.electricProduction.getLocalizedFormatted(160));
             }

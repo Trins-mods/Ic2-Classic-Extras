@@ -97,7 +97,7 @@ public class ModRecipes {
      * @param modname - String, the mod name
      * @param itemid  - String, the item by name
      * @param meta    - int, the meta value of the item
-     * @param amount  - int, the count
+     * @param size  - int, the count
      * @return ItemStack - the ItemStack requested
      */
     public static ItemStack getModMetaItem(String modname, String itemid, int meta, int size) {

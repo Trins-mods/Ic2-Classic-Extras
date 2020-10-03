@@ -43,9 +43,6 @@ public class RadiationEvent {
         radiation.add(new ItemStack(Registry.uranium233Ingot));
         radiation.add(new ItemStack(Registry.uranium233Dust));
         radiation.add(new ItemStack(Registry.uranium233TinyDust));
-        radiation.add(new ItemStack(Registry.thorium230Dust));
-        radiation.add(new ItemStack(Registry.thorium230TinyDust));
-        radiation.add(new ItemStack(Registry.thorium230Ingot));
         radiation.add(Ic2Items.redstoneUraniumIngot);
         radiation.add(Ic2Items.blazeUraniumIngot);
         radiation.add(Ic2Items.enderPearlUraniumIngot);

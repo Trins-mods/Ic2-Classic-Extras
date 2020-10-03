@@ -32,24 +32,6 @@ public class Bear989Event {
     }
 
     @SubscribeEvent
-    public void onCraft(PlayerEvent.ItemCraftedEvent event){
-        ItemStack output = event.crafting;
-        IInventory craftMatrix = event.craftMatrix;
-        for (int i = 0; i < craftMatrix.getSizeInventory(); i++){
-            ItemStack stack = craftMatrix.getStackInSlot(i);
-            if (StackHelper.isEqual(output, new ItemStack(Registry.thermoElectricGenerator)) && StackHelper.isEqual(stack, new ItemStack(Registry.thermoElectricGeneratorMKII))){
-                List<ItemStack> add = Arrays.asList(new ItemStack[]{Ic2Items.advMachine.copy(), Ic2Items.iridiumPlate.copy()});
-                for (ItemStack added : add){
-                    if (!event.player.addItemStackToInventory(added)){
-                        event.player.dropItem(added,false);
-                    }
-                }
-                break;
-            }
-        }
-    }
-
-    @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent event) {
         EntityPlayer player = event.player;
         if (IC2.platform.isSimulating() && event.phase == TickEvent.Phase.END) {

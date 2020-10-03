@@ -45,11 +45,9 @@ public class BlockIc2cEGenerator extends BlockMultiID {
         if (this == Registry.advancedSteamTurbine) {
             return new TileEntityAdvancedSteamTurbine();
         } else if (this == Registry.thermoElectricGenerator) {
-            return new TileEntityThermoElectricGeneratorBase.TileEntityThermoElectricGeneratorMkI();
-        } else if (this == Registry.thermoElectricGeneratorMKII) {
-            return new TileEntityThermoElectricGeneratorBase.TileEntityThermoElectricGeneratorMkII();
+            return new TileEntityThermoElectricGeneratorBase.TileEntityThermoElectricGenerator();
         } else {
-            return new TileEntityBlock();
+            return null;
         }
     }
 

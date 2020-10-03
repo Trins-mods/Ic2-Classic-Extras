@@ -158,7 +158,6 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.treeTapper));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.advancedSteamTurbine));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.thermoElectricGenerator));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.thermoElectricGeneratorMKII));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.steelBlock));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.refinedIronBlock));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.leadBlock));
@@ -211,7 +210,6 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.uranium238TinyDust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumTinyDust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.thoriumTinyDust));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium230TinyDust));
 
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.ironSmallDust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.goldSmallDust));
@@ -243,8 +241,6 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.emptyFuelRod));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.thoriumDust));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.thoriumIngot));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium230Dust));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium230Ingot));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumIngot));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.moxFuel));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.denseIronPlate));
@@ -266,7 +262,6 @@ public class JeiPlugin implements IModPlugin {
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.reEnrichedThorium232Cell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.reEnrichedUranium233Cell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.plutoniumRTG));
-                blacklist.addIngredientToBlacklist(new ItemStack(Registry.thoriumRTG));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.singleUranium238Cell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.doubleUranium238Cell));
                 blacklist.addIngredientToBlacklist(new ItemStack(Registry.quadUranium238Cell));
@@ -309,9 +304,6 @@ public class JeiPlugin implements IModPlugin {
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.thoriumTinyDust));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.thoriumDust));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.thoriumIngot));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium230TinyDust));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium230Dust));
-                    blacklist.addIngredientToBlacklist(new ItemStack(Registry.thorium230Ingot));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.moxFuel));
                     blacklist.addIngredientToBlacklist(new ItemStack(Registry.emptyFuelRod));
 

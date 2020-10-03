@@ -154,7 +154,6 @@ public class Ic2cExtrasRecipes {
             CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.doubleEnrichedUraniumIngot), " U ", "UIU", " U ", 'U', Registry.uranium238, 'I', Ic2Items.uraniumIngot);
             CraftingRecipes.dustUtil("dustUranium235", new ItemStack(Registry.uranium235), "dustTinyUranium235", new ItemStack(Registry.uranium235TinyDust), "dustSmallUranium235", new ItemStack(Registry.uranium235SmallDust));
             CraftingRecipes.dustUtil("dustUranium238", new ItemStack(Registry.uranium238), "dustTinyUranium238", new ItemStack(Registry.uranium238TinyDust), "dustSmallUranium238", new ItemStack(Registry.uranium238SmallDust));
-            CraftingRecipes.dustUtil("dustThorium230", new ItemStack(Registry.thorium230Dust), "dustTinyThorium230", new ItemStack(Registry.thorium230TinyDust));
 
             if (!Loader.isModLoaded("gtclassic")){
                 CraftingRecipes.dustUtil("dustPlutonium", new ItemStack(Registry.plutoniumDust), "dustTinyPlutonium", new ItemStack(Registry.plutoniumTinyDust), "dustSmallPlutonium", new ItemStack(Registry.plutoniumSmallDust));
@@ -162,7 +161,6 @@ public class Ic2cExtrasRecipes {
                 TileEntityCompressor.addRecipe("dustPlutonium", 1, new ItemStack(Registry.plutoniumIngot));
                 TileEntityCompressor.addRecipe("dustThorium", 1, new ItemStack(Registry.thoriumIngot));
             }
-            TileEntityCompressor.addRecipe("dustThorium230", 1, new ItemStack(Registry.thorium230Ingot));
             TileEntityCompressor.addRecipe("dustUranium235", 1, new ItemStack(Registry.uranium235Ingot));
             TileEntityCompressor.addRecipe("dustUranium233", 1, new ItemStack(Registry.uranium233Ingot));
             TileEntityCompressor.addRecipe("dustUranium238", 1, new ItemStack(Registry.uranium238Ingot));
@@ -188,9 +186,7 @@ public class Ic2cExtrasRecipes {
 
 
         CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.thermoElectricGenerator), "DDD", "DRD", "DGD", 'D', "plateDenseIron", 'R', Ic2Items.nuclearReactor, 'G', Ic2Items.thermalGenerator);
-        CraftingRecipes.recipes.addShapelessRecipe(new ItemStack(Registry.thermoElectricGenerator), Registry.thermoElectricGeneratorMKII);
         CraftingRecipes.recipes.addRecipe(new ItemStack(Registry.plutoniumRTG), "IPI", "IPI", "IPI", 'I', "plateDenseIron", 'P', "ingotPlutonium");
-        TileEntityExtractor.addRecipe(new ItemStack(Registry.thorium230Dust), new ItemStack(Registry.thoriumDust, 2));
     }
 
     public static ItemStack getEmptyRod() {
