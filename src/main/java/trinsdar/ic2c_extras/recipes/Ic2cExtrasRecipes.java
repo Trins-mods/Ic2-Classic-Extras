@@ -138,9 +138,9 @@ public class Ic2cExtrasRecipes {
             CommonFilters.uranFilter = new BasicItemFilter(new ItemStack(Registry.doubleEnrichedUraniumIngot));
             macerator.removeRecipe(new RecipeInputOreDict("oreUranium"));
             macerator.addRecipe(new RecipeInputOreDict("oreUranium"), new ItemStack(Registry.uraniumCrushedOre, 2), 1.0F, "uraniumOre");
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(Ic2Items.reactorReEnrichedUraniumRod)), 1500, 36000, new ItemStack(Registry.plutoniumTinyDust, 1), new ItemStack(Registry.thoriumTinyDust, 2), new ItemStack(Registry.uranium238SmallDust, 2));
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(Registry.reEnrichedUranium238Cell))), 1500, 36000, new ItemStack(Registry.plutoniumTinyDust, 2));
-            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(Registry.reEnrichedThorium232Cell))), 1500, 36000, new ItemStack(Registry.uranium233TinyDust, 2));
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(Ic2Items.reactorReEnrichedUraniumRod)), 1500, 36000, new ItemStack(Registry.plutoniumTinyDust, 1), new ItemStack(Registry.thoriumTinyDust, 2), getEmptyRod().copy());
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(Registry.reEnrichedUranium238Cell))), 1500, 36000, new ItemStack(Registry.plutoniumTinyDust, 2), getEmptyRod().copy());
+            TileEntityThermalCentrifuge.addRecipe((new RecipeInputItemStack(new ItemStack(Registry.reEnrichedThorium232Cell))), 1500, 36000, new ItemStack(Registry.uranium233TinyDust, 2), getEmptyRod().copy());
             TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedPurifiedUranium", 1)), 900, 18000, new ItemStack(Registry.refinedUraniumOre, 1), new ItemStack(Registry.thoriumTinyDust, 1));
             if (!Loader.isModLoaded("gtclassic")){
                 TileEntityThermalCentrifuge.addRecipe((new RecipeInputOreDict("crushedCentrifugedUranium", 1)), 900, 18000, new ItemStack(Registry.uraniumDust), new ItemStack(Registry.uranium238, 2), new ItemStack(Registry.uranium235TinyDust));
