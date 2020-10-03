@@ -29,6 +29,7 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import trinsdar.ic2c_extras.Ic2cExtrasConfig;
+import trinsdar.ic2c_extras.tileentity.TileEntityCutter;
 import trinsdar.ic2c_extras.tileentity.TileEntityExtruder;
 import trinsdar.ic2c_extras.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.tileentity.TileEntityMetalBender;
@@ -81,21 +82,25 @@ public class MachineRecipes {
                 String plate;
                 String gear;
                 String rod;
-                NonNullList listPlates;
-                NonNullList listGears;
-                NonNullList listRods;
+                NonNullList<ItemStack> listPlates;
+                NonNullList<ItemStack> listGears;
+                NonNullList<ItemStack> listRods;
                 if (id.startsWith("ingot")) {
                     if (!ingotBlacklist.contains(id) && !gemBlacklist.contains(id) && !ingotBmeMmeBlacklist.contains(id)) {
                         plate = "plate" + id.substring(5);
                         if (OreDictionary.doesOreNameExist(plate)) {
                             listPlates = OreDictionary.getOres(plate, false);
                             if (!listPlates.isEmpty()) {
-                                TileEntityRoller.addRecipe(new RecipeInputOreDict(id, 1), (ItemStack) listPlates.get(0));
+                                TileEntityRoller.addRecipe(new RecipeInputOreDict(id, 1), listPlates.get(0));
+                                String block = "block" + id.substring(5);
+                                if (OreDictionary.doesOreNameExist(block)){
+                                    TileEntityCutter.addRecipe(block, 1, StackUtil.copyWithSize(listPlates.get(0), 9));
+                                }
                                 if (Ic2cExtrasConfig.craftingHammerRecipes) {
                                     if (Ic2cExtrasConfig.twoIngotPlates) {
-                                        recipes.addRecipe((ItemStack) listPlates.get(0), "H", "I", "I", 'H', "craftingToolForgeHammer", 'I', id);
+                                        recipes.addRecipe(listPlates.get(0), "H", "I", "I", 'H', "craftingToolForgeHammer", 'I', id);
                                     } else {
-                                        recipes.addRecipe((ItemStack) listPlates.get(0), "H", "I", 'H', "craftingToolForgeHammer", 'I', id);
+                                        recipes.addRecipe(listPlates.get(0), "H", "I", 'H', "craftingToolForgeHammer", 'I', id);
                                     }
                                 }
                             }
@@ -107,13 +112,13 @@ public class MachineRecipes {
                         if (OreDictionary.doesOreNameExist(gear)) {
                             listGears = OreDictionary.getOres(gear, false);
                             if (!listGears.isEmpty()) {
-                                TileEntityMetalBender.addRecipe(new RecipeInputOreDict(id, 4), new ItemStack(Registry.gearingPress), (ItemStack) listGears.get(0));
+                                TileEntityMetalBender.addRecipe(new RecipeInputOreDict(id, 4), new ItemStack(Registry.gearingPress), listGears.get(0));
                             }
                         }
                         if (OreDictionary.doesOreNameExist(rod)) {
                             listRods = OreDictionary.getOres(rod, false);
                             if (!listRods.isEmpty()) {
-                                TileEntityMetalBender.addRecipe(new RecipeInputOreDict(id, 1), new ItemStack(Registry.lathingPress), StackUtil.copyWithSize((ItemStack) listRods.get(0), 2));
+                                TileEntityMetalBender.addRecipe(new RecipeInputOreDict(id, 1), new ItemStack(Registry.lathingPress), StackUtil.copyWithSize(listRods.get(0), 2));
                             }
                         }
                     }

@@ -22,8 +22,8 @@ import java.util.Map;
 public class Icons {
     private static final Map<Block, IconInfo[]> TEXTURE_MAP = new HashMap<>();
     private static final List<String> blockTextureList = new ArrayList<>();
-    private static final IconInfo[] SET_NULL = { s("null2"), s("null2") };
-    private static final IconInfo[] SET_INVALID_SIZE = { s("null"), s("null") };
+    private static final IconInfo[] SET_NULL = { s(4,6), s(4,6) };
+    private static final IconInfo[] SET_INVALID_SIZE = { s(5,6), s(5,6) };
 
     @SideOnly(Side.CLIENT)
     public static void loadSprites() {
@@ -33,34 +33,34 @@ public class Icons {
         IconInfo bottom = s(3);
         IconInfo common = s(36);
         IconInfo common2 = s(44);
-        setTexture(Registry.thermalCentrifuge, bottom, s(19), side, s("ore_washer_front"), side, side, bottom, s(115), side, s("thermal_centrifuge_front_active"), side, side);
-        setTexture(Registry.thermalWasher, bottom, s(19), side, s("ore_washer_front"), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s(115), side, s("ore_washer_front_active"), s("bmach_mv",44), s("bmach_mv",44));
-        setTexture(Registry.oreWashingPlant, bottom, s(19), side, s("ore_washer_front"), common, common, bottom, s(115), side, s("ore_washer_front_active"), s(43), s(43));
-        setTexture(Registry.roller, bottom, s(20), side, s("roller_front"), common, common, bottom, s("roller_top_active"), side, s("roller_front_active"), common2, common2);
-        setTexture(Registry.extruder, bottom, s(20), side, s(155), common, common, bottom, s("roller_top_active"), side, s("extruder_front_active_a"), common2, common2);
-        setTexture(Registry.cutter, bottom, s(20), side, s("cutter_front"), common, common, bottom, s("roller_top_active"), side, s("cutter_front_active"), common2, common2);
-        setTexture(Registry.metalBender, bottom, s(20), side, s("metal_bender_front"), common, common, bottom, s("roller_top_active"), side, s("metal_bender_front_active"), common2, common2);
+        setTexture(Registry.thermalCentrifuge, bottom, s(19), side, s(4,1), side, side, bottom, s(115), side, s(4,2), side, side);
+        setTexture(Registry.thermalWasher, bottom, s(19), side, s(4,1), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s(115), side, s(5,1), s("bmach_mv",44), s("bmach_mv",44));
+        setTexture(Registry.oreWashingPlant, bottom, s(19), side, s(4,1), common, common, bottom, s(115), side, s(5,1), s(43), s(43));
+        setTexture(Registry.roller, bottom, s(20), side, s(1,2), common, common, bottom, s(3,2), side, s(2,2), common2, common2);
+        setTexture(Registry.extruder, bottom, s(20), side, s(155), common, common, bottom, s(3,2), side, s(0,1), common2, common2);
+        setTexture(Registry.cutter, bottom, s(20), side, s(4,0), common, common, bottom, s(3,2), side, s(5,0), common2, common2);
+        setTexture(Registry.metalBender, bottom, s(20), side, s(2,1), common, common, bottom, s(3,2), side, s(3,1), common2, common2);
         common = s("bmach_lv_2", 53);
         setTexture(Registry.fluidCanningMachine, bottom, top, side, s(54), common, common, bottom, top, side, s(150), common, common);
-        common = s("tree_tapper_side");
-        common2 = s("tree_tapper_side_active");
+        common = s(0,3);
+        common2 = s(1,3);
         setTexture(Registry.treeTapper, bottom, s("bmach_mv", 27), common, common, common, common, bottom, s("bmach_mv", 123), common2, common2, common2, common2);
-        setTexture(Registry.impellerizedRoller, bottom, s(20), side, s("roller_front"), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s("roller_top_active"), side, s("roller_front_active"), s("impellerized_roller_side_active"), s("impellerized_roller_side_active"));
-        setTexture(Registry.liquescentExtruder, bottom, s(20), side, s(155), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s("roller_top_active"), side, s("extruder_front_active_a"), s("impellerized_roller_side_active"), s("impellerized_roller_side_active"));
-        setTexture(Registry.plasmaCutter, bottom, s(20), side, s("cutter_front"), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s("roller_top_active"), side, s("cutter_front_active"), s("impellerized_roller_side_active"), s("impellerized_roller_side_active"));
-        common = s("advanced_steam_turbine_side");
+        setTexture(Registry.impellerizedRoller, bottom, s(20), side, s(1,2), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s(3,2), side, s(2,2), s(1,1), s(1,1));
+        setTexture(Registry.liquescentExtruder, bottom, s(20), side, s(155), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s(3,2), side, s(0,1), s(1,1), s(1,1));
+        setTexture(Registry.plasmaCutter, bottom, s(20), side, s(4,0), s("bmach_mv", 140), s("bmach_mv", 140), bottom, s(3,2), side, s(5,0), s(1,1), s(1,1));
+        common = s(0,0);
         setTexture(Registry.advancedSteamTurbine, s(1), top, common, s("bgen", 58), common, common, s(1), top, common, s("bgen", 160), common, common);
         common = s("bgen", 22);
         setTexture(Registry.thermoElectricGenerator, s(1), top, common, s("bgen", 39), common, common, s(1), top, common, s("bgen", 141), common, common);
         common = s("bmach_hv", 36);
         common2 = s("bmach_hv", 132);
         setTexture(Registry.electricDisenchanter, s("bmach_mv", 0), s("electric_disenchanter_top"), common, common, common, common, s("bmach_mv", 0), s("electric_disenchanter_top"), common2, common2, common2, common2);
-        setTexture(Registry.autocraftingTable, s("autocrafting_table_side"), s("autocrafting_table_side"), s("autocrafting_table_back"), s("autocrafting_table_front"), s("autocrafting_table_side"), s("autocrafting_table_side"));
-        setTexture(Registry.reinforcedEncasedCable, s("b0", 12), s("b0", 12), s("reinforced_encased_cable"), s("reinforced_encased_cable"), s("b0", 12), s("b0", 12));
+        setTexture(Registry.autocraftingTable, s(3,0), s(3,0), s(1,0), s(2,0), s(3,0), s(3,0));
+        setTexture(Registry.reinforcedEncasedCable, s("b0", 12), s("b0", 12), s(0,2), s(0,2), s("b0", 12), s("b0", 12));
         blockTextureList.add("electric_disenchanter_side_overlay");
         blockTextureList.add("electric_disenchanter_side_active_overlay");
         makeSprites("misc_items", 16, 2);
-        makeSprites("rtg", 2, 1);
+        makeSprites("tiles", 6, 7);
         makeSprites("crushed_ore", 7, 1);
         makeSprites("purified_crushed_ore", 7, 1);
         makeSprites("item_casings", 16, 1);
@@ -76,7 +76,7 @@ public class Icons {
         makeSprites("nickel", 3, 1);
         makeSprites("platinum", 3, 1);
         collectBasicTileSprites();
-        Ic2Icons.addCustomTexture("metal_bender_front_active", 0, 0, new ResourceLocation(IC2CExtras.MODID, "animations/metal_bender_front"));
+        Ic2Icons.addCustomTexture(IC2CExtras.MODID + "_tiles", 3, 1, new ResourceLocation(IC2CExtras.MODID, "animations/metal_bender_front"));
     }
 
     public static void makeSprites(String name, int maxX, int maxY) {
@@ -157,6 +157,10 @@ public class Icons {
 
     public static IconInfo s(int spriteId){
         return new IconInfo(spriteId);
+    }
+
+    public static IconInfo s(int x, int y){
+        return new IconInfo(IC2CExtras.MODID + "_"  + "tiles", x + (6 * y));
     }
 
     public static IconInfo s(String spriteName, int spriteId){
