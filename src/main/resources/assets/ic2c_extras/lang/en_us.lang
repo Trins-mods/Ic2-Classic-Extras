@@ -22,6 +22,7 @@ tile.thermoElectricGeneratorMkII.name=Thermo Electric Generator MkII
 tile.electricDisenchanter.name=Electric Disenchanter
 tile.autocraftingTable.name=Autocrafting Table
 tile.reinforcedEncasedCable.name=Reinforced Stone Encased Cable
+tile.electricHeatGenerator.name=Electric Heat Generator
 tile.steelBlock.name=Steel Block
 tile.refinedIronBlock.name=Refined Iron Block
 tile.leadBlock.name=Lead Block

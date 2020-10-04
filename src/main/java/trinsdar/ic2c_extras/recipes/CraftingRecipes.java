@@ -82,6 +82,7 @@ public class CraftingRecipes {
         if (!Loader.isModLoaded("gtclassic")){
             recipes.addRecipe(new ItemStack(Registry.autocraftingTable), " B ", "CcC", " A ", 'B', Ic2Items.battery, 'C', "circuitAdvanced", 'c', "workbench", 'A', "machineBlockAdvanced");
         }
+        recipes.addRecipe(new ItemStack(Registry.electricHeatGenerator), "CBC", "CcC", "CHC", 'C', "casing" + IC2.getRefinedIron().substring(5), 'B', Ic2Items.battery, 'c', "circuitAdvanced", 'H', Registry.heatConductor);
         //recipes.addRecipe(new ItemStack(Registry.cutter, 1),
         //        " C ", "TBT", "ctc", 'C', basicCircuit,'T', Ic2Items.toolBox, 'B', MACHINE_BASIC, 'c', Registry.coil, 't', Ic2Items.cutter);
 

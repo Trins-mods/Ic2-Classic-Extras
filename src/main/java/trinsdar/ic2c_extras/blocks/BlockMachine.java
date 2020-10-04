@@ -1,10 +1,13 @@
 package trinsdar.ic2c_extras.blocks;
 
+import ic2.core.IC2;
 import ic2.core.block.base.BlockMultiID;
 import ic2.core.block.base.tile.TileEntityBlock;
+import ic2.core.platform.config.IC2Config;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.helpers.BlockStateContainerIC2;
+import ic2.core.util.misc.StackUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -21,6 +24,7 @@ import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.tileentity.TileEntityAutocraftingTable;
 import trinsdar.ic2c_extras.tileentity.TileEntityCutter;
 import trinsdar.ic2c_extras.tileentity.TileEntityElectricDisenchanter;
+import trinsdar.ic2c_extras.tileentity.TileEntityElectricHeatGenerator;
 import trinsdar.ic2c_extras.tileentity.TileEntityExtruder;
 import trinsdar.ic2c_extras.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.tileentity.TileEntityImpellerizedRoller;
@@ -93,6 +97,8 @@ public class BlockMachine extends BlockMultiID{
             return new TileEntityAutocraftingTable();
         } else if (this == Registry.reinforcedEncasedCable){
             return new TileEntityReinforcedStoneCable();
+        } else if (this == Registry.electricHeatGenerator){
+            return new TileEntityElectricHeatGenerator();
         } else {
             return null;
         }
@@ -109,6 +115,8 @@ public class BlockMachine extends BlockMultiID{
             drops.add(Ic2Items.electricEnchanter);
         } else if (this == Registry.reinforcedEncasedCable){
             drops.add(new ItemStack(this));
+        } else if (this == Registry.electricHeatGenerator){
+            drops.add(IC2.config.getFlag("SteelRecipes") ? new ItemStack(Registry.steelIngot, 3) : StackUtil.copyWithSize(Ic2Items.refinedIronIngot, 3));
         } else {
             drops.add(Ic2Items.machine);
         }

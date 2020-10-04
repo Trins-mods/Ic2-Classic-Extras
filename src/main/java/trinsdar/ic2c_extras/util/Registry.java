@@ -37,6 +37,7 @@ import trinsdar.ic2c_extras.tileentity.TileEntityAdvancedSteamTurbine;
 import trinsdar.ic2c_extras.tileentity.TileEntityAutocraftingTable;
 import trinsdar.ic2c_extras.tileentity.TileEntityCutter;
 import trinsdar.ic2c_extras.tileentity.TileEntityElectricDisenchanter;
+import trinsdar.ic2c_extras.tileentity.TileEntityElectricHeatGenerator;
 import trinsdar.ic2c_extras.tileentity.TileEntityExtruder;
 import trinsdar.ic2c_extras.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.tileentity.TileEntityImpellerizedRoller;
@@ -74,6 +75,7 @@ public class Registry {
     public static final BlockMachine electricDisenchanter = registerBlock(new BlockDisenchanter());
     public static final BlockMachine autocraftingTable = registerBlock(new BlockMachine("autocraftingtable", Ic2cExtrasLang.AUTOCRAFTING_TABLE));
     public static final BlockMachine reinforcedEncasedCable = registerBlock(new BlockMachine("reinforcedencasedcable", Ic2cExtrasLang.REINFORCED_ENCASED_CABLE));
+    public static final BlockMachine electricHeatGenerator = registerBlock(new BlockMachine("electricheatgenerator", Ic2cExtrasLang.ELECTRIC_HEAT_GENERATOR));
     public static final BlockIc2cEGenerator advancedSteamTurbine = registerBlock(new BlockIc2cEGenerator("advancedSteamTurbine", Ic2cExtrasLang.ADVANCED_STEAM_TURBINE));
     public static final BlockIc2cEGenerator thermoElectricGenerator = registerBlock(new BlockIc2cEGenerator("thermoElectricGenerator", Ic2cExtrasLang.THERMO_ELECTRIC_GENERATOR));
     public static final BlockMetal steelBlock = registerBlock(new BlockMetal("steelBlock", 0));
@@ -296,6 +298,7 @@ public class Registry {
         registerTile(TileEntityThermoElectricGeneratorBase.TileEntityThermoElectricGenerator.class, "ThermoElectricGeneratorMkI");
         registerTile(TileEntityAutocraftingTable.class, "AutocraftingTable");
         registerTile(TileEntityReinforcedStoneCable.class, "ReinforcedStoneCable");
+        registerTile(TileEntityElectricHeatGenerator.class, "ElectricHeatGenerator");
     }
 
     public static void registerTile(Class<? extends TileEntity> tile, String name){

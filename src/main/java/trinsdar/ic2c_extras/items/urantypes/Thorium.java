@@ -31,7 +31,7 @@ public class Thorium extends UranBaseType {
 
     @Override
     public int getMaxDurability() {
-        return 15000;
+        return 32000;
     }
 
     @Override
