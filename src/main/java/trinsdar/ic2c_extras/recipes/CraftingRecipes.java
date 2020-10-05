@@ -18,6 +18,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -38,6 +39,31 @@ public class CraftingRecipes {
             new RecipeInputOreDict("crushedPurifiedTin"));
 
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;
+
+    static ICraftingRecipeList.IRecipeModifier cell(){
+        return new ICraftingRecipeList.IRecipeModifier() {
+            @Override
+            public void clear() {
+
+            }
+
+            @Override
+            public boolean isStackValid(ItemStack itemStack) {
+                FluidStack fluid = FluidUtil.getFluidContained(itemStack);
+                return fluid == null && itemStack.getItem() == Registry.universalFluidCell;
+            }
+
+            @Override
+            public ItemStack getOutput(ItemStack itemStack, boolean b) {
+                return itemStack;
+            }
+
+            @Override
+            public boolean isOutput(ItemStack itemStack) {
+                return false;
+            }
+        };
+    }
 
     static final String MACHINE_BASIC = "machineBlockBasic";
     static final String MACHINE_ADV = "machineBlockAdvanced";
@@ -102,6 +128,9 @@ public class CraftingRecipes {
 
         recipes.addRecipe(new ItemStack(Registry.heatConductor, 1),
                 "RRB", "RBR", "BRR", 'R', "itemRubber", 'B', "ingotBronze");
+
+        recipes.addShapelessRecipe(new ItemStack(Registry.universalFluidCell), Ic2Items.emptyCell.copy());
+        recipes.addShapelessRecipe(Ic2Items.emptyCell.copy(), cell(), new ItemStack(Registry.universalFluidCell));
 
         recipes.addRecipe(new ItemStack(Registry.blankPress), "H", "P", "P", 'H', "craftingToolForgeHammer", 'P', "plateRefinedIron");
         recipes.addRecipe(new ItemStack(Registry.rollingPress), "H", "P", 'H', "craftingToolForgeHammer", 'P', Registry.blankPress);

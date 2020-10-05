@@ -33,6 +33,7 @@ import trinsdar.ic2c_extras.items.ItemSmallDust;
 import trinsdar.ic2c_extras.items.ItemTinyDust;
 import trinsdar.ic2c_extras.items.ItemToolCrafting;
 import trinsdar.ic2c_extras.items.ItemToolCutter;
+import trinsdar.ic2c_extras.items.ItemUniversalFluidCell;
 import trinsdar.ic2c_extras.items.itemblocks.ItemBlockGenerator;
 import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMachine;
 import trinsdar.ic2c_extras.items.itemblocks.ItemBlockMetal;
@@ -220,6 +221,8 @@ public class Registry {
     public static final ItemMiscs plutoniumRTG = createItem(new ItemMiscs("plutoniumRTG",26));
 
     public static final ItemContainmentBox containmentBox = createItem(new ItemContainmentBox());
+
+    public static final ItemUniversalFluidCell universalFluidCell = createItem(new ItemUniversalFluidCell());
 
     public static final ItemNuclearRod singleUranium238Cell = createItem(new ItemNuclearRod(NuclearRodTypes.SINGLE, NuclearRodVariants.URANIUM238));
     public static final ItemNuclearRod doubleUranium238Cell = createItem(new ItemNuclearRod(NuclearRodTypes.DOUBLE, NuclearRodVariants.URANIUM238));

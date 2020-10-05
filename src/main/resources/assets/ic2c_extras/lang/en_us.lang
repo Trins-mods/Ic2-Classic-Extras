@@ -128,6 +128,7 @@ item.plutoniumRTG.name=Plutonium RTG
 item.thoriumRTG.name=Thorium RTG
 item.containmentbox.name=Containment Box
 item.bioChaff.name=Bio Chaff
+item.universalFluidCell.name=Universal Fluid Cell
 
 item.singleUranium238Cell.name=Uranium 238 Cell
 item.doubleUranium238Cell.name=Dual Uranium 238 Cell

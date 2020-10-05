@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "ic2c_extras:items/universal_fluid_cell"
+  }
+}
