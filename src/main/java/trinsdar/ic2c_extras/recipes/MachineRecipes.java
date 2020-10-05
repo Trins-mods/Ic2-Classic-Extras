@@ -292,6 +292,10 @@ public class MachineRecipes {
             TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedLead", 1)), new ItemStack(Registry.leadDust, 1));
         }
 
+        TileEntityMacerator.addRecipe(Ic2Items.plantBall.copy(), new ItemStack(Registry.bioChaff));
+
+        TileEntityFluidCanningMachine.addEnrichingRecipe(new RecipeInputItemStack(new ItemStack(Registry.bioChaff)), FluidRegistry.getFluidStack("water", 1000), FluidRegistry.getFluidStack("biomass", 1000));
+
         TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustTinyIron", 9), Ic2Items.ironDust);
         TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustTinyGold", 9), Ic2Items.goldDust);
         TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustTinyCopper", 9), Ic2Items.copperDust);

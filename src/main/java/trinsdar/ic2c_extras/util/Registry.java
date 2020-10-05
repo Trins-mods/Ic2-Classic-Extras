@@ -7,6 +7,8 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.blocks.BlockDisenchanter;
@@ -15,6 +17,7 @@ import trinsdar.ic2c_extras.blocks.BlockMachine;
 import trinsdar.ic2c_extras.blocks.BlockMetal;
 import trinsdar.ic2c_extras.blocks.BlockStoneDust;
 import trinsdar.ic2c_extras.blocks.CropPlumbilia;
+import trinsdar.ic2c_extras.fluid.FluidCustom;
 import trinsdar.ic2c_extras.items.ItemCasings;
 import trinsdar.ic2c_extras.items.ItemContainmentBox;
 import trinsdar.ic2c_extras.items.ItemCrushedOre;
@@ -199,6 +202,7 @@ public class Registry {
     public static final ItemMiscs uraniumDust = createItem(new ItemMiscs("uraniumDust", 23));
     public static final ItemMiscs uranium235Ingot = createItem(new ItemMiscs("uranium235Ingot", 24));
     public static final ItemMiscs denseLeadPlate = createItem(new ItemMiscs("denseLeadPlate", 10, "plates"));
+    public static final ItemMiscs bioChaff = createItem(new ItemMiscs("bioChaff", 27));
 
     public static final ItemDepeletedNuclearRods nearDepletedUranium238Cell = createItem(new ItemDepeletedNuclearRods("nearDepletedUranium238Cell", 18));
     public static final ItemDepeletedNuclearRods nearDepletedPlutoniumCell = createItem(new ItemDepeletedNuclearRods("nearDepletedPlutoniumCell", 19));
@@ -261,6 +265,10 @@ public class Registry {
         for (Item item : toRegisterItem) {
             IC2.getInstance().createItem(item);
         }
+        if (!Loader.isModLoaded("forestry")) {
+            FluidRegistry.registerFluid(new FluidCustom("biomass", 55,111,37));
+        }
+        FluidRegistry.registerFluid(new FluidCustom("biogas", 167, 152, 76));
     }
 
     static <T extends Block> T registerBlock(T block) {

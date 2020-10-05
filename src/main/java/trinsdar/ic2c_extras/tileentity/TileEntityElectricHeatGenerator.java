@@ -18,13 +18,17 @@ import ic2.core.inventory.management.SlotType;
 import ic2.core.platform.lang.components.base.LocaleComp;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.math.MathUtil;
+import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
+import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.container.ContainerElectricHeatGenerator;
 import trinsdar.ic2c_extras.util.Registry;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
@@ -65,23 +69,21 @@ public class TileEntityElectricHeatGenerator extends TileEntityElecMachine imple
 
     @Override
     public int requestHeat(EnumFacing enumFacing, int i) {
-        if (i <= this.maxrequestHeatTick(enumFacing)){
-            int drawn = Math.min(this.heat, i);
-            heat -= drawn;
-            return drawn;
-        }
-        return 0;
+        return drawHeat(enumFacing, i, false);
     }
 
     @Override
     public int drawHeat(EnumFacing side, int request, boolean simulate) {
-        if (simulate){
+        if ((side == null && simulate) || (side != null && side == this.getFacing())){
             if (request <= this.maxrequestHeatTick(side)){
-                return Math.min(this.heat, request);
+                int drawn = Math.min(this.heat, request);
+                if (!simulate) {
+                    heat -= drawn;
+                }
+                return drawn;
             }
-            return 0;
         }
-        return this.requestHeat(side, request);
+        return 0;
     }
 
     @Override
@@ -145,6 +147,24 @@ public class TileEntityElectricHeatGenerator extends TileEntityElecMachine imple
         nbt.setInteger("maxHeat", this.maxHeat);
         nbt.setInteger("coilCount", this.coilCount);
         return nbt;
+    }
+
+    @Override
+    public void setFacing(EnumFacing face) {
+        super.setFacing(face);
+        updateConnections();
+    }
+
+    public void updateConnections() {
+        for (EnumFacing facing : EnumFacing.VALUES) {
+            BlockPos sidedPos = pos.offset(facing);
+            if (world.isBlockLoaded(sidedPos)) {
+                world.neighborChanged(sidedPos, Blocks.AIR, pos);
+            }
+        }
+        if (world.isBlockLoaded(pos)) {
+            world.neighborChanged(pos, Blocks.AIR, pos);
+        }
     }
 
     @Override

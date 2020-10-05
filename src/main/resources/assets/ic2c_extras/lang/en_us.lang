@@ -127,6 +127,7 @@ item.wireCutters.name=Wire Cutters
 item.plutoniumRTG.name=Plutonium RTG
 item.thoriumRTG.name=Thorium RTG
 item.containmentbox.name=Containment Box
+item.bioChaff.name=Bio Chaff
 
 item.singleUranium238Cell.name=Uranium 238 Cell
 item.doubleUranium238Cell.name=Dual Uranium 238 Cell
@@ -186,6 +187,9 @@ item.platinumPurifiedCrushedOre.name=Purified Crushed Platinum Ore
 item.aluminumTinyDust.name=Tiny Piles of Aluminum Dust
 item.platinumTinyDust.name=Tiny Piles of Platinum Dust
 item.nickelTinyDust.name=Tiny Piles of Nickel Dust
+
+fluid.biomass=Biomass
+fluid.biogas=Biogas
 
 itemGroup.ic2c_extras=Ic2 Classic Extras
 
