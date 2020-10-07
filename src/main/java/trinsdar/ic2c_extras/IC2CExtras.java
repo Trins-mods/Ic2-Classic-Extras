@@ -24,6 +24,7 @@ import trinsdar.ic2c_extras.proxy.CommonProxy;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.CreativeTabIC2CExtras;
 import trinsdar.ic2c_extras.util.Registry;
+import trinsdar.ic2c_extras.util.recipelists.FermenterRecipeManager;
 
 @Mod(name = IC2CExtras.NAME, modid = IC2CExtras.MODID, version = IC2CExtras.VERSION, dependencies = IC2CExtras.DEPENDS)
 public class IC2CExtras {
@@ -55,6 +56,7 @@ public class IC2CExtras {
             Recipes.metalformerRolling = (IBasicMachineRecipeManager) Ic2cExtrasRecipes.rolling.toIC2Exp();
             Recipes.oreWashing = (IBasicMachineRecipeManager) Ic2cExtrasRecipes.oreWashingPlant.toIC2Exp();
             Recipes.centrifuge = (IBasicMachineRecipeManager) Ic2cExtrasRecipes.thermalCentrifuge.toIC2Exp();
+            Recipes.fermenter = new FermenterRecipeManager("fermenter");
         }
         ClassicCrops crop = ClassicCrops.instance;
         crop.registerCrop(Registry.cropPlumbilia);
