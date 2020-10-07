@@ -46,20 +46,23 @@ public class Bear989Event {
                 if (ticker == 0) {
                     switch (emptySlots) {
                         case 3:
-                            IC2.platform.messagePlayer(player, "Bear, your inventory starts to get full.");
+                            //IC2.platform.messagePlayer(player, "Bear, your inventory starts to get full.");
+                            IC2.platform.messagePlayer(player, "You still have a lot of empty Slots left... In your 2x2 Crafting Grid.");
                             ticker = 2400;
                             break;
                         case 2:
-                            IC2.platform.messagePlayer(player, "You should clean up your Inventory, Bear!");
+                            //IC2.platform.messagePlayer(player, "You should clean up your Inventory, Bear!");
+                            IC2.platform.messagePlayer(player,"There is like a Gazillion Slots left in your Inventory... If you use that one Slot for a Backpack.");
                             ticker = 2400;
                             break;
                         case 1:
-                            IC2.platform.messagePlayer(player, "Your Inventory is almost full, Bear!!");
+                            //IC2.platform.messagePlayer(player, "Your Inventory is almost full, Bear!!");
+                            IC2.platform.messagePlayer(player, "You shouldn't clean up your Inventory... If you want it to be full soon.");
                             ticker = 2400;
                             break;
                         case 0:
                             //IC2.platform.messagePlayer(player, "You are full of shit, Bear!!!");
-                            IC2.platform.messagePlayer(player, "You are totally not full of shit, Bear. Keep on mining.");
+                            IC2.platform.messagePlayer(player, "Your Inventory is not going to get full... If you stop collecting Items.");
                             ticker = 2400;
                             break;
                         default:
