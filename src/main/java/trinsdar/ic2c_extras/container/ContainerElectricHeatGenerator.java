@@ -1,6 +1,5 @@
 package trinsdar.ic2c_extras.container;
 
-import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.container.ContainerTileComponent;
 import ic2.core.inventory.filters.BasicItemFilter;
 import ic2.core.inventory.filters.IFilter;

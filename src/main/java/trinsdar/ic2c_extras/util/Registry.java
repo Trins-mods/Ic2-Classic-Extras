@@ -80,6 +80,7 @@ public class Registry {
     public static final BlockMachine autocraftingTable = registerBlock(new BlockMachine("autocraftingtable", Ic2cExtrasLang.AUTOCRAFTING_TABLE));
     public static final BlockMachine reinforcedEncasedCable = registerBlock(new BlockMachine("reinforcedencasedcable", Ic2cExtrasLang.REINFORCED_ENCASED_CABLE));
     public static final BlockMachine electricHeatGenerator = registerBlock(new BlockMachine("electricheatgenerator", Ic2cExtrasLang.ELECTRIC_HEAT_GENERATOR));
+    public static final BlockMachine fermenter = registerBlock(new BlockMachine("fermenter", Ic2cExtrasLang.FERMENTER));
     public static final BlockIc2cEGenerator advancedSteamTurbine = registerBlock(new BlockIc2cEGenerator("advancedSteamTurbine", Ic2cExtrasLang.ADVANCED_STEAM_TURBINE));
     public static final BlockIc2cEGenerator thermoElectricGenerator = registerBlock(new BlockIc2cEGenerator("thermoElectricGenerator", Ic2cExtrasLang.THERMO_ELECTRIC_GENERATOR));
     public static final BlockMetal steelBlock = registerBlock(new BlockMetal("steelBlock", 0));

@@ -3,12 +3,18 @@ package trinsdar.ic2c_extras.tileentity;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.energy.tile.IHeatSource;
+import ic2.api.recipe.IFermenterRecipeManager;
+import ic2.api.recipe.IFermenterRecipeManager.FermentationProperty;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.fluid.IC2Tank;
+import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.base.IHasInventory;
+import ic2.core.inventory.container.ContainerIC2;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.obj.IOutputMachine;
 import net.minecraft.block.Block;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
@@ -25,9 +31,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-public class TileEntityFermenter extends TileEntityMachine implements IOutputMachine, ITickable, IFluidHandler {
+public class TileEntityFermenter extends TileEntityMachine implements IOutputMachine, ITickable, IFluidHandler, IHasGui {
     int heat;
     @NetworkField(index = 3)
     IC2Tank inputTank = new IC2Tank(10000){
@@ -43,6 +50,7 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
     @NetworkField(index = 6)
     int bioProgrees = 0;
     int maxBioProgress = 4000;
+    Map.Entry<String, FermentationProperty> lastRecipe = null;
 
     boolean checkHeatSource = true;
     private static int outputSlot = 0;
@@ -173,5 +181,30 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
     @Override
     public FluidStack drain(int maxDrain, boolean doDrain) {
         return this.outputTank.drain(maxDrain, doDrain);
+    }
+
+    @Override
+    public ContainerIC2 getGuiContainer(EntityPlayer entityPlayer) {
+        return null;
+    }
+
+    @Override
+    public Class<? extends GuiScreen> getGuiClass(EntityPlayer entityPlayer) {
+        return null;
+    }
+
+    @Override
+    public void onGuiClosed(EntityPlayer entityPlayer) {
+
+    }
+
+    @Override
+    public boolean canInteractWith(EntityPlayer entityPlayer) {
+        return false;
+    }
+
+    @Override
+    public boolean hasGui(EntityPlayer entityPlayer) {
+        return false;
     }
 }

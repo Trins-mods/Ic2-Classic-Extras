@@ -58,6 +58,7 @@ public class Icons {
         setTexture(Registry.autocraftingTable, s(3,0), s(3,0), s(1,0), s(2,0), s(3,0), s(3,0));
         setTexture(Registry.reinforcedEncasedCable, s("b0", 12), s("b0", 12), s(0,2), s(0,2), s("b0", 12), s("b0", 12));
         setTexture(Registry.electricHeatGenerator, bottom, s(0,5), s(2,3), s(4,3), s(0,4), s(0,4), bottom, s(1,5), s(3,3), s(5,3), s(1,4), s(1,4));
+        setTexture(Registry.fermenter, bottom, top, s(2,4), s(4,3), s(4,4), s(4,4), bottom, top, s(3,4), s(5,3), s(5,4), s(5,4));
         blockTextureList.add("electric_disenchanter_side_overlay");
         blockTextureList.add("electric_disenchanter_side_active_overlay");
         makeSprites("misc_items", 16, 2);
