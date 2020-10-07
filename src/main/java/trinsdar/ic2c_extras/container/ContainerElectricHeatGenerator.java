@@ -11,13 +11,12 @@ import ic2.core.platform.registry.Ic2GuiComp;
 import ic2.core.util.math.Box2D;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.tileentity.TileEntityElectricHeatGenerator;
 import trinsdar.ic2c_extras.util.Registry;
 import trinsdar.ic2c_extras.util.guicomponent.GuiComponentHeatGenerator;
+import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
 public class ContainerElectricHeatGenerator extends ContainerTileComponent<TileEntityElectricHeatGenerator> {
-    public static final ResourceLocation TEXTURE = new ResourceLocation(IC2CExtras.MODID, "textures/gui/electricheatgenerator.png");
     public ContainerElectricHeatGenerator(InventoryPlayer player, TileEntityElectricHeatGenerator tile) {
         super(tile);
         IFilter filter = new BasicItemFilter(Registry.coil);
@@ -33,7 +32,7 @@ public class ContainerElectricHeatGenerator extends ContainerTileComponent<TileE
 
     @Override
     public ResourceLocation getTexture() {
-        return TEXTURE;
+        return Ic2cExtrasResourceLocations.ELECTRIC_HEAT_GENERATOR;
     }
 
     @Override

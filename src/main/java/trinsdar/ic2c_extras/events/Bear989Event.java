@@ -58,7 +58,8 @@ public class Bear989Event {
                             ticker = 2400;
                             break;
                         case 0:
-                            IC2.platform.messagePlayer(player, "You are full of shit, Bear!!!");
+                            //IC2.platform.messagePlayer(player, "You are full of shit, Bear!!!");
+                            IC2.platform.messagePlayer(player, "You are totally not full of shit, Bear. Keep on mining.");
                             ticker = 2400;
                             break;
                         default:

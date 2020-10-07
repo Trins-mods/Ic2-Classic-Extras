@@ -1,5 +1,7 @@
 package trinsdar.ic2c_extras.tileentity;
 
+import gtclassic.api.fluid.GTFluidHandler;
+import gtclassic.api.helpers.GTHelperFluid;
 import gtclassic.api.interfaces.IGTDebuggableTile;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.classic.recipe.machine.IMachineRecipeList;
@@ -51,6 +53,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.container.ContainerOreWashingPlant;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
+import trinsdar.ic2c_extras.util.StackHelper;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
@@ -138,7 +141,8 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     @Override
     public void update() {
         if (!this.inventory.get(slotInputTank).isEmpty()) {
-            this.handleTank();
+            //this.handleTank();
+            StackHelper.doFluidContainerThings(this, this.waterTank, slotInputTank, slotOutputTank);
         }
         super.update();
     }

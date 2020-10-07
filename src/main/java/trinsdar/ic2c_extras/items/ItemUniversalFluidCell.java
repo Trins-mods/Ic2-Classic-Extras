@@ -172,12 +172,6 @@ public class ItemUniversalFluidCell extends Item {
 
     @SideOnly(Side.CLIENT)
     public void initModel() {
-        IC2CExtras.logger.info("models initialized");
-        try {
-            throw new IllegalStateException("test");
-        } catch (Exception e){
-            e.printStackTrace();
-        }
         ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
         CustomModelLoader.register("universal_fluid_cell", new ModelFluidCell());
     }

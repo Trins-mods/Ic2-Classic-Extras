@@ -59,6 +59,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import trinsdar.ic2c_extras.container.ContainerThermalWasher;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.GuiMachine.OreWashingPlantGui;
+import trinsdar.ic2c_extras.util.StackHelper;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
@@ -188,7 +189,7 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     @Override
     public void update() {
         if (!this.inventory.get(slotInputTank).isEmpty()) {
-            this.handleTank();
+            StackHelper.doFluidContainerThings(this, this.waterTank, slotInputTank, slotOutputTank);
         }
         super.update();
     }

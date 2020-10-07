@@ -22,6 +22,8 @@ public class Ic2cExtrasResourceLocations {
     public static final ResourceLocation NUCLEAR_STEAM_REACTOR = new ResourceLocation(IC2CExtras.MODID, "textures/gui/nuclearsteamreactor.png");
     public static final ResourceLocation CONTAINMENT_BOX = new ResourceLocation(IC2CExtras.MODID, "textures/gui/containmentbox.png");
     public static final ResourceLocation NUCLEAR_JETPACK = new ResourceLocation(IC2CExtras.MODID, "textures/gui/nuclearjetpack.png");
+    public static final ResourceLocation FERMENTER = new ResourceLocation(IC2CExtras.MODID, "textures/gui/fermenter.png");
+    public static final ResourceLocation ELECTRIC_HEAT_GENERATOR = new ResourceLocation(IC2CExtras.MODID, "textures/gui/electricheatgenerator.png");
 
     public static ResourceLocation oreWashingPlantOp = new ResourceLocation(IC2CExtras.MODID, "sounds/orewashingplantop.ogg");
     //public static ResourceLocation thermalCentrifugeOp = new ResourceLocation(IC2CExtras.MODID, "sounds/thermalcentrifugeop.ogg");

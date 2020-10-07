@@ -3,29 +3,33 @@ package trinsdar.ic2c_extras.tileentity;
 import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.energy.tile.IHeatSource;
-import ic2.api.recipe.IFermenterRecipeManager;
 import ic2.api.recipe.IFermenterRecipeManager.FermentationProperty;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.container.ContainerIC2;
+import ic2.core.inventory.gui.GuiComponentContainer;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.obj.IOutputMachine;
+import ic2.core.util.obj.ITankListener;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import org.jetbrains.annotations.Nullable;
-import trinsdar.ic2c_extras.util.Ic2cExtrasTank;
+import trinsdar.ic2c_extras.container.ContainerFermenter;
+import trinsdar.ic2c_extras.util.StackHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +38,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class TileEntityFermenter extends TileEntityMachine implements IOutputMachine, ITickable, IFluidHandler, IHasGui {
+public class TileEntityFermenter extends TileEntityMachine implements IOutputMachine, ITickable, IFluidHandler, IHasGui, ITankListener {
     int heat;
     @NetworkField(index = 3)
     IC2Tank inputTank = new IC2Tank(10000){
@@ -48,14 +52,49 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
     @NetworkField(index = 5)
     int fertProgress = 0;
     @NetworkField(index = 6)
-    int bioProgrees = 0;
+    int bioProgress = 0;
+    @NetworkField(index = 7)
     int maxBioProgress = 4000;
+    @NetworkField(index = 8)
+    int maxFertProgres = 500;
     Map.Entry<String, FermentationProperty> lastRecipe = null;
 
     boolean checkHeatSource = true;
     private static int outputSlot = 0;
+    private static int inputTankInSlot = 1;
+    private static int inputTankOutSlot = 2;
+    private static int outputTankInSlot = 3;
+    private static int outputTankOutSlot = 4;
     public TileEntityFermenter() {
         super(7);
+        this.addNetworkFields("inputTank", "outputTank", "fertProgress", "bioProgress", "maxBioProgress", "maxFertProgress");
+        this.addGuiFields("inputTank", "outputTank", "fertProgress", "bioProgress", "maxBioProgress", "maxFertProgress");
+        this.inputTank.addListener(this);
+        this.outputTank.addListener(this);
+    }
+
+    public IC2Tank getInputTank() {
+        return inputTank;
+    }
+
+    public IC2Tank getOutputTank() {
+        return outputTank;
+    }
+
+    public int getBioProgress() {
+        return bioProgress;
+    }
+
+    public int getFertProgress() {
+        return fertProgress;
+    }
+
+    public int getMaxBioProgress() {
+        return maxBioProgress;
+    }
+
+    public int getMaxFertProgres() {
+        return maxFertProgres;
     }
 
     @Override
@@ -124,18 +163,23 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
                 this.fertProgress = 0;
             }
         }
+        StackHelper.doFluidContainerThings(this, this.inputTank, inputTankInSlot, inputTankOutSlot);
+        StackHelper.doFluidContainerThings(this, this.outputTank, outputTankInSlot, outputTankOutSlot);
         TileEntity offset = getWorld().getTileEntity(getPos().offset(this.getFacing()));
-        if (offset instanceof IHeatSource && this.inputTank.getFluidAmount() >= 20 && this.outputTank.getFluidAmount() + 400 <= this.outputTank.getCapacity() && this.getStackInSlot(outputSlot).getCount() < 64){
+        if (offset instanceof IHeatSource && this.inputTank.getFluidAmount() >= 20 && this.inputTank.getFluid().getFluid().getName().equals("biomass") && this.outputTank.getFluidAmount() + 400 <= this.outputTank.getCapacity() && this.getStackInSlot(outputSlot).getCount() < 64){
             IHeatSource heatSource = (IHeatSource) offset;
             int simHeatReceived = heatSource.drawHeat(this.getFacing().getOpposite(), 100, false);
             if (simHeatReceived > 0){
-                if (this.bioProgrees < 4000){
-                    this.bioProgrees += simHeatReceived;
+                if (this.bioProgress < 4000){
+                    this.bioProgress += simHeatReceived;
+                    this.getNetwork().updateTileGuiField(this, "bioProgress");
                 } else {
-                    this.bioProgrees = 0;
+                    this.bioProgress = 0;
                     this.inputTank.drain(20, true);
                     this.outputTank.fill(FluidRegistry.getFluidStack("biogas", 400), true);
                     fertProgress += 20;
+                    this.getNetwork().updateTileGuiField(this, "fertProgress");
+                    this.getNetwork().updateTileGuiField(this, "bioProgress");
                 }
                 if (!this.isActive){
                     this.setActive(true);
@@ -156,6 +200,25 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
     public void onBlockUpdate(Block block) {
         super.onBlockUpdate(block);
         this.checkHeatSource = true;
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+        super.writeToNBT(nbt);
+        this.inputTank.writeToNBT(this.getTag(nbt, "inputTank"));
+        this.outputTank.writeToNBT(this.getTag(nbt, "outputTank"));
+        nbt.setInteger("bioProgress", bioProgress);
+        nbt.setInteger("fertProgress", fertProgress);
+        return nbt;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+        this.inputTank.readFromNBT(nbt.getCompoundTag("inputTank"));
+        this.outputTank.readFromNBT(nbt.getCompoundTag("outputTank"));
+        bioProgress = nbt.getInteger("bioProgress");
+        fertProgress = nbt.getInteger("fertProgress");
     }
 
     @Override
@@ -185,12 +248,12 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
 
     @Override
     public ContainerIC2 getGuiContainer(EntityPlayer entityPlayer) {
-        return null;
+        return new ContainerFermenter(entityPlayer.inventory, this);
     }
 
     @Override
     public Class<? extends GuiScreen> getGuiClass(EntityPlayer entityPlayer) {
-        return null;
+        return GuiComponentContainer.class;
     }
 
     @Override
@@ -200,11 +263,17 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
 
     @Override
     public boolean canInteractWith(EntityPlayer entityPlayer) {
-        return false;
+        return !this.isInvalid();
     }
 
     @Override
     public boolean hasGui(EntityPlayer entityPlayer) {
-        return false;
+        return true;
+    }
+
+    @Override
+    public void onTankChanged(IFluidTank iFluidTank) {
+        this.getNetwork().updateTileGuiField(this, "inputTank");
+        this.getNetwork().updateTileGuiField(this, "outputTank");
     }
 }

@@ -1,14 +1,57 @@
 package trinsdar.ic2c_extras.util;
 
+import gtclassic.api.helpers.GTHelperStack;
 import ic2.core.block.base.tile.TileEntityMachine;
+import ic2.core.fluid.IC2Tank;
+import ic2.core.util.misc.FluidHelper;
 import ic2.core.util.misc.StackUtil;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Tuple;
 import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.fluids.FluidActionResult;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.List;
 
 public class StackHelper {
+
+    public static void doFluidContainerThings(TileEntityMachine tile, IC2Tank tank, int slotInput, int slotOutput) {
+        if (!isSlotEmpty(tile, slotInput)) {
+            ItemStack emptyStack = FluidUtil.tryEmptyContainer(tile.getStackInSlot(slotInput), tank, tank.getCapacity() - tank.getFluidAmount(), null, false).getResult();
+            boolean didEmpty = FluidUtil.tryEmptyContainer(tile.getStackInSlot(slotInput), tank, tank.getCapacity() - tank.getFluidAmount(), null, false) != FluidActionResult.FAILURE;
+            if (!isTankFull(tank) && !isSlotFull(tile, slotOutput) && canOutputStack(tile, emptyStack, slotOutput) && didEmpty) {
+                FluidUtil.tryEmptyContainer(tile.getStackInSlot(slotInput), tank, tank.getCapacity() - tank.getFluidAmount(), null, true);
+                if (isSlotEmpty(tile, slotOutput)) {
+                    tile.setStackInSlot(slotOutput, emptyStack);
+                } else {
+                    tile.getStackInSlot(slotOutput).grow(1);
+                }
+
+                tile.getStackInSlot(slotInput).shrink(1);
+            }
+
+            Tuple<ItemStack, FluidStack> filled = FluidHelper.fillContainer(tile.getStackInSlot(slotInput), tank.getFluid(), true, true);
+            if (filled != null && canOutputStack(tile, filled.getFirst(), slotOutput)) {
+                if (isSlotEmpty(tile, slotOutput)) {
+                    tile.setStackInSlot(slotOutput, filled.getFirst());
+                } else {
+                    tile.getStackInSlot(slotOutput).grow(1);
+                }
+
+                tile.getStackInSlot(slotInput).shrink(1);
+                tank.drainInternal(filled.getSecond(), true);
+            }
+        }
+
+    }
+
+    public static boolean isTankFull(IC2Tank tank) {
+        return tank.getFluidAmount() == tank.getCapacity();
+    }
+
     /**
      * Checks if a stack can merge with default stack size
      **/

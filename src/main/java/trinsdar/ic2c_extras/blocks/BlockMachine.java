@@ -26,6 +26,7 @@ import trinsdar.ic2c_extras.tileentity.TileEntityCutter;
 import trinsdar.ic2c_extras.tileentity.TileEntityElectricDisenchanter;
 import trinsdar.ic2c_extras.tileentity.TileEntityElectricHeatGenerator;
 import trinsdar.ic2c_extras.tileentity.TileEntityExtruder;
+import trinsdar.ic2c_extras.tileentity.TileEntityFermenter;
 import trinsdar.ic2c_extras.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.tileentity.TileEntityImpellerizedRoller;
 import trinsdar.ic2c_extras.tileentity.TileEntityLiquescentExtruder;
@@ -99,6 +100,8 @@ public class BlockMachine extends BlockMultiID{
             return new TileEntityReinforcedStoneCable();
         } else if (this == Registry.electricHeatGenerator){
             return new TileEntityElectricHeatGenerator();
+        } else if (this == Registry.fermenter){
+            return new TileEntityFermenter();
         } else {
             return null;
         }

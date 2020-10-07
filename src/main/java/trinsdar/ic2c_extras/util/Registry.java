@@ -43,6 +43,7 @@ import trinsdar.ic2c_extras.tileentity.TileEntityCutter;
 import trinsdar.ic2c_extras.tileentity.TileEntityElectricDisenchanter;
 import trinsdar.ic2c_extras.tileentity.TileEntityElectricHeatGenerator;
 import trinsdar.ic2c_extras.tileentity.TileEntityExtruder;
+import trinsdar.ic2c_extras.tileentity.TileEntityFermenter;
 import trinsdar.ic2c_extras.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.tileentity.TileEntityImpellerizedRoller;
 import trinsdar.ic2c_extras.tileentity.TileEntityLiquescentExtruder;
@@ -311,6 +312,7 @@ public class Registry {
         registerTile(TileEntityAutocraftingTable.class, "AutocraftingTable");
         registerTile(TileEntityReinforcedStoneCable.class, "ReinforcedStoneCable");
         registerTile(TileEntityElectricHeatGenerator.class, "ElectricHeatGenerator");
+        registerTile(TileEntityFermenter.class, "Fermenter");
     }
 
     public static void registerTile(Class<? extends TileEntity> tile, String name){
