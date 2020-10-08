@@ -297,20 +297,6 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
         return EnumActionResult.SUCCESS;
     }
 
-    public void handleTank() {
-        IFluidHandlerItem containerFluidHandler = FluidUtil.getFluidHandler(this.inventory.get(slotInputTank));
-
-        if (FluidHelper.hasFluid(containerFluidHandler, FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 1), false)) {
-            if (this.waterTank.getFluidAmount() + FluidUtil.getFluidContained(this.inventory.get(slotInputTank)).amount <= this.waterTank.getCapacity()) {
-                RangedInventoryWrapper output = new RangedInventoryWrapper(this, slotOutputTank);
-                if (FluidHelper.drainContainers(this.waterTank, this, slotInputTank, output)) {
-                    this.getNetwork().updateTileGuiField(this, "tank");
-                    this.setStackInSlot(slotOutputTank, output.getStackInSlot(0));
-                }
-            }
-        }
-    }
-
     @Override
     public void operateOnce(int slot, IRecipeInput input, MachineOutput output, List<IStackOutput> list) {
         List<ItemStack> result = output.getRecipeOutput(getWorld().rand, getTileData());

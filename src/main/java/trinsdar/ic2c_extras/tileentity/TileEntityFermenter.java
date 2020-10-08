@@ -4,27 +4,41 @@ import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.energy.tile.IHeatSource;
 import ic2.api.recipe.IFermenterRecipeManager.FermentationProperty;
+import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.base.IHasInventory;
 import ic2.core.inventory.container.ContainerIC2;
+import ic2.core.inventory.filters.ArrayFilter;
+import ic2.core.inventory.filters.BasicItemFilter;
+import ic2.core.inventory.filters.CommonFilters;
+import ic2.core.inventory.filters.IFilter;
+import ic2.core.inventory.filters.MachineFilter;
 import ic2.core.inventory.gui.GuiComponentContainer;
+import ic2.core.inventory.management.AccessRule;
+import ic2.core.inventory.management.InventoryHandler;
+import ic2.core.inventory.management.SlotType;
+import ic2.core.inventory.transport.wrapper.RangedInventoryWrapper;
 import ic2.core.platform.registry.Ic2Items;
 import ic2.core.util.obj.IOutputMachine;
 import ic2.core.util.obj.ITankListener;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import org.jetbrains.annotations.Nullable;
@@ -73,6 +87,19 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
         this.outputTank.addListener(this);
     }
 
+    @Override
+    protected void addSlots(InventoryHandler handler) {
+        IFilter filter = new ContainerFermenter.FluidItemFilter();
+        handler.registerDefaultSideAccess(AccessRule.Both, RotationList.ALL);
+        handler.registerDefaultSlotAccess(AccessRule.Import, inputTankInSlot, outputTankInSlot);
+        handler.registerDefaultSlotAccess(AccessRule.Export, outputSlot, inputTankOutSlot, outputTankOutSlot);
+        handler.registerDefaultSlotsForSide(RotationList.UP.invert(), outputSlot, inputTankOutSlot, outputTankOutSlot);
+        handler.registerDefaultSlotsForSide(RotationList.DOWN.invert(), inputTankInSlot, outputTankInSlot);
+        handler.registerInputFilter(filter, inputTankInSlot, outputTankInSlot);
+        handler.registerSlotType(SlotType.Input, inputTankInSlot, outputTankInSlot);
+        handler.registerSlotType(SlotType.Output, outputSlot, inputTankOutSlot, outputTankOutSlot);
+    }
+
     public IC2Tank getInputTank() {
         return inputTank;
     }
@@ -98,8 +125,21 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
     }
 
     @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this);
+        }
+        return super.getCapability(capability, facing);
+    }
+
+    @Override
     public IHasInventory getOutputInventory() {
-        return null;
+        return new RangedInventoryWrapper(this, outputSlot, outputTankOutSlot, inputTankOutSlot);
     }
 
     @Override
@@ -162,6 +202,7 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
                 this.getStackInSlot(outputSlot).grow(1);
                 this.fertProgress = 0;
             }
+            doUpgradeStuff();
         }
         StackHelper.doFluidContainerThings(this, this.inputTank, inputTankInSlot, inputTankOutSlot);
         StackHelper.doFluidContainerThings(this, this.outputTank, outputTankInSlot, outputTankOutSlot);
@@ -180,6 +221,7 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
                     fertProgress += 20;
                     this.getNetwork().updateTileGuiField(this, "fertProgress");
                     this.getNetwork().updateTileGuiField(this, "bioProgress");
+                    doUpgradeStuff();
                 }
                 if (!this.isActive){
                     this.setActive(true);
@@ -188,10 +230,21 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
                 if (this.isActive){
                     this.setActive(false);
                 }
+                doUpgradeStuff();
             }
         } else {
             if (this.isActive){
                 this.setActive(false);
+            }
+            doUpgradeStuff();
+        }
+    }
+
+    private void doUpgradeStuff(){
+        for(int i = 0; i < 2; ++i) {
+            ItemStack item = this.inventory.get(i + this.inventory.size() - 2);
+            if (item.getItem() instanceof IMachineUpgradeItem) {
+                ((IMachineUpgradeItem)item.getItem()).onTick(item, this);
             }
         }
     }

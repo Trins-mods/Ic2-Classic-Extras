@@ -141,7 +141,6 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     @Override
     public void update() {
         if (!this.inventory.get(slotInputTank).isEmpty()) {
-            //this.handleTank();
             StackHelper.doFluidContainerThings(this, this.waterTank, slotInputTank, slotOutputTank);
         }
         super.update();
@@ -172,20 +171,6 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
             }
         }
         return EnumActionResult.SUCCESS;
-    }
-
-    public void handleTank() {
-        IFluidHandlerItem containerFluidHandler = FluidUtil.getFluidHandler(this.inventory.get(slotInputTank));
-
-        if (FluidHelper.hasFluid(containerFluidHandler, FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 1), false)) {
-            if (this.waterTank.getFluidAmount() + FluidUtil.getFluidContained(this.inventory.get(slotInputTank)).amount <= this.waterTank.getCapacity()) {
-                RangedInventoryWrapper output = new RangedInventoryWrapper(this, slotOutputTank);
-                if (FluidHelper.drainContainers(this.waterTank, this, slotInputTank, output)) {
-                    this.getNetwork().updateTileGuiField(this, "tank");
-                    this.setStackInSlot(slotOutputTank, output.getStackInSlot(0));
-                }
-            }
-        }
     }
 
     @Override
