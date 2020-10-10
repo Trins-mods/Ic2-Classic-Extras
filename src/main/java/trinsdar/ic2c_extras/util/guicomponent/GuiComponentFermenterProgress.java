@@ -61,7 +61,7 @@ public class GuiComponentFermenterProgress extends GuiComponent {
         if (this.isMouseOver(mouseX, mouseY) && PlayerHandler.getClientPlayerHandler().hasEUReader()) {
             float progress = this.fertilizer ? this.block.getFertProgress() : this.block.getBioProgress();
             int maxProgress = this.fertilizer ? this.block.getMaxFertProgres() : this.block.getMaxBioProgress();
-            tooltips.add(Ic2InfoLang.compMachineProgress
+            tooltips.add(Ic2InfoLang.machineProgress
                     .getLocalizedFormatted(progress, maxProgress));
         }
 

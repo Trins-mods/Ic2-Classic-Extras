@@ -29,7 +29,7 @@ public class ContainerFermenter extends ContainerTileComponent<TileEntityFerment
         this.addSlotToContainer(new SlotUpgrade(tile, 5, 143, 83));
         this.addSlotToContainer(new SlotUpgrade(tile, 6, 125, 83));
         this.addPlayerInventory(player, 0, 18);
-        this.addComponent(new FluidTankComp(new Box2D(49,38, 30,48), tile.getInputTank(), new Vec2i(176,68), new Box2D(38, 49, 48, 30)));
+        this.addComponent(new FluidTankComp(new Box2D(38,49, 16,30), tile.getInputTank(), new Vec2i(176,68), new Box2D(38, 49, 48, 30)));
         this.addComponent(new FluidTankComp(new Box2D(21,127,16, 58), tile.getOutputTank(), new Vec2i(176,14), new Box2D(127, 21, 16, 58)));
         this.addComponent(new GuiComponentFermenterProgress(tile, new Box2D(41, 40, 42,5), new Vec2i(176, 9), false));
         this.addComponent(new GuiComponentFermenterProgress(tile, new Box2D(37, 87, 42,9), new Vec2i(176, 0), true));

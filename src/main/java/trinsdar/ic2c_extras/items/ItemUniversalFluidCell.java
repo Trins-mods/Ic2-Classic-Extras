@@ -45,7 +45,7 @@ public class ItemUniversalFluidCell extends Item {
     private final ItemStack empty = new ItemStack(this);
     public ModelResourceLocation[] model = new ModelResourceLocation[2];
     public ItemUniversalFluidCell(){
-        this.setMaxStackSize(16);
+        this.setMaxStackSize(64);
         this.setRegistryName("universal_fluid_cell");
         this.setUnlocalizedName("universalFluidCell");
         this.setCreativeTab(IC2CExtras.creativeTab);
