@@ -1,11 +1,16 @@
 package trinsdar.ic2c_extras.util.recipelists;
 
 import ic2.api.classic.recipe.machine.MachineOutput;
+import ic2.api.recipe.ICannerEnrichRecipeManager;
 import ic2.api.recipe.IRecipeInput;
+import ic2.api.recipe.MachineRecipe;
+import ic2.api.recipe.MachineRecipeResult;
+import ic2.api.recipe.RecipeOutput;
 import ic2.core.block.machine.recipes.managers.RecipeManager;
 import ic2.core.util.helpers.CompareableStack;
 import ic2.core.util.helpers.ItemWithMeta;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 import trinsdar.ic2c_extras.IC2CExtras;
 
@@ -17,7 +22,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public class FluidCanningRecipeList {
+public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
     public static final FluidCanningRecipe INVALID_RECIPE = new FluidCanningRecipe(null, null,
             new MachineOutput(null, new ArrayList<ItemStack>()), true, null, "Invalid");
 
@@ -162,6 +167,38 @@ public class FluidCanningRecipeList {
                 return true;
             }
         }
+        return false;
+    }
+
+    /* ICannerEnrichRecipeManager methods */
+
+    @Override
+    public void addRecipe(FluidStack fluidStack, IRecipeInput iRecipeInput, FluidStack fluidStack1) {
+        this.addEnrichingRecipe(iRecipeInput, fluidStack, fluidStack1, fluidStack1.getUnlocalizedName());
+    }
+
+    @Override
+    public RecipeOutput getOutputFor(FluidStack fluidStack, ItemStack itemStack, boolean b, boolean b1) {
+        return null;
+    }
+
+    @Override
+    public boolean addRecipe(Input input, FluidStack fluidStack, NBTTagCompound nbtTagCompound, boolean b) {
+        return false;
+    }
+
+    @Override
+    public MachineRecipeResult<Input, FluidStack, RawInput> apply(RawInput rawInput, boolean b) {
+        return null;
+    }
+
+    @Override
+    public Iterable<? extends MachineRecipe<Input, FluidStack>> getRecipes() {
+        return null;
+    }
+
+    @Override
+    public boolean isIterable() {
         return false;
     }
 

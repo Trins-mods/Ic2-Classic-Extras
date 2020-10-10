@@ -31,6 +31,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.tileentity.TileEntityCutter;
 import trinsdar.ic2c_extras.tileentity.TileEntityExtruder;
+import trinsdar.ic2c_extras.tileentity.TileEntityFermenter;
 import trinsdar.ic2c_extras.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.tileentity.TileEntityMetalBender;
 import trinsdar.ic2c_extras.tileentity.TileEntityOreWashingPlant;
@@ -54,6 +55,7 @@ public class MachineRecipes {
         initFurnaceRecipes();
         initReplaceMaceratorRecipes();
         initModCrushedOres();
+        TileEntityFermenter.init();
     }
 
     static ICraftingRecipeList recipes = ClassicRecipes.advCrafting;

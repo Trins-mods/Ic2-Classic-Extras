@@ -4,6 +4,7 @@ import ic2.api.classic.item.IMachineUpgradeItem;
 import ic2.api.classic.network.adv.NetworkField;
 import ic2.api.energy.tile.IHeatSource;
 import ic2.api.recipe.IFermenterRecipeManager.FermentationProperty;
+import ic2.api.recipe.Recipes;
 import ic2.core.RotationList;
 import ic2.core.block.base.tile.TileEntityMachine;
 import ic2.core.fluid.IC2Tank;
@@ -45,6 +46,7 @@ import org.jetbrains.annotations.Nullable;
 import trinsdar.ic2c_extras.container.ContainerFermenter;
 import trinsdar.ic2c_extras.util.StackHelper;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -71,7 +73,10 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
     int maxBioProgress = 4000;
     @NetworkField(index = 8)
     int maxFertProgres = 500;
+
+    int storedHeat = 0;
     Map.Entry<String, FermentationProperty> lastRecipe = null;
+    boolean shouldCheckRecipe = true;
 
     boolean checkHeatSource = true;
     private static int outputSlot = 0;
@@ -194,32 +199,49 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
 
     @Override
     public void update() {
-        if (this.fertProgress >= 500){
+        if (this.fertProgress >= maxFertProgres){
             if (this.getStackInSlot(outputSlot).isEmpty()){
                 this.setStackInSlot(outputSlot, Ic2Items.fertilizer.copy());
                 this.fertProgress = 0;
+                this.getNetwork().updateTileGuiField(this, "fertProgress");
             } else if (this.getStackInSlot(outputSlot).getCount() < 64){
                 this.getStackInSlot(outputSlot).grow(1);
                 this.fertProgress = 0;
+                this.getNetwork().updateTileGuiField(this, "fertProgress");
             }
             doUpgradeStuff();
+            shouldCheckRecipe = true;
+        }
+        if (shouldCheckRecipe){
+            lastRecipe = getRecipe();
+            shouldCheckRecipe = false;
+        }
+        if (this.storedHeat < 0){
+            storedHeat = 0;
         }
         StackHelper.doFluidContainerThings(this, this.inputTank, inputTankInSlot, inputTankOutSlot);
         StackHelper.doFluidContainerThings(this, this.outputTank, outputTankInSlot, outputTankOutSlot);
         TileEntity offset = getWorld().getTileEntity(getPos().offset(this.getFacing()));
-        if (offset instanceof IHeatSource && this.inputTank.getFluidAmount() >= 20 && this.inputTank.getFluid().getFluid().getName().equals("biomass") && this.outputTank.getFluidAmount() + 400 <= this.outputTank.getCapacity() && this.getStackInSlot(outputSlot).getCount() < 64){
+        if (lastRecipe != null && offset instanceof IHeatSource && this.getStackInSlot(outputSlot).getCount() < 64){
             IHeatSource heatSource = (IHeatSource) offset;
             int simHeatReceived = heatSource.drawHeat(this.getFacing().getOpposite(), 100, false);
-            if (simHeatReceived > 0){
-                if (this.bioProgress < 4000){
-                    this.bioProgress += simHeatReceived;
+            if (simHeatReceived > 0 || this.storedHeat > 0){
+                this.storedHeat += simHeatReceived;
+                if (this.bioProgress < maxBioProgress){
+                    int room = maxBioProgress - bioProgress;
+                    int progress = Math.min(room, storedHeat);
+                    this.bioProgress += progress;
+                    storedHeat -= progress;
                     this.getNetwork().updateTileGuiField(this, "bioProgress");
                 } else {
                     this.bioProgress = 0;
-                    this.inputTank.drain(20, true);
-                    this.outputTank.fill(FluidRegistry.getFluidStack("biogas", 400), true);
-                    fertProgress += 20;
-                    this.getNetwork().updateTileGuiField(this, "fertProgress");
+                    this.inputTank.drain(lastRecipe.getValue().inputAmount, true);
+                    this.outputTank.fill(FluidRegistry.getFluidStack(lastRecipe.getValue().output, lastRecipe.getValue().outputAmount), true);
+                    shouldCheckRecipe = true;
+                    if (lastRecipe.getKey().equals("biomass")){
+                        fertProgress += 20;
+                        this.getNetwork().updateTileGuiField(this, "fertProgress");
+                    }
                     this.getNetwork().updateTileGuiField(this, "bioProgress");
                     doUpgradeStuff();
                 }
@@ -240,6 +262,47 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
         }
     }
 
+    private Map.Entry<String, FermentationProperty> getRecipe(){
+        FluidStack input = this.inputTank.getFluid();
+        if (input == null){
+            return null;
+        }
+        String fluidName = input.getFluid().getName();
+        FermentationProperty property = Recipes.fermenter.getFermentationInformation(input.getFluid());
+        if (property == null){
+            return null;
+        }
+        if (lastRecipe != null){
+            if (!lastRecipe.getKey().equals(fluidName) || input.amount < property.inputAmount){
+                lastRecipe = null;
+                maxBioProgress = 4000;
+                bioProgress = 0;
+                this.getNetwork().updateTileGuiField(this,"maxBioProgress");
+                this.getNetwork().updateTileGuiField(this,"bioProgress");
+            }
+        }
+        if (lastRecipe == null){
+            if (Recipes.fermenter.acceptsFluid(input.getFluid()) && input.amount >= property.inputAmount){
+                lastRecipe = new AbstractMap.SimpleEntry<String, FermentationProperty>(fluidName, Recipes.fermenter.getRecipeMap().get(fluidName));
+                maxBioProgress = lastRecipe.getValue().heat;
+                this.getNetwork().updateTileGuiField(this,"maxBioProgress");
+            }
+        }
+        if (lastRecipe == null){
+            return null;
+        }
+        maxBioProgress = lastRecipe.getValue().heat;
+        this.getNetwork().updateTileGuiField(this,"maxBioProgress");
+        FluidStack output = this.outputTank.getFluid();
+        if (output == null){
+            return lastRecipe;
+        }
+        if (output.isFluidEqual(Recipes.fermenter.getOutput(input.getFluid())) && outputTank.getFluidAmount() + property.outputAmount <= outputTank.getCapacity()){
+            return lastRecipe;
+        }
+        return null;
+    }
+
     private void doUpgradeStuff(){
         for(int i = 0; i < 2; ++i) {
             ItemStack item = this.inventory.get(i + this.inventory.size() - 2);
@@ -256,12 +319,19 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
     }
 
     @Override
+    public void setStackInSlot(int slot, ItemStack stack) {
+        super.setStackInSlot(slot, stack);
+        shouldCheckRecipe = true;
+    }
+
+    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         this.inputTank.writeToNBT(this.getTag(nbt, "inputTank"));
         this.outputTank.writeToNBT(this.getTag(nbt, "outputTank"));
         nbt.setInteger("bioProgress", bioProgress);
         nbt.setInteger("fertProgress", fertProgress);
+        nbt.setInteger("storedHeat", storedHeat);
         return nbt;
     }
 
@@ -272,6 +342,13 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
         this.outputTank.readFromNBT(nbt.getCompoundTag("outputTank"));
         bioProgress = nbt.getInteger("bioProgress");
         fertProgress = nbt.getInteger("fertProgress");
+        this.storedHeat = nbt.getInteger("storedHeat");
+    }
+
+    @Override
+    public void onLoaded() {
+        super.onLoaded();
+        shouldCheckRecipe = true;
     }
 
     @Override
@@ -328,5 +405,10 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
     public void onTankChanged(IFluidTank iFluidTank) {
         this.getNetwork().updateTileGuiField(this, "inputTank");
         this.getNetwork().updateTileGuiField(this, "outputTank");
+        this.shouldCheckRecipe = true;
+    }
+
+    public static void init(){
+        Recipes.fermenter.addRecipe("biomass", 20, 4000, "biogas", 400);
     }
 }
