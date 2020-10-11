@@ -129,7 +129,7 @@ public class CraftingRecipes {
                 "CCC", "CIC", "CCC", 'I', IC2.getRefinedIron(), 'C', Ic2Items.copperCable);
 
         recipes.addRecipe(new ItemStack(Registry.heatConductor, 1),
-                "RRB", "RBR", "BRR", 'R', "itemRubber", 'B', "ingotBronze");
+                "RRB", "RBR", "BRR", 'R', "itemRubber", 'B', "ingotCopper");
 
         recipes.addShapelessRecipe(new ItemStack(Registry.universalFluidCell), Ic2Items.emptyCell.copy());
         recipes.addShapelessRecipe(Ic2Items.emptyCell.copy(), cell(), new ItemStack(Registry.universalFluidCell));
