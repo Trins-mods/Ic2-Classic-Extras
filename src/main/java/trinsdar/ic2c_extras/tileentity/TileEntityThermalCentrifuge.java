@@ -67,6 +67,9 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
     }
 
     public float getMaxHeat() {
+        if (lastRecipe == null){
+            return 500;
+        }
         return (float) getRequiredHeat(lastRecipe.getOutput());
     }
 
@@ -202,24 +205,24 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
     @Override
     public void update() {
         super.update();
-        if ((lastRecipe != null && !this.inventory.get(slotInput).isEmpty()) && this.energy > 0) {
+        if (((lastRecipe != null && !this.inventory.get(slotInput).isEmpty()) || super.canWork()) && this.energy > 0) {
             int newMaxHeat = (int) getMaxHeat();
             if (newMaxHeat != maxHeat) {
                 maxHeat = newMaxHeat;
                 getNetwork().updateTileGuiField(this, "maxHeat");
             }
             boolean maxHeatCheck = false;
-            if (this.heat < getMaxHeat()) {
+            if (this.heat < maxHeat) {
                 ++this.heat;
                 maxHeatCheck = true;
                 this.getNetwork().updateTileGuiField(this, "heat");
             }
-            if (this.heat == getMaxHeat() && maxHeatCheck) {
+            if (this.heat == maxHeat && maxHeatCheck) {
                 checkRecipe = true;
                 maxHeatCheck = false;
             }
-            if (this.heat > getMaxHeat()) {
-                this.heat = (int) getMaxHeat();
+            if (this.heat > maxHeat) {
+                this.heat = maxHeat;
                 this.checkRecipe = true;
                 this.getNetwork().updateTileGuiField(this, "heat");
             }

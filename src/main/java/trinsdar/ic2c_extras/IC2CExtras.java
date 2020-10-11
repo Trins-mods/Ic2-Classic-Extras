@@ -4,6 +4,7 @@ import ic2.api.classic.crops.ClassicCrops;
 import ic2.api.recipe.IBasicMachineRecipeManager;
 import ic2.api.recipe.Recipes;
 import ic2.core.IC2;
+import ic2.core.block.machine.med.logic.encoder.EncoderRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,6 +25,7 @@ import trinsdar.ic2c_extras.proxy.CommonProxy;
 import trinsdar.ic2c_extras.recipes.Ic2cExtrasRecipes;
 import trinsdar.ic2c_extras.util.CreativeTabIC2CExtras;
 import trinsdar.ic2c_extras.util.Registry;
+import trinsdar.ic2c_extras.util.V2Encoder;
 import trinsdar.ic2c_extras.util.recipelists.FermenterRecipeManager;
 
 @Mod(name = IC2CExtras.NAME, modid = IC2CExtras.MODID, version = IC2CExtras.VERSION, dependencies = IC2CExtras.DEPENDS)
@@ -81,6 +83,7 @@ public class IC2CExtras {
         if (!Loader.isModLoaded("gtc_expansion")) {
             IC2.getInstance().saveRecipeInfo(IC2.configFolder);
         }
+        EncoderRegistry.instance.registerEncoder("V1", new V2Encoder());
     }
 
     @SubscribeEvent
