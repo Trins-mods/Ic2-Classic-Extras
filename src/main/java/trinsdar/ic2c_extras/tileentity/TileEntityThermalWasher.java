@@ -303,19 +303,8 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
         for (int i = 0; i < result.size(); i++) {
             list.add(new SimpleStackOutput(result.get(i), slotOutput + (i % 3)));
         }
-        consumeInput(input);
+        consumeInput(input, slotInput, output.getMetadata());
         this.waterTank.drain(getRequiredWater(output), true);
-    }
-
-    public void consumeInput(IRecipeInput input) {
-        if (!(input instanceof INullableRecipeInput) || !this.inventory.get(slotInput).isEmpty()) {
-            if (this.inventory.get(slotInput).getItem().hasContainerItem(this.inventory.get(slotInput))) {
-                this.inventory.set(slotInput, this.inventory.get(0).getItem().getContainerItem(this.inventory.get(slotInput)));
-            } else {
-                this.inventory.get(slotInput).shrink(input.getAmount());
-            }
-
-        }
     }
 
     @Override

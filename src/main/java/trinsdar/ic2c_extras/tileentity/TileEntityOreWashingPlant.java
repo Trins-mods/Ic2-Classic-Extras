@@ -179,7 +179,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
         for (int i = 0; i < result.size(); i++) {
             list.add(new SimpleStackOutput(result.get(i), slotOutput + (i % 3)));
         }
-        consumeInput(input);
+        consumeInput(input, output.getMetadata());
         this.waterTank.drain(getRequiredWater(output), true);
     }
 

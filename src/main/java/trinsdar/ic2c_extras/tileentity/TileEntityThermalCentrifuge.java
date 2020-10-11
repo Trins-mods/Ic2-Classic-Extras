@@ -196,7 +196,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
         for (int i = 0; i < result.size(); i++) {
             list.add(new SimpleStackOutput(result.get(i), slotOutput + (i % 3)));
         }
-        consumeInput(input);
+        consumeInput(input, output.getMetadata());
     }
 
     @Override
