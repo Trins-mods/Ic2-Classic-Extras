@@ -373,6 +373,10 @@ public class MachineRecipes {
         TileEntityCompressor.addRecipe(new ItemStack(Registry.energiumDust), 6, Ic2Items.energyCrystal);
         ClassicRecipes.earthExtractor.registerValue(5.85f, stoneDust);
 
+        if (!Loader.isModLoaded("gtc_expansion")) {
+            ClassicRecipes.fluidGenerator.addEntry(FluidRegistry.getFluid("biogas"), 2000, 16);
+        }
+
         if (!IC2.config.getFlag("SteelRecipes")) {
             if (Ic2cExtrasConfig.cablesTakeSteel) {
                 TileEntityExtruder.addRecipe(new RecipeInputOreDict("ingotSteel", 1), StackUtil.copyWithSize(Ic2Items.ironCable, 6), 0.7f);

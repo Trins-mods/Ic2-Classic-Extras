@@ -273,7 +273,7 @@ public class Registry {
         if (!Loader.isModLoaded("forestry")) {
             FluidRegistry.registerFluid(new FluidCustom("biomass", 55,111,37));
         }
-        FluidRegistry.registerFluid(new FluidCustom("biogas", 167, 152, 76));
+        FluidRegistry.registerFluid(new FluidCustom("biogas", 167, 152, 76).setGaseous(true));
     }
 
     static <T extends Block> T registerBlock(T block) {
