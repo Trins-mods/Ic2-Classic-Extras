@@ -294,9 +294,17 @@ public class MachineRecipes {
             TileEntityMacerator.addRecipe((new RecipeInputOreDict("crushedLead", 1)), new ItemStack(Registry.leadDust, 1));
         }
 
+        macerator.removeRecipe(Ic2Items.plantBall.copy());
         TileEntityMacerator.addRecipe(Ic2Items.plantBall.copy(), new ItemStack(Registry.bioChaff));
+        TileEntityMacerator.addRecipe(new ItemStack(Registry.bioChaff), new ItemStack(Blocks.DIRT, 8));
+
 
         TileEntityFluidCanningMachine.addEnrichingRecipe(new RecipeInputItemStack(new ItemStack(Registry.bioChaff)), FluidRegistry.getFluidStack("water", 1000), FluidRegistry.getFluidStack("biomass", 1000));
+
+        if (Loader.isModLoaded("forestry")) {
+        	TileEntityFluidCanningMachine.addEnrichingRecipe(new RecipeInputItemStack(new ItemStack(Registry.bioChaff)), FluidRegistry.getFluidStack("honey", 1000), FluidRegistry.getFluidStack("biomass", 1500));
+        	TileEntityFluidCanningMachine.addEnrichingRecipe(new RecipeInputItemStack(new ItemStack(Registry.bioChaff)), FluidRegistry.getFluidStack("juice", 1000), FluidRegistry.getFluidStack("biomass", 1500));
+        }
 
         TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustTinyIron", 9), Ic2Items.ironDust);
         TileEntityCompressor.addRecipe(new RecipeInputOreDict("dustTinyGold", 9), Ic2Items.goldDust);
