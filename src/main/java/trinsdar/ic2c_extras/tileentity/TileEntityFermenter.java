@@ -325,6 +325,16 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
     }
 
     @Override
+    public boolean canRemoveBlock(EntityPlayer player) {
+        return true;
+    }
+
+    @Override
+    public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+        return this.getFacing() != facing;
+    }
+
+    @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
         this.inputTank.writeToNBT(this.getTag(nbt, "inputTank"));

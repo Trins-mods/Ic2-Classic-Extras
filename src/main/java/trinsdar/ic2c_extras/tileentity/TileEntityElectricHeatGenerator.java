@@ -133,6 +133,16 @@ public class TileEntityElectricHeatGenerator extends TileEntityElecMachine imple
     }
 
     @Override
+    public boolean canRemoveBlock(EntityPlayer player) {
+        return true;
+    }
+
+    @Override
+    public boolean canSetFacing(EntityPlayer player, EnumFacing facing) {
+        return this.getFacing() != facing;
+    }
+
+    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         this.heat = nbt.getInteger("heat");
