@@ -30,13 +30,13 @@ public class FluidCanningMachineSupport {
     }
 
     @ZenMethod
-    public static void addEnrichingRecipe(ILiquidStack outputFluid, IIngredient input, ILiquidStack inputFluid) {
-        CraftTweakerPlugin.apply(new FluidCannerEnrichingRecipeAction(CraftTweakerPlugin.of(input), CraftTweakerMC.getLiquidStack(inputFluid), CraftTweakerMC.getLiquidStack(outputFluid)));
+    public static void addEnrichingRecipe(ILiquidStack outputFluid, IIngredient input, ILiquidStack inputFluid, @Optional(valueLong = 400L) int totalEu) {
+        CraftTweakerPlugin.apply(new FluidCannerEnrichingRecipeAction(CraftTweakerPlugin.of(input), CraftTweakerMC.getLiquidStack(inputFluid), CraftTweakerMC.getLiquidStack(outputFluid), totalEu));
     }
 
     @ZenMethod
-    public static void addEnrichingRecipe(IItemStack output, ILiquidStack outputFluid, IIngredient input, ILiquidStack inputFluid) {
-        CraftTweakerPlugin.apply(new FluidCannerEnrichingRecipeAction2(CraftTweakerPlugin.of(input), CraftTweakerMC.getLiquidStack(inputFluid), CraftTweakerMC.getItemStack(output), CraftTweakerMC.getLiquidStack(outputFluid)));
+    public static void addEnrichingRecipe(IItemStack output, ILiquidStack outputFluid, IIngredient input, ILiquidStack inputFluid, @Optional(valueLong = 400L) int totalEu) {
+        CraftTweakerPlugin.apply(new FluidCannerEnrichingRecipeAction2(CraftTweakerPlugin.of(input), CraftTweakerMC.getLiquidStack(inputFluid), CraftTweakerMC.getItemStack(output), CraftTweakerMC.getLiquidStack(outputFluid), totalEu));
     }
 
     private static final class FluidCannerFillingRecipeAction implements IAction {
@@ -94,16 +94,18 @@ public class FluidCanningMachineSupport {
         private final IRecipeInput input;
         private final FluidStack inputFluid;
         private final FluidStack outputFluid;
+        private final int totalEu;
 
-        FluidCannerEnrichingRecipeAction(IRecipeInput input, FluidStack inputFluid, FluidStack outputFluid) {
+        FluidCannerEnrichingRecipeAction(IRecipeInput input, FluidStack inputFluid, FluidStack outputFluid, int totalEu) {
             this.input = input;
             this.outputFluid = outputFluid;
             this.inputFluid = inputFluid;
+            this.totalEu = totalEu;
         }
 
         @Override
         public void apply() {
-            TileEntityFluidCanningMachine.addEnrichingRecipe(this.input, this.inputFluid, this.outputFluid);
+            TileEntityFluidCanningMachine.addEnrichingRecipe(this.input, this.inputFluid, this.outputFluid, TileEntityFluidCanningMachine.totalEu(totalEu));
         }
 
         @Override
@@ -118,17 +120,19 @@ public class FluidCanningMachineSupport {
         private final FluidStack inputFluid;
         private final ItemStack output;
         private final FluidStack outputFluid;
+        private final int totalEu;
 
-        FluidCannerEnrichingRecipeAction2(IRecipeInput input, FluidStack inputFluid, ItemStack output, FluidStack outputFluid) {
+        FluidCannerEnrichingRecipeAction2(IRecipeInput input, FluidStack inputFluid, ItemStack output, FluidStack outputFluid, int totalEu) {
             this.input = input;
             this.inputFluid = inputFluid;
             this.outputFluid = outputFluid;
             this.output = output;
+            this.totalEu = totalEu;
         }
 
         @Override
         public void apply() {
-            TileEntityFluidCanningMachine.addEnrichingRecipe(this.input, this.inputFluid, this.output, this.outputFluid);
+            TileEntityFluidCanningMachine.addEnrichingRecipe(this.input, this.inputFluid, this.output, this.outputFluid, TileEntityFluidCanningMachine.totalEu(totalEu));
         }
 
         @Override

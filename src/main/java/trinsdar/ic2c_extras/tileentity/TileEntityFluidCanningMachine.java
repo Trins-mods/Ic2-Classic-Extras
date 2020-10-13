@@ -23,6 +23,7 @@ import ic2.core.util.obj.ITankListener;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -34,22 +35,28 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
+import org.jetbrains.annotations.Nullable;
 import trinsdar.ic2c_extras.container.ContainerFluidCanningMachine;
 import trinsdar.ic2c_extras.tileentity.base.TileEntityFluidCannerBase;
+import trinsdar.ic2c_extras.util.FluidMachineOutput;
 import trinsdar.ic2c_extras.util.GuiMachine;
 import trinsdar.ic2c_extras.util.recipelists.FluidCanningRecipeList;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasLang;
 import trinsdar.ic2c_extras.util.references.Ic2cExtrasResourceLocations;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 @Optional.Interface(iface = "gtclassic.api.interfaces.IGTDebuggableTile", modid = "gtclassic", striprefs = true)
-public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase implements ITankListener, IClickable, IGTDebuggableTile {
+public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase implements ITankListener, IClickable, IGTDebuggableTile, IFluidHandler {
     public static FluidCanningRecipeList fluidCanning = new FluidCanningRecipeList("fluidCanning");
     public MachineFilter filter = new MachineFilter(this);
 
@@ -155,50 +162,10 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
         return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
     }
 
-    public EnumFacing left() {
-        if (this.getFacing() == EnumFacing.NORTH) {
-            return EnumFacing.EAST;
-        }
-        if (this.getFacing() == EnumFacing.WEST) {
-            return EnumFacing.NORTH;
-        }
-        if (this.getFacing() == EnumFacing.SOUTH) {
-            return EnumFacing.WEST;
-        }
-        if (this.getFacing() == EnumFacing.EAST) {
-            return EnumFacing.SOUTH;
-        }
-        return this.getFacing();
-    }
-
-    public EnumFacing right() {
-        if (this.getFacing() == EnumFacing.NORTH) {
-            return EnumFacing.WEST;
-        }
-        if (this.getFacing() == EnumFacing.WEST) {
-            return EnumFacing.SOUTH;
-        }
-        if (this.getFacing() == EnumFacing.SOUTH) {
-            return EnumFacing.EAST;
-        }
-        if (this.getFacing() == EnumFacing.EAST) {
-            return EnumFacing.NORTH;
-        }
-        return this.getFacing();
-    }
-
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
         if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-            if (facing == EnumFacing.UP || facing == left()) {
-                return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.inputTank);
-            } else if (facing == EnumFacing.DOWN || facing == right()) {
-                if (this.outputTank.getFluidAmount() > 0) {
-                    return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.outputTank);
-                }
-            } else {
-                return super.getCapability(capability, facing);
-            }
+            return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this);
         }
         return super.getCapability(capability, facing);
     }
@@ -228,10 +195,6 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
         addEmptyingRecipe(input, output, outputFluid, totalEu(totalEu));
     }
 
-    public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, ItemStack output, FluidStack outputFluid) {
-        addEnrichingRecipe(input, inputFluid, new MachineOutput(null, output), outputFluid);
-    }
-
     public static IRecipeModifier[] totalEu(int amount) {
         return new IRecipeModifier[]{RecipeModifierHelpers.ModifierType.RECIPE_LENGTH.create((amount) - 400)};
     }
@@ -249,15 +212,23 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
         for (IRecipeModifier modifier : modifiers) {
             modifier.apply(mods);
         }
-        fluidCanning.addEmptyingRecipe(input, new MachineOutput(mods, output), outputFluid, "emptying_" + output.getUnlocalizedName() + "_" + outputFluid.getUnlocalizedName());
+        fluidCanning.addEmptyingRecipe(input, new FluidMachineOutput(mods, outputFluid, output), "emptying_" + output.getUnlocalizedName() + "_" + outputFluid.getUnlocalizedName());
     }
 
-    public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output, FluidStack outputFluid) {
-        fluidCanning.addEnrichingRecipe(input, inputFluid, output, outputFluid, "enriching_" + output.getAllOutputs().get(0).getUnlocalizedName());
+    public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, ItemStack output, FluidStack outputFluid, IRecipeModifier[] modifiers) {
+        NBTTagCompound mods = new NBTTagCompound();
+        for (IRecipeModifier modifier : modifiers) {
+            modifier.apply(mods);
+        }
+        fluidCanning.addEnrichingRecipe(input, inputFluid, new FluidMachineOutput(mods, outputFluid, output), "enriching_" + output.getUnlocalizedName());
     }
 
-    public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, FluidStack outputFluid) {
-        fluidCanning.addEnrichingRecipe(input, inputFluid, outputFluid, "enriching_" + outputFluid.getFluid().getUnlocalizedName());
+    public static void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, FluidStack outputFluid, IRecipeModifier[] modifiers) {
+        NBTTagCompound mods = new NBTTagCompound();
+        for (IRecipeModifier modifier : modifiers) {
+            modifier.apply(mods);
+        }
+        fluidCanning.addEnrichingRecipe(input, inputFluid, outputFluid, mods, "enriching_" + outputFluid.getFluid().getUnlocalizedName());
     }
 
     @Override
@@ -312,5 +283,30 @@ public class TileEntityFluidCanningMachine extends TileEntityFluidCannerBase imp
         map.put("Input Tank: " + (fluid != null ? fluid.amount + "mb of " + fluid.getLocalizedName() : "Empty"), false);
         fluid = this.outputTank.getFluid();
         map.put("Output Tank: " + (fluid != null ? fluid.amount + "mb of " + fluid.getLocalizedName() : "Empty"), false);
+    }
+
+    @Override
+    public IFluidTankProperties[] getTankProperties() {
+        List<IFluidTankProperties> list = new ArrayList<>();
+        list.addAll(Arrays.asList(this.inputTank.getTankProperties()));
+        list.addAll(Arrays.asList(this.outputTank.getTankProperties()));
+        return list.toArray(new IFluidTankProperties[0]);
+    }
+
+    @Override
+    public int fill(FluidStack resource, boolean doFill) {
+        return this.inputTank.fill(resource, doFill);
+    }
+
+    @Nullable
+    @Override
+    public FluidStack drain(FluidStack resource, boolean doDrain) {
+        return this.outputTank.drain(resource, doDrain);
+    }
+
+    @Nullable
+    @Override
+    public FluidStack drain(int maxDrain, boolean doDrain) {
+        return this.outputTank.drain(maxDrain, doDrain);
     }
 }

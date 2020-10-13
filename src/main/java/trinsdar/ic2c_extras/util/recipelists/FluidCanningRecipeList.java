@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 import trinsdar.ic2c_extras.IC2CExtras;
+import trinsdar.ic2c_extras.util.FluidMachineOutput;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,7 +25,7 @@ import java.util.function.Predicate;
 
 public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
     public static final FluidCanningRecipe INVALID_RECIPE = new FluidCanningRecipe(null, null,
-            new MachineOutput(null, new ArrayList<ItemStack>()), true, null, "Invalid");
+            new FluidMachineOutput(null, null, new ArrayList<ItemStack>()), true, "Invalid");
 
     protected List<FluidCanningRecipe> recipes = new ArrayList<FluidCanningRecipe>();
     protected Map<String, FluidCanningRecipe> recipeMap = new LinkedHashMap<String, FluidCanningRecipe>();
@@ -35,7 +36,7 @@ public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
         this.category = category;
     }
 
-    public void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output, FluidStack outputFluid, String id) {
+    public void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput output, String id) {
         id = getRecipeID(recipeMap.keySet(), id, 0);
         if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
             return;
@@ -44,12 +45,12 @@ public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
             IC2CExtras.logger.info("Recipe[" + id + "] has a invalid input for machine " + category);
             return;
         }
-        if (isListInvalid(output.getAllOutputs()) || outputFluid == null) {
+        if (isListInvalid(output.getAllOutputs()) || (output instanceof FluidMachineOutput && ((FluidMachineOutput)output).getFluid() == null)) {
             IC2CExtras.logger.info("Recipe[" + id + "] has a invalid output for machine " + category);
             IC2CExtras.logger.info("Recipe[" + input + "," + inputFluid + "] as input " + category);
             return;
         }
-        FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, output, true, outputFluid, id);
+        FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, output, true,  id);
         recipes.add(recipe);
         recipeMap.put(id, recipe);
         for (ItemStack stack : input.getInputs()) {
@@ -57,7 +58,7 @@ public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
         }
     }
 
-    public void addEmptyingRecipe(IRecipeInput input, MachineOutput output, FluidStack outputFluid, String id) {
+    public void addEmptyingRecipe(IRecipeInput input, MachineOutput output, String id) {
         id = getRecipeID(recipeMap.keySet(), id, 0);
         if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
             return;
@@ -66,12 +67,12 @@ public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
             IC2CExtras.logger.info("Recipe[" + id + "] has a invalid input for machine " + category);
             return;
         }
-        if (isListInvalid(output.getAllOutputs()) || outputFluid == null) {
+        if (isListInvalid(output.getAllOutputs()) || (output instanceof FluidMachineOutput && ((FluidMachineOutput)output).getFluid() == null)) {
             IC2CExtras.logger.info("Recipe[" + id + "] has a invalid output for machine " + category);
             IC2CExtras.logger.info("Recipe[" + input + "] as input " + category);
             return;
         }
-        FluidCanningRecipe recipe = new FluidCanningRecipe(input, output, outputFluid, id);
+        FluidCanningRecipe recipe = new FluidCanningRecipe(input, output, true, id);
         recipes.add(recipe);
         recipeMap.put(id, recipe);
         for (ItemStack stack : input.getInputs()) {
@@ -93,7 +94,7 @@ public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
             IC2CExtras.logger.info("Recipe[" + input + "," + inputFluid + "] as input " + category);
             return;
         }
-        FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, output, id);
+        FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, output, true, id);
         recipes.add(recipe);
         recipeMap.put(id, recipe);
         for (ItemStack stack : input.getInputs()) {
@@ -101,7 +102,7 @@ public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
         }
     }
 
-    public void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, FluidStack outputFluid, String id) {
+    public void addEnrichingRecipe(IRecipeInput input, FluidStack inputFluid, FluidStack outputFluid, NBTTagCompound nbt, String id) {
         id = getRecipeID(recipeMap.keySet(), id, 0);
         if (recipeMap.containsKey(id) || !RecipeManager.register(category, id)) {
             return;
@@ -115,7 +116,7 @@ public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
             IC2CExtras.logger.info("Recipe[" + input + "," + inputFluid + "] as input " + category);
             return;
         }
-        FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, new MachineOutput(null, new ArrayList<ItemStack>()), false, outputFluid, id);
+        FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, new FluidMachineOutput(nbt, outputFluid), false,  id);
         recipes.add(recipe);
         recipeMap.put(id, recipe);
         for (ItemStack stack : input.getInputs()) {
@@ -174,7 +175,7 @@ public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
 
     @Override
     public void addRecipe(FluidStack fluidStack, IRecipeInput iRecipeInput, FluidStack fluidStack1) {
-        this.addEnrichingRecipe(iRecipeInput, fluidStack, fluidStack1, fluidStack1.getUnlocalizedName());
+        this.addEnrichingRecipe(iRecipeInput, fluidStack, fluidStack1, null, fluidStack1.getUnlocalizedName());
     }
 
     @Override
@@ -184,7 +185,8 @@ public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
 
     @Override
     public boolean addRecipe(Input input, FluidStack fluidStack, NBTTagCompound nbtTagCompound, boolean b) {
-        return false;
+        this.addEnrichingRecipe(input.additive, input.fluid, fluidStack, nbtTagCompound, fluidStack.getUnlocalizedName());
+        return true;
     }
 
     @Override
@@ -206,41 +208,28 @@ public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
         IRecipeInput input;
         FluidStack inputFluid;
         MachineOutput outputs;
-        FluidStack outputFluid;
         String id;
         boolean itemOutput;
         boolean fluidInput;
         boolean fluidOutput;
 
-        public FluidCanningRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput outputs, boolean itemOutput, FluidStack outputFluid, String id) {
+        public FluidCanningRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput outputs, boolean itemOutput, String id) {
             this.input = input;
             this.inputFluid = inputFluid;
             this.outputs = outputs;
-            this.outputFluid = outputFluid;
             this.id = id;
             this.itemOutput = itemOutput;
             this.fluidInput = true;
-            this.fluidOutput = true;
+            this.fluidOutput = outputs instanceof FluidMachineOutput;
         }
 
-        public FluidCanningRecipe(IRecipeInput input, MachineOutput outputs, FluidStack outputFluid, String id) {
+        public FluidCanningRecipe(IRecipeInput input, MachineOutput outputs, boolean itemOutput, String id) {
             this.input = input;
             this.outputs = outputs;
-            this.outputFluid = outputFluid;
             this.id = id;
             this.fluidInput = false;
-            this.itemOutput = true;
-            this.fluidOutput = true;
-        }
-
-        public FluidCanningRecipe(IRecipeInput input, FluidStack inputFluid, MachineOutput outputs, String id) {
-            this.input = input;
-            this.inputFluid = inputFluid;
-            this.outputs = outputs;
-            this.id = id;
-            this.itemOutput = true;
-            this.fluidInput = true;
-            this.fluidOutput = false;
+            this.itemOutput = itemOutput;
+            this.fluidOutput = outputs instanceof FluidMachineOutput;
         }
 
         public String getRecipeID() {
@@ -256,7 +245,7 @@ public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
         }
 
         public FluidStack getOutputFluid() {
-            return outputFluid;
+            return outputs instanceof FluidMachineOutput ? ((FluidMachineOutput)outputs).getFluid() : null;
         }
 
         public boolean matches(ItemStack stack) {

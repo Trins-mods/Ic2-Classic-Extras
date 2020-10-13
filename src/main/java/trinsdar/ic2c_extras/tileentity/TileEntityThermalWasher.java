@@ -69,9 +69,14 @@ import java.util.List;
 import java.util.Map;
 
 @Optional.Interface(iface = "gtclassic.api.interfaces.IGTDebuggableTile", modid = "gtclassic", striprefs = true)
-public class TileEntityThermalWasher extends TileEntityAdvancedMachine implements ITankListener, IFluidHandler, IClickable, IGTDebuggableTile {
+public class TileEntityThermalWasher extends TileEntityAdvancedMachine implements ITankListener, IClickable, IGTDebuggableTile {
     @NetworkField(index = 13)
-    public IC2Tank waterTank = new IC2Tank(FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), 0), 20000);
+    public IC2Tank waterTank = new IC2Tank(20000) {
+        @Override
+        public boolean canFillFluidType(FluidStack fluid) {
+            return super.canFillFluidType(fluid) && fluid.getFluid() == FluidRegistry.WATER;
+        }
+    };
     public int water = 0;
     public int maxWater = 20000;
 
@@ -328,48 +333,6 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
     }
 
     @Override
-    public IFluidTankProperties[] getTankProperties() {
-        return new IFluidTankProperties[]{new FluidTankProperties(new FluidStack(FluidRegistry.WATER, this.water), 10000)};
-    }
-
-    @Override
-    public int fill(FluidStack resource, boolean doFill) {
-        if (resource != null && resource.getFluid() == FluidRegistry.WATER) {
-            int toAdd = Math.min(resource.amount, maxWater - this.water);
-            if (doFill) {
-                this.water += toAdd;
-                this.getNetwork().updateTileGuiField(this, "water");
-            }
-
-            return toAdd;
-        } else {
-            return 0;
-        }
-    }
-
-    @Nullable
-    @Override
-    public FluidStack drain(FluidStack resource, boolean doDrain) {
-        return resource != null && resource.getFluid() == FluidRegistry.WATER ? this.drain(resource.amount, doDrain) : null;
-    }
-
-    @Nullable
-    @Override
-    public FluidStack drain(int maxDrain, boolean doDrain) {
-        int amount = Math.min(maxDrain, this.water);
-        if (amount <= 0) {
-            return null;
-        } else {
-            if (doDrain) {
-                this.water -= amount;
-                this.getNetwork().updateTileGuiField(this, "water");
-            }
-
-            return new FluidStack(FluidRegistry.WATER, amount);
-        }
-    }
-
-    @Override
     public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
         this.waterTank.readFromNBT(nbt.getCompoundTag("Tank"));
@@ -389,7 +352,10 @@ public class TileEntityThermalWasher extends TileEntityAdvancedMachine implement
 
     @Override
     public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-        return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? (T) this.waterTank : super.getCapability(capability, facing);
+        if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(this.waterTank);
+        }
+        return super.getCapability(capability, facing);
     }
 
     @Override
