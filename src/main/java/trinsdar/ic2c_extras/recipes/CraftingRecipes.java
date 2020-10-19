@@ -197,9 +197,6 @@ public class CraftingRecipes {
         if (Ic2cExtrasConfig.removeLossyWrenchMechanic){
             Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.precisionwrench_-1943783685");
             Ic2cExtrasRecipes.removeRecipe("ic2", "shaped_item.precisionwrench_-1322002202");
-            if (Loader.isModLoaded("gravisuit")){
-                Ic2cExtrasRecipes.overrideRecipe("gravisuit", "shaped_item.gravitool_40257720", GameRegistry.makeItemStack("gravisuit:gravitool", 0, 1, null), "CHC", "AEA", "WcT", 'C', Ic2Items.carbonPlate, 'H', Ic2Items.electricHoe, 'A', Ic2Items.advancedAlloy, 'E', Ic2Items.energyCrystal, 'W', Ic2Items.electricWrench, 'c', "circuitBasic", 'T', Ic2Items.electricTreeTap);
-            }
         }
     }
 
@@ -352,21 +349,8 @@ public class CraftingRecipes {
                 "III", "III", "III", 'I', Registry.iridiumShard);
         recipes.addShapelessRecipe(new ItemStack(Registry.iridiumShard, 9),
                 Ic2Items.iridiumOre);
-
-        if (Loader.isModLoaded("gtclassic")) {
-            TileEntityCompressor.addRecipe("ingotLead", 9, new ItemStack(Registry.leadBlock));
-            TileEntityCompressor.addRecipe("ingotRefinedIron", 9, new ItemStack(Registry.refinedIronBlock));
-            TileEntityCompressor.addRecipe("ingotSteel", 9, new ItemStack(Registry.steelBlock));
-            GameRegistry.addSmelting(Registry.steelBlock, new ItemStack(Registry.steelIngot, 9), 0.1F);
-            GameRegistry.addSmelting(Registry.refinedIronBlock, StackUtil.copyWithSize(Ic2Items.refinedIronIngot, 9), 0.1F);
-            GameRegistry.addSmelting(Registry.leadBlock, new ItemStack(Registry.leadIngot, 9), 0.1F);
-            TileEntityMacerator.addRecipe("blockLead", 1, new ItemStack(Registry.leadDust, 9), 0.1F);
-            TileEntityMacerator.addRecipe("blockRefinedIron", 1, StackUtil.copyWithSize(Ic2Items.ironDust, 9), 0.1F);
-        } else {
-            CraftingRecipes.ingotUtil("blockSteel", Registry.steelBlock, "ingotSteel", new ItemStack(Registry.steelIngot));
-            CraftingRecipes.ingotUtil("blockLead", Registry.leadBlock, "ingotLead", new ItemStack(Registry.leadIngot));
-            CraftingRecipes.ingotUtil("blockRefinedIron", Registry.refinedIronBlock, "ingotRefinedIron", Ic2Items.refinedIronIngot);
-        }
-
+        CraftingRecipes.ingotUtil("blockSteel", Registry.steelBlock, "ingotSteel", new ItemStack(Registry.steelIngot));
+        CraftingRecipes.ingotUtil("blockLead", Registry.leadBlock, "ingotLead", new ItemStack(Registry.leadIngot));
+        CraftingRecipes.ingotUtil("blockRefinedIron", Registry.refinedIronBlock, "ingotRefinedIron", Ic2Items.refinedIronIngot);
     }
 }
