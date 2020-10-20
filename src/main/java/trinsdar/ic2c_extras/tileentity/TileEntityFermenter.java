@@ -43,6 +43,7 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import org.jetbrains.annotations.Nullable;
+import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.container.ContainerFermenter;
 import trinsdar.ic2c_extras.util.StackHelper;
 
@@ -72,7 +73,7 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
     @NetworkField(index = 7)
     int maxBioProgress = 4000;
     @NetworkField(index = 8)
-    int maxFertProgres = 500;
+    int maxFertProgres = Ic2cExtrasConfig.biomassPerFertilizer;
 
     int storedHeat = 0;
     Map.Entry<String, FermentationProperty> lastRecipe = null;
@@ -239,7 +240,7 @@ public class TileEntityFermenter extends TileEntityMachine implements IOutputMac
                     this.outputTank.fill(FluidRegistry.getFluidStack(lastRecipe.getValue().output, lastRecipe.getValue().outputAmount), true);
                     shouldCheckRecipe = true;
                     if (lastRecipe.getKey().equals("biomass")){
-                        fertProgress += 20;
+                        fertProgress += maxFertProgres / Ic2cExtrasConfig.biomassProcessesPerFertilizer;
                         this.getNetwork().updateTileGuiField(this, "fertProgress");
                     }
                     this.getNetwork().updateTileGuiField(this, "bioProgress");

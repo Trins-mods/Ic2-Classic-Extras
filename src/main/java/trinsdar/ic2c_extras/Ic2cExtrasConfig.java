@@ -69,6 +69,16 @@ public class Ic2cExtrasConfig {
     @Comment("Enables some recipes like reactor chambers requiring lead")
     public static boolean requiredLeadUses = false;
     @Config.RequiresMcRestart
+    @Config.RangeInt(min = 1)
+    @Comment("Amount of total biomass that needs to be consumed to make 1 fertilizer in the fermenter")
+    public static int biomassPerFertilizer = 500;
+
+    @Config.RequiresMcRestart
+    @Config.RangeInt(min = 1)
+    @Comment("Factor that biomassPerFertilizer divides by to determine how much it progresses towards the full amount")
+    public static int biomassProcessesPerFertilizer = 25;
+
+    @Config.RequiresMcRestart
     @Comment("Whether or not gtcx compat is enabled.")
     public static boolean compatGTCX = true;
 }
