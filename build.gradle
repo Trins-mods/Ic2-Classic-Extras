@@ -108,10 +108,10 @@ dependencies {
     deobfCompile("com.mod-buildcraft:buildcraft-main:7.99.24.1")
 
     //baubles
-    compileOnly "curse.maven:gtclassic:3059975"
-    compile "curse.maven:baubles:2518667"
-    compile "curse.maven:railcraft:2687757"
-    compile "curse.maven:ic2-classic:2979877"
+    compileOnly "curse.maven:gtclassic:-3240213059975"
+    compile "curse.maven:baubles-227083:2518667"
+    compileOnly "curse.maven:railcraft-51195:2687757"
+    compile "curse.maven:ic2_classic-242942:3076009"
 }
 
 processResources {
