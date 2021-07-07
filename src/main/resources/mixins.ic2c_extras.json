@@ -10,7 +10,8 @@
     "MixinNuclearJetpackInventory",
     "MixinItemArmorQuantumNuclearJetPlate",
     "MixinTileEntityNuclearReactorElectric",
-    "MixinTileEntityNuclearSteamReactor"
+    "MixinTileEntityNuclearSteamReactor",
+    "MixinBasicMachineRecipeList"
   ],
   "injectors": {
     "defaultRequire": 1

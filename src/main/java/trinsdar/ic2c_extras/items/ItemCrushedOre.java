@@ -2,6 +2,8 @@ package trinsdar.ic2c_extras.items;
 
 import ic2.core.platform.textures.Ic2Icons;
 import ic2.core.platform.textures.obj.IStaticTexturedItem;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockCauldron;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -28,7 +30,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ItemCrushedOre extends Item implements IStaticTexturedItem {
-    public static final PropertyInteger LEVEL = PropertyInteger.create("level", 0, 3);
+    public static final PropertyInteger LEVEL = BlockCauldron.LEVEL;
 
     int index;
 
@@ -63,11 +65,11 @@ public class ItemCrushedOre extends Item implements IStaticTexturedItem {
     public EnumActionResult washCrushedOre(EntityPlayer player, World world, BlockPos pos, EnumHand hand, Item input, ItemStack... outputs) {
         IBlockState state = world.getBlockState(pos);
         if (this == input) {
-            if (state.getBlock() == Blocks.CAULDRON && state.getValue(LEVEL).intValue() > 0) {
+            if (state.getBlock() == Blocks.CAULDRON && state.getValue(LEVEL) > 0) {
                 if (!player.capabilities.isCreativeMode) {
                     player.getHeldItem(hand).shrink(1);
                 }
-                Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL).intValue() - 1);
+                Blocks.CAULDRON.setWaterLevel(world, pos, state, state.getValue(LEVEL) - 1);
                 for (ItemStack stack : outputs) {
                     ItemHandlerHelper.giveItemToPlayer(player, stack);
                 }
