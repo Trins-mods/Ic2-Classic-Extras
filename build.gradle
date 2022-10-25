@@ -6,9 +6,15 @@ buildscript {
         maven {
             url "https://plugins.gradle.org/m2/"
         }
+        maven {
+            name = "jitpack"
+            setUrl("https://jitpack.io")
+        }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath("com.github.GregTechCE:ForgeGradle:FG_2.3-SNAPSHOT") {
+            changing = true
+        }
         classpath "org.spongepowered:mixingradle:0.6-SNAPSHOT"
         classpath "com.github.jengelman.gradle.plugins:shadow:2.0.4"
     }
@@ -44,14 +50,14 @@ minecraft {
 }
 
 repositories{
-    maven { url "https://dist.creeper.host/Sponge/maven" }
+    maven { url "https://repo.spongepowered.org/repository/maven-public" }
     maven { // JEI
         name 'DVS1 Maven FS'
-        url 'http://dvs1.progwml6.com/files/maven/'
+        url 'https://dvs1.progwml6.com/files/maven/'
     }
     maven { // The One Probe
         name 'tterrag'
-        url 'http://maven.tterrag.com/'
+        url 'https://maven.tterrag.com/'
     }
     maven { // Tesla
         name 'MMD'
@@ -59,14 +65,14 @@ repositories{
     }
     maven {
         name = "jared"
-        url = "http://maven.blamejared.com"
+        url = "https://maven.blamejared.com"
     }
     maven {
         url = "https://www.cursemaven.com"
     }
     maven {
         name = "buildcraft"
-        url = "http://www.mod-buildcraft.com/maven/"
+        url = "https://www.mod-buildcraft.com/maven/"
     }
 }
 
@@ -83,12 +89,9 @@ dependencies {
     }
     deobfProvided "mezz.jei:jei_${forgemc_version}:${jei_version}:api"
     runtime "mezz.jei:jei_${forgemc_version}:${jei_version}"
-    deobfProvided "com.mcmoddev:OreSpawn:${mc_version}-${orespawn_version}"
-    //runtime "com.mcmoddev:OreSpawn:${mc_version}-${orespawn_version}"
-    deobfProvided "com.mcmoddev:BaseMetals:${mc_version}-${bme_version}"
-    //runtime "com.mcmoddev:BaseMetals:${mc_version}-${bme_version}"
-    deobfProvided "com.mcmoddev:ModernMetals:${mc_version}-${mme_version}"
-    //runtime "com.mcmoddev:ModernMetals:${mc_version}-${mme_version}"
+    deobfProvided "curse.maven:basemetals-240967:2712965"
+    deobfProvided "curse.maven:modernmetals-244357:2712959"
+    deobfProvided "curse.maven:orespawn-245586:2913786"
     //one probe
     deobfProvided "mcjty.theoneprobe:TheOneProbe-${mc_version}:${mc_version}-${top_version}"
     runtime "mcjty.theoneprobe:TheOneProbe-${mc_version}:${mc_version}-${top_version}"
@@ -108,10 +111,10 @@ dependencies {
     deobfCompile("com.mod-buildcraft:buildcraft-main:7.99.24.1")
 
     //baubles
-    compileOnly "curse.maven:gtclassic:-3240213059975"
+    compileOnly "curse.maven:gtclassic-324021:3475248"
     compile "curse.maven:baubles-227083:2518667"
     compileOnly "curse.maven:railcraft-51195:2687757"
-    compile "curse.maven:ic2_classic-242942:3076009"
+    deobfCompile "curse.maven:ic2_classic-242942:4048720"
 }
 
 processResources {
