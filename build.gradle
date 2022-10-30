@@ -100,7 +100,7 @@ dependencies {
     deobfCompile 'curse.maven:the-one-probe-245211:2667280'
     compile("curse.maven:crafttweaker-239197:3935788")
 
-    deobfCompile("com.mod-buildcraft:buildcraft-main:7.99.24.1")
+    deobfCompile("curse.maven:buildcraft-61811:3204475")
 
     //baubles
     compileOnly "curse.maven:gtclassic-324021:3475248"
