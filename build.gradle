@@ -7,6 +7,10 @@ buildscript {
             url "https://plugins.gradle.org/m2/"
         }
         maven {
+            name = "forge"
+            setUrl("https://maven.minecraftforge.net/")
+        }
+        maven {
             name = "jitpack"
             setUrl("https://jitpack.io")
         }
@@ -93,20 +97,8 @@ dependencies {
     deobfProvided "curse.maven:modernmetals-244357:2712959"
     deobfProvided "curse.maven:orespawn-245586:2913786"
     //one probe
-    deobfProvided "mcjty.theoneprobe:TheOneProbe-${mc_version}:${mc_version}-${top_version}"
-    runtime "mcjty.theoneprobe:TheOneProbe-${mc_version}:${mc_version}-${top_version}"
-    deobfCompile(group: 'CraftTweaker2', name: 'ZenScript', version: craft_tweaker_version) {
-        exclude group: 'org.ow2.asm'
-        exclude group: 'com.google.code.gson'
-    }
-    deobfCompile(group: 'CraftTweaker2', name: 'CraftTweaker2-API', version: craft_tweaker_version) {
-        exclude group: 'org.ow2.asm'
-        exclude group: 'com.google.code.gson'
-    }
-    deobfCompile(group: 'CraftTweaker2', name: 'CraftTweaker2-MC1120-Main', version: "1.12-${craft_tweaker_version}") {
-        exclude group: 'org.ow2.asm'
-        exclude group: 'com.google.code.gson'
-    }
+    deobfCompile 'curse.maven:the-one-probe-245211:2667280'
+    compile("curse.maven:crafttweaker-239197:3935788")
 
     deobfCompile("com.mod-buildcraft:buildcraft-main:7.99.24.1")
 
