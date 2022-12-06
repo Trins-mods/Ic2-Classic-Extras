@@ -120,7 +120,7 @@ processResources {
     }
 }*/
 
-remapThinJar {
+/*task remapThinJar(type: Jar) {
     classifier "thin"
     input.set jar.archiveFile
     dependsOn jar
@@ -132,7 +132,7 @@ remapThinJar {
             "TweakOrder": 0,
             "MixinConfigs": "mixins.ic2c_extras.json"
     )
-}
+}*/
 
 shadowJar {
     configurations = [project.configurations.shadowImpl]
@@ -177,6 +177,6 @@ jar {
 }*/
 
 artifacts {
-    archives remapThinJar
+    //archives remapThinJar
     archives shadowJar
 }
