@@ -19,7 +19,6 @@ configurations {
 }
 
 loom {
-    log4jConfigs.from(file("log4j2.xml"))
     launchConfigs {
         "client" {
             // If you don't want mixins, remove these lines
@@ -77,8 +76,8 @@ repositories{
 
 dependencies {
     minecraft("com.mojang:minecraft:1.12.2")
-    mappings("de.oceanlabs.mcp:mcp_snapshot:20171003-1.12.2")
-    forge("net.minecraftforge:forge:1.12.2-14.23.5.2808-1.12.2")
+    mappings("de.oceanlabs.mcp:mcp_snapshot:20171003-1.12")
+    forge("net.minecraftforge:forge:1.12.2-14.23.5.2808")
     implementation 'org.jetbrains:annotations:19.0.0'
     shadowImpl("org.spongepowered:mixin:0.8-SNAPSHOT"){
         transitive = false
@@ -121,7 +120,7 @@ processResources {
     }
 }*/
 
-ramapThinJar {
+remapThinJar {
     classifier "thin"
     input.set jar.archiveFile
     dependsOn jar
