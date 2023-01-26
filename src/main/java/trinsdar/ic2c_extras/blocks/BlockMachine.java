@@ -53,7 +53,7 @@ public class BlockMachine extends BlockMultiID{
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(IC2CExtras.creativeTab);
         this.setRegistryName(IC2CExtras.MODID, name.toLowerCase());
-        this.setUnlocalizedName(comp);
+        this.setTranslationKey(comp);
         if (name.equals("reinforcedencasedcable")){
             this.setHardness(80.0F);
             this.setResistance(150.0F);

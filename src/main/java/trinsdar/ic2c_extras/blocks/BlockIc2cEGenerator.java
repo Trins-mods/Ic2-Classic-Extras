@@ -33,7 +33,7 @@ public class BlockIc2cEGenerator extends BlockMultiID {
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(IC2CExtras.creativeTab);
         this.setRegistryName(IC2CExtras.MODID, name.toLowerCase());
-        this.setUnlocalizedName(comp);
+        this.setTranslationKey(comp);
     }
 
     public List<Integer> getValidMetas() {

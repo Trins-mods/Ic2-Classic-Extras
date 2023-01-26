@@ -23,7 +23,7 @@ public class ItemIsotopicRod extends ItemDepletedUraniumRodBase {
         String name = "isotopic" + variant.getPrefix();
         this.setRegistryName(IC2CExtras.MODID, name.toLowerCase() + "cell");
         this.setCreativeTab(IC2CExtras.creativeTab);
-        setUnlocalizedName(new LangComponentHolder.LocaleItemComp("item." + name + "Cell"));
+        setTranslationKey(new LangComponentHolder.LocaleItemComp("item." + name + "Cell"));
     }
 
     @Override

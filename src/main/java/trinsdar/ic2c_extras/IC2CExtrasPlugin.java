@@ -38,10 +38,10 @@ public class IC2CExtrasPlugin extends PluginBase {
         map.put("blockPersonal", new BlockOverride(new BlockPersonalStorage().setCreativeTab(IC2.tabIC2), ItemBlockPersonalStorage.class));
         map.put("itemMisc", new ItemOverride(new ItemMisc2().setCreativeTab(IC2.tabIC2)));
         map.put("itemToolWrench", new ItemOverride(new ItemToolWrenchLossless().setCreativeTab(IC2.tabIC2)));
-        map.put("itemArmorNanoBoots", new ItemOverride((new ItemNanoArmorPlated(7, EntityEquipmentSlot.FEET)).setUnlocalizedName(Ic2ItemLang.nanoBoots)));
-        map.put("itemArmorNanoLegs", new ItemOverride((new ItemNanoArmorPlated(6, EntityEquipmentSlot.LEGS)).setUnlocalizedName(Ic2ItemLang.nanoLeggings)));
-        map.put("itemArmorNanoChestplate", new ItemOverride((new ItemNanoArmorPlated(5, EntityEquipmentSlot.CHEST)).setUnlocalizedName(Ic2ItemLang.nanoChestplate)));
-        map.put("itemArmorNanoHelmet", new ItemOverride((new ItemNanoArmorPlated(4, EntityEquipmentSlot.HEAD)).setUnlocalizedName(Ic2ItemLang.nanoHelmet)));
+        map.put("itemArmorNanoBoots", new ItemOverride((new ItemNanoArmorPlated(7, EntityEquipmentSlot.FEET)).setTranslationKey(Ic2ItemLang.nanoBoots)));
+        map.put("itemArmorNanoLegs", new ItemOverride((new ItemNanoArmorPlated(6, EntityEquipmentSlot.LEGS)).setTranslationKey(Ic2ItemLang.nanoLeggings)));
+        map.put("itemArmorNanoChestplate", new ItemOverride((new ItemNanoArmorPlated(5, EntityEquipmentSlot.CHEST)).setTranslationKey(Ic2ItemLang.nanoChestplate)));
+        map.put("itemArmorNanoHelmet", new ItemOverride((new ItemNanoArmorPlated(4, EntityEquipmentSlot.HEAD)).setTranslationKey(Ic2ItemLang.nanoHelmet)));
         if (!Loader.isModLoaded("gtc_expansion")){
             map.put("itemToolWrenchElectric", new ItemOverride(new ItemElectricToolWrenchLossless().setCreativeTab(IC2.tabIC2)));
         }

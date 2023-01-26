@@ -104,7 +104,7 @@ dependencies {
     compileOnly "curse.maven:gtclassic-324021:3475248"
     implementation "curse.maven:baubles-227083:2518667"
     compileOnly "curse.maven:railcraft-51195:2687757"
-    modImplementation "curse.maven:ic2_classic-242942:4048720"
+    modImplementation "curse.maven:ic2_classic-242942:4070210"
 }
 
 processResources {
