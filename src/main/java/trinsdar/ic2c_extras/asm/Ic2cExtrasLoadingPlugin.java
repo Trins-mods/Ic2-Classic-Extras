@@ -19,7 +19,7 @@ public class Ic2cExtrasLoadingPlugin implements IFMLLoadingPlugin {
         try {
             File mods = new File("./mods");
             for (File file : mods.listFiles()){
-                if (file.getName().startsWith("IC2Classic 1.12") || file.getName().startsWith("IC2Classic+1.12")){
+                if( file.getName().matches("IC2Classic.+1\\.12.+")){
                     loadModJar(file);
                     break;
                 }
