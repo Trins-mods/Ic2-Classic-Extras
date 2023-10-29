@@ -8,11 +8,14 @@ pluginManagement {
         maven("https://maven.minecraftforge.net/")
         maven("https://repo.spongepowered.org/maven/")
         maven("https://repo.sk1er.club/repository/maven-releases/")
-    }
-    resolutionStrategy {
-        eachPlugin {
-            when (requested.id.id) {
-                "gg.essential.loom" -> useModule("gg.essential:architectury-loom:${requested.version}")
+        maven {
+            // RetroFuturaGradle
+            name = "GTNH Maven"
+            url = uri("http://jenkins.usrv.eu:8081/nexus/content/groups/public/")
+            isAllowInsecureProtocol = true
+            mavenContent {
+                includeGroup("com.gtnewhorizons")
+                includeGroup("com.gtnewhorizons.retrofuturagradle")
             }
         }
     }

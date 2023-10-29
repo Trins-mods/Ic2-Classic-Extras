@@ -1,9 +1,9 @@
 plugins {
     id("idea")
     id("java")
-    id("gg.essential.loom") version "0.10.0.+"
-    id("dev.architectury.architectury-pack200") version "0.1.3"
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.gtnewhorizons.retrofuturagradle") version "1.3.24"
+    // id("net.minecraftforge.gradle") version "5..+"
+    //id("com.github.johnrengelman.shadow") version "7.1.2"
     id("net.kyori.blossom") version "1.2.0"
 }
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
@@ -14,12 +14,12 @@ version = "${mod_version}"
 group = "trinsdar.ic2c_extras" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "IC2CExtras"
 
-configurations {
+/*configurations {
     shadowImpl // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
     implementation.extendsFrom shadowImpl
-}
+}*/
 
-loom {
+/*loom {
     launchConfigs {
         "client" {
             // If you don't want mixins, remove these lines
@@ -38,15 +38,14 @@ loom {
     mixin {
         defaultRefmapName.set("mixins.ic2c_extras.refmap.json")
     }
-}
-
-/*minecraft {
-    coreMod = "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin"
-
-    replace "@VERSION@", project.version
-    replaceIn "IC2CExtras.java"
-
 }*/
+
+minecraft {
+    mcVersion = "1.12.2"
+    //mappings channel: "mcp", version: "20171003-1.12"
+    //coreMod = "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin"
+
+}
 
 blossom {
     var constants = "src/main/java/trinsdar/ic2c_extras/IC2CExtras.java"
@@ -81,30 +80,28 @@ repositories{
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:1.12.2")
-    mappings("de.oceanlabs.mcp:mcp_snapshot:20171003-1.12")
-    forge("net.minecraftforge:forge:1.12.2-14.23.5.2808")
+    //minecraft("net.minecraftforge:forge:1.12.2-14.23.5.2808")
     implementation 'org.jetbrains:annotations:19.0.0'
-    shadowImpl("org.spongepowered:mixin:0.8-SNAPSHOT"){
+    implementation("org.spongepowered:mixin:0.8-SNAPSHOT"){
         transitive = false
     }
     annotationProcessor("org.spongepowered:mixin:0.8.4-SNAPSHOT")
-    modApi "mezz.jei:jei_${forgemc_version}:${jei_version}:api"
-    modRuntimeOnly "mezz.jei:jei_${forgemc_version}:${jei_version}"
-    modCompileOnly "curse.maven:basemetals-240967:2712965"
-    modCompileOnly "curse.maven:modernmetals-244357:2712959"
-    modCompileOnly "curse.maven:orespawn-245586:2913786"
+    compileOnly rfg.deobf("mezz.jei:jei_${forgemc_version}:${jei_version}:api")
+    runtimeOnly rfg.deobf("mezz.jei:jei_${forgemc_version}:${jei_version}")
+    compileOnly rfg.deobf("curse.maven:basemetals-240967:2712965")
+    compileOnly rfg.deobf("curse.maven:modernmetals-244357:2712959")
+    compileOnly rfg.deobf("curse.maven:orespawn-245586:2913786")
     //one probe
-    modImplementation 'curse.maven:the-one-probe-245211:2667280'
+    implementation rfg.deobf("curse.maven:the-one-probe-245211:2667280")
     implementation("curse.maven:crafttweaker-239197:3935788")
 
-    modImplementation("curse.maven:buildcraft-61811:3204475")
+    compileOnly rfg.deobf("curse.maven:buildcraft-61811:3204475")
 
     //baubles
     compileOnly "curse.maven:gtclassic-324021:3475248"
     implementation "curse.maven:baubles-227083:2518667"
     compileOnly "curse.maven:railcraft-51195:2687757"
-    modImplementation "curse.maven:ic2_classic-242942:4070210"
+    compileOnly rfg.deobf("curse.maven:ic2_classic-242942:4070210")
 }
 
 processResources {
@@ -119,6 +116,10 @@ processResources {
         expand toReplace
     }
 }
+
+/*mixin {
+    add sourceSets.main, "mixins.ic2c_extras.refmap.json"
+}*/
 
 /*reobf {
     shadowJar {
@@ -140,12 +141,12 @@ processResources {
     )
 }*/
 
-shadowJar {
+/*shadowJar {
     configurations = [project.configurations.shadowImpl]
     classifier "dev-shadow"
-}
+}*/
 
-remapJar {
+/*remapJar {
     input.set shadowJar.archiveFile
     dependsOn shadowJar
     classifier null
@@ -157,10 +158,9 @@ remapJar {
             "TweakOrder": 0,
             "MixinConfigs": "mixins.ic2c_extras.json"
     )
-}
+}*/
 
 jar {
-    classifier "dev"
     manifest.attributes(
             "FMLCorePlugin": "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin",
             "FMLCorePluginContainsFMLMod": true,
@@ -184,5 +184,5 @@ jar {
 
 artifacts {
     //archives remapThinJar
-    archives shadowJar
+    //archives shadowJar
 }
