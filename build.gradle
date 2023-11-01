@@ -86,6 +86,9 @@ dependencies {
         transitive = false
     }
     annotationProcessor("org.spongepowered:mixin:0.8.4-SNAPSHOT")
+    annotationProcessor 'org.ow2.asm:asm-debug-all:5.2'
+    annotationProcessor 'com.google.guava:guava:24.1.1-jre'
+    annotationProcessor 'com.google.code.gson:gson:2.8.6'
     compileOnly rfg.deobf("mezz.jei:jei_${forgemc_version}:${jei_version}:api")
     runtimeOnly rfg.deobf("mezz.jei:jei_${forgemc_version}:${jei_version}")
     compileOnly rfg.deobf("curse.maven:basemetals-240967:2712965")
@@ -95,13 +98,13 @@ dependencies {
     implementation rfg.deobf("curse.maven:the-one-probe-245211:2667280")
     implementation("curse.maven:crafttweaker-239197:3935788")
 
-    compileOnly rfg.deobf("curse.maven:buildcraft-61811:3204475")
+    //compileOnly rfg.deobf("curse.maven:buildcraft-61811:3204475")
 
     //baubles
     compileOnly "curse.maven:gtclassic-324021:3475248"
     implementation "curse.maven:baubles-227083:2518667"
     compileOnly "curse.maven:railcraft-51195:2687757"
-    compileOnly rfg.deobf("curse.maven:ic2_classic-242942:4070210")
+    implementation rfg.deobf("curse.maven:ic2_classic-242942:4476676")
 }
 
 processResources {
@@ -164,7 +167,6 @@ jar {
     manifest.attributes(
             "FMLCorePlugin": "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin",
             "FMLCorePluginContainsFMLMod": true,
-            "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
             "TweakOrder": 0,
             "MixinConfigs": "mixins.ic2c_extras.json"
     )

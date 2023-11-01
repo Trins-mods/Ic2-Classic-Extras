@@ -29,7 +29,7 @@ public class BlockStoneDust extends BlockFalling implements ITexturedBlock {
     public BlockStoneDust() {
         super(Material.SAND);
         this.setRegistryName(IC2CExtras.MODID, "stonedustblock");
-        this.setUnlocalizedName("stoneDustBlock");
+        this.setTranslationKey("stoneDustBlock");
         this.setSoundType(SoundType.SAND);
         this.setHardness(0.5f);
         this.setHarvestLevel("shovel", 0);

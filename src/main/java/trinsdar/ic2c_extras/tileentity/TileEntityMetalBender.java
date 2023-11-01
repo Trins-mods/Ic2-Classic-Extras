@@ -124,6 +124,6 @@ public class TileEntityMetalBender extends TileEntityContainerInputBase {
     }
 
     public static void addRecipe(IRecipeInput input, ItemStack press, MachineOutput output) {
-        metalBender.addRecipe(input, press, output, output.getAllOutputs().get(0).getUnlocalizedName());
+        metalBender.addRecipe(input, press, output, output.getAllOutputs().get(0).getTranslationKey());
     }
 }

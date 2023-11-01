@@ -27,12 +27,12 @@ public class CustomModelLoader implements ICustomModelLoader {
 
     @Override
     public boolean accepts(ResourceLocation loc) {
-        return loc.getResourceDomain().equals(IC2CExtras.MODID) && modelLookup.containsKey(loc.getResourcePath());
+        return loc.getNamespace().equals(IC2CExtras.MODID) && modelLookup.containsKey(loc.getPath());
     }
 
     @Override
     public IModel loadModel(ResourceLocation modelLoc) {
-        IModel model = modelLookup.get(modelLoc.getResourcePath());
+        IModel model = modelLookup.get(modelLoc.getPath());
         return model != null ? model : ModelLoaderRegistry.getMissingModel();
     }
 }

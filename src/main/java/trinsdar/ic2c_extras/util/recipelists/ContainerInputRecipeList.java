@@ -49,8 +49,8 @@ public class ContainerInputRecipeList {
             return;
         }
         ContainerInputRecipe recipe = new ContainerInputRecipe(input, press, output, id);
-        if (!validContainers.containsKey(press.getUnlocalizedName())) {
-            validContainers.put(press.getUnlocalizedName(), press);
+        if (!validContainers.containsKey(press.getTranslationKey())) {
+            validContainers.put(press.getTranslationKey(), press);
         }
         recipes.add(recipe);
         recipeMap.put(id, recipe);
@@ -79,7 +79,7 @@ public class ContainerInputRecipeList {
     }
 
     public boolean isValidRecipeContainer(ItemStack stack) {
-        return validContainers.containsKey(stack.getUnlocalizedName());
+        return validContainers.containsKey(stack.getTranslationKey());
     }
 
     public ContainerInputRecipe getRecipe(Predicate<ContainerInputRecipe> checker) {

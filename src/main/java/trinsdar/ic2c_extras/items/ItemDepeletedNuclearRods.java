@@ -26,7 +26,7 @@ public class ItemDepeletedNuclearRods extends Item implements IStaticTexturedIte
         this.index = id;
         this.setRegistryName(IC2CExtras.MODID, name);
         setCreativeTab(IC2CExtras.creativeTab);
-        setUnlocalizedName(name);
+        setTranslationKey(name);
     }
 
     @SideOnly(Side.CLIENT)

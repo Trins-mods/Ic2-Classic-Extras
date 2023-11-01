@@ -19,7 +19,7 @@ public class ItemMiscs extends Item implements IStaticTexturedItem {
         this.index = id;
         this.sprite = "misc_items";
         this.setRegistryName(IC2CExtras.MODID, name.toLowerCase());
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(IC2CExtras.creativeTab);
     }
 
@@ -27,7 +27,7 @@ public class ItemMiscs extends Item implements IStaticTexturedItem {
         this.index = id;
         this.sprite = sprite;
         this.setRegistryName(IC2CExtras.MODID, name.toLowerCase());
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(IC2CExtras.creativeTab);
     }
 

@@ -25,7 +25,7 @@ public class ItemToolCrafting extends Item implements IStaticTexturedItem, ICust
         this.setMaxDamage(maxDamage);
         this.setNoRepair();
         this.setRegistryName(IC2CExtras.MODID, name.toLowerCase());
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(IC2CExtras.creativeTab);
     }
 

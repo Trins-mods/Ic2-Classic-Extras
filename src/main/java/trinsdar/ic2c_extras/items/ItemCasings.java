@@ -20,7 +20,7 @@ public class ItemCasings extends Item implements IStaticTexturedItem {
         this.index = index;
         String name = variant + "Casing";
         this.setRegistryName(IC2CExtras.MODID, name.toLowerCase());
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(IC2CExtras.creativeTab);
     }
 

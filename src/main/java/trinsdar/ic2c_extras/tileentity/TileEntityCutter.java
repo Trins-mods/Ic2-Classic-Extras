@@ -101,6 +101,6 @@ public class TileEntityCutter extends TileEntityBasicElectricMachine {
     }
 
     public static void addRecipe(IRecipeInput input, ItemStack output, float exp) {
-        cutting.addRecipe(input, output, exp, output.getUnlocalizedName());
+        cutting.addRecipe(input, output, exp, output.getTranslationKey());
     }
 }

@@ -289,7 +289,7 @@ public class TileEntityThermalCentrifuge extends TileEntityBasicElectricMachine 
     }
 
     public static void addRecipe(IRecipeInput input, MachineOutput output) {
-        thermalCentrifuge.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName());
+        thermalCentrifuge.addRecipe(input, output, output.getAllOutputs().get(0).getTranslationKey());
     }
 
     @Optional.Method(modid = "gtclassic")

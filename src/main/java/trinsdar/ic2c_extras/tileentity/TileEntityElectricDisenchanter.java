@@ -69,7 +69,7 @@ public class TileEntityElectricDisenchanter extends TileEntityElecMachine implem
             NBTTagCompound nbt = StackUtil.getOrCreateNbtData(tool);
             if (nbt.hasKey("ench")){
                 NBTTagList enchantList = nbt.getTagList("ench", 10);
-                if (!enchantList.hasNoTags()){
+                if (!enchantList.isEmpty()){
                     canProgress = true;
                 }
             }
@@ -150,7 +150,7 @@ public class TileEntityElectricDisenchanter extends TileEntityElecMachine implem
         outputEnchantList.appendTag(enchantment);
         outputNBT.setTag("StoredEnchantments", outputEnchantList);
         enchantList.removeTag(index);
-        if (enchantList.hasNoTags()){
+        if (enchantList.isEmpty()){
             nbt.removeTag("ench");
             if (nbt.hasKey("RepairCost")){
                 nbt.setInteger("RepairCost", 0);

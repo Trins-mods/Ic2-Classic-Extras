@@ -47,7 +47,7 @@ public class ItemUniversalFluidCell extends Item {
     public ItemUniversalFluidCell(){
         this.setMaxStackSize(64);
         this.setRegistryName("universal_fluid_cell");
-        this.setUnlocalizedName("universalFluidCell");
+        this.setTranslationKey("universalFluidCell");
         this.setCreativeTab(IC2CExtras.creativeTab);
     }
 

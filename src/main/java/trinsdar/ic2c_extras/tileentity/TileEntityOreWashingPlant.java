@@ -292,7 +292,7 @@ public class TileEntityOreWashingPlant extends TileEntityBasicElectricMachine im
     }
 
     public static void addRecipe(IRecipeInput input, MachineOutput output) {
-        oreWashingPlant.addRecipe(input, output, output.getAllOutputs().get(0).getUnlocalizedName());
+        oreWashingPlant.addRecipe(input, output, output.getAllOutputs().get(0).getTranslationKey());
     }
 
     @Override

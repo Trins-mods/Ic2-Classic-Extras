@@ -112,6 +112,6 @@ public class TileEntityExtruder extends TileEntityBasicElectricMachine {
     }
 
     public static void addRecipe(IRecipeInput input, ItemStack output, float exp) {
-        extruding.addRecipe(input, output, exp, output.getUnlocalizedName());
+        extruding.addRecipe(input, output, exp, output.getTranslationKey());
     }
 }

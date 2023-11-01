@@ -19,7 +19,7 @@ public class ItemPlates extends Item implements IStaticTexturedItem {
         this.index = index;
         String name = variant + "Plate";
         this.setRegistryName(IC2CExtras.MODID, name.toLowerCase());
-        setUnlocalizedName(name);
+        setTranslationKey(name);
         setCreativeTab(IC2CExtras.creativeTab);
     }
 

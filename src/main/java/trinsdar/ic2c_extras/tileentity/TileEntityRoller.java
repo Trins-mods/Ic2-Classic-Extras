@@ -106,6 +106,6 @@ public class TileEntityRoller extends TileEntityBasicElectricMachine {
     }
 
     public static void addRecipe(IRecipeInput input, ItemStack output, float exp) {
-        rolling.addRecipe(input, output, exp, output.getUnlocalizedName());
+        rolling.addRecipe(input, output, exp, output.getTranslationKey());
     }
 }
