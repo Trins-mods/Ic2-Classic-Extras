@@ -1,188 +1,53 @@
 plugins {
     id("idea")
     id("java")
-    id("gg.essential.loom") version "0.10.0.+"
-    id("dev.architectury.architectury-pack200") version "0.1.3"
-    id("com.github.johnrengelman.shadow") version "7.1.2"
-    id("net.kyori.blossom") version "1.2.0"
+    id 'dev.architectury.loom' version '0.12.0-SNAPSHOT'
 }
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 version = "${mod_version}"
 group = "trinsdar.ic2c_extras" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "IC2CExtras"
 
-configurations {
-    shadowImpl // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
-    implementation.extendsFrom shadowImpl
-}
-
-loom {
-    launchConfigs {
-        "client" {
-            // If you don't want mixins, remove these lines
-            property("mixin.debug", "true")
-            property("asmhelper.verbose", "true")
-            arg("--tweakClass", "org.spongepowered.asm.launch.MixinTweaker")
-            arg("--mixin", "mixins.ic2c_extras.json")
-        }
-    }
-    forge {
-        pack200Provider.set(new dev.architectury.pack200.java.Pack200Adapter())
-        // If you don't want mixins, remove this lines
-        mixinConfig("mixins.ic2c_extras.json")
-    }
-    // If you don't want mixins, remove these lines
-    mixin {
-        defaultRefmapName.set("mixins.ic2c_extras.refmap.json")
-    }
-}
-
-/*minecraft {
-    coreMod = "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin"
-
-    replace "@VERSION@", project.version
-    replaceIn "IC2CExtras.java"
-
-}*/
-
-blossom {
-    var constants = "src/main/java/trinsdar/ic2c_extras/IC2CExtras.java"
-    replaceToken("@VERSION@", project.version, constants)
-}
-
 repositories{
     maven { url "https://repo.spongepowered.org/repository/maven-public" }
-    maven { // JEI
-        name 'DVS1 Maven FS'
-        url 'https://dvs1.progwml6.com/files/maven/'
-    }
-    maven { // The One Probe
-        name 'tterrag'
-        url 'https://maven.tterrag.com/'
-    }
-    maven { // Tesla
-        name 'MMD'
-        url 'https://maven.mcmoddev.com/'
+    maven {
+        name = 'parchment'
+        url = 'https://maven.parchmentmc.org'
     }
     maven {
-        name = "jared"
-        url = "https://maven.blamejared.com"
+        // location of the maven that hosts JEI files since January 2023
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
     }
+    maven { url "https://maven.shedaniel.me" }
     maven {
-        url = "https://www.cursemaven.com"
-    }
-    maven {
-        name = "buildcraft"
-        url = "https://www.mod-buildcraft.com/maven/"
+        url "https://cursemaven.com"
     }
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:1.12.2")
-    mappings("de.oceanlabs.mcp:mcp_snapshot:20171003-1.12")
-    forge("net.minecraftforge:forge:1.12.2-14.23.5.2808")
-    implementation 'org.jetbrains:annotations:19.0.0'
-    shadowImpl("org.spongepowered:mixin:0.8-SNAPSHOT"){
-        transitive = false
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings loom.layered() {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${rootProject.minecraft_version}:${rootProject.mappings_version}@zip")
     }
-    annotationProcessor("org.spongepowered:mixin:0.8.4-SNAPSHOT")
-    modApi "mezz.jei:jei_${forgemc_version}:${jei_version}:api"
-    modRuntimeOnly "mezz.jei:jei_${forgemc_version}:${jei_version}"
-    modCompileOnly "curse.maven:basemetals-240967:2712965"
-    modCompileOnly "curse.maven:modernmetals-244357:2712959"
-    modCompileOnly "curse.maven:orespawn-245586:2913786"
-    //one probe
-    modImplementation 'curse.maven:the-one-probe-245211:2667280'
-    implementation("curse.maven:crafttweaker-239197:3935788")
 
-    modImplementation("curse.maven:buildcraft-61811:3204475")
-
-    //baubles
-    compileOnly "curse.maven:gtclassic-324021:3475248"
-    implementation "curse.maven:baubles-227083:2518667"
-    compileOnly "curse.maven:railcraft-51195:2687757"
-    modImplementation "curse.maven:ic2_classic-242942:4070210"
+    forge "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    //modImplementation fileTree(include: ['*.jar'], dir: 'libs')
+    modImplementation("curse.maven:ic2_classic-242942:4744334")
+    modImplementation("curse.maven:ic2c_additions-304040:4360883")
+    modImplementation("curse.maven:curios-309927:3871347")
+    modImplementation("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 }
 
 processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.mod_version
 
-    def toReplace = [
-            "modversion"             : "${mod_version}",
-            "mcversion"              : "${mc_version}"
-    ]
-
-    inputs.properties toReplace
-    filesMatching("mcmod.info") {
-        expand toReplace
+    filesMatching("META-INF/mods.toml") {
+        expand "version": project.mod_version
     }
-}
-
-/*reobf {
-    shadowJar {
-        mappingType = "SEARGE"
-    }
-}*/
-
-/*task remapThinJar(type: Jar) {
-    classifier "thin"
-    input.set jar.archiveFile
-    dependsOn jar
-    manifest.attributes(
-            "FMLCorePlugin": "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin",
-            "FMLCorePluginContainsFMLMod": true,
-            "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
-            'ForceLoadAsMod': true,
-            "TweakOrder": 0,
-            "MixinConfigs": "mixins.ic2c_extras.json"
-    )
-}*/
-
-shadowJar {
-    configurations = [project.configurations.shadowImpl]
-    classifier "dev-shadow"
-}
-
-remapJar {
-    input.set shadowJar.archiveFile
-    dependsOn shadowJar
-    classifier null
-    manifest.attributes(
-            "FMLCorePlugin": "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin",
-            "FMLCorePluginContainsFMLMod": true,
-            "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
-            'ForceLoadAsMod': true,
-            "TweakOrder": 0,
-            "MixinConfigs": "mixins.ic2c_extras.json"
-    )
-}
-
-jar {
-    classifier "dev"
-    manifest.attributes(
-            "FMLCorePlugin": "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin",
-            "FMLCorePluginContainsFMLMod": true,
-            "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
-            "TweakOrder": 0,
-            "MixinConfigs": "mixins.ic2c_extras.json"
-    )
-}
-
-/*task deobfJar(type: Jar) {
-    from sourceSets.main.output
-    classifier = 'deobf'
-    manifest.attributes(
-            "FMLCorePlugin": "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin",
-            "FMLCorePluginContainsFMLMod": true,
-            "TweakClass": "org.spongepowered.asm.launch.MixinTweaker",
-            "TweakOrder": 0,
-            "MixinConfigs": "mixins.ic2c_extras.json"
-    )
-}*/
-
-artifacts {
-    //archives remapThinJar
-    archives shadowJar
 }
