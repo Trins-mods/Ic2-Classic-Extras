@@ -36,16 +36,16 @@ public class ContainerInputRecipeList {
             return;
         }
         if (input == null) {
-            IC2CExtras.logger.info("Recipe[" + id + "] has a invalid input for machine " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + id + "] has a invalid input for machine " + category);
             return;
         }
         if (press == null || press == ItemStack.EMPTY) {
-            IC2CExtras.logger.info("Recipe[" + id + "] has a invalid press input for machine " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + id + "] has a invalid press input for machine " + category);
             return;
         }
         if (isListInvalid(output.getAllOutputs())) {
-            IC2CExtras.logger.info("Recipe[" + id + "] has a invalid output for machine " + category);
-            IC2CExtras.logger.info("Recipe[" + input + "," + press + "] as input " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + id + "] has a invalid output for machine " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + input + "," + press + "] as input " + category);
             return;
         }
         ContainerInputRecipe recipe = new ContainerInputRecipe(input, press, output, id);

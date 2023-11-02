@@ -42,12 +42,12 @@ public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
             return;
         }
         if (input == null || inputFluid == null) {
-            IC2CExtras.logger.info("Recipe[" + id + "] has a invalid input for machine " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + id + "] has a invalid input for machine " + category);
             return;
         }
         if (isListInvalid(output.getAllOutputs()) || (output instanceof FluidMachineOutput && ((FluidMachineOutput)output).getFluid() == null)) {
-            IC2CExtras.logger.info("Recipe[" + id + "] has a invalid output for machine " + category);
-            IC2CExtras.logger.info("Recipe[" + input + "," + inputFluid + "] as input " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + id + "] has a invalid output for machine " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + input + "," + inputFluid + "] as input " + category);
             return;
         }
         FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, output, true,  id);
@@ -64,12 +64,12 @@ public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
             return;
         }
         if (input == null) {
-            IC2CExtras.logger.info("Recipe[" + id + "] has a invalid input for machine " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + id + "] has a invalid input for machine " + category);
             return;
         }
         if (isListInvalid(output.getAllOutputs()) || (output instanceof FluidMachineOutput && ((FluidMachineOutput)output).getFluid() == null)) {
-            IC2CExtras.logger.info("Recipe[" + id + "] has a invalid output for machine " + category);
-            IC2CExtras.logger.info("Recipe[" + input + "] as input " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + id + "] has a invalid output for machine " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + input + "] as input " + category);
             return;
         }
         FluidCanningRecipe recipe = new FluidCanningRecipe(input, output, true, id);
@@ -86,12 +86,12 @@ public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
             return;
         }
         if (input == null || inputFluid == null) {
-            IC2CExtras.logger.info("Recipe[" + id + "] has a invalid input for machine " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + id + "] has a invalid input for machine " + category);
             return;
         }
         if (isListInvalid(output.getAllOutputs())) {
-            IC2CExtras.logger.info("Recipe[" + id + "] has a invalid output for machine " + category);
-            IC2CExtras.logger.info("Recipe[" + input + "," + inputFluid + "] as input " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + id + "] has a invalid output for machine " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + input + "," + inputFluid + "] as input " + category);
             return;
         }
         FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, output, true, id);
@@ -108,12 +108,12 @@ public class FluidCanningRecipeList implements ICannerEnrichRecipeManager {
             return;
         }
         if (input == null || inputFluid == null) {
-            IC2CExtras.logger.info("Recipe[" + id + "] has a invalid input for machine " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + id + "] has a invalid input for machine " + category);
             return;
         }
         if (outputFluid == null) {
-            IC2CExtras.logger.info("Recipe[" + id + "] has a invalid output for machine " + category);
-            IC2CExtras.logger.info("Recipe[" + input + "," + inputFluid + "] as input " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + id + "] has a invalid output for machine " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + input + "," + inputFluid + "] as input " + category);
             return;
         }
         FluidCanningRecipe recipe = new FluidCanningRecipe(input, inputFluid, new FluidMachineOutput(nbt, outputFluid), false,  id);

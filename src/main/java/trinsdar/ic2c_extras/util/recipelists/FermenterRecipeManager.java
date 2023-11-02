@@ -12,11 +12,8 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import trinsdar.ic2c_extras.IC2CExtras;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -40,16 +37,16 @@ public class FermenterRecipeManager implements IFermenterRecipeManager {
             return;
         }
         if (!FluidRegistry.isFluidRegistered(input)) {
-            IC2CExtras.logger.info("Recipe[" + id + "] has a invalid input for machine " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + id + "] has a invalid input for machine " + category);
             return;
         }
         if (!FluidRegistry.isFluidRegistered(output)) {
-            IC2CExtras.logger.info("Recipe[" + id + "] has a invalid output for machine " + category);
-            IC2CExtras.logger.info("Recipe[" + input + "] as input " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + id + "] has a invalid output for machine " + category);
+            IC2CExtras.LOGGER.info("Recipe[" + input + "] as input " + category);
             return;
         }
         if (recipes.containsKey(input)){
-            IC2CExtras.logger.info(input + " already registered as a recipe for machine " + category);
+            IC2CExtras.LOGGER.info(input + " already registered as a recipe for machine " + category);
             return;
         }
         FermentationProperty recipe = new FermentationProperty(inputAmount, heat, output, outputAmount);

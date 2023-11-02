@@ -90,7 +90,7 @@ public class Icons {
     public static void collectBasicTileSprites() {
         for(String string : blockTextureList) {
             if (Ic2cExtrasConfig.debugMode){
-                IC2CExtras.logger.info("Attempting to get sprite data for: " + string);
+                IC2CExtras.LOGGER.info("Attempting to get sprite data for: " + string);
             }
             Ic2Icons.addSprite(new Sprites.SpriteData(string, "ic2c_extras:textures/sprites/tiles/" + string + ".png", new Sprites.SpriteInfo(1, 1)));
             Ic2Icons.addTextureEntry(new Sprites.TextureEntry(string, 0, 0, 1, 1));
