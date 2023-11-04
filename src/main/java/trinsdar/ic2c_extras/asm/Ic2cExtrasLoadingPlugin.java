@@ -7,28 +7,19 @@ import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.launch.MixinBootstrap;
 import org.spongepowered.asm.mixin.Mixins;
+import zone.rong.mixinbooter.ILateMixinLoader;
 
 import java.io.File;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
+@IFMLLoadingPlugin.Name("Ic2cExtrasMixinLoader")
 @IFMLLoadingPlugin.MCVersion(ForgeVersion.mcVersion)
 @IFMLLoadingPlugin.TransformerExclusions("trinsdar.ic2c_extras.asm")
 @IFMLLoadingPlugin.SortingIndex(1001)
-public class Ic2cExtrasLoadingPlugin implements IFMLLoadingPlugin {
+public class Ic2cExtrasLoadingPlugin implements IFMLLoadingPlugin, ILateMixinLoader {
     public Ic2cExtrasLoadingPlugin(){
-        try {
-            File mods = new File("./mods");
-            for (File file : mods.listFiles()){
-                if( file.getName().matches("IC2Classic.+1\\.12.+")){
-                    loadModJar(file);
-                    break;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        MixinBootstrap.init();
-        Mixins.addConfiguration("mixins.ic2c_extras.json");
     }
 
     @Override
@@ -60,5 +51,10 @@ public class Ic2cExtrasLoadingPlugin implements IFMLLoadingPlugin {
     @Override
     public String getAccessTransformerClass() {
         return null;
+    }
+
+    @Override
+    public List<String> getMixinConfigs() {
+        return Collections.singletonList("mixins.ic2c_extras.json");
     }
 }

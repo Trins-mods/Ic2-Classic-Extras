@@ -42,9 +42,16 @@ archivesBaseName = "IC2CExtras"
 
 minecraft {
     mcVersion = "1.12.2"
-    //mappings channel: "mcp", version: "20171003-1.12"
-    //coreMod = "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin"
+    // Set username here, the UUID will be looked up automatically
+    username = 'Trinsdar'
+    def args = ["-ea:${project.group}"]
+    args << '-Dfml.coreMods.load=' + "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin"
+    args << '-Dmixin.hotSwap=true'
+    args << '-Dmixin.checks.interfaces=true'
+    args << '-Dmixin.debug.export=true'
+    extraRunJvmArguments.addAll(args)
 
+    //injectedTags.put("@VERSION@", project.version)
 }
 
 blossom {
@@ -53,6 +60,10 @@ blossom {
 }
 
 repositories{
+    maven {
+        name 'CleanroomMC Maven'
+        url 'https://maven.cleanroommc.com'
+    }
     maven { url "https://repo.spongepowered.org/repository/maven-public" }
     maven { // JEI
         name 'DVS1 Maven FS'
@@ -85,6 +96,7 @@ dependencies {
     implementation("org.spongepowered:mixin:0.8-SNAPSHOT"){
         transitive = false
     }
+    implementation 'zone.rong:mixinbooter:8.3'
     annotationProcessor("org.spongepowered:mixin:0.8.4-SNAPSHOT")
     annotationProcessor 'org.ow2.asm:asm-debug-all:5.2'
     annotationProcessor 'com.google.guava:guava:24.1.1-jre'
