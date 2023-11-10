@@ -1,0 +1,13 @@
+{
+  "biochaff" : "ic2c_extras:item/misc/biochaff",
+  "coil" : "ic2c_extras:item/misc/coil",
+  "containment_box" : "ic2c_extras:item/misc/containment_box",
+  "dense_iron_plate" : "ic2c_extras:item/misc/dense_iron_plate",
+  "dense_lead_plate" : "ic2c_extras:item/misc/dense_lead_plate",
+  "empty_nuclear_rod" : "ic2c_extras:item/misc/empty_nuclear_rod",
+  "heat_conductor" : "ic2c_extras:item/misc/heat_conductor",
+  "iridium_shard" : "ic2c_extras:item/misc/iridium_shard",
+  "mox_fuel" : "ic2c_extras:item/misc/mox_fuel",
+  "plutonium_rtg" : "ic2c_extras:item/misc/plutonium_rtg",
+  "thorium_rtg" : "ic2c_extras:item/misc/thorium_rtg"
+}

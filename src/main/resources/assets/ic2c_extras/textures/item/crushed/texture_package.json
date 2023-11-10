@@ -1,0 +1,19 @@
+{
+  "crushed_aluminium_ore" : "ic2c_extras:item/crushed/crushed_aluminium",
+  "crushed_copper_ore" : "ic2c_extras:item/crushed/crushed_copper",
+  "crushed_gold_ore" : "ic2c_extras:item/crushed/crushed_gold",
+  "crushed_iron_ore" : "ic2c_extras:item/crushed/crushed_iron",
+  "crushed_lead_ore" : "ic2c_extras:item/crushed/crushed_lead",
+  "crushed_silver_ore" : "ic2c_extras:item/crushed/crushed_silver",
+  "crushed_tin_ore" : "ic2c_extras:item/crushed/crushed_tin",
+  "crushed_uranium_ore" : "ic2c_extras:item/crushed/crushed_uranium",
+  "purified_aluminium_ore" : "ic2c_extras:item/crushed/purified_aluminium",
+  "purified_copper_ore" : "ic2c_extras:item/crushed/purified_copper",
+  "purified_gold_ore" : "ic2c_extras:item/crushed/purified_gold",
+  "purified_iron_ore" : "ic2c_extras:item/crushed/purified_iron",
+  "purified_lead_ore" : "ic2c_extras:item/crushed/purified_lead",
+  "purified_silver_ore" : "ic2c_extras:item/crushed/purified_silver",
+  "purified_tin_ore" : "ic2c_extras:item/crushed/purified_tin",
+  "purified_uranium_ore" : "ic2c_extras:item/crushed/purified_uranium",
+  "refined_uranium_ore" : "ic2c_extras:item/crushed/refined_uranium"
+}
