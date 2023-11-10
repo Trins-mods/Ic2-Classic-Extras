@@ -1,4 +1,1 @@
-[electric_disenchanter_side_active_overlay.png](src/main/resources/assets/ic2c_extras/textures/sprites/tiles/electric_disenchanter_side_active_overlay.png), [electric_disenchanter_side_overlay.png](src/main/resources/assets/ic2c_extras/textures/sprites/tiles/electric_disenchanter_side_overlay.png), and [electric_disenchanter_top.png](src/main/resources/assets/ic2c_extras/textures/sprites/tiles/electric_disenchanter_top.png) copied from draconic evolution and are therefore licensed under this:
-https://creativecommons.org/licenses/by-nc-sa/4.0/
-
 Everything else is based off ic2 textures and is therefore property of ic2, I have the right to use them since this is an ic2 addon.
