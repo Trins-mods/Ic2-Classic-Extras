@@ -1,0 +1,31 @@
+modLoader="javafml"
+license="Apache-2.0"
+loaderVersion="[36,)"
+issueTrackerURL="https://github.com/Trins-mods/Ic2-Classic-Extras/issues"
+
+[[mods]]
+modId="ic2c_extras"
+version="${version}"
+displayName="Ic2c Extras"
+displayURL="https://github.com/Trins-mods/Ic2-Classic-Extras"
+credits="The Forge and FML guys for forge, CrossVas for helping with some things."
+authors="Trinsdar"
+description='''Extra things for Ic2 classic'''
+[[dependencies.ic2c_extras]]
+    modId="forge"
+    mandatory=true
+    versionRange="[43.1.34,)"
+    ordering="AFTER"
+    side="BOTH"
+[[dependencies.ic2c_extras]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.2,)"
+    ordering="AFTER"
+    side="BOTH"
+[[dependencies.ic2c_extras]]
+    modId="ic2"
+    mandatory=true
+    versionRange="[1.19.2-2.0.7,)"
+    ordering="AFTER"
+    side="BOTH"
