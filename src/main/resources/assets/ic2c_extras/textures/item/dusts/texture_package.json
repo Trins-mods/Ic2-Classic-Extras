@@ -1,0 +1,22 @@
+{
+  "lead_dust" : "ic2c_extras:item/dusts/lead",
+  "plutonium_dust" : "ic2c_extras:item/dusts/plutonium",
+  "stone_dust" : "ic2c_extras:item/dusts/stone",
+  "thorium_232_dust" : "ic2c_extras:item/dusts/thorium_232",
+  "uranium_dust" : "ic2c_extras:item/dusts/uranium",
+  "uranium_233_dust" : "ic2c_extras:item/dusts/uranium_233",
+  "uranium_235_dust" : "ic2c_extras:item/dusts/uranium_235",
+  "uranium_238_dust" : "ic2c_extras:item/dusts/uranium_238",
+  "tiny_iron_dust" : "ic2c_extras:item/dusts/tiny_iron",
+  "tiny_gold_dust" : "ic2c_extras:item/dusts/tiny_gold",
+  "tiny_copper_dust" : "ic2c_extras:item/dusts/tiny_copper",
+  "tiny_tin_dust" : "ic2c_extras:item/dusts/tiny_tin",
+  "tiny_aluminium_dust" : "ic2c_extras:item/dusts/tiny_aluminium",
+  "tiny_silver_dust" : "ic2c_extras:item/dusts/tiny_silver",
+  "tiny_lead_dust" : "ic2c_extras:item/dusts/tiny_lead",
+  "tiny_plutonium_dust" : "ic2c_extras:item/dusts/tiny_plutonium",
+  "tiny_thorium_232_dust" : "ic2c_extras:item/dusts/tiny_thorium_232",
+  "tiny_uranium_233_dust" : "ic2c_extras:item/dusts/tiny_uranium_233",
+  "tiny_uranium_235_dust" : "ic2c_extras:item/dusts/tiny_uranium_235",
+  "tiny_uranium_238_dust" : "ic2c_extras:item/dusts/tiny_uranium_238"
+}
