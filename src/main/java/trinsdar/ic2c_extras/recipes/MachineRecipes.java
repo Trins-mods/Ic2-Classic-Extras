@@ -69,8 +69,8 @@ public class MachineRecipes {
             list.addThermalCentrifugingRecipe(id("purified_uranium"), new ItemStack[]{new ItemStack(ModItems.REFINED_URANIUM_ORE), new ItemStack(ModItems.TINY_THORIUM_DUST, 1)}, 900, 375, Ic2cExtrasTags.getForgeItemTag("purified_ores/uranium"));
             list.addThermalCentrifugingRecipe(id("refined_uranium"), new ItemStack[]{new ItemStack(ModItems.URANIUM_238_DUST, 2), new ItemStack(ModItems.TINY_URANIUM_235_DUST, 1)}, 900, 375, Ic2cExtrasTags.getForgeItemTag("refined_ores/uranium"));
             list.addThermalCentrifugingRecipe(id("re_enriched_uranium_cell"), new ItemStack[]{new ItemStack(ModItems.TINY_PLUTONIUM_DUST), new ItemStack(ModItems.TINY_THORIUM_DUST, 2), new ItemStack(CraftingRecipes.getEmptyNuclearCell())}, 1500, 750, IC2Items.URANIUM_ROD_RE_ENRICHED);
-            list.addThermalCentrifugingRecipe(id("re_enriched_uranium_cell"), new ItemStack[]{new ItemStack(ModItems.TINY_PLUTONIUM_DUST, 2), new ItemStack(CraftingRecipes.getEmptyNuclearCell())}, 1500, 750, ModItems.RE_ENRICHED_URANIUM_238_ROD);
-            list.addThermalCentrifugingRecipe(id("re_enriched_uranium_cell"), new ItemStack[]{new ItemStack(ModItems.TINY_URANIUM_233_DUST, 2), new ItemStack(CraftingRecipes.getEmptyNuclearCell())}, 1500, 750, ModItems.RE_ENRICHED_THORIUM_ROD);
+            list.addThermalCentrifugingRecipe(id("re_enriched_uranium_238_cell"), new ItemStack[]{new ItemStack(ModItems.TINY_PLUTONIUM_DUST, 2), new ItemStack(CraftingRecipes.getEmptyNuclearCell())}, 1500, 750, ModItems.RE_ENRICHED_URANIUM_238_ROD);
+            list.addThermalCentrifugingRecipe(id("re_enriched_thorium_cell"), new ItemStack[]{new ItemStack(ModItems.TINY_URANIUM_233_DUST, 2), new ItemStack(CraftingRecipes.getEmptyNuclearCell())}, 1500, 750, ModItems.RE_ENRICHED_THORIUM_ROD);
         }
     }
 

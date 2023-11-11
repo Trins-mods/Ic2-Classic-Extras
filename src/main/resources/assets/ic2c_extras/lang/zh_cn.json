@@ -102,9 +102,9 @@
 
   "itemGroup.ic2c_extras": "工业2经典版拓展",
 
-  "tileInfo.heatAmount": "热量: %1$s / %2$s",
+  "gui.ic2c_extras.heat": "热量: %s / %s",
   "tileInfo.thermoElectricGenerator": "仅支持钚RTG.",
-  "jeiInfo.heat": "%s 热量",
+  "jei_info.ic2c_extras.heat": "%s 热量",
 
   "ic2.crop.Plumbilia": "铅种子"
 }

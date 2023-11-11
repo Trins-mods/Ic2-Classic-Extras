@@ -1,0 +1,14 @@
+{
+	"active_down": "ic2:block/electric/battery_station/mv/down",
+	"active_east": "ic2:block/electric/energy_storage/mfe/east",
+	"active_north": "ic2:block/electric/energy_storage/mfe/east",
+	"active_south": "ic2c_extras:block//thermal_centrifuge/active_south",
+	"active_up": "ic2:block/machine/lv/macerator/active_up",
+	"active_west": "ic2:block/electric/energy_storage/mfe/east",
+	"inactive_down": "ic2:block/electric/battery_station/mv/down",
+	"inactive_east": "ic2:block/electric/energy_storage/mfe/east",
+	"inactive_north": "ic2:block/electric/energy_storage/mfe/east",
+	"inactive_south": "ic2c_extras:block/thermal_centrifuge/inactive_south",
+	"inactive_up": "ic2:block/machine/hv/colossal_macerator/inactive_up",
+	"inactive_west": "ic2:block/electric/energy_storage/mfe/east"
+}

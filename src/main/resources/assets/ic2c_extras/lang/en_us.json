@@ -146,14 +146,14 @@
 
   "itemGroup.ic2c_extras": "Ic2 Classic Extras",
 
-  "tileInfo.heatAmount": "Heat: %1$s / %2$s",
+  "gui.ic2c_extras.heat": "Heat: %s / %s",
   "tileInfo.reactorHeatAmount": "Core Temperature: %1$s",
   "tileInfo.reactorEUPerTick": "Output: %1$s EU/t",
   "tileInfo.reactorSteamPerTick": "Output: %1$s Steam/t",
   "tileInfo.reactorNeedThermometer": "Thermometer needed in hotbar or helmet to see heat percentage.",
   "tileInfo.thermoElectricGenerator": "Only accepts plutonium rtgs.",
   "tileInfo.thermoElectricGeneratorMkII": "Being removed next version, craft into the regular.",
-  "jeiInfo.heat": "%s Heat",
+  "jei_info.ic2c_extras.heat": "%s Heat",
   "itemInfo.reactorPlated": "Has Reactor Plating",
 
   "ic2.crop.Plumbilia": "Plumbilia"
