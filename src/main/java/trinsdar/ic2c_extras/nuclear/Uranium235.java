@@ -50,7 +50,7 @@ public class Uranium235 extends UraniumBaseType {
 
     @Override
     public boolean isEnrichedUranium() {
-        return false;
+        return true;
     }
 
     @Override

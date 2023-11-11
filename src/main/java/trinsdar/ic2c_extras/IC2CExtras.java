@@ -1,18 +1,23 @@
 package trinsdar.ic2c_extras;
 
+import ic2.core.platform.recipes.misc.AdvRecipeRegistry;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import trinsdar.ic2c_extras.datagen.Ic2cExtrasBlockTagProvider;
 import trinsdar.ic2c_extras.datagen.Ic2cExtrasItemTagProvider;
 import trinsdar.ic2c_extras.event.PlayerEvents;
+import trinsdar.ic2c_extras.init.ModBlocks;
 import trinsdar.ic2c_extras.init.ModItems;
+import trinsdar.ic2c_extras.recipes.CraftingRecipes;
 
 @Mod(IC2CExtras.MODID)
 public class IC2CExtras {
@@ -26,10 +31,19 @@ public class IC2CExtras {
         MinecraftForge.EVENT_BUS.register(new PlayerEvents());
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::registerEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::gatherDataEvent);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
+        Ic2cExtrasConfig.createConfig();
     }
 
     private void registerEvent(RegisterEvent event){
-        ModItems.init();
+        if (event.getRegistryKey() == ForgeRegistries.Keys.BLOCKS) {
+            ModBlocks.init();
+            ModItems.init();
+        }
+    }
+
+    private void commonSetup(FMLCommonSetupEvent event){
+        AdvRecipeRegistry.INSTANCE.registerListener(CraftingRecipes::loadRecipes);
     }
 
 

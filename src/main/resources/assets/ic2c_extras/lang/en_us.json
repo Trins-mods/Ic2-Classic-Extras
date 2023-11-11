@@ -15,6 +15,9 @@
   "block.ic2c_extras.electric_heat_generator": "Electric Heat Generator",
   "block.ic2c_extras.fermenter": "Fermenter",
   "block.ic2c_extras.lead_block": "Lead Block",
+  "block.ic2c_extras.raw_lead_block": "Raw Lead Block",
+  "block.ic2c_extras.lead_ore": "Lead Ore",
+  "block.ic2c_extras.deepslate_lead_ore": "Deepslate Lead Ore",
   "block.ic2c_extras.stone_dust_block": "Stone Dust Block",
 
   "item.ic2c_extras.crushed_iron_ore": "Crushed Iron Ore",
@@ -78,6 +81,7 @@
   "item.ic2c_extras.thorium_rtg": "Thorium RTG",
   "item.ic2c_extras.containment_box": "Containment Box",
   "item.ic2c_extras.biochaff": "Biochaff",
+  "item.ic2c_extras.raw_lead": "Raw Lead",
   "item.ic2c_extras.universal_fluid_cell": "Universal Fluid Cell",
 
   "item.ic2c_extras.uox_rod": "UOX Rod",

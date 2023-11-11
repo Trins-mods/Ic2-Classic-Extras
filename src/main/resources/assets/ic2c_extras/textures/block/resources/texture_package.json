@@ -1,0 +1,6 @@
+{
+  "lead_ore" : "ic2c_extras:block/resources/lead_ore",
+  "deepslate_lead_ore" : "ic2c_extras:block/resources/deepslate_lead_ore",
+  "lead_block" : "ic2c_extras:block/resources/lead_block",
+  "raw_lead_block" : "ic2c_extras:block/resources/raw_lead_block"
+}

@@ -10,5 +10,6 @@
   "mox_fuel" : "ic2c_extras:item/misc/mox_fuel",
   "plutonium_rtg" : "ic2c_extras:item/misc/plutonium_rtg",
   "thorium_rtg" : "ic2c_extras:item/misc/thorium_rtg",
-  "raw_lead" : "ic2c_extras:item/misc/raw_lead"
+  "raw_lead" : "ic2c_extras:item/misc/raw_lead",
+  "enriched_uranium_fuel": "ic2c_extras:enriched_uranium_fuel"
 }
