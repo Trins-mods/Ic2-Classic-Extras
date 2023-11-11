@@ -18,6 +18,7 @@ import trinsdar.ic2c_extras.event.PlayerEvents;
 import trinsdar.ic2c_extras.init.ModBlocks;
 import trinsdar.ic2c_extras.init.ModItems;
 import trinsdar.ic2c_extras.recipes.CraftingRecipes;
+import trinsdar.ic2c_extras.recipes.MachineRecipes;
 
 @Mod(IC2CExtras.MODID)
 public class IC2CExtras {
@@ -44,6 +45,7 @@ public class IC2CExtras {
 
     private void commonSetup(FMLCommonSetupEvent event){
         AdvRecipeRegistry.INSTANCE.registerListener(CraftingRecipes::loadRecipes);
+        MachineRecipes.init();
     }
 
 

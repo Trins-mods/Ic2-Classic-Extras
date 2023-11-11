@@ -17,6 +17,11 @@ public class Ic2cExtrasItemTagProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags() {
+        this.copy(Ic2cExtrasTags.getForgeBlockTag("ores"), Ic2cExtrasTags.getForgeItemTag("ores"));
+        this.copy(Ic2cExtrasTags.getForgeBlockTag("storage_blocks"), Ic2cExtrasTags.getForgeItemTag("storage_blocks"));
+        this.copy(Ic2cExtrasTags.getForgeBlockTag("ores/lead"), Ic2cExtrasTags.getForgeItemTag("ores/lead"));
+        this.copy(Ic2cExtrasTags.getForgeBlockTag("storage_blocks/lead"), Ic2cExtrasTags.getForgeItemTag("storage_blocks/lead"));
+        this.copy(Ic2cExtrasTags.getForgeBlockTag("storage_blocks/raw_lead"), Ic2cExtrasTags.getForgeItemTag("storage_blocks/raw_lead"));
         this.tag(Ic2cExtrasTags.getForgeItemTag("ingots")).add(ModItems.LEAD_INGOT, ModItems.PLUTONIUM_INGOT, ModItems.THORIUM_INGOT, ModItems.URANIUM_233_INGOT, ModItems.URANIUM_235_INGOT, ModItems.URANIUM_238_INGOT);
         this.tag(Ic2cExtrasTags.getForgeItemTag("dusts")).add(ModItems.STONE_DUST, ModItems.LEAD_DUST, ModItems.PLUTONIUM_DUST, ModItems.THORIUM_DUST, ModItems.URANIUM_DUST, ModItems.URANIUM_233_DUST, ModItems.URANIUM_235_DUST, ModItems.URANIUM_238_DUST);
         this.tag(Ic2cExtrasTags.getForgeItemTag("ingots/lead")).add(ModItems.LEAD_INGOT);
@@ -72,6 +77,7 @@ public class Ic2cExtrasItemTagProvider extends ItemTagsProvider {
         this.tag(Ic2cExtrasTags.getForgeItemTag("purified_ores/uranium")).add(ModItems.PURIFIED_URANIUM_ORE);
         this.tag(Ic2cExtrasTags.getForgeItemTag("refined_ores")).add(ModItems.REFINED_URANIUM_ORE);
         this.tag(Ic2cExtrasTags.getForgeItemTag("refined_ores/uranium")).add(ModItems.REFINED_URANIUM_ORE);
+        this.tag(Ic2cExtrasTags.RAW_LEAD).add(ModItems.RAW_LEAD);
         this.tag(Ic2cExtrasTags.RADIOACTIVE)
                 .addTag(Ic2cExtrasTags.getForgeItemTag("ingots/uranium235"))
                 .addTag(Ic2cExtrasTags.getForgeItemTag("ingots/uranium233"))

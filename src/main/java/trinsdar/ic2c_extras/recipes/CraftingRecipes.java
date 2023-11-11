@@ -58,6 +58,8 @@ public class CraftingRecipes {
             registry.addShapedIC2Recipe("uranium_charcoal_near_depleted", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED_CHARCOAL, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', IC2Items.INGOT_URANIUM_ENRICHED_CHARCOAL);
         }
         if (Ic2cExtrasConfig.EXTRA_NUCLEAR.get()){
+            registry.addShapedRecipe(id("mox_fuel"), new ItemStack(ModItems.MOX_FUEL, 3), "UUU", "PPP", "UUU", 'U', Ic2cExtrasTags.getForgeItemTag("dusts/uranium"), 'P', Ic2cExtrasTags.getForgeItemTag("tiny_dusts/plutonium"));
+            registry.addShapedRecipe(id("enriched_uranium_fuel"), new ItemStack(ModItems.ENRICHED_URANIUM_FUEL, 3), "UUU", "PPP", "UUU", 'U', Ic2cExtrasTags.getForgeItemTag("dusts/uranium"), 'P', Ic2cExtrasTags.getForgeItemTag("tiny_dusts/uranium235"));
             addRodRecipes(registry, MOX.INSTANCE);
             addRodRecipes(registry, Plutonium.INSTANCE);
             addRodRecipes(registry, Thorium232.INSTANCE);
@@ -65,7 +67,24 @@ public class CraftingRecipes {
             addRodRecipes(registry, Uranium235.INSTANCE);
             addRodRecipes(registry, Uranium238.INSTANCE);
         }
+        loadSmeltingRecipe(registry);
     }
+
+    private static void loadSmeltingRecipe(IAdvancedCraftingManager registry){
+        addCrushedSmeltingRecipe(registry, "iron", Items.IRON_INGOT, 0.35f);
+        addCrushedSmeltingRecipe(registry, "gold", Items.GOLD_INGOT, 0.5f);
+        addCrushedSmeltingRecipe(registry, "copper", Items.COPPER_INGOT, 0.15f);
+        addCrushedSmeltingRecipe(registry, "tin", IC2Items.INGOT_TIN, 0.2f);
+        addCrushedSmeltingRecipe(registry, "silver", IC2Items.INGOT_SILVER, 0.4f);
+        addCrushedSmeltingRecipe(registry, "lead", ModItems.LEAD_INGOT, 0.4f);
+        registry.addSmeltingRecipe(id("lead_dust"), new ItemStack(ModItems.LEAD_INGOT), Ic2cExtrasTags.getForgeItemTag("dusts/lead"), 0.4f, IAdvancedCraftingManager.SmeltingType.BLASTFURNACE, IAdvancedCraftingManager.SmeltingType.FURNACE);
+    }
+
+    private static void addCrushedSmeltingRecipe(IAdvancedCraftingManager registry, String dust, Item output, float xp){
+        registry.addSmeltingRecipe(id("crushed_" + dust + "_to_ingot"), new ItemStack(output), Ic2cExtrasTags.getForgeItemTag("crushed_ores/" + dust), xp, IAdvancedCraftingManager.SmeltingType.BLASTFURNACE, IAdvancedCraftingManager.SmeltingType.FURNACE);
+        registry.addSmeltingRecipe(id("purified_" + dust + "_to_ingot"), new ItemStack(output), Ic2cExtrasTags.getForgeItemTag("purified_ores/" + dust), xp, IAdvancedCraftingManager.SmeltingType.BLASTFURNACE, IAdvancedCraftingManager.SmeltingType.FURNACE);
+    }
+
 
     public static Item getUraniumRodIngredientItem(){
         return Ic2cExtrasConfig.EXTRA_NUCLEAR.get() ? ModItems.ENRICHED_URANIUM_FUEL : IC2Items.INGOT_URANIUM;
