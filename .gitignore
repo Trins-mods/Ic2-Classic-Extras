@@ -26,3 +26,4 @@ fields.csv
 methods.csv
 params.csv
 backup
+src/generated/resources/.cache

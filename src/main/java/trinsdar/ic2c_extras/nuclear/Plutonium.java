@@ -56,7 +56,7 @@ public class Plutonium extends UraniumBaseType {
 
     @Override
     public int getFusionHeat() {
-        return 0;
+        return 25;
     }
 
     @Override
@@ -65,13 +65,13 @@ public class Plutonium extends UraniumBaseType {
     }
 
     @Override
-    public ItemStack createNearDepletedRod(int i) {
-        return null;
+    public ItemStack createNearDepletedRod(int count) {
+        return new ItemStack(ModItems.NEAR_DEPLETED_PLUTONIUM_ROD, count);
     }
 
     @Override
     public ItemStack createReEnrichedRod() {
-        return null;
+        return new ItemStack(ModItems.RE_ENRICHED_PLUTONIUM_ROD);
     }
 
     @Override
@@ -83,16 +83,16 @@ public class Plutonium extends UraniumBaseType {
 
     @Override
     public ItemStack createSingleRod() {
-        return null;
+        return new ItemStack(ModItems.PLUTONIUM_ROD);
     }
 
     @Override
     public ItemStack createDualRod() {
-        return null;
+        return new ItemStack(ModItems.DUAL_PLUTONIUM_ROD);
     }
 
     @Override
     public ItemStack createQuadRod() {
-        return null;
+        return new ItemStack(ModItems.QUAD_PLUTONIUM_ROD);
     }
 }

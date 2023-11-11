@@ -11,6 +11,19 @@ version = "${mod_version}"
 group = "trinsdar.ic2c_extras" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "IC2CExtras"
 
+loom {
+    runs {
+        data {
+            data()
+        }
+    }
+    forge {
+        dataGen {
+            mod("ic2c_extras")
+        }
+    }
+}
+
 repositories{
     maven { url "https://repo.spongepowered.org/repository/maven-public" }
     maven {

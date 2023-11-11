@@ -55,7 +55,7 @@ public class Uranium235 extends UraniumBaseType {
 
     @Override
     public int getFusionHeat() {
-        return 0;
+        return 15;
     }
 
     @Override
@@ -64,13 +64,13 @@ public class Uranium235 extends UraniumBaseType {
     }
 
     @Override
-    public ItemStack createNearDepletedRod(int i) {
-        return null;
+    public ItemStack createNearDepletedRod(int count) {
+        return new ItemStack(ModItems.NEAR_DEPLETED_URANIUM_235_ROD, count);
     }
 
     @Override
     public ItemStack createReEnrichedRod() {
-        return null;
+        return new ItemStack(ModItems.RE_ENRICHED_URANIUM_235_ROD);
     }
 
     @Override
@@ -82,16 +82,16 @@ public class Uranium235 extends UraniumBaseType {
 
     @Override
     public ItemStack createSingleRod() {
-        return null;
+        return new ItemStack(ModItems.URANIUM_235_ROD);
     }
 
     @Override
     public ItemStack createDualRod() {
-        return null;
+        return new ItemStack(ModItems.DUAL_URANIUM_235_ROD);
     }
 
     @Override
     public ItemStack createQuadRod() {
-        return null;
+        return new ItemStack(ModItems.QUAD_URANIUM_235_ROD);
     }
 }

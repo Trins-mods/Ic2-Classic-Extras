@@ -24,6 +24,7 @@ public class ModItems {
     public static final Item IRIDIUM_SHARD = new ItemBasic("iridium_shard", "misc");
     public static final Item RAW_LEAD = new ItemBasic("raw_lead", "misc");
     public static final Item MOX_FUEL = new ItemBasic("mox_fuel", "misc");
+    public static final Item ENRICHED_URANIUM_FUEL = new ItemBasic("enriched_uranium_fuel", "misc");
     public static final Item THORIUM_RTG = new ItemBasic("thorium_rtg", "misc", new Item.Properties().defaultDurability(50000));
     public static final Item PLUTONIUM_RTG = new ItemBasic("plutonium_rtg", "misc", new Item.Properties().defaultDurability(10000));
 
@@ -60,6 +61,7 @@ public class ModItems {
     public static final Item TINY_URANIUM_238_DUST = new ItemBasic("tiny_uranium_238_dust", "dusts");
     public static final Item TINY_PLUTONIUM_DUST = new ItemBasic("tiny_plutonium_dust", "dusts");
     public static final Item TINY_THORIUM_DUST = new ItemBasic("tiny_thorium_232_dust", "dusts");
+    public static final Item STONE_DUST = new ItemBasic("stone_dust", "dusts");
     public static final Item LEAD_DUST = new ItemBasic("lead_dust", "dusts");
     public static final Item URANIUM_DUST = new ItemBasic("uranium_dust", "dusts");
     public static final Item URANIUM_233_DUST = new ItemBasic("uranium_233_dust", "dusts");
@@ -91,30 +93,31 @@ public class ModItems {
     public static final Item RE_ENRICHED_URANIUM_235_ROD = new ItemBasic("re_enriched_uranium_235_rod", "nuclear_rods");
     public static final Item RE_ENRICHED_URANIUM_238_ROD = new ItemBasic("re_enriched_uranium_238_rod", "nuclear_rods");
 
-    public static final Item MOX_ROD = new ItemReactorRod("mox_rod", MOX.INSTANCE, 1, 129);
-    public static final Item PLUTONIUM_ROD = new ItemReactorRod("plutonium_rod", Plutonium.INSTANCE, 1, 130);
-    public static final Item THORIUM_ROD = new ItemReactorRod("thorium_232_rod", Thorium232.INSTANCE, 1, 131);
-    public static final Item URANIUM_233_ROD = new ItemReactorRod("uranium_233_rod", Uranium233.INSTANCE, 1, 132);
-    public static final Item URANIUM_235_ROD = new ItemReactorRod("uranium_235_rod", Uranium235.INSTANCE, 1, 133);
-    public static final Item URANIUM_238_ROD = new ItemReactorRod("uranium_238_rod", Uranium238.INSTANCE, 1, 134);
-    public static final Item DUAL_MOX_ROD = new ItemReactorRod("dual_mox_rod", MOX.INSTANCE, 2, 129);
-    public static final Item DUAL_PLUTONIUM_ROD = new ItemReactorRod("dual_plutonium_rod", Plutonium.INSTANCE, 2, 130);
-    public static final Item DUAL_THORIUM_ROD = new ItemReactorRod("dual_thorium_232_rod", Thorium232.INSTANCE, 2, 131);
-    public static final Item DUAL_URANIUM_233_ROD = new ItemReactorRod("dual_uranium_233_rod", Uranium233.INSTANCE, 2, 132);
-    public static final Item DUAL_URANIUM_235_ROD = new ItemReactorRod("dual_uranium_235_rod", Uranium235.INSTANCE, 2, 133);
-    public static final Item DUAL_URANIUM_238_ROD = new ItemReactorRod("dual_uranium_238_rod", Uranium238.INSTANCE, 2, 134);
-    public static final Item QUAD_MOX_ROD = new ItemReactorRod("quad_mox_rod", MOX.INSTANCE, 4, 129);
-    public static final Item QUAD_PLUTONIUM_ROD = new ItemReactorRod("quad_plutonium_rod", Plutonium.INSTANCE, 4, 130);
-    public static final Item QUAD_THORIUM_ROD = new ItemReactorRod("quad_thorium_232_rod", Thorium232.INSTANCE, 4, 131);
-    public static final Item QUAD_URANIUM_233_ROD = new ItemReactorRod("quad_uranium_233_rod", Uranium233.INSTANCE, 4, 132);
-    public static final Item QUAD_URANIUM_235_ROD = new ItemReactorRod("quad_uranium_235_rod", Uranium235.INSTANCE, 4, 133);
-    public static final Item QUAD_URANIUM_238_ROD = new ItemReactorRod("quad_uranium_238_rod", Uranium238.INSTANCE, 4, 134);
-    public static final Item ISOTOPIC_MOX_ROD = new ItemIsotopicRod("isotopic_mox_rod", MOX.INSTANCE, 129);
-    public static final Item ISOTOPIC_PLUTONIUM_ROD = new ItemIsotopicRod("isotopic_plutonium_rod", Plutonium.INSTANCE, 130);
-    public static final Item ISOTOPIC_THORIUM_ROD = new ItemIsotopicRod("isotopic_thorium_232_rod", Thorium232.INSTANCE, 131);
-    public static final Item ISOTOPIC_URANIUM_233_ROD = new ItemIsotopicRod("isotopic_uranium_233_rod", Uranium233.INSTANCE, 132);
-    public static final Item ISOTOPIC_URANIUM_235_ROD = new ItemIsotopicRod("isotopic_uranium_235_rod", Uranium235.INSTANCE, 133);
-    public static final Item ISOTOPIC_URANIUM_238_ROD = new ItemIsotopicRod("isotopic_uranium_238_rod", Uranium238.INSTANCE, 134);
+    public static final Item URANIUM_238_ROD = new ItemReactorRod("uranium_238_rod", Uranium238.INSTANCE, 1, 1100);
+    public static final Item PLUTONIUM_ROD = new ItemReactorRod("plutonium_rod", Plutonium.INSTANCE, 1, 1106);
+    public static final Item MOX_ROD = new ItemReactorRod("mox_rod", MOX.INSTANCE, 1, 1112);
+    public static final Item THORIUM_ROD = new ItemReactorRod("thorium_232_rod", Thorium232.INSTANCE, 1, 1118);
+    public static final Item URANIUM_233_ROD = new ItemReactorRod("uranium_233_rod", Uranium233.INSTANCE, 1, 1124);
+    public static final Item URANIUM_235_ROD = new ItemReactorRod("uranium_235_rod", Uranium235.INSTANCE, 1, 1130);
+    public static final Item DUAL_URANIUM_238_ROD = new ItemReactorRod("dual_uranium_238_rod", Uranium238.INSTANCE, 2, 1101);
+    public static final Item DUAL_PLUTONIUM_ROD = new ItemReactorRod("dual_plutonium_rod", Plutonium.INSTANCE, 2, 1107);
+    public static final Item DUAL_MOX_ROD = new ItemReactorRod("dual_mox_rod", MOX.INSTANCE, 2, 1113);
+    public static final Item DUAL_THORIUM_ROD = new ItemReactorRod("dual_thorium_232_rod", Thorium232.INSTANCE, 2, 1119);
+    public static final Item DUAL_URANIUM_233_ROD = new ItemReactorRod("dual_uranium_233_rod", Uranium233.INSTANCE, 2, 1125);
+    public static final Item DUAL_URANIUM_235_ROD = new ItemReactorRod("dual_uranium_235_rod", Uranium235.INSTANCE, 2, 1131);
+    public static final Item QUAD_URANIUM_238_ROD = new ItemReactorRod("quad_uranium_238_rod", Uranium238.INSTANCE, 4, 1102);
+    public static final Item QUAD_PLUTONIUM_ROD = new ItemReactorRod("quad_plutonium_rod", Plutonium.INSTANCE, 4, 1108);
+    public static final Item QUAD_MOX_ROD = new ItemReactorRod("quad_mox_rod", MOX.INSTANCE, 4, 1114);
+    public static final Item QUAD_THORIUM_ROD = new ItemReactorRod("quad_thorium_232_rod", Thorium232.INSTANCE, 4, 1120);
+    public static final Item QUAD_URANIUM_233_ROD = new ItemReactorRod("quad_uranium_233_rod", Uranium233.INSTANCE, 4, 1126);
+    public static final Item QUAD_URANIUM_235_ROD = new ItemReactorRod("quad_uranium_235_rod", Uranium235.INSTANCE, 4, 1132);
+    public static final Item ISOTOPIC_URANIUM_238_ROD = new ItemIsotopicRod("isotopic_uranium_238_rod", Uranium238.INSTANCE, 1105);
+    public static final Item ISOTOPIC_PLUTONIUM_ROD = new ItemIsotopicRod("isotopic_plutonium_rod", Plutonium.INSTANCE, 1111);
+    public static final Item ISOTOPIC_MOX_ROD = new ItemIsotopicRod("isotopic_mox_rod", MOX.INSTANCE, 1117);
+    public static final Item ISOTOPIC_THORIUM_ROD = new ItemIsotopicRod("isotopic_thorium_232_rod", Thorium232.INSTANCE, 1123);
+    public static final Item ISOTOPIC_URANIUM_233_ROD = new ItemIsotopicRod("isotopic_uranium_233_rod", Uranium233.INSTANCE, 1129);
+    public static final Item ISOTOPIC_URANIUM_235_ROD = new ItemIsotopicRod("isotopic_uranium_235_rod", Uranium235.INSTANCE, 1135);
+
 
     public static void init(){
     }

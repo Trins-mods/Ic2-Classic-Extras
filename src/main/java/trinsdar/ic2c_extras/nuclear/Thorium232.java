@@ -46,7 +46,7 @@ public class Thorium232 extends UraniumBaseType {
 
     @Override
     public int getFusionHeat() {
-        return 0;
+        return 1;
     }
 
     @Override
@@ -65,18 +65,13 @@ public class Thorium232 extends UraniumBaseType {
     }
 
     @Override
-    public ItemStack createNearDepletedRod(int i) {
-        return null;
-    }
-
-    @Override
-    public ItemStack createNearDepletedRod() {
-        return null;
+    public ItemStack createNearDepletedRod(int count) {
+        return new ItemStack(ModItems.NEAR_DEPLETED_THORIUM_ROD, count);
     }
 
     @Override
     public ItemStack createReEnrichedRod() {
-        return null;
+        return new ItemStack(ModItems.RE_ENRICHED_THORIUM_ROD);
     }
 
     @Override
@@ -88,16 +83,16 @@ public class Thorium232 extends UraniumBaseType {
 
     @Override
     public ItemStack createSingleRod() {
-        return null;
+        return new ItemStack(ModItems.THORIUM_ROD);
     }
 
     @Override
     public ItemStack createDualRod() {
-        return null;
+        return new ItemStack(ModItems.DUAL_THORIUM_ROD);
     }
 
     @Override
     public ItemStack createQuadRod() {
-        return null;
+        return new ItemStack(ModItems.QUAD_THORIUM_ROD);
     }
 }
