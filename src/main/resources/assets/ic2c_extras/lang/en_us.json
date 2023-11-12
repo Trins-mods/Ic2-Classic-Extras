@@ -154,6 +154,7 @@
   "tileInfo.thermoElectricGenerator": "Only accepts plutonium rtgs.",
   "tileInfo.thermoElectricGeneratorMkII": "Being removed next version, craft into the regular.",
   "jei_info.ic2c_extras.heat": "%s Heat",
+  "jei_info.ic2c_extras.ticks": "Ticks: %s",
   "itemInfo.reactorPlated": "Has Reactor Plating",
 
   "ic2.crop.Plumbilia": "Plumbilia"
