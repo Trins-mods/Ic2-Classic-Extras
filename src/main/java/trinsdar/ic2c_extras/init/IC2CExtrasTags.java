@@ -9,6 +9,7 @@ import trinsdar.ic2c_extras.IC2CExtras;
 
 public class IC2CExtrasTags {
     public static final TagKey<Item> RADIOACTIVE = getItemTag(new ResourceLocation(IC2CExtras.MODID, "radioactive"));
+    public static final TagKey<Item> CONTAINMENT_BOX = getItemTag(new ResourceLocation(IC2CExtras.MODID, "containment_box"));
     public static final TagKey<Item> LEAD_ORE = getForgeItemTag("ores/lead");
     public static final TagKey<Item> RAW_LEAD = getForgeItemTag("raw_materials/lead");
     public static final TagKey<Item> RAW_LEAD_BLOCK = getForgeItemTag("storage_blocks/raw_lead");

@@ -4,6 +4,7 @@ import ic2.core.platform.registries.IC2Items;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.Item;
 import trinsdar.ic2c_extras.item.ItemBasic;
+import trinsdar.ic2c_extras.item.ItemContainmentBox;
 import trinsdar.ic2c_extras.item.ItemIsotopicRod;
 import trinsdar.ic2c_extras.item.ItemReactorRod;
 import trinsdar.ic2c_extras.nuclear.MOX;
@@ -16,7 +17,7 @@ import trinsdar.ic2c_extras.nuclear.Uranium238;
 public class ModItems {
     public static final Item BIOCHAFF = new ItemBasic("biochaff", "misc");
     public static final Item COIL = new ItemBasic("coil", "misc");
-    //public static final Item CONTAINMENT_BOX = new ItemBasic("containment_box", "misc");
+    public static final Item CONTAINMENT_BOX = new ItemContainmentBox();
     public static final Item DENSE_LEAD_PLATE = new ItemBasic("dense_lead_plate", "misc");
     public static final Item DENSE_IRON_PLATE = new ItemBasic("dense_iron_plate", "misc");
     public static final Item EMPTY_NUCLEAR_ROD = new ItemBasic("empty_nuclear_rod", "misc");

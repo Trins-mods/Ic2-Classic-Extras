@@ -151,7 +151,7 @@
   "tileInfo.reactorEUPerTick": "Output: %1$s EU/t",
   "tileInfo.reactorSteamPerTick": "Output: %1$s Steam/t",
   "tileInfo.reactorNeedThermometer": "Thermometer needed in hotbar or helmet to see heat percentage.",
-  "tileInfo.thermoElectricGenerator": "Only accepts plutonium rtgs.",
+  "block_info.ic2c_extras.thermo_electric_generator": "Only accepts plutonium rtgs.",
   "tileInfo.thermoElectricGeneratorMkII": "Being removed next version, craft into the regular.",
   "jei_info.ic2c_extras.heat": "%s Heat",
   "jei_info.ic2c_extras.ticks": "Ticks: %s",

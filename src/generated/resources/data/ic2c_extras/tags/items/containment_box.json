@@ -1,0 +1,26 @@
+{
+  "values": [
+    "#ic2c_extras:radioactive",
+    "ic2c_extras:thorium_232_rod",
+    "ic2c_extras:dual_thorium_232_rod",
+    "ic2c_extras:quad_thorium_232_rod",
+    "ic2c_extras:isotopic_thorium_232_rod",
+    "ic2c_extras:re_enriched_thorium_232_rod",
+    "ic2c_extras:near_depleted_thorium_232_rod",
+    "ic2c_extras:uranium_238_rod",
+    "ic2c_extras:dual_uranium_238_rod",
+    "ic2c_extras:quad_uranium_238_rod",
+    "ic2c_extras:isotopic_uranium_238_rod",
+    "ic2c_extras:re_enriched_uranium_238_rod",
+    "ic2c_extras:near_depleted_uranium_238_rod",
+    {
+      "id": "#forge:ingots/uranium",
+      "required": false
+    },
+    "#forge:dusts/uranium",
+    "#forge:tiny_dusts/uranium",
+    "#forge:ingots/thorium",
+    "#forge:dusts/thorium",
+    "#forge:tiny_dusts/thorium"
+  ]
+}

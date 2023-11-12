@@ -11,18 +11,16 @@ import net.minecraft.world.item.Item;
 import org.jetbrains.annotations.Nullable;
 import trinsdar.ic2c_extras.IC2CExtras;
 
-public class ItemBasic extends Item implements ISimpleItemModel {
-    ResourceLocation id;
+public class ItemBasic extends IC2Item implements ISimpleItemModel {
     String subfolder;
     public ItemBasic(String id, String subfolder) {
-        this(id, subfolder, new Properties());
+        this(id, subfolder, new PropertiesBuilder());
     }
 
-    public ItemBasic(String id, String subfolder, Properties properties) {
-        super(properties.tab(IC2CExtras.CREATIVE_TAB));
-        this.id = new ResourceLocation(IC2CExtras.MODID, id);
+    public ItemBasic(String id, String subfolder, PropertiesBuilder properties) {
+        super(id, properties.group(IC2CExtras.CREATIVE_TAB));
         this.subfolder = subfolder;
-        IC2Items.registerItem(this, this.id);
+        IC2Items.registerItem(this);
     }
 
     @Override

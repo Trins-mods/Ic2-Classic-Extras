@@ -103,7 +103,7 @@
   "itemGroup.ic2c_extras": "工业2经典版拓展",
 
   "gui.ic2c_extras.heat": "热量: %s / %s",
-  "tileInfo.thermoElectricGenerator": "仅支持钚RTG.",
+  "block_info.ic2c_extras.thermo_electric_generator": "仅支持钚RTG.",
   "jei_info.ic2c_extras.heat": "%s 热量",
 
   "crop.ic2.plumbilia": "铅种子"

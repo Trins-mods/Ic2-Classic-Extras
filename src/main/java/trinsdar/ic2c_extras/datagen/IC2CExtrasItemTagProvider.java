@@ -1,6 +1,7 @@
 package trinsdar.ic2c_extras.datagen;
 
 import ic2.core.platform.registries.IC2Items;
+import ic2.core.platform.registries.IC2Tags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -88,7 +89,8 @@ public class IC2CExtrasItemTagProvider extends ItemTagsProvider {
                 .addTag(IC2CExtrasTags.getForgeItemTag("tiny_dusts/uranium235"))
                 .addTag(IC2CExtrasTags.getForgeItemTag("tiny_dusts/uranium233"))
                 .addTag(IC2CExtrasTags.getForgeItemTag("tiny_dusts/plutonium"))
-                .add(ModItems.MOX_FUEL, ModItems.ENRICHED_URANIUM_FUEL, ModItems.PLUTONIUM_RTG)
+                .add(ModItems.MOX_FUEL, ModItems.ENRICHED_URANIUM_FUEL, ModItems.PLUTONIUM_RTG, IC2Items.INGOT_URANIUM_ENRICHED_ENDERPEARL,
+                        IC2Items.INGOT_URANIUM_ENRICHED_NETHERSTAR, IC2Items.INGOT_URANIUM_ENRICHED_BLAZE, IC2Items.INGOT_URANIUM_ENRICHED_CHARCOAL, IC2Items.INGOT_URANIUM_ENRICHED_REDSTONE)
                 .add(IC2Items.URANIUM_ROD_SINGLE, IC2Items.URANIUM_ROD_DUAL, IC2Items.URANIUM_ROD_QUAD,
                         IC2Items.URANIUM_ROD_ISOTOPIC, IC2Items.URANIUM_ROD_NEAR_DEPLETED, IC2Items.URANIUM_ROD_RE_ENRICHED)
                 .add(IC2Items.URANIUM_ROD_BLAZE_SINGLE, IC2Items.URANIUM_ROD_BLAZE_DUAL, IC2Items.URANIUM_ROD_BLAZE_QUAD,
@@ -105,5 +107,10 @@ public class IC2CExtrasItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.PLUTONIUM_ROD, ModItems.DUAL_PLUTONIUM_ROD, ModItems.QUAD_PLUTONIUM_ROD, ModItems.ISOTOPIC_PLUTONIUM_ROD, ModItems.RE_ENRICHED_PLUTONIUM_ROD, ModItems.NEAR_DEPLETED_PLUTONIUM_ROD)
                 .add(ModItems.URANIUM_233_ROD, ModItems.DUAL_URANIUM_233_ROD, ModItems.QUAD_URANIUM_233_ROD, ModItems.ISOTOPIC_URANIUM_233_ROD, ModItems.RE_ENRICHED_URANIUM_233_ROD, ModItems.NEAR_DEPLETED_URANIUM_233_ROD)
                 .add(ModItems.URANIUM_235_ROD, ModItems.DUAL_URANIUM_235_ROD, ModItems.QUAD_URANIUM_235_ROD, ModItems.ISOTOPIC_URANIUM_235_ROD, ModItems.RE_ENRICHED_URANIUM_235_ROD, ModItems.NEAR_DEPLETED_URANIUM_235_ROD);
+        this.tag(IC2CExtrasTags.CONTAINMENT_BOX).addTag(IC2CExtrasTags.RADIOACTIVE)
+                .add(ModItems.THORIUM_ROD, ModItems.DUAL_THORIUM_ROD, ModItems.QUAD_THORIUM_ROD, ModItems.ISOTOPIC_THORIUM_ROD, ModItems.RE_ENRICHED_THORIUM_ROD, ModItems.NEAR_DEPLETED_THORIUM_ROD)
+                .add(ModItems.URANIUM_238_ROD, ModItems.DUAL_URANIUM_238_ROD, ModItems.QUAD_URANIUM_238_ROD, ModItems.ISOTOPIC_URANIUM_238_ROD, ModItems.RE_ENRICHED_URANIUM_238_ROD, ModItems.NEAR_DEPLETED_URANIUM_238_ROD)
+                .addOptionalTag(IC2Tags.INGOT_URANIUM.location()).addTag(IC2CExtrasTags.getForgeItemTag("dusts/uranium")).addTag(IC2CExtrasTags.getForgeItemTag("tiny_dusts/uranium"))
+                .addTag(IC2CExtrasTags.getForgeItemTag("ingots/thorium")).addTag(IC2CExtrasTags.getForgeItemTag("dusts/thorium")).addTag(IC2CExtrasTags.getForgeItemTag("tiny_dusts/thorium"));
     }
 }
