@@ -110,7 +110,7 @@ public class CraftingRecipes {
     }
 
     private static void addRodRecipes(IAdvancedCraftingManager recipes, IUraniumRod rod){
-        recipes.addShapedIC2Recipe("near_depleted_" + rod.getName(), rod.createNearDepletedRod(8), "XXX", "XYX", "XXX", 'Y', rod.getBaseIngot(), 'X', getEmptyNuclearCell());
+        recipes.addShapedRecipe(id("near_depleted_" + rod.getName()), rod.createNearDepletedRod(8), "XXX", "XYX", "XXX", 'Y', rod.getBaseIngot(), 'X', getEmptyNuclearCell());
         recipes.addShapelessRecipe(id("isotopic_" + rod.getName() + "_0"), rod.createIsotopicRod(), rod.createNearDepletedRod(1), IC2Tags.DUST_COAL);
         recipes.addShapelessRecipe(id("isotopic_" + rod.getName() + "_1"), rod.createIsotopicRod(), rod.createNearDepletedRod(), IC2Tags.DUST_CHARCOAL);
         recipes.addShapelessRecipe(id("single_" + rod.getName() + "_0"), rod.createSingleRod(), IC2Tags.DUST_COAL, rod.createReEnrichedRod());
