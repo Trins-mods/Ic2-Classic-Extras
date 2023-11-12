@@ -63,10 +63,10 @@ public class ModItems {
     public static final Item TINY_THORIUM_DUST = new ItemBasic("tiny_thorium_232_dust", "dusts");
     public static final Item STONE_DUST = new ItemBasic("stone_dust", "dusts");
     public static final Item LEAD_DUST = new ItemBasic("lead_dust", "dusts");
-    public static final Item URANIUM_DUST = new ItemBasic("uranium_dust", "dusts");
     public static final Item URANIUM_233_DUST = new ItemBasic("uranium_233_dust", "dusts");
     public static final Item URANIUM_235_DUST = new ItemBasic("uranium_235_dust", "dusts");
-    public static final Item URANIUM_238_DUST = new ItemBasic("uranium_238_dust", "dusts");
+    public static final Item URANIUM_DUST = new ItemBasic("uranium_238_dust", "dusts");
+    //public static final Item URANIUM_238_DUST = new ItemBasic("uranium_238_dust", "dusts");
     public static final Item PLUTONIUM_DUST = new ItemBasic("plutonium_dust", "dusts");
     public static final Item THORIUM_DUST = new ItemBasic("thorium_232_dust", "dusts");
 
