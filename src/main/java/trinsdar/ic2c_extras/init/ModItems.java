@@ -25,8 +25,8 @@ public class ModItems {
     public static final Item RAW_LEAD = new ItemBasic("raw_lead", "misc");
     public static final Item MOX_FUEL = new ItemBasic("mox_fuel", "misc");
     public static final Item ENRICHED_URANIUM_FUEL = new ItemBasic("enriched_uranium_fuel", "misc");
-    public static final Item THORIUM_RTG = new ItemBasic("thorium_rtg", "misc", new Item.Properties().defaultDurability(50000));
-    public static final Item PLUTONIUM_RTG = new ItemBasic("plutonium_rtg", "misc", new Item.Properties().defaultDurability(10000));
+    //public static final Item THORIUM_RTG = new ItemBasic("thorium_rtg", "misc", new Item.Properties().defaultDurability(50000));
+    public static final Item PLUTONIUM_RTG = new ItemBasic("plutonium_rtg", "misc");
 
 
 
@@ -70,13 +70,12 @@ public class ModItems {
     public static final Item PLUTONIUM_DUST = new ItemBasic("plutonium_dust", "dusts");
     public static final Item THORIUM_DUST = new ItemBasic("thorium_232_dust", "dusts");
 
-    public static final Item DOUBLE_ENRICHED_URANIUM = new ItemBasic("double_enriched_uranium_ingot", "ingots");
+    //public static final Item DOUBLE_ENRICHED_URANIUM = new ItemBasic("double_enriched_uranium_ingot", "ingots");
     public static final Item LEAD_INGOT = new ItemBasic("lead_ingot", "ingots");
     public static final Item PLUTONIUM_INGOT = new ItemBasic("plutonium_ingot", "ingots");
     public static final Item THORIUM_INGOT = new ItemBasic("thorium_232_ingot", "ingots");
     public static final Item URANIUM_233_INGOT = new ItemBasic("uranium_233_ingot", "ingots");
     public static final Item URANIUM_235_INGOT = new ItemBasic("uranium_235_ingot", "ingots");
-    public static final Item URANIUM_238_INGOT = new ItemBasic("uranium_238_ingot", "ingots");
 
 
     public static final Item NEAR_DEPLETED_MOX_ROD = new ItemBasic("near_depleted_mox_rod", "nuclear_rods");

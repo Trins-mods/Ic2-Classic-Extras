@@ -18,7 +18,7 @@ import trinsdar.ic2c_extras.container.component.HeatComponent;
 public class ContainerThermalCentrifuge extends ContainerComponent<TileEntityThermalCentrifuge> {
     public static final ResourceLocation GUI_TEXTURE = new ResourceLocation(IC2CExtras.MODID, "textures/gui/thermal_centrifuge.png");
 
-    public static final Box2i MACHINE_CHARGE_BOX = new Box2i(11, 36, 14, 14);
+    public static final Box2i MACHINE_CHARGE_BOX = new Box2i(17, 36, 14, 14);
     public static final Vec2i MACHINE_CHARGE_POS = new Vec2i(176, 0);
     public static final Box2i MACHINE_PROGRESS_BOX = new Box2i(48, 35, 45, 17);
     public static final Vec2i MACHINE_PROGRESS_POS = new Vec2i(176, 14);
@@ -27,8 +27,8 @@ public class ContainerThermalCentrifuge extends ContainerComponent<TileEntityThe
 
     public ContainerThermalCentrifuge(TileEntityThermalCentrifuge tile, Player player, int id) {
         super(tile, player, id);
-        this.addSlot(FilterSlot.createDischargeSlot(tile, tile.tier, 0, 11, 53));
-        this.addSlot(new FilterSlot(tile, 1, 11, 17, (T) -> {
+        this.addSlot(FilterSlot.createDischargeSlot(tile, tile.tier, 0, 17, 53));
+        this.addSlot(new FilterSlot(tile, 1, 17, 17, (T) -> {
             return tile.getRecipeList().getRecipe(T, false) != null;
         }));
         this.addSlot(new XPSlot(tile, 2, 111, 17));

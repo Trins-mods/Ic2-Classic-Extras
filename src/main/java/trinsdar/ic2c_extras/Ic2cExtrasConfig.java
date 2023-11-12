@@ -12,6 +12,7 @@ public class Ic2cExtrasConfig {
     public static ConfigEntry.BoolValue LOOT_ENTRIES;
     public static ConfigEntry.BoolValue EMPTY_NUCLEAR_ROD;
     public static ConfigEntry.BoolValue EXTRA_NUCLEAR;
+    public static ConfigEntry.BoolValue REACTOR_CHAMBER_REQUIRES_LEAD;
     public static ConfigEntry.BoolValue LEAD_ORE_GEN;
     public static ConfigEntry.IntValue BIOMASS_PER_FERTILIZER;
     public static ConfigEntry.IntValue BIOMASS_PROCESSES_PER_FERTILIZER;
@@ -25,6 +26,8 @@ public class Ic2cExtrasConfig {
         EXTRA_NUCLEAR = recipes.addBool("extra_nuclear", true, "Enables all the nuclear rods and the required changes to uranium processing.");
         BIOMASS_PER_FERTILIZER = recipes.addInt("biomass_per_fertilizer", 500, "Amount of total biomass that needs to be consumed to make 1 fertilizer in the fermenter").setMin(1);
         BIOMASS_PROCESSES_PER_FERTILIZER = recipes.addInt("biomass_processes_per_fertilizer", 25, "Factor that biomassPerFertilizer divides by to determine how much it progresses towards the full amount").setMin(1);
+        REACTOR_CHAMBER_REQUIRES_LEAD = recipes.addBool("reactor_chamber_requires_lead", false, "If true the reactor chamber will require dense lead plates in place of dense copper plates.",
+                "If false then dense lead plates are an alternative instead.");
         ConfigSection misc = config.add("misc");
         ITEM_RADIATION = misc.addBool("item_radiation", true, "Enables items with the #ic2c_extras:radioactive tag giving radiation.");
         LOOT_ENTRIES = misc.addBool("loot_entries", true, "Enable tiny plutonium and iridium shards being in various loot tables.");

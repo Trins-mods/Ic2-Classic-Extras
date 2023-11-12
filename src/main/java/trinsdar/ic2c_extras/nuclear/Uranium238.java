@@ -1,6 +1,7 @@
 package trinsdar.ic2c_extras.nuclear;
 
 import ic2.core.item.reactor.urantypes.UraniumBaseType;
+import ic2.core.platform.registries.IC2Items;
 import net.minecraft.world.item.ItemStack;
 import trinsdar.ic2c_extras.init.ModItems;
 
@@ -48,7 +49,7 @@ public class Uranium238 extends UraniumBaseType {
 
     @Override
     public ItemStack getBaseIngot() {
-        return new ItemStack(ModItems.URANIUM_238_INGOT);
+        return new ItemStack(IC2Items.INGOT_URANIUM);
     }
 
     @Override

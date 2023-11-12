@@ -15,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 import trinsdar.ic2c_extras.datagen.Ic2cExtrasBlockTagProvider;
 import trinsdar.ic2c_extras.datagen.Ic2cExtrasItemTagProvider;
 import trinsdar.ic2c_extras.event.PlayerEvents;
+import trinsdar.ic2c_extras.init.IC2CExtrasSounds;
 import trinsdar.ic2c_extras.init.ModBlocks;
 import trinsdar.ic2c_extras.init.ModItems;
 import trinsdar.ic2c_extras.recipes.CraftingRecipes;
@@ -40,6 +41,7 @@ public class IC2CExtras {
         if (event.getRegistryKey() == ForgeRegistries.Keys.BLOCKS) {
             ModBlocks.init();
             ModItems.init();
+            IC2CExtrasSounds.init();
         }
     }
 

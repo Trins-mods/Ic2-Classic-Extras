@@ -1,21 +1,16 @@
 package trinsdar.ic2c_extras.recipes;
 
 
-import com.google.gson.JsonObject;
 import ic2.api.recipes.registries.IAdvancedCraftingManager;
 import ic2.core.IC2;
 import ic2.core.item.reactor.base.IUraniumRod;
-import ic2.core.platform.recipes.mods.IRecipeModifier;
 import ic2.core.platform.registries.IC2Blocks;
 import ic2.core.platform.registries.IC2Items;
 import ic2.core.platform.registries.IC2Tags;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.common.Tags;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.init.Ic2cExtrasTags;
@@ -41,9 +36,15 @@ public class CraftingRecipes {
         addDustRecipe(registry, "lead", ModItems.LEAD_DUST, ModItems.TINY_LEAD_DUST);
         addDustRecipe(registry, "uranium233", ModItems.URANIUM_233_DUST, ModItems.TINY_URANIUM_233_DUST);
         addDustRecipe(registry, "uranium235", ModItems.URANIUM_235_DUST, ModItems.TINY_URANIUM_235_DUST);
-        addDustRecipe(registry, "uranium", ModItems.URANIUM_238_DUST, ModItems.TINY_URANIUM_238_DUST);
+        addDustRecipe(registry, "uranium", ModItems.URANIUM_DUST, ModItems.TINY_URANIUM_238_DUST);
         addDustRecipe(registry, "plutonium", ModItems.PLUTONIUM_DUST, ModItems.TINY_PLUTONIUM_DUST);
         addDustRecipe(registry, "thorium", ModItems.THORIUM_DUST, ModItems.TINY_THORIUM_DUST);
+
+        registry.addShapedRecipe(id("thermal_centrifuge"), new ItemStack(ModBlocks.THERMAL_CENTRIFUGE), "CLC", "RMR", "RHR", 'C', ModItems.COIL, 'L', IC2Items.MINING_LASER, 'R', IC2Tags.INGOT_REFINED_IRON, 'M', IC2Blocks.ADVANCED_MACHINE_BLOCK, 'H', ModItems.HEAT_CONDUCTOR);
+        registry.addShapedRecipe(id("coil"), new ItemStack(ModItems.COIL), "CCC", "CRC", "CCC", 'C', IC2Items.COPPER_CABLE, 'R', IC2Tags.INGOT_REFINED_IRON);
+        registry.addShapedRecipe(id("heat_conductor"), new ItemStack(ModItems.HEAT_CONDUCTOR), "RRC", "RCR", "CRR", 'R', IC2Items.RUBBER, 'C', IC2Tags.INGOT_COPPER);
+        registry.addShapedRecipe(new ResourceLocation(Ic2cExtrasConfig.REACTOR_CHAMBER_REQUIRES_LEAD.get() ? "ic2" : IC2CExtras.MODID, "reactor_chamber"), new ItemStack(IC2Blocks.REACTOR_CHAMBER), " D ", "DMD", " D ", 'D', ModItems.DENSE_LEAD_PLATE, 'M', IC2Blocks.MACHINE_BLOCK);
+        registry.addShapedRecipe(id("ore_washing_plant"), new ItemStack(ModBlocks.ORE_WASHING_PLANT), "RRR", "BMB", "cCc", 'R', IC2Tags.INGOT_REFINED_IRON, 'B', Items.BUCKET, 'M', IC2Blocks.MACHINE_BLOCK, 'c', IC2Items.CARBON_MESH, 'C', IC2Items.CIRCUIT);
 
         registry.addShapelessIC2Recipe("uranium__single_2", new ItemStack(IC2Items.URANIUM_ROD_SINGLE), getEmptyNuclearCell(), getUraniumRodIngredientItem());
         registry.addShapelessIC2Recipe("uranium__single_2_tag", new ItemStack(IC2Items.URANIUM_ROD_SINGLE), getEmptyNuclearCell(), getUraniumRodIngredient());

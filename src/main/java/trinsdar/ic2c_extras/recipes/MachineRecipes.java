@@ -1,15 +1,13 @@
 package trinsdar.ic2c_extras.recipes;
 
+import ic2.api.recipes.ingridients.inputs.ItemTagInput;
 import ic2.api.recipes.misc.RecipeMods;
 import ic2.api.recipes.registries.IMachineRecipeList;
 import ic2.core.IC2;
-import ic2.core.platform.registries.IC2Blocks;
 import ic2.core.platform.registries.IC2Items;
 import ic2.core.platform.registries.IC2Tags;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.Ic2cExtrasConfig;
 import trinsdar.ic2c_extras.init.Ic2cExtrasTags;
 import trinsdar.ic2c_extras.init.ModItems;
@@ -18,27 +16,34 @@ import trinsdar.ic2c_extras.recipes.recipelists.ExtendedRecipeList;
 import static trinsdar.ic2c_extras.recipes.CraftingRecipes.id;
 
 public class MachineRecipes {
-    public static final ExtendedRecipeList ORE_WASHER = new ExtendedRecipeList("ore_washer", MachineRecipes::initOreWasherRecipes);
+    public static final ExtendedRecipeList ORE_WASHING_PLANT = new ExtendedRecipeList("ore_washing_plant", MachineRecipes::initOreWasherRecipes);
     public static final ExtendedRecipeList THERMAL_CENTRIFUGE = new ExtendedRecipeList("thermal_centrifuge", MachineRecipes::initThermalCentrifugeRecipes);
 
     public static void init(){
-        IC2.RECIPES.get(true).getLists().add(ORE_WASHER);
+        IC2.RECIPES.get(true).getLists().add(ORE_WASHING_PLANT);
         IC2.RECIPES.get(true).getLists().add(THERMAL_CENTRIFUGE);
         if (IC2.PLATFORM.isRendering()){
-            IC2.RECIPES.get(false).getLists().add(ORE_WASHER);
+            IC2.RECIPES.get(false).getLists().add(ORE_WASHING_PLANT);
             IC2.RECIPES.get(false).getLists().add(THERMAL_CENTRIFUGE);
         }
         IC2.RECIPES.get(true).macerator.registerListener(MachineRecipes::initMaceratorRecipes);
         IC2.RECIPES.get(true).extractor.registerListener(r -> {
-            if (Ic2cExtrasConfig.EXTRA_NUCLEAR.get()){
+            if (Ic2cExtrasConfig.EXTRA_NUCLEAR.get() && !Ic2cExtrasConfig.DISABLE_NON_RADIATION.get()){
                 r.removeRecipe(new ResourceLocation("ic2", "uranium_extraction"));
             }
         });
         IC2.RECIPES.get(true).compressor.registerListener(r -> {
+            if (Ic2cExtrasConfig.DISABLE_NON_RADIATION.get()) return;
+            r.addSimpleRecipe(id("dense_lead_plate"), new ItemStack(ModItems.DENSE_LEAD_PLATE), new ItemTagInput(Ic2cExtrasTags.getForgeItemTag("ingots/lead"), 8));
+            r.addSimpleRecipe(id("dense_iron_plate"), new ItemStack(ModItems.DENSE_IRON_PLATE), new ItemTagInput(Ic2cExtrasTags.getForgeItemTag("ingots/iron"), 8));
             if (Ic2cExtrasConfig.EXTRA_NUCLEAR.get()){
-                r.removeRecipe(new ResourceLocation("ic2", "uranium_ingot"));
+                r.addSimpleRecipe(id("plutonium_ingot"), new ItemStack(ModItems.PLUTONIUM_INGOT), Ic2cExtrasTags.getForgeItemTag("dusts/plutonium"));
+                r.addSimpleRecipe(id("thorium_ingot"), new ItemStack(ModItems.THORIUM_INGOT), Ic2cExtrasTags.getForgeItemTag("dusts/thorium"));
+                r.addIC2SimpleRecipe("uranium_ingot", new ItemStack(IC2Items.INGOT_URANIUM), Ic2cExtrasTags.getForgeItemTag("dusts/uranium"));
+                r.addSimpleRecipe(id("uranium_233_ingot"), new ItemStack(ModItems.URANIUM_233_INGOT), Ic2cExtrasTags.getForgeItemTag("dusts/uranium233"));
+                r.addSimpleRecipe(id("uranium_235_ingot"), new ItemStack(ModItems.URANIUM_235_INGOT), Ic2cExtrasTags.getForgeItemTag("dusts/uranium235"));
             }
-            ORE_WASHER.reload();
+            ORE_WASHING_PLANT.reload();
             THERMAL_CENTRIFUGE.reload();
         });
     }
@@ -67,7 +72,7 @@ public class MachineRecipes {
         list.addThermalCentrifugingRecipe(id("purified_aluminium"), new ItemStack[]{new ItemStack(IC2Items.DUST_ALUMINIUM), new ItemStack(ModItems.TINY_IRON_DUST, 1)}, 400, 250, Ic2cExtrasTags.getForgeItemTag("purified_ores/aluminium"));
         if (Ic2cExtrasConfig.EXTRA_NUCLEAR.get()) {
             list.addThermalCentrifugingRecipe(id("purified_uranium"), new ItemStack[]{new ItemStack(ModItems.REFINED_URANIUM_ORE), new ItemStack(ModItems.TINY_THORIUM_DUST, 1)}, 900, 375, Ic2cExtrasTags.getForgeItemTag("purified_ores/uranium"));
-            list.addThermalCentrifugingRecipe(id("refined_uranium"), new ItemStack[]{new ItemStack(ModItems.URANIUM_238_DUST, 2), new ItemStack(ModItems.TINY_URANIUM_235_DUST, 1)}, 900, 375, Ic2cExtrasTags.getForgeItemTag("refined_ores/uranium"));
+            list.addThermalCentrifugingRecipe(id("refined_uranium"), new ItemStack[]{new ItemStack(ModItems.URANIUM_DUST, 2), new ItemStack(ModItems.TINY_URANIUM_235_DUST, 1)}, 900, 375, Ic2cExtrasTags.getForgeItemTag("refined_ores/uranium"));
             list.addThermalCentrifugingRecipe(id("re_enriched_uranium_cell"), new ItemStack[]{new ItemStack(ModItems.TINY_PLUTONIUM_DUST), new ItemStack(ModItems.TINY_THORIUM_DUST, 2), new ItemStack(CraftingRecipes.getEmptyNuclearCell())}, 1500, 750, IC2Items.URANIUM_ROD_RE_ENRICHED);
             list.addThermalCentrifugingRecipe(id("re_enriched_uranium_238_cell"), new ItemStack[]{new ItemStack(ModItems.TINY_PLUTONIUM_DUST, 2), new ItemStack(CraftingRecipes.getEmptyNuclearCell())}, 1500, 750, ModItems.RE_ENRICHED_URANIUM_238_ROD);
             list.addThermalCentrifugingRecipe(id("re_enriched_thorium_cell"), new ItemStack[]{new ItemStack(ModItems.TINY_URANIUM_233_DUST, 2), new ItemStack(CraftingRecipes.getEmptyNuclearCell())}, 1500, 750, ModItems.RE_ENRICHED_THORIUM_ROD);
