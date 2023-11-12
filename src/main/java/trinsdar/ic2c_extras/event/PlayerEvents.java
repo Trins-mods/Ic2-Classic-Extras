@@ -7,7 +7,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import trinsdar.ic2c_extras.init.Ic2cExtrasTags;
+import trinsdar.ic2c_extras.init.IC2CExtrasTags;
 
 import static ic2.core.item.wearable.armor.HazmatArmor.isFullHazmatSuit;
 
@@ -29,7 +29,7 @@ public class PlayerEvents {
         if (IC2.PLATFORM.isSimulating() && event.phase == TickEvent.Phase.END) {
             if (!player.isCreative()) {
                 if (!isFullHazmatSuit(player) && !hasFullQuantumSuit(player)) {
-                    if (player.getInventory().hasAnyMatching(i -> i.is(Ic2cExtrasTags.RADIOACTIVE))) {
+                    if (player.getInventory().hasAnyMatching(i -> i.is(IC2CExtrasTags.RADIOACTIVE))) {
                         player.addEffect(new MobEffectInstance(IC2Potions.RADIATION, 1800, 0, false, false));
                     }
                 }

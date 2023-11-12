@@ -12,8 +12,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import trinsdar.ic2c_extras.datagen.Ic2cExtrasBlockTagProvider;
-import trinsdar.ic2c_extras.datagen.Ic2cExtrasItemTagProvider;
+import trinsdar.ic2c_extras.datagen.IC2CExtrasBlockTagProvider;
+import trinsdar.ic2c_extras.datagen.IC2CExtrasItemTagProvider;
 import trinsdar.ic2c_extras.event.PlayerEvents;
 import trinsdar.ic2c_extras.init.IC2CExtrasSounds;
 import trinsdar.ic2c_extras.init.ModBlocks;
@@ -34,7 +34,7 @@ public class IC2CExtras {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::registerEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::gatherDataEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
-        Ic2cExtrasConfig.createConfig();
+        IC2CExtrasConfig.createConfig();
     }
 
     private void registerEvent(RegisterEvent event){
@@ -52,9 +52,9 @@ public class IC2CExtras {
 
 
     private void gatherDataEvent(GatherDataEvent event){
-        BlockTagsProvider provider = new Ic2cExtrasBlockTagProvider(event.getGenerator(), event.getExistingFileHelper());
+        BlockTagsProvider provider = new IC2CExtrasBlockTagProvider(event.getGenerator(), event.getExistingFileHelper());
         event.getGenerator().addProvider(true, provider);
-        event.getGenerator().addProvider(true, new Ic2cExtrasItemTagProvider(event.getGenerator(), provider, event.getExistingFileHelper()));
+        event.getGenerator().addProvider(true, new IC2CExtrasItemTagProvider(event.getGenerator(), provider, event.getExistingFileHelper()));
     }
 
 }

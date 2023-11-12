@@ -7,7 +7,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import trinsdar.ic2c_extras.IC2CExtras;
 
-public class Ic2cExtrasTags {
+public class IC2CExtrasTags {
     public static final TagKey<Item> RADIOACTIVE = getItemTag(new ResourceLocation(IC2CExtras.MODID, "radioactive"));
     public static final TagKey<Item> LEAD_ORE = getForgeItemTag("ores/lead");
     public static final TagKey<Item> RAW_LEAD = getForgeItemTag("raw_materials/lead");

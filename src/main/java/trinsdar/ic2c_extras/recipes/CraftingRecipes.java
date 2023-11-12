@@ -12,8 +12,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import trinsdar.ic2c_extras.IC2CExtras;
-import trinsdar.ic2c_extras.Ic2cExtrasConfig;
-import trinsdar.ic2c_extras.init.Ic2cExtrasTags;
+import trinsdar.ic2c_extras.IC2CExtrasConfig;
+import trinsdar.ic2c_extras.init.IC2CExtrasTags;
 import trinsdar.ic2c_extras.init.ModBlocks;
 import trinsdar.ic2c_extras.init.ModItems;
 import trinsdar.ic2c_extras.nuclear.MOX;
@@ -26,7 +26,7 @@ import trinsdar.ic2c_extras.nuclear.Uranium238;
 public class CraftingRecipes {
 
     public static void loadRecipes(IAdvancedCraftingManager registry){
-        if (Ic2cExtrasConfig.DISABLE_NON_RADIATION.get()) return;
+        if (IC2CExtrasConfig.DISABLE_NON_RADIATION.get()) return;
         addDustRecipe(registry, "iron", IC2Items.DUST_IRON, ModItems.TINY_IRON_DUST);
         addDustRecipe(registry, "gold", IC2Items.DUST_GOLD, ModItems.TINY_GOLD_DUST);
         addDustRecipe(registry, "copper", IC2Items.DUST_COPPER, ModItems.TINY_COPPER_DUST);
@@ -43,14 +43,14 @@ public class CraftingRecipes {
         registry.addShapedRecipe(id("thermal_centrifuge"), new ItemStack(ModBlocks.THERMAL_CENTRIFUGE), "CLC", "RMR", "RHR", 'C', ModItems.COIL, 'L', IC2Items.MINING_LASER, 'R', IC2Tags.INGOT_REFINED_IRON, 'M', IC2Blocks.ADVANCED_MACHINE_BLOCK, 'H', ModItems.HEAT_CONDUCTOR);
         registry.addShapedRecipe(id("coil"), new ItemStack(ModItems.COIL), "CCC", "CRC", "CCC", 'C', IC2Items.COPPER_CABLE, 'R', IC2Tags.INGOT_REFINED_IRON);
         registry.addShapedRecipe(id("heat_conductor"), new ItemStack(ModItems.HEAT_CONDUCTOR), "RRC", "RCR", "CRR", 'R', IC2Items.RUBBER, 'C', IC2Tags.INGOT_COPPER);
-        registry.addShapedRecipe(new ResourceLocation(Ic2cExtrasConfig.REACTOR_CHAMBER_REQUIRES_LEAD.get() ? "ic2" : IC2CExtras.MODID, "reactor_chamber"), new ItemStack(IC2Blocks.REACTOR_CHAMBER), " D ", "DMD", " D ", 'D', ModItems.DENSE_LEAD_PLATE, 'M', IC2Blocks.MACHINE_BLOCK);
+        registry.addShapedRecipe(new ResourceLocation(IC2CExtrasConfig.REACTOR_CHAMBER_REQUIRES_LEAD.get() ? "ic2" : IC2CExtras.MODID, "reactor_chamber"), new ItemStack(IC2Blocks.REACTOR_CHAMBER), " D ", "DMD", " D ", 'D', ModItems.DENSE_LEAD_PLATE, 'M', IC2Blocks.MACHINE_BLOCK);
         registry.addShapedRecipe(id("ore_washing_plant"), new ItemStack(ModBlocks.ORE_WASHING_PLANT), "RRR", "BMB", "cCc", 'R', IC2Tags.INGOT_REFINED_IRON, 'B', Items.BUCKET, 'M', IC2Blocks.MACHINE_BLOCK, 'c', IC2Items.CARBON_MESH, 'C', IC2Items.CIRCUIT);
 
         registry.addShapelessIC2Recipe("uranium__single_2", new ItemStack(IC2Items.URANIUM_ROD_SINGLE), getEmptyNuclearCell(), getUraniumRodIngredientItem());
         registry.addShapelessIC2Recipe("uranium__single_2_tag", new ItemStack(IC2Items.URANIUM_ROD_SINGLE), getEmptyNuclearCell(), getUraniumRodIngredient());
         registry.addShapedIC2Recipe("uranium__near_depleted", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', getUraniumRodIngredientItem());
         registry.addShapedIC2Recipe("uranium__near_depleted_tag", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', getUraniumRodIngredient());
-        if (Ic2cExtrasConfig.EMPTY_NUCLEAR_ROD.get()){
+        if (IC2CExtrasConfig.EMPTY_NUCLEAR_ROD.get()){
             registry.addShapedRecipe(id("empty_nuclear_rod"), new ItemStack(ModItems.EMPTY_NUCLEAR_ROD, 4), " I ", "I I", " I ", 'I', IC2Tags.INGOT_REFINED_IRON);
             registry.addShapedIC2Recipe("uranium_redstone_near_depleted", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED_REDSTONE, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', IC2Items.INGOT_URANIUM_ENRICHED_REDSTONE);
             registry.addShapedIC2Recipe("uranium_blaze_near_depleted", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED_BLAZE, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', IC2Items.INGOT_URANIUM_ENRICHED_BLAZE);
@@ -58,9 +58,9 @@ public class CraftingRecipes {
             registry.addShapedIC2Recipe("uranium_nether_star_near_depleted", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED_NETHER_STAR, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', IC2Items.INGOT_URANIUM_ENRICHED_NETHERSTAR);
             registry.addShapedIC2Recipe("uranium_charcoal_near_depleted", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED_CHARCOAL, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', IC2Items.INGOT_URANIUM_ENRICHED_CHARCOAL);
         }
-        if (Ic2cExtrasConfig.EXTRA_NUCLEAR.get()){
-            registry.addShapedRecipe(id("mox_fuel"), new ItemStack(ModItems.MOX_FUEL, 3), "UUU", "PPP", "UUU", 'U', Ic2cExtrasTags.getForgeItemTag("dusts/uranium"), 'P', Ic2cExtrasTags.getForgeItemTag("tiny_dusts/plutonium"));
-            registry.addShapedRecipe(id("enriched_uranium_fuel"), new ItemStack(ModItems.ENRICHED_URANIUM_FUEL, 3), "UUU", "PPP", "UUU", 'U', Ic2cExtrasTags.getForgeItemTag("dusts/uranium"), 'P', Ic2cExtrasTags.getForgeItemTag("tiny_dusts/uranium235"));
+        if (IC2CExtrasConfig.EXTRA_NUCLEAR.get()){
+            registry.addShapedRecipe(id("mox_fuel"), new ItemStack(ModItems.MOX_FUEL, 3), "UUU", "PPP", "UUU", 'U', IC2CExtrasTags.getForgeItemTag("dusts/uranium"), 'P', IC2CExtrasTags.getForgeItemTag("tiny_dusts/plutonium"));
+            registry.addShapedRecipe(id("enriched_uranium_fuel"), new ItemStack(ModItems.ENRICHED_URANIUM_FUEL, 3), "UUU", "PPP", "UUU", 'U', IC2CExtrasTags.getForgeItemTag("dusts/uranium"), 'P', IC2CExtrasTags.getForgeItemTag("tiny_dusts/uranium235"));
             addRodRecipes(registry, MOX.INSTANCE);
             addRodRecipes(registry, Plutonium.INSTANCE);
             addRodRecipes(registry, Thorium232.INSTANCE);
@@ -78,33 +78,33 @@ public class CraftingRecipes {
         addCrushedSmeltingRecipe(registry, "tin", IC2Items.INGOT_TIN, 0.2f);
         addCrushedSmeltingRecipe(registry, "silver", IC2Items.INGOT_SILVER, 0.4f);
         addCrushedSmeltingRecipe(registry, "lead", ModItems.LEAD_INGOT, 0.4f);
-        registry.addSmeltingRecipe(id("lead_dust"), new ItemStack(ModItems.LEAD_INGOT), Ic2cExtrasTags.getForgeItemTag("dusts/lead"), 0.4f, IAdvancedCraftingManager.SmeltingType.BLASTFURNACE, IAdvancedCraftingManager.SmeltingType.FURNACE);
+        registry.addSmeltingRecipe(id("lead_dust"), new ItemStack(ModItems.LEAD_INGOT), IC2CExtrasTags.getForgeItemTag("dusts/lead"), 0.4f, IAdvancedCraftingManager.SmeltingType.BLASTFURNACE, IAdvancedCraftingManager.SmeltingType.FURNACE);
     }
 
     private static void addCrushedSmeltingRecipe(IAdvancedCraftingManager registry, String dust, Item output, float xp){
-        registry.addSmeltingRecipe(id("crushed_" + dust + "_to_ingot"), new ItemStack(output), Ic2cExtrasTags.getForgeItemTag("crushed_ores/" + dust), xp, IAdvancedCraftingManager.SmeltingType.BLASTFURNACE, IAdvancedCraftingManager.SmeltingType.FURNACE);
-        registry.addSmeltingRecipe(id("purified_" + dust + "_to_ingot"), new ItemStack(output), Ic2cExtrasTags.getForgeItemTag("purified_ores/" + dust), xp, IAdvancedCraftingManager.SmeltingType.BLASTFURNACE, IAdvancedCraftingManager.SmeltingType.FURNACE);
+        registry.addSmeltingRecipe(id("crushed_" + dust + "_to_ingot"), new ItemStack(output), IC2CExtrasTags.getForgeItemTag("crushed_ores/" + dust), xp, IAdvancedCraftingManager.SmeltingType.BLASTFURNACE, IAdvancedCraftingManager.SmeltingType.FURNACE);
+        registry.addSmeltingRecipe(id("purified_" + dust + "_to_ingot"), new ItemStack(output), IC2CExtrasTags.getForgeItemTag("purified_ores/" + dust), xp, IAdvancedCraftingManager.SmeltingType.BLASTFURNACE, IAdvancedCraftingManager.SmeltingType.FURNACE);
     }
 
 
     public static Item getUraniumRodIngredientItem(){
-        return Ic2cExtrasConfig.EXTRA_NUCLEAR.get() ? ModItems.ENRICHED_URANIUM_FUEL : IC2Items.INGOT_URANIUM;
+        return IC2CExtrasConfig.EXTRA_NUCLEAR.get() ? ModItems.ENRICHED_URANIUM_FUEL : IC2Items.INGOT_URANIUM;
     }
 
     public static Object getUraniumRodIngredient(){
-        return Ic2cExtrasConfig.EXTRA_NUCLEAR.get() ? ModItems.ENRICHED_URANIUM_FUEL : IC2Tags.INGOT_URANIUM;
+        return IC2CExtrasConfig.EXTRA_NUCLEAR.get() ? ModItems.ENRICHED_URANIUM_FUEL : IC2Tags.INGOT_URANIUM;
     }
 
     public static Item getEmptyNuclearCell(){
-        return Ic2cExtrasConfig.EMPTY_NUCLEAR_ROD.get() ? ModItems.EMPTY_NUCLEAR_ROD : IC2Items.CELL_EMPTY;
+        return IC2CExtrasConfig.EMPTY_NUCLEAR_ROD.get() ? ModItems.EMPTY_NUCLEAR_ROD : IC2Items.CELL_EMPTY;
     }
 
     private static void addDustRecipe(IAdvancedCraftingManager registry, String dust, Item output, Item tiny){
-        registry.addShapelessRecipe(id(dust + "_dust"), new ItemStack(output), Ic2cExtrasTags.getForgeItemTag("tiny_dusts/" + dust), Ic2cExtrasTags.getForgeItemTag("tiny_dusts/" + dust)
-                , Ic2cExtrasTags.getForgeItemTag("tiny_dusts/" + dust), Ic2cExtrasTags.getForgeItemTag("tiny_dusts/" + dust), Ic2cExtrasTags.getForgeItemTag("tiny_dusts/" + dust)
-                , Ic2cExtrasTags.getForgeItemTag("tiny_dusts/" + dust), Ic2cExtrasTags.getForgeItemTag("tiny_dusts/" + dust), Ic2cExtrasTags.getForgeItemTag("tiny_dusts/" + dust)
-                , Ic2cExtrasTags.getForgeItemTag("tiny_dusts/" + dust));
-        registry.addShapelessRecipe(id(dust + "_tiny_dust"), new ItemStack(tiny, 9), Ic2cExtrasTags.getForgeItemTag("dusts/" + dust));
+        registry.addShapelessRecipe(id(dust + "_dust"), new ItemStack(output), IC2CExtrasTags.getForgeItemTag("tiny_dusts/" + dust), IC2CExtrasTags.getForgeItemTag("tiny_dusts/" + dust)
+                , IC2CExtrasTags.getForgeItemTag("tiny_dusts/" + dust), IC2CExtrasTags.getForgeItemTag("tiny_dusts/" + dust), IC2CExtrasTags.getForgeItemTag("tiny_dusts/" + dust)
+                , IC2CExtrasTags.getForgeItemTag("tiny_dusts/" + dust), IC2CExtrasTags.getForgeItemTag("tiny_dusts/" + dust), IC2CExtrasTags.getForgeItemTag("tiny_dusts/" + dust)
+                , IC2CExtrasTags.getForgeItemTag("tiny_dusts/" + dust));
+        registry.addShapelessRecipe(id(dust + "_tiny_dust"), new ItemStack(tiny, 9), IC2CExtrasTags.getForgeItemTag("dusts/" + dust));
     }
 
     private static void addRodRecipes(IAdvancedCraftingManager recipes, IUraniumRod rod){

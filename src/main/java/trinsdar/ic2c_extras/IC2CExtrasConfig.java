@@ -6,7 +6,7 @@ import carbonconfiglib.config.ConfigEntry;
 import carbonconfiglib.config.ConfigHandler;
 import carbonconfiglib.config.ConfigSection;
 
-public class Ic2cExtrasConfig {
+public class IC2CExtrasConfig {
     public static ConfigEntry.BoolValue DISABLE_NON_RADIATION;
     public static ConfigEntry.BoolValue ITEM_RADIATION;
     public static ConfigEntry.BoolValue LOOT_ENTRIES;
