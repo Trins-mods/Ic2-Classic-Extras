@@ -8,6 +8,7 @@ import ic2.core.platform.registries.IC2Items;
 import ic2.core.platform.registries.IC2Tags;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import trinsdar.ic2c_extras.IC2CExtrasConfig;
 import trinsdar.ic2c_extras.init.IC2CExtrasTags;
 import trinsdar.ic2c_extras.init.ModItems;
@@ -22,7 +23,7 @@ public class MachineRecipes {
     public static void init(){
         IC2.RECIPES.get(true).getLists().add(ORE_WASHING_PLANT);
         IC2.RECIPES.get(true).getLists().add(THERMAL_CENTRIFUGE);
-        if (IC2.PLATFORM.isRendering()){
+        if (FMLEnvironment.dist.isClient()){
             IC2.RECIPES.get(false).getLists().add(ORE_WASHING_PLANT);
             IC2.RECIPES.get(false).getLists().add(THERMAL_CENTRIFUGE);
         }
