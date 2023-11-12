@@ -59,6 +59,8 @@ public class CraftingRecipes {
             registry.addShapedIC2Recipe("uranium_charcoal_near_depleted", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED_CHARCOAL, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', IC2Items.INGOT_URANIUM_ENRICHED_CHARCOAL);
         }
         if (IC2CExtrasConfig.EXTRA_NUCLEAR.get()){
+            registry.addShapedRecipe(id("thermo_electric_generator"), new ItemStack(ModBlocks.THERMO_ELECTRIC_GENERATOR), "III", "IRI", "ITI", 'I', ModItems.DENSE_IRON_PLATE, 'R', IC2Blocks.NUCLEAR_REACTOR, 'T', IC2Blocks.THERMAL_GENERATOR);
+            registry.addShapedRecipe(id("plutonium_rtg"), new ItemStack(ModItems.PLUTONIUM_RTG), "IPI", "IPI", "IPI", 'I', ModItems.DENSE_IRON_PLATE, 'P', IC2CExtrasTags.getForgeItemTag("ingots/plutonium"));
             registry.addShapedRecipe(id("mox_fuel"), new ItemStack(ModItems.MOX_FUEL, 3), "UUU", "PPP", "UUU", 'U', IC2CExtrasTags.getForgeItemTag("dusts/uranium"), 'P', IC2CExtrasTags.getForgeItemTag("tiny_dusts/plutonium"));
             registry.addShapedRecipe(id("enriched_uranium_fuel"), new ItemStack(ModItems.ENRICHED_URANIUM_FUEL, 3), "UUU", "PPP", "UUU", 'U', IC2CExtrasTags.getForgeItemTag("dusts/uranium"), 'P', IC2CExtrasTags.getForgeItemTag("tiny_dusts/uranium235"));
             addRodRecipes(registry, MOX.INSTANCE);

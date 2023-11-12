@@ -6,7 +6,6 @@
     "ic2c_extras:thorium_232_dust",
     "ic2c_extras:uranium_dust",
     "ic2c_extras:uranium_233_dust",
-    "ic2c_extras:uranium_235_dust",
-    "ic2c_extras:uranium_238_dust"
+    "ic2c_extras:uranium_235_dust"
   ]
 }
