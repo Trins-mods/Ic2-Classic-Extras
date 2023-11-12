@@ -56,7 +56,7 @@ dependencies {
     modImplementation("curse.maven:ic2_classic-242942:4744334")
     modImplementation("curse.maven:ic2c_additions-304040:4360883")
     modImplementation("curse.maven:curios-309927:3871347")
-    modImplementation "maven.modrinth:carbon-config:l6LTuPIs"
+    modImplementationinclude("maven.modrinth:carbon-config:l6LTuPIs")
     modImplementation("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 }
 
