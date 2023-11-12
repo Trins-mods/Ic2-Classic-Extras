@@ -45,6 +45,7 @@ public class CraftingRecipes {
         registry.addShapedRecipe(id("heat_conductor"), new ItemStack(ModItems.HEAT_CONDUCTOR), "RRC", "RCR", "CRR", 'R', IC2Items.RUBBER, 'C', IC2Tags.INGOT_COPPER);
         registry.addShapedRecipe(new ResourceLocation(IC2CExtrasConfig.REACTOR_CHAMBER_REQUIRES_LEAD.get() ? "ic2" : IC2CExtras.MODID, "reactor_chamber"), new ItemStack(IC2Blocks.REACTOR_CHAMBER), " D ", "DMD", " D ", 'D', ModItems.DENSE_LEAD_PLATE, 'M', IC2Blocks.MACHINE_BLOCK);
         registry.addShapedRecipe(id("ore_washing_plant"), new ItemStack(ModBlocks.ORE_WASHING_PLANT), "RRR", "BMB", "cCc", 'R', IC2Tags.INGOT_REFINED_IRON, 'B', Items.BUCKET, 'M', IC2Blocks.MACHINE_BLOCK, 'c', IC2Items.CARBON_MESH, 'C', IC2Items.CIRCUIT);
+        registry.addShapelessRecipe(new ResourceLocation(IC2CExtras.MODID, "plating"), new ItemStack(IC2Items.PLATING), IC2CExtrasTags.getForgeItemTag("ingots/lead"), IC2Items.PLATE_ADVANCED_ALLOY);
 
         registry.addShapelessIC2Recipe("uranium__single_2", new ItemStack(IC2Items.URANIUM_ROD_SINGLE), getEmptyNuclearCell(), getUraniumRodIngredientItem());
         registry.addShapelessIC2Recipe("uranium__single_2_tag", new ItemStack(IC2Items.URANIUM_ROD_SINGLE), getEmptyNuclearCell(), getUraniumRodIngredient());

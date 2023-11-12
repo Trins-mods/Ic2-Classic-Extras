@@ -16,6 +16,7 @@ public class IC2CExtrasConfig {
     public static ConfigEntry.BoolValue LEAD_ORE_GEN;
     public static ConfigEntry.IntValue BIOMASS_PER_FERTILIZER;
     public static ConfigEntry.IntValue BIOMASS_PROCESSES_PER_FERTILIZER;
+    public static ConfigEntry.StringValue LEAD_CROP_DROP;
 
     public static void createConfig(){
         Config config = new Config("ic2c/ic2c_extras");
@@ -32,6 +33,7 @@ public class IC2CExtrasConfig {
         ITEM_RADIATION = misc.addBool("item_radiation", true, "Enables items with the #ic2c_extras:radioactive tag giving radiation.");
         LOOT_ENTRIES = misc.addBool("loot_entries", true, "Enable tiny plutonium and iridium shards being in various loot tables.");
         LEAD_ORE_GEN = misc.addBool("lead_ore_gen", true, "Enable lead ore gen, will generate around same height as silver.");
+        LEAD_CROP_DROP = misc.addString("lead_crop_drop", "ic2c_extras:lead_dust", "Format is modid:item_id, if the item provided here is not valid it will default back to ic2c extras lead dust.");
         ConfigHandler handler = CarbonConfig.CONFIGS.createConfig(config);
         handler.register();
     }

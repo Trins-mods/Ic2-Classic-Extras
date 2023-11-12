@@ -1,7 +1,10 @@
 package trinsdar.ic2c_extras;
 
+import ic2.core.block.crops.CropRegistry;
+import ic2.core.platform.events.WorldGenerator;
 import ic2.core.platform.recipes.misc.AdvRecipeRegistry;
 import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -12,6 +15,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegisterEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import trinsdar.ic2c_extras.block.CropPlumbilia;
 import trinsdar.ic2c_extras.datagen.IC2CExtrasBlockTagProvider;
 import trinsdar.ic2c_extras.datagen.IC2CExtrasItemTagProvider;
 import trinsdar.ic2c_extras.event.PlayerEvents;
@@ -42,12 +46,19 @@ public class IC2CExtras {
             ModBlocks.init();
             ModItems.init();
             IC2CExtrasSounds.init();
+        } else if (event.getRegistryKey() == ForgeRegistries.Keys.FEATURES) {
+            IC2CExtrasWorldgen.init();
+        } else if (event.getRegistryKey() == ForgeRegistries.Keys.BIOME_MODIFIERS){
+            event.getForgeRegistry().register(new ResourceLocation(IC2CExtras.MODID, "modifier"), new IC2CExtrasWorldgen.IC2CExtrasModifier());
+        } else if (event.getRegistryKey() == ForgeRegistries.Keys.BIOME_MODIFIER_SERIALIZERS){
+            event.getForgeRegistry().register(new ResourceLocation(IC2CExtras.MODID, "modifier"), IC2CExtrasWorldgen.IC2CExtrasModifier.CODEC);
         }
     }
 
     private void commonSetup(FMLCommonSetupEvent event){
         AdvRecipeRegistry.INSTANCE.registerListener(CraftingRecipes::loadRecipes);
         MachineRecipes.init();
+        CropRegistry.REGISTRY.registerCrop(new CropPlumbilia());
     }
 
 
