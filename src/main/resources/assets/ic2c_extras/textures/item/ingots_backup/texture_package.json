@@ -1,7 +1,7 @@
 {
   "lead_ingot" : "ic2c_extras:item/ingots/lead",
-  "enriched_uranium_ingot" : "ic2c_extras:item/ingots/enriched_uranium",
-  "mox_ingot" : "ic2c_extras:item/ingots/mox",
+  "enriched_uranium_ingot" : "ic2c_extras:item/ingot/enriched_uranium",
+  "mox_ingot" : "ic2c_extras:item/ingot/mox",
   "plutonium_ingot" : "ic2c_extras:item/ingots/plutonium",
   "thorium_232_ingot" : "ic2c_extras:item/ingots/thorium_232",
   "uranium_233_ingot" : "ic2c_extras:item/ingots/uranium_233",

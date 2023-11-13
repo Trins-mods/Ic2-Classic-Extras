@@ -45,7 +45,7 @@ public class MOX extends UraniumBaseType {
 
     @Override
     public ItemStack getBaseIngot() {
-        return new ItemStack(ModItems.MOX_FUEL);
+        return new ItemStack(ModItems.MOX_INGOT);
     }
 
     @Override

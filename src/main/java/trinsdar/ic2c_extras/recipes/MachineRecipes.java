@@ -1,13 +1,21 @@
 package trinsdar.ic2c_extras.recipes;
 
+import ic2.api.recipes.ingridients.inputs.IInput;
+import ic2.api.recipes.ingridients.inputs.ItemInput;
 import ic2.api.recipes.ingridients.inputs.ItemTagInput;
 import ic2.api.recipes.misc.RecipeMods;
 import ic2.api.recipes.registries.IMachineRecipeList;
 import ic2.core.IC2;
+import ic2.core.block.machines.recipes.misc.EnrichRecipe;
+import ic2.core.platform.registries.IC2Blocks;
 import ic2.core.platform.registries.IC2Items;
 import ic2.core.platform.registries.IC2Tags;
+import ic2.core.utils.math.ColorUtils;
+import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import trinsdar.ic2c_extras.IC2CExtrasConfig;
 import trinsdar.ic2c_extras.init.IC2CExtrasTags;
@@ -38,6 +46,8 @@ public class MachineRecipes {
             r.addSimpleRecipe(id("dense_lead_plate"), new ItemStack(ModItems.DENSE_LEAD_PLATE), new ItemTagInput(IC2CExtrasTags.getForgeItemTag("ingots/lead"), 8));
             r.addSimpleRecipe(id("dense_iron_plate"), new ItemStack(ModItems.DENSE_IRON_PLATE), new ItemTagInput(IC2CExtrasTags.getForgeItemTag("ingots/iron"), 8));
             if (IC2CExtrasConfig.EXTRA_NUCLEAR.get()){
+                r.addSimpleRecipe(id("enriched_uranium_ingot"), new ItemStack(ModItems.ENRICHED_URANIUM_INGOT), ModItems.ENRICHED_URANIUM_FUEL);
+                r.addSimpleRecipe(id("mox_ingot"), new ItemStack(ModItems.MOX_INGOT), ModItems.MOX_FUEL);
                 r.addSimpleRecipe(id("plutonium_ingot"), new ItemStack(ModItems.PLUTONIUM_INGOT), IC2CExtrasTags.getForgeItemTag("dusts/plutonium"));
                 r.addSimpleRecipe(id("thorium_ingot"), new ItemStack(ModItems.THORIUM_INGOT), IC2CExtrasTags.getForgeItemTag("dusts/thorium"));
                 r.addIC2SimpleRecipe("uranium_ingot", new ItemStack(IC2Items.INGOT_URANIUM), IC2CExtrasTags.getForgeItemTag("dusts/uranium"));
@@ -46,6 +56,26 @@ public class MachineRecipes {
             }
             ORE_WASHING_PLANT.reload();
             THERMAL_CENTRIFUGE.reload();
+        });
+        IC2.RECIPES.get(true).enricher.registerListener(r -> {
+            if (!IC2CExtrasConfig.DISABLE_NON_RADIATION.get() && IC2CExtrasConfig.EXTRA_NUCLEAR.get()){
+                r.removeRecipe(new ResourceLocation("ic2", "blaze"));
+                r.removeRecipe(new ResourceLocation("ic2", "charcoal"));
+                r.removeRecipe(new ResourceLocation("ic2", "ender"));
+                r.removeRecipe(new ResourceLocation("ic2", "nether_star"));
+                r.removeRecipe(new ResourceLocation("ic2", "redstone"));
+                r.registerRecipe(EnrichRecipe.createIC2Recipe(ModItems.ENRICHED_URANIUM_INGOT, Items.BLAZE_ROD, 200, IC2Items.INGOT_URANIUM_ENRICHED_BLAZE, 100, ColorUtils.rgb(232, 155, 7, 255), 20, "blaze"));
+                Object2IntMap<IInput> inputs = new Object2IntLinkedOpenHashMap<>();
+                inputs.put(new ItemInput(Items.CHARCOAL), 25);
+                inputs.put(new ItemInput(IC2Blocks.CHARCOAL_BLOCK), 200);
+                r.registerRecipe(EnrichRecipe.createIC2Recipe(ModItems.ENRICHED_URANIUM_INGOT, inputs, IC2Items.INGOT_URANIUM_ENRICHED_CHARCOAL, 100, ColorUtils.rgb(54, 54, 54, 255), 5, "charcoal"));
+                r.registerRecipe(EnrichRecipe.createIC2Recipe(ModItems.ENRICHED_URANIUM_INGOT, Items.ENDER_PEARL, 100, IC2Items.INGOT_URANIUM_ENRICHED_ENDERPEARL, 100, ColorUtils.rgb(35, 174, 113, 255), 75, "ender"));
+                r.registerRecipe(EnrichRecipe.createIC2Recipe(ModItems.ENRICHED_URANIUM_INGOT, Items.NETHER_STAR, 200, IC2Items.INGOT_URANIUM_ENRICHED_NETHERSTAR, 150, ColorUtils.rgb(255, 239, 106, 255), 150, "nether_star"));
+                inputs = new Object2IntLinkedOpenHashMap<>();
+                inputs.put(new ItemInput(Items.REDSTONE), 25);
+                inputs.put(new ItemInput(Items.REDSTONE_BLOCK), 200);
+                r.registerRecipe(EnrichRecipe.createIC2Recipe(ModItems.ENRICHED_URANIUM_INGOT, inputs, IC2Items.INGOT_URANIUM_ENRICHED_REDSTONE, 100, ColorUtils.RED, 25, "redstone"));
+            }
         });
     }
 

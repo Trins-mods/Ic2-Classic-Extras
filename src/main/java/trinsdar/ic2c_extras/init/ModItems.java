@@ -71,7 +71,8 @@ public class ModItems {
     public static final Item PLUTONIUM_DUST = new ItemBasic("plutonium_dust", "dusts");
     public static final Item THORIUM_DUST = new ItemBasic("thorium_232_dust", "dusts");
 
-    //public static final Item DOUBLE_ENRICHED_URANIUM = new ItemBasic("double_enriched_uranium_ingot", "ingots");
+    public static final Item ENRICHED_URANIUM_INGOT = new ItemBasic("enriched_uranium_ingot", "ingots");
+    public static final Item MOX_INGOT = new ItemBasic("mox_ingot", "ingots");
     public static final Item LEAD_INGOT = new ItemBasic("lead_ingot", "ingots");
     public static final Item PLUTONIUM_INGOT = new ItemBasic("plutonium_ingot", "ingots");
     public static final Item THORIUM_INGOT = new ItemBasic("thorium_232_ingot", "ingots");

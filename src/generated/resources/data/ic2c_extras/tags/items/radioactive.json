@@ -11,6 +11,8 @@
     "#forge:tiny_dusts/plutonium",
     "ic2c_extras:mox_fuel",
     "ic2c_extras:enriched_uranium_fuel",
+    "ic2c_extras:mox_ingot",
+    "ic2c_extras:enriched_uranium_ingot",
     "ic2c_extras:plutonium_rtg",
     "ic2:ingot_uranium_enriched_enderpearl",
     "ic2:ingot_uranium_enriched_netherstar",

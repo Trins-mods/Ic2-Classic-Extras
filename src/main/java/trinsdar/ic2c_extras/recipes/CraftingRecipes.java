@@ -92,11 +92,11 @@ public class CraftingRecipes {
 
 
     public static Item getUraniumRodIngredientItem(){
-        return IC2CExtrasConfig.EXTRA_NUCLEAR.get() ? ModItems.ENRICHED_URANIUM_FUEL : IC2Items.INGOT_URANIUM;
+        return IC2CExtrasConfig.EXTRA_NUCLEAR.get() ? ModItems.ENRICHED_URANIUM_INGOT : IC2Items.INGOT_URANIUM;
     }
 
     public static Object getUraniumRodIngredient(){
-        return IC2CExtrasConfig.EXTRA_NUCLEAR.get() ? ModItems.ENRICHED_URANIUM_FUEL : IC2Tags.INGOT_URANIUM;
+        return IC2CExtrasConfig.EXTRA_NUCLEAR.get() ? ModItems.ENRICHED_URANIUM_INGOT : IC2Tags.INGOT_URANIUM;
     }
 
     public static Item getEmptyNuclearCell(){

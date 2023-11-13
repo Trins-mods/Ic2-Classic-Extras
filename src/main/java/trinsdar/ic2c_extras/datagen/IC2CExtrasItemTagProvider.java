@@ -89,7 +89,7 @@ public class IC2CExtrasItemTagProvider extends ItemTagsProvider {
                 .addTag(IC2CExtrasTags.getForgeItemTag("tiny_dusts/uranium235"))
                 .addTag(IC2CExtrasTags.getForgeItemTag("tiny_dusts/uranium233"))
                 .addTag(IC2CExtrasTags.getForgeItemTag("tiny_dusts/plutonium"))
-                .add(ModItems.MOX_FUEL, ModItems.ENRICHED_URANIUM_FUEL, ModItems.PLUTONIUM_RTG, IC2Items.INGOT_URANIUM_ENRICHED_ENDERPEARL,
+                .add(ModItems.MOX_FUEL, ModItems.ENRICHED_URANIUM_FUEL, ModItems.MOX_INGOT, ModItems.ENRICHED_URANIUM_INGOT, ModItems.PLUTONIUM_RTG, IC2Items.INGOT_URANIUM_ENRICHED_ENDERPEARL,
                         IC2Items.INGOT_URANIUM_ENRICHED_NETHERSTAR, IC2Items.INGOT_URANIUM_ENRICHED_BLAZE, IC2Items.INGOT_URANIUM_ENRICHED_CHARCOAL, IC2Items.INGOT_URANIUM_ENRICHED_REDSTONE)
                 .add(IC2Items.URANIUM_ROD_SINGLE, IC2Items.URANIUM_ROD_DUAL, IC2Items.URANIUM_ROD_QUAD,
                         IC2Items.URANIUM_ROD_ISOTOPIC, IC2Items.URANIUM_ROD_NEAR_DEPLETED, IC2Items.URANIUM_ROD_RE_ENRICHED)
