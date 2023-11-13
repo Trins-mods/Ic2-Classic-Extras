@@ -23,23 +23,22 @@ import trinsdar.ic2c_extras.container.ContainmentBoxInventory;
 public class ItemContainmentBox extends ItemBasic implements IHasHeldSlotInventory, ILangHelper{
     public ItemContainmentBox() {
         super("containment_box", "misc", new PropertiesBuilder().maxStackSize(1));
-
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
     public void addToolTip(ItemStack stack, Player player, TooltipFlag type, ToolTipHelper helper) {
-        helper.addKeybindingTooltip(this.buildKeyDescription(KeyHelper.RIGHT_CLICK, "tooltip.ic2.open_item_inventory", new Object[0]));
+        helper.addKeybindingTooltip(this.buildKeyDescription(KeyHelper.RIGHT_CLICK, "tooltip.ic2.open_item_inventory"));
     }
 
     @Override
     public IPortableInventory getInventory(Player player, ItemStack itemStack, Slot slot) {
-        return new ContainmentBoxInventory(player, this, itemStack, slot);
+        return new ContainmentBoxInventory(player, this, itemStack, slot).load(itemStack);
     }
 
     @Override
     public IPortableInventory getInventory(Player player, InteractionHand interactionHand, ItemStack itemStack) {
-        return new ContainmentBoxInventory(player, this, itemStack, null);
+        return new ContainmentBoxInventory(player, this, itemStack, null).load(itemStack);
     }
 
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player playerIn, InteractionHand handIn) {
