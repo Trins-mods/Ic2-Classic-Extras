@@ -7,6 +7,12 @@ import ic2.api.recipes.misc.RecipeMods;
 import ic2.api.recipes.registries.IMachineRecipeList;
 import ic2.core.IC2;
 import ic2.core.block.machines.recipes.misc.EnrichRecipe;
+import ic2.core.item.reactor.base.IUraniumRod;
+import ic2.core.item.reactor.urantypes.BlazeUranium;
+import ic2.core.item.reactor.urantypes.CharcoalUranium;
+import ic2.core.item.reactor.urantypes.EnderUranium;
+import ic2.core.item.reactor.urantypes.NetherStarUranium;
+import ic2.core.item.reactor.urantypes.RedstoneUranium;
 import ic2.core.platform.registries.IC2Blocks;
 import ic2.core.platform.registries.IC2Items;
 import ic2.core.platform.registries.IC2Tags;
@@ -14,13 +20,24 @@ import ic2.core.utils.math.ColorUtils;
 import it.unimi.dsi.fastutil.objects.Object2IntLinkedOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Tuple;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import trinsdar.ic2c_extras.IC2CExtrasConfig;
 import trinsdar.ic2c_extras.init.IC2CExtrasTags;
 import trinsdar.ic2c_extras.init.ModItems;
+import trinsdar.ic2c_extras.nuclear.MOX;
+import trinsdar.ic2c_extras.nuclear.Plutonium;
+import trinsdar.ic2c_extras.nuclear.Thorium232;
+import trinsdar.ic2c_extras.nuclear.Uranium233;
+import trinsdar.ic2c_extras.nuclear.Uranium235;
+import trinsdar.ic2c_extras.nuclear.Uranium238;
 import trinsdar.ic2c_extras.recipes.recipelists.ExtendedRecipeList;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import static trinsdar.ic2c_extras.recipes.CraftingRecipes.id;
 
@@ -75,6 +92,44 @@ public class MachineRecipes {
                 inputs.put(new ItemInput(Items.REDSTONE), 25);
                 inputs.put(new ItemInput(Items.REDSTONE_BLOCK), 200);
                 r.registerRecipe(EnrichRecipe.createIC2Recipe(ModItems.ENRICHED_URANIUM_INGOT, inputs, IC2Items.INGOT_URANIUM_ENRICHED_REDSTONE, 100, ColorUtils.RED, 25, "redstone"));
+            }
+        });
+        IC2.RECIPES.get(true).canner.registerListener(r -> {
+            if (IC2CExtrasConfig.DISABLE_NON_RADIATION.get()) return;
+            List<Tuple<IInput, ItemStack>> addList = new ArrayList<>();
+            if (r.getFillables().containsKey(new ItemStack(IC2Items.CELL_EMPTY))){
+                r.getFillables().get(new ItemStack(IC2Items.CELL_EMPTY)).stream().forEach(t -> {
+                    if (t.getB().getItem() != IC2Items.URANIUM_ROD_SINGLE){
+                        addList.add(t);
+                    }
+                });
+            }
+            r.removeFillable(new ItemStack(IC2Items.CELL_EMPTY));
+            addList.forEach(t -> {
+                r.registerFillable(new ItemStack(IC2Items.CELL_EMPTY), t.getA(), t.getB());
+            });
+            IInput uranium = IC2CExtrasConfig.EXTRA_NUCLEAR.get() ? new ItemInput(ModItems.ENRICHED_URANIUM_INGOT) : new ItemTagInput(IC2Tags.INGOT_URANIUM);
+            r.registerFillable(new ItemStack(CraftingRecipes.getEmptyNuclearCell()), uranium, new ItemStack(IC2Items.URANIUM_ROD_SINGLE));
+            if (!IC2.CONFIG.enableHardEnrichedUranium.get() && IC2CExtrasConfig.EMPTY_NUCLEAR_ROD.get()){
+                r.removeFillable(new ItemStack(IC2Items.CELL_EMPTY), new ItemStack(IC2Items.INGOT_URANIUM_ENRICHED_REDSTONE));
+                r.registerFillable(new ItemStack(CraftingRecipes.getEmptyNuclearCell()), new ItemInput(IC2Items.INGOT_URANIUM_ENRICHED_REDSTONE), new ItemStack(IC2Items.URANIUM_ROD_REDSTONE_SINGLE));
+                r.removeFillable(new ItemStack(IC2Items.CELL_EMPTY), new ItemStack(IC2Items.INGOT_URANIUM_ENRICHED_BLAZE));
+                r.registerFillable(new ItemStack(CraftingRecipes.getEmptyNuclearCell()), new ItemInput(IC2Items.INGOT_URANIUM_ENRICHED_BLAZE), new ItemStack(IC2Items.URANIUM_ROD_BLAZE_SINGLE));
+                r.removeFillable(new ItemStack(IC2Items.CELL_EMPTY), new ItemStack(IC2Items.INGOT_URANIUM_ENRICHED_CHARCOAL));
+                r.registerFillable(new ItemStack(CraftingRecipes.getEmptyNuclearCell()), new ItemInput(IC2Items.INGOT_URANIUM_ENRICHED_CHARCOAL), new ItemStack(IC2Items.URANIUM_ROD_CHARCOAL_SINGLE));
+                r.removeFillable(new ItemStack(IC2Items.CELL_EMPTY), new ItemStack(IC2Items.INGOT_URANIUM_ENRICHED_NETHERSTAR));
+                r.registerFillable(new ItemStack(CraftingRecipes.getEmptyNuclearCell()), new ItemInput(IC2Items.INGOT_URANIUM_ENRICHED_NETHERSTAR), new ItemStack(IC2Items.URANIUM_ROD_NETHER_STAR_SINGLE));
+                r.removeFillable(new ItemStack(IC2Items.CELL_EMPTY), new ItemStack(IC2Items.INGOT_URANIUM_ENRICHED_ENDERPEARL));
+                r.registerFillable(new ItemStack(CraftingRecipes.getEmptyNuclearCell()), new ItemInput(IC2Items.INGOT_URANIUM_ENRICHED_ENDERPEARL), new ItemStack(IC2Items.URANIUM_ROD_ENDER_PEARL_SINGLE));
+            }
+            if (IC2CExtrasConfig.EXTRA_NUCLEAR.get()){
+                IUraniumRod[] rods = new IUraniumRod[]{Uranium238.INSTANCE, Uranium235.INSTANCE, Uranium233.INSTANCE, MOX.INSTANCE, Plutonium.INSTANCE, Thorium232.INSTANCE};
+                for (IUraniumRod rod : rods) {
+                    if (!rod.isEnrichedUranium() || !IC2.CONFIG.enableHardEnrichedUranium.get()) {
+                        String tag = rod == Uranium238.INSTANCE ? "uranium" : rod.getName().replace("_", "");
+                        r.registerFillable(new ItemStack(CraftingRecipes.getEmptyNuclearCell()), new ItemTagInput(IC2CExtrasTags.getForgeItemTag("ingots/" + tag)), rod.createSingleRod());
+                    }
+                }
             }
         });
     }
