@@ -22,9 +22,6 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.List;
 
 public class OreWashingPlantCategory extends BasicMachineCategory {
-    IDrawable background;
-    IDrawable progress;
-    IDrawable charge;
     IDrawable overlay;
     public OreWashingPlantCategory(IGuiHelper helper, RecipeType<IMachineRecipeList.RecipeEntry> location, ResourceLocation texture, ItemLike provider) {
         super(helper, location, texture, provider);
@@ -32,11 +29,6 @@ public class OreWashingPlantCategory extends BasicMachineCategory {
         this.overlay = helper.createDrawable(texture, 176, 33, 16, 58);
         progress = helper.drawableBuilder(texture, 176, 14, 20, 19).buildAnimated(150, IDrawableAnimated.StartDirection.LEFT, false);
         charge = helper.drawableBuilder(texture, 176, 0, 13, 14).buildAnimated(500, IDrawableAnimated.StartDirection.TOP, true);
-    }
-
-    @Override
-    public IDrawable getBackground() {
-        return background;
     }
 
     @Override

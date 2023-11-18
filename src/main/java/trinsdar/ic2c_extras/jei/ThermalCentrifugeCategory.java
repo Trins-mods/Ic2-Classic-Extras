@@ -24,9 +24,6 @@ import trinsdar.ic2c_extras.blockentity.TileEntityThermalCentrifuge;
 import java.util.List;
 
 public class ThermalCentrifugeCategory extends BasicMachineCategory {
-    IDrawable background;
-    IDrawable progress;
-    IDrawable charge;
     IDrawable heat;
     public ThermalCentrifugeCategory(IGuiHelper helper, RecipeType<IMachineRecipeList.RecipeEntry> location, ResourceLocation texture, ItemLike provider) {
         super(helper, location, texture, provider);
@@ -34,11 +31,6 @@ public class ThermalCentrifugeCategory extends BasicMachineCategory {
         progress = helper.drawableBuilder(texture, 176, 14, 45, 17).buildAnimated(150, IDrawableAnimated.StartDirection.LEFT, false);
         charge = helper.drawableBuilder(texture, 176, 0, 13, 14).buildAnimated(500, IDrawableAnimated.StartDirection.TOP, true);
         heat = helper.drawableBuilder(texture, 176, 31, 24, 17).buildAnimated(300, IDrawableAnimated.StartDirection.LEFT, false);
-    }
-
-    @Override
-    public IDrawable getBackground() {
-        return background;
     }
 
     @Override

@@ -17,9 +17,11 @@ import trinsdar.ic2c_extras.init.IC2CExtrasTags;
 import trinsdar.ic2c_extras.init.ModBlocks;
 import trinsdar.ic2c_extras.init.ModItems;
 
+import java.util.List;
+
 public class CropPlumbilia extends OreCrop {
     public CropPlumbilia() {
-        super("plumbilia", new CropProperties(8, 2, 0, 0, 2, 0), new Block[]{ModBlocks.LEAD_BLOCK, ModBlocks.LEAD_ORE, ModBlocks.DEEPSLATE_LEAD_ORE}, ModItems.LEAD_DUST, Component.literal("Trinsdar"), "Purple");
+        super("plumbilia", new CropProperties(8, 2, 0, 0, 2, 0), List.of(IC2CExtrasTags.getForgeBlockTag("ores/lead"), IC2CExtrasTags.getForgeBlockTag("storage_blocks/lead")), ModItems.LEAD_DUST, Component.literal("Trinsdar"), "Purple");
     }
 
     public TextureAtlasSprite getTexture(int stage) {
@@ -40,18 +42,6 @@ public class CropPlumbilia extends OreCrop {
     @Override
     public int getGrowthDuration(ICropTile cropTile) {
         return cropTile.getGrowthStage() == 3 ? 2200 : 1000;
-    }
-
-    @Override
-    public boolean canGrow(ICropTile cropTile) {
-        if (cropTile.getGrowthStage() == 3){
-            for (Block block : cropTile.getBlocksBelow()) {
-                if (block.defaultBlockState().is(IC2CExtrasTags.getForgeBlockTag("ores/lead")) || block.defaultBlockState().is(IC2CExtrasTags.getForgeBlockTag("storage_blocks/lead"))){
-                    return true;
-                }
-            }
-        }
-        return super.canGrow(cropTile);
     }
 
     @Override

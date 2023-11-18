@@ -5,6 +5,7 @@ import ic2.api.reactor.IReactorPlannerComponent;
 import ic2.api.reactor.ISteamReactor;
 import ic2.api.reactor.planner.ISimulatedReactor;
 import ic2.api.reactor.planner.SimulatedStack;
+import ic2.core.item.base.PropertiesBuilder;
 import ic2.core.item.reactor.ReactorUraniumRod;
 import ic2.core.item.reactor.base.IUraniumRod;
 import ic2.core.item.reactor.planner.SimulatedUranium;
@@ -16,7 +17,7 @@ import trinsdar.ic2c_extras.nuclear.MOX;
 
 public class ItemReactorRod extends ReactorUraniumRod {
     public ItemReactorRod(String itemName, IUraniumRod uranium, int rodCount, int componentId) {
-        super(itemName, "nuclear_rods", itemName.replace("_rod", ""), uranium, rodCount, componentId);
+        super(itemName, "nuclear_rods", itemName.replace("_rod", ""), new PropertiesBuilder().group(IC2CExtras.CREATIVE_TAB), uranium, rodCount, componentId);
         this.id = new ResourceLocation(IC2CExtras.MODID, itemName);
         IC2Items.registerItem(this);
     }

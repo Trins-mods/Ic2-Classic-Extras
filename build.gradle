@@ -53,7 +53,7 @@ dependencies {
 
     forge "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     //modImplementation fileTree(include: ['*.jar'], dir: 'libs')
-    modImplementation("curse.maven:ic2_classic-242942:4744334")
+    modImplementation("curse.maven:ic2_classic-242942:4874850")
     modImplementation("curse.maven:ic2c_additions-304040:4360883")
     modImplementation("curse.maven:curios-309927:3871347")
     modImplementation(include("maven.modrinth:carbon-config:l6LTuPIs"))
