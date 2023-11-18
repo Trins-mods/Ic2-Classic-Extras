@@ -10,6 +10,7 @@ import ic2.api.util.DirectionList;
 import ic2.core.block.base.cache.CapabilityCache;
 import ic2.core.block.base.cache.ICache;
 import ic2.core.block.base.features.IClickable;
+import ic2.core.block.machines.tiles.mv.RefineryTileEntity;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.fluid.InsertionTank;
 import ic2.core.inventory.container.IC2Container;
@@ -52,6 +53,8 @@ public class TileEntityOreWashingPlant extends TileEntityMultiOutput implements 
     public TileEntityOreWashingPlant(BlockPos pos, BlockState state) {
         super(pos, state,7, 8, 400, 32);
         fluidCache = new CapabilityCache<>(this, DirectionList.ALL, ForgeCapabilities.FLUID_HANDLER);
+        this.addCaches(fluidCache);
+        this.addCapability(ForgeCapabilities.FLUID_HANDLER, waterTank);
         this.waterTank.addListener(this);
         this.addGuiFields("waterTank");
     }
@@ -165,11 +168,6 @@ public class TileEntityOreWashingPlant extends TileEntityMultiOutput implements 
     @Override
     public IMachineRecipeList getRecipeList() {
         return MachineRecipes.ORE_WASHING_PLANT;
-    }
-
-    @Override
-    public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
-        return super.getCapability(cap, side);
     }
 
     public static int getRequiredWater(IRecipeOutput output) {
