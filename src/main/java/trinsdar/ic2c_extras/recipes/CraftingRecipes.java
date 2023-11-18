@@ -4,6 +4,11 @@ package trinsdar.ic2c_extras.recipes;
 import ic2.api.recipes.registries.IAdvancedCraftingManager;
 import ic2.core.IC2;
 import ic2.core.item.reactor.base.IUraniumRod;
+import ic2.core.item.reactor.urantypes.BlazeUranium;
+import ic2.core.item.reactor.urantypes.CharcoalUranium;
+import ic2.core.item.reactor.urantypes.EnderUranium;
+import ic2.core.item.reactor.urantypes.NetherStarUranium;
+import ic2.core.item.reactor.urantypes.RedstoneUranium;
 import ic2.core.platform.registries.IC2Blocks;
 import ic2.core.platform.registries.IC2Items;
 import ic2.core.platform.registries.IC2Tags;
@@ -48,17 +53,23 @@ public class CraftingRecipes {
         registry.addShapelessRecipe(new ResourceLocation(IC2CExtras.MODID, "plating"), new ItemStack(IC2Items.PLATING), IC2CExtrasTags.getForgeItemTag("ingots/lead"), IC2Items.PLATE_ADVANCED_ALLOY);
         registry.addShapedRecipe(new ResourceLocation(IC2CExtras.MODID, "containment_box"), new ItemStack(ModItems.CONTAINMENT_BOX), " L ", "LCL", " L ", 'L', IC2CExtrasTags.getForgeItemTag("ingots/lead"), 'C', IC2CExtrasTags.getForgeItemTag("chests/wooden"));
 
-        registry.addShapelessIC2Recipe("uranium__single_2", new ItemStack(IC2Items.URANIUM_ROD_SINGLE), getEmptyNuclearCell(), getUraniumRodIngredientItem());
-        registry.addShapelessIC2Recipe("uranium__single_2_tag", new ItemStack(IC2Items.URANIUM_ROD_SINGLE), getEmptyNuclearCell(), getUraniumRodIngredient());
-        registry.addShapedIC2Recipe("uranium__near_depleted", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', getUraniumRodIngredientItem());
-        registry.addShapedIC2Recipe("uranium__near_depleted_tag", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', getUraniumRodIngredient());
+        registry.addShapelessIC2Recipe("uranium__single_2", new ItemStack(IC2Items.URANIUM_ROD_SINGLE), getEmptyNuclearCell(), getUraniumRodIngredient());
+        registry.removeCraftingRecipe(new ResourceLocation("ic2", "uranium__single_2_tag"));
+        registry.removeCraftingRecipe(new ResourceLocation("ic2", "uranium__near_depleted_tag"));
+        registry.addShapedIC2Recipe("uranium__near_depleted", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', getUraniumRodIngredient());
         if (IC2CExtrasConfig.EMPTY_NUCLEAR_ROD.get()){
             registry.addShapedRecipe(id("empty_nuclear_rod"), new ItemStack(ModItems.EMPTY_NUCLEAR_ROD, 4), " I ", "I I", " I ", 'I', IC2Tags.INGOT_REFINED_IRON);
             registry.addShapedIC2Recipe("uranium_redstone_near_depleted", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED_REDSTONE, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', IC2Items.INGOT_URANIUM_ENRICHED_REDSTONE);
             registry.addShapedIC2Recipe("uranium_blaze_near_depleted", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED_BLAZE, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', IC2Items.INGOT_URANIUM_ENRICHED_BLAZE);
-            registry.addShapedIC2Recipe("uranium_ender_pearl_near_depleted", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED_ENDER_PEARL, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', IC2Items.INGOT_URANIUM_ENRICHED_ENDERPEARL);
+            registry.addShapedIC2Recipe("uranium_ender_near_depleted", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED_ENDER_PEARL, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', IC2Items.INGOT_URANIUM_ENRICHED_ENDERPEARL);
             registry.addShapedIC2Recipe("uranium_nether_star_near_depleted", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED_NETHER_STAR, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', IC2Items.INGOT_URANIUM_ENRICHED_NETHERSTAR);
             registry.addShapedIC2Recipe("uranium_charcoal_near_depleted", new ItemStack(IC2Items.URANIUM_ROD_NEAR_DEPLETED_CHARCOAL, 8), "CCC", "CUC", "CCC", 'C', getEmptyNuclearCell(), 'U', IC2Items.INGOT_URANIUM_ENRICHED_CHARCOAL);
+            IUraniumRod[] rods = new IUraniumRod[]{RedstoneUranium.INSTANCE, BlazeUranium.INSTANCE, EnderUranium.INSTANCE, NetherStarUranium.INSTANCE, CharcoalUranium.INSTANCE};
+            for (IUraniumRod rod : rods) {
+                if (!rod.isEnrichedUranium() || !IC2.CONFIG.enableHardEnrichedUranium.get()) {
+                    registry.addShapelessIC2Recipe("uranium_" + rod.getName() + "_single_2", rod.createSingleRod(), getEmptyNuclearCell(), rod.getBaseIngot());
+                }
+            }
         }
         if (IC2CExtrasConfig.EXTRA_NUCLEAR.get()){
             registry.addShapedRecipe(id("thermo_electric_generator"), new ItemStack(ModBlocks.THERMO_ELECTRIC_GENERATOR), "III", "IRI", "ITI", 'I', ModItems.DENSE_IRON_PLATE, 'R', IC2Blocks.NUCLEAR_REACTOR, 'T', IC2Blocks.THERMAL_GENERATOR);
@@ -112,7 +123,8 @@ public class CraftingRecipes {
     }
 
     private static void addRodRecipes(IAdvancedCraftingManager recipes, IUraniumRod rod){
-        recipes.addShapedRecipe(id("near_depleted_" + rod.getName()), rod.createNearDepletedRod(8), "XXX", "XYX", "XXX", 'Y', rod.getBaseIngot(), 'X', getEmptyNuclearCell());
+        String tag = rod == Uranium238.INSTANCE ? "uranium" : rod.getName().replace("_", "");
+        recipes.addShapedRecipe(id("near_depleted_" + rod.getName()), rod.createNearDepletedRod(8), "XXX", "XYX", "XXX", 'Y', IC2CExtrasTags.getForgeItemTag("ingots/" + tag), 'X', getEmptyNuclearCell());
         recipes.addShapelessRecipe(id("isotopic_" + rod.getName() + "_0"), rod.createIsotopicRod(), rod.createNearDepletedRod(1), IC2Tags.DUST_COAL);
         recipes.addShapelessRecipe(id("isotopic_" + rod.getName() + "_1"), rod.createIsotopicRod(), rod.createNearDepletedRod(), IC2Tags.DUST_CHARCOAL);
         recipes.addShapelessRecipe(id("single_" + rod.getName() + "_0"), rod.createSingleRod(), IC2Tags.DUST_COAL, rod.createReEnrichedRod());
@@ -121,7 +133,7 @@ public class CraftingRecipes {
         recipes.addShapedRecipe(id("quad_" + rod.getName() + "_0"), rod.createQuadRod(), " U ", "CCC", " U ", 'U', rod.createDualRod(), 'C', IC2Items.PLATE_DENSE_COPPER);
         recipes.addShapedRecipe(id("quad_" + rod.getName() + "_1"), rod.createQuadRod(), "UCU", "CCC", "UCU", 'U', rod.createSingleRod(), 'C', IC2Items.PLATE_DENSE_COPPER);
         if (!rod.isEnrichedUranium() || !IC2.CONFIG.enableHardEnrichedUranium.get()) {
-            recipes.addShapelessRecipe(id("single_" + rod.getName() + "_2"), rod.createSingleRod(), getEmptyNuclearCell(), rod.getBaseIngot());
+            recipes.addShapelessRecipe(id("single_" + rod.getName() + "_2"), rod.createSingleRod(), getEmptyNuclearCell(), IC2CExtrasTags.getForgeItemTag("ingots/" + tag));
         }
     }
 
