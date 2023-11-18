@@ -6,7 +6,7 @@ issueTrackerURL="https://github.com/Trins-mods/Ic2-Classic-Extras/issues"
 [[mods]]
 modId="ic2c_extras"
 version="${version}"
-displayName="Ic2c Extras"
+displayName="IC2C Extras"
 displayURL="https://github.com/Trins-mods/Ic2-Classic-Extras"
 credits="The Forge and FML guys for forge, CrossVas for helping with some things."
 authors="Trinsdar"
@@ -26,6 +26,6 @@ description='''Extra things for Ic2 classic'''
 [[dependencies.ic2c_extras]]
     modId="ic2"
     mandatory=true
-    versionRange="[1.19.2-2.0.7,)"
+    versionRange="[1.19.2-2.0.8,)"
     ordering="AFTER"
     side="BOTH"
