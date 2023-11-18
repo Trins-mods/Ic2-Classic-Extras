@@ -51,6 +51,7 @@ public class IC2CExtrasJeiPlugin implements IModPlugin {
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.ORE_WASHING_PLANT), ORE_WASHING_PLANT);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.THERMAL_WASHER), ORE_WASHING_PLANT);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.THERMAL_CENTRIFUGE), THERMAL_CENTRIFUGE);
     }
 

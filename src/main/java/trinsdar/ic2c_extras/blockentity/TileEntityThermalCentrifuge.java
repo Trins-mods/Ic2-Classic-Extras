@@ -113,6 +113,11 @@ public class TileEntityThermalCentrifuge extends TileEntityMultiOutput {
         return ModBlocks.THERMAL_CENTRIFUGE_TYPE;
     }
 
+    @Override
+    public int[] getOutputSlots() {
+        return new int[]{2,3,4};
+    }
+
     /*@Override
     public double getWrenchDropRate() {
         return 1.0D;

@@ -50,6 +50,7 @@ public class CraftingRecipes {
         registry.addShapedRecipe(id("heat_conductor"), new ItemStack(ModItems.HEAT_CONDUCTOR), "RRC", "RCR", "CRR", 'R', IC2Items.RUBBER, 'C', IC2Tags.INGOT_COPPER);
         registry.addShapedRecipe(new ResourceLocation(IC2CExtrasConfig.REACTOR_CHAMBER_REQUIRES_LEAD.get() ? "ic2" : IC2CExtras.MODID, "reactor_chamber"), new ItemStack(IC2Blocks.REACTOR_CHAMBER), " D ", "DMD", " D ", 'D', ModItems.DENSE_LEAD_PLATE, 'M', IC2Blocks.MACHINE_BLOCK);
         registry.addShapedRecipe(id("ore_washing_plant"), new ItemStack(ModBlocks.ORE_WASHING_PLANT), "RRR", "BMB", "cCc", 'R', IC2Tags.INGOT_REFINED_IRON, 'B', Items.BUCKET, 'M', IC2Blocks.MACHINE_BLOCK, 'c', IC2Items.CARBON_MESH, 'C', IC2Items.CIRCUIT);
+        registry.addShapedRecipe(id("thermal_washer"), new ItemStack(ModBlocks.THERMAL_WASHER), "BBB", "BOB", "BMB", 'B', Items.BUCKET, 'O', ModBlocks.ORE_WASHING_PLANT, 'M', IC2Blocks.ADVANCED_MACHINE_BLOCK);
         registry.addShapelessRecipe(new ResourceLocation(IC2CExtras.MODID, "plating"), new ItemStack(IC2Items.PLATING), IC2CExtrasTags.getForgeItemTag("ingots/lead"), IC2Items.PLATE_ADVANCED_ALLOY);
         registry.addShapedRecipe(new ResourceLocation(IC2CExtras.MODID, "containment_box"), new ItemStack(ModItems.CONTAINMENT_BOX), " L ", "LCL", " L ", 'L', IC2CExtrasTags.getForgeItemTag("ingots/lead"), 'C', IC2CExtrasTags.getForgeItemTag("chests/wooden"));
 
