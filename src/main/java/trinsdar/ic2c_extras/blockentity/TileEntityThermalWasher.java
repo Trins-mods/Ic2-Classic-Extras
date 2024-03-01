@@ -116,12 +116,6 @@ public class TileEntityThermalWasher extends BaseAdvMachineTileEntity implements
     }
 
     @Override
-    public boolean canProcess() {
-        if (usedRecipe == null) return false;
-        return super.canProcess() && waterTank.getFluidAmount() >= getRequiredWater(usedRecipe.getOutput());
-    }
-
-    @Override
     protected RecipeResult isRecipeStillValid(int slot, IMachineRecipeList.RecipeEntry entry) {
         if (waterTank.getFluidAmount() >= getRequiredWater(entry.getOutput())){
             return RecipeResult.SUCCESS;
