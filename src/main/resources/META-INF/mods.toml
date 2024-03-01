@@ -26,6 +26,6 @@ description='''Extra things for Ic2 classic'''
 [[dependencies.ic2c_extras]]
     modId="ic2"
     mandatory=true
-    versionRange="[1.19.2-2.0.8,)"
+    versionRange="[1.19.2-2.0.9,)"
     ordering="AFTER"
     side="BOTH"
