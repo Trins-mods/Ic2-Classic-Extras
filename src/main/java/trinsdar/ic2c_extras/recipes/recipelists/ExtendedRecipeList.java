@@ -1,5 +1,6 @@
 package trinsdar.ic2c_extras.recipes.recipelists;
 
+import ic2.api.recipes.ingridients.generators.ItemWithNBTGenerator;
 import ic2.api.recipes.ingridients.recipes.SimpleRecipeOutput;
 import ic2.api.recipes.misc.RecipeMods;
 import ic2.api.recipes.registries.IMachineRecipeList;
@@ -11,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.Arrays;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class ExtendedRecipeList extends MachineRecipeList {
     public ExtendedRecipeList(String folder, Consumer<ExtendedRecipeList> reloader) {
@@ -18,11 +20,11 @@ public class ExtendedRecipeList extends MachineRecipeList {
     }
 
     public void addOreWashingRecipe(ResourceLocation id, ItemStack[] output, int water, Object... inputs) {
-        this.addRecipe(id, new SimpleRecipeOutput(Arrays.asList(output), createNeededWater(water)), inputs);
+        this.addRecipe(id, new SimpleRecipeOutput(Arrays.stream(output).map(s -> new ItemWithNBTGenerator(s, s.getCount())).collect(Collectors.toList()), createNeededWater(water)), inputs);
     }
 
     public void addThermalCentrifugingRecipe(ResourceLocation id, ItemStack[] output, int heat, int timeAdd, Object... inputs) {
-        this.addRecipe(id, new SimpleRecipeOutput(Arrays.asList(output), createNeededHeat(heat, timeAdd)), inputs);
+        this.addRecipe(id, new SimpleRecipeOutput(Arrays.stream(output).map(s -> new ItemWithNBTGenerator(s, s.getCount())).collect(Collectors.toList()), createNeededHeat(heat, timeAdd)), inputs);
     }
 
     public void registerExtendedListener(Consumer<ExtendedRecipeList> listener) {
