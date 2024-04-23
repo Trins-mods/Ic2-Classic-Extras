@@ -42,6 +42,14 @@ repositories{
     maven {
         url "https://cursemaven.com"
     }
+    maven {
+        url = "https://repo.repsy.io/mvn/trinsdar/gregtech-intergalactical/"
+    }
+    //botarium
+    maven {
+        name = "Resourceful Bees Maven"
+        url = "https://nexus.resourcefulbees.com/repository/maven-public/"
+    }
 }
 
 dependencies {
@@ -58,6 +66,7 @@ dependencies {
     modImplementation("curse.maven:curios-309927:3871347")
     modImplementation(include("maven.modrinth:carbon-config:l6LTuPIs"))
     modImplementation("curse.maven:jei-238222:4712866")
+    modImplementation("io.github.gregtechintergalactical:tesseract-forge:${tesseract_version}")
 }
 
 processResources {
