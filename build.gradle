@@ -105,7 +105,9 @@ dependencies {
     implementation(fg.deobf("curse.maven:ic2c_additions-304040:4360883"))
     implementation(fg.deobf("curse.maven:curios-309927:3871347"))
     implementation(fg.deobf("maven.modrinth:carbon-config:l6LTuPIs"))
-    jarJar("maven.modrinth:carbon-config:mJxg4ZgM")
+    jarJar("maven.modrinth:carbon-config:mJxg4ZgM") {
+        jarJar.ranged(it, "[1.19.2-1.2.6,)")
+    }
     implementation(fg.deobf("curse.maven:jei-238222:4712866"))
     implementation(fg.deobf("io.github.gregtechintergalactical:tesseract-forge:${tesseract_version}"))
 }
