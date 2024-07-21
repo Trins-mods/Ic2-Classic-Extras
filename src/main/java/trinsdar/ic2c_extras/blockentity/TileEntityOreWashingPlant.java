@@ -110,7 +110,7 @@ public class TileEntityOreWashingPlant extends TileEntityMultiOutput implements 
     @Override
     protected RecipeResult isRecipeStillValid(int slot, IMachineRecipeList.RecipeEntry entry) {
         if (waterTank.getFluidAmount() >= getRequiredWater(entry.getOutput())){
-            return RecipeResult.SUCCESS;
+            return RecipeResult.IGNORE;
         }
         return RecipeResult.PASS;
     }
