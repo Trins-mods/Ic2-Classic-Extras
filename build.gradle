@@ -108,6 +108,10 @@ dependencies {
     jarJar("maven.modrinth:carbon-config:mJxg4ZgM") {
         jarJar.ranged(it, "[1.19.2-1.2.6,)")
     }
+    jarJar("earth.terrarium:botarium-forge-${project.minecraft_version}:1.8.2"){
+        jarJar.ranged(it, "[1.8.2,)")
+    }
+    implementation(fg.deobf("earth.terrarium:botarium-forge-${project.minecraft_version}:1.8.2"))
     implementation(fg.deobf("curse.maven:jei-238222:4712866"))
     implementation(fg.deobf("io.github.gregtechintergalactical:tesseract-forge:${tesseract_version}"))
 }
