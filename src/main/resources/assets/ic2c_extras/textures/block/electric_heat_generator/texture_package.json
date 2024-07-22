@@ -1,0 +1,14 @@
+{
+	"active_down": "ic2c_extras:block/base/bottom",
+	"active_east": "ic2c_extras:block/electric_heat_generator/active_side",
+	"active_north": "ic2c_extras:block/electric_heat_generator/active_side",
+	"active_south": "ic2c_extras:block/electric_heat_generator/active_front",
+	"active_up": "ic2c_extras:block/electric_heat_generator/active_top",
+	"active_west": "ic2c_extras:block/electric_heat_generator/active_side",
+	"inactive_down": "ic2c_extras:block/base/bottom",
+	"inactive_east": "ic2c_extras:block/electric_heat_generator/inactive_side",
+	"inactive_north": "ic2c_extras:block/electric_heat_generator/inactive_side",
+	"inactive_south": "ic2c_extras:block/electric_heat_generator/inactive_front",
+	"inactive_up": "ic2c_extras:block/electric_heat_generator/inactive_top",
+	"inactive_west": "ic2c_extras:block/electric_heat_generator/inactive_side"
+}
