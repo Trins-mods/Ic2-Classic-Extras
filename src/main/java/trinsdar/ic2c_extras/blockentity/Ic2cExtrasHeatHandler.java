@@ -37,7 +37,7 @@ public class Ic2cExtrasHeatHandler implements IHeatHandler {
     @Override
     public int insert(int heat, boolean simulate) {
         if (!canInput()) return 0;
-        int insert = Math.min(maxInput, Math.min(maxHeat - this.heat, heat));
+        int insert = Math.min(maxInput, Math.min(getHeatCap() - this.heat, heat));
         return insertInternal(insert, simulate);
     }
 
@@ -49,7 +49,7 @@ public class Ic2cExtrasHeatHandler implements IHeatHandler {
     }
 
     public int insertInternal(int heat, boolean simulate) {
-        int insert = Math.min(maxHeat - this.heat, heat);
+        int insert = Math.min(getHeatCap() - this.heat, heat);
         if (!simulate) this.heat += insert;
         return insert;
     }

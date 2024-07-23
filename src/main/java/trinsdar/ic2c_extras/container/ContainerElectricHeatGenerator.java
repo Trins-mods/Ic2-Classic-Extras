@@ -3,6 +3,7 @@ package trinsdar.ic2c_extras.container;
 import ic2.core.block.machines.containers.lv.BasicMachineContainer;
 import ic2.core.inventory.container.ContainerComponent;
 import ic2.core.inventory.filter.IFilter;
+import ic2.core.inventory.gui.IC2Screen;
 import ic2.core.inventory.gui.components.simple.ChargebarComponent;
 import ic2.core.inventory.slot.FilterSlot;
 import ic2.core.utils.math.geometry.Box2i;
@@ -23,11 +24,18 @@ public class ContainerElectricHeatGenerator extends ContainerComponent<BlockEnti
             this.addSlot(new FilterSlot(key, i + 1, 44 + (18 * i), 27, filter));
             this.addSlot(new FilterSlot(key, i + 6, 44 + (18 * i), 45, filter));
         }
+        this.addPlayerInventory(player.getInventory());
         this.addComponent(new ChargebarComponent(CHARGE_BOX, key, BasicMachineContainer.CHARGE_POS, true));
     }
 
     @Override
     public ResourceLocation getTexture() {
         return GUI_TEXTURE;
+    }
+
+    @Override
+    public void onGuiLoaded(IC2Screen screen) {
+        super.onGuiLoaded(screen);
+        screen.clearFlag(IC2Screen.SHOW_PLAYER_INVENTORY_NAME);
     }
 }

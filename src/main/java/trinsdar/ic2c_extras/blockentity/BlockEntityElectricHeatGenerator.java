@@ -9,6 +9,12 @@ import ic2.core.block.base.tiles.BaseElectricTileEntity;
 import ic2.core.inventory.base.IHasGui;
 import ic2.core.inventory.base.ITileGui;
 import ic2.core.inventory.container.IC2Container;
+import ic2.core.inventory.filter.SpecialFilters;
+import ic2.core.inventory.filter.special.ElectricItemFilter;
+import ic2.core.inventory.filter.special.MachineFilter;
+import ic2.core.inventory.handler.AccessRule;
+import ic2.core.inventory.handler.InventoryHandler;
+import ic2.core.inventory.handler.SlotType;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -31,7 +37,7 @@ public class BlockEntityElectricHeatGenerator extends BaseElectricTileEntity imp
     ICache<IHeatHandler> heatCache;
     int coilCount = 0;
     public BlockEntityElectricHeatGenerator(BlockPos pos, BlockState state) {
-        super(pos, state, 1, 32, 10000);
+        super(pos, state, 11, 32, 10000);
         heatHandler = new Ic2cExtrasHeatHandler(0, 0, 32, this){
             @Override
             public int getHeatCap() {
@@ -40,7 +46,19 @@ public class BlockEntityElectricHeatGenerator extends BaseElectricTileEntity imp
         };
         heatCache = new CapabilityCache<>(this, DirectionList.ALL, TesseractCaps.HEAT_CAPABILITY);
         this.addCaches(heatCache);
+        this.setFuelSlot(0);
         this.addCapability(TesseractCaps.HEAT_CAPABILITY, heatHandler);
+    }
+
+    @Override
+    protected void addSlotInfo(InventoryHandler handler) {
+        handler.registerBlockSides(DirectionList.ALL);
+        handler.registerBlockAccess(DirectionList.ALL, AccessRule.BOTH);
+        handler.registerSlotAccess(AccessRule.BOTH, 0);
+        handler.registerSlotsForSide(DirectionList.UP.invert(), 0);
+        handler.registerInputFilter(SpecialFilters.createChargeFilter(), 0);
+        handler.registerOutputFilter(ElectricItemFilter.NOT_DISCHARGE_FILTER, 0);
+        handler.registerNamedSlot(SlotType.BATTERY, 0);
     }
 
     @Override
