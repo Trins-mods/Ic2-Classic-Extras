@@ -1,6 +1,5 @@
 package trinsdar.ic2c_extras.init;
 
-import ic2.core.IC2;
 import ic2.core.block.base.drops.IBlockDropProvider;
 import ic2.core.platform.registries.IC2Tiles;
 import ic2.core.utils.tooltips.helper.ITooltipProvider;
@@ -13,10 +12,10 @@ import trinsdar.ic2c_extras.block.BlockMachine;
 import trinsdar.ic2c_extras.block.BlockOre;
 import trinsdar.ic2c_extras.block.BlockResource;
 import trinsdar.ic2c_extras.blockentity.BlockEntityElectricHeatGenerator;
-import trinsdar.ic2c_extras.blockentity.TileEntityOreWashingPlant;
-import trinsdar.ic2c_extras.blockentity.TileEntityThermalCentrifuge;
-import trinsdar.ic2c_extras.blockentity.TileEntityThermalWasher;
-import trinsdar.ic2c_extras.blockentity.TileEntityThermoElectricGenerator;
+import trinsdar.ic2c_extras.blockentity.BlockEntityOreWashingPlant;
+import trinsdar.ic2c_extras.blockentity.BlockEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.blockentity.BlockEntityThermalWasher;
+import trinsdar.ic2c_extras.blockentity.BlockEntityThermoElectricGenerator;
 
 public class ModBlocks {
 
@@ -25,11 +24,11 @@ public class ModBlocks {
     public static final Block LEAD_BLOCK = new BlockResource("lead_block", 2, BlockBehaviour.Properties.of(Material.METAL).sound(SoundType.METAL).strength(5.0f, 6.0f).requiresCorrectToolForDrops());
     public static final Block RAW_LEAD_BLOCK = new BlockResource("raw_lead_block", 1, BlockBehaviour.Properties.of(Material.STONE).sound(SoundType.STONE).strength(4.0f, 5.0f).requiresCorrectToolForDrops());
 
-    public static final BlockEntityType<TileEntityThermalCentrifuge> THERMAL_CENTRIFUGE_TYPE = IC2Tiles.createTile("thermal_centrifuge", TileEntityThermalCentrifuge::new);
-    public static final BlockEntityType<TileEntityOreWashingPlant> ORE_WASHING_PLANT_TYPE = IC2Tiles.createTile("ore_washing_plant", TileEntityOreWashingPlant::new);
-    public static final BlockEntityType<TileEntityThermalWasher> THERMAL_WASHER_TYPE = IC2Tiles.createTile("thermal_washer", TileEntityThermalWasher::new);
+    public static final BlockEntityType<BlockEntityThermalCentrifuge> THERMAL_CENTRIFUGE_TYPE = IC2Tiles.createTile("thermal_centrifuge", BlockEntityThermalCentrifuge::new);
+    public static final BlockEntityType<BlockEntityOreWashingPlant> ORE_WASHING_PLANT_TYPE = IC2Tiles.createTile("ore_washing_plant", BlockEntityOreWashingPlant::new);
+    public static final BlockEntityType<BlockEntityThermalWasher> THERMAL_WASHER_TYPE = IC2Tiles.createTile("thermal_washer", BlockEntityThermalWasher::new);
     public static final BlockEntityType<BlockEntityElectricHeatGenerator> ELECTRIC_HEAT_GENERATOR_TYPE = IC2Tiles.createTile("electric_heat_generator", BlockEntityElectricHeatGenerator::new);
-    public static final BlockEntityType<TileEntityThermoElectricGenerator> THERMO_ELECTRIC_GENERATOR_TYPE = IC2Tiles.createTile("thermo_electric_generator", TileEntityThermoElectricGenerator::new);
+    public static final BlockEntityType<BlockEntityThermoElectricGenerator> THERMO_ELECTRIC_GENERATOR_TYPE = IC2Tiles.createTile("thermo_electric_generator", BlockEntityThermoElectricGenerator::new);
 
     public static final Block THERMAL_CENTRIFUGE = new BlockMachine("thermal_centrifuge", IBlockDropProvider.SELF_OR_ADV_MACHINE, THERMAL_CENTRIFUGE_TYPE).addTooltip(ITooltipProvider.MV_MACHINE).addTooltip(ITooltipProvider.consumption(48));
     public static final Block ORE_WASHING_PLANT = new BlockMachine("ore_washing_plant", IBlockDropProvider.SELF_OR_MACHINE, ORE_WASHING_PLANT_TYPE).addTooltip(ITooltipProvider.LV_MACHINE).addTooltip(ITooltipProvider.consumption(8));

@@ -10,7 +10,6 @@ import ic2.api.util.DirectionList;
 import ic2.core.block.base.cache.CapabilityCache;
 import ic2.core.block.base.cache.ICache;
 import ic2.core.block.base.features.IClickable;
-import ic2.core.block.machines.tiles.mv.RefineryTileEntity;
 import ic2.core.fluid.IC2Tank;
 import ic2.core.fluid.InsertionTank;
 import ic2.core.inventory.container.IC2Container;
@@ -32,9 +31,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import trinsdar.ic2c_extras.container.ContainerOreWashingPlant;
 import trinsdar.ic2c_extras.init.IC2CExtrasSounds;
@@ -43,14 +40,14 @@ import trinsdar.ic2c_extras.recipes.MachineRecipes;
 
 import java.util.function.Consumer;
 
-public class TileEntityOreWashingPlant extends TileEntityMultiOutput implements Consumer<IC2Tank>, IClickable, IFluidMachine {
+public class BlockEntityOreWashingPlant extends BlockEntityMultiOutput implements Consumer<IC2Tank>, IClickable, IFluidMachine {
     @NetworkInfo
     private InsertionTank waterTank = new InsertionTank(16000, fluid -> {
         return fluid.getFluid() == Fluids.WATER;
     });
 
     ICache<IFluidHandler> fluidCache;
-    public TileEntityOreWashingPlant(BlockPos pos, BlockState state) {
+    public BlockEntityOreWashingPlant(BlockPos pos, BlockState state) {
         super(pos, state,5, 8, 400, 32);
         fluidCache = new CapabilityCache<>(this, DirectionList.ALL, ForgeCapabilities.FLUID_HANDLER);
         this.addCaches(fluidCache);

@@ -8,17 +8,17 @@ import ic2.core.utils.math.geometry.Vec2i;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import trinsdar.ic2c_extras.blockentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.blockentity.BlockEntityThermalCentrifuge;
 
 import java.util.Arrays;
 import java.util.Set;
 import java.util.function.Consumer;
 
 public class HeatComponent extends GuiWidget {
-    TileEntityThermalCentrifuge block;
+    BlockEntityThermalCentrifuge block;
     Vec2i texPos;
 
-    public HeatComponent(TileEntityThermalCentrifuge tile, Box2i box, Vec2i pos) {
+    public HeatComponent(BlockEntityThermalCentrifuge tile, Box2i box, Vec2i pos) {
         super(box);
         this.block = tile;
         this.texPos = pos;

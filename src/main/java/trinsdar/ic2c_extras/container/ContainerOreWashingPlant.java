@@ -3,7 +3,6 @@ package trinsdar.ic2c_extras.container;
 
 import ic2.core.block.machines.containers.lv.BasicMachineContainer;
 import ic2.core.inventory.container.ContainerComponent;
-import ic2.core.inventory.filter.IFilter;
 import ic2.core.inventory.gui.components.simple.ChargebarComponent;
 import ic2.core.inventory.gui.components.simple.ProgressComponent;
 import ic2.core.inventory.gui.components.simple.TankComponent;
@@ -14,15 +13,12 @@ import ic2.core.utils.math.geometry.Box2i;
 import ic2.core.utils.math.geometry.Vec2i;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import trinsdar.ic2c_extras.IC2CExtras;
-import trinsdar.ic2c_extras.blockentity.TileEntityOreWashingPlant;
+import trinsdar.ic2c_extras.blockentity.BlockEntityOreWashingPlant;
 
-public class ContainerOreWashingPlant extends ContainerComponent<TileEntityOreWashingPlant> {
+public class ContainerOreWashingPlant extends ContainerComponent<BlockEntityOreWashingPlant> {
     public static final ResourceLocation GUI_TEXTURE = new ResourceLocation(IC2CExtras.MODID, "textures/gui/ore_washing_plant.png");
-    public ContainerOreWashingPlant(TileEntityOreWashingPlant tile, Player player, int windowId) {
+    public ContainerOreWashingPlant(BlockEntityOreWashingPlant tile, Player player, int windowId) {
         super(tile, player, windowId);
         this.addSlot(FilterSlot.createDischargeSlot(tile, tile.tier, 0, 56, 53));
         this.addSlot(new FilterSlot(tile, 1, 56, 17, (T) -> {

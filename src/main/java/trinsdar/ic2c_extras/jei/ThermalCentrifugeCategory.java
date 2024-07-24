@@ -12,14 +12,13 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
-import trinsdar.ic2c_extras.blockentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.blockentity.BlockEntityThermalCentrifuge;
 
 import java.util.List;
 
@@ -40,7 +39,7 @@ public class ThermalCentrifugeCategory extends BasicMachineCategory {
         this.charge.draw(stack, 4, 24);
         int duration = getDuration(recipe);
         Minecraft.getInstance().font.drawShadow(stack, Component.translatable("jei_info.ic2c_extras.ticks", duration), 3, 60, 0xffffff);
-        int heat = TileEntityThermalCentrifuge.getRequiredHeat(recipe.getOutput());
+        int heat = BlockEntityThermalCentrifuge.getRequiredHeat(recipe.getOutput());
         Minecraft.getInstance().font.drawShadow(stack, Component.translatable("jei_info.ic2c_extras.heat", heat), 35,12, 0xFFFFFF);
     }
 

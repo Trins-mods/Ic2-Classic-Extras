@@ -11,7 +11,6 @@ import ic2.core.block.base.cache.ICache;
 import ic2.core.block.base.features.IClickable;
 import ic2.core.block.base.tiles.impls.machine.single.BaseAdvMachineTileEntity;
 import ic2.core.block.machines.containers.mv.AdvMachineContainer;
-import ic2.core.block.machines.tiles.mv.CentrifugalExtractorTileEntity;
 import ic2.core.block.machines.tiles.mv.InductionFurnaceTileEntity;
 import ic2.core.fluid.InsertionTank;
 import ic2.core.inventory.gui.components.simple.SpeedComponent;
@@ -41,9 +40,9 @@ import trinsdar.ic2c_extras.init.IC2CExtrasSounds;
 import trinsdar.ic2c_extras.init.ModBlocks;
 import trinsdar.ic2c_extras.recipes.MachineRecipes;
 
-import static trinsdar.ic2c_extras.blockentity.TileEntityOreWashingPlant.getRequiredWater;
+import static trinsdar.ic2c_extras.blockentity.BlockEntityOreWashingPlant.getRequiredWater;
 
-public class TileEntityThermalWasher extends BaseAdvMachineTileEntity implements IClickable, IFluidMachine {
+public class BlockEntityThermalWasher extends BaseAdvMachineTileEntity implements IClickable, IFluidMachine {
 
     public static final ResourceLocation GUI_TEXTURE = new ResourceLocation(IC2CExtras.MODID, "textures/gui/thermal_washer.png");
     @NetworkInfo
@@ -52,7 +51,7 @@ public class TileEntityThermalWasher extends BaseAdvMachineTileEntity implements
     });
 
     ICache<IFluidHandler> fluidCache;
-    public TileEntityThermalWasher(BlockPos pos, BlockState state) {
+    public BlockEntityThermalWasher(BlockPos pos, BlockState state) {
         super(pos, state, 5, 16, 4000);
         fluidCache = new CapabilityCache<>(this, DirectionList.ALL, ForgeCapabilities.FLUID_HANDLER);
         this.addCaches(fluidCache);

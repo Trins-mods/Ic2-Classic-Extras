@@ -12,10 +12,10 @@ import ic2.core.utils.math.geometry.Vec2i;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import trinsdar.ic2c_extras.IC2CExtras;
-import trinsdar.ic2c_extras.blockentity.TileEntityThermalCentrifuge;
+import trinsdar.ic2c_extras.blockentity.BlockEntityThermalCentrifuge;
 import trinsdar.ic2c_extras.container.component.HeatComponent;
 
-public class ContainerThermalCentrifuge extends ContainerComponent<TileEntityThermalCentrifuge> {
+public class ContainerThermalCentrifuge extends ContainerComponent<BlockEntityThermalCentrifuge> {
     public static final ResourceLocation GUI_TEXTURE = new ResourceLocation(IC2CExtras.MODID, "textures/gui/thermal_centrifuge.png");
 
     public static final Box2i MACHINE_CHARGE_BOX = new Box2i(17, 36, 14, 14);
@@ -25,7 +25,7 @@ public class ContainerThermalCentrifuge extends ContainerComponent<TileEntityThe
     public static final Box2i MACHINE_HEAT_BOX = new Box2i(56, 52, 24, 17);
     public static final Vec2i MACHINE_HEAT_POS = new Vec2i(176, 31);
 
-    public ContainerThermalCentrifuge(TileEntityThermalCentrifuge tile, Player player, int id) {
+    public ContainerThermalCentrifuge(BlockEntityThermalCentrifuge tile, Player player, int id) {
         super(tile, player, id);
         this.addSlot(FilterSlot.createDischargeSlot(tile, tile.tier, 0, 17, 53));
         this.addSlot(new FilterSlot(tile, 1, 17, 17, (T) -> {

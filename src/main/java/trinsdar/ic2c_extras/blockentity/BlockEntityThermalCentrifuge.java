@@ -4,7 +4,6 @@ import ic2.api.network.buffer.NetworkInfo;
 import ic2.api.recipes.ingridients.recipes.IRecipeOutput;
 import ic2.api.recipes.registries.IMachineRecipeList;
 import ic2.api.util.DirectionList;
-import ic2.core.block.base.tiles.impls.machine.single.BasicMachineTileEntity;
 import ic2.core.inventory.container.IC2Container;
 import ic2.core.inventory.filter.SpecialFilters;
 import ic2.core.inventory.filter.special.ElectricItemFilter;
@@ -26,7 +25,7 @@ import trinsdar.ic2c_extras.init.ModBlocks;
 import trinsdar.ic2c_extras.recipes.MachineRecipes;
 
 
-public class TileEntityThermalCentrifuge extends TileEntityMultiOutput {
+public class BlockEntityThermalCentrifuge extends BlockEntityMultiOutput {
     @NetworkInfo
     public int maxHeat = 500;
     @NetworkInfo
@@ -36,7 +35,7 @@ public class TileEntityThermalCentrifuge extends TileEntityMultiOutput {
 
     public static final String neededHeat = "minHeat";
 
-    public TileEntityThermalCentrifuge(BlockPos pos, BlockState state) {
+    public BlockEntityThermalCentrifuge(BlockPos pos, BlockState state) {
         super(pos, state,5, 2, 48, 200, 128);
         this.addGuiFields("heat", "maxHeat");
     }

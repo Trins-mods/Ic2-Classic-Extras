@@ -15,11 +15,11 @@ import trinsdar.ic2c_extras.container.ContainerThermoElectricGenerator;
 import trinsdar.ic2c_extras.init.ModBlocks;
 import trinsdar.ic2c_extras.init.ModItems;
 
-public class TileEntityThermoElectricGenerator extends BaseGeneratorTileEntity {
+public class BlockEntityThermoElectricGenerator extends BaseGeneratorTileEntity {
 
     protected boolean checkProduction = true;
 
-    public TileEntityThermoElectricGenerator(BlockPos pos, BlockState state) {
+    public BlockEntityThermoElectricGenerator(BlockPos pos, BlockState state) {
         super(pos, state,6);
         this.tier = 1;
         this.maxStorage = 20000;
