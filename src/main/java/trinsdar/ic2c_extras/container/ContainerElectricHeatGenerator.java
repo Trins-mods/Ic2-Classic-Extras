@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.blockentity.BlockEntityElectricHeatGenerator;
+import trinsdar.ic2c_extras.container.component.HeatGeneratorComponent;
 import trinsdar.ic2c_extras.init.ModItems;
 
 public class ContainerElectricHeatGenerator extends ContainerComponent<BlockEntityElectricHeatGenerator> {
@@ -25,6 +26,7 @@ public class ContainerElectricHeatGenerator extends ContainerComponent<BlockEnti
             this.addSlot(new FilterSlot(key, i + 6, 44 + (18 * i), 45, filter));
         }
         this.addPlayerInventory(player.getInventory());
+        this.addComponent(new HeatGeneratorComponent(new Box2i(34, 66, 108, 13), key.getHeatHandler()));
         this.addComponent(new ChargebarComponent(CHARGE_BOX, key, BasicMachineContainer.CHARGE_POS, true));
     }
 

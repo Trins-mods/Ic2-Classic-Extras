@@ -1,6 +1,7 @@
 package trinsdar.ic2c_extras.blockentity;
 
 import ic2.api.energy.tile.IEnergyEmitter;
+import ic2.api.network.buffer.NetworkInfo;
 import ic2.api.util.DirectionList;
 import ic2.core.block.base.cache.CapabilityCache;
 import ic2.core.block.base.cache.ICache;
@@ -18,6 +19,7 @@ import ic2.core.inventory.handler.SlotType;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -33,6 +35,7 @@ import trinsdar.ic2c_extras.container.ContainerOreWashingPlant;
 import trinsdar.ic2c_extras.init.ModBlocks;
 
 public class BlockEntityElectricHeatGenerator extends BaseElectricTileEntity implements IHeatTile, ITickListener, ITileGui {
+    @NetworkInfo
     final Ic2cExtrasHeatHandler heatHandler;
     ICache<IHeatHandler> heatCache;
     int coilCount = 0;
@@ -48,6 +51,7 @@ public class BlockEntityElectricHeatGenerator extends BaseElectricTileEntity imp
         this.addCaches(heatCache);
         this.setFuelSlot(0);
         this.addCapability(TesseractCaps.HEAT_CAPABILITY, heatHandler);
+        this.addGuiFields("heatHandler");
     }
 
     @Override
@@ -77,6 +81,11 @@ public class BlockEntityElectricHeatGenerator extends BaseElectricTileEntity imp
     }
 
     @Override
+    public Ic2cExtrasHeatHandler getHeatHandler() {
+        return heatHandler;
+    }
+
+    @Override
     public boolean canInput(Direction direction) {
         return false;
     }
@@ -94,10 +103,12 @@ public class BlockEntityElectricHeatGenerator extends BaseElectricTileEntity imp
             this.useEnergy(min);
             heatHandler.insertInternal(min, false);
             if (!this.isActive()) setActive(true);
+            this.updateGuiField("heatHandler");
         } else {
             if (this.isActive()) setActive(false);
         }
         this.heatHandler.update(this.isActive());
+
     }
 
     @Override
@@ -126,5 +137,17 @@ public class BlockEntityElectricHeatGenerator extends BaseElectricTileEntity imp
     @Override
     public IC2Container createContainer(Player player, InteractionHand interactionHand, Direction direction, int i) {
         return new ContainerElectricHeatGenerator(this, player, i);
+    }
+
+    @Override
+    public void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
+        this.heatHandler.serialize(compound);
+    }
+
+    @Override
+    public void load(CompoundTag compound) {
+        super.load(compound);
+        this.heatHandler.deserialize(compound);
     }
 }

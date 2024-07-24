@@ -1,5 +1,8 @@
 package trinsdar.ic2c_extras.blockentity;
 
+import ic2.api.network.buffer.IInputBuffer;
+import ic2.api.network.buffer.INetworkDataBuffer;
+import ic2.api.network.buffer.IOutputBuffer;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -8,7 +11,7 @@ import tesseract.api.heat.IHeatHandler;
 
 import java.util.Optional;
 
-public class Ic2cExtrasHeatHandler implements IHeatHandler {
+public class Ic2cExtrasHeatHandler implements IHeatHandler, INetworkDataBuffer {
     int heat;
     int maxHeat;
     final int maxInput, maxOutput;
@@ -121,5 +124,15 @@ public class Ic2cExtrasHeatHandler implements IHeatHandler {
     @Override
     public long getMaxExtract() {
         return maxOutput;
+    }
+
+    @Override
+    public void write(IOutputBuffer iOutputBuffer) {
+        iOutputBuffer.writeInt(heat);
+    }
+
+    @Override
+    public void read(IInputBuffer iInputBuffer) {
+        heat = iInputBuffer.readInt();
     }
 }
