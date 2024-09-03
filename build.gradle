@@ -127,6 +127,10 @@ processResources {
     }
 }
 
+tasks.named('jarJar', Jar).configure {
+    archiveClassifier.set("")
+}
+
 // Example for how to get properties into the manifest for reading at runtime.
 tasks.named('jar', Jar).configure {
     manifest {
@@ -143,4 +147,5 @@ tasks.named('jar', Jar).configure {
 
     // This is the preferred method to reobfuscate your jar file
     finalizedBy 'reobfJar'
+    archiveClassifier.set "thin"
 }
