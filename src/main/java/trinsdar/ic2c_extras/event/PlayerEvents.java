@@ -7,6 +7,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import trinsdar.ic2c_extras.IC2CExtrasConfig;
 import trinsdar.ic2c_extras.init.IC2CExtrasTags;
 
 import static ic2.core.item.wearable.armor.HazmatArmor.isFullHazmatSuit;
@@ -25,6 +26,7 @@ public class PlayerEvents {
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent event) {
         var player = event.player;
+        if (!IC2CExtrasConfig.ITEM_RADIATION.get()) return;
 
         if (IC2.PLATFORM.isSimulating() && event.phase == TickEvent.Phase.END) {
             if (!player.isCreative()) {
