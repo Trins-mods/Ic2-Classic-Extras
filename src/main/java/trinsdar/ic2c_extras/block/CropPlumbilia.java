@@ -25,16 +25,11 @@ public class CropPlumbilia extends OreCrop {
     }
 
     public TextureAtlasSprite getTexture(int stage) {
-        String stageTexture = "";
-        switch (stage) {
-            case 0:
-            case 1:
-            case 2:
-                stageTexture = "growing_" + stage;
-                break;
-            case 3:
-                stageTexture = "growing_plumbilia_" + stage;
-        }
+        String stageTexture = switch (stage) {
+            case 0, 1, 2 -> "growing_" + stage;
+            case 3 -> "growing_plumbilia_" + stage;
+            default -> "";
+        };
 
         return IC2Textures.getMappedEntriesBlock(IC2CExtras.MODID,"resources").get(stageTexture);
     }
