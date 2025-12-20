@@ -58,7 +58,7 @@ public class IC2CExtras {
     private void commonSetup(FMLCommonSetupEvent event){
         AdvRecipeRegistry.INSTANCE.registerListener(CraftingRecipes::loadRecipes);
         MachineRecipes.init();
-        CropRegistry.REGISTRY.registerCrop(new CropPlumbilia());
+
     }
 
 

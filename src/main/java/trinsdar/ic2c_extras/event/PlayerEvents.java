@@ -1,6 +1,8 @@
 package trinsdar.ic2c_extras.event;
 
+import ic2.api.crops.ICropRegistry;
 import ic2.core.IC2;
+import ic2.core.block.crops.CropRegistry;
 import ic2.core.item.wearable.armor.electric.QuantumSuit;
 import ic2.core.platform.registries.IC2Potions;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -8,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import trinsdar.ic2c_extras.IC2CExtrasConfig;
+import trinsdar.ic2c_extras.block.CropPlumbilia;
 import trinsdar.ic2c_extras.init.IC2CExtrasTags;
 
 import static ic2.core.item.wearable.armor.HazmatArmor.isFullHazmatSuit;
@@ -37,5 +40,10 @@ public class PlayerEvents {
                 }
             }
         }
+    }
+
+    @SubscribeEvent
+    public void onCropRegister(ICropRegistry.CropRegisterEvent event){
+        CropRegistry.REGISTRY.registerCrop(new CropPlumbilia());
     }
 }
