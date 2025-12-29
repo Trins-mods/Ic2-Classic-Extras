@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import ic2.core.inventory.gui.components.GuiWidget;
 import ic2.core.utils.math.geometry.Box2i;
 import net.minecraft.network.chat.Component;
-import tesseract.api.heat.IHeatHandler;
+import org.gtreimagined.tesseract.api.hu.IHeatHandler;
 
 import java.awt.*;
 import java.util.Arrays;

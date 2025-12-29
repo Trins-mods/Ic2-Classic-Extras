@@ -6,8 +6,8 @@ import ic2.api.network.buffer.IOutputBuffer;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import tesseract.TesseractCapUtils;
-import tesseract.api.heat.IHeatHandler;
+import org.gtreimagined.tesseract.TesseractCapUtils;
+import org.gtreimagined.tesseract.api.hu.IHeatHandler;
 
 import java.util.Optional;
 

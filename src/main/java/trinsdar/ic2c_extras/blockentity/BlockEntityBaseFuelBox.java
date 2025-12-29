@@ -17,8 +17,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import tesseract.api.forge.TesseractCaps;
-import tesseract.api.heat.IHeatHandler;
+import org.gtreimagined.tesseract.api.forge.TesseractCaps;
+import org.gtreimagined.tesseract.api.hu.IHeatHandler;
 
 public abstract class BlockEntityBaseFuelBox extends BaseInventoryTileEntity implements IWrenchableTile, ITickListener, ITileGui, IFuelStorage, IHeatTile, ILocation {
     @NetworkInfo
