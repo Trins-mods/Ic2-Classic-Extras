@@ -179,8 +179,7 @@ jar {
     manifest.attributes(
             "FMLCorePlugin": "trinsdar.ic2c_extras.asm.Ic2cExtrasLoadingPlugin",
             "FMLCorePluginContainsFMLMod": true,
-            "TweakOrder": 0,
-            "MixinConfigs": "mixins.ic2c_extras.json"
+            "TweakOrder": 0
     )
 }
 
