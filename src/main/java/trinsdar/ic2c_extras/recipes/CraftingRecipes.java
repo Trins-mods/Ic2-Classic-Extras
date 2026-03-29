@@ -44,6 +44,7 @@ public class CraftingRecipes {
         addDustRecipe(registry, "uranium", ModItems.URANIUM_DUST, ModItems.TINY_URANIUM_238_DUST);
         addDustRecipe(registry, "plutonium", ModItems.PLUTONIUM_DUST, ModItems.TINY_PLUTONIUM_DUST);
         addDustRecipe(registry, "thorium", ModItems.THORIUM_DUST, ModItems.TINY_THORIUM_DUST);
+        registry.addShapedRecipe(id("raw_lead_block"), new ItemStack(ModBlocks.RAW_LEAD_BLOCK), "RRR", "RRR", "RRR", 'R', IC2Tags.createForgeItemTag("raw_materials/lead"));
 
         registry.addShapedRecipe(id("thermal_centrifuge"), new ItemStack(ModBlocks.THERMAL_CENTRIFUGE), "CLC", "RMR", "RHR", 'C', ModItems.COIL, 'L', IC2Items.MINING_LASER, 'R', IC2Tags.INGOT_REFINED_IRON, 'M', IC2Blocks.ADVANCED_MACHINE_BLOCK, 'H', ModItems.HEAT_CONDUCTOR);
         registry.addShapedRecipe(id("coil"), new ItemStack(ModItems.COIL), "CCC", "CRC", "CCC", 'C', IC2Items.COPPER_CABLE, 'R', IC2Tags.INGOT_REFINED_IRON);
