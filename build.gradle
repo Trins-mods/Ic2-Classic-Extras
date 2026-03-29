@@ -100,7 +100,7 @@ repositories{
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     //modImplementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation(fg.deobf("curse.maven:ic2_classic-242942:5230420"))
+    implementation(fg.deobf("curse.maven:ic2_classic-242942:7841338"))
     implementation(fg.deobf("curse.maven:ic2c_additions-304040:4360883"))
     implementation(fg.deobf("curse.maven:curios-309927:3871347"))
     implementation(fg.deobf("maven.modrinth:carbon-config:l6LTuPIs"))

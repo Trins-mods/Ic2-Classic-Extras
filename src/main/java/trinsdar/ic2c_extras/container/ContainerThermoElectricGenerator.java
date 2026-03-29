@@ -3,7 +3,7 @@ package trinsdar.ic2c_extras.container;
 
 import ic2.core.inventory.container.ContainerComponent;
 import ic2.core.inventory.filter.SimpleFilter;
-import ic2.core.inventory.gui.components.simple.ChargebarComponent;
+import ic2.core.inventory.gui.components.simple.ChargeBarComponent;
 import ic2.core.inventory.slot.FilterSlot;
 import ic2.core.utils.math.geometry.Box2i;
 import ic2.core.utils.math.geometry.Vec2i;
@@ -25,7 +25,7 @@ public class ContainerThermoElectricGenerator extends ContainerComponent<BlockEn
             }
         }
         this.addPlayerInventory(player.getInventory());
-        this.addComponent(new ChargebarComponent(CHARGE_BOX, tile, CHARGE_POS, false));
+        this.addComponent(new ChargeBarComponent(CHARGE_BOX, tile, CHARGE_POS, false));
     }
 
     @Override

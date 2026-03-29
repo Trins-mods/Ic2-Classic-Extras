@@ -2,7 +2,7 @@ package trinsdar.ic2c_extras.container;
 
 
 import ic2.core.inventory.container.ContainerComponent;
-import ic2.core.inventory.gui.components.simple.ChargebarComponent;
+import ic2.core.inventory.gui.components.simple.ChargeBarComponent;
 import ic2.core.inventory.gui.components.simple.ProgressComponent;
 import ic2.core.inventory.slot.FilterSlot;
 import ic2.core.inventory.slot.UpgradeSlot;
@@ -40,7 +40,7 @@ public class ContainerThermalCentrifuge extends ContainerComponent<BlockEntityTh
         }
 
         this.addPlayerInventory(player.getInventory());
-        this.addComponent(new ChargebarComponent(ContainerThermalCentrifuge.MACHINE_CHARGE_BOX, tile, ContainerThermalCentrifuge.MACHINE_CHARGE_POS, true));
+        this.addComponent(new ChargeBarComponent(ContainerThermalCentrifuge.MACHINE_CHARGE_BOX, tile, ContainerThermalCentrifuge.MACHINE_CHARGE_POS, true));
         this.addComponent(new ProgressComponent(ContainerThermalCentrifuge.MACHINE_PROGRESS_BOX, tile, ContainerThermalCentrifuge.MACHINE_PROGRESS_POS, false));
         this.addComponent(new HeatComponent(tile, ContainerThermalCentrifuge.MACHINE_HEAT_BOX, ContainerThermalCentrifuge.MACHINE_HEAT_POS));
     }

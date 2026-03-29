@@ -3,7 +3,7 @@ package trinsdar.ic2c_extras.container;
 
 import ic2.core.block.machines.containers.lv.BasicMachineContainer;
 import ic2.core.inventory.container.ContainerComponent;
-import ic2.core.inventory.gui.components.simple.ChargebarComponent;
+import ic2.core.inventory.gui.components.simple.ChargeBarComponent;
 import ic2.core.inventory.gui.components.simple.ProgressComponent;
 import ic2.core.inventory.gui.components.simple.TankComponent;
 import ic2.core.inventory.slot.FilterSlot;
@@ -32,7 +32,7 @@ public class ContainerOreWashingPlant extends ContainerComponent<BlockEntityOreW
             this.addSlot(new UpgradeSlot(tile, 5 + i, 152, 8 + i * 18));
         }
         this.addPlayerInventory(player.getInventory());
-        this.addComponent(new ChargebarComponent(BasicMachineContainer.CHARGE_BOX, tile, BasicMachineContainer.CHARGE_POS, true));
+        this.addComponent(new ChargeBarComponent(BasicMachineContainer.CHARGE_BOX, tile, BasicMachineContainer.CHARGE_POS, true));
         this.addComponent(new ProgressComponent(BasicMachineContainer.PROGRESS_BOX, tile, BasicMachineContainer.PROGRESS_POS, false));
         this.addComponent(new TankComponent(new Box2i(32, 13, 16, 58), new Vec2i(176, 133), tile.getWaterTank()).setTankName("Water Tank"));
     }

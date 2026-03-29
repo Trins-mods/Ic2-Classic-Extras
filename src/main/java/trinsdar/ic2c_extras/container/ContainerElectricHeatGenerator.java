@@ -4,7 +4,7 @@ import ic2.core.block.machines.containers.lv.BasicMachineContainer;
 import ic2.core.inventory.container.ContainerComponent;
 import ic2.core.inventory.filter.IFilter;
 import ic2.core.inventory.gui.IC2Screen;
-import ic2.core.inventory.gui.components.simple.ChargebarComponent;
+import ic2.core.inventory.gui.components.simple.ChargeBarComponent;
 import ic2.core.inventory.slot.FilterSlot;
 import ic2.core.utils.math.geometry.Box2i;
 import net.minecraft.resources.ResourceLocation;
@@ -27,7 +27,7 @@ public class ContainerElectricHeatGenerator extends ContainerComponent<BlockEnti
         }
         this.addPlayerInventory(player.getInventory());
         this.addComponent(new HeatGeneratorComponent(new Box2i(34, 66, 108, 13), key.getHeatHandler()));
-        this.addComponent(new ChargebarComponent(CHARGE_BOX, key, BasicMachineContainer.CHARGE_POS, true));
+        this.addComponent(new ChargeBarComponent(CHARGE_BOX, key, BasicMachineContainer.CHARGE_POS, true));
     }
 
     @Override
