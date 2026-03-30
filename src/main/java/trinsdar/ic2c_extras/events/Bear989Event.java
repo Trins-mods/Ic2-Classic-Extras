@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-// import scala.actors.threadpool.Arrays;
 import trinsdar.ic2c_extras.util.IReactorPlated;
 import trinsdar.ic2c_extras.util.Registry;
 import trinsdar.ic2c_extras.util.StackHelper;
