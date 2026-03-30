@@ -7,11 +7,11 @@ pluginManagement {
         maven("https://maven.fabricmc.net")
         maven("https://maven.minecraftforge.net/")
         maven("https://repo.spongepowered.org/maven/")
-        maven("https://repo.sk1er.club/repository/maven-releases/")
+        // maven("https://repo.sk1er.club/repository/maven-releases/")
         maven {
             // RetroFuturaGradle
             name = "GTNH Maven"
-            url = uri("http://jenkins.usrv.eu:8081/nexus/content/groups/public/")
+            url = uri("https://nexus.gtnewhorizons.com/repository/public/")
             isAllowInsecureProtocol = true
             mavenContent {
                 includeGroup("com.gtnewhorizons")
