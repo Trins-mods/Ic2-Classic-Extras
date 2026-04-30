@@ -24,6 +24,7 @@ import net.minecraft.util.Tuple;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import trinsdar.ic2c_extras.IC2CExtras;
 import trinsdar.ic2c_extras.IC2CExtrasConfig;
 import trinsdar.ic2c_extras.init.IC2CExtrasTags;
 import trinsdar.ic2c_extras.init.ModItems;
@@ -46,11 +47,11 @@ public class MachineRecipes {
     public static final ExtendedRecipeList THERMAL_CENTRIFUGE = new ExtendedRecipeList("thermal_centrifuge", MachineRecipes::initThermalCentrifugeRecipes);
 
     public static void init(){
-        IC2.RECIPES.get(true).getLists().add(ORE_WASHING_PLANT);
-        IC2.RECIPES.get(true).getLists().add(THERMAL_CENTRIFUGE);
+        IC2.RECIPES.get(true).registerRecipeList(new ResourceLocation(IC2CExtras.MODID, "ore_washing_plant"), ORE_WASHING_PLANT);
+        IC2.RECIPES.get(true).registerRecipeList(new ResourceLocation(IC2CExtras.MODID, "thermal_centrifuge"), THERMAL_CENTRIFUGE);
         if (FMLEnvironment.dist.isClient()){
-            IC2.RECIPES.get(false).getLists().add(ORE_WASHING_PLANT);
-            IC2.RECIPES.get(false).getLists().add(THERMAL_CENTRIFUGE);
+            IC2.RECIPES.get(false).registerRecipeList(new ResourceLocation(IC2CExtras.MODID, "ore_washing_plant"), ORE_WASHING_PLANT);
+            IC2.RECIPES.get(false).registerRecipeList(new ResourceLocation(IC2CExtras.MODID, "thermal_centrifuge"), THERMAL_CENTRIFUGE);
         }
         IC2.RECIPES.get(true).macerator.registerListener(MachineRecipes::initMaceratorRecipes);
         IC2.RECIPES.get(true).extractor.registerListener(r -> {
