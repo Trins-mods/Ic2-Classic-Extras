@@ -30,6 +30,7 @@ legacyForge {
         }
         server {
             server()
+            gameDirectory = project.file('run/server')
         }
     }
     mods {
@@ -74,9 +75,9 @@ repositories{
 dependencies {
     //modImplementation fileTree(include: ['*.jar'], dir: 'libs')
     modImplementation("curse.maven:ic2_classic-242942:8010709")
-    modImplementation("curse.maven:ic2c_additions-304040:4360883")
+    //modImplementation("curse.maven:ic2c_additions-304040:4360883")
     modImplementation("curse.maven:curios-309927:3871347")
-    modImplementation("maven.modrinth:carbon-config:AtpL1CDA")
+    modImplementation("maven.modrinth:carbon-config:HMD2FUea")
     modImplementation("earth.terrarium:botarium-forge-${project.minecraft_version}:1.8.2")
     modImplementation("curse.maven:jei-238222:4712866")
     modImplementation("org.gt-reimagined:tesseract-forge:${tesseract_version}-${project.minecraft_version}")
