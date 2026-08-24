@@ -16,7 +16,7 @@ import trinsdar.ic2c_extras.tileentity.TileEntityFluidCanningMachine;
 import trinsdar.ic2c_extras.util.guicomponent.SlotUpgrade2;
 
 public class ContainerFluidCanningMachine extends ContainerTileComponent<TileEntityFluidCanningMachine> {
-    public static Vec2i tankOverlay = new Vec2i(176, 133);
+    public static Vec2i tankOverlay = new Vec2i(176, 33);
     public static Box2D machineChargeBox = new Box2D(44, 37, 14, 14);
     public static Vec2i machineChargePos = new Vec2i(176, 0);
     public static Box2D machineProgressBox = new Box2D(64, 35, 24, 17);
